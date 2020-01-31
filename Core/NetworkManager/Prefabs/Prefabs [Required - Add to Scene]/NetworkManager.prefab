@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3252435991396032041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3252435991396032034}
+  - component: {fileID: 3252435991396032039}
+  - component: {fileID: 3252435991396032036}
+  - component: {fileID: 3252435991396032038}
+  - component: {fileID: 1275635640388507688}
+  - component: {fileID: 3252435990677973888}
+  m_Layer: 0
+  m_Name: NetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3252435991396032034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3252435991396032039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396f6a71fa94bde8f46b2fccb451fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  runInBackground: 1
+  startOnHeadless: 1
+  serverTickRate: 60
+  showDebugMessages: 0
+  offlineScene: 
+  onlineScene: 
+  transport: {fileID: 3252435991396032036}
+  networkAddress: localhost
+  maxConnections: 500
+  authenticator: {fileID: 3252435991396032038}
+  playerPrefab: {fileID: 0}
+  autoCreatePlayer: 0
+  playerSpawnMethod: 0
+  spawnPrefabs:
+  - {fileID: 7930793167279634983, guid: 65bddf07b790a4600ad27cee15356108, type: 3}
+  - {fileID: 7930793167279634983, guid: c2ba7e64b2a3e4380806ca5054392be5, type: 3}
+  - {fileID: 7930793167279634983, guid: 6fbf7df69c5a745d5995ad5e12def5b1, type: 3}
+  debug:
+    debugMode: 1
+  sortCategories: []
+  userNameSalt: 16_or_more_bytes
+  systemText:
+    clientDisconnected: Disconnected.
+    userAlreadyOnline: User is already online!
+    userLoginSuccess: 
+    userLoginFailure: Account Login failed!
+    userRegisterSuccess: Account Registration successful!
+    userRegisterFailure: Account Registration failed!
+    userChangePasswordSuccess: Change Password successful!
+    userChangePasswordFailure: Change Password failed!
+    userDeleteSuccess: Delete Account successful!
+    userDeleteFailure: Delete Account failed!
+    userConfirmSuccess: Account confirmed!
+    userConfirmFailure: Confirm failed!
+    playerLoginSuccess: 
+    playerLoginFailure: Player Login failed!
+    playerRegisterSuccess: Create player successful!
+    playerRegisterFailure: Create player failed!
+    playerDeleteSuccess: Delete player successful!
+    playerDeleteFailure: Delete player failed!
+    playerSwitchServerSuccess: Server switch successful!
+    playerSwitchServerFailure: Server switch failed!
+  userName: 
+  userPassword: 
+  newPassword: 
+  maxPlayers: 0
+  state: 0
+  guiScene:
+    sceneAsset: {fileID: 102900000, guid: 4a25c1de28bc2489d9c68ea564410fc7, type: 3}
+    sceneName: UI Scene
+--- !u!114 &3252435991396032036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnClientConnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnClientDataReceived:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.ClientDataReceivedEvent, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnClientError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventException, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnClientDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnServerConnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventInt, Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnServerDataReceived:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.ServerDataReceivedEvent, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnServerError:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventIntException, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnServerDisconnected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventInt, Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  port: 7777
+  NoDelay: 1
+  serverMaxMessageSize: 16384
+  clientMaxMessageSize: 16384
+--- !u!114 &3252435991396032038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e92e0979d8c647c5927cd9f397adebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnServerAuthenticated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventNetworkConnection, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnClientAuthenticated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Mirror.UnityEventNetworkConnection, Mirror, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  debug:
+    debugMode: 0
+  checkApplicationVersion: 1
+  connectDelayMin: 4
+  connectDelayMax: 8
+  connectTimeout: 60
+  connectDelay: 0
+  systemText:
+    versionMismatch: Client out of date!
+--- !u!114 &1275635640388507688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fe70f41c05b4db0854b836b71eec77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modulesConfigTemplate: {fileID: 11400000, guid: b4eb59463bc2f413b99af9cb46655f0d,
+    type: 2}
+  projectConfigTemplate: {fileID: 11400000, guid: 7f1030086e7bb45ad82c97342a5ade49,
+    type: 2}
+  gameRulesTemplate: {fileID: 11400000, guid: 81b1bccee2cc74db09102b9c49833726, type: 2}
+--- !u!114 &3252435990677973888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797c1269bcab047d18ac3dde2df41d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preloadTemplates:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  preloadOnAwake: 0

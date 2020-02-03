@@ -1,11 +1,11 @@
 
 using UnityEngine;
-using Wovencode;
+using OpenMMO;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	// ===================================================================================

@@ -6,12 +6,12 @@
 
 #if UNITY_EDITOR
 
-using Wovencode;
+using OpenMMO;
 using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	// ===================================================================================

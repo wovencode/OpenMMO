@@ -1,6 +1,6 @@
 ﻿
-using Wovencode;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Database;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +10,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using UnityEngine;
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 	
 	// ===================================================================================

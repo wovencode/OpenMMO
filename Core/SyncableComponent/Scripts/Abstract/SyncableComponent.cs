@@ -3,9 +3,9 @@ using System;
 using System.Text;
 using UnityEngine;
 using Mirror;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 
 	// ===================================================================================
 	// SyncableComponent
@@ -88,6 +88,16 @@ namespace Wovencode {
 		}
 		
 		// -------------------------------------------------------------------------------
+		// LateUpdate
+		// updated every frame, private to enforce the use of LateUpdateClient
+		// -------------------------------------------------------------------------------
+		void LateUpdate()
+		{
+			if (isClient)
+				LateUpdateClient();
+		}
+		
+		// -------------------------------------------------------------------------------
 		// UpdateServer
 		// @Server
 		// -------------------------------------------------------------------------------
@@ -100,6 +110,13 @@ namespace Wovencode {
 		// -------------------------------------------------------------------------------
 		[Client]
 		protected abstract void UpdateClient();
+		
+		// -------------------------------------------------------------------------------
+		// LateUpdateClient
+		// @Client
+		// -------------------------------------------------------------------------------
+		[Client]
+		protected abstract void LateUpdateClient();
 		
 		// -------------------------------------------------------------------------------
 			

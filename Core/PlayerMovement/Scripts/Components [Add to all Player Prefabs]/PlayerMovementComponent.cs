@@ -11,28 +11,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 	
 	// ===================================================================================
 	// PlayerMovement
 	// ===================================================================================
-	[RequireComponent(typeof(NavMeshAgent), typeof(Animator))]
 	[DisallowMultipleComponent]
 	[System.Serializable]
-	public partial class PlayerMovementComponent : SyncableComponent
+	public partial class PlayerMovementComponent : EntityMovementComponent
 	{
 		
-		[Header("Components")]
-        public NavMeshAgent agent;
-        public Animator animator;
-
-        [Header("Movement")]
-        public float rotationSpeed = 100;
-
 		// -------------------------------------------------------------------------------
-		// 
+		// Start
 		// -------------------------------------------------------------------------------
 		protected override void Start()
     	{
@@ -52,26 +44,28 @@ namespace Wovencode {
 		// -------------------------------------------------------------------------------
 		void OnDestroy()
     	{
-    	
+    		
         }
 		
 		// -------------------------------------------------------------------------------
 		// UpdateServer
+		// @Server
 		// -------------------------------------------------------------------------------
 		[Server]
 		protected override void UpdateServer()
 		{
-			
+			base.UpdateServer();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateServer));
 		}
 		
 		// -------------------------------------------------------------------------------
 		// UpdateClient
+		// @Client
 		// -------------------------------------------------------------------------------
 		[Client]
 		protected override void UpdateClient()
 		{
-		
+			
 			// movement for local player
             if (!isLocalPlayer) return;
             
@@ -83,10 +77,19 @@ namespace Wovencode {
             float vertical = Input.GetAxis("Vertical");
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
-            animator.SetBool("Walk", agent.velocity != Vector3.zero);
-		
-			
+           	
+			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
+		}
+		
+		// -------------------------------------------------------------------------------
+		// LateUpdateClient
+		// @Client
+		// -------------------------------------------------------------------------------
+		protected override void LateUpdateClient()
+		{
+			base.LateUpdateClient();		
+			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient));
 		}
 		
 		// -------------------------------------------------------------------------------

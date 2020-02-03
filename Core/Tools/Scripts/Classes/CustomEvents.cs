@@ -1,11 +1,11 @@
 ﻿
-using Wovencode;
+using OpenMMO;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Mirror;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	[System.Serializable]

@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 	
 	// ===================================================================================
 	// ServerInfoTemplate

@@ -1,6 +1,6 @@
 ﻿
-using Wovencode;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.DebugManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

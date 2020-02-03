@@ -1,8 +1,8 @@
 
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.Database;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.Database;
+using OpenMMO.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,14 +13,14 @@ using Mirror;
 using UnityEditor;
 #endif
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
     // ===================================================================================
 	// NetworkManager
 	// ===================================================================================
 	[RequireComponent(typeof(ConfigurationManager))]
-	[RequireComponent(typeof(Wovencode.Network.NetworkAuthenticator))]
+	[RequireComponent(typeof(OpenMMO.Network.NetworkAuthenticator))]
 	[DisallowMultipleComponent]
 	public partial class NetworkManager : BaseNetworkManager
 	{
@@ -33,7 +33,7 @@ namespace Wovencode.Network
 		
 		// -------------------------------------------------------------------------------
 		
-		public static new Wovencode.Network.NetworkManager singleton;
+		public static new OpenMMO.Network.NetworkManager singleton;
 
 		public static Dictionary<string, GameObject> onlinePlayers = new Dictionary<string, GameObject>();
 		protected Dictionary<NetworkConnection, string> onlineUsers = new Dictionary<NetworkConnection, string>();

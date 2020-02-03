@@ -12,14 +12,14 @@
 //
 // =======================================================================================
 
-using Wovencode;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.UI;
 using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
 
-namespace Wovencode.UI
+namespace OpenMMO.UI
 {
 	
 	// ===================================================================================

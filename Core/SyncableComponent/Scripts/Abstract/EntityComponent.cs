@@ -1,20 +1,14 @@
-﻿// =======================================================================================
-// Wovencore
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// =======================================================================================
-
+﻿
 using System;
 using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
-using Wovencode;
-using Wovencode.Network;
+using OpenMMO;
+using OpenMMO.Network;
 
-namespace Wovencode {
+namespace OpenMMO {
 	
 	// ===================================================================================
 	// EntityComponent
@@ -22,7 +16,6 @@ namespace Wovencode {
 	[System.Serializable]
 	public abstract partial class EntityComponent : UpgradableComponent
 	{
-		
 		
 		[Header("Components")]
 		public NavMeshAgent agent;
@@ -32,22 +25,19 @@ namespace Wovencode {
 		[Header("Default Data")]
 		public ArchetypeTemplate archeType;
 		
-		
+		// -- Component Cache
+		public EntityMovementComponent movementComponent;
 		
 		// -------------------------------------------------------------------------------
 		// 
 		// -------------------------------------------------------------------------------
 		protected override void Start()
     	{
+    		proxChecker = GetComponent<NetworkProximityChecker>();
+    		
+    		movementComponent = gameObject.GetComponent<EntityMovementComponent>();
+    		
         	base.Start();
-		}
-		
-		// -------------------------------------------------------------------------------
-		// OnStartLocalPlayer
-		// -------------------------------------------------------------------------------
-		public override void OnStartLocalPlayer()
-    	{
-    		agent = GetComponent<NavMeshAgent>();
 		}
 		
 		// -------------------------------------------------------------------------------

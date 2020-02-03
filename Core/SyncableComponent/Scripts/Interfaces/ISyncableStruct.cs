@@ -8,9 +8,9 @@
 // =======================================================================================
 
 using UnityEngine;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	// ===================================================================================
 	// 
@@ -23,8 +23,11 @@ namespace Wovencode
 		void Update(GameObject player);
 		bool Valid { get; }
 		
-		bool CanRemove { get; }
-		void Remove(long _amount=1);
+		bool CanAdd(long amount=1);
+		void Add(long amount=1);
+		
+		bool CanRemove(long amount=1);
+		void Remove(long amount=1);
 		
 		void Reset();
 		

@@ -1,20 +1,20 @@
 
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using Mirror;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
     // ===================================================================================
 	// NetworkAuthenticator
 	// ===================================================================================
-	[RequireComponent(typeof(Wovencode.Network.NetworkManager))]
+	[RequireComponent(typeof(OpenMMO.Network.NetworkManager))]
     [DisallowMultipleComponent]
     public partial class NetworkAuthenticator : BaseNetworkAuthenticator
     {
@@ -22,7 +22,7 @@ namespace Wovencode.Network
 		[Header("System Texts")]
 		public NetworkAuthenticator_Lang 					systemText;
 		
-		public static Wovencode.Network.NetworkAuthenticator singleton;
+		public static OpenMMO.Network.NetworkAuthenticator singleton;
 		
 		// -------------------------------------------------------------------------------
 		public override void Awake()

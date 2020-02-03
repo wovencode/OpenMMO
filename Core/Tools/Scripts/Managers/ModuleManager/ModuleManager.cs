@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
 
-using Wovencode;
-using Wovencode.Modules;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.Modules;
+using OpenMMO.DebugManager;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Wovencode.Modules
+namespace OpenMMO.Modules
 {
 	
 	// ===================================================================================

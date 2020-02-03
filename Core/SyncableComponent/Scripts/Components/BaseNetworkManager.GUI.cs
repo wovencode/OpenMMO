@@ -2,10 +2,10 @@
 using UnityEngine;
 using System.Collections;
 using UnityEditor;
-using Wovencode;
-using Wovencode.Network;
+using OpenMMO;
+using OpenMMO.Network;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
 #if UNITY_EDITOR

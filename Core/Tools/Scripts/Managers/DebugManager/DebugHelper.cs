@@ -1,12 +1,12 @@
 
-using Wovencode;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.DebugManager;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Wovencode.DebugManager
+namespace OpenMMO.DebugManager
 {
 	
 	// ===================================================================================

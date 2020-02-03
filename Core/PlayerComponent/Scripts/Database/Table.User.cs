@@ -1,10 +1,10 @@
 ﻿
-using Wovencode;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Database;
 using System;
 using SQLite;
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 
 	// ===================================================================================

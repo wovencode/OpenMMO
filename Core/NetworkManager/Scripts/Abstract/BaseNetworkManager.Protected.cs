@@ -1,12 +1,12 @@
 ﻿
-using Wovencode;
-using Wovencode.Network;
+using OpenMMO;
+using OpenMMO.Network;
 using UnityEngine;
 using System;
 using Mirror;
 using System.Collections.Generic;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 	
 	// ===================================================================================

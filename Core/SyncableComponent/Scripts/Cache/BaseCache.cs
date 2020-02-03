@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 	
 	// ===================================================================================
 	// BaseCache

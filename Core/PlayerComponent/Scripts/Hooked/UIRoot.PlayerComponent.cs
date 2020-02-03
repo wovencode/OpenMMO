@@ -1,9 +1,9 @@
 
-using Wovencode;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.UI;
 using UnityEngine;
 
-namespace Wovencode.UI
+namespace OpenMMO.UI
 {
 
 	// ===================================================================================

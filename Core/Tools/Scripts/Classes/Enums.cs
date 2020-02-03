@@ -2,9 +2,9 @@
 using System;
 using System.Text;
 using UnityEngine;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 
 	public enum SortOrder {None, Priority, Name}	
 	

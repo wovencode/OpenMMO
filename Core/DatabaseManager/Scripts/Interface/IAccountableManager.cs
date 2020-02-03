@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Wovencode;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Database;
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 
 	// ===================================================================================

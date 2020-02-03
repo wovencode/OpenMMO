@@ -1,9 +1,9 @@
 
-using Wovencode;
+using OpenMMO;
 using System;
 using UnityEngine;
 
-namespace Wovencode
+namespace OpenMMO
 {
 
 	[Serializable]

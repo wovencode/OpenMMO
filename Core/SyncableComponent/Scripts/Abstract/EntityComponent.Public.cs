@@ -10,9 +10,9 @@ using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 	
 	// ===================================================================================
 	// EntityComponent

@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.DebugManager;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	// ===================================================================================

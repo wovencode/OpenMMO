@@ -2,9 +2,9 @@
 using System;
 using System.Text;
 using UnityEngine;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 
 	public partial class Constants
 	{

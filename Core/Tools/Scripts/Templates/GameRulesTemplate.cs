@@ -2,9 +2,9 @@
 using System;
 using UnityEngine;
 using System.Linq;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	// ===================================================================================

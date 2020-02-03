@@ -1,8 +1,8 @@
 
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.Database;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.Database;
+using OpenMMO.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Mirror;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
     // ===================================================================================
@@ -28,10 +28,11 @@ namespace Wovencode.Network
 		[DevExtMethods("AwakePriority")]
 		void AwakePriority_UI()
 		{
-			
-			// -- load the UI scene only if we are client & UI available
 #if _CLIENT
+
+			// -- load the UI scene only if we are client & UI available
 			LoadUIAdditive();
+			
 #endif
 		}
 		

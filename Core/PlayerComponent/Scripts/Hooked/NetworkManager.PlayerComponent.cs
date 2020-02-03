@@ -1,14 +1,14 @@
 
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.Database;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
     // ===================================================================================
@@ -66,7 +66,7 @@ namespace Wovencode.Network
 			foreach (Transform startPosition in startPositions)
 			{
 			
-				Wovencode.Network.NetworkStartPosition position = startPosition.GetComponent<Wovencode.Network.NetworkStartPosition>();
+				OpenMMO.Network.NetworkStartPosition position = startPosition.GetComponent<OpenMMO.Network.NetworkStartPosition>();
 				
 				if (position == null || position.archeTypes.Length == 0)
 					continue;

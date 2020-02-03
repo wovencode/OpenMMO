@@ -1,13 +1,13 @@
 ﻿
-using Wovencode;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Database;
 using UnityEngine;
 using System;
 using System.IO;
 using System.Collections.Generic;
 using SQLite;
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 	
 	// ===================================================================================
@@ -18,7 +18,7 @@ namespace Wovencode.Database
 	{
 		
 		[Header("Settings")]
-		public DatabaseType databaseType = DatabaseType.SQLite;
+		public DatabaseType databaseType;
 		[Tooltip("Player data save interval in seconds (0 to disable).")]
 		public float saveInterval = 60f;
 		[Tooltip("Deleted user prune interval in seconds (0 to disable).")]
@@ -26,9 +26,9 @@ namespace Wovencode.Database
 		
 		public static DatabaseManager singleton;
 		
-		protected DatabaseType _databaseType = DatabaseType.SQLite;
+		protected DatabaseType _databaseType;
 		
-#if wMYSQL
+#if MYSQL
 		[Header("Database Layer - mySQL")]
 		public DatabaseLayerMySQL databaseLayer;
 #else
@@ -36,8 +36,8 @@ namespace Wovencode.Database
 		public DatabaseLayerSQLite databaseLayer;
 #endif
 		
-		protected const string _defineSQLite 	= "wSQLITE";
-		protected const string _defineMySQL 	= "wMYSQL";
+		protected const string _defineSQLite 	= "SQLITE";
+		protected const string _defineMySQL 	= "MYSQL";
 		
 		// -------------------------------------------------------------------------------
 		// OnValidate
@@ -46,6 +46,13 @@ namespace Wovencode.Database
 		void OnValidate()
 		{
 #if UNITY_EDITOR
+
+#if MYSQL
+			databaseType = DatabaseType.mySQL;
+#else
+			databaseType = DatabaseType.SQLite;
+#endif
+
 			if (databaseType == DatabaseType.mySQL && databaseType != _databaseType)
 			{
 				EditorTools.RemoveScriptingDefine(_defineSQLite);
@@ -73,12 +80,12 @@ namespace Wovencode.Database
 		{
 		
 			/*
-				When using "Wovencode.PlayerComponent", the database will automatically
+				When using "OpenMMO.PlayerComponent", the database will automatically
 				prune all users that have been soft deleted after a certain amount of time.
 				This process will also remove all characters of that user from the database
 				as well.
 				
-				If you don't use "Wovencode.PlayerComponent", you will have to provide
+				If you don't use "OpenMMO.PlayerComponent", you will have to provide
 				your own pruning functionality using the hook below, or nothing will
 				happen.
 					
@@ -104,7 +111,7 @@ namespace Wovencode.Database
     	{
 
 			/*
-				When using "Wovencode.Network", the database will automatically save
+				When using "OpenMMO.Network", the database will automatically save
 				all online players. If you use any other solution, you will have to
 				replace the code below with your own.
 			

@@ -1,10 +1,10 @@
 
-using Wovencode;
-using Wovencode.UI;
-using Wovencode.Network;
+using OpenMMO;
+using OpenMMO.UI;
+using OpenMMO.Network;
 using UnityEngine;
 
-namespace Wovencode.UI
+namespace OpenMMO.UI
 {
 
 	// ===================================================================================
@@ -13,18 +13,18 @@ namespace Wovencode.UI
 	public abstract partial class UIRoot
 	{
 
-		protected Wovencode.Network.NetworkManager _networkManager = null;
-		protected Wovencode.Network.NetworkAuthenticator _networkAuthenticator = null;
+		protected OpenMMO.Network.NetworkManager _networkManager = null;
+		protected OpenMMO.Network.NetworkAuthenticator _networkAuthenticator = null;
 		
 		// -------------------------------------------------------------------------------
 		// networkManager
 		// -------------------------------------------------------------------------------
-		protected Wovencode.Network.NetworkManager networkManager
+		protected OpenMMO.Network.NetworkManager networkManager
 		{
 			get
 			{
 				if (_networkManager == null)
-					_networkManager = FindObjectOfType<Wovencode.Network.NetworkManager>();
+					_networkManager = FindObjectOfType<OpenMMO.Network.NetworkManager>();
 				return _networkManager;
 			}
 		}
@@ -32,12 +32,12 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		// networkAuthenticator
 		// -------------------------------------------------------------------------------
-		protected Wovencode.Network.NetworkAuthenticator networkAuthenticator
+		protected OpenMMO.Network.NetworkAuthenticator networkAuthenticator
 		{
 			get
 			{
 				if (_networkAuthenticator == null)
-					_networkAuthenticator = FindObjectOfType<Wovencode.Network.NetworkAuthenticator>();
+					_networkAuthenticator = FindObjectOfType<OpenMMO.Network.NetworkAuthenticator>();
 				return _networkAuthenticator;
 			}
 		}

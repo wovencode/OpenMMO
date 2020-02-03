@@ -8,11 +8,11 @@
 //
 // =======================================================================================
 
-using Wovencode;
-using Wovencode.Network;
+using OpenMMO;
+using OpenMMO.Network;
 using Mirror;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
 	public class NetworkName : NetworkBehaviour

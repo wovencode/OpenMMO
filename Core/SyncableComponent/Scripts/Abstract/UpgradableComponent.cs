@@ -3,9 +3,9 @@ using System;
 using System.Text;
 using UnityEngine;
 using Mirror;
-using Wovencode;
+using OpenMMO;
 
-namespace Wovencode {
+namespace OpenMMO {
 
 	// ===================================================================================
 	// UpgradableComponent
@@ -19,7 +19,7 @@ namespace Wovencode {
 		public int level = 1;
 		public int maxLevel = 3;
 		public LinearGrowthInt capacity = new LinearGrowthInt{baseValue=99, bonusPerLevel=0};
-#if wCURRENCY
+#if _CURRENCY
 		public LevelCurrencyCost[] upgradeCost;
 #endif
 		
@@ -51,7 +51,7 @@ namespace Wovencode {
 		public bool CanUpgradeLevel()
 		{
 			return (level < maxLevel
-#if wCURRENCY
+#if _CURRENCY
 					&& GetComponentInParent<PlayerCurrencyComponent>().CanPayCost(upgradeCost, level)
 #endif
 					);
@@ -69,7 +69,7 @@ namespace Wovencode {
 		[Server]
 		protected virtual void UpgradeLevel()
 		{
-#if wCURRENCY
+#if _CURRENCY
 			GetComponentInParent<PlayerCurrencyComponent>().PayCost(upgradeCost, level);
 #endif
 			level++;

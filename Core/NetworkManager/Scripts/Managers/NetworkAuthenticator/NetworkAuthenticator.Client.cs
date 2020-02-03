@@ -1,14 +1,14 @@
 
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using Mirror;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 
     // ===================================================================================
@@ -35,7 +35,7 @@ namespace Wovencode.Network
         public override void OnStartClient()
         {
             // ---- Auth
-            NetworkClient.RegisterHandler<ServerMessageResponseAuth>(OnServerMessageResponseAuth, false);      
+            NetworkClient.RegisterHandler<ServerMessageResponseAuth>(OnServerMessageResponseAuth, false);     
         }
         
         // -------------------------------------------------------------------------------

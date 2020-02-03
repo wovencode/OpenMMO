@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.DebugManager;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	// ===================================================================================
@@ -16,10 +16,6 @@ namespace Wovencode
 	[CreateAssetMenu(fileName = "New Entity Configuration", menuName = "OpenMMO - Configuration/New Entity Configuration", order = 999)]
 	public partial class EntityConfigTemplate : ScriptableObject
 	{
-
-		[Header("Entity Configuration")]
-		
-		
 		
 		static EntityConfigTemplate _instance;
 		

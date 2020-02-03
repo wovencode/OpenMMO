@@ -1,14 +1,14 @@
 ﻿
-using Wovencode;
-using Wovencode.Database;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.Database;
+using OpenMMO.DebugManager;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using SQLite;
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 	
 	// ===================================================================================

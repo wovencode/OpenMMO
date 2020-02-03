@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-using Wovencode;
-using Wovencode.Database;
-using Wovencode.DebugManager;
+using OpenMMO;
+using OpenMMO.Database;
+using OpenMMO.DebugManager;
 
-namespace Wovencode.Database {
+namespace OpenMMO.Database {
 	
 	// ===================================================================================
 	// PrimaryKeyAttribute

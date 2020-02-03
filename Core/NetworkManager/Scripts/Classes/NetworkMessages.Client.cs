@@ -1,9 +1,9 @@
 
-using Wovencode.Network;
-using Wovencode;
+using OpenMMO.Network;
+using OpenMMO;
 using Mirror;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 	
 	// -----------------------------------------------------------------------------------

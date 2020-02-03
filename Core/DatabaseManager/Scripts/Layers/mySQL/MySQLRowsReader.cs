@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using Wovencode;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Database;
 
 /*
 		
@@ -33,7 +33,7 @@ using Wovencode.Database;
 		
 */
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 
     public class MySQLRowsReader

@@ -1,12 +1,12 @@
 ﻿
-using Wovencode;
-using Wovencode.Network;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-namespace Wovencode.UI
+namespace OpenMMO.UI
 {
 
 	// ===================================================================================
@@ -32,6 +32,7 @@ namespace Wovencode.UI
 		public static UIWindowAuth singleton;
 		
 		protected int connectTimer = -1;
+		protected bool loaded;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -40,6 +41,7 @@ namespace Wovencode.UI
 		{
 			singleton = this;
 			base.Awake();
+			
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -47,32 +49,9 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		public override void Show()
 		{
-			base.Show();
-			
+			loaded = false;
 			connectTimer = -1;
-			
-			serverDropdown.options.Clear();
-			
-			foreach (ServerInfoTemplate template in ProjectConfigTemplate.singleton.serverList)
-			{
-				if (template.visible)
-					serverDropdown.options.Add(new Dropdown.OptionData(template.title));
-			}
-			
-			if (rememberServer && PlayerPrefs.HasKey(Constants.PlayerPrefsLastServer))
-			{
-				string lastServer = PlayerPrefs.GetString(Constants.PlayerPrefsLastServer, "");
-				
-				for (int i = 0; i < ProjectConfigTemplate.singleton.serverList.Length; i++)
-					if (ProjectConfigTemplate.singleton.serverList[i].visible && ProjectConfigTemplate.singleton.serverList[i].title == lastServer)
-						serverDropdown.value = i;
-			}
-			
-			networkManager.networkAddress = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].ip;
-			
-			if (networkAuthenticator.connectTimeout > 0)
-				Invoke(nameof(Timeout), networkAuthenticator.connectTimeout);
-			
+			base.Show();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -96,18 +75,24 @@ namespace Wovencode.UI
 		protected override void ThrottledUpdate()
 		{
 			
+			LoadServers();
+			
+			if (networkAuthenticator == null || networkManager == null)
+				return;
+				
+			if (networkAuthenticator.connectTimeout > 0)
+				Invoke(nameof(Timeout), networkAuthenticator.connectTimeout);
+						
 			if (connectTimer == -1)
 				connectTimer = networkAuthenticator.connectDelay;
 				
 			if (networkManager.IsConnecting())
 			{
-			
 				if (connectButtonText)
 				{
 					connectTimer--;
 					connectButtonText.text = systemTexts.clientConnect + " (in " + connectTimer.ToString() + "s)";
 				}
-			
 			}
 			
 		}
@@ -149,6 +134,45 @@ namespace Wovencode.UI
 			
             networkManager.networkAddress = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].ip;
 		}
+		
+		// ================================= LOAD SERVERS ================================
+		
+		// -------------------------------------------------------------------------------
+		// LoadServers
+		// -------------------------------------------------------------------------------
+		protected void LoadServers(bool forced=false)
+		{
+			
+			if (loaded || ProjectConfigTemplate.singleton == null)
+				return;
+			
+			serverDropdown.options.Clear();
+			
+			foreach (ServerInfoTemplate template in ProjectConfigTemplate.singleton.serverList)
+			{
+				if (template.visible)
+					serverDropdown.options.Add(new Dropdown.OptionData(template.title));
+			}
+			
+			if (rememberServer && PlayerPrefs.HasKey(Constants.PlayerPrefsLastServer))
+			{
+				string lastServer = PlayerPrefs.GetString(Constants.PlayerPrefsLastServer, "");
+				
+				for (int i = 0; i < ProjectConfigTemplate.singleton.serverList.Length; i++)
+					if (ProjectConfigTemplate.singleton.serverList[i].visible && ProjectConfigTemplate.singleton.serverList[i].title == lastServer)
+						serverDropdown.value = i;
+			}
+			else
+				serverDropdown.value = 0;
+			
+			serverDropdown.captionText.text = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].title;
+			
+			networkManager.networkAddress = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].ip;
+			
+			loaded = true;
+			
+		}
+		
 		
 		// -------------------------------------------------------------------------------
 		

@@ -1,13 +1,13 @@
 
-using Wovencode;
-using Wovencode.DebugManager;
-using Wovencode.Modules;
+using OpenMMO;
+using OpenMMO.DebugManager;
+using OpenMMO.Modules;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Wovencode.Modules
+namespace OpenMMO.Modules
 {
 	
 	// ===================================================================================

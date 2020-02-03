@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4665d44c2784c459e854f905a4f8c3, type: 3}
   m_Name: ProjectConfiguration [Example]
   m_EditorClassIdentifier: 
-  networkType: 2
+  networkType: 0
   globalDebugMode: 1
+  securitySalt: 16_or_more_bytes
   serverList:
   - {fileID: 11400000, guid: f348574aedc9140eda570b43f06043f2, type: 2}
   spawnablePrefabFolders:

@@ -1,10 +1,10 @@
 
 using System;
 using UnityEngine;
-using Wovencode;
-using Wovencode.Network;
+using OpenMMO;
+using OpenMMO.Network;
 
-namespace Wovencode.Network
+namespace OpenMMO.Network
 {
 	
 	// ===================================================================================

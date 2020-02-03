@@ -12,10 +12,10 @@
 
 using UnityEngine;
 using System.Collections;
-using Wovencode;
-using Wovencode.UI;
+using OpenMMO;
+using OpenMMO.UI;
 
-namespace Wovencode.UI
+namespace OpenMMO.UI
 {
 	
 	// ===================================================================================

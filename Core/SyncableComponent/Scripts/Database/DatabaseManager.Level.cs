@@ -11,10 +11,10 @@ using System.IO;
 using System.Collections.Generic;
 using SQLite;
 using UnityEngine.AI;
-using Wovencode;
-using Wovencode.Database;
+using OpenMMO;
+using OpenMMO.Database;
 
-namespace Wovencode.Database
+namespace OpenMMO.Database
 {
 
 	// ===================================================================================

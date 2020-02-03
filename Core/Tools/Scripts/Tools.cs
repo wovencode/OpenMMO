@@ -1,5 +1,5 @@
 
-using Wovencode;
+using OpenMMO;
 using System;
 using System.Collections;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Wovencode
+namespace OpenMMO
 {
 	
 	// ===================================================================================

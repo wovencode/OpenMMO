@@ -1,8 +1,9 @@
 OpenMMO - Groundwork
 ---
 by Fhiz
-https://github.com/wovencode/
-https://discord.gg/Cx9hAN4
+https://github.com/wovencode/OpenMMO<br>
+https://github.com/wovencode/OpenMMO/issues<br>
+https://discord.gg/Cx9hAN4<br>
 
 Summary
 ---

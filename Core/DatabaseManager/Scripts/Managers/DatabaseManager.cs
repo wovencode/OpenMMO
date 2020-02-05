@@ -47,19 +47,13 @@ namespace OpenMMO.Database
 		{
 #if UNITY_EDITOR
 
-#if MYSQL
-			databaseType = DatabaseType.mySQL;
-#else
-			databaseType = DatabaseType.SQLite;
-#endif
-
-			if (databaseType == DatabaseType.mySQL && databaseType != _databaseType)
+			if (databaseType == DatabaseType.mySQL && _databaseType != databaseType)
 			{
 				EditorTools.RemoveScriptingDefine(_defineSQLite);
 				EditorTools.AddScriptingDefine(_defineMySQL);
 				_databaseType = databaseType;
 			}
-			else if (databaseType == DatabaseType.SQLite && databaseType != _databaseType)
+			else if (databaseType == DatabaseType.SQLite && _databaseType != databaseType)
 			{
 				EditorTools.RemoveScriptingDefine(_defineMySQL);
 				EditorTools.AddScriptingDefine(_defineSQLite);
@@ -67,7 +61,7 @@ namespace OpenMMO.Database
 			}
 			
 			databaseLayer.OnValidate();
-			
+
 			this.InvokeInstanceDevExtMethods(nameof(OnValidate));
 #endif
 		}

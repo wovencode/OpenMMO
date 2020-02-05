@@ -23,7 +23,7 @@ namespace OpenMMO.Database
 		public bool banned 			{ get; set; }
 		public bool online 			{ get; set; }
 		public DateTime lastsaved 	{ get; set; }
-		public int token			{ get; set; }
+		public float cooldown		{ get; set; }
 		
 		public string prefab		{ get; set; }
 		public float x 				{ get; set; }
@@ -58,6 +58,8 @@ namespace OpenMMO.Database
 			
 			online = isOnline;
 			lastsaved = DateTime.UtcNow;
+			
+			cooldown = player.GetComponent<PlayerComponent>().GetCooldownTimeRemaining();
 			
 			x = player.transform.position.x;
 			y = player.transform.position.y;

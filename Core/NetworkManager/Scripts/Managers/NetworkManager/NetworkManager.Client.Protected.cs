@@ -24,7 +24,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestUserLogin(NetworkConnection conn, string name, string password)
 		{
-			if (!base.RequestUserLogin(conn, name, password)) return false;
+			if (!base.RequestUserLogin(conn, name, password))
+				return false;
 			
 			ClientMessageRequestUserLogin message = new ClientMessageRequestUserLogin
 			{
@@ -44,7 +45,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestUserRegister(NetworkConnection conn, string name, string password, string usermail)
 		{
-			if (!base.RequestUserRegister(conn, name, password, usermail)) return false;
+			if (!base.RequestUserRegister(conn, name, password, usermail))
+				return false;
 			
 			ClientMessageRequestUserRegister message = new ClientMessageRequestUserRegister
 			{
@@ -66,7 +68,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestUserDelete(NetworkConnection conn, string name, string password, int action=1)
 		{
-			if (!base.RequestUserDelete(conn, name, password)) return false;
+			if (!base.RequestUserDelete(conn, name, password))
+				return false;
 			
 			ClientMessageRequestUserDelete message = new ClientMessageRequestUserDelete
 			{
@@ -86,7 +89,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestUserChangePassword(NetworkConnection conn, string name, string oldpassword, string newpassword)
 		{
-			if (!base.RequestUserChangePassword(conn, name, oldpassword, newpassword)) return false;
+			if (!base.RequestUserChangePassword(conn, name, oldpassword, newpassword))
+				return false;
 			
 			ClientMessageRequestUserChangePassword message = new ClientMessageRequestUserChangePassword
 			{
@@ -110,7 +114,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestUserConfirm(NetworkConnection conn, string name, string password, int action=1)
 		{
-			if (!base.RequestUserConfirm(conn, name, password)) return false;
+			if (!base.RequestUserConfirm(conn, name, password))
+				return false;
 			
 			ClientMessageRequestUserConfirm message = new ClientMessageRequestUserConfirm
 			{
@@ -132,7 +137,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestPlayerLogin(NetworkConnection conn, string name, string username)
 		{
-			if (!base.RequestPlayerLogin(conn, name, username)) return false;
+			if (!base.RequestPlayerLogin(conn, name, username))
+				return false;
 			
 			ClientMessageRequestPlayerLogin message = new ClientMessageRequestPlayerLogin
 			{
@@ -154,7 +160,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestPlayerRegister(NetworkConnection conn, string playerName, string userName, string prefabName)
 		{
-			if (!base.RequestPlayerRegister(conn, playerName, userName, prefabName)) return false;
+			if (!base.RequestPlayerRegister(conn, playerName, userName, prefabName))
+				return false;
 			
 			ClientMessageRequestPlayerRegister message = new ClientMessageRequestPlayerRegister
 			{
@@ -175,7 +182,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected override bool RequestPlayerDelete(NetworkConnection conn, string playerName, string userName, int action=1)
 		{
-			if (!base.RequestPlayerDelete(conn, playerName, userName)) return false;
+			if (!base.RequestPlayerDelete(conn, playerName, userName))
+				return false;
 			
 			ClientMessageRequestPlayerDelete message = new ClientMessageRequestPlayerDelete
 			{
@@ -193,17 +201,16 @@ namespace OpenMMO.Network
         // RequestPlayerSwitchServer
         // @Client
 		// -------------------------------------------------------------------------------
-		protected override bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, int _token=0)
+		protected override bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, string anchorName, string zoneName)
 		{
 			
-			_token = Tools.GenerateToken();
-			
-			if (!base.RequestPlayerSwitchServer(conn, playerName, _token)) return false;
+			if (!base.RequestPlayerSwitchServer(conn, playerName, anchorName, zoneName))
+				return false;
 			
 			ClientMessageRequestPlayerSwitchServer message = new ClientMessageRequestPlayerSwitchServer
 			{
-				username = playerName,
-				token = _token
+				playername = playerName,
+				zonename = zoneName
 			};
 			
 			conn.Send(message);

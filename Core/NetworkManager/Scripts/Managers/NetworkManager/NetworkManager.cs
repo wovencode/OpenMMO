@@ -183,7 +183,7 @@ namespace OpenMMO.Network
 		{
 			base.OnClientDisconnect(conn);
 			state = NetworkState.Offline;
-			UIPopupConfirm.singleton.Init(systemText.clientDisconnected);
+			UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
 			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect));
 		}
 		

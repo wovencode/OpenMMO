@@ -112,9 +112,9 @@ namespace OpenMMO.Database
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerSwitchServer(string name, int token)
+		public virtual bool TryPlayerSwitchServer(string name)
 		{
-			return (Tools.IsAllowedName(name) && Tools.IsAllowedToken(token));
+			return (Tools.IsAllowedName(name));
 		}
 		
 		// -------------------------------------------------------------------------------

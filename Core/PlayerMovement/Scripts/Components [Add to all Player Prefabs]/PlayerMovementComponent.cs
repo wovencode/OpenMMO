@@ -71,15 +71,22 @@ namespace OpenMMO {
             
             // rotate
             float horizontal = Input.GetAxis("Horizontal");
-            transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
+            
+            if (horizontal != 0)
+            	transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
 
             // move
             float vertical = Input.GetAxis("Vertical");
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
+            
+            if (vertical != 0)
+            {
+            	Vector3 forward = transform.TransformDirection(Vector3.forward);
+            	agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
+           	}
            	
 			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
+
 		}
 		
 		// -------------------------------------------------------------------------------

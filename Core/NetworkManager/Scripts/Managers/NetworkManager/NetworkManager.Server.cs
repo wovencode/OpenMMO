@@ -305,7 +305,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (DatabaseManager.singleton.TryPlayerSwitchServer(msg.username, msg.token))
+        	if (DatabaseManager.singleton.TryPlayerSwitchServer(msg.playername))
 			{
 				message.text = systemText.playerSwitchServerSuccess;
 			}

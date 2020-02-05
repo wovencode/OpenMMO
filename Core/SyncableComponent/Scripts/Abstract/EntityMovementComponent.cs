@@ -86,7 +86,7 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		protected override void LateUpdateClient()
 		{
-			
+
 			if (state == 0)
 				return;
 			
@@ -116,7 +116,7 @@ namespace OpenMMO {
 			}
 						
 			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient));
-			
+
 		}
 		
 		// -------------------------------------------------------------------------------

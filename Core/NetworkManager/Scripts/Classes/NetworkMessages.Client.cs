@@ -122,10 +122,8 @@ namespace OpenMMO.Network
 	// -----------------------------------------------------------------------------------
 	public partial class ClientMessageRequestPlayerSwitchServer : ClientMessageRequest
 	{
-		public string username;
 		public string playername;
-		public int zoneIndex;
-		public int token;
+		public string zonename;
 	}
 	
 	// -------------------------------------------------------------------------------

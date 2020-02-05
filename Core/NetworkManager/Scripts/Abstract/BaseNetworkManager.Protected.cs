@@ -72,9 +72,9 @@ namespace OpenMMO.Network
 		}
 				
 		// -------------------------------------------------------------------------------
-		protected virtual bool RequestPlayerSwitchServer(NetworkConnection conn, string name, int _token)
+		protected virtual bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, string anchorName, string zoneName)
 		{
-			return (Tools.IsAllowedName(name));
+			return (Tools.IsAllowedName(name) && !String.IsNullOrWhiteSpace(anchorName) && !String.IsNullOrWhiteSpace(zoneName));
 		}
 		
 		// -------------------------------------------------------------------------------

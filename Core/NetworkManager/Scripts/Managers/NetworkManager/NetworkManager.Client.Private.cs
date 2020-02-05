@@ -157,8 +157,8 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerMessageResponsePlayerSwitchServer msg)
         {
-        	int token = 0;
-        	//RequestPlayerSwitchServer(conn, userName, token);
+        	
+        	//RequestPlayerSwitchServer(conn, userName);
         	OnServerMessageResponse(conn, msg);
         }      
         

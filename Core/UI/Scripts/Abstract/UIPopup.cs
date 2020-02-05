@@ -37,7 +37,6 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
-			//UIBackgroundLayer.singleton.Hide();	
 			base.Awake();
 		}
 		
@@ -45,34 +44,52 @@ namespace OpenMMO.UI
 		public virtual void Show(string _text)
 		{
 			description.text = _text;
-			Init();
 			base.Show();
+			Init();
+		}
+		
+		// -------------------------------------------------------------------------------
+		public override void Hide()
+		{
+			Close();
+			base.Hide();
 		}
 		
 		// -------------------------------------------------------------------------------
 		public virtual void onClickConfirm()
 		{
 			Close();
+			base.Hide();
 		}
 		
 		// -------------------------------------------------------------------------------
 		public virtual void onClickCancel()
 		{
 			Close();
+			base.Hide();
 		}
 		
 		// -------------------------------------------------------------------------------
 		protected void Init()
 		{
 			animator.SetTrigger(showTriggerName);
-			UIBackgroundLayer.singleton.FadeIn();	
+			
+			if (UIBackgroundLayer.singleton)
+				UIBackgroundLayer.singleton.FadeIn();
 		}
 		
 		// -------------------------------------------------------------------------------
-		protected void Close()
+		public void Close()
 		{
+			
+			if (!root.activeSelf)
+				return;
+				
 			animator.SetTrigger(closeTriggerName);
-			UIBackgroundLayer.singleton.FadeOut();
+			
+			if (UIBackgroundLayer.singleton)
+				UIBackgroundLayer.singleton.FadeOut();
+			
 		}
 
 		// -------------------------------------------------------------------------------

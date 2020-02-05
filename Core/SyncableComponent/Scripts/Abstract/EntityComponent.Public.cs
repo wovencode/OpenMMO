@@ -22,7 +22,9 @@ namespace OpenMMO {
 		
 		// -------------------------------------------------------------------------------
 		// Warp
+		// @Server
 		// -------------------------------------------------------------------------------
+		[ServerCallback]
 		public virtual void Warp(Vector3 position)
     	{
         	agent.Warp(position);

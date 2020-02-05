@@ -1,0 +1,73 @@
+﻿
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Mirror;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.Database;
+using OpenMMO.UI;
+using OpenMMO.DebugManager;
+using OpenMMO.Portals;
+
+namespace OpenMMO.Portals
+{
+
+	// ===================================================================================
+	// NetworkPortal
+	// ===================================================================================
+	[DisallowMultipleComponent]
+	public class NetworkPortal : BasePortal
+	{
+	
+		[Header("Teleportation")]
+		[Tooltip("Target Network Zone to teleport to (optional)")]
+		public NetworkZoneTemplate targetZone;
+		[Tooltip("Anchor name in the target scene to teleport to")]
+		public string targetAnchor;
+		
+		// -------------------------------------------------------------------------------
+		// OnTriggerEnter
+		// @Client / @Server
+		// -------------------------------------------------------------------------------
+		public override void OnTriggerEnter(Collider co)
+		{
+
+			GameObject player = PlayerComponent.localPlayer;
+			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			
+			if (player && !triggerOnEnter)
+			{
+				if (pc.CheckCooldown)
+					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetZone.title), OnClickConfirm);
+				else
+					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
+			}
+			else if (player)
+				OnClickConfirm();
+				
+		}
+		
+		// -------------------------------------------------------------------------------
+		// OnClickConfirm
+		// @Client
+		// -------------------------------------------------------------------------------
+		public override void OnClickConfirm()
+		{
+		
+			GameObject player = PlayerComponent.localPlayer;
+			
+			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor))
+				player.GetComponent<PlayerComponent>().Cmd_WarpRemote(targetAnchor, targetZone.name);
+				
+		}
+		
+    	// -------------------------------------------------------------------------------
+    	
+	}
+
+}
+
+// =======================================================================================

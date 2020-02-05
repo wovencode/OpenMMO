@@ -31,7 +31,7 @@ namespace OpenMMO.Database
 		bool TryPlayerDeleteSoft(string name, string username, int action=1);
 		bool TryPlayerDeleteHard(string name, string username);
 		bool TryPlayerBan(string name, string username, int action=1);
-		bool TryPlayerSwitchServer(string name, int _token=0);
+		bool TryPlayerSwitchServer(string name);
 		
 	}
 		

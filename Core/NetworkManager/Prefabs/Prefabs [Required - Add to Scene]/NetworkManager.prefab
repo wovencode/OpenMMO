@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3252435991396032038}
   - component: {fileID: 1275635640388507688}
   - component: {fileID: 3252435990677973888}
+  - component: {fileID: 279971125}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -68,7 +69,6 @@ MonoBehaviour:
   debug:
     debugMode: 1
   sortCategories: []
-  userNameSalt: 16_or_more_bytes
   systemText:
     clientDisconnected: Disconnected.
     userAlreadyOnline: User is already online!
@@ -90,6 +90,17 @@ MonoBehaviour:
     playerDeleteFailure: Delete player failed!
     playerSwitchServerSuccess: Server switch successful!
     playerSwitchServerFailure: Server switch failed!
+  eventListeners:
+    OnStartServer:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    OnStartClient:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
   userName: 
   userPassword: 
   newPassword: 
@@ -212,8 +223,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797c1269bcab047d18ac3dde2df41d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preloadTemplates:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  preloadTemplates: []
   preloadOnAwake: 0
+--- !u!114 &279971125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e466a10c71b146f79b31bb19ffbba2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  networkZones:
+  - {fileID: 11400000, guid: b2d494b65424c4bdaa50eeb8cc0b1dce, type: 2}
+  - {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a, type: 2}
+  - {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883, type: 2}
+  zoneIntervalMain: 10
+  isSubZone: 0

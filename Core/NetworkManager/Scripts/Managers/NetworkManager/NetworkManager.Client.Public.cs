@@ -223,6 +223,15 @@ namespace OpenMMO.Network
 			}
 		}
 		
+		// -------------------------------------------------------------------------------
+   		// TrySwitchServerPlayer
+   		// @Client
+   		// -------------------------------------------------------------------------------
+		public void TrySwitchServerPlayer(string playerName, string anchorName, string zoneName)
+		{
+			RequestPlayerSwitchServer(NetworkClient.connection, playerName, anchorName, zoneName);
+		}
+			
 		// ======================== PUBLIC METHODS - OTHER ===============================
 		
 		// -------------------------------------------------------------------------------

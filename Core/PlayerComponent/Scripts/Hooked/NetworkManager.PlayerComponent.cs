@@ -88,6 +88,7 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected void ValidatePlayerPosition(GameObject player)
 		{
+
 			Transform transform = player.transform;
 			
 			if (!NavMesh.SamplePosition(player.transform.position, out NavMeshHit hit, 0.1f, NavMesh.AllAreas))

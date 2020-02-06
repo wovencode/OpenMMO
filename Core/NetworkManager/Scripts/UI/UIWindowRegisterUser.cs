@@ -29,6 +29,17 @@ namespace OpenMMO.UI
 		public Button registerButton;
 		public Button backButton;
 		
+		public static UIWindowRegisterUser singleton;
+		
+		// -------------------------------------------------------------------------------
+		// Awake
+		// -------------------------------------------------------------------------------
+		protected override void Awake()
+		{
+			singleton = this;
+			base.Awake();
+		}
+		
 		// -------------------------------------------------------------------------------
 		// Show
 		// -------------------------------------------------------------------------------

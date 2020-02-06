@@ -1,10 +1,4 @@
-﻿// =======================================================================================
-// Wovencore
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// =======================================================================================
-
+﻿
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -23,6 +17,19 @@ namespace OpenMMO {
 	public partial class PlayerMovementComponent : EntityMovementComponent
 	{
 		
+		[Header("Movement Factors")]
+        public float rotationSpeed = 100;
+		[Range(0,100)]public float walkFactor 		= 1.0f;
+		[Range(0,100)]public float runFactor 		= 1.5f;
+		[Range(0,100)]public float backwardFactor 	= 0.5f;
+		
+		[Header("Input")]
+		public KeyCode runKey = KeyCode.LeftShift;
+		
+		protected float verticalMovementInput;
+		protected float horizontalMovementInput;
+		protected bool 	running;
+		
 		// -------------------------------------------------------------------------------
 		// Start
 		// -------------------------------------------------------------------------------
@@ -36,7 +43,6 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		public override void OnStartLocalPlayer()
     	{
-        	
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -44,7 +50,6 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		void OnDestroy()
     	{
-    		
         }
 		
 		// -------------------------------------------------------------------------------
@@ -66,23 +71,17 @@ namespace OpenMMO {
 		protected override void UpdateClient()
 		{
 			
-			// movement for local player
             if (!isLocalPlayer) return;
             
-            // rotate
-            float horizontal = Input.GetAxis("Horizontal");
+            horizontalMovementInput 	= Input.GetAxis("Horizontal");
+            verticalMovementInput 		= Input.GetAxis("Vertical");
+            running						= Input.GetKey(runKey);
             
-            if (horizontal != 0)
-            	transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
-
-            // move
-            float vertical = Input.GetAxis("Vertical");
+            // -- Update Rotation (locally - synched via network transform)
+			if (horizontalMovementInput != 0)
+				transform.Rotate(0, horizontalMovementInput * rotationSpeed * Time.deltaTime, 0);
             
-            if (vertical != 0)
-            {
-            	Vector3 forward = transform.TransformDirection(Vector3.forward);
-            	agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
-           	}
+            UpdateVelocity();
            	
 			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));

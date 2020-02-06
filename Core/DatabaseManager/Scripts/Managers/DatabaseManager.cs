@@ -18,7 +18,7 @@ namespace OpenMMO.Database
 	{
 		
 		[Header("Settings")]
-		public DatabaseType databaseType;
+		public DatabaseAbstractionLayer databaseLayer;
 		[Tooltip("Player data save interval in seconds (0 to disable).")]
 		public float saveInterval = 60f;
 		[Tooltip("Deleted user prune interval in seconds (0 to disable).")]
@@ -26,18 +26,14 @@ namespace OpenMMO.Database
 		
 		public static DatabaseManager singleton;
 		
-		protected DatabaseType _databaseType;
-		
-#if MYSQL
-		[Header("Database Layer - mySQL")]
-		public DatabaseLayerMySQL databaseLayer;
-#else
-		[Header("Database Layer - SQLite")]
-		public DatabaseLayerSQLite databaseLayer;
-#endif
-		
-		protected const string _defineSQLite 	= "SQLITE";
-		protected const string _defineMySQL 	= "MYSQL";
+		// -------------------------------------------------------------------------------
+		// OnEnable
+		// updates the define to set the database layer depending of chosen database type
+		// -------------------------------------------------------------------------------
+		void OnEnable()
+		{
+			OnValidate();
+		}
 		
 		// -------------------------------------------------------------------------------
 		// OnValidate
@@ -45,25 +41,10 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		void OnValidate()
 		{
-#if UNITY_EDITOR
-
-			if (databaseType == DatabaseType.mySQL && _databaseType != databaseType)
-			{
-				EditorTools.RemoveScriptingDefine(_defineSQLite);
-				EditorTools.AddScriptingDefine(_defineMySQL);
-				_databaseType = databaseType;
-			}
-			else if (databaseType == DatabaseType.SQLite && _databaseType != databaseType)
-			{
-				EditorTools.RemoveScriptingDefine(_defineMySQL);
-				EditorTools.AddScriptingDefine(_defineSQLite);
-				_databaseType = databaseType;
-			}
-			
-			databaseLayer.OnValidate();
-
+			if (databaseLayer)
+				databaseLayer.OnValidate();
+				
 			this.InvokeInstanceDevExtMethods(nameof(OnValidate));
-#endif
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -77,7 +77,11 @@ namespace OpenMMO {
     		
 			// -- uses OpenMMO NetworkManager singleton instead of the Mirror one
     		OpenMMO.Network.NetworkManager.singleton.TrySwitchServerPlayer(this.gameObject.name, anchorName, zoneName);
-    		
+    		/*
+    		TODO, NOTE, BUG
+    		wrong, thats client side, must be server side
+    		also we must save anchorName and zoneName here
+    		*/
     		NetworkServer.Destroy(this.gameObject);
     		
 		}

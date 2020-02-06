@@ -199,6 +199,11 @@ MonoBehaviour:
   animator: {fileID: 6058652996399677817}
   entityComponent: {fileID: 0}
   rotationSpeed: 100
+  walkFactor: 1
+  runFactor: 2
+  backwardFactor: 0.5
+  runKey: 304
+  movementUpdateInterval: 0.05000000074505806
 --- !u!1001 &3301146618168933596
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -134,21 +134,23 @@ namespace OpenMMO.Network
 		
 		// -------------------------------------------------------------------------------
 		public override void OnClientConnect(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect));
+			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect), conn);
 		}
 		
 		// -------------------------------------------------------------------------------
 		public override void OnServerConnect(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnServerConnect));
+			this.InvokeInstanceDevExtMethods(nameof(OnServerConnect), conn);
 		}
 		
 		// -------------------------------------------------------------------------------
 		public override void OnClientSceneChanged(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnClientSceneChanged));
+			this.InvokeInstanceDevExtMethods(nameof(OnClientSceneChanged), conn);
 		}
 
 		// -------------------------------------------------------------------------------
-		public override void OnServerAddPlayer(NetworkConnection conn) {}
+		public override void OnServerAddPlayer(NetworkConnection conn) {
+			this.InvokeInstanceDevExtMethods(nameof(OnServerAddPlayer), conn);
+		}
 	
 		// -------------------------------------------------------------------------------
 		public override void OnServerDisconnect(NetworkConnection conn)
@@ -163,7 +165,11 @@ namespace OpenMMO.Network
 				debug.Log("[NetworkManager] Logged out player: " + conn.identity.name);
 				
 				if (conn.identity.gameObject != null)
-				{
+				{	
+					
+					this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn);
+					eventListeners.OnLogoutPlayer.Invoke(conn);
+					
 					string name = conn.identity.gameObject.name;
 					onlinePlayers.Remove(name);
 				}

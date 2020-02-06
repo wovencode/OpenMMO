@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7890701178789268688}
   - component: {fileID: 7890701178789268689}
+  - component: {fileID: 7890701179065248849}
+  - component: {fileID: 7890701179065248850}
   m_Layer: 0
   m_Name: DatabaseManager
   m_TagString: Untagged
@@ -45,13 +47,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug:
     debugMode: 1
-  databaseType: 1
+  databaseLayer: {fileID: 7890701179065248850}
   saveInterval: 60
   deleteInterval: 60
-  databaseLayer:
-    address: 127.0.0.1
-    port: 3306
-    username: root
-    password: password
-    dbName: database
-    charset: utf8mb4
+--- !u!114 &7890701179065248849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890701178789268690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9851ce8da3a44f68ee2509bc98490c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  address: localhost
+  port: 3306
+  username: root
+  password: password
+  dbName: database
+  charset: utf8mb4
+--- !u!114 &7890701179065248850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890701178789268690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1efe93c46745b4af8bf39b1e9379125a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  databaseName: Database.sqlite
+  initOnAwake: 0
+  checkIntegrity: 0

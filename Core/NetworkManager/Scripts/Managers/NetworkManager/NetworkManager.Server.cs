@@ -85,7 +85,7 @@ namespace OpenMMO.Network
 				message.text = systemText.userLoginFailure;
 				message.success = false;
 			}
-					
+			
 			conn.Send(message);
 			
 		}
@@ -344,13 +344,15 @@ namespace OpenMMO.Network
 				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
 				GameObject prefab = GetPlayerPrefab(prefabname);
 				
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), prefab, username);
-
 				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+				
 				ValidatePlayerPosition(player);
 				NetworkServer.AddPlayerForConnection(conn, player);
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;
+				
+				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername);
+				eventListeners.OnLoginPlayer.Invoke(conn);
 				
 			}
 			else

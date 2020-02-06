@@ -24,11 +24,8 @@ namespace OpenMMO {
         public Animator animator;
         
 		// -- Component Cache
-		public EntityComponent entityComponent;
-		//public EntityEnergyComponent energyComponent;
-		
-        [Header("Movement")]
-        public float rotationSpeed = 100;
+		protected EntityComponent entityComponent;
+		//public EntityEnergyComponent energyComponent; // TODO: add later to check "death" in states!
 		
 		// -------------------------------------------------------------------------------
 
@@ -84,23 +81,25 @@ namespace OpenMMO {
 		// LateUpdateClient
 		// @Client
 		// -------------------------------------------------------------------------------
+		[Client]
 		protected override void LateUpdateClient()
 		{
 
 			if (state == 0)
 				return;
-			
+
 			foreach(KeyValuePair<int, StateTemplate> stateTemplate in StateTemplate.data)	// each state
 			{	
 			
 				string stateName = stateTemplate.Value.name;
-			
+				
 				foreach (Animator anim in GetComponentsInChildren<Animator>())  			// each animator
 				{
 					if (anim.runtimeAnimatorController != null)  							// not null?
 					{
 						if (anim.parameters.Any(x => x.name == stateName)) 					// has param?
 						{
+	
 							if (stateTemplate.Value.hash == state)							// is current state?
 							{
 								anim.SetBool(stateName, true);
@@ -117,6 +116,16 @@ namespace OpenMMO {
 						
 			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient));
 
+		}
+		
+		// -------------------------------------------------------------------------------
+		// FixedClient
+		// @Client
+		// -------------------------------------------------------------------------------
+		[Client]
+		protected override void FixedUpdateClient()
+		{
+			
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -10,6 +10,7 @@ using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
 using OpenMMO.DebugManager;
+using OpenMMO.Chat;
 
 namespace OpenMMO.Portals
 {
@@ -27,6 +28,7 @@ namespace OpenMMO.Portals
 		[Header("System Texts")]
 		public string popupEnter 	= "Enter {0}?";
 		public string popupWait 	= "Please wait {0} seconds!";
+		public string infoEntered	= "You stepped into a warp portal.";
 		
 		// -------------------------------------------------------------------------------
 		// OnTriggerEnter
@@ -38,8 +40,11 @@ namespace OpenMMO.Portals
 		// OnClickConfirm
 		// @Client
 		// -------------------------------------------------------------------------------
-		public abstract void OnClickConfirm();
-		
+		public virtual void OnClickConfirm()
+		{
+			if (ChatManager.singleton)
+				ChatManager.singleton.LocalChatSend(infoEntered);
+		}
 		
 		// -------------------------------------------------------------------------------
 		// OnTriggerExit

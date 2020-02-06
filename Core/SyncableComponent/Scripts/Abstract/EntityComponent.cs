@@ -26,7 +26,7 @@ namespace OpenMMO {
 		public ArchetypeTemplate archeType;
 		
 		// -- Component Cache
-		public EntityMovementComponent movementComponent;
+		[HideInInspector]public EntityMovementComponent movementComponent;
 		
 		// -------------------------------------------------------------------------------
 		// 

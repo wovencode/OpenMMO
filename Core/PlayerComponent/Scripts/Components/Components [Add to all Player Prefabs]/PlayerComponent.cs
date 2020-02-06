@@ -1,10 +1,4 @@
-﻿// =======================================================================================
-// Wovencore
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// =======================================================================================
-
+﻿
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -26,7 +20,8 @@ namespace OpenMMO {
 	
 		// holds exact replica of table data as in database
 		// no need to sync, can be done individually if required
-		public TablePlayer tablePlayer = new TablePlayer();
+		public TablePlayer tablePlayer 				= new TablePlayer();
+		public TablePlayerZones tablePlayerZones 	= new TablePlayerZones();
 		
 		Camera mainCamera;
 		
@@ -87,6 +82,15 @@ namespace OpenMMO {
 			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient));
 		}
 		
+		// -------------------------------------------------------------------------------
+		// FixedClient
+		// @Client
+		// -------------------------------------------------------------------------------
+		[Client]
+		protected override void FixedUpdateClient()
+		{
+			
+		}
 		
 		// -------------------------------------------------------------------------------
 		

@@ -16,7 +16,8 @@ namespace OpenMMO.Network
 		
 		public UnityEvent OnStartServer;
 		public UnityEvent OnStartClient;
-		
+		public UnityEventConnection OnLoginPlayer;
+		public UnityEventConnection OnLogoutPlayer;
 		
 	}
 	

@@ -2,6 +2,7 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
+using OpenMMO.Portals;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -79,8 +80,23 @@ namespace OpenMMO.Network
 				playerPreviews.Clear();
 				playerPreviews.AddRange(msg.players);
 				maxPlayers	= msg.maxPlayers;
-				UIWindowLoginUser.singleton.Hide();
-				UIWindowPlayerSelect.singleton.Show();
+				
+				// -- Check Auto select Player
+				int playerIndex = playerPreviews.FindIndex(x => x.name == PortalManager.autoSelectPlayer);
+				
+				if (playerIndex != -1)
+				{
+					// -- Skip Player Select
+					ClientScene.AddPlayer(NetworkClient.connection);
+					PortalManager.autoSelectPlayer = "";
+				}
+				else
+				{
+					// -- Show Player Select
+					UIWindowLoginUser.singleton.Hide();
+					UIWindowPlayerSelect.singleton.Show();
+        		}
+        		
         	}
         	
         	OnServerMessageResponse(conn, msg);
@@ -90,6 +106,13 @@ namespace OpenMMO.Network
         void OnServerMessageResponseUserRegister(NetworkConnection conn, ServerMessageResponseUserRegister msg)
         {
         	
+        	// -- hide user registration window if succeeded
+        	if (msg.success)
+        	{
+        		UIWindowRegisterUser.singleton.Hide();
+        		UIWindowMain.singleton.Show();
+        	}
+        		
         	OnServerMessageResponse(conn, msg);
         }
         

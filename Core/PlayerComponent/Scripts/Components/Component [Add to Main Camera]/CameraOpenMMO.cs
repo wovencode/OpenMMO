@@ -63,7 +63,7 @@ namespace OpenMMO {
 		private float zoomVelocity;
 		
 		// -------------------------------------------------------------------------------
-		// 
+		// Start
 		// -------------------------------------------------------------------------------
 		protected virtual void Start()
 		{
@@ -80,9 +80,9 @@ namespace OpenMMO {
 		}
 		
 		// -------------------------------------------------------------------------------
-		// 
+		// FixedUpdate
 		// -------------------------------------------------------------------------------
-		protected virtual void Update()
+		protected virtual void FixedUpdate()
 		{
 			if (isSaveCamera)
 			{
@@ -153,7 +153,7 @@ namespace OpenMMO {
 		}
 		
 		// -------------------------------------------------------------------------------
-		// 
+		// ClampAngleBetweenMinAndMax
 		// -------------------------------------------------------------------------------
 		private float ClampAngleBetweenMinAndMax(float angle, float min, float max)
 		{

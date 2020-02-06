@@ -12,7 +12,7 @@ namespace OpenMMO.Database
 	// DatabaseAbstractionLayer
 	// ===================================================================================
 	[System.Serializable]
-	public abstract partial class DatabaseAbstractionLayer : IAbstractableDatabase
+	public abstract partial class DatabaseAbstractionLayer : MonoBehaviour, IAbstractableDatabase
 	{
 
 		public abstract void Init();

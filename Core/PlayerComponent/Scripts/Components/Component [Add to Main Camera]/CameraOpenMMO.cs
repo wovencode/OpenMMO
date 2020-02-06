@@ -80,9 +80,9 @@ namespace OpenMMO {
 		}
 		
 		// -------------------------------------------------------------------------------
-		// FixedUpdate
+		// Update
 		// -------------------------------------------------------------------------------
-		protected virtual void FixedUpdate()
+		protected virtual void Update()
 		{
 			if (isSaveCamera)
 			{

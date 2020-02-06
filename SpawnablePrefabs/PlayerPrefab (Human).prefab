@@ -193,11 +193,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  managerUpdateInterval: 0.009999999776482582
+  managerUpdateInterval: 0
   cacheUpdateInterval: 1
   agent: {fileID: 8539800676653855757}
   animator: {fileID: 7661905598344120033}
-  entityComponent: {fileID: 0}
   rotationSpeed: 100
   walkFactor: 1
   runFactor: 2

@@ -77,32 +77,34 @@ namespace OpenMMO {
 
 			if (verticalMovementInput != 0)
            	{
-            	
-            	agent.ResetPath();
-        		agent.velocity = Vector3.zero;
-            	
-                Vector3 input = new Vector3(horizontalMovementInput, 0, verticalMovementInput);
-                if (input.magnitude > 1) input = input.normalized;
+            
+				Vector3 input = new Vector3(horizontalMovementInput, 0, verticalMovementInput);
+				if (input.magnitude > 1) input = input.normalized;
 
-                Vector3 angles = transform.rotation.eulerAngles;
-                angles.x = 0;
-                Quaternion rotation = Quaternion.Euler(angles);
+				Vector3 angles = transform.rotation.eulerAngles;
+				angles.x = 0;
+				Quaternion rotation = Quaternion.Euler(angles);
 
-                Vector3 direction = rotation * input;
-            	
-            	if (verticalMovementInput > 0)									// -- Movement: Forward
-            	{
-            		float factor = running ? runFactor : walkFactor;
-            		agent.velocity = direction * verticalMovementInput * agent.speed * factor;
-            	}
-            	else if (verticalMovementInput < 0)								// -- Movement: Backward
-            	{
-            		agent.velocity = direction * verticalMovementInput * agent.speed * backwardFactor;
-            	}
-            	
+				Vector3 direction = rotation * input;
+			
+				if (verticalMovementInput > 0)									// -- Movement: Forward
+				{
+					float factor = running ? runFactor : walkFactor;
+					agent.velocity = direction * verticalMovementInput * agent.speed * factor;
+				}
+				else if (verticalMovementInput < 0)								// -- Movement: Backward
+				{
+					// what to put here in order to reverse movement (backwards) without rotating?
+					// this will move forward using "backwardFactor" speed:
+					agent.velocity = direction * verticalMovementInput * agent.speed * backwardFactor;
+				}
+			
            	}
            	else
-           		agent.velocity = Vector3.zero;
+           	{
+         	  	agent.ResetPath();
+				agent.velocity = Vector3.zero;
+			}
 			
 		}
 		

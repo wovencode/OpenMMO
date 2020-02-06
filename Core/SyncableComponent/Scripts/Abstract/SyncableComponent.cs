@@ -16,10 +16,10 @@ namespace OpenMMO {
 	
 		[Header("Caching")]
 		[Tooltip("How often the manager itself is updated (and all of its data, in seconds)")]
-		[Range(0.01f, 99)]
+		[Range(0.0f, 99)]
 		public double managerUpdateInterval = 1f;
 		[Tooltip("How long cached data is kept (in seconds) before its re-calculated")]
-		[Range(0.01f, 99)]
+		[Range(0.0f, 99)]
 		public double cacheUpdateInterval = 1f;
 		
 		double _timerManager = 0;
@@ -59,7 +59,7 @@ namespace OpenMMO {
 		// CheckUpdateInterval
 		// Used to throttle calls to "Update" (similar to how we do it in "Wovencore UI")
 		// -------------------------------------------------------------------------------
-		protected bool CheckUpdateInterval => Time.time > _timerManager;
+		protected bool CheckUpdateInterval => Time.time > _timerManager || managerUpdateInterval == 0;
 		
 		// -------------------------------------------------------------------------------
 		// RefreshUpdateInterval

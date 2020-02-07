@@ -35,6 +35,7 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		protected override void Start()
     	{
+    		agent.updateRotation = false;
         	base.Start();
 		}
 		
@@ -79,7 +80,7 @@ namespace OpenMMO {
             
             UpdateVelocity();
            	
-           	if (horizontalMovementInput != 0)						// -- Rotation Locally
+           	if (horizontalMovementInput != 0)		// -- Client Side Rotation
 				transform.Rotate(0, horizontalMovementInput * rotationSpeed, 0);
            	
 			base.UpdateClient();

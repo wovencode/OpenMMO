@@ -45,7 +45,7 @@ namespace OpenMMO {
         		&& CheckMovementInterval						// we throttle a little bit
         		)
         	{
-				Cmd_UpdateState(new MovementStruct(verticalMovementInput, horizontalMovementInput, running));
+				Cmd_UpdateState(new MovementStruct(transform.rotation, verticalMovementInput, horizontalMovementInput, running));
 				RefreshMovementInterval();
 			}
         	
@@ -61,24 +61,26 @@ namespace OpenMMO {
 		protected virtual void Cmd_UpdateState(MovementStruct movementStruct)
     	{
     		
+    		transform.rotation			= movementStruct.movementRotation;
+    		
     		verticalMovementInput 		= Mathf.Clamp(movementStruct.verticalMovementInput, -1, 1);		// good enough for keyboard + controller
     		horizontalMovementInput 	= Mathf.Clamp(movementStruct.horizontalMovementInput, -1, 1);	// good enough for keyboard + controller
     		running						= movementStruct.movementRunning;
     		
     		UpdateVelocity();
+    		RpcVelocity(agent.velocity, transform.rotation);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// UpdateVelocity
 		// This recalculates the agent velocity based on the current input axis'
+		// @Client / @Server
 		// -------------------------------------------------------------------------------
 		protected virtual void UpdateVelocity()
 		{
 			
 			if (verticalMovementInput != 0 || horizontalMovementInput != 0)
            	{
-            	
-            	agent.updateRotation = false;
             	
 				Vector3 input = new Vector3(horizontalMovementInput, 0, verticalMovementInput);
 				if (input.magnitude > 1) input = input.normalized;
@@ -99,17 +101,33 @@ namespace OpenMMO {
 					agent.velocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * backwardFactor;
 				}
 				else
-					agent.velocity = Vector3.zero; // -- Is this really required?
+					agent.velocity = Vector3.zero; // -- required?
 				
            	}
            	else
            	{
-           		// -- Is this really required?
+           		// -- required?
          	  	agent.ResetPath();
 				agent.velocity = Vector3.zero;
 			}
 			
 		}
+		
+		// -------------------------------------------------------------------------------
+		// RpcVelocity
+		// @Server -> @Clients
+		// -------------------------------------------------------------------------------
+		[ClientRpc]
+   		public void RpcVelocity(Vector3 _velocity, Quaternion _rotation)
+    	{
+    		// -- not required to update local player
+    		if (isLocalPlayer)
+    			return;
+    		
+    		agent.ResetPath();
+        	agent.velocity = _velocity;
+        	transform.rotation = _rotation;
+    	}
 		
 		// -------------------------------------------------------------------------------
 		

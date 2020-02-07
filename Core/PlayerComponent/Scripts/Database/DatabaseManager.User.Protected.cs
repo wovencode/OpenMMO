@@ -24,7 +24,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected bool UserValid(string username, string password)
 		{
-			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND password=? AND banned=0 AND deleted=0", username, password) != null;
+			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND password=? AND banned=0 AND deleted=0 AND online=0", username, password) != null;
 		}
 		
 		// -------------------------------------------------------------------------------

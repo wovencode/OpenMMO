@@ -18,8 +18,7 @@ namespace OpenMMO {
     	[Header("NetworkZone")]
     	public ServerInfoTemplate server;
     	public UnityScene scene;
-    	public int maxPlayers;
-    
+    	
 		[Tooltip("Times out after zoneIntervalMain * zoneTimeoutMultiplier (in seconds, 0 to disable)")]
 		public int zoneTimeoutMultiplier = 6;
 	

@@ -41,34 +41,6 @@ namespace OpenMMO {
 		protected override void UpdateClient() {}
 		
 		// -------------------------------------------------------------------------------
-		public bool CanUpgradeLevel()
-		{
-			return (level < maxLevel
-#if _CURRENCY
-					&& GetComponentInParent<PlayerCurrencyComponent>().CanPayCost(upgradeCost, level)
-#endif
-					);
-		}
-		
-		// -------------------------------------------------------------------------------
-		[Command]
-		public void CmdUpgradeLevel()
-		{
-			if (CanUpgradeLevel())
-				UpgradeLevel();
-		}
-		
-		// -------------------------------------------------------------------------------
-		[Server]
-		protected virtual void UpgradeLevel()
-		{
-#if _CURRENCY
-			GetComponentInParent<PlayerCurrencyComponent>().PayCost(upgradeCost, level);
-#endif
-			level++;
-		}
-		
-		// -------------------------------------------------------------------------------
 		
 	}
 

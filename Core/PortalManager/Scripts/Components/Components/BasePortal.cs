@@ -55,7 +55,7 @@ namespace OpenMMO.Portals
 		
 			GameObject player = PlayerComponent.localPlayer;
 						
-			if (player)
+			if (player != null)
 				UIPopupPrompt.singleton.Hide();
 				
 		}

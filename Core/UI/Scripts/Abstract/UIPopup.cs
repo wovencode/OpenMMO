@@ -14,6 +14,7 @@
 
 using OpenMMO;
 using OpenMMO.UI;
+using OpenMMO.Network;
 using UnityEngine;
 using System.Collections;
 using System;
@@ -42,10 +43,24 @@ namespace OpenMMO.UI
 		
 		// -------------------------------------------------------------------------------
 		public virtual void Show(string _text)
-		{
+		{	
+			
+			// -- required not to show UI elements on all clients while in-game
+			if (OpenMMO.Network.NetworkManager.singleton.state == NetworkState.Game && PlayerComponent.localPlayer == null)
+				return;
+			
 			description.text = _text;
 			base.Show();
 			Init();
+		}
+		
+		// -------------------------------------------------------------------------------
+		protected void Init()
+		{
+			animator.SetTrigger(showTriggerName);
+			
+			if (UIBackgroundLayer.singleton)
+				UIBackgroundLayer.singleton.FadeIn();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -67,15 +82,6 @@ namespace OpenMMO.UI
 		{
 			Close();
 			base.Hide();
-		}
-		
-		// -------------------------------------------------------------------------------
-		protected void Init()
-		{
-			animator.SetTrigger(showTriggerName);
-			
-			if (UIBackgroundLayer.singleton)
-				UIBackgroundLayer.singleton.FadeIn();
 		}
 		
 		// -------------------------------------------------------------------------------

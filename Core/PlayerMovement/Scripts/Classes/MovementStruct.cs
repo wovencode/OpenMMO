@@ -15,15 +15,17 @@ namespace OpenMMO {
 	public partial struct MovementStruct
 	{
 		
-		public float verticalMovementInput;
-		public float horizontalMovementInput;
-		public bool movementRunning;
+		public Quaternion 	movementRotation;
+		public float 		verticalMovementInput;
+		public float 		horizontalMovementInput;
+		public bool 		movementRunning;
 		
 		// -------------------------------------------------------------------------------
 		// MovementStruct (Constructor)
 		// -------------------------------------------------------------------------------
-		public MovementStruct(float _verticalMovementInput, float _horizontalMovementInput, bool _movementRunning)
+		public MovementStruct(Quaternion _movementRotation, float _verticalMovementInput, float _horizontalMovementInput, bool _movementRunning)
 		{
+			movementRotation		= _movementRotation;
 			verticalMovementInput 	= _verticalMovementInput;
 			horizontalMovementInput	= _horizontalMovementInput;
 			movementRunning 		= _movementRunning;

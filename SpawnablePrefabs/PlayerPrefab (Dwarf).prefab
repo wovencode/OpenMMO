@@ -174,7 +174,7 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   agent: {fileID: 4676210237922252921}
   animator: {fileID: 6058652996399677817}
-  rotationSpeed: 10
+  rotationSpeed: 1
   walkFactor: 1
   runFactor: 2
   backwardFactor: 0.5
@@ -187,14 +187,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2608952967195419366}
     m_Modifications:
-    - target: {fileID: 157134, guid: e17d8759e6cf9b047a1b1bcd3598fe03, type: 3}
-      propertyPath: m_Name
-      value: Model Player
-      objectReference: {fileID: 0}
     - target: {fileID: 3458309466355777081, guid: e17d8759e6cf9b047a1b1bcd3598fe03,
         type: 3}
       propertyPath: m_Center.x
       value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 157134, guid: e17d8759e6cf9b047a1b1bcd3598fe03, type: 3}
+      propertyPath: m_Name
+      value: Model Player
       objectReference: {fileID: 0}
     - target: {fileID: 454530, guid: e17d8759e6cf9b047a1b1bcd3598fe03, type: 3}
       propertyPath: m_LocalPosition.x

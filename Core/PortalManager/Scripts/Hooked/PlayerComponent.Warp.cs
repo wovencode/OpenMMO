@@ -83,6 +83,7 @@ namespace OpenMMO {
     		wrong, thats client side, must be server side
     		also we must save anchorName and zoneName here
     		*/
+    		
     		NetworkServer.Destroy(this.gameObject);
     		
 		}
@@ -92,7 +93,7 @@ namespace OpenMMO {
 		// Warp the player to the anchors position on the same scene
 		// @Server
 		// -------------------------------------------------------------------------------
-		//[ServerCallback]
+		[ServerCallback]
 		public void WarpLocal(string anchorName)
     	{
 

@@ -8,20 +8,20 @@ using OpenMMO;
 namespace OpenMMO {
 
 	// ===================================================================================
-	// UpgradableComponent
+	// LevelableComponent
 	// ===================================================================================
 	[System.Serializable]
-	public abstract partial class UpgradableComponent : LevelableComponent
+	public abstract partial class LevelableComponent : SyncableComponent
 	{
 	
-		public LinearGrowthInt capacity = new LinearGrowthInt{baseValue=99, bonusPerLevel=0};
+		[Header("Level")]
+		[SyncVar]
+		public int level = 1;
+		public int maxLevel = 3;
 		
-		// -------------------------------------------------------------------------------
-		// GetCapacity
-		// How many syncData entries can this component hold currently? That could be
-		// inventory items, pieces of equipment, currencies, attributes etc.
-		// -------------------------------------------------------------------------------
-		public int GetCapacity => capacity.Get(level);
+#if oCURRENCY
+		public LevelCurrencyCost[] upgradeCost;
+#endif
 		
 		// -------------------------------------------------------------------------------
 		// Start

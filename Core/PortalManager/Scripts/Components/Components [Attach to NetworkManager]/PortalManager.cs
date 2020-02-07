@@ -10,6 +10,7 @@ using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.Portals;
+using OpenMMO.DebugManager;
 
 namespace OpenMMO.Portals
 {
@@ -32,6 +33,9 @@ namespace OpenMMO.Portals
 		[Header("Settings")]
 		[Tooltip("MainZone data save interval (in seconds)")]
 		public float zoneIntervalMain = 10f;
+		
+		[Header("Debug Helper")]
+		public DebugHelper debug;
 		
 		// -------------------------------------------------------------------------------
 		
@@ -63,6 +67,9 @@ namespace OpenMMO.Portals
     	{
     	
     		singleton = this;
+    		
+    		debug = new DebugHelper();
+			debug.Init();
     		
     		networkManager 		= GetComponent<OpenMMO.Network.NetworkManager>();
     		networkTransport 	= GetComponent<Mirror.TelepathyTransport>();
@@ -237,11 +244,14 @@ namespace OpenMMO.Portals
         {
         	if (String.IsNullOrWhiteSpace(_name))
         		return false;
-        	
+        	UnityEngine.Debug.Log(_name);
         	foreach (PortalAnchorEntry anchor in portalAnchors)
+        	{
+        		UnityEngine.Debug.Log(anchor.name+"/"+_name);
         		if (anchor.name == _name)
-					return true;
-					
+        			return true;
+        	}	
+
 			return false;
         }
         
@@ -268,6 +278,7 @@ namespace OpenMMO.Portals
             					position = _position
             				}
             );
+            
         }
 
         // -------------------------------------------------------------------------------

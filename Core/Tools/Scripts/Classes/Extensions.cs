@@ -1,10 +1,4 @@
-﻿// =======================================================================================
-// Extensions
-// by Weaver (Fhiz)
-// MIT licensed
-// =======================================================================================
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using System;

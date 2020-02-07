@@ -77,11 +77,10 @@ namespace OpenMMO {
             verticalMovementInput 		= Input.GetAxis("Vertical");
             running						= Input.GetKey(runKey);
             
-            // -- Update Rotation (locally - synched via network transform)
-			if (horizontalMovementInput != 0)
-				transform.Rotate(0, horizontalMovementInput * rotationSpeed * Time.deltaTime, 0);
-            
             UpdateVelocity();
+           	
+           	if (horizontalMovementInput != 0)						// -- Rotation Locally
+				transform.Rotate(0, horizontalMovementInput * rotationSpeed, 0);
            	
 			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));

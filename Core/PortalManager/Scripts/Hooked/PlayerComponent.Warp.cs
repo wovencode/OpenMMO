@@ -44,6 +44,7 @@ namespace OpenMMO {
 		[Command]
 		public void Cmd_WarpLocal(string anchorName)
 		{
+
 			if (PortalManager.CheckPortalAnchor(anchorName))
 				WarpLocal(anchorName);
 		}
@@ -91,10 +92,10 @@ namespace OpenMMO {
 		// Warp the player to the anchors position on the same scene
 		// @Server
 		// -------------------------------------------------------------------------------
-		[ServerCallback]
+		//[ServerCallback]
 		public void WarpLocal(string anchorName)
     	{
-    		
+
     		if (PortalManager.CheckPortalAnchor(anchorName))
         		base.Warp(PortalManager.GetPortalAnchorPosition(anchorName));
         	

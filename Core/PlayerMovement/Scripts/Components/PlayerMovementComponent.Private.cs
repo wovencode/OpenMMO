@@ -74,10 +74,12 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		protected virtual void UpdateVelocity()
 		{
-
-			if (verticalMovementInput != 0)
+			
+			if (verticalMovementInput != 0 || horizontalMovementInput != 0)
            	{
-            
+            	
+            	agent.updateRotation = false;
+            	
 				Vector3 input = new Vector3(horizontalMovementInput, 0, verticalMovementInput);
 				if (input.magnitude > 1) input = input.normalized;
 
@@ -86,7 +88,7 @@ namespace OpenMMO {
 				Quaternion rotation = Quaternion.Euler(angles);
 
 				Vector3 direction = rotation * input;
-			
+				
 				if (verticalMovementInput > 0)									// -- Movement: Forward
 				{
 					float factor = running ? runFactor : walkFactor;
@@ -94,14 +96,15 @@ namespace OpenMMO {
 				}
 				else if (verticalMovementInput < 0)								// -- Movement: Backward
 				{
-					// what to put here in order to reverse movement (backwards) without rotating?
-					// this will move forward using "backwardFactor" speed:
-					agent.velocity = direction * verticalMovementInput * agent.speed * backwardFactor;
+					agent.velocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * backwardFactor;
 				}
-			
+				else
+					agent.velocity = Vector3.zero; // -- Is this really required?
+				
            	}
            	else
            	{
+           		// -- Is this really required?
          	  	agent.ResetPath();
 				agent.velocity = Vector3.zero;
 			}

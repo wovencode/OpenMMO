@@ -14,7 +14,7 @@ namespace OpenMMO {
 	// EntityComponent
 	// ===================================================================================
 	[System.Serializable]
-	public abstract partial class EntityComponent : UpgradableComponent
+	public abstract partial class EntityComponent : LevelableComponent
 	{
 		
 		[Header("Components")]

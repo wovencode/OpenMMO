@@ -39,18 +39,23 @@ namespace OpenMMO.Portals
 			}
 			
 			GameObject player = PlayerComponent.localPlayer;
-			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
-			if (player && !triggerOnEnter)
+			if (player)
 			{
-				if (pc.CheckCooldown)
-					UIPopupPrompt.singleton.Init(popupEnter, OnClickConfirm);
+			
+				PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			
+				if (!triggerOnEnter)
+				{
+					if (pc.CheckCooldown)
+						UIPopupPrompt.singleton.Init(popupEnter, OnClickConfirm);
+					else
+						UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
+				}
 				else
-					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
+					OnClickConfirm();
+					
 			}
-			else if (player)
-				OnClickConfirm();
-				
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -64,8 +69,8 @@ namespace OpenMMO.Portals
 			
 			int index = UnityEngine.Random.Range(0, targetAnchors.Length);
 			string targetAnchor = targetAnchors[index].name;
-			
-			if (player && targetAnchor != null)
+
+			if (player != null && !String.IsNullOrWhiteSpace(targetAnchor))
 				player.GetComponent<PlayerComponent>().Cmd_WarpLocal(targetAnchor);
 			
 			base.OnClickConfirm();

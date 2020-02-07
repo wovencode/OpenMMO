@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2731038008511463102}
   - component: {fileID: 6058652996399677817}
   - component: {fileID: 1037530943158960664}
-  - component: {fileID: 7418925904864599865}
   - component: {fileID: 5053945538751103481}
   - component: {fileID: 7126675864611560069}
   m_Layer: 0
@@ -132,25 +131,6 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   m_AssetId: 65bddf07b790a4600ad27cee15356108
---- !u!114 &7418925904864599865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930793167279634983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  clientAuthority: 1
-  localPositionSensitivity: 0.05
-  localRotationSensitivity: 0.05
-  localScaleSensitivity: 0.05
-  compressRotation: 1
 --- !u!114 &5053945538751103481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,9 +149,6 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   level: 1
   maxLevel: 3
-  capacity:
-    baseValue: 99
-    bonusPerLevel: 0
   agent: {fileID: 4676210237922252921}
   proxChecker: {fileID: 2731038008511463102}
   collider: {fileID: 157174606949597925}
@@ -197,7 +174,7 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   agent: {fileID: 4676210237922252921}
   animator: {fileID: 6058652996399677817}
-  rotationSpeed: 100
+  rotationSpeed: 10
   walkFactor: 1
   runFactor: 2
   backwardFactor: 0.5

@@ -71,7 +71,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			if (DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
+			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
 				LoginUser(conn, msg.username);
 				
@@ -325,11 +325,16 @@ namespace OpenMMO.Network
 		// LoginUser
 		// @Server
 		// -------------------------------------------------------------------------------
-		protected void LoginUser(NetworkConnection conn, string name)
+		protected void LoginUser(NetworkConnection conn, string username)
 		{
-			onlineUsers[conn] = name;
-			state = NetworkState.Lobby;
-			this.InvokeInstanceDevExtMethods(nameof(LoginUser));
+			if (!UserLoggedIn(username))
+			{
+				onlineUsers[conn] = name;
+			    state = NetworkState.Lobby;
+			    this.InvokeInstanceDevExtMethods(nameof(LoginUser));
+			}
+			else
+				ServerSendError(conn, systemText.userAlreadyOnline, true);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -338,7 +343,7 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
-			if (!AccountLoggedIn(playername))
+			if (!UserLoggedIn(username))
 			{
 			
 				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);

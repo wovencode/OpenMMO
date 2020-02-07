@@ -20,7 +20,7 @@ namespace OpenMMO.Database
 		// SavePlayers
 		// -------------------------------------------------------------------------------
 		[DevExtMethods("SavePlayers")]
-		void SavePlayers_Network(bool online = true)
+		void SavePlayers_Network()
     	{
 
     		if (OpenMMO.Network.NetworkManager.onlinePlayers.Count == 0)
@@ -29,7 +29,7 @@ namespace OpenMMO.Database
         	databaseLayer.BeginTransaction();
         	
         	foreach (GameObject player in OpenMMO.Network.NetworkManager.onlinePlayers.Values)
-            	SaveDataPlayer(player, online, false);
+            	SaveDataPlayer(player, false);
             
         	databaseLayer.Commit();
         	

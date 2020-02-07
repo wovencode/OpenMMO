@@ -25,7 +25,7 @@ namespace OpenMMO.Network
 		[DevExtMethods("LoginPlayer")]
 		public void LoginPlayer_PlayerComponent(NetworkConnection conn, GameObject player, GameObject prefab, string userName, string playerName)
 		{
-			player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, true, userName);
+			player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, userName);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -93,8 +93,9 @@ namespace OpenMMO.Network
 			
 			if (!NavMesh.SamplePosition(player.transform.position, out NavMeshHit hit, 0.1f, NavMesh.AllAreas))
 				transform = GetStartPosition(player);
-				
-			player.GetComponent<PlayerComponent>().Warp(transform.position);
+
+            if (transform != player.transform)
+			    player.GetComponent<PlayerComponent>().Warp(transform.position);
 			
 		}
 		

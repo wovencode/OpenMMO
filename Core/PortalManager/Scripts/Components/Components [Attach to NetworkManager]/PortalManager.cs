@@ -42,7 +42,7 @@ namespace OpenMMO.Portals
 		public static PortalManager singleton;
 		
 		protected OpenMMO.Network.NetworkManager 	networkManager;
-		protected Mirror.TelepathyTransport networkTransport;
+		protected Mirror.TelepathyTransport 		networkTransport;
 	
 		[HideInInspector] public bool isSubZone;
 		
@@ -120,7 +120,7 @@ namespace OpenMMO.Portals
 		{
 		
 			if (!GetIsMainZone) return;
-			
+debug.Log("SpawnSubZones");
 			InvokeRepeating(nameof(SaveZone), 0, zoneIntervalMain);
 			
 			int tmpIndex = 0;

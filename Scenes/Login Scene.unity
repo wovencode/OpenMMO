@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 10
     m_AtlasSize: 512
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 256
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -87,7 +94,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -137,12 +146,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170076733}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.802082
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -152,6 +163,24 @@ Light:
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -159,12 +188,15 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &170076735
@@ -188,10 +220,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5045711238423947454, guid: 905dc9f464df34259a8875f486633d6c,
+    - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}
-      propertyPath: m_Name
-      value: WarpPortal
+      propertyPath: targetAnchor
+      value: 
+      objectReference: {fileID: 8285225109501110961}
+    - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
+        type: 3}
+      propertyPath: popupEnter
+      value: Teleport?
       objectReference: {fileID: 0}
     - target: {fileID: 3646546539187669624, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}
@@ -248,15 +285,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
+    - target: {fileID: 5045711238423947454, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}
-      propertyPath: targetAnchor
-      value: 
-      objectReference: {fileID: 8285225109501110961}
-    - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
-        type: 3}
-      propertyPath: popupEnter
-      value: Teleport?
+      propertyPath: m_Name
+      value: WarpPortal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905dc9f464df34259a8875f486633d6c, type: 3}
@@ -297,17 +329,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
-        type: 3}
-      propertyPath: m_Name
-      value: NetworkStartPosition - Elves
-      objectReference: {fileID: 0}
-    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 697381104668126445, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,6 +406,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fa97d898095824de19c0b30dc457b2f0,
         type: 2}
+    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
+        type: 3}
+      propertyPath: m_Name
+      value: NetworkStartPosition - Elves
+      objectReference: {fileID: 0}
+    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a1d6adff3347b19b2da2e6ca3b76c, type: 3}
 --- !u!1001 &637109377
@@ -616,17 +648,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
-        type: 3}
-      propertyPath: m_Name
-      value: NetworkStartPosition - Dwarves
-      objectReference: {fileID: 0}
-    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 697381104668126445, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -704,6 +725,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 23ccce11a08934912ba41bb76c4c972d,
         type: 2}
+    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
+        type: 3}
+      propertyPath: m_Name
+      value: NetworkStartPosition - Dwarves
+      objectReference: {fileID: 0}
+    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a1d6adff3347b19b2da2e6ca3b76c, type: 3}
 --- !u!1001 &1336504295
@@ -1000,17 +1032,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
-        type: 3}
-      propertyPath: m_Name
-      value: NetworkStartPosition - Humans
-      objectReference: {fileID: 0}
-    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 697381104668126445, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1088,6 +1109,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 346fc870660af4c20b3c541ddf54a996,
         type: 2}
+    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
+        type: 3}
+      propertyPath: m_Name
+      value: NetworkStartPosition - Humans
+      objectReference: {fileID: 0}
+    - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a1d6adff3347b19b2da2e6ca3b76c, type: 3}
 --- !u!1001 &3252435990677973886
@@ -1097,10 +1129,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3252435991396032041, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
-        type: 3}
-      propertyPath: m_Name
-      value: NetworkManager
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: active
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032034, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
@@ -1177,6 +1208,11 @@ PrefabInstance:
       propertyPath: eventListeners.OnLogoutPlayer.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1645818160}
+    - target: {fileID: 3252435991396032041, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
+        type: 3}
+      propertyPath: m_Name
+      value: NetworkManager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
 --- !u!1001 &3842178782582338971
@@ -1186,11 +1222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4376349576653447726, guid: e1941773f80494e7abe915facd269b59,
-        type: 3}
-      propertyPath: m_Name
-      value: MultiWarpPortal
-      objectReference: {fileID: 0}
     - target: {fileID: 148017138344104603, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1271,6 +1302,11 @@ PrefabInstance:
       propertyPath: popupEnter
       value: Enter teleporter?
       objectReference: {fileID: 0}
+    - target: {fileID: 4376349576653447726, guid: e1941773f80494e7abe915facd269b59,
+        type: 3}
+      propertyPath: m_Name
+      value: MultiWarpPortal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1941773f80494e7abe915facd269b59, type: 3}
 --- !u!1001 &4672676155883969159
@@ -1284,36 +1320,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ChatManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[3].channelId
-      value: guild
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[2].channelId
-      value: party
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[1].channelId
-      value: private
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[0].channelId
-      value: public
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[4].channelId
-      value: info
       objectReference: {fileID: 0}
     - target: {fileID: 4672676154308553654, guid: b0c05a8c28acf4055b20e97b935f7dab,
         type: 3}
@@ -1369,6 +1375,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: channelList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: channelList.Array.data[3].channelId
+      value: guild
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: channelList.Array.data[2].channelId
+      value: party
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: channelList.Array.data[1].channelId
+      value: private
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: channelList.Array.data[0].channelId
+      value: public
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: channelList.Array.data[4].channelId
+      value: info
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0c05a8c28acf4055b20e97b935f7dab, type: 3}
@@ -1448,11 +1484,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7890701178789268690, guid: 28db4ceed746f4a62963adde76a4fbef,
-        type: 3}
-      propertyPath: m_Name
-      value: DatabaseManager
-      objectReference: {fileID: 0}
     - target: {fileID: 7890701178789268688, guid: 28db4ceed746f4a62963adde76a4fbef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1507,6 +1538,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890701178789268690, guid: 28db4ceed746f4a62963adde76a4fbef,
+        type: 3}
+      propertyPath: m_Name
+      value: DatabaseManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28db4ceed746f4a62963adde76a4fbef, type: 3}

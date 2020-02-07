@@ -18,15 +18,6 @@ namespace OpenMMO.Database
 		// ============================ PROTECTED METHODS ================================
 		
 		// -------------------------------------------------------------------------------
-		// PlayerSetOnline
-		// Sets the player online (1) or offline (0) and updates last login time
-		// -------------------------------------------------------------------------------
-		protected void PlayerSetOnline(string playername, int action=1)
-		{
-			Execute("UPDATE "+nameof(TablePlayer)+" SET online=?, lastlogin=? WHERE playername=?", action, DateTime.UtcNow, playername);
-		}
-		
-		// -------------------------------------------------------------------------------
 		// PlayerSetDeleted
 		// Sets the player to deleted (1) or undeletes it (0)
 		// -------------------------------------------------------------------------------

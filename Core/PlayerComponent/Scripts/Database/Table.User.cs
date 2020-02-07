@@ -21,7 +21,6 @@ namespace OpenMMO.Database
 		public DateTime lastlogin 	{ get; set; }
 		public bool deleted 		{ get; set; }
 		public bool banned 			{ get; set; }
-		public bool online 			{ get; set; }
 		public bool confirmed		{ get; set; }
 		public DateTime lastsaved 	{ get; set; }
 		public int token			{ get; set; }

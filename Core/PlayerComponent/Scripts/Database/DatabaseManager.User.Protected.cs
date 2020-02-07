@@ -24,7 +24,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected bool UserValid(string username, string password)
 		{
-			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND password=? AND banned=0 AND deleted=0 AND online=0", username, password) != null;
+			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND password=? AND banned=0 AND deleted=0", username, password) != null;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -49,15 +49,6 @@ namespace OpenMMO.Database
 		protected void UserChangePassword(string username, string oldpassword, string newpassword)
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET password=? WHERE username=? AND password=?", newpassword, username, oldpassword);
-		}
-		
-		// -------------------------------------------------------------------------------
-		// UserSetOnline
-		// Sets the user online (1) or offline (0) and updates last login time
-		// -------------------------------------------------------------------------------
-		protected void UserSetOnline(string username, int action=1)
-		{
-			Execute("UPDATE "+nameof(TableUser)+" SET online=?, lastlogin=? WHERE username=?", action, DateTime.UtcNow, username);
 		}
 		
 		// -------------------------------------------------------------------------------

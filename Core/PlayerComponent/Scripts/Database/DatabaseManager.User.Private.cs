@@ -85,7 +85,7 @@ namespace OpenMMO.Database
 	   	// SaveDataPlayer_User
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods("SaveDataPlayer")]
-		void SaveDataPlayer_User(GameObject player, bool isOnline)
+		void SaveDataPlayer_User(GameObject player)
 		{
 	   		/*
 				users do not save any player data, feel free to add your own
@@ -98,9 +98,9 @@ namespace OpenMMO.Database
 	   	// of copy-pasting all the individual properties, update it and forward it to the db
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods("SaveDataUser")]
-		void SaveDataUser_User(string username, bool isOnline)
+		void SaveDataUser_User(string username)
 		{
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=?, online=? WHERE username=?", DateTime.UtcNow, isOnline.ToInt(), username);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=? WHERE username=?", DateTime.UtcNow, username);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods("LoginUser")]
 	   	void LoginUser_User(string username)
 	   	{
-	   		UserSetOnline(username, 1);
+	   		
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods("LogoutUser")]
 	   	void LogoutUser_User(string username)
 	   	{
-	   		UserSetOnline(username, 0);
+	   		
 	   	}
 		
 		// -------------------------------------------------------------------------------

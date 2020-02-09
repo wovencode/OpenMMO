@@ -73,6 +73,7 @@ namespace OpenMMO {
 		{
 			
             if (!isLocalPlayer) return;
+            if (Tools.AnyInputFocused) return;
             
             horizontalMovementInput 	= Input.GetAxis("Horizontal");
             verticalMovementInput 		= Input.GetAxis("Vertical");

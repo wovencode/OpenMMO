@@ -58,7 +58,9 @@ namespace OpenMMO.UI
 			UpdatePlayerIndex();
 			
 			// -- Buttons
-			createButton.interactable = (index != -1 && !String.IsNullOrWhiteSpace(playernameInput.text));
+			
+			
+			createButton.interactable = (index != -1 && networkManager.CanRegisterPlayer(playernameInput.text) );
 			createButton.onClick.SetListener(() => { OnClickCreate(); });
 			
 			backButton.onClick.SetListener(() => { OnClickBack(); });

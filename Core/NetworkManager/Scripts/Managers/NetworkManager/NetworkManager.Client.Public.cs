@@ -73,7 +73,7 @@ namespace OpenMMO.Network
 				Tools.IsAllowedPassword(password) &&
 				IsConnecting();
 		}
-
+		
 		// -------------------------------------------------------------------------------
    		// CanDeleteUser
    		// @Client
@@ -111,6 +111,18 @@ namespace OpenMMO.Network
 			return (Application.platform != RuntimePlatform.WebGLPlayer && 
 					!isNetworkActive &&
 					!IsConnecting());
+		}
+		
+		// ======================= PUBLIC METHODS - PLAYER ===============================
+		
+		// -------------------------------------------------------------------------------
+   		// CanRegisterPlayer
+   		// @Client
+   		// can we register a new player with the provided name?
+   		// -------------------------------------------------------------------------------
+		public bool CanRegisterPlayer(string name)
+		{
+			return Tools.IsAllowedName(name);
 		}
 
 		// ======================= PUBLIC METHODS - USER =================================

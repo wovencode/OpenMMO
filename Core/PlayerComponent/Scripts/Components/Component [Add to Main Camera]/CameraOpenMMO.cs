@@ -71,7 +71,7 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		// Update
 		// -------------------------------------------------------------------------------
-		protected virtual void FixedUpdate()
+		protected virtual void Update()
 		{
 			
 			float deltaTime = Time.deltaTime;

@@ -94,6 +94,10 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void OnClickCreate()
 		{	
+		
+			if (!networkManager.CanRegisterPlayer(playernameInput.text))
+				return;
+			
 			string prefabName = networkManager.playerPrefabs[index].name;
 			networkManager.TryRegisterPlayer(playernameInput.text, prefabName);
 			selectWindow.Show();

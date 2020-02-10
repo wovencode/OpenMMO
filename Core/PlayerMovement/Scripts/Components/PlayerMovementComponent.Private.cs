@@ -45,7 +45,7 @@ namespace OpenMMO {
         		&& CheckMovementInterval						// we throttle a little bit
         		)
         	{
-				Cmd_UpdateState(new MovementStruct(transform.rotation, verticalMovementInput, horizontalMovementInput, running));
+				Cmd_UpdateState(new MovementStruct(transform.position, transform.rotation, verticalMovementInput, horizontalMovementInput, running));
 				RefreshMovementInterval();
 			}
         	
@@ -61,14 +61,15 @@ namespace OpenMMO {
 		protected virtual void Cmd_UpdateState(MovementStruct movementStruct)
     	{
     		
-    		transform.rotation			= movementStruct.movementRotation;
+    		transform.position			= movementStruct.position;
+    		transform.rotation			= movementStruct.rotation;
     		
     		verticalMovementInput 		= Mathf.Clamp(movementStruct.verticalMovementInput, -1, 1);		// good enough for keyboard + controller
     		horizontalMovementInput 	= Mathf.Clamp(movementStruct.horizontalMovementInput, -1, 1);	// good enough for keyboard + controller
     		running						= movementStruct.movementRunning;
     		
     		UpdateVelocity();
-    		RpcVelocity(agent.velocity, transform.rotation);
+    		RpcVelocity(transform.position, transform.rotation, agent.velocity);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -103,6 +104,9 @@ namespace OpenMMO {
 				else
 					agent.velocity = Vector3.zero; // -- required?
 				
+				if (horizontalMovementInput != 0)		// -- Rotation
+					transform.Rotate(0, horizontalMovementInput * rotationSpeed, 0);
+				
            	}
            	else
            	{
@@ -118,15 +122,18 @@ namespace OpenMMO {
 		// @Server -> @Clients
 		// -------------------------------------------------------------------------------
 		[ClientRpc]
-   		public void RpcVelocity(Vector3 _velocity, Quaternion _rotation)
+   		public void RpcVelocity(Vector3 _position, Quaternion _rotation, Vector3 _velocity)
     	{
+    	
     		// -- not required to update local player
     		if (isLocalPlayer)
     			return;
     		
     		agent.ResetPath();
         	agent.velocity = _velocity;
+        	transform.position = _position;
         	transform.rotation = _rotation;
+        	
     	}
 		
 		// -------------------------------------------------------------------------------

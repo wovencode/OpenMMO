@@ -80,10 +80,10 @@ namespace OpenMMO {
             running						= Input.GetKey(runKey);
             
             UpdateVelocity();
-           	
+           	/*
            	if (horizontalMovementInput != 0)		// -- Client Side Rotation
 				transform.Rotate(0, horizontalMovementInput * rotationSpeed, 0);
-           	
+           	*/
 			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
 

@@ -53,10 +53,10 @@ namespace OpenMMO.Network
    		// @Client
    		// can we login into an existing user with the provided name and password?
    		// -------------------------------------------------------------------------------
-		public bool CanLoginUser(string name, string password)
+		public bool CanLoginUser(string username, string password)
 		{
 			return isNetworkActive && 
-				Tools.IsAllowedName(name) && 
+				Tools.IsAllowedName(username) && 
 				Tools.IsAllowedPassword(password) &&
 				IsConnecting();
 		}
@@ -66,10 +66,10 @@ namespace OpenMMO.Network
    		// @Client
    		// can we register a new user with the provided name and password?
    		// -------------------------------------------------------------------------------
-		public bool CanRegisterUser(string name, string password)
+		public bool CanRegisterUser(string username, string password)
 		{
 			return isNetworkActive &&
-				Tools.IsAllowedName(name) && 
+				Tools.IsAllowedName(username) && 
 				Tools.IsAllowedPassword(password) &&
 				IsConnecting();
 		}
@@ -79,10 +79,10 @@ namespace OpenMMO.Network
    		// @Client
    		// can we delete an user with the provided name and password?
    		// -------------------------------------------------------------------------------
-		public bool CanDeleteUser(string name, string password)
+		public bool CanDeleteUser(string username, string password)
 		{
 			return isNetworkActive &&
-				Tools.IsAllowedName(name) && 
+				Tools.IsAllowedName(username) && 
 				Tools.IsAllowedPassword(password) &&
 				IsConnecting();
 		}
@@ -92,10 +92,10 @@ namespace OpenMMO.Network
    		// @Client
    		// can we change the provided users password?
    		// -------------------------------------------------------------------------------
-		public bool CanChangePasswordUser(string name, string oldpassword, string newpassword)
+		public bool CanChangePasswordUser(string username, string oldpassword, string newpassword)
 		{
 			return isNetworkActive &&
-				Tools.IsAllowedName(name) && 
+				Tools.IsAllowedName(username) && 
 				Tools.IsAllowedPassword(oldpassword) &&
 				Tools.IsAllowedPassword(newpassword) &&
 				IsConnecting();
@@ -120,9 +120,9 @@ namespace OpenMMO.Network
    		// @Client
    		// can we register a new player with the provided name?
    		// -------------------------------------------------------------------------------
-		public bool CanRegisterPlayer(string name)
+		public bool CanRegisterPlayer(string playername)
 		{
-			return Tools.IsAllowedName(name);
+			return Tools.IsAllowedName(playername);
 		}
 
 		// ======================= PUBLIC METHODS - USER =================================
@@ -132,13 +132,13 @@ namespace OpenMMO.Network
    		// @Client
    		// we try to login into an existing user using name and password provided
    		// -------------------------------------------------------------------------------
-		public void TryLoginUser(string name, string password)
+		public void TryLoginUser(string username, string password)
 		{
 			
-			userName 		= name;
+			userName 		= username;
 			userPassword 	= password;
 			
-			RequestUserLogin(NetworkClient.connection, name, password);
+			RequestUserLogin(NetworkClient.connection, username, password);
 			
 		}
 		
@@ -147,14 +147,14 @@ namespace OpenMMO.Network
    		// @Client
    		// we try to register a new User with name and password provided
    		// -------------------------------------------------------------------------------
-		public void TryRegisterUser(string name, string password, string email)
+		public void TryRegisterUser(string username, string password, string email)
 		{
 			
-			userName 		= name;
+			userName 		= username;
 			userPassword 	= password;
 			
 			
-			RequestUserRegister(NetworkClient.connection, name, password, email);
+			RequestUserRegister(NetworkClient.connection, username, password, email);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -162,13 +162,13 @@ namespace OpenMMO.Network
    		// @Client
    		// we try to delete an existing User according to its name and password
    		// -------------------------------------------------------------------------------
-		public void TryDeleteUser(string name, string password)
+		public void TryDeleteUser(string username, string password)
 		{
 			
-			userName 		= name;
+			userName 		= username;
 			userPassword 	= password;
 			
-			RequestUserDelete(NetworkClient.connection, name, password);
+			RequestUserDelete(NetworkClient.connection, username, password);
 
 		}
 		
@@ -177,14 +177,14 @@ namespace OpenMMO.Network
    		// @Client
    		// we try to delete an existing User according to its name and password
    		// -------------------------------------------------------------------------------
-		public void TryChangePasswordUser(string name, string oldpassword, string newpassword)
+		public void TryChangePasswordUser(string username, string oldpassword, string newpassword)
 		{
 			
-			userName 		= name;
+			userName 		= username;
 			userPassword 	= oldpassword;
 			newPassword 	= newpassword;
 			
-			RequestUserChangePassword(NetworkClient.connection, name, oldpassword, newpassword);
+			RequestUserChangePassword(NetworkClient.connection, username, oldpassword, newpassword);
 
 		}
 		
@@ -193,9 +193,9 @@ namespace OpenMMO.Network
    		// @Client
    		// we try to confirm an existing User according to its name and password
    		// -------------------------------------------------------------------------------
-		public void TryConfirmUser(string name, string password)
+		public void TryConfirmUser(string username, string password)
 		{
-			RequestUserConfirm(NetworkClient.connection, name, password);
+			RequestUserConfirm(NetworkClient.connection, username, password);
 		}
 		
 		// ======================= PUBLIC METHODS - PLAYER ===============================
@@ -204,9 +204,9 @@ namespace OpenMMO.Network
    		// TryLoginPlayer
    		// @Client
    		// -------------------------------------------------------------------------------
-		public void TryLoginPlayer(string name)
+		public void TryLoginPlayer(string username)
 		{
-			RequestPlayerLogin(NetworkClient.connection, name, userName);
+			RequestPlayerLogin(NetworkClient.connection, username, userName);
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -22,6 +22,16 @@ namespace OpenMMO.Network
         // RequestUserLogin
         // @Client
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestUserLogin</c> function that returns a boolean.
+        /// Sends a user login request to the server.
+        /// Checks whether the login request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent of not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
+        /// <returns> Returns a boolean detailing whetherthe request was sent to the server. </returns>
 		protected override bool RequestUserLogin(NetworkConnection conn, string name, string password)
 		{
 			if (!base.RequestUserLogin(conn, name, password))

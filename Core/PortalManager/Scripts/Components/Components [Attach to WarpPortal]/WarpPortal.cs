@@ -38,12 +38,10 @@ namespace OpenMMO.Portals
 				return;
 			}
 			
-			GameObject player = PlayerComponent.localPlayer;
+			PlayerComponent pc = co.GetComponentInParent<PlayerComponent>();
 			
-			if (player == null)
+			if (pc == null || !pc.IsLocalPlayer)
 				return;
-			
-			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
 			if (!triggerOnEnter)
 			{

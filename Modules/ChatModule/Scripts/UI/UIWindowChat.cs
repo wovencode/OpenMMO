@@ -52,11 +52,16 @@ namespace OpenMMO.UI
 		public Sprite maximizedImage;
 		public Sprite minimizedImage;
 		
+		[Header("Enter Keys")]
+		public KeyCode[] enterKeys = {KeyCode.Return, KeyCode.KeypadEnter};
+		
 		public int maxMessages = 100;
 		
 		public static UIWindowChat singleton;
 		
 		protected string channelId = "public";
+		
+		protected bool inputActive;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -73,6 +78,22 @@ namespace OpenMMO.UI
 		public override void Show()
 		{
 			base.Show();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// Update
+		// -------------------------------------------------------------------------------
+		protected override void Update()
+		{
+			
+			// -- check for 'Enter' pressed while Input has focus
+			
+			foreach (KeyCode enterKey in enterKeys)
+				if (Input.GetKeyDown(enterKey) && inputActive)
+					OnClickSendMessage();
+			
+			base.Update();
+		
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -113,6 +134,7 @@ namespace OpenMMO.UI
 			ChatManager.singleton.ClientChatSend(channelId, sendInputField.text);
 			
 			sendInputField.text = String.Empty;
+			inputActive = false;
 			
 		}
 				
@@ -120,7 +142,8 @@ namespace OpenMMO.UI
 		// OnClickMinimize
 		// -------------------------------------------------------------------------------
 		public void OnClickToggleSize()
-		{	
+		{
+		
 			if (windowRoot.activeInHierarchy)
 			{
 				windowRoot.SetActive(false);
@@ -131,6 +154,9 @@ namespace OpenMMO.UI
 				windowRoot.SetActive(true);
 				toggleButtonImage.sprite = maximizedImage;
 			}
+			
+			inputActive = false;
+			
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -177,6 +203,14 @@ namespace OpenMMO.UI
 			channelId = channelIdInfo;
 			sendButton.interactable = false;
 		}
+		
+		// -------------------------------------------------------------------------------
+		// OnInputFieldChange
+		// -------------------------------------------------------------------------------
+		public void OnInputFieldChange()
+		{
+			inputActive = true;
+		}	
 		
 		// =============================== UPDATE HANDLERS ===============================
 		

@@ -28,8 +28,7 @@ namespace OpenMMO.Portals
 		public bool active;
 		
 		[Header("Network Zones")]
-		public NetworkZoneTemplate mainZone;
-		public NetworkZoneTemplate[] subZones;
+		public NetworkZoneTemplate[] networkZones;
 		
 		[Header("Settings")]
 		[Tooltip("MainZone data save interval (in seconds)")]
@@ -80,7 +79,7 @@ namespace OpenMMO.Portals
     			
     		int tmpIndex = 0;
     			
-    		foreach (NetworkZoneTemplate template in subZones)
+    		foreach (NetworkZoneTemplate template in networkZones)
     		{
     		
     			tmpIndex++;
@@ -126,7 +125,7 @@ debug.Log("SpawnSubZones");
 			
 			int tmpIndex = 0;
 			
-			foreach (NetworkZoneTemplate template in subZones)
+			foreach (NetworkZoneTemplate template in networkZones)
     		{
     			
     			if (zoneIndex != tmpIndex)
@@ -166,7 +165,7 @@ debug.Log("SpawnSubZones");
 			
 			string sceneName = "";
 			
-			foreach (NetworkZoneTemplate template in subZones)
+			foreach (NetworkZoneTemplate template in networkZones)
     		{
 				if (msg.zonename == template.name)
 					sceneName = template.scene.SceneName;

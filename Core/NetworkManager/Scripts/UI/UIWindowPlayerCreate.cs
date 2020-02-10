@@ -58,9 +58,7 @@ namespace OpenMMO.UI
 			UpdatePlayerIndex();
 			
 			// -- Buttons
-			
-			
-			createButton.interactable = (index != -1 && networkManager.CanRegisterPlayer(playernameInput.text) );
+			createButton.interactable = (index != -1 && !String.IsNullOrWhiteSpace(playernameInput.text));
 			createButton.onClick.SetListener(() => { OnClickCreate(); });
 			
 			backButton.onClick.SetListener(() => { OnClickBack(); });
@@ -94,10 +92,6 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void OnClickCreate()
 		{	
-		
-			if (!networkManager.CanRegisterPlayer(playernameInput.text))
-				return;
-			
 			string prefabName = networkManager.playerPrefabs[index].name;
 			networkManager.TryRegisterPlayer(playernameInput.text, prefabName);
 			selectWindow.Show();

@@ -54,6 +54,10 @@ namespace OpenMMO {
 		public float startZoomDistance;
 		public float zoomSpeed = 5;
 
+		[Header("Save Camera")]
+		public bool isSaveCamera;
+		public string savePrefsPrefix = "GAMEPLAY";
+
 		private float xVelocity;
 		private float yVelocity;
 		private float zoomVelocity;
@@ -66,6 +70,13 @@ namespace OpenMMO {
 			xRotation = startXRotation;
 			yRotation = startYRotation;
 			zoomDistance = startZoomDistance;
+
+			if (isSaveCamera)
+			{
+				xRotation = PlayerPrefs.GetFloat(savePrefsPrefix + "_XRotation", xRotation);
+				yRotation = PlayerPrefs.GetFloat(savePrefsPrefix + "_YRotation", yRotation);
+				zoomDistance = PlayerPrefs.GetFloat(savePrefsPrefix + "_ZoomDistance", zoomDistance);
+			}
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -73,7 +84,14 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		protected virtual void Update()
 		{
-			
+			if (isSaveCamera)
+			{
+				PlayerPrefs.SetFloat(savePrefsPrefix + "_XRotation", xRotation);
+				PlayerPrefs.SetFloat(savePrefsPrefix + "_YRotation", yRotation);
+				PlayerPrefs.SetFloat(savePrefsPrefix + "_ZoomDistance", zoomDistance);
+				PlayerPrefs.Save();
+			}
+
 			float deltaTime = Time.deltaTime;
 		
 			if (Input.GetKey(hotKey))
@@ -97,7 +115,7 @@ namespace OpenMMO {
 			if (updateRotation || updateRotationY)
 				yVelocity += InputManager.GetAxis("Mouse X", false) * rotationSpeed;
 		
-			if (Input.GetKey(hotKey) && !Tools.AnyInputFocused)
+			if (Input.GetKey(hotKey))
 				yRotation += yVelocity;
 		
 			if (limitYRotation)

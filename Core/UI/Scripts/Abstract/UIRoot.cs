@@ -41,8 +41,9 @@ namespace OpenMMO.UI
 		
 		// -------------------------------------------------------------------------------
 		// Update is called every frame
+		// Private to prevent child classes from using it
 		// -------------------------------------------------------------------------------
-		protected virtual void Update()
+		void Update()
 		{
 			if (updateInterval > 0 && Time.time > fInterval)
 			{

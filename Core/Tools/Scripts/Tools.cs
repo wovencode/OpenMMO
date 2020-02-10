@@ -5,7 +5,6 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.AI;
 using System.Security.Cryptography;
 using System.IO;
@@ -314,21 +313,6 @@ namespace OpenMMO
 					PlayerPrefs.SetInt(keyName, newValue);
 		}
 		
-		// ============================== UI STUFF =======================================
-		
-		// -------------------------------------------------------------------------------
-		// AnyInputFocused
-		// -------------------------------------------------------------------------------
-		public static bool AnyInputFocused
-    	{
-    		get {
-        		foreach (Selectable selectable in Selectable.allSelectablesArray)
-            		if (selectable is InputField && ((InputField)selectable).isFocused)
-           		     	return true;
-        		return false;
-        	}
-    	}
-				
 		// -------------------------------------------------------------------------------
 	}
 

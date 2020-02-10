@@ -228,14 +228,9 @@ ModelImporter:
   - first:
       137: 13700000
     second: Test Model
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 01 - Default
-    second: {fileID: 2100000, guid: 6eb50ae831e324ee4b35a71c5076bddd, type: 2}
+  externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0

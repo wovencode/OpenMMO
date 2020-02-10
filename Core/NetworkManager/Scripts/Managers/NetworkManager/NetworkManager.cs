@@ -85,10 +85,10 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
-		public bool UserLoggedIn(string _name)
+		public bool UserLoggedIn(string userName)
 		{
 			foreach (KeyValuePair<string, GameObject> player in onlinePlayers)
-				if (player.Value.name == _name) return true;
+				if (player.Value.name == userName) return true;
 			
 			return false;
 		}

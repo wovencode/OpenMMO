@@ -210,12 +210,9 @@ namespace OpenMMO
 		// -------------------------------------------------------------------------------
 		public static string FilterText(string text)
 		{
-			
 			foreach (string badword in BadwordsTemplate.singleton.badwords)
-				text = text.Replace(badword, BADWORD_REPLACE);
-			
+				text = text.ToLower().Replace(badword, BADWORD_REPLACE);
 			return text;
-			
 		}
 
 		// -------------------------------------------------------------------------------

@@ -36,7 +36,7 @@ namespace OpenMMO.Network
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerRegister>(OnClientMessageRequestPlayerRegister);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
-        	
+
 			this.InvokeInstanceDevExtMethods(nameof(OnStartServer));
         	eventListeners.OnStartServer.Invoke();
         	

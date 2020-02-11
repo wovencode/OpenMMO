@@ -138,15 +138,17 @@ namespace OpenMMO
 		// Note: Arguments are always null on android - their usage only makes sense on
 		// an OS capable of hosting a server
 		// -------------------------------------------------------------------------------
-		public static int GetArgumentInt(string _name)
+		public static int GetArgumentInt(string name)
 		{
 			String[] args = System.Environment.GetCommandLineArgs();
-			if (args != null)
-			{
-				int _int = args.ToList().FindIndex(arg => arg == "-"+_name);
-				return 0 <= _int && _int < args.Length - 1 ? int.Parse(args[_int + 1]) : 0;
-			}
-			return 0;
+			
+			int idx = args.ToList().FindIndex(x => x == name);
+			
+			if (idx == -1 || idx == args.Length)
+				return -1;
+			
+			return int.Parse(args[idx+1]);
+			
 		}
 		
 		// -------------------------------------------------------------------------------

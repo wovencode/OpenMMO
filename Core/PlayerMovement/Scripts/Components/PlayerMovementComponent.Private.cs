@@ -37,6 +37,7 @@ namespace OpenMMO {
 		
 		// -------------------------------------------------------------------------------
 		// FixedUpdateClient
+		// @Client
 		// -------------------------------------------------------------------------------
 		[Client]
 		protected override void FixedUpdateClient()
@@ -53,8 +54,6 @@ namespace OpenMMO {
 		
 		// -------------------------------------------------------------------------------
 		// Cmd_UpdateState
-		// This updates the movement input Axis on the server and then does calculations
-		// based on the new values
 		// @Client -> @Server
 		// -------------------------------------------------------------------------------
 		[Command]
@@ -69,7 +68,7 @@ namespace OpenMMO {
     		running						= movementStruct.movementRunning;
     		
     		UpdateVelocity();
-    		RpcVelocity(transform.position, transform.rotation, agent.velocity);
+    		RpcPosition(transform.position, transform.rotation, agent.velocity);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -118,11 +117,12 @@ namespace OpenMMO {
 		}
 		
 		// -------------------------------------------------------------------------------
-		// RpcVelocity
+		// RpcPosition
+		// Updates the rotation, position and velocity on clients based on server stats
 		// @Server -> @Clients
 		// -------------------------------------------------------------------------------
 		[ClientRpc]
-   		public void RpcVelocity(Vector3 _position, Quaternion _rotation, Vector3 _velocity)
+   		public void RpcPosition(Vector3 _position, Quaternion _rotation, Vector3 _velocity)
     	{
     	
     		// -- not required to update local player

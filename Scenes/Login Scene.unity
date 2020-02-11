@@ -1130,7 +1130,35 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: mainZone
+      value: 
+      objectReference: {fileID: 11400000, guid: 351fd208bae6f48d1a58f3a5e3a4dea0,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: b2d494b65424c4bdaa50eeb8cc0b1dce,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: debug.debugMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032034, guid: f6ac0940e1ad445498275ba3cb6b8ee8,

@@ -122,7 +122,7 @@ namespace OpenMMO.Portals
 		public void SpawnSubZones()
 		{
 
-			if (!GetIsMainZone)
+			if (!GetIsMainZone || !active)
 				return;
 			
 			InvokeRepeating(nameof(SaveZone), 0, zoneIntervalMain);

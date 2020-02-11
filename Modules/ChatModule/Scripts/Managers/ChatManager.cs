@@ -219,6 +219,9 @@ namespace OpenMMO.Chat
                 Debug.LogWarning("[Warning] Did not login to server can not send chat message");
                 return;
             }
+            
+            // -- Profanity Filter (applied client side already)
+            message = Tools.FilterText(message);
 
             ChatChannelData channel = null;
             if (Channels.TryGetValue(channelId, out channel))

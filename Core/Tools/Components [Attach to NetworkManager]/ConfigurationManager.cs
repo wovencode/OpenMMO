@@ -24,6 +24,9 @@ namespace OpenMMO
 		[Header("Game Rules")]
 		public GameRulesTemplate gameRulesTemplate;
 		
+		[Header("Badwords / Profanity Filter")]
+		public BadwordsTemplate badwordsTemplate;
+		
 		// -----------------------------------------------------------------------------------
 	
 	}

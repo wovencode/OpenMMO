@@ -102,11 +102,6 @@ namespace OpenMMO.UI
 		protected override void ThrottledUpdate()
 		{
 		
-			if (!networkManager || networkManager.state != NetworkState.Game)
-				Hide();
-			else
-				Show();
-		
 			sendButton.interactable = !String.IsNullOrWhiteSpace(sendInputField.text);
 			sendButton.onClick.SetListener(() 				=> { OnClickSendMessage(); });
 			

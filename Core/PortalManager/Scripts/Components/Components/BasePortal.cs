@@ -52,11 +52,13 @@ namespace OpenMMO.Portals
 		// -------------------------------------------------------------------------------
 		public virtual void OnTriggerExit(Collider co)
 		{
-		
-			GameObject player = PlayerComponent.localPlayer;
-						
-			if (player != null)
-				UIPopupPrompt.singleton.Hide();
+			
+			PlayerComponent pc = co.GetComponentInParent<PlayerComponent>();
+			
+			if (pc == null || !pc.IsLocalPlayer)
+				return;
+			
+			UIPopupPrompt.singleton.Hide();
 				
 		}
 		

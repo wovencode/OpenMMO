@@ -25,6 +25,8 @@ namespace OpenMMO
 		protected const int 	MIN_LENGTH_NAME		= 4;
 		protected const int 	MAX_LENGTH_NAME 	= 16;
 		
+		protected const string	BADWORD_REPLACE		= "***";
+		
 		protected static string sOldChecksum, sNewChecksum	= "";
 	
 		// ============================ PATH & DIRECTORIES ===============================
@@ -189,7 +191,8 @@ namespace OpenMMO
 		{
 			return _text.Length >= MIN_LENGTH_NAME && 
 					_text.Length <= MAX_LENGTH_NAME &&
-					Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$");
+					Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$") &&
+					!ArrayContains(BadwordsTemplate.singleton.badwords, _text);
 		}
 	
 		// -------------------------------------------------------------------------------
@@ -201,7 +204,20 @@ namespace OpenMMO
 		{
 			return !String.IsNullOrWhiteSpace(_text);
 		}
-		
+
+		// -------------------------------------------------------------------------------
+		// FilterText
+		// -------------------------------------------------------------------------------
+		public static string FilterText(string text)
+		{
+			
+			foreach (string badword in BadwordsTemplate.singleton.badwords)
+				text = text.Replace(badword, BADWORD_REPLACE);
+			
+			return text;
+			
+		}
+
 		// -------------------------------------------------------------------------------
 		public static string PBKDF2Hash(string text, string salt)
 		{
@@ -266,12 +282,20 @@ namespace OpenMMO
 		// -------------------------------------------------------------------------------
 		// ArrayContains (string)
 		// -------------------------------------------------------------------------------
-		public static bool ArrayContains(string[] array, string text)
+		public static bool ArrayContains(string[] array, string text, bool toLower=true)
 		{
 			foreach (string element in array)
 			{
-				if (element == text)
-					return true;
+				if (toLower)
+				{
+					if (element.ToLower() == text.ToLower())
+						return true;
+				}
+				else
+				{
+					if (element == text)
+						return true;
+				}
 			}
 			return false;
 		}

@@ -63,9 +63,10 @@ MonoBehaviour:
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 7930793167279634983, guid: 65bddf07b790a4600ad27cee15356108, type: 3}
-  - {fileID: 7930793167279634983, guid: c2ba7e64b2a3e4380806ca5054392be5, type: 3}
-  - {fileID: 7930793167279634983, guid: 6fbf7df69c5a745d5995ad5e12def5b1, type: 3}
+  - {fileID: 7930793167279634983, guid: 82da41aef2ec74dca89beb69eb2b680b, type: 3}
+  - {fileID: 7930793167279634983, guid: 684f14cc261794354b8ce460ffbe22b5, type: 3}
+  - {fileID: 7930793167279634983, guid: 13b41ef3f74794acf9edd47318061c38, type: 3}
+  - {fileID: 7930793167279634983, guid: a16799cf0ec984097a3496c7e12cf360, type: 3}
   debug:
     debugMode: 1
   sortCategories: []
@@ -105,8 +106,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     OnStartClient:
       m_PersistentCalls:
         m_Calls:
@@ -121,8 +120,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     OnLoginPlayer:
       m_PersistentCalls:
         m_Calls:
@@ -137,8 +134,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: OpenMMO.UnityEventConnection, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
     OnLogoutPlayer:
       m_PersistentCalls:
         m_Calls:
@@ -153,8 +148,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: OpenMMO.UnityEventConnection, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
   userName: 
   userPassword: 
   newPassword: 
@@ -178,41 +171,27 @@ MonoBehaviour:
   OnClientConnected:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnClientDataReceived:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.ClientDataReceivedEvent, Mirror, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   OnClientError:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.UnityEventException, Mirror, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   OnClientDisconnected:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnServerConnected:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.UnityEventInt, Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnServerDataReceived:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.ServerDataReceivedEvent, Mirror, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   OnServerError:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.UnityEventIntException, Mirror, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   OnServerDisconnected:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.UnityEventInt, Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   port: 7777
   NoDelay: 1
   serverMaxMessageSize: 16384
@@ -232,13 +211,9 @@ MonoBehaviour:
   OnServerAuthenticated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.UnityEventNetworkConnection, Mirror, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   OnClientAuthenticated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Mirror.UnityEventNetworkConnection, Mirror, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   debug:
     debugMode: 0
   checkApplicationVersion: 1
@@ -265,6 +240,7 @@ MonoBehaviour:
   projectConfigTemplate: {fileID: 11400000, guid: 7f1030086e7bb45ad82c97342a5ade49,
     type: 2}
   gameRulesTemplate: {fileID: 11400000, guid: 81b1bccee2cc74db09102b9c49833726, type: 2}
+  badwordsTemplate: {fileID: 11400000, guid: 2dd504f4359e543bd9231874f5b3db7c, type: 2}
 --- !u!114 &3252435990677973888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,9 +268,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  networkZones:
+  mainZone: {fileID: 11400000, guid: 351fd208bae6f48d1a58f3a5e3a4dea0, type: 2}
+  subZones:
   - {fileID: 11400000, guid: b2d494b65424c4bdaa50eeb8cc0b1dce, type: 2}
   - {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a, type: 2}
   - {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883, type: 2}
   zoneIntervalMain: 10
+  debug:
+    debugMode: 1
   isSubZone: 0

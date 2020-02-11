@@ -324,7 +324,7 @@ namespace OpenMMO
 		public static bool AnyInputFocused
     	{
     		get {
-        		foreach (Selectable selectable in Selectable.allSelectables)
+        		foreach (Selectable selectable in Selectable.allSelectablesArray)
             		if (selectable is InputField && ((InputField)selectable).isFocused)
            		     	return true;
         		return false;

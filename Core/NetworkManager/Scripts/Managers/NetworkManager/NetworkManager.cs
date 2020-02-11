@@ -89,6 +89,10 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Function that runs on Update.
+        /// Checks if the client scene is not the local player and sets the <c>NetworkState</c> to <c>NetworkState.Game</c>
+        /// </summary>
 		void Update()
 		{
 			if (ClientScene.localPlayer != null)
@@ -96,6 +100,12 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public function <c>UserLoggedIn</c> returns boolean.
+        /// Checks if a user has logged in.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns> Returns a boolean detailing whether a user has logged in. </returns>
 		public bool UserLoggedIn(string userName)
 		{
 			foreach (KeyValuePair<string, GameObject> player in onlinePlayers)
@@ -105,6 +115,12 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public function <c>GetUserName</c> returns a String.
+        /// Finds a players username based on their <c>NetworkConnection</c>.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <returns> Returns the user's username </returns>
 		public string GetUserName(NetworkConnection conn)
 		{
 			foreach (KeyValuePair<NetworkConnection, string> user in onlineUsers)
@@ -114,12 +130,27 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public method <c>ServerSendError</c>.
+        /// Sends an error using the user's <c>NetworkConnection</c>.
+        /// Can send the user a error sting and disconnect them. 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="error"></param>
+        /// <param name="disconnect"></param>
 		public void ServerSendError(NetworkConnection conn, string error, bool disconnect)
 		{
 			conn.Send(new ErrorMsg{text=error, causesDisconnect=disconnect});
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Event <c>OnClientError</c>.
+        /// Triggers when the client receives an error response from the server.
+        /// Reacts to the error message.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="message"></param>
 		void OnClientError(NetworkConnection conn, ErrorMsg message)
 		{
 			
@@ -134,6 +165,10 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public method <c>OnStopServer</c>.
+        /// Closes the database connection.
+        /// </summary>
 		public override void OnStopServer()
 		{
 			// -- this closes the database connection
@@ -141,29 +176,59 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public function <c>IsConnecting</c> returns a boolean.
+        /// Checks whether the client is active and the client scene is ready
+        /// </summary>
+        /// <returns> Returns a boolean value detailing whether the user is connecting </returns>
 		public bool IsConnecting() => NetworkClient.active && !ClientScene.ready;
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public event <c>OnClientConnect</c>.
+        /// Triggered when the client connects.
+        /// </summary>
+        /// <param name="conn"></param>
 		public override void OnClientConnect(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect), conn);
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public event <c>OnServerConnect</c>.
+        /// Triggered when the server connects.
+        /// </summary>
+        /// <param name="conn"></param>
 		public override void OnServerConnect(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnServerConnect), conn);
 		}
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public event <c>OnClientSceneChanged</c>.
+        /// Triggered when the client's scene changed.
+        /// </summary>
+        /// <param name="conn"></param>
 		public override void OnClientSceneChanged(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnClientSceneChanged), conn);
 		}
 
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public event <c>OnServerAddPlayer</c>.
+        /// Triggered when the server adds a player.
+        /// </summary>
+        /// <param name="conn"></param>
 		public override void OnServerAddPlayer(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnServerAddPlayer), conn);
 		}
 	
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Publice event <c>OnServerDisconnect</c>.
+        /// Triggered when the server disconnects.
+        /// </summary>
+        /// <param name="conn"></param>
 		public override void OnServerDisconnect(NetworkConnection conn)
 		{
 
@@ -196,6 +261,12 @@ namespace OpenMMO.Network
 		// OnClientDisconnect
 		// @Client
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public event <c>OnClientDisconnect</c>.
+        /// Triggered when the client disconnects.
+        /// Runs on the client.
+        /// </summary>
+        /// <param name="conn"></param>
 		public override void OnClientDisconnect(NetworkConnection conn)
 		{
 			base.OnClientDisconnect(conn);
@@ -208,6 +279,10 @@ namespace OpenMMO.Network
 		// Quit
 		// universal quit function
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public method <c>Quit</c>.
+        /// Universal Quit function.
+        /// </summary>
 		public void Quit()
 		{
 #if UNITY_EDITOR

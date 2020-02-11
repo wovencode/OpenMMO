@@ -20,6 +20,12 @@ namespace OpenMMO.Network
 		// OnStartServer
 		// @Server
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public ovverride event <c>OnStartServer</c>.
+        /// Triggered on server start.
+        /// Event occurs on the server.
+        /// Sets up the user authentication event.
+        /// </summary>
         public override void OnStartServer()
         {
         
@@ -32,30 +38,51 @@ namespace OpenMMO.Network
         // OnServerAuthenticate
         // @Server
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public override event <c>OnServerAuthenticate</c>.
+        /// Does nothing. Waits for the <c>AuthRequestMessage</c> to be received from the client.
+        /// Event occurs on the server. 
+        /// </summary>
+        /// <param name="conn"></param>
         public override void OnServerAuthenticate(NetworkConnection conn)
         {
             // do nothing...wait for AuthRequestMessage from client
         }
-        
+
         // ===============================================================================
         // ============================= MESSAGE HANDLERS ================================
         // ===============================================================================
-        
+
         // -------------------------------------------------------------------------------
-		// OnClientMessageRequest
-		// @Client -> @Server
-		// --------------------------------------------------------------------------------
+        // OnClientMessageRequest
+        // @Client -> @Server
+        // --------------------------------------------------------------------------------
+        /// <summary>
+        /// Event <c>OnClientMessageRequest</c>.
+        /// Event called when a <c>ClientMessageRequest</c> is received on the server.
+        /// Occurs on the server.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequest(NetworkConnection conn, ClientMessageRequest msg)
         {
     	
         }
-        
+
         // ========================== MESSAGE HANDLERS - AUTH ============================
-        
+
         // -------------------------------------------------------------------------------
         // OnAuthRequestMessage
         // @Client -> @Server
-		// -------------------------------------------------------------------------------      
+        // -------------------------------------------------------------------------------      
+        /// <summary>
+        /// Event <c>OnClientMessageRequestAuth</c>.
+        /// Triggered when the server received an authentiation request from a client.
+        /// The event attempts to authenticate the client.
+        /// Occurs on the server.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestAuth(NetworkConnection conn, ClientMessageRequestAuth msg)
 		{
 

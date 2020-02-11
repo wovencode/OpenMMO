@@ -13,12 +13,22 @@ namespace OpenMMO.Database
 	// ===================================================================================
 	// Database
 	// ===================================================================================
+    /// <summary>
+    /// Public Partial Class <c>DatabaseManager</c>
+    /// Contains Methods and Functions that interact with the database
+    /// Supports Mysql and Sqlite3 out of the box.
+    /// Other database engines require further setup.
+    /// </summary>
 	public partial class DatabaseManager
 	{
 		
 		// -------------------------------------------------------------------------------
 		// SavePlayers
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Method <c>SavePlayers_Network</c>.
+        /// Saves the player data for each player on the network and commits it to the database.
+        /// </summary>
 		[DevExtMethods("SavePlayers")]
 		void SavePlayers_Network()
     	{

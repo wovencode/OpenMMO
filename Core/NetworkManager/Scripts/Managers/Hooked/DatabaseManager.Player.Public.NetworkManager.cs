@@ -18,6 +18,12 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// GetPlayers
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public function <c>GetPlayers</c> returns a list of <c>PlayerPreviews</c> based on username.
+        /// Used to retrieve a user's player characters.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns> A list of unbanned <c>PlayerPreviews</c> created by a user.  </returns>
 		public List<PlayerPreview> GetPlayers(string username)
 		{
 

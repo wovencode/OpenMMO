@@ -9,6 +9,9 @@ namespace OpenMMO.Network
 	// -----------------------------------------------------------------------------------
 	// NetworkManager_Lang
 	// -----------------------------------------------------------------------------------
+    /// <summary>
+    /// Public partial class <c>NetworkManager_Lang</c>that contains actions and related messages
+    /// </summary>
 	[System.Serializable]
 	public partial class NetworkManager_Lang
 	{

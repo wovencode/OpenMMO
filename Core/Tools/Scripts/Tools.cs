@@ -286,16 +286,10 @@ namespace OpenMMO
 		{
 			foreach (string element in array)
 			{
-				if (toLower)
-				{
-					if (element.ToLower() == text.ToLower())
+				if (toLower && text.IndexOf(element.ToLower()) != -1)
+					return true;
+				else if (text.IndexOf(element) != -1)
 						return true;
-				}
-				else
-				{
-					if (element == text)
-						return true;
-				}
 			}
 			return false;
 		}

@@ -94,6 +94,24 @@ public static partial class Extensions
         return num.ToString();
     } 
     
+    // -----------------------------------------------------------------------------------
+	// ReplaceIgnoreCase
+	// -----------------------------------------------------------------------------------
+    public static string ReplaceIgnoreCase(this string source, string oldString, string newString, StringComparison comparison=StringComparison.OrdinalIgnoreCase)
+	{
+		int index = source.IndexOf(oldString, comparison);
+
+		while (index > -1)
+		{
+			source = source.Remove(index, oldString.Length);
+			source = source.Insert(index, newString);
+
+			index = source.IndexOf(oldString, index + newString.Length, comparison);
+		}
+
+		return source;
+	}
+    
 	// -----------------------------------------------------------------------------------
 	// Removes all previous listeners and adds the new listener (for onClick etc.)
 	// -----------------------------------------------------------------------------------

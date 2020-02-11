@@ -210,8 +210,10 @@ namespace OpenMMO
 		// -------------------------------------------------------------------------------
 		public static string FilterText(string text)
 		{
+
 			foreach (string badword in BadwordsTemplate.singleton.badwords)
-				text = text.ToLower().Replace(badword, BADWORD_REPLACE);
+				text = text.ReplaceIgnoreCase(badword, BADWORD_REPLACE);
+			
 			return text;
 		}
 
@@ -283,7 +285,7 @@ namespace OpenMMO
 		{
 			foreach (string element in array)
 			{
-				if (toLower && text.IndexOf(element.ToLower()) != -1)
+				if (toLower && text.ToLower().IndexOf(element.ToLower()) != -1)
 					return true;
 				else if (text.IndexOf(element) != -1)
 						return true;

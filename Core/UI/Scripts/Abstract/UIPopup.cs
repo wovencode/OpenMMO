@@ -44,11 +44,6 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public virtual void Show(string _text)
 		{	
-			
-			// -- required not to show UI elements on all clients while in-game
-			//if (OpenMMO.Network.NetworkManager.singleton.state == NetworkState.Game && PlayerComponent.localPlayer == null)
-			//	return;
-			
 			description.text = _text;
 			base.Show();
 			Init();

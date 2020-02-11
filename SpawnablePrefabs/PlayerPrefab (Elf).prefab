@@ -175,7 +175,7 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   agent: {fileID: 8539800676653855757}
   animator: {fileID: 7661905598344120033}
-  rotationSpeed: 1
+  rotationSpeed: 0.75
   walkFactor: 1
   runFactor: 2
   backwardFactor: 0.5

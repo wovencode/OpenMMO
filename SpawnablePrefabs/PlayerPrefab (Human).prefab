@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4769897492077146287}
   - component: {fileID: -272401145901597495}
   m_Layer: 9
-  m_Name: PlayerPrefab (_BASE_)
+  m_Name: PlayerPrefab (Human)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   agent: {fileID: 8539800676653855757}
   animator: {fileID: 7661905598344120033}
-  rotationSpeed: 1
+  rotationSpeed: 0.75
   walkFactor: 1
   runFactor: 2
   backwardFactor: 0.5

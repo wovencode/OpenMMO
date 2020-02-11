@@ -27,7 +27,6 @@ namespace OpenMMO.UI
 		public ScrollRect scrollRect;
 		
 		[Header("Buttons")]
-		public Button toggleSizeButton;
 		public Image toggleButtonImage;
 		public Button sendButton;
 		
@@ -105,8 +104,6 @@ namespace OpenMMO.UI
 			sendButton.interactable = !String.IsNullOrWhiteSpace(sendInputField.text);
 			sendButton.onClick.SetListener(() 				=> { OnClickSendMessage(); });
 			
-			toggleSizeButton.onClick.SetListener(() 		=> { OnClickToggleSize(); });
-			
 			publicChannelButton.onClick.SetListener(() 		=> { OnClickSwitchChannelPublic(); });
 			privateChannelButton.onClick.SetListener(() 	=> { OnClickSwitchChannelPrivate(); });
 			guildChannelButton.onClick.SetListener(() 		=> { OnClickSwitchChannelGuild(); });
@@ -129,27 +126,6 @@ namespace OpenMMO.UI
 			ChatManager.singleton.ClientChatSend(channelId, sendInputField.text);
 			
 			sendInputField.text = String.Empty;
-			inputActive = false;
-			
-		}
-				
-		// -------------------------------------------------------------------------------
-		// OnClickMinimize
-		// -------------------------------------------------------------------------------
-		public void OnClickToggleSize()
-		{
-		
-			if (windowRoot.activeInHierarchy)
-			{
-				windowRoot.SetActive(false);
-				toggleButtonImage.sprite = minimizedImage;
-			}
-			else
-			{
-				windowRoot.SetActive(true);
-				toggleButtonImage.sprite = maximizedImage;
-			}
-			
 			inputActive = false;
 			
 		}

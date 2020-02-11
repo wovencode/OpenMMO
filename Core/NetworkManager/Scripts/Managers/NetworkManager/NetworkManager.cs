@@ -19,6 +19,10 @@ namespace OpenMMO.Network
     // ===================================================================================
 	// NetworkManager
 	// ===================================================================================
+    /// <summary>
+    /// Public Partial class <c>NetworkManager</c> inherits from <c>BaseNetworkManager</c>.
+    /// Contains All the network functionality.
+    /// </summary>
 	[RequireComponent(typeof(ConfigurationManager))]
 	[RequireComponent(typeof(OpenMMO.Network.NetworkAuthenticator))]
 	[DisallowMultipleComponent]
@@ -50,6 +54,9 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		// Awake
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// <c>Awake</c> function that sets the singleton and starts the network manager.
+        /// </summary>
 		public override void Awake()
 		{
 			singleton = this;
@@ -71,6 +78,10 @@ namespace OpenMMO.Network
 		}
 
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Function that runs on Start after awake. Runs the base start inherited from the <c>BaseNetworkManager</c>.
+        /// The start function is required to run the base start.
+        /// </summary>
 		public override void Start()
 		{
 			base.Start(); // required

@@ -77,6 +77,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6f5e84280bd384d2782c652b30a55857, type: 2}
+    - target: {fileID: 5053945538751103481, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: archeType
+      value: 
+      objectReference: {fileID: 11400000, guid: fa97d898095824de19c0b30dc457b2f0,
+        type: 2}
+    - target: {fileID: 5053945538751103481, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: startingZone
+      value: 
+      objectReference: {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a,
+        type: 2}
     - target: {fileID: 7930793167279634983, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: m_Name

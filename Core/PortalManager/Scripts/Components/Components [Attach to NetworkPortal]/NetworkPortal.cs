@@ -35,17 +35,21 @@ namespace OpenMMO.Portals
 		public override void OnTriggerEnter(Collider co)
 		{
 
-			GameObject player = PlayerComponent.localPlayer;
-			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			PlayerComponent pc = co.GetComponentInParent<PlayerComponent>();
 			
-			if (player && !triggerOnEnter)
+			if (pc == null || !pc.IsLocalPlayer)
+				return;
+			
+			if (!triggerOnEnter)
 			{
+			
 				if (pc.CheckCooldown)
 					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetZone.title), OnClickConfirm);
 				else
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
+					
 			}
-			else if (player)
+			else
 				OnClickConfirm();
 				
 		}
@@ -59,9 +63,14 @@ namespace OpenMMO.Portals
 		
 			GameObject player = PlayerComponent.localPlayer;
 			
+			if (!player)
+				return;
+				
 			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor))
 				player.GetComponent<PlayerComponent>().Cmd_WarpRemote(targetAnchor, targetZone.name);
-				
+			
+			base.OnClickConfirm();
+			
 		}
 		
     	// -------------------------------------------------------------------------------

@@ -21,7 +21,6 @@ namespace OpenMMO.Database
 		public DateTime lastlogin 	{ get; set; }
 		public bool deleted 		{ get; set; }
 		public bool banned 			{ get; set; }
-		public bool online 			{ get; set; }
 		public DateTime lastsaved 	{ get; set; }
 		public float cooldown		{ get; set; }
 		
@@ -36,7 +35,7 @@ namespace OpenMMO.Database
 		public void Create(GameObject player, string userName="", string prefabName="")
 		{
 
-			Update(player, false, userName);
+			Update(player, userName);
 			
 			created = DateTime.UtcNow;
 			lastlogin = DateTime.UtcNow;
@@ -48,7 +47,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// Update
 		// -------------------------------------------------------------------------------
-		public void Update(GameObject player, bool isOnline, string userName="")
+		public void Update(GameObject player, string userName="")
 		{
 			
 			playername = player.name;
@@ -56,7 +55,6 @@ namespace OpenMMO.Database
 			if (!String.IsNullOrWhiteSpace(userName))
 				username = userName;
 			
-			online = isOnline;
 			lastsaved = DateTime.UtcNow;
 			
 			cooldown = player.GetComponent<PlayerComponent>().GetCooldownTimeRemaining();

@@ -38,19 +38,21 @@ namespace OpenMMO.Portals
 				return;
 			}
 			
-			GameObject player = PlayerComponent.localPlayer;
-			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			PlayerComponent pc = co.GetComponentInParent<PlayerComponent>();
 			
-			if (player && !triggerOnEnter)
+			if (pc == null || !pc.IsLocalPlayer)
+				return;
+			
+			if (!triggerOnEnter)
 			{
 				if (pc.CheckCooldown)
 					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetAnchor.name), OnClickConfirm);
 				else
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
 			}
-			else if (player)
+			else
 				OnClickConfirm();
-				
+			
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -61,8 +63,11 @@ namespace OpenMMO.Portals
 		{
 		
 			GameObject player = PlayerComponent.localPlayer;
-						
-			if (player && targetAnchor != null)
+			
+			if (player == null)
+				return;
+				
+			if (player != null && targetAnchor != null)
 				player.GetComponent<PlayerComponent>().Cmd_WarpLocal(targetAnchor.name);
 			
 			base.OnClickConfirm();

@@ -27,7 +27,6 @@ namespace OpenMMO.UI
 		public ScrollRect scrollRect;
 		
 		[Header("Buttons")]
-		public Button toggleSizeButton;
 		public Image toggleButtonImage;
 		public Button sendButton;
 		
@@ -52,11 +51,16 @@ namespace OpenMMO.UI
 		public Sprite maximizedImage;
 		public Sprite minimizedImage;
 		
+		[Header("Enter Keys")]
+		public KeyCode[] enterKeys = {KeyCode.Return, KeyCode.KeypadEnter};
+		
 		public int maxMessages = 100;
 		
 		public static UIWindowChat singleton;
 		
 		protected string channelId = "public";
+		
+		protected bool inputActive;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -76,20 +80,29 @@ namespace OpenMMO.UI
 		}
 		
 		// -------------------------------------------------------------------------------
+		// Update
+		// -------------------------------------------------------------------------------
+		protected override void Update()
+		{
+			
+			// -- check for 'Enter' pressed while Input has focus
+			
+			foreach (KeyCode enterKey in enterKeys)
+				if (Input.GetKeyDown(enterKey) && inputActive)
+					OnClickSendMessage();
+			
+			base.Update();
+		
+		}
+		
+		// -------------------------------------------------------------------------------
 		// ThrottledUpdate
 		// -------------------------------------------------------------------------------
 		protected override void ThrottledUpdate()
 		{
 		
-			if (!networkManager || networkManager.state != NetworkState.Game)
-				Hide();
-			else
-				Show();
-		
 			sendButton.interactable = !String.IsNullOrWhiteSpace(sendInputField.text);
 			sendButton.onClick.SetListener(() 				=> { OnClickSendMessage(); });
-			
-			toggleSizeButton.onClick.SetListener(() 		=> { OnClickToggleSize(); });
 			
 			publicChannelButton.onClick.SetListener(() 		=> { OnClickSwitchChannelPublic(); });
 			privateChannelButton.onClick.SetListener(() 	=> { OnClickSwitchChannelPrivate(); });
@@ -113,24 +126,8 @@ namespace OpenMMO.UI
 			ChatManager.singleton.ClientChatSend(channelId, sendInputField.text);
 			
 			sendInputField.text = String.Empty;
+			inputActive = false;
 			
-		}
-				
-		// -------------------------------------------------------------------------------
-		// OnClickMinimize
-		// -------------------------------------------------------------------------------
-		public void OnClickToggleSize()
-		{	
-			if (windowRoot.activeInHierarchy)
-			{
-				windowRoot.SetActive(false);
-				toggleButtonImage.sprite = minimizedImage;
-			}
-			else
-			{
-				windowRoot.SetActive(true);
-				toggleButtonImage.sprite = maximizedImage;
-			}
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -177,6 +174,14 @@ namespace OpenMMO.UI
 			channelId = channelIdInfo;
 			sendButton.interactable = false;
 		}
+		
+		// -------------------------------------------------------------------------------
+		// OnInputFieldChange
+		// -------------------------------------------------------------------------------
+		public void OnInputFieldChange()
+		{
+			inputActive = true;
+		}	
 		
 		// =============================== UPDATE HANDLERS ===============================
 		

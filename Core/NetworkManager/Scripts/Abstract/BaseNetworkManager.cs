@@ -12,24 +12,42 @@ using UnityEditor;
 
 namespace OpenMMO.Network
 {
-	
-	// ===================================================================================
-	// BaseNetworkManager
-	// ===================================================================================
-	public abstract partial class BaseNetworkManager : Mirror.NetworkManager
-	{
 
+    // ===================================================================================
+    // BaseNetworkManager
+    // ===================================================================================
+    /// <summary>
+    /// Abstract <c>Network Manager Base Class</c> that inherits the Mirror network manager.
+    /// Partial class as to protect the various functions and methods. 
+    /// </summary>
+    public abstract partial class BaseNetworkManager : Mirror.NetworkManager
+	{
+	
 		[Header("Debug Helper")]
 		public DebugHelper debug;
 		
-		// -------------------------------------------------------------------------------
-		// Awake (Base)
-		// -------------------------------------------------------------------------------
-		public override void Awake()
+		[Header("Spawnable Prefabs (use the template below - never edit the list in NetworkManager directly)")]
+		public SpawnablePrefabsTemplate spawnPrefabsTemplate;
+		
+        // -------------------------------------------------------------------------------
+        // Awake (Base)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// <c> Awake </c> function for the network manager component that overrides the mirror network manager awake function. 
+        /// It initialized the debugger
+        /// </summary>
+        public override void Awake()
 		{
 			debug = new DebugHelper();
 			debug.Init();
 			base.Awake(); // required
+			
+			if (spawnPrefabsTemplate)
+			{
+				spawnPrefabs.Clear();
+				spawnPrefabs.AddRange(spawnPrefabsTemplate.GetRegisteredSpawnablePrefabs);
+			}
+			
 		}
 		
 		// -------------------------------------------------------------------------------

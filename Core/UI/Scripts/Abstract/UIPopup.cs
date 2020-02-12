@@ -14,6 +14,7 @@
 
 using OpenMMO;
 using OpenMMO.UI;
+using OpenMMO.Network;
 using UnityEngine;
 using System.Collections;
 using System;
@@ -42,10 +43,19 @@ namespace OpenMMO.UI
 		
 		// -------------------------------------------------------------------------------
 		public virtual void Show(string _text)
-		{
+		{	
 			description.text = _text;
 			base.Show();
 			Init();
+		}
+		
+		// -------------------------------------------------------------------------------
+		protected void Init()
+		{
+			animator.SetTrigger(showTriggerName);
+			
+			if (UIBackgroundLayer.singleton)
+				UIBackgroundLayer.singleton.FadeIn();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -67,15 +77,6 @@ namespace OpenMMO.UI
 		{
 			Close();
 			base.Hide();
-		}
-		
-		// -------------------------------------------------------------------------------
-		protected void Init()
-		{
-			animator.SetTrigger(showTriggerName);
-			
-			if (UIBackgroundLayer.singleton)
-				UIBackgroundLayer.singleton.FadeIn();
 		}
 		
 		// -------------------------------------------------------------------------------

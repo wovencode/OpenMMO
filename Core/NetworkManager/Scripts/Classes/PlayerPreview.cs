@@ -10,6 +10,9 @@ namespace OpenMMO.Network
 	// ===================================================================================
 	// PlayerPreview
 	// ===================================================================================
+    /// <summary>
+    /// Public Partial Struct <c>PlayerPreview</c>
+    /// </summary>
 	public partial struct PlayerPreview
 	{
 		public string name;

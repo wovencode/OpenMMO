@@ -63,12 +63,12 @@ namespace OpenMMO.Database
 	   	// of copy-pasting all the individual properties, update it and forward it to the db
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods("SaveDataPlayer")]
-		void SaveDataPlayer_Player(GameObject player, bool isOnline)
+		void SaveDataPlayer_Player(GameObject player)
 		{
 			// you should delete all data of this player first, to prevent duplicates
 	   		DeleteDataPlayer_Player(player.name);
 	   		
-			player.GetComponent<PlayerComponent>().tablePlayer.Update(player, isOnline);
+			player.GetComponent<PlayerComponent>().tablePlayer.Update(player);
 			InsertOrReplace(player.GetComponent<PlayerComponent>().tablePlayer);
 		}
 		
@@ -78,7 +78,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods("LoginPlayer")]
 	   	void LoginPlayer_Player(string name)
 	   	{
-	   		PlayerSetOnline(name, 1);
+	   		
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods("LogoutPlayer")]
 	   	void LogoutPlayer_Player(string name)
 	   	{
-	   		PlayerSetOnline(name, 0);
+	   		
 	   	}
 		
 		// -------------------------------------------------------------------------------

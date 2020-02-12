@@ -47,12 +47,12 @@ namespace OpenMMO.Database
 		// called when a user is saved to the database, the hook is executed on all
 		// modules and used to save additional data.
 		// -------------------------------------------------------------------------------
-		public void SaveDataUser(string username, bool isOnline=true, bool useTransaction = true)
+		public void SaveDataUser(string username, bool useTransaction = true)
 		{
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username, isOnline);
+			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username);
 			
 			if (useTransaction)
 				databaseLayer.Commit();
@@ -63,12 +63,12 @@ namespace OpenMMO.Database
 		// called when a player is saved to the database, the hook is executed on all
 		// modules and used to save additional data.
 		// -------------------------------------------------------------------------------
-		public void SaveDataPlayer(GameObject player, bool isOnline=true, bool useTransaction = true)
+		public void SaveDataPlayer(GameObject player, bool useTransaction = true)
 		{
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataPlayer), player, isOnline);
+			this.InvokeInstanceDevExtMethods(nameof(SaveDataPlayer), player);
 			
 			if (useTransaction)
 				databaseLayer.Commit();

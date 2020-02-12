@@ -69,7 +69,8 @@ namespace OpenMMO.Database
 		public void Destruct()
 		{
 			CancelInvoke();
-			SavePlayers(false);
+			SavePlayers();
+            
 			CloseConnection();
 		}
 		

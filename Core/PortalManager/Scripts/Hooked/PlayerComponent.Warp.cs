@@ -44,6 +44,7 @@ namespace OpenMMO {
 		[Command]
 		public void Cmd_WarpLocal(string anchorName)
 		{
+
 			if (PortalManager.CheckPortalAnchor(anchorName))
 				WarpLocal(anchorName);
 		}
@@ -76,12 +77,8 @@ namespace OpenMMO {
     		DatabaseManager.singleton.SaveDataPlayer(this.gameObject);
     		
 			// -- uses OpenMMO NetworkManager singleton instead of the Mirror one
-    		OpenMMO.Network.NetworkManager.singleton.TrySwitchServerPlayer(this.gameObject.name, anchorName, zoneName);
-    		/*
-    		TODO, NOTE, BUG
-    		wrong, thats client side, must be server side
-    		also we must save anchorName and zoneName here
-    		*/
+    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName);
+    		
     		NetworkServer.Destroy(this.gameObject);
     		
 		}
@@ -94,7 +91,7 @@ namespace OpenMMO {
 		[ServerCallback]
 		public void WarpLocal(string anchorName)
     	{
-    		
+
     		if (PortalManager.CheckPortalAnchor(anchorName))
         		base.Warp(PortalManager.GetPortalAnchorPosition(anchorName));
         	

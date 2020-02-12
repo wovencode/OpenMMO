@@ -27,10 +27,6 @@ namespace OpenMMO
 		[Header("Servers")]
 		public ServerInfoTemplate[] serverList;
 		
-		[Header("Spawnable Prefabs Folders")]
-		[Tooltip("Adding spawnable prefabs to network manager will only search in the folders below")]
-		public string[] spawnablePrefabFolders;		
-		
 		static ProjectConfigTemplate _instance;
 		
 		protected const string isServer = "_SERVER";

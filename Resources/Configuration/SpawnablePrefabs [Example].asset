@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977791704d90f400898d12a373432bef, type: 3}
+  m_Name: SpawnablePrefabs [Example]
+  m_EditorClassIdentifier: 
+  manualPrefabs: []
+  autoPrefabs:
+  - {fileID: 1603717731790357796, guid: b219ede7a68bfb640808ffa250fe1db7, type: 3}
+  - {fileID: 6140580608059694878, guid: cd0e032e964c6db43a68bdffee5bd368, type: 3}
+  - {fileID: 5808493980712650444, guid: b326f4a78f8e6f04ab89cac6b98d1f0c, type: 3}
+  excludePrefabs:
+  - {fileID: 7930793167279634983, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}
+  categoryTags: []
+  spawnablePrefabFolders:
+  - Assets/OpenMMO/SpawnablePrefabs

@@ -62,7 +62,6 @@ namespace OpenMMO.Chat
         }
         
         public static ChatManager singleton;
-        public NetworkClient client;
         private ChatUser clientChatUser;
         
 		// -------------------------------------------------------------------------------
@@ -81,15 +80,12 @@ namespace OpenMMO.Chat
 		// -------------------------------------------------------------------------------
 		public void OnLoginPlayer(NetworkConnection conn)
 		{
-			client = NetworkClient.singleton;
-			
 			if (conn.identity.gameObject != null)
 			{
 				string name = conn.identity.gameObject.name;
 				string userId = System.Guid.NewGuid().ToString();
 				AddChatUser(new ChatUser(conn, userId, name));
 			}
-			
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -219,6 +215,9 @@ namespace OpenMMO.Chat
                 Debug.LogWarning("[Warning] Did not login to server can not send chat message");
                 return;
             }
+            
+            // -- Profanity Filter (applied client side already)
+            message = Tools.FilterText(message);
 
             ChatChannelData channel = null;
             if (Channels.TryGetValue(channelId, out channel))

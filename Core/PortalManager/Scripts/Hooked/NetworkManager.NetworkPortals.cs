@@ -1,12 +1,13 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Portals;
+using OpenMMO.Database;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-namespace OpenMMO
+namespace OpenMMO.Network
 {
 	
 	// ===================================================================================
@@ -15,46 +16,30 @@ namespace OpenMMO
 	[RequireComponent(typeof(PortalManager))]
 	public partial class NetworkManager
 	{
-   
+   		
+   		// -----------------------------------------------------------------------------------
+		// OnStartClient_NetworkPortals
+		// @Client
+		// -----------------------------------------------------------------------------------
+		[DevExtMethods("OnStartClient")]
+		void OnStartClient_NetworkPortals()
+		{
+			NetworkClient.RegisterHandler<ServerMessageResponsePlayerSwitchServer>(GetComponent<PortalManager>().OnServerMessageResponsePlayerSwitchServer, false);
+		}
+   		
 		// -------------------------------------------------------------------------------
-		// 
+		// OnStartServer_NetworkPortals
 		// @Server
 		// -------------------------------------------------------------------------------
 		[DevExtMethods("OnStartServer")]
 		void OnStartServer_NetworkPortals()
 		{
-			PortalManager.singleton.SpawnSubZones();
+			GetComponent<PortalManager>().SpawnSubZones();
 		}
-		
-/*
-		// -------------------------------------------------------------------------------
-		// 
-		// -------------------------------------------------------------------------------
-		[DevExtMethods("OnClientCharactersAvailable")]
-		void OnClientCharactersAvailable_NetworkPortals()
-		{
-				// ------- OBSOLETE -------
-				
-		
-			int index = message.characters.ToList().FindIndex(c => c.name == UCE_NetworkZone.autoSelectCharacter);
-
-			if (index != -1)
-			{
-				// send character select message
-				print("[Zones]: autoselect " + UCE_NetworkZone.autoSelectCharacter + "(" + index + ")");
-
-				byte[] extra = BitConverter.GetBytes(index);
-				ClientScene.AddPlayer(NetworkClient.connection, extra);
-
-				// clear auto select
-				UCE_NetworkZone.autoSelectCharacter = "";
-			}
-		
-		}
-*/
 
 		// -------------------------------------------------------------------------------
-		// OnServerAddPlayer_NetworkPortals
+		// LoginPlayer_NetworkPortals
+		// @Server
 		// -------------------------------------------------------------------------------
 		[DevExtMethods("LoginPlayer")]
 		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, GameObject prefab, string userName, string playerName)
@@ -70,33 +55,40 @@ namespace OpenMMO
 				pc.WarpRemote(anchorName, zoneName);
 			}
 		
-		
-			// ------- OBSOLETE -------
-			
-		/*
-			// where was the player saved the last time?
-			string lastScene = Database.singleton.GetCharacterScene(player.name);
-
-			if (lastScene != "" && lastScene != SceneManager.GetActiveScene().name)
-			{
-				print("[Zones]: " + player.name + " was last saved on another scene, transferring to: " + lastScene);
-
-				// ask client to switch server
-				conn.Send(
-					new SwitchServerMsg
-					{
-						scenePath = lastScene,
-						characterName = player.name
-					}
-				);
-
-				// immediately destroy so nothing messes with the new
-				// position and so it's not saved again etc.
-				NetworkServer.Destroy(player);
-			}
-		*/
 		}
+			
+		// -------------------------------------------------------------------------------
+		// SwitchServerPlayer
+		// @Server -> @Client
+		// -------------------------------------------------------------------------------
+		public void SwitchServerPlayer(NetworkConnection conn, string playername, string anchorName, string zoneName)
+		{
 
+			ServerMessageResponsePlayerSwitchServer message = new ServerMessageResponsePlayerSwitchServer
+			{
+				playername			= playername,
+				anchorname 			= anchorName,
+				zonename 			= zoneName,
+				success 			= true,
+				text			 	= "",
+				causesDisconnect 	= false
+			};
+        	
+        	if (DatabaseManager.singleton.TryPlayerSwitchServer(playername))
+			{
+				message.text = systemText.playerSwitchServerSuccess;
+			}
+			else
+			{
+				message.text = systemText.playerSwitchServerFailure;
+				message.success = false;
+			}
+			
+        	conn.Send(message);
+		
+		}
+		
+		
 		// -------------------------------------------------------------------------------
 	
 	}

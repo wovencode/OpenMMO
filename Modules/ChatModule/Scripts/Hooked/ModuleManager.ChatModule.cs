@@ -28,7 +28,7 @@ namespace OpenMMO.Modules
 			module.define			= "oCHAT";
 			module.version       	= "0.01";
 			module.unity3dVersion 	= "2018.x-2019.x";
-			module.nameSpace		= "OpenMMO";
+			module.nameSpace		= "OpenMMO.Chat";
         	module.package         	= "OpenMMO";
         	module.author        	= "Fhiz";
         	module.dependencies  	= "";

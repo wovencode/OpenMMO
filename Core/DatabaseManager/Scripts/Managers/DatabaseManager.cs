@@ -72,17 +72,8 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// SavePlayers
-		// same function as below but without parameters (for Invoke)
 		// -------------------------------------------------------------------------------
 		void SavePlayers()
-		{
-			SavePlayers(true);
-		}
-		
-		// -------------------------------------------------------------------------------
-		// SavePlayers
-		// -------------------------------------------------------------------------------
-		void SavePlayers(bool online = true)
     	{
 
 			/*
@@ -99,7 +90,7 @@ namespace OpenMMO.Database
 			
 			*/
 			
-			this.InvokeInstanceDevExtMethods(nameof(SavePlayers), online);
+			this.InvokeInstanceDevExtMethods(nameof(SavePlayers));
 			
     	}
     	

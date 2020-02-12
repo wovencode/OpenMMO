@@ -52,15 +52,6 @@ namespace OpenMMO.Database
 		}
 		
 		// -------------------------------------------------------------------------------
-		// UserSetOnline
-		// Sets the user online (1) or offline (0) and updates last login time
-		// -------------------------------------------------------------------------------
-		protected void UserSetOnline(string username, int action=1)
-		{
-			Execute("UPDATE "+nameof(TableUser)+" SET online=?, lastlogin=? WHERE username=?", action, DateTime.UtcNow, username);
-		}
-		
-		// -------------------------------------------------------------------------------
 		// UserSetDeleted
 		// Sets the user to deleted (1) or undeletes it (0)
 		// -------------------------------------------------------------------------------

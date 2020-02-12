@@ -35,6 +35,7 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		protected override void Start()
     	{
+    		agent.updateRotation = false;
         	base.Start();
 		}
 		
@@ -72,17 +73,14 @@ namespace OpenMMO {
 		{
 			
             if (!isLocalPlayer) return;
+            if (Tools.AnyInputFocused) return;
             
             horizontalMovementInput 	= Input.GetAxis("Horizontal");
             verticalMovementInput 		= Input.GetAxis("Vertical");
             running						= Input.GetKey(runKey);
             
-            // -- Update Rotation (locally - synched via network transform)
-			if (horizontalMovementInput != 0)
-				transform.Rotate(0, horizontalMovementInput * rotationSpeed * Time.deltaTime, 0);
-            
             UpdateVelocity();
-           	
+           
 			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
 

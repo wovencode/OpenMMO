@@ -21,6 +21,12 @@ namespace OpenMMO.Network
 		// OnStartServer
 		// @Server
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Public Event <c>OnStartServer</c>.
+        /// Triggered when the server starts.
+        /// Registers all the server's event handlers.
+        /// Runs on server.
+        /// </summary>
         public override void OnStartServer()
         {
         
@@ -36,7 +42,7 @@ namespace OpenMMO.Network
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerRegister>(OnClientMessageRequestPlayerRegister);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
-        	
+
 			this.InvokeInstanceDevExtMethods(nameof(OnStartServer));
         	eventListeners.OnStartServer.Invoke();
         	
@@ -50,17 +56,30 @@ namespace OpenMMO.Network
 		// OnClientMessageRequest
 		// @Client -> @Server
 		// --------------------------------------------------------------------------------
+        /// <summary>
+        /// Event <c>OnClientMessageRequest</c>.
+        /// Triggerd when the server receives a Client message request from the client.
+        /// Doesn't do anything as htis message is never called directly.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequest(NetworkConnection conn, ClientMessageRequest msg)
         {
     		// do nothing (this message is never called directly)
         }
-        
+
         // ========================== MESSAGE HANDLERS - USER ============================
-        
+
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestUserLogin
         // @Client -> @Server
-		// -------------------------------------------------------------------------------      
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Event <c>OnClientMessageRequestUserLogin</c>.
+        /// Triggered when the server receives a user login request from the client.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserLogin(NetworkConnection conn, ClientMessageRequestUserLogin msg)
 		{
 			
@@ -71,7 +90,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			if (DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
+			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
 				LoginUser(conn, msg.username);
 				
@@ -89,11 +108,17 @@ namespace OpenMMO.Network
 			conn.Send(message);
 			
 		}
-		
-       	// -------------------------------------------------------------------------------
+
+        // -------------------------------------------------------------------------------
         // OnClientMessageRequestUserRegister
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
+        // -------------------------------------------------------------------------------    
+        /// <summary>
+        /// Event <c>OnClientMessageRequestUserRegister</c>.
+        /// Triggered when the server receives a user registration request from the client.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserRegister(NetworkConnection conn, ClientMessageRequestUserRegister msg)
         {
         	
@@ -118,11 +143,17 @@ namespace OpenMMO.Network
         	conn.Send(message);
         	
         }
-        
+
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestUserDelete
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
+        // -------------------------------------------------------------------------------    
+        /// <summary>
+        /// Event <c>OnClientMessageRequestUserDelete</c>.
+        /// Triggered when the server receives a user deletion request.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserDelete(NetworkConnection conn, ClientMessageRequestUserDelete msg)
         {
         	
@@ -146,11 +177,17 @@ namespace OpenMMO.Network
         	conn.Send(message);
         	
         }
-        
+
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestUserChangePassword
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
+        // -------------------------------------------------------------------------------  
+        /// <summary>
+        /// Event <c>OnClientMessageRequestUserChangePassword</c>.
+        /// Triggered when the server receives a user change password request.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserChangePassword(NetworkConnection conn, ClientMessageRequestUserChangePassword msg)
         {
         	
@@ -174,11 +211,17 @@ namespace OpenMMO.Network
         	conn.Send(message);
         	
         }
-        
+
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestUserConfirm
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
+        // -------------------------------------------------------------------------------    
+        /// <summary>
+        /// Event <c>OnClientMessageRequestUserConfirm</c>.
+        /// Triggered by the server receiving a user confirmation request from the client.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserConfirm(NetworkConnection conn, ClientMessageRequestUserConfirm msg)
         {
         	
@@ -208,7 +251,13 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestPlayerLogin
         // @Client -> @Server
-		// -------------------------------------------------------------------------------      
+		// -------------------------------------------------------------------------------     
+        /// <summary>
+        /// Event <c>OnClientMessageRequestPlayerLogin</c>.
+        /// Triggered by the server receiving a player login request from the client.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestPlayerLogin(NetworkConnection conn, ClientMessageRequestPlayerLogin msg)
 		{
 			
@@ -233,11 +282,17 @@ namespace OpenMMO.Network
 			conn.Send(message);
 			
 		}
-		
-       	// -------------------------------------------------------------------------------
+
+        // -------------------------------------------------------------------------------
         // OnClientMessageRequestPlayerRegister
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
+        // -------------------------------------------------------------------------------    
+        /// <summary>
+        /// Event <c>OnClientMessageRequestPlayerRegister</c>.
+        /// Triggered by the server receiving a player regstration request from the client. 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestPlayerRegister(NetworkConnection conn, ClientMessageRequestPlayerRegister msg)
         {
         	
@@ -262,11 +317,17 @@ namespace OpenMMO.Network
         	conn.Send(message);
         	
         }
-        
+
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestPlayerDelete
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
+        // -------------------------------------------------------------------------------   
+        /// <summary>
+        /// Event <c>OnClientMessageRequestPlayerDelete</c>.
+        /// Triggered by the server receiving a player deletion request from the client.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestPlayerDelete(NetworkConnection conn, ClientMessageRequestPlayerDelete msg)
         {
         	
@@ -290,12 +351,18 @@ namespace OpenMMO.Network
         	conn.Send(message);
         	
         }
-        
+
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestPlayerSwitchServer
         // @Client -> @Server
-		// -------------------------------------------------------------------------------    
-       	void OnClientMessageRequestPlayerSwitchServer(NetworkConnection conn, ClientMessageRequestPlayerSwitchServer msg)
+        // -------------------------------------------------------------------------------    
+        /// <summary>
+        /// Event <c>OnClientMessageRequestPlayerSwitchServer</c>.
+        /// Triggered by the server receiving a player switch server request from the client. 
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
+        void OnClientMessageRequestPlayerSwitchServer(NetworkConnection conn, ClientMessageRequestPlayerSwitchServer msg)
         {
         	
         	ServerMessageResponsePlayerSwitchServer message = new ServerMessageResponsePlayerSwitchServer
@@ -325,20 +392,40 @@ namespace OpenMMO.Network
 		// LoginUser
 		// @Server
 		// -------------------------------------------------------------------------------
-		protected void LoginUser(NetworkConnection conn, string name)
+        /// <summary>
+        /// Method <c>LoginUser</c>.
+        /// Run on the server.
+        /// Logs the user in.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="username"></param>
+		protected void LoginUser(NetworkConnection conn, string username)
 		{
-			onlineUsers[conn] = name;
-			state = NetworkState.Lobby;
-			this.InvokeInstanceDevExtMethods(nameof(LoginUser));
+			if (!UserLoggedIn(username))
+			{
+				onlineUsers[conn] = name;
+			    state = NetworkState.Lobby;
+			    this.InvokeInstanceDevExtMethods(nameof(LoginUser));
+			}
+			else
+				ServerSendError(conn, systemText.userAlreadyOnline, true);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// LoginPlayer
 		// @Server
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Method <c>LoginPlayer</c>.
+        /// Run on the server.
+        /// Logs in the player.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="username"></param>
+        /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
-			if (!AccountLoggedIn(playername))
+			if (!UserLoggedIn(username))
 			{
 			
 				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
@@ -363,6 +450,14 @@ namespace OpenMMO.Network
 		// RegisterPlayer
 		// @Server
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Method <c>RegisterPlayer</c>.
+        /// Runs on the server.
+        /// Registers the player.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="playername"></param>
+        /// <param name="prefabname"></param>
 		protected void RegisterPlayer(string username, string playername, string prefabname)
 		{
 

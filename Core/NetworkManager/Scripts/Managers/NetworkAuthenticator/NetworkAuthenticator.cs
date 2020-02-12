@@ -14,6 +14,11 @@ namespace OpenMMO.Network
     // ===================================================================================
 	// NetworkAuthenticator
 	// ===================================================================================
+    /// <summary>
+    /// Public Partial Class <c>NetworkAuthenticator</c> inherits from <c>BaseNetworkAuthenticator</c>.
+    /// Requires the <c>NetworkManager</c> component. 
+    /// Contains all authentication events, methods and functions.
+    /// </summary>
 	[RequireComponent(typeof(OpenMMO.Network.NetworkManager))]
     [DisallowMultipleComponent]
     public partial class NetworkAuthenticator : BaseNetworkAuthenticator
@@ -25,6 +30,11 @@ namespace OpenMMO.Network
 		public static OpenMMO.Network.NetworkAuthenticator singleton;
 		
 		// -------------------------------------------------------------------------------
+        /// <summary>
+        /// Unity Method.
+        /// Called before Start.
+        /// Sets the connection delay and creates a singleton.
+        /// </summary>
 		public override void Awake()
 		{
 			base.Awake(); // required

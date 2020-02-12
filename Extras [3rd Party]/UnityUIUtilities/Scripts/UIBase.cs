@@ -55,7 +55,18 @@ public abstract partial class UIBase : MonoBehaviour
 			root.SetActive(false);
 		eventHide.Invoke();
 	}
-
+	
+	// -----------------------------------------------------------------------------------
+	// Toggle
+	// -----------------------------------------------------------------------------------
+	public virtual void Toggle()
+	{
+		if (IsVisible())
+			Hide();
+		else
+			Show();
+	}
+	
 	public virtual bool IsVisible()
 	{
 		ValidateRoot();

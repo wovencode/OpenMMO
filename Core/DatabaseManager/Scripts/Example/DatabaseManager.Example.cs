@@ -88,7 +88,7 @@ namespace OpenMMO.Database
 		// SaveDataPlayer_Example
 		// -------------------------------------------------------------------------------
 		[DevExtMethods("SaveDataPlayer")]
-		void SaveDataPlayer_Example(GameObject player, bool isOnline)
+		void SaveDataPlayer_Example(GameObject player)
 		{
 		
 			// you should delete all data of this player first, to prevent duplicates

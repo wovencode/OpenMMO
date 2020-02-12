@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [ExecuteInEditMode]
 public class FollowCameraControls : FollowCamera
@@ -57,15 +57,18 @@ public class FollowCameraControls : FollowCamera
 
     protected virtual void Start()
     {
-        xRotation = startXRotation;
-        yRotation = startYRotation;
-        zoomDistance = startZoomDistance;
 
         if (isSaveCamera)
         {
             xRotation = PlayerPrefs.GetFloat(savePrefsPrefix + "_XRotation", xRotation);
             yRotation = PlayerPrefs.GetFloat(savePrefsPrefix + "_YRotation", yRotation);
             zoomDistance = PlayerPrefs.GetFloat(savePrefsPrefix + "_ZoomDistance", zoomDistance);
+        }
+        else
+        {
+            xRotation = startXRotation;
+            yRotation = startYRotation;
+            zoomDistance = startZoomDistance;
         }
     }
 

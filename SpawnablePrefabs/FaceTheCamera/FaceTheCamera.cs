@@ -7,6 +7,7 @@ public class FaceTheCamera : MonoBehaviour
     [Tooltip("How many FixedUpdate frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 5; //TICK RATE
 
+#if _CLIENT
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {
@@ -15,7 +16,9 @@ public class FaceTheCamera : MonoBehaviour
         if (frameCount >= tickFrequency) //TICK THIS FRAME?
         {
             frameCount = 0; //RESET THE COUNTER
-            gameObject.transform.forward = Camera.main.transform.forward; //FACE THE CAMERA
+
+            if (Camera.main != null) gameObject.transform.forward = Camera.main.transform.forward; //FACE THE CAMERA
         }
     }
+#endif
 }

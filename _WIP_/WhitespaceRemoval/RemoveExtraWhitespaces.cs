@@ -5,6 +5,7 @@ NormalizeWhiteSpace: 267 ms(by Alex K.)
 RegexCompiled: 1950 ms(by SLaks)
 Regex: 2261 ms(by SLaks)
 Compact: ???
+Simple: ???
 */
 using System.Text.RegularExpressions;
 using System.Text;

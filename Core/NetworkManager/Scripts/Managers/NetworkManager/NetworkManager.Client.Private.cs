@@ -31,7 +31,8 @@ namespace OpenMMO.Network
         public override void OnStartClient()
         {
         	
-            // ---- User
+            // ---- User Messages
+            // @Server -> @Client
             NetworkClient.RegisterHandler<ServerMessageResponseUserLogin>(OnServerMessageResponseUserLogin);
             NetworkClient.RegisterHandler<ServerMessageResponseUserRegister>(OnServerMessageResponseUserRegister);
             NetworkClient.RegisterHandler<ServerMessageResponseUserDelete>(OnServerMessageResponseUserDelete);
@@ -39,11 +40,11 @@ namespace OpenMMO.Network
             NetworkClient.RegisterHandler<ServerMessageResponseUserConfirm>(OnServerMessageResponseUserConfirm);
             NetworkClient.RegisterHandler<ServerMessageResponseUserPlayerPreviews>(OnServerMessageResponseUserPlayerPreviews);
             
-            // ---- Player
+            // ---- Player Messages
+            // @Server -> @Client
             NetworkClient.RegisterHandler<ServerMessageResponsePlayerLogin>(OnServerMessageResponsePlayerLogin);
             NetworkClient.RegisterHandler<ServerMessageResponsePlayerRegister>(OnServerMessageResponsePlayerRegister);
             NetworkClient.RegisterHandler<ServerMessageResponsePlayerDelete>(OnServerMessageResponsePlayerDelete);
-            NetworkClient.RegisterHandler<ServerMessageResponsePlayerSwitchServer>(OnServerMessageResponsePlayerSwitchServer);
             
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient));
             eventListeners.OnStartClient.Invoke();
@@ -103,6 +104,7 @@ namespace OpenMMO.Network
 				playerPreviews.AddRange(msg.players);
 				maxPlayers	= msg.maxPlayers;
 				
+				/*
 				// -- Check Auto select Player
 				int playerIndex = playerPreviews.FindIndex(x => x.name == PortalManager.autoSelectPlayer);
 				
@@ -114,10 +116,13 @@ namespace OpenMMO.Network
 				}
 				else
 				{
+				*/
 					// -- Show Player Select
 					UIWindowLoginUser.singleton.Hide();
 					UIWindowPlayerSelect.singleton.Show();
+        		/*
         		}
+        		*/
         		
         	}
         	
@@ -264,23 +269,6 @@ namespace OpenMMO.Network
         	OnServerMessageResponse(conn, msg);
         }
 
-        // -------------------------------------------------------------------------------
-        /// <summary>
-        /// **WORK IN PROGRESS**
-        /// Event <c>OnServerMessageResponsePlayerSwitchServer</c>.
-        /// Triggered when the client receives a player switch server response from the server.
-        /// Triggers the <c>OnServerMessageResponse</c> event.
-        /// Occurs on the client.        
-        /// </summary>
-        /// <param name="conn"></param>
-        /// <param name="msg"></param>
-        void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerMessageResponsePlayerSwitchServer msg)
-        {
-        	
-        	//RequestPlayerSwitchServer(conn, userName);
-        	OnServerMessageResponse(conn, msg);
-        }      
-        
         // -------------------------------------------------------------------------------
                
     }

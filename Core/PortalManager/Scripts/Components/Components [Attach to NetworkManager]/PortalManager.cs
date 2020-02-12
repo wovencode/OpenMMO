@@ -96,6 +96,19 @@ namespace OpenMMO.Portals
     		
     	}
     	
+    	// -------------------------------------------------------------------------------
+    	// GetIsMainZone
+    	// -------------------------------------------------------------------------------
+    	public bool GetIsMainZone
+    	{
+    		get
+    		{
+    			if (zoneIndex == -1)
+    				zoneIndex = Tools.GetArgumentInt(argZoneIndex);
+    			return (zoneIndex == -1);
+    		}
+    	}
+    	
 		// -------------------------------------------------------------------------------
     	// GetSubZoneTimeoutInterval
     	// -------------------------------------------------------------------------------
@@ -106,19 +119,6 @@ namespace OpenMMO.Portals
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-    	// GetIsMainZone
-    	// -------------------------------------------------------------------------------
-    	protected bool GetIsMainZone
-    	{
-    		get
-    		{
-    			if (zoneIndex == -1)
-    				zoneIndex = Tools.GetArgumentInt(argZoneIndex);
-    			return (zoneIndex == -1);
-    		}
-    	}
-    	
     	// -------------------------------------------------------------------------------
     	// GetZonePort
     	// -------------------------------------------------------------------------------
@@ -138,7 +138,7 @@ namespace OpenMMO.Portals
     		//isSubZone 						= true;
     		//zoneName						= _template.name;
     		//zoneTimeoutMultiplier			= _template.zoneTimeoutMultiplier;
-    		networkManager.StopServer();
+    		//networkManager.StopServer();
     		networkTransport.port 			= GetZonePort;
 debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
     		networkManager.onlineScene 		= _template.scene.SceneName;
@@ -185,7 +185,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			
 			networkManager.StopClient();
 			
-			NetworkClient.Shutdown();
+			//NetworkClient.Shutdown();
 			OpenMMO.Network.NetworkManager.Shutdown();
 			OpenMMO.Network.NetworkManager.singleton = networkManager;
 			
@@ -203,13 +203,14 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 					
 					autoConnectClient = true;
 					
+					//networkTransport.Shutdown();
 					networkTransport.port = GetZonePort;
 				
 				debug.Log("Auto connecting to port:"+GetZonePort);
 				
-					networkTransport.Shutdown();
-					networkManager.StartClient();
 					
+					networkManager.StartClient();
+				debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
 					Invoke(nameof(ReloadScene), 1f);
 					
 					return;
@@ -227,6 +228,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
     	// -------------------------------------------------------------------------------
 		void ReloadScene()
 		{
+		debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
 			SceneManager.LoadScene(subZones[zoneIndex].scene.SceneName);
 		}
 		
@@ -247,7 +249,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			{
 				
 				
-				
+				debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
 				
 				OpenMMO.Network.NetworkAuthenticator.singleton.ClientAuthenticate();
 				

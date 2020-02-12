@@ -23,15 +23,15 @@ namespace OpenMMO.Network
         // @Client
 		// -------------------------------------------------------------------------------
         /// <summary>
-        /// Protected override function <c>RequestUserLogin</c> function that returns a boolean.
+        /// Protected override <c>RequestUserLogin</c> function that returns a boolean.
         /// Sends a user login request to the server.
-        /// Checks whether the login request is valid and can be sent to the server.
+        /// Checks whether the user login request is valid and can be sent to the server.
         /// Returns a boolean detailing whether the request was sent or not.
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="userName"></param>
         /// <param name="password"></param>
-        /// <returns> Returns a boolean detailing whetherthe request was sent to the server. </returns>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
 		protected override bool RequestUserLogin(NetworkConnection conn, string userName, string password)
 		{
 			if (!base.RequestUserLogin(conn, userName, password))
@@ -49,11 +49,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestUserRegister
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestUserRegister(NetworkConnection conn, string userName, string password, string usermail)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestUserRegister</c> that returns a boolean.
+        /// Sends a user registration request to the server.
+        /// Checks whether the user register request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="usermail"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestUserRegister(NetworkConnection conn, string userName, string password, string usermail)
 		{
 			if (!base.RequestUserRegister(conn, userName, password, usermail))
 				return false;
@@ -72,11 +83,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestUserDelete
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestUserDelete(NetworkConnection conn, string userName, string password, int action=1)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestUserDelete</c> that returns a boolean.
+        /// Sends a user deletion request to the server.
+        /// Checks whether the user deletion request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="action"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestUserDelete(NetworkConnection conn, string userName, string password, int action=1)
 		{
 			if (!base.RequestUserDelete(conn, userName, password))
 				return false;
@@ -93,11 +115,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestUserChangePassword
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestUserChangePassword(NetworkConnection conn, string userName, string oldpassword, string newpassword)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestUserChangePassword</c> that returns a boolean.
+        /// Sends a user change password request to the server.
+        /// Checks whether the user change password request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="userName"></param>
+        /// <param name="oldpassword"></param>
+        /// <param name="newpassword"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestUserChangePassword(NetworkConnection conn, string userName, string oldpassword, string newpassword)
 		{
 			if (!base.RequestUserChangePassword(conn, userName, oldpassword, newpassword))
 				return false;
@@ -118,11 +151,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestUserConfirm
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestUserConfirm(NetworkConnection conn, string userName, string password, int action=1)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestUserConfirm</c> that returns a boolean.
+        /// Sends a user confirmation request to the server.
+        /// Checks whether the user confirmation request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="action"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestUserConfirm(NetworkConnection conn, string userName, string password, int action=1)
 		{
 			if (!base.RequestUserConfirm(conn, userName, password))
 				return false;
@@ -139,13 +183,23 @@ namespace OpenMMO.Network
 
 		}
 
-		// ======================= PUBLIC METHODS - PLAYER ================================
+        // ======================= PUBLIC METHODS - PLAYER ================================
 
         // -------------------------------------------------------------------------------
         // RequestPlayerLogin
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestPlayerLogin(NetworkConnection conn, string playername, string username)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestPlayerLogin</c> that returns a boolean.
+        /// Sends a player login request to the server.
+        /// Checks whether the player login request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="playername"></param>
+        /// <param name="username"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestPlayerLogin(NetworkConnection conn, string playername, string username)
 		{
 			if (!base.RequestPlayerLogin(conn, playername, username))
 				return false;
@@ -164,11 +218,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestPlayerRegister
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestPlayerRegister(NetworkConnection conn, string playerName, string userName, string prefabName)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestPlayerRegister</c> that returns a boolean.
+        /// Sends a player register request to the server.
+        /// Checks whether the player register request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="playerName"></param>
+        /// <param name="userName"></param>
+        /// <param name="prefabName"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestPlayerRegister(NetworkConnection conn, string playerName, string userName, string prefabName)
 		{
 			if (!base.RequestPlayerRegister(conn, playerName, userName, prefabName))
 				return false;
@@ -186,11 +251,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestPlayerDelete
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestPlayerDelete(NetworkConnection conn, string playerName, string userName, int action=1)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestPlayerDelete</c> that returns a boolean.
+        /// Sends a player deletion request to the server.
+        /// Checks whether the player deletion request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="playerName"></param>
+        /// <param name="userName"></param>
+        /// <param name="action"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestPlayerDelete(NetworkConnection conn, string playerName, string userName, int action=1)
 		{
 			if (!base.RequestPlayerDelete(conn, playerName, userName))
 				return false;
@@ -207,11 +283,22 @@ namespace OpenMMO.Network
 
 		}
 
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         // RequestPlayerSwitchServer
         // @Client
-		// -------------------------------------------------------------------------------
-		protected override bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, string anchorName, string zoneName)
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Protected override function <c>RequestPlayerSwitchServer</c> that returns a boolean.
+        /// Sends a player switch server request to the server.
+        /// Checks whether the player switch server request is valid and can be sent to the server.
+        /// Returns a boolean detailing whether the request was sent or not.
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <param name="playerName"></param>
+        /// <param name="anchorName"></param>
+        /// <param name="zoneName"></param>
+        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
+        protected override bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, string anchorName, string zoneName)
 		{
 
 			if (!base.RequestPlayerSwitchServer(conn, playerName, anchorName, zoneName))

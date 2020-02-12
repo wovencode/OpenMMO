@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualPrefabs: []
   autoPrefabs:
-  - {fileID: 835272263390800508, guid: 2ff2109de6bc04e449cc481a8dca673a, type: 3}
-  - {fileID: 358322077759127976, guid: cc15b722a5ace4273b15adb300b5efc2, type: 3}
-  - {fileID: 8422908725052040628, guid: f9dd01ed72a9a4d38828a4f8e67df2bb, type: 3}
+  - {fileID: 1603717731790357796, guid: b219ede7a68bfb640808ffa250fe1db7, type: 3}
+  - {fileID: 6140580608059694878, guid: cd0e032e964c6db43a68bdffee5bd368, type: 3}
+  - {fileID: 5808493980712650444, guid: b326f4a78f8e6f04ab89cac6b98d1f0c, type: 3}
   excludePrefabs:
-  - {fileID: 7930793167279634983, guid: 82da41aef2ec74dca89beb69eb2b680b, type: 3}
+  - {fileID: 7930793167279634983, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}
   categoryTags: []
   spawnablePrefabFolders:
   - Assets/OpenMMO/SpawnablePrefabs

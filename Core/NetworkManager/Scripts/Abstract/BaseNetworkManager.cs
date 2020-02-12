@@ -22,10 +22,13 @@ namespace OpenMMO.Network
     /// </summary>
     public abstract partial class BaseNetworkManager : Mirror.NetworkManager
 	{
-
+	
 		[Header("Debug Helper")]
 		public DebugHelper debug;
-
+		
+		[Header("Spawnable Prefabs (use the template below - never edit the list in NetworkManager directly)")]
+		public SpawnablePrefabsTemplate spawnPrefabsTemplate;
+		
         // -------------------------------------------------------------------------------
         // Awake (Base)
         // -------------------------------------------------------------------------------
@@ -38,6 +41,13 @@ namespace OpenMMO.Network
 			debug = new DebugHelper();
 			debug.Init();
 			base.Awake(); // required
+			
+			if (spawnPrefabsTemplate)
+			{
+				spawnPrefabs.Clear();
+				spawnPrefabs.AddRange(spawnPrefabsTemplate.GetRegisteredSpawnablePrefabs);
+			}
+			
 		}
 		
 		// -------------------------------------------------------------------------------

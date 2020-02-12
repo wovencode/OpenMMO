@@ -62,14 +62,11 @@ MonoBehaviour:
   playerPrefab: {fileID: 0}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
-  spawnPrefabs:
-  - {fileID: 7930793167279634983, guid: 82da41aef2ec74dca89beb69eb2b680b, type: 3}
-  - {fileID: 7930793167279634983, guid: 684f14cc261794354b8ce460ffbe22b5, type: 3}
-  - {fileID: 7930793167279634983, guid: 13b41ef3f74794acf9edd47318061c38, type: 3}
-  - {fileID: 7930793167279634983, guid: a16799cf0ec984097a3496c7e12cf360, type: 3}
+  spawnPrefabs: []
   debug:
     debugMode: 1
-  sortCategories: []
+  spawnPrefabsTemplate: {fileID: 11400000, guid: 5bb742c288faf429681a0c1743a9027d,
+    type: 2}
   systemText:
     clientDisconnected: Disconnected.
     userAlreadyOnline: User is already online!

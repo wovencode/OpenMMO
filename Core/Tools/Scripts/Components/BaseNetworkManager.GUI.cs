@@ -3,19 +3,18 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using OpenMMO;
-using OpenMMO.Network;
 
-namespace OpenMMO.Network
+namespace OpenMMO
 {
 
 #if UNITY_EDITOR
 
 	// ===================================================================================
-	// NetworkManagerEditor
+	// SpawnablePefabsTemplateEditor
 	// @Editor
 	// ===================================================================================
-	[CustomEditor(typeof(NetworkManager))]
-	public class NetworkManagerEditor : Editor
+	[CustomEditor(typeof(SpawnablePrefabsTemplate))]
+	public class SpawnablePefabsTemplateEditor : Editor
 	{
 	
 		// -------------------------------------------------------------------------------
@@ -25,11 +24,11 @@ namespace OpenMMO.Network
 		{
 			DrawDefaultInspector();
 
-			BaseNetworkManager networkManager = (BaseNetworkManager)target;
+			SpawnablePrefabsTemplate template = (SpawnablePrefabsTemplate)target;
 			
 			if (GUILayout.Button("Search & add Prefabs"))
 			{
-				networkManager.AutoRegisterSpawnablePrefabs();
+				template.AutoRegisterSpawnablePrefabs();
 			}
 		}
 		

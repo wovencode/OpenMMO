@@ -4,52 +4,101 @@ NormalizeWhiteSpaceForLoop: 156 ms(by Me - From my answer on removing all whites
 NormalizeWhiteSpace: 267 ms(by Alex K.)
 RegexCompiled: 1950 ms(by SLaks)
 Regex: 2261 ms(by SLaks)
+Compact: ???
 */
 using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
 public class RemoveExtraWhitespaces
 {
-    public static string WithRegex(string text)
+    //??? ms TODO: UNTESTED
+    #region Simple
+    public static string Simple(string text)
     {
-        return Regex.Replace(text, @"\s+", " ");
+        return string.Join(" ", text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
     }
+    #endregion
 
-    public static string WithRegexCompiled(Regex compiledRegex, string text)
+    //??? ms TODO: UNTESTED
+    #region CompactWhiteSpaces
+    //BY Sergey Povalyaev
+    public static string CompactWhitespaces(String s)
     {
-        return compiledRegex.Replace(text, " ");
+        StringBuilder sb = new StringBuilder(s);
+
+        CompactWhitespaces(sb);
+
+        return sb.ToString();
     }
-
-    public static string NormalizeWhiteSpace(string input)
+    
+    public static void CompactWhitespaces(StringBuilder sb)
     {
-        if (string.IsNullOrEmpty(input))
-            return string.Empty;
+        if (sb.Length == 0)
+            return;
 
-        int current = 0;
-        char[] output = new char[input.Length];
-        bool skipped = false;
+        // set [start] to first not-whitespace char or to sb.Length
 
-        foreach (char c in input.ToCharArray())
+        int start = 0;
+
+        while (start < sb.Length)
         {
-            if (char.IsWhiteSpace(c))
-            {
-                if (!skipped)
-                {
-                    if (current > 0)
-                        output[current++] = ' ';
+            if (char.IsWhiteSpace(sb[start]))
+                start++;
+            else
+                break;
+        }
 
-                    skipped = true;
+        // if [sb] has only whitespaces, then return empty string
+
+        if (start == sb.Length)
+        {
+            sb.Length = 0;
+            return;
+        }
+
+        // set [end] to last not-whitespace char
+
+        int end = sb.Length - 1;
+
+        while (end >= 0)
+        {
+            if (char.IsWhiteSpace(sb[end]))
+                end--;
+            else
+                break;
+        }
+
+        // compact string
+
+        int dest = 0;
+        bool previousIsWhitespace = false;
+
+        for (int i = start; i <= end; i++)
+        {
+            if (char.IsWhiteSpace(sb[i]))
+            {
+                if (!previousIsWhitespace)
+                {
+                    previousIsWhitespace = true;
+                    sb[dest] = ' ';
+                    dest++;
                 }
             }
             else
             {
-                skipped = false;
-                output[current++] = c;
+                previousIsWhitespace = false;
+                sb[dest] = sb[i];
+                dest++;
             }
         }
 
-        return new string(output, 0, current);
+        sb.Length = dest;
     }
+    #endregion
 
+    //157 ms
+    #region NormalizeWhiteSpaceForLoop
     public static string NormalizeWhiteSpaceForLoop(string input)
     {
         int len = input.Length,
@@ -101,4 +150,56 @@ public class RemoveExtraWhitespaces
 
         return new string(src, 0, index);
     }
+    #endregion
+
+    //267
+    #region NormalizeWhitespace
+    public static string NormalizeWhiteSpace(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return string.Empty;
+
+        int current = 0;
+        char[] output = new char[input.Length];
+        bool skipped = false;
+
+        foreach (char c in input.ToCharArray())
+        {
+            if (char.IsWhiteSpace(c))
+            {
+                if (!skipped)
+                {
+                    if (current > 0)
+                        output[current++] = ' ';
+
+                    skipped = true;
+                }
+            }
+            else
+            {
+                skipped = false;
+                output[current++] = c;
+            }
+        }
+
+        return new string(output, 0, current);
+    }
+    #endregion
+
+    //1850 ms
+    #region RegxCompiled
+    public static string WithRegexCompiled(Regex compiledRegex, string text)
+    {
+        return compiledRegex.Replace(text, " ");
+    }
+    #endregion
+
+    //2261 ms
+    #region Regex
+    public static string WithRegex(string text)
+    {
+        return Regex.Replace(text, @"\s+", " ");
+    }
+    #endregion
+
 }

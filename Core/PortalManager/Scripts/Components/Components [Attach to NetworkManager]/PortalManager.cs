@@ -55,11 +55,8 @@ namespace OpenMMO.Portals
 		
 		protected NetworkZoneTemplate currentZone;
 		
-		public static List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
-		
-		
 		protected string autoPlayerName = "";
-    	protected bool autoConnectClient;
+    	[HideInInspector]public bool autoConnectClient;
 		
 		protected string mainZoneName			= "_mainZone";
 		protected const string argZoneIndex 	= "zone";
@@ -209,7 +206,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 				debug.Log("Auto connecting to port:"+GetZonePort);
 				
 					
-					networkManager.StartClient();
+					
 				debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
 					Invoke(nameof(ReloadScene), 1f);
 					
@@ -228,7 +225,8 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
     	// -------------------------------------------------------------------------------
 		void ReloadScene()
 		{
-		debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
+			networkManager.StartClient();
+			debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
 			SceneManager.LoadScene(subZones[zoneIndex].scene.SceneName);
 		}
 		
@@ -248,8 +246,8 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			if (autoConnectClient)
 			{
 				
-				
-				debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
+				debug.Log("NetworkClient: "+ NetworkClient.isConnected);
+				debug.Log("NetworkManager: "+networkManager.isNetworkActive);
 				
 				OpenMMO.Network.NetworkAuthenticator.singleton.ClientAuthenticate();
 				
@@ -285,64 +283,6 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
         	CancelInvoke();
         }
         
-        // ============================ PORTAL ANCHORS ===================================
-        
-        // -------------------------------------------------------------------------------
-    	// CheckPortalAnchor
-    	// -------------------------------------------------------------------------------
-        public static bool CheckPortalAnchor(string _name)
-        {
-        	if (String.IsNullOrWhiteSpace(_name))
-        		return false;
-        	
-        	foreach (PortalAnchorEntry anchor in portalAnchors)
-        	{
-        		UnityEngine.Debug.Log(anchor.name+"/"+_name);
-        		if (anchor.name == _name)
-        			return true;
-        	}	
-
-			return false;
-        }
-        
-        // -------------------------------------------------------------------------------
-    	// GetPortalAnchorPosition
-    	// -------------------------------------------------------------------------------
-        public static Vector3 GetPortalAnchorPosition(string _name)
-        {
-        	foreach (PortalAnchorEntry anchor in portalAnchors)
-        		if (anchor.name == _name)
-					return anchor.position;
-			return Vector3.zero;
-        }
-        
-        // -------------------------------------------------------------------------------
-    	// RegisterPortalAnchor
-    	// -------------------------------------------------------------------------------
-        public static void RegisterPortalAnchor(string _name, Vector3 _position)
-        {
-            portalAnchors.Add(
-            				new PortalAnchorEntry
-            				{
-            					name = _name,
-            					position = _position
-            				}
-            );
-            
-        }
-
-        // -------------------------------------------------------------------------------
-    	// UnRegisterPortalAnchor
-    	// -------------------------------------------------------------------------------
-        public static void UnRegisterPortalAnchor(string _name)
-        {
-           
-           for (int i = 0; i < portalAnchors.Count; i++)
-           		if (portalAnchors[i].name == _name)
-           			portalAnchors.RemoveAt(i);
-            
-        }
-
     	// -------------------------------------------------------------------------------
     	
 	}

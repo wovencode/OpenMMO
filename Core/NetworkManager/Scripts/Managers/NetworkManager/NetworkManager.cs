@@ -271,9 +271,13 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnClientDisconnect(NetworkConnection conn)
 		{
-			base.OnClientDisconnect(conn);
-			state = NetworkState.Offline;
-			UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
+			// -- required: otherwise a zone switch would disconnect the client
+			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().autoConnectClient)
+			{
+				base.OnClientDisconnect(conn);
+				state = NetworkState.Offline;
+				UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
+			}
 			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect));
 		}
 		

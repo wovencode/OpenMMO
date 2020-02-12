@@ -44,7 +44,6 @@ namespace OpenMMO {
 		public bool IsLocalPlayer
 		{
 			get {
-Debug.Log(localPlayer+"/"+this.gameObject);
 				return localPlayer != null && localPlayer == this.gameObject;
 			}
 		}

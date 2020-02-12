@@ -268,9 +268,9 @@ MonoBehaviour:
   mainZone: {fileID: 11400000, guid: 351fd208bae6f48d1a58f3a5e3a4dea0, type: 2}
   subZones:
   - {fileID: 11400000, guid: b2d494b65424c4bdaa50eeb8cc0b1dce, type: 2}
-  - {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a, type: 2}
-  - {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883, type: 2}
   zoneIntervalMain: 10
   debug:
     debugMode: 1
   isSubZone: 0
+  autoPlayerName: 
+  autoConnectClient: 0

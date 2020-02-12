@@ -6890,6 +6890,7 @@ GameObject:
   - component: {fileID: 610312388}
   - component: {fileID: 610312387}
   - component: {fileID: 610312386}
+  - component: {fileID: 610312390}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7000,6 +7001,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &610312390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610312385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &617958444
 GameObject:
   m_ObjectHideFlags: 0
@@ -20228,6 +20241,7 @@ GameObject:
   - component: {fileID: 1995895380}
   - component: {fileID: 1995895379}
   - component: {fileID: 1995895378}
+  - component: {fileID: 1995895381}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -20283,6 +20297,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1995895381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995895377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1995952168
 GameObject:
   m_ObjectHideFlags: 0
@@ -21016,7 +21042,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 85030726}
   m_HandleRect: {fileID: 85030725}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22133,16 +22159,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3321310163593043543, guid: 611e62c0a05c846f290a8a241b21e0cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3321310163593043543, guid: 611e62c0a05c846f290a8a241b21e0cc,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 611e62c0a05c846f290a8a241b21e0cc, type: 3}

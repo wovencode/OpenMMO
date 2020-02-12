@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3321310163593043541}
   - component: {fileID: 3321310163593043538}
   - component: {fileID: 3321310163593043543}
+  - component: {fileID: 3321310163183933699}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -45,9 +46,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -90,7 +92,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3321310163593043539}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34116707ba9534bb0bae7099e700f292, type: 3}
   m_Name: 
@@ -141,7 +143,7 @@ MonoBehaviour:
   rotateYSmoothing: 10
   startXRotation: 0
   startYRotation: 0
-  rotationSpeed: 5
+  rotationSpeed: 0.5
   limitZoomDistance: 0
   minZoomDistance: 0
   maxZoomDistance: 0
@@ -149,5 +151,15 @@ MonoBehaviour:
   zoomSmoothing: 10
   startZoomDistance: 0
   zoomSpeed: 5
-  isSaveCamera: 0
-  savePrefsPrefix: GAMEPLAY
+--- !u!114 &3321310163183933699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321310163593043539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1129,10 +1129,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
-      propertyPath: active
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032034, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1543,6 +1539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DatabaseManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890701179065248850, guid: 28db4ceed746f4a62963adde76a4fbef,
+        type: 3}
+      propertyPath: databaseName
+      value: Database.sqlite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28db4ceed746f4a62963adde76a4fbef, type: 3}

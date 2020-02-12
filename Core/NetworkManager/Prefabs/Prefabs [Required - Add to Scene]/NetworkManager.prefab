@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e466a10c71b146f79b31bb19ffbba2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mainZone: {fileID: 11400000, guid: 351fd208bae6f48d1a58f3a5e3a4dea0, type: 2}
   subZones:
   - {fileID: 11400000, guid: b2d494b65424c4bdaa50eeb8cc0b1dce, type: 2}

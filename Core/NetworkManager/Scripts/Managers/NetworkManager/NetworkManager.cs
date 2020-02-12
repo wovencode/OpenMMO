@@ -3,6 +3,7 @@ using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
+using OpenMMO.Portals;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,6 +69,7 @@ namespace OpenMMO.Network
 #if _SERVER && _CLIENT
 			StartHost();
 #elif _SERVER
+			if (GetComponent<PortalManager>() != null && GetComponent<PortalManager>().GetIsMainZone)
 			StartServer();
 #else
 			StartClient();
@@ -226,7 +228,7 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
         /// <summary>
         /// Publice event <c>OnServerDisconnect</c>.
-        /// Triggered when the server disconnects.
+        /// Triggered on the server when a client disconnects.
         /// </summary>
         /// <param name="conn"></param>
 		public override void OnServerDisconnect(NetworkConnection conn)
@@ -269,9 +271,13 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnClientDisconnect(NetworkConnection conn)
 		{
-			base.OnClientDisconnect(conn);
-			state = NetworkState.Offline;
-			UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
+			// -- required: otherwise a zone switch would disconnect the client
+			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().autoConnectClient)
+			{
+				base.OnClientDisconnect(conn);
+				state = NetworkState.Offline;
+				UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
+			}
 			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect));
 		}
 		

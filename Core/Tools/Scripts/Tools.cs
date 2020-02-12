@@ -42,7 +42,7 @@ namespace OpenMMO
 #elif UNITY_IOS
         	return Path.Combine(Application.persistentDataPath, fileName);
 #else
-        	return Path.Combine(Application.dataPath, fileName);
+        	return Path.Combine(Directory.GetParent(Application.persistentDataPath).FullName, fileName);
 #endif			
 		}
 		

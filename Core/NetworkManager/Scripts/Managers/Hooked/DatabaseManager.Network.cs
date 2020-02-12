@@ -39,7 +39,8 @@ namespace OpenMMO.Database
         	databaseLayer.BeginTransaction();
         	
         	foreach (GameObject player in OpenMMO.Network.NetworkManager.onlinePlayers.Values)
-            	SaveDataPlayer(player, false);
+        		if (player)
+            		SaveDataPlayer(player, false);
             
         	databaseLayer.Commit();
         	

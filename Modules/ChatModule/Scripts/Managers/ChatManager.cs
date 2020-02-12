@@ -62,7 +62,6 @@ namespace OpenMMO.Chat
         }
         
         public static ChatManager singleton;
-        public NetworkClient client;
         private ChatUser clientChatUser;
         
 		// -------------------------------------------------------------------------------
@@ -81,15 +80,12 @@ namespace OpenMMO.Chat
 		// -------------------------------------------------------------------------------
 		public void OnLoginPlayer(NetworkConnection conn)
 		{
-			client = NetworkClient.singleton;
-			
 			if (conn.identity.gameObject != null)
 			{
 				string name = conn.identity.gameObject.name;
 				string userId = System.Guid.NewGuid().ToString();
 				AddChatUser(new ChatUser(conn, userId, name));
 			}
-			
 		}
 		
 		// -------------------------------------------------------------------------------

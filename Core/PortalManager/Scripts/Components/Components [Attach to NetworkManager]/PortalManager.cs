@@ -45,21 +45,21 @@ namespace OpenMMO.Portals
 		protected OpenMMO.Network.NetworkManager 	networkManager;
 		protected Mirror.TelepathyTransport 		networkTransport;
 	
-		[HideInInspector] public bool isSubZone;
+		//[HideInInspector] public bool isSubZone;
 		
 		protected ushort originalPort;
-		protected string zoneName = "";
+		//protected string zoneName = "";
 		protected int zoneIndex = -1;
 		protected int playersOnline;
-		protected float zoneTimeoutMultiplier;
+		//protected float zoneTimeoutMultiplier;
 		
 		protected NetworkZoneTemplate currentZone;
 		
 		public static List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
 		
 		
-		public string autoPlayerName = "";
-    	public bool autoConnectClient;
+		protected string autoPlayerName = "";
+    	protected bool autoConnectClient;
 		
 		protected string mainZoneName			= "_mainZone";
 		protected const string argZoneIndex 	= "zone";
@@ -78,21 +78,21 @@ namespace OpenMMO.Portals
     		networkManager 		= GetComponent<OpenMMO.Network.NetworkManager>();
     		networkTransport 	= GetComponent<Mirror.TelepathyTransport>();
     		
+    		originalPort = networkTransport.port;
+    		
+    		SceneManager.sceneLoaded += OnSceneLoaded;
+    		
     		if (!active || GetIsMainZone)
     		{
     			currentZone = mainZone;
     			return;
     		}
     		
-    		SceneManager.sceneLoaded += OnSceneLoaded;
-    		
     		currentZone = subZones[zoneIndex];
     		    		
     		foreach (NetworkZoneTemplate template in subZones)
-    		{
     			if (template == currentZone)
     				InitAsSubZone(template);
-    		}
     		
     	}
     	
@@ -102,7 +102,7 @@ namespace OpenMMO.Portals
 		protected float GetSubZoneTimeoutInterval
 		{
 			get {
-				return zoneIntervalMain * zoneTimeoutMultiplier;
+				return zoneIntervalMain * currentZone.zoneTimeoutMultiplier;
 			}
 		}
 		
@@ -135,10 +135,12 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
     	protected void InitAsSubZone(NetworkZoneTemplate _template)
     	{
-    		isSubZone 						= true;
-    		zoneName						= _template.name;
-    		zoneTimeoutMultiplier			= _template.zoneTimeoutMultiplier;
+    		//isSubZone 						= true;
+    		//zoneName						= _template.name;
+    		//zoneTimeoutMultiplier			= _template.zoneTimeoutMultiplier;
+    		networkManager.StopServer();
     		networkTransport.port 			= GetZonePort;
+debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
     		networkManager.onlineScene 		= _template.scene.SceneName;
     		networkManager.StartServer();
     	}
@@ -182,6 +184,7 @@ namespace OpenMMO.Portals
 				return;
 			
 			networkManager.StopClient();
+			
 			NetworkClient.Shutdown();
 			OpenMMO.Network.NetworkManager.Shutdown();
 			OpenMMO.Network.NetworkManager.singleton = networkManager;
@@ -189,15 +192,25 @@ namespace OpenMMO.Portals
 			
 			autoPlayerName = msg.playername;
 			
-			foreach (NetworkZoneTemplate template in subZones)
+			for (int i = 0; i < subZones.Length; i++)
     		{
-				if (msg.zonename == template.name)
+				if (msg.zonename == subZones[i].name)
 				{
 				
-					debug.Log("Loading scene: "+template.scene.SceneName);
-				
-					SceneManager.LoadScene(template.scene.SceneName);
+					debug.Log("Loading scene: "+subZones[i].scene.SceneName);
+					
+					zoneIndex = i;
+					
 					autoConnectClient = true;
+					
+					networkTransport.port = GetZonePort;
+				
+				debug.Log("Auto connecting to port:"+GetZonePort);
+				
+					networkTransport.Shutdown();
+					networkManager.StartClient();
+					
+					Invoke(nameof(ReloadScene), 1f);
 					
 					return;
 				}
@@ -209,25 +222,36 @@ namespace OpenMMO.Portals
 		}
 		
 		// -------------------------------------------------------------------------------
+    	// ReloadScene
+    	// @Client
+    	// -------------------------------------------------------------------------------
+		void ReloadScene()
+		{
+			SceneManager.LoadScene(subZones[zoneIndex].scene.SceneName);
+		}
+		
+		// -------------------------------------------------------------------------------
     	// OnSceneLoaded
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 		
+		debug.Log("SCENE LOADED");
+		
 			if (NetworkServer.active)
-				if (zoneName == scene.name && GetSubZoneTimeoutInterval > 0)
+				if (currentZone.scene.SceneName == scene.name && GetSubZoneTimeoutInterval > 0)
 					InvokeRepeating(nameof(CheckSubZone), GetSubZoneTimeoutInterval, GetSubZoneTimeoutInterval);
 		
 			if (autoConnectClient)
 			{
-				networkTransport.port = GetZonePort;
 				
-				debug.Log("Auto connecting to port:"+GetZonePort);
 				
-				networkManager.StartClient();
 				
-				networkManager.TryLoginPlayer(autoPlayerName);
+				
+				OpenMMO.Network.NetworkAuthenticator.singleton.ClientAuthenticate();
+				
+				networkManager.TryAutoLoginPlayer(autoPlayerName);
 				
 				autoConnectClient = false;
 			}
@@ -312,10 +336,8 @@ namespace OpenMMO.Portals
         {
            
            for (int i = 0; i < portalAnchors.Count; i++)
-           {
            		if (portalAnchors[i].name == _name)
            			portalAnchors.RemoveAt(i);
-           }
             
         }
 

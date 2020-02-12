@@ -271,6 +271,3 @@ MonoBehaviour:
   zoneIntervalMain: 10
   debug:
     debugMode: 1
-  isSubZone: 0
-  autoPlayerName: 
-  autoConnectClient: 0

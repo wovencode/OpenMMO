@@ -201,6 +201,7 @@ namespace OpenMMO.Network
         /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
         protected override bool RequestPlayerLogin(NetworkConnection conn, string playername, string username)
 		{
+				
 			if (!base.RequestPlayerLogin(conn, playername, username))
 				return false;
 

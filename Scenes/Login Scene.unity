@@ -1130,10 +1130,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
-      propertyPath: subZones.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: active
       value: 0
       objectReference: {fileID: 0}

@@ -86,7 +86,7 @@ namespace OpenMMO {
 					
 					NetworkIdentity ni = go.GetComponent<NetworkIdentity>();
 					
-					if (ni != null && !ni.serverOnly)
+					if (ni != null)
 					{
 
 						EntityComponent entityComponent = go.GetComponent<EntityComponent>();

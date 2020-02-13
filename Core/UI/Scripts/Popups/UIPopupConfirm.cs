@@ -48,7 +48,9 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void Init(string _description, Action _confirmAction=null, string _confirmText="")
 		{
-		
+			
+			base.Init();
+			
 			confirmAction = _confirmAction;
 			
 			if (confirmButton)

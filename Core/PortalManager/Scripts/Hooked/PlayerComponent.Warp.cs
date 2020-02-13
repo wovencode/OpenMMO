@@ -1,13 +1,12 @@
 ﻿
 using System;
-using System.Text;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Portals;
+using OpenMMO.DebugManager;
 
 namespace OpenMMO {
 	
@@ -19,6 +18,31 @@ namespace OpenMMO {
 		
 		[Header("NetworkZones")]
 		public NetworkZoneTemplate startingZone;
+		
+		protected int _token = 0;
+		
+		// -------------------------------------------------------------------------------
+		// GetToken
+		// Fetches the current token or generates a new one if its 0.
+		// -------------------------------------------------------------------------------
+		public int GetToken
+		{
+			get
+			{
+				if (_token == 0)
+					RefreshToken();
+				return _token;
+			}
+		}
+		
+		// -------------------------------------------------------------------------------
+		// RefreshToken
+		// Generates a new security token for server switch.
+		// -------------------------------------------------------------------------------
+		public void RefreshToken()
+		{
+			_token = UnityEngine.Random.Range(1000,9999);
+		}
 		
 		// -------------------------------------------------------------------------------
 		// currentZone
@@ -58,7 +82,13 @@ namespace OpenMMO {
 		public void Cmd_WarpRemote(string anchorName, string zoneName)
 		{
 			if (!String.IsNullOrWhiteSpace(anchorName) && !String.IsNullOrWhiteSpace(zoneName))
-				WarpRemote(anchorName, zoneName);
+			{
+				// -- refresh security token
+				RefreshToken();
+				
+				// -- issue warp
+				WarpRemote(anchorName, zoneName, GetToken);
+			}
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -67,17 +97,24 @@ namespace OpenMMO {
 		// @Server
 		// -------------------------------------------------------------------------------
 		[ServerCallback]
-		public void WarpRemote(string anchorName, string zoneName)
+		public void WarpRemote(string anchorName, string zoneName, int token)
     	{
     		
     		NetworkZoneTemplate template = NetworkZoneTemplate.GetZoneBySceneName(zoneName);
     		
     		UpdateCooldown(20);
     		
+    		// -- set security token
+    		_token = token;
+    		
+    		// -- set anchor & zone
+    		this.GetComponent<PlayerComponent>().tablePlayerZones.anchorname = anchorName;
+    		this.GetComponent<PlayerComponent>().tablePlayerZones.zonename = zoneName;
+    		
+    		// -- save player
     		DatabaseManager.singleton.SaveDataPlayer(this.gameObject);
     		
-			// -- uses OpenMMO NetworkManager singleton instead of the Mirror one
-    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName);
+    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName, _token);
     		
     		NetworkServer.Destroy(this.gameObject);
     		
@@ -91,7 +128,7 @@ namespace OpenMMO {
 		[ServerCallback]
 		public void WarpLocal(string anchorName)
     	{
-
+debug.Log("WarpLocal: "+anchorName);
     		if (PortalManager.CheckPortalAnchor(anchorName))
         		base.Warp(PortalManager.GetPortalAnchorPosition(anchorName));
         	

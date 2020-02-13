@@ -79,7 +79,9 @@ namespace OpenMMO.Database
 	   				new TablePlayerZones
 	   				{
                 		playername 		= player.name,
-                		zonename 		= player.GetComponent<PlayerComponent>().currentZone.name
+                		zonename 		= player.GetComponent<PlayerComponent>().tablePlayerZones.zonename,
+                		anchorname 		= player.GetComponent<PlayerComponent>().tablePlayerZones.anchorname,
+                		token			= player.GetComponent<PlayerComponent>().GetToken
             		}
             );
 	   		

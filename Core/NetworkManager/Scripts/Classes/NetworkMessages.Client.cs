@@ -166,21 +166,6 @@ namespace OpenMMO.Network
 		public string username;
 		public string playername;
 	}
-
-    // -----------------------------------------------------------------------------------
-    // ClientMessageRequestPlayerSwitchServer
-    // @Client -> @Server
-    // -----------------------------------------------------------------------------------
-    /// <summary>
-    /// Public Partial Class <c>ClientMessageRequestPlayerSwitchServer</c> inherits from <c>ClientMessageRequest</c>
-    /// Sent from Client to Server
-    /// Client sent pplayer switch server request containing playername and zonename
-    /// </summary>
-    public partial class ClientMessageRequestPlayerSwitchServer : ClientMessageRequest
-	{
-		public string playername;
-		public string zonename;
-	}
 	
 	// -------------------------------------------------------------------------------
 	

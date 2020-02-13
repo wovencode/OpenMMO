@@ -1,8 +1,7 @@
 ﻿
 using System;
-using System.Diagnostics;
-using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
@@ -11,6 +10,7 @@ using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.Portals;
 using OpenMMO.DebugManager;
+using OpenMMO.UI;
 
 namespace OpenMMO.Portals
 {
@@ -29,7 +29,7 @@ namespace OpenMMO.Portals
 		
 		[Header("Network Zones")]
 		public NetworkZoneTemplate mainZone;
-		public NetworkZoneTemplate[] subZones;
+		public List<NetworkZoneTemplate> subZones;
 		
 		[Header("Settings")]
 		[Tooltip("MainZone data save interval (in seconds)")]
@@ -45,28 +45,21 @@ namespace OpenMMO.Portals
 		protected OpenMMO.Network.NetworkManager 	networkManager;
 		protected Mirror.TelepathyTransport 		networkTransport;
 	
-		//[HideInInspector] public bool isSubZone;
-		
 		protected ushort originalPort;
-		//protected string zoneName = "";
-		protected int zoneIndex = -1;
+		protected int zoneIndex 					= -1;
 		protected int playersOnline;
-		//protected float zoneTimeoutMultiplier;
-		
-		protected NetworkZoneTemplate currentZone;
-		
-		protected string autoPlayerName = "";
-    	protected bool autoConnectClient = false;
-		
-		protected string mainZoneName			= "_mainZone";
-		protected const string argZoneIndex 	= "zone";
+		protected NetworkZoneTemplate currentZone	= null;
+		protected string autoPlayerName 			= "";
+    	protected bool autoConnectClient 			= false;
+		protected string mainZoneName				= "_mainZone";
+		protected const string argZoneIndex 		= "zone";
 		
 		// -------------------------------------------------------------------------------
     	// Awake
     	// -------------------------------------------------------------------------------
 		void Awake()
     	{
-    	
+
     		singleton = this;
     		
     		debug = new DebugHelper();
@@ -76,10 +69,10 @@ namespace OpenMMO.Portals
     		networkTransport 	= GetComponent<Mirror.TelepathyTransport>();
     		
     		originalPort = networkTransport.port;
-    		
-    		SceneManager.sceneLoaded += OnSceneLoaded;
-    		
-    		if (!active || GetIsMainZone)
+			
+			SceneManager.sceneLoaded += OnSceneLoaded;
+			
+    		if (!active || GetIsMainZone || !GetCanSwitchZone)
     		{
     			currentZone = mainZone;
     			return;
@@ -136,7 +129,7 @@ namespace OpenMMO.Portals
 		{
 			get
 			{
-				return autoConnectClient && !String.IsNullOrWhiteSpace(autoPlayerName);
+				return autoConnectClient || !String.IsNullOrWhiteSpace(autoPlayerName);
 			}
 		}
 		
@@ -147,11 +140,9 @@ namespace OpenMMO.Portals
 		{
 			get
 			{
-#if !_SERVER && _CLIENT
-				return active;
-#else
+				if (ProjectConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay)
+					return active;
 				return false;
-#endif
 			}
 		}
 		
@@ -162,12 +153,8 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
     	protected void InitAsSubZone(NetworkZoneTemplate _template)
     	{
-    		//isSubZone 						= true;
-    		//zoneName						= _template.name;
-    		//zoneTimeoutMultiplier			= _template.zoneTimeoutMultiplier;
-    		//networkManager.StopServer();
     		networkTransport.port 			= GetZonePort;
-debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
+    		networkManager.networkAddress 	= _template.server.ip;
     		networkManager.onlineScene 		= _template.scene.SceneName;
     		networkManager.StartServer();
     	}
@@ -183,7 +170,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			
 			InvokeRepeating(nameof(SaveZone), 0, zoneIntervalMain);
 			
-			for (int i = 0; i < subZones.Length; i++)
+			for (int i = 0; i < subZones.Count; i++)
     			if (subZones[i] != currentZone)
     				SpawnSubZone(i);
     		
@@ -218,36 +205,20 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			OpenMMO.Network.NetworkManager.Shutdown();
 			OpenMMO.Network.NetworkManager.singleton = networkManager;
 			
-			
 			autoPlayerName = msg.playername;
 			
-			for (int i = 0; i < subZones.Length; i++)
+			for (int i = 0; i < subZones.Count; i++)
     		{
 				if (msg.zonename == subZones[i].name)
 				{
-				
-					debug.Log("Loading scene: "+subZones[i].scene.SceneName);
-					
 					zoneIndex = i;
-					
-					autoConnectClient = true;
-					
-					//networkTransport.Shutdown();
 					networkTransport.port = GetZonePort;
-				
-				debug.Log("Auto connecting to port:"+GetZonePort);
-				
-					
-					
-				debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
-					Invoke(nameof(ReloadScene), 1f);
-					
+					autoConnectClient = true;
+					Invoke(nameof(ReloadScene), 0.25f);
 					return;
 				}
 				
 			}
-			
-			
 			
 		}
 		
@@ -259,8 +230,9 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
         {
         	
         	autoPlayerName = "";
-        	autoConnectClient = false;
-        		//ClientScene.Ready(conn);
+        	
+        	if (UIPopupNotify.singleton)
+				UIPopupNotify.singleton.Hide();
         }
 		
 		// ======================  =================================
@@ -271,8 +243,6 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
     	// -------------------------------------------------------------------------------
 		void ReloadScene()
 		{
-			networkManager.StartClient();
-			debug.Log("Network is active/inactive: "+networkManager.isNetworkActive);
 			SceneManager.LoadScene(subZones[zoneIndex].scene.SceneName);
 		}
 		
@@ -283,26 +253,28 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 		
-		debug.Log("SCENE LOADED");
-		
 			if (NetworkServer.active)
 				if (currentZone.scene.SceneName == scene.name && GetSubZoneTimeoutInterval > 0)
 					InvokeRepeating(nameof(CheckSubZone), GetSubZoneTimeoutInterval, GetSubZoneTimeoutInterval);
 		
 			if (autoConnectClient)
 			{
-				
-				debug.Log("NetworkClient: "+ NetworkClient.isConnected);
-				debug.Log("NetworkManager: "+networkManager.isNetworkActive);
-				
-				OpenMMO.Network.NetworkAuthenticator.singleton.ClientAuthenticate();
-				
-				networkManager.TryAutoLoginPlayer(autoPlayerName);
-				
-				
+				networkManager.StartClient();
+				autoConnectClient = false;
 			}
 		
 		}
+		
+		// -------------------------------------------------------------------------------
+    	// AutoLogin
+    	// @Client
+    	// -------------------------------------------------------------------------------
+		public void AutoLogin()
+		{
+			networkManager.TryAutoLoginPlayer(autoPlayerName);
+		}
+		
+		// ================================= OTHER =======================================
 		
     	// -------------------------------------------------------------------------------
     	// SaveZone

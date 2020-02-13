@@ -111,7 +111,7 @@ namespace OpenMMO.Network
 		public bool UserLoggedIn(string userName)
 		{
 			foreach (KeyValuePair<string, GameObject> player in onlinePlayers)
-				if (player.Value.name == userName) return true;
+				if (player.Value != null && player.Value.name == userName) return true;
 			
 			return false;
 		}

@@ -43,6 +43,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void Init(string _description, float _duration=2)
 		{
+			base.Init();
 			Show(_description);
 			Invoke(nameof(Close), _duration);
 		}

@@ -28,6 +28,9 @@ namespace OpenMMO.Portals
 		[Tooltip("Anchor name in the target scene to teleport to")]
 		public string targetAnchor;
 		
+		
+		public string popupZoning 	= "Zoning, please wait...";
+		
 		// -------------------------------------------------------------------------------
 		// OnTriggerEnter
 		// @Client / @Server
@@ -77,6 +80,9 @@ namespace OpenMMO.Portals
 				player.GetComponent<PlayerComponent>().Cmd_WarpRemote(targetAnchor, targetZone.name);
 			
 			base.OnClickConfirm();
+			
+			if (UIPopupNotify.singleton)
+				UIPopupNotify.singleton.Init(popupZoning, 5f);
 			
 		}
 		

@@ -41,7 +41,7 @@ namespace OpenMMO.Network
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerLogin>(OnClientMessageRequestPlayerLogin);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerRegister>(OnClientMessageRequestPlayerRegister);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
-            NetworkServer.RegisterHandler<ClientMessageRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
+            
 
 			this.InvokeInstanceDevExtMethods(nameof(OnStartServer));
         	eventListeners.OnStartServer.Invoke();
@@ -352,41 +352,7 @@ namespace OpenMMO.Network
         	
         }
 
-        // -------------------------------------------------------------------------------
-        // OnClientMessageRequestPlayerSwitchServer
-        // @Client -> @Server
-        // -------------------------------------------------------------------------------    
-        /// <summary>
-        /// Event <c>OnClientMessageRequestPlayerSwitchServer</c>.
-        /// Triggered by the server receiving a player switch server request from the client. 
-        /// </summary>
-        /// <param name="conn"></param>
-        /// <param name="msg"></param>
-        void OnClientMessageRequestPlayerSwitchServer(NetworkConnection conn, ClientMessageRequestPlayerSwitchServer msg)
-        {
-        	
-        	ServerMessageResponsePlayerSwitchServer message = new ServerMessageResponsePlayerSwitchServer
-			{
-				success = true,
-				text			 	= "",
-				causesDisconnect 	= false
-			};
-        	
-        	if (DatabaseManager.singleton.TryPlayerSwitchServer(msg.playername))
-			{
-				message.text = systemText.playerSwitchServerSuccess;
-			}
-			else
-			{
-				message.text = systemText.playerSwitchServerFailure;
-				message.success = false;
-			}
-			
-        	conn.Send(message);
-        	
-        }
-        
-        // ============================= COMMON ACTIONS ==================================
+        // ============================== MAJOR ACTIONS ==================================
         
         // -------------------------------------------------------------------------------
 		// LoginUser

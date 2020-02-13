@@ -54,7 +54,7 @@ namespace OpenMMO.UI
 		{
 			animator.SetTrigger(showTriggerName);
 			
-			if (UIBackgroundLayer.singleton)
+			if (UIBackgroundLayer.singleton != null)
 				UIBackgroundLayer.singleton.FadeIn();
 		}
 		
@@ -83,13 +83,10 @@ namespace OpenMMO.UI
 		public void Close()
 		{
 			
-			if (!root.activeSelf)
-				return;
-				
-			animator.SetTrigger(closeTriggerName);
-			
-			if (UIBackgroundLayer.singleton)
+			if (UIBackgroundLayer.singleton != null)
 				UIBackgroundLayer.singleton.FadeOut();
+			
+			animator.SetTrigger(closeTriggerName);
 			
 		}
 

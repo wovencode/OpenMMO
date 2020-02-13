@@ -32,11 +32,10 @@ namespace OpenMMO.Network
     /// <summary>
     /// Public Partial class <c>ServerMessageResponseAuth</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
-    /// Does nothing as this message is never called directly.
     /// </summary>
     public partial class ServerMessageResponseAuth : ServerMessageResponse
 	{
-		// do nothing (this message is never called directly)
+		
 	}
 
     // ================================== MESSAGES USER ==================================

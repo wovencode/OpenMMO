@@ -112,12 +112,6 @@ namespace OpenMMO.Database
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerSwitchServer(string playername)
-		{
-			return (Tools.IsAllowedName(playername));
-		}
-		
-		// -------------------------------------------------------------------------------
 
 	}
 

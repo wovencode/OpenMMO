@@ -56,7 +56,7 @@ namespace OpenMMO.Portals
 		protected NetworkZoneTemplate currentZone;
 		
 		protected string autoPlayerName = "";
-    	protected bool autoConnectClient;
+    	protected bool autoConnectClient = false;
 		
 		protected string mainZoneName			= "_mainZone";
 		protected const string argZoneIndex 	= "zone";
@@ -148,7 +148,7 @@ namespace OpenMMO.Portals
 			get
 			{
 #if !_SERVER && _CLIENT
-				return true;
+				return active;
 #else
 				return false;
 #endif
@@ -200,6 +200,8 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			process.Start();
 		}
 		
+		// ====================== MESSAGE EVENT HANDLERS =================================
+		
 		// -------------------------------------------------------------------------------
     	// OnServerMessageResponsePlayerSwitchServer
     	// @Client
@@ -212,7 +214,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 			
 			networkManager.StopClient();
 			
-			//NetworkClient.Shutdown();
+			NetworkClient.Shutdown();
 			OpenMMO.Network.NetworkManager.Shutdown();
 			OpenMMO.Network.NetworkManager.singleton = networkManager;
 			
@@ -250,6 +252,20 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 		}
 		
 		// -------------------------------------------------------------------------------
+    	// OnServerMessageResponsePlayerAutoLogin
+    	// @Client
+    	// -------------------------------------------------------------------------------
+        public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerMessageResponsePlayerAutoLogin msg)
+        {
+        	
+        	autoPlayerName = "";
+        	autoConnectClient = false;
+        		//ClientScene.Ready(conn);
+        }
+		
+		// ======================  =================================
+		
+		// -------------------------------------------------------------------------------
     	// ReloadScene
     	// @Client
     	// -------------------------------------------------------------------------------
@@ -283,7 +299,7 @@ debug.Log("IM LISTENING AT PORT:"+networkTransport.port);
 				
 				networkManager.TryAutoLoginPlayer(autoPlayerName);
 				
-				autoConnectClient = false;
+				
 			}
 		
 		}

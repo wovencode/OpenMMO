@@ -18,25 +18,17 @@ namespace OpenMMO.Network
 	{
    		
    		// -----------------------------------------------------------------------------------
-		// OnStartClient_NetworkPortals
-		// @Client
-		// -----------------------------------------------------------------------------------
-		[DevExtMethods("OnStartClient")]
-		void OnStartClient_NetworkPortals()
-		{
-			NetworkClient.RegisterHandler<ServerMessageResponsePlayerSwitchServer>(GetComponent<PortalManager>().OnServerMessageResponsePlayerSwitchServer, false);
-		}
-   		
-		// -------------------------------------------------------------------------------
 		// OnStartServer_NetworkPortals
 		// @Server
-		// -------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------
 		[DevExtMethods("OnStartServer")]
 		void OnStartServer_NetworkPortals()
 		{
-			GetComponent<PortalManager>().SpawnSubZones();
+            NetworkServer.RegisterHandler<ClientMessageRequestPlayerAutoLogin>(OnClientMessageRequestPlayerAutoLogin);
+            
+            GetComponent<PortalManager>().SpawnSubZones();
 		}
-
+   		
 		// -------------------------------------------------------------------------------
 		// LoginPlayer_NetworkPortals
 		// @Server
@@ -86,6 +78,37 @@ namespace OpenMMO.Network
 			
         	conn.Send(message);
 		
+		}
+		
+		// ======================== MESSAGE HANDLERS - PLAYER ============================
+        
+        // -------------------------------------------------------------------------------
+        // OnClientMessageRequestPlayerLogin
+        // @Client -> @Server
+		// -------------------------------------------------------------------------------     
+        void OnClientMessageRequestPlayerAutoLogin(NetworkConnection conn, ClientMessageRequestPlayerAutoLogin msg)
+		{
+			
+			ServerMessageResponsePlayerAutoLogin message = new ServerMessageResponsePlayerAutoLogin
+			{
+				success = true,
+				text			 	= "",
+				causesDisconnect 	= false
+			};
+			
+			if (DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
+			{
+				LoginPlayer(conn, msg.username, msg.playername);
+				message.text = systemText.playerLoginSuccess;
+			}
+			else
+			{
+				message.text = systemText.playerLoginFailure;
+				message.success = false;
+			}
+					
+			conn.Send(message);
+			
 		}
 		
 		

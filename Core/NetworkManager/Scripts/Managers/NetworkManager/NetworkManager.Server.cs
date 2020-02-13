@@ -440,7 +440,7 @@ namespace OpenMMO.Network
 				
 				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername);
 				eventListeners.OnLoginPlayer.Invoke(conn);
-				
+debug.Log("AddPlayerForConnection:"+username+"/"+playername);
 			}
 			else
 				ServerSendError(conn, systemText.userAlreadyOnline, true);

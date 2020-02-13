@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -79,7 +79,7 @@ LightmapSettings:
     m_PVRBounces: 2
     m_PVREnvironmentSampleCount: 256
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilteringMode: 2
+    m_PVRFilteringMode: 0
     m_PVRDenoiserTypeDirect: 0
     m_PVRDenoiserTypeIndirect: 0
     m_PVRDenoiserTypeAO: 0
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e0c03ef12d44043ef8378ebffb00464e,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -137,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &170076734
 Light:
   m_ObjectHideFlags: 0
@@ -537,6 +538,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535,
+        type: 3}
+      propertyPath: targetAnchor
+      value: NetworkPortalAnchor
+      objectReference: {fileID: 0}
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Name
@@ -1130,8 +1136,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: active
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: canZoneToMain
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032034, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
@@ -1212,6 +1236,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NetworkManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252435991396032041, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
@@ -1321,6 +1350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4672676154308553640, guid: b0c05a8c28acf4055b20e97b935f7dab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4672676154308553654, guid: b0c05a8c28acf4055b20e97b935f7dab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1418,7 +1452,7 @@ PrefabInstance:
     - target: {fileID: 4374841326114086299, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_Name
-      value: PortalAnchor
+      value: NetworkPortalAnchor
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
@@ -1544,10 +1578,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: DatabaseManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7890701178789268690, guid: 28db4ceed746f4a62963adde76a4fbef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7890701179065248850, guid: 28db4ceed746f4a62963adde76a4fbef,
         type: 3}
       propertyPath: databaseName
-      value: Database.sqlite
+      value: DatabaseOpenMMO.sqlite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28db4ceed746f4a62963adde76a4fbef, type: 3}

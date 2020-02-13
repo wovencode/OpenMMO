@@ -28,10 +28,10 @@ namespace OpenMMO.Network
         /// </summary>
         public override void OnStartServer()
         {
-        
-        	// ---- Auth
+
             NetworkServer.RegisterHandler<ClientMessageRequestAuth>(OnClientMessageRequestAuth, false);
-           
+            
+        	this.InvokeInstanceDevExtMethods(nameof(OnStartServer));
         }
             	
         // -------------------------------------------------------------------------------

@@ -104,25 +104,9 @@ namespace OpenMMO.Network
 				playerPreviews.AddRange(msg.players);
 				maxPlayers	= msg.maxPlayers;
 				
-				/*
-				// -- Check Auto select Player
-				int playerIndex = playerPreviews.FindIndex(x => x.name == PortalManager.autoSelectPlayer);
-				
-				if (playerIndex != -1)
-				{
-					// -- Skip Player Select
-					ClientScene.AddPlayer(NetworkClient.connection);
-					PortalManager.autoSelectPlayer = "";
-				}
-				else
-				{
-				*/
-					// -- Show Player Select
-					UIWindowLoginUser.singleton.Hide();
-					UIWindowPlayerSelect.singleton.Show();
-        		/*
-        		}
-        		*/
+				// -- Show Player Select
+				UIWindowLoginUser.singleton.Hide();
+				UIWindowPlayerSelect.singleton.Show();
         		
         	}
         	

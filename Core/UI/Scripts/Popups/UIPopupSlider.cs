@@ -51,6 +51,8 @@ namespace OpenMMO.UI
 		public void Init(string _description, Action<long> _confirmAction, Action _cancelAction=null, long _maxValue=100, string _confirmText="", string _cancelText="")
 		{
 			
+			base.Init();
+			
 			confirmAction 	= _confirmAction;
 			cancelAction 	= _cancelAction;
 			

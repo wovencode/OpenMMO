@@ -16,6 +16,7 @@ namespace OpenMMO.Database
 		public string 	playername 	{ get; set; }
 		public string 	zonename 	{ get; set; }
 		public string	anchorname  { get; set; }
+		public int		token		{ get; set; }
 	}
 	
 	// -------------------------------------------------------------------------------

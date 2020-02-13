@@ -2,6 +2,7 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
+using OpenMMO.Portals;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -40,8 +41,9 @@ namespace OpenMMO.Network
         /// </summary>
         public override void OnStartClient()
         {
-            // ---- Auth
-            NetworkClient.RegisterHandler<ServerMessageResponseAuth>(OnServerMessageResponseAuth, false);     
+            NetworkClient.RegisterHandler<ServerMessageResponseAuth>(OnServerMessageResponseAuth, false);  
+            
+            this.InvokeInstanceDevExtMethods(nameof(OnStartClient));   
         }
 
         // -------------------------------------------------------------------------------
@@ -56,7 +58,10 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
         public override void OnClientAuthenticate(NetworkConnection conn)
         {
-        	Invoke(nameof(ClientAuthenticate), connectDelay);		
+        	if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetAutoConnect)
+        		Invoke(nameof(ClientAuthenticate), connectDelay);		
+        	
+        	this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate), conn);   
         }
         
 		// -------------------------------------------------------------------------------
@@ -70,12 +75,12 @@ namespace OpenMMO.Network
 		public void ClientAuthenticate()
 		{
 
-            ClientMessageRequestAuth authRequestMessage = new ClientMessageRequestAuth
+            ClientMessageRequestAuth msg = new ClientMessageRequestAuth
             {
                 clientVersion = Application.version
             };
 
-            NetworkClient.Send(authRequestMessage);
+            NetworkClient.Send(msg);
             
 		}
 
@@ -110,8 +115,10 @@ namespace OpenMMO.Network
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);
+               	
                	UIWindowAuth.singleton.Hide();
                	UIWindowMain.singleton.Show();
+debug.Log("NONONO OnServerMessageResponseAuth");
             }
         	
         }

@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -93,18 +93,18 @@ namespace OpenMMO {
 				
 				if (verticalMovementInput > 0)									// -- Movement: Forward
 				{
-					float factor = running ? runFactor : walkFactor;
+					float factor = running ? config.runFactor : config.walkFactor;
 					agent.velocity = direction * verticalMovementInput * agent.speed * factor;
 				}
 				else if (verticalMovementInput < 0)								// -- Movement: Backward
 				{
-					agent.velocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * backwardFactor;
+					agent.velocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * config.backwardFactor;
 				}
 				else
 					agent.velocity = Vector3.zero; // -- required?
 				
 				if (horizontalMovementInput != 0)		// -- Rotation
-					transform.Rotate(0, horizontalMovementInput * rotationSpeed, 0);
+					transform.Rotate(0, horizontalMovementInput * config.rotationSpeed, 0);
 				
            	}
            	else

@@ -537,6 +537,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535,
+        type: 3}
+      propertyPath: targetAnchor
+      value: NetworkPortalAnchor
+      objectReference: {fileID: 0}
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Name
@@ -1130,9 +1135,23 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
-      propertyPath: active
-      value: 0
+      propertyPath: subZones.Array.size
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a,
+        type: 2}
+    - target: {fileID: 279971125, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: subZones.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883,
+        type: 2}
     - target: {fileID: 3252435991396032034, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1418,7 +1437,7 @@ PrefabInstance:
     - target: {fileID: 4374841326114086299, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_Name
-      value: PortalAnchor
+      value: NetworkPortalAnchor
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
@@ -1547,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 7890701179065248850, guid: 28db4ceed746f4a62963adde76a4fbef,
         type: 3}
       propertyPath: databaseName
-      value: Database.sqlite
+      value: DatabaseOpenMMO.sqlite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28db4ceed746f4a62963adde76a4fbef, type: 3}

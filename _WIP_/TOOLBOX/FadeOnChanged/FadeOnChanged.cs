@@ -8,7 +8,7 @@ using OpenMMO;
 public class FadeOnChanged : MonoBehaviour
 {
     [Header("UPDATE FREQUENCY")]
-    [Tooltip("How many FixedUpdate frames must pass before this component updates again?")]
+    [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 15; //TICK RATE
 
 

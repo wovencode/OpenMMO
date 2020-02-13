@@ -6,12 +6,12 @@ using OpenMMO;
 public class FaceTheCamera : MonoBehaviour
 {
     [Header("UPDATE FREQUENCY")]
-    [Tooltip("How many FixedUpdate frames must pass before this component updates again?")]
+    [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 5; //TICK RATE
 
 #if _CLIENT
     int frameCount = 0; //FRAME COUNTER
-    void FixedUpdate()
+    void LateUpdate()
     {
         //if (!PlayerComponent.localPlayer) return; //NOT LOGGED IN
 

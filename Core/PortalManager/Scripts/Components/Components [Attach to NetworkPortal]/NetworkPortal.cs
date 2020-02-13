@@ -40,6 +40,13 @@ namespace OpenMMO.Portals
 			if (pc == null || !pc.IsLocalPlayer)
 				return;
 			
+			// -- can we switch zones?
+			if (!PortalManager.singleton.GetCanSwitchZone)
+			{
+				UIPopupNotify.singleton.Init(popupClosed);
+				return;
+			}
+			
 			if (!triggerOnEnter)
 			{
 			

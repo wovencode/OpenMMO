@@ -56,7 +56,7 @@ namespace OpenMMO.Portals
 		protected NetworkZoneTemplate currentZone;
 		
 		protected string autoPlayerName = "";
-    	[HideInInspector]public bool autoConnectClient;
+    	protected bool autoConnectClient;
 		
 		protected string mainZoneName			= "_mainZone";
 		protected const string argZoneIndex 	= "zone";
@@ -93,6 +93,8 @@ namespace OpenMMO.Portals
     		
     	}
     	
+    	// ============================== GETTERS ========================================
+    	
     	// -------------------------------------------------------------------------------
     	// GetIsMainZone
     	// -------------------------------------------------------------------------------
@@ -126,6 +128,34 @@ namespace OpenMMO.Portals
     			return (ushort)(originalPort + zoneIndex + 1);
     		}
     	}
+		
+		// -------------------------------------------------------------------------------
+    	// GetAutoConnect
+    	// -------------------------------------------------------------------------------
+		public bool GetAutoConnect
+		{
+			get
+			{
+				return autoConnectClient && !String.IsNullOrWhiteSpace(autoPlayerName);
+			}
+		}
+		
+		// -------------------------------------------------------------------------------
+    	// GetCanSwitchZone
+    	// -------------------------------------------------------------------------------
+		public bool GetCanSwitchZone
+		{
+			get
+			{
+#if !_SERVER && _CLIENT
+				return true;
+#else
+				return false;
+#endif
+			}
+		}
+		
+		// =========================== MAIN METHODS ======================================
 		
     	// -------------------------------------------------------------------------------
     	// InitAsSubZone

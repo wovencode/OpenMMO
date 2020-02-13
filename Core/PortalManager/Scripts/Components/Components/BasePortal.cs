@@ -28,6 +28,7 @@ namespace OpenMMO.Portals
 		[Header("System Texts")]
 		public string popupEnter 	= "Enter {0}?";
 		public string popupWait 	= "Please wait {0} seconds!";
+		public string popupClosed	= "This portal is offline.";
 		public string infoEntered	= "You stepped into a warp portal.";
 		
 		// -------------------------------------------------------------------------------

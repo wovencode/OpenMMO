@@ -2,6 +2,7 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
+using OpenMMO.Portals;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -110,8 +111,13 @@ namespace OpenMMO.Network
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);
+               	
                	UIWindowAuth.singleton.Hide();
-               	UIWindowMain.singleton.Show();
+               	
+               	// -- only show the main window if we are not zoning
+               	if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetAutoConnect)
+               		UIWindowMain.singleton.Show();
+               		
             }
         	
         }

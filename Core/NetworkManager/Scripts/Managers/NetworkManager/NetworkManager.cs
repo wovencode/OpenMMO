@@ -272,7 +272,7 @@ namespace OpenMMO.Network
 		public override void OnClientDisconnect(NetworkConnection conn)
 		{
 			// -- required: otherwise a zone switch would disconnect the client
-			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().autoConnectClient)
+			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetAutoConnect)
 			{
 				base.OnClientDisconnect(conn);
 				state = NetworkState.Offline;

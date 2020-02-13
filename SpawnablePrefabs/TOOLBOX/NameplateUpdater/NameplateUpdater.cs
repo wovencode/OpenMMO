@@ -11,9 +11,9 @@ public class NameplateUpdater : MonoBehaviour
     [SerializeField] [Range(1, 60)] int tickFrequency = 30; //TICK RATE
 
     [Header("TEXT FIELDS")]
-    [SerializeField] TextMeshPro nameField;
-    [SerializeField] TextMeshPro guildField;
-    //[SerializeField] TextMeshPro titleField;
+    [SerializeField] TextMeshPro nameField = null;
+    [SerializeField] TextMeshPro guildField = null;
+    [SerializeField] TextMeshPro zoneField = null;
 
 #if _CLIENT
     int frameCount = 0; //FRAME COUNTER
@@ -31,8 +31,9 @@ public class NameplateUpdater : MonoBehaviour
 
             if (player)
             {
-                if (nameField != null) nameField.text = player.gameObject.name; //UPDATE PLAYER NAME
-                if (guildField != null) guildField.text = "level " + player.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
+                if (nameField != null && nameField.enabled) nameField.text = player.gameObject.name; //UPDATE PLAYER NAME
+                if (guildField != null && guildField.enabled) guildField.text = "level " + player.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
+                if (zoneField != null && zoneField.enabled) zoneField.text = player.currentZone.title; //UPDATE PLAYER ZONE
             }
         }
     }

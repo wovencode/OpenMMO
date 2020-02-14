@@ -39,6 +39,9 @@ namespace OpenMMO.Network
 		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, GameObject prefab, string userName, string playerName)
 		{
 			
+			if (!PortalManager.singleton.GetCanSwitchZone)
+				return;
+			
 			PlayerComponent pc 				= player.GetComponent<PlayerComponent>();
 			string zoneName 				= pc.tablePlayerZones.zonename;
 			NetworkZoneTemplate currentZone = pc.currentZone;

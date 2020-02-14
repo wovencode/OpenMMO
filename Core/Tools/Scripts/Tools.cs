@@ -152,7 +152,7 @@ namespace OpenMMO
 			return int.Parse(args[idx+1]);
 			
 		}
-		
+
 		// -------------------------------------------------------------------------------
 		// GetArgumentsString
 		// Note: The first argument is always the process name or empty
@@ -177,10 +177,15 @@ namespace OpenMMO
 			get
 			{
 				String[] args = System.Environment.GetCommandLineArgs();
-				return args != null ? args[0] : "";
+				
+				if (args != null)
+					if (!String.IsNullOrWhiteSpace(args[0]))
+						return args[0];
+
+				return Application.dataPath;
 			}
 		}
-	
+
 		// ============================== VALIDATION =====================================
 		
 		// -------------------------------------------------------------------------------
@@ -194,7 +199,7 @@ namespace OpenMMO
 					Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$") &&
 					!ArrayContains(BadwordsTemplate.singleton.badwords, _text);
 		}
-	
+
 		// -------------------------------------------------------------------------------
 		// Very simple password validation (must not be empty) so it works with hashed
 		// passwords as well.

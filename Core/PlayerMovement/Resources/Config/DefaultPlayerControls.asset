@@ -15,7 +15,7 @@ MonoBehaviour:
   runKey: 304
   moveAxisHorizontal: Horizontal
   moveAxisVertical: Vertical
-  rotationSpeed: 100
+  rotationSpeed: 0.5
   walkFactor: 1
   runFactor: 1.5
   backwardFactor: 0.5

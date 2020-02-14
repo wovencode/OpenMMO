@@ -93,18 +93,18 @@ namespace OpenMMO {
 				
 				if (verticalMovementInput > 0)									// -- Movement: Forward
 				{
-					float factor = running ? config.runFactor : config.walkFactor;
-					agent.velocity = direction * verticalMovementInput * agent.speed * factor;
+					float factor = running ? config.runSpeedScale : config.walkSpeedScale;
+					agent.velocity = direction * verticalMovementInput * agent.speed * factor * config.moveSpeedMultiplier;
 				}
 				else if (verticalMovementInput < 0)								// -- Movement: Backward
 				{
-					agent.velocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * config.backwardFactor;
+					agent.velocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * config.backpedalSpeedScale;
 				}
 				else
 					agent.velocity = Vector3.zero; // -- required?
 				
 				if (horizontalMovementInput != 0)		// -- Rotation
-					transform.Rotate(0, horizontalMovementInput * config.rotationSpeed, 0);
+					transform.Rotate(0, horizontalMovementInput * config.turnSpeedMultiplier, 0);
 				
            	}
            	else

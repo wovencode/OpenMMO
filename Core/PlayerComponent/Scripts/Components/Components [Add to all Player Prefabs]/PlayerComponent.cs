@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace OpenMMO {
 		public TablePlayer tablePlayer 				= new TablePlayer();
 		public TablePlayerZones tablePlayerZones 	= new TablePlayerZones();
 		
-		Camera mainCamera;
+		Camera mainCamera { get { return Camera.main; } } //TODO: This is never used and Camera.main does the same thing...consider removing
 		
 		// -------------------------------------------------------------------------------
 		// Start
@@ -41,9 +41,10 @@ namespace OpenMMO {
     	{
     		base.OnStartLocalPlayer();
     		
-        	mainCamera = Camera.main;
-        	mainCamera.GetComponent<CameraOpenMMO>().target = this.transform;
-        	mainCamera.GetComponent<CameraOpenMMO>().enabled = true;
+            //DEPRECIATED - Cameras now find their own targets :)
+        	//mainCamera = Camera.main;
+        	//mainCamera.GetComponent<CameraOpenMMO>().target = this.transform;
+        	//mainCamera.GetComponent<CameraOpenMMO>().enabled = true;
 		}
 		
 		// -------------------------------------------------------------------------------

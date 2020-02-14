@@ -28,7 +28,7 @@ public class OrbitMyTarget : MonoBehaviour
     [Header("ZOOM")]
     public float distance = 5.0f;
     public float distanceMin = .5f;
-    public float distanceMax = 15f;
+    public float distanceMax = 25f;
 
      [Header("OFFSETS")]
     [SerializeField] int heightOffset = 3;

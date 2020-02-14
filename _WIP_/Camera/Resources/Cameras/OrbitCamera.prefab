@@ -100,7 +100,7 @@ MonoBehaviour:
   zoomSpeed: 5
   distance: 12
   distanceMin: 0.5
-  distanceMax: 15
+  distanceMax: 24
   heightOffset: 3
   horizontalMax: 0
   horizontalMin: -360

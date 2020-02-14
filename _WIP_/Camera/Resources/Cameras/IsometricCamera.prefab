@@ -98,12 +98,12 @@ MonoBehaviour:
   turnSpeed: 2
   pitchSpeed: 7
   zoomSpeed: 5
-  distance: 12.5
-  distanceMin: 0.5
-  distanceMax: 15
-  heightOffset: 3
-  horizontalMax: 0
-  horizontalMin: -360
+  distance: 16
+  distanceMin: 8
+  distanceMax: 24
+  heightOffset: 2
+  horizontalMax: 45
+  horizontalMin: 45
   verticalMin: 45
   verticalMax: 45
 --- !u!114 &3321310163183933699

@@ -31,14 +31,13 @@ namespace OpenMMO.Database
 		[DevExtMethods("CreateDefaultDataPlayer")]
 		void CreateDefaultDataPlayer_NetworkZones(GameObject player)
 		{
-	 		/*
-	 			Fills the table with default data (if any)
-	 			You should use a GetComponent call (for example to your "Inventory")
-	 			And then fill the inventory with "DefaultItems"
-	 			No need to save them in the database right away
-	 			As the playerSaving or next saveInterval will take care of it
-	 		*/
-	 		
+	 		player.GetComponent<PlayerComponent>().tablePlayerZones = new TablePlayerZones
+	   		{
+                playername 		= player.name,
+                zonename 		= player.GetComponent<PlayerComponent>().startingZone.name,
+                anchorname 		= "",
+                token			= 0
+            };
 		}
 		
 		// -------------------------------------------------------------------------------

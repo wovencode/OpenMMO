@@ -164,7 +164,7 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
 		public void SpawnSubZones()
 		{
-
+debug.Log("SpawnSubZones");
 			if (!GetIsMainZone || !active)
 				return;
 			
@@ -180,9 +180,16 @@ namespace OpenMMO.Portals
     	// SpawnSubZone
     	// -------------------------------------------------------------------------------
 		protected void SpawnSubZone(int index)
-		{
+		{	
+			
+			// DEBUG START
+			String[] args = System.Environment.GetCommandLineArgs();
+			debug.Log("-->ARGS: "+args[0]);
+			debug.Log("-->APP: "+Application.dataPath);
+			// DEBUG END
+		
 			Process process = new Process();
-			process.StartInfo.FileName = Tools.GetProcessPath;
+			process.StartInfo.FileName 	= Tools.GetProcessPath;
 			process.StartInfo.Arguments = Tools.GetArgumentsString + " " + argZoneIndex + " " + index.ToString();
 			process.Start();
 		}

@@ -401,6 +401,7 @@ namespace OpenMMO.Network
 				
 				ValidatePlayerPosition(player);
 				NetworkServer.AddPlayerForConnection(conn, player);
+				player.name = playername;
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;
 				

@@ -15,8 +15,8 @@ MonoBehaviour:
   runKey: 304
   moveAxisHorizontal: 0
   moveAxisVertical: 1
-  turnSpeedMultiplier: 0.75
+  turnSpeedMultiplier: 0.8
   moveSpeedMultiplier: 1
   walkSpeedScale: 1
-  runSpeedScale: 1.5
+  runSpeedScale: 2
   backpedalSpeedScale: 0.5

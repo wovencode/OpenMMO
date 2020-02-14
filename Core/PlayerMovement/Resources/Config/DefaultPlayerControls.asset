@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a06ca1889a75bf45986f4cad94c281c, type: 3}
-  m_Name: DefaultPlayerControlConfig
+  m_Name: DefaultPlayerControls
   m_EditorClassIdentifier: 
   runKey: 304
-  moveAxisHorizontal: Horizontal
-  moveAxisVertical: Vertical
-  rotationSpeed: 0.5
-  walkFactor: 1
-  runFactor: 1.5
-  backwardFactor: 0.5
+  moveAxisHorizontal: 0
+  moveAxisVertical: 1
+  turnSpeedMultiplier: 0.5
+  moveSpeedMultiplier: 1
+  walkSpeedScale: 1
+  runSpeedScale: 1.5
+  backpedalSpeedScale: 0.5

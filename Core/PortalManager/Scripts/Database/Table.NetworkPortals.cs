@@ -3,6 +3,7 @@ using OpenMMO;
 using OpenMMO.Database;
 using System;
 using SQLite;
+using UnityEngine;
 
 namespace OpenMMO.Database
 {
@@ -20,6 +21,7 @@ namespace OpenMMO.Database
 		
 		public bool ValidateToken(int _token)
 		{
+			Debug.Log("TOKEN:"+token+"/"+_token);
 			return (token == _token);
 		}
 		

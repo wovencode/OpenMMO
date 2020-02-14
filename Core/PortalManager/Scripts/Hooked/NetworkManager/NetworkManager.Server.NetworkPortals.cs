@@ -50,11 +50,8 @@ namespace OpenMMO.Network
 			{
 				string anchorName = pc.tablePlayerZones.anchorname;
 				
-				// -- refresh security token
-				pc.RefreshToken();
-				
-				// -- issue warp
-				pc.WarpRemote(anchorName, zoneName, pc.GetToken);
+				// -- issue warp (no token required as it is server side)
+				pc.WarpRemote(anchorName, zoneName, 0);
 				
 			}
 		
@@ -178,7 +175,7 @@ namespace OpenMMO.Network
 				
 					// -- update zone
 					pc.tablePlayerZones.zonename = pc.currentZone.name;
-				
+					
 					// -- warp to anchor location
 					string anchorName = pc.tablePlayerZones.anchorname;
 					

@@ -77,7 +77,7 @@ namespace OpenMMO.Portals
 				return;
 				
 			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor))
-				player.GetComponent<PlayerComponent>().Cmd_WarpRemote(targetAnchor, targetZone.name);
+				player.GetComponent<PlayerComponent>().WarpRemote(targetAnchor, targetZone.name);
 			
 			base.OnClickConfirm();
 			

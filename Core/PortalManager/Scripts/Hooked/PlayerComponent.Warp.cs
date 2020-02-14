@@ -19,29 +19,18 @@ namespace OpenMMO {
 		[Header("NetworkZones")]
 		public NetworkZoneTemplate startingZone;
 		
-		protected int _token = 0;
+		protected int securityToken = 0;
 		
 		// -------------------------------------------------------------------------------
 		// GetToken
-		// Fetches the current token or generates a new one if its 0.
+		// Fetches the current token
 		// -------------------------------------------------------------------------------
 		public int GetToken
 		{
 			get
 			{
-				if (_token == 0)
-					RefreshToken();
-				return _token;
+				return securityToken;
 			}
-		}
-		
-		// -------------------------------------------------------------------------------
-		// RefreshToken
-		// Generates a new security token for server switch.
-		// -------------------------------------------------------------------------------
-		public void RefreshToken()
-		{
-			_token = UnityEngine.Random.Range(1000,9999);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -68,9 +57,21 @@ namespace OpenMMO {
 		[Command]
 		public void Cmd_WarpLocal(string anchorName)
 		{
-
 			if (PortalManager.CheckPortalAnchor(anchorName))
 				WarpLocal(anchorName);
+		}
+		
+		// -------------------------------------------------------------------------------
+		// WarpRemote
+		// Public
+		// @Client
+		// -------------------------------------------------------------------------------
+		[Client]
+		public void WarpRemote(string anchorName, string zoneName)
+		{
+			// -- refresh security token
+			PortalManager.singleton.RefreshToken();
+			Cmd_WarpRemote(anchorName, zoneName, PortalManager.singleton.GetToken);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -79,15 +80,11 @@ namespace OpenMMO {
 		// @Client -> @Server
 		// -------------------------------------------------------------------------------
 		[Command]
-		public void Cmd_WarpRemote(string anchorName, string zoneName)
+		protected void Cmd_WarpRemote(string anchorName, string zoneName, int token)
 		{
 			if (!String.IsNullOrWhiteSpace(anchorName) && !String.IsNullOrWhiteSpace(zoneName))
 			{
-				// -- refresh security token
-				RefreshToken();
-				
-				// -- issue warp
-				WarpRemote(anchorName, zoneName, GetToken);
+				WarpRemote(anchorName, zoneName, token);
 			}
 		}
 		
@@ -97,24 +94,24 @@ namespace OpenMMO {
 		// @Server
 		// -------------------------------------------------------------------------------
 		[ServerCallback]
-		public void WarpRemote(string anchorName, string zoneName, int token)
+		public void WarpRemote(string anchorName, string zoneName, int token=0)
     	{
     		
     		NetworkZoneTemplate template = NetworkZoneTemplate.GetZoneBySceneName(zoneName);
     		
     		UpdateCooldown(20);
     		
-    		// -- set security token
-    		_token = token;
-    		
     		// -- set anchor & zone
     		this.GetComponent<PlayerComponent>().tablePlayerZones.anchorname = anchorName;
     		this.GetComponent<PlayerComponent>().tablePlayerZones.zonename = zoneName;
+    		securityToken = token; // token must not be set in table, can be fetched via GetToken
+    		
+    		debug.Log("SERVER TOKEN IS: " + securityToken);
     		
     		// -- save player
     		DatabaseManager.singleton.SaveDataPlayer(this.gameObject);
     		
-    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName, _token);
+    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName, securityToken);
     		
     		NetworkServer.Destroy(this.gameObject);
     		

@@ -53,6 +53,7 @@ namespace OpenMMO.Portals
     	protected bool autoConnectClient 			= false;
 		protected string mainZoneName				= "_mainZone";
 		protected const string argZoneIndex 		= "-zone";
+		protected int securityToken 				= 0;
 		
 		// -------------------------------------------------------------------------------
     	// Awake
@@ -144,6 +145,29 @@ namespace OpenMMO.Portals
 					return active;
 				return false;
 			}
+		}
+		
+		// -------------------------------------------------------------------------------
+		// GetToken
+		// Fetches the current token or generates a new one if its 0.
+		// -------------------------------------------------------------------------------
+		public int GetToken
+		{
+			get
+			{
+				return securityToken;
+			}
+		}
+		
+		// ================================ OTHER PUBLIC =================================
+		
+		// -------------------------------------------------------------------------------
+		// RefreshToken
+		// Generates a new security token for server switch.
+		// -------------------------------------------------------------------------------
+		public void RefreshToken()
+		{
+			securityToken = UnityEngine.Random.Range(1000,9999);
 		}
 		
 		// =========================== MAIN METHODS ======================================
@@ -280,7 +304,7 @@ debug.Log("SpawnSubZones");
     	// -------------------------------------------------------------------------------
 		public void AutoLogin()
 		{
-			networkManager.TryAutoLoginPlayer(autoPlayerName);
+			networkManager.TryAutoLoginPlayer(autoPlayerName, GetToken);
 		}
 		
 		// ================================= OTHER =======================================

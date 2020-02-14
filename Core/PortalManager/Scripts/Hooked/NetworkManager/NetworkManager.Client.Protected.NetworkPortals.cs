@@ -34,7 +34,7 @@ namespace OpenMMO.Network
         // RequestPlayerAutoLogin
         // @Client -> @Server
         // -------------------------------------------------------------------------------
-        protected bool RequestPlayerAutoLogin(NetworkConnection conn, string playerName, string userName)
+        protected bool RequestPlayerAutoLogin(NetworkConnection conn, string playerName, string userName, int _token)
 		{
 		
 			Debug.Log("RequestPlayerAutoLogin:"+playerName+"/"+userName);
@@ -44,8 +44,9 @@ namespace OpenMMO.Network
 
 			ClientMessageRequestPlayerAutoLogin message = new ClientMessageRequestPlayerAutoLogin
 			{
-				playername = playerName,
-				username = userName
+				playername 	= playerName,
+				username 	= userName,
+				token 		= _token
 			};
 			
 			ClientScene.Ready(conn);

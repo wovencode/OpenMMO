@@ -46,6 +46,9 @@ namespace OpenMMO.Network
             NetworkClient.RegisterHandler<ServerMessageResponsePlayerRegister>(OnServerMessageResponsePlayerRegister);
             NetworkClient.RegisterHandler<ServerMessageResponsePlayerDelete>(OnServerMessageResponsePlayerDelete);
             
+            // --- Error Message
+            NetworkClient.RegisterHandler<ErrorMsg>(OnErrorMsg);
+            
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient));
             eventListeners.OnStartClient.Invoke();
             
@@ -83,7 +86,31 @@ namespace OpenMMO.Network
             }
             
         }
-
+        
+        
+        // ========================== MESSAGE HANDLERS - USER ============================
+        
+		// -------------------------------------------------------------------------------
+		// OnErrorMsg
+		// @Server -> @Client
+		// -------------------------------------------------------------------------------
+		void OnErrorMsg(NetworkConnection conn, ErrorMsg msg)
+		{
+		
+			// -- show popup if error message is not empty
+        	if (!String.IsNullOrWhiteSpace(msg.text))
+               	UIPopupConfirm.singleton.Init(msg.text);
+    		
+        	// -- disconnect and un-authenticate if anything went wrong
+            if (msg.causesDisconnect)
+            {
+                conn.isAuthenticated = false;
+                conn.Disconnect();
+                NetworkManager.singleton.StopClient();
+            }
+		
+		}
+		
         // ========================== MESSAGE HANDLERS - USER ============================
 
         // -------------------------------------------------------------------------------

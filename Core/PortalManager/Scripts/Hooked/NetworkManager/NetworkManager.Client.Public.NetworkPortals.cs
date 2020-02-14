@@ -27,9 +27,9 @@ namespace OpenMMO.Network
         /// Runs on the client. 
         /// </summary>
         /// <param name="username"></param>
-        public void TryAutoLoginPlayer(string playername)
+        public void TryAutoLoginPlayer(string playername, int token)
 		{
-			RequestPlayerAutoLogin(NetworkClient.connection, playername, userName);
+			RequestPlayerAutoLogin(NetworkClient.connection, playername, userName, token);
 		}
 
 		// -------------------------------------------------------------------------------

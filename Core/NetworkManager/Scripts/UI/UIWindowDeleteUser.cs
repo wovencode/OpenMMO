@@ -58,7 +58,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		protected void OnClickDelete()
 		{
-			UIPopupPrompt.singleton.Init(popupDescription, OnClickConfirmDelete);
+			UIPopupPrompt.singleton.Init(popupDescription, OnClickConfirmDelete, OnClickCancelDelete);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -85,6 +85,15 @@ namespace OpenMMO.UI
 			usernameInput.text = "";
 			userpassInput.text = "";
 			
+		}
+		
+		// -------------------------------------------------------------------------------
+		// OnClickCancelDelete
+		// -------------------------------------------------------------------------------
+		public void OnClickCancelDelete()
+		{
+			Hide();
+			UIWindowMain.singleton.Show();
 		}
 		
 		// -------------------------------------------------------------------------------

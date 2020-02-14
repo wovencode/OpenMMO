@@ -29,7 +29,7 @@ namespace OpenMMO
         // -------------------------------------------------------------------------------
         private void OnValidate()
         {
-            if (!config) config = Resources.Load<PlayerControlConfig>("DefaultPlayerControlConfig"); //LOAD DEFAULT
+            if (!config) config = Resources.Load<PlayerControlConfig>("Config/DefaultPlayerControls"); //LOAD DEFAULT
         }
 #endif
         // -------------------------------------------------------------------------------
@@ -77,8 +77,8 @@ namespace OpenMMO
             if (!isLocalPlayer) return;
             if (Tools.AnyInputFocused) return;
 
-            horizontalMovementInput = Input.GetAxis(config.moveAxisHorizontal);
-            verticalMovementInput = Input.GetAxis(config.moveAxisVertical);
+            horizontalMovementInput = Input.GetAxis(config.moveAxisHorizontal.ToString());
+            verticalMovementInput = Input.GetAxis(config.moveAxisVertical.ToString());
             running = Input.GetKey(config.runKey);
 
             UpdateVelocity();

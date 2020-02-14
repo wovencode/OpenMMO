@@ -128,7 +128,7 @@ namespace OpenMMO {
 		[ServerCallback]
 		public void WarpLocal(string anchorName)
     	{
-debug.Log("WarpLocal: "+anchorName);
+
     		if (PortalManager.CheckPortalAnchor(anchorName))
         		base.Warp(PortalManager.GetPortalAnchorPosition(anchorName));
         	

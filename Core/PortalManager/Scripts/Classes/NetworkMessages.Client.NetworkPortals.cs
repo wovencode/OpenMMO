@@ -31,6 +31,7 @@ namespace OpenMMO.Network
 	{
 		public string username;
 		public string playername;
+		public int token;
 	}
 	
 	// ================================= MESSAGES AUTH ===================================

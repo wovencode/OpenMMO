@@ -42,11 +42,12 @@ namespace OpenMMO.Network
     	
 		// -------------------------------------------------------------------------------
         // ClientAutoAuthenticate
-        // @Client -> @Server
+        // Direction: @Client -> @Server
+        // Execution: @Client
 		// -------------------------------------------------------------------------------
 		public void ClientAutoAuthenticate()
 		{
-debug.Log("ClientAutoAuthenticate");
+
             ClientMessageRequestAutoAuth msg = new ClientMessageRequestAutoAuth
             {
                 clientVersion = Application.version
@@ -83,7 +84,6 @@ debug.Log("ClientAutoAuthenticate");
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);
-               	
                	PortalManager.singleton.AutoLogin();
             }
         	

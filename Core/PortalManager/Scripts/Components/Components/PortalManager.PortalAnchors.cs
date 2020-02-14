@@ -27,6 +27,7 @@ namespace OpenMMO.Portals
         
         // -------------------------------------------------------------------------------
     	// CheckPortalAnchor
+    	// @Client / @Server
     	// -------------------------------------------------------------------------------
         public static bool CheckPortalAnchor(string _name)
         {
@@ -45,6 +46,7 @@ namespace OpenMMO.Portals
         
         // -------------------------------------------------------------------------------
     	// GetPortalAnchorPosition
+    	// @Client / @Server
     	// -------------------------------------------------------------------------------
         public static Vector3 GetPortalAnchorPosition(string _name)
         {
@@ -56,6 +58,7 @@ namespace OpenMMO.Portals
         
         // -------------------------------------------------------------------------------
     	// RegisterPortalAnchor
+    	// @Client / @Server
     	// -------------------------------------------------------------------------------
         public static void RegisterPortalAnchor(string _name, Vector3 _position)
         {
@@ -71,6 +74,7 @@ namespace OpenMMO.Portals
 
         // -------------------------------------------------------------------------------
     	// UnRegisterPortalAnchor
+    	// @Client / @Server
     	// -------------------------------------------------------------------------------
         public static void UnRegisterPortalAnchor(string _name)
         {

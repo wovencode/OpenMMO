@@ -14,11 +14,38 @@ namespace OpenMMO.Database
 	// ===================================================================================
 	public partial class DatabaseManager
 	{
-	
+		
+		// -------------------------------------------------------------------------------
+	   	// CheckZoneTimeout
+	   	// -------------------------------------------------------------------------------
+		public bool CheckZoneTimeout(string zoneName, float timeoutInterval)
+		{
+			
+			TableNetworkZones row = FindWithQuery<TableNetworkZones>("SELECT * FROM "+nameof(TableNetworkZones)+" WHERE zone=?", zoneName);
+			
+			if (row != null)
+			{
+			
+				double timePassed = (DateTime.UtcNow - DateTime.Parse(row.online)).TotalSeconds;
+
+				// -- enough time passed = shutdown
+				if (timePassed > timeoutInterval)
+					return true;
+				
+				// -- if we reach this = do not shutdown
+				return false;
+				
+			}
+			
+			// -- in any other case = shutdown
+			return true;
+		
+		}
+		
 	   	// -------------------------------------------------------------------------------
 	   	// SaveZoneTime
 	   	// -------------------------------------------------------------------------------
-	   	public void SaveZoneTime(string zoneName, int playerCount)
+	   	public void SaveZoneTime(string zoneName)
 	   	{
 	   		
 	   		// delete data first, to prevent duplicates
@@ -28,8 +55,7 @@ namespace OpenMMO.Database
 	   		
 	   		InsertOrReplace(new TableNetworkZones{
                 	zone 			= zoneName,
-                	online 			= onlineString,
-                	players 		= playerCount,
+                	online 			= onlineString
             });
 	   			   		
 	   	}
@@ -43,7 +69,7 @@ namespace OpenMMO.Database
 	   	{
 	   		
 	   		TableNetworkZones row = FindWithQuery<TableNetworkZones>("SELECT * FROM "+nameof(TableNetworkZones)+" WHERE zone=?", zoneName);
-	   	
+	   		
 	   		if (row != null)
 	   			return (DateTime.UtcNow - DateTime.Parse(row.online)).TotalSeconds;
 	   		

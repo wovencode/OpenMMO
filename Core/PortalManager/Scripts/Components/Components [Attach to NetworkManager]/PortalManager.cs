@@ -34,7 +34,7 @@ namespace OpenMMO.Portals
 		
 		[Header("Settings")]
 		[Tooltip("MainZone data save interval (in seconds)")]
-		public float zoneIntervalMain = 10f;
+		public float zoneIntervalMain = 60f;
 		
 		[Header("Debug Helper")]
 		public DebugHelper debug;
@@ -48,7 +48,6 @@ namespace OpenMMO.Portals
 	
 		protected ushort originalPort;
 		protected int zoneIndex 					= -1;
-		protected int playersOnline;
 		protected NetworkZoneTemplate currentZone	= null;
 		protected string autoPlayerName 			= "";
     	protected bool autoConnectClient 			= false;
@@ -263,8 +262,8 @@ debug.Log("SpawnSubZones");
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 		
-			if (NetworkServer.active)
-				if (currentZone.scene.SceneName == scene.name && GetSubZoneTimeoutInterval > 0)
+			if (NetworkServer.active && !GetIsMainZone)
+				if (GetSubZoneTimeoutInterval > 0)
 					InvokeRepeating(nameof(CheckSubZone), GetSubZoneTimeoutInterval, GetSubZoneTimeoutInterval);
 		
 			if (autoConnectClient)
@@ -288,18 +287,20 @@ debug.Log("SpawnSubZones");
 		
     	// -------------------------------------------------------------------------------
     	// SaveZone
+    	// @Server
     	// -------------------------------------------------------------------------------
     	void SaveZone()
     	{
-    		DatabaseManager.singleton.SaveZoneTime(mainZoneName, playersOnline);
+    		DatabaseManager.singleton.SaveZoneTime(mainZoneName);
     	}
     	
     	// -------------------------------------------------------------------------------
     	// CheckSubZone
+    	// @Server
     	// -------------------------------------------------------------------------------
     	void CheckSubZone()
     	{
-    		if (DatabaseManager.singleton.LoadZoneTime(mainZoneName) > GetSubZoneTimeoutInterval)
+    		if (DatabaseManager.singleton.CheckZoneTimeout(mainZoneName, GetSubZoneTimeoutInterval))
     			Application.Quit();
     	}
     	

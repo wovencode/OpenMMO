@@ -26,15 +26,12 @@ namespace OpenMMO.Network
             NetworkServer.RegisterHandler<ClientMessageRequestAutoAuth>(OnClientMessageRequestAutoAuth, false);
         }
         
-        // ===============================================================================
-        // ============================= MESSAGE HANDLERS ================================
-        // ===============================================================================
-
         // ========================== MESSAGE HANDLERS - AUTH ============================
 
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestAutoAuth
-        // @Client -> @Server
+        // Direction: @Server -> @Client
+        // Execution: @Server
         // -------------------------------------------------------------------------------      
         void OnClientMessageRequestAutoAuth(NetworkConnection conn, ClientMessageRequestAutoAuth msg)
 		{

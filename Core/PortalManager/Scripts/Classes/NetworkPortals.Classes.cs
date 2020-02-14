@@ -14,6 +14,7 @@ namespace OpenMMO.Portals
 	[System.Serializable]
 	public partial class SceneLocation
 	{
+	
 		public UnityScene scene;
 		public Vector3 position;
 
@@ -24,6 +25,7 @@ namespace OpenMMO.Portals
 				return scene.IsSet();
 			}
 		}
+		
 	}
 	
 	// -----------------------------------------------------------------------------------

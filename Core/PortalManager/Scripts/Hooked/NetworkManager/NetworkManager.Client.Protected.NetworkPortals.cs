@@ -47,11 +47,11 @@ namespace OpenMMO.Network
 				playername = playerName,
 				username = userName
 			};
-
+			
 			ClientScene.Ready(conn);
-
+			
 			conn.Send(message);
-
+			
 			return true;
 
 		}

@@ -14,14 +14,16 @@ namespace OpenMMO.Database
 	public abstract partial class BaseDatabaseManager
 	{
 		
-		
+		// -------------------------------------------------------------------------------
+		// TryPlayerAutoLogin
 		// -------------------------------------------------------------------------------
 		public virtual bool TryPlayerAutoLogin(string playername, string username)
 		{
-		Debug.Log("TryPlayerAutoLogin: "+playername+"/"+username);
-			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username) );
+			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
 		}
 		
+		// -------------------------------------------------------------------------------
+		// TryPlayerSwitchServer
 		// -------------------------------------------------------------------------------
 		public virtual bool TryPlayerSwitchServer(string playername, string anchorname, string zonename, int token)
 		{

@@ -38,7 +38,18 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		// FadeIn
 		// -------------------------------------------------------------------------------
-		public void FadeIn()
+		public void FadeIn(float delay=0f)
+		{
+			if (delay > 0)
+				Invoke(nameof(FadeInDelayed), delay);
+			else
+				FadeInDelayed();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// FadeInDelayed
+		// -------------------------------------------------------------------------------
+		protected void FadeInDelayed()
 		{
 			animator.SetTrigger(fadeInTriggerName);
 			Show();
@@ -47,7 +58,18 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		// FadeOut
 		// -------------------------------------------------------------------------------
-		public void FadeOut()
+		public void FadeOut(float delay=0f)
+		{
+			if (delay > 0)
+				Invoke(nameof(FadeOutDelayed), delay);
+			else
+				FadeOutDelayed();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// FadeOutDelayed
+		// -------------------------------------------------------------------------------
+		protected void FadeOutDelayed()
 		{
 			animator.SetTrigger(fadeOutTriggerName);
 			StartCoroutine(nameof(DeactivateWindow));

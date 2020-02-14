@@ -1,6 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Network;
+using OpenMMO.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using System;

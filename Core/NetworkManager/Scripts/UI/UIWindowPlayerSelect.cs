@@ -142,8 +142,13 @@ namespace OpenMMO.UI
 		// OnClickSelect
 		// -------------------------------------------------------------------------------
 		public void OnClickSelect()
-		{	
+		{
+		
+			if (UIBackgroundLayer.singleton)
+        		UIBackgroundLayer.singleton.FadeIn();
+        		
 			networkManager.TryLoginPlayer(networkManager.playerPreviews[index].name);
+			
 			Hide();
 		}
 				

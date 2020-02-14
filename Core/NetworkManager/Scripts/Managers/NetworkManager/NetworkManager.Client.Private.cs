@@ -220,6 +220,9 @@ namespace OpenMMO.Network
         void OnServerMessageResponsePlayerLogin(NetworkConnection conn, ServerMessageResponsePlayerLogin msg)
         {
         	
+        	if (UIBackgroundLayer.singleton)
+        		UIBackgroundLayer.singleton.FadeOut(1);
+        		
         	OnServerMessageResponse(conn, msg);
         }
 

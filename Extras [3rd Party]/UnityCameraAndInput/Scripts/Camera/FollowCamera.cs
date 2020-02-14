@@ -111,7 +111,7 @@ public class FollowCamera : MonoBehaviour
 
         // Set the position of the camera on the x-z plane to:
         // distance meters behind the target
-        wantedPosition = targetPosition - (wantedRotation * Vector3.forward * zoomDistance);
+        wantedPosition = targetPosition - (wantedRotation * Vector3.forward * -zoomDistance);
 
         if (enableWallHitSpring)
         {
@@ -137,13 +137,13 @@ public class FollowCamera : MonoBehaviour
     [System.Serializable]
     public struct ZoomByAspectRatioSetting : System.IComparable
     {
-        public int width;
-        public int height;
+        public float width;
+        public float height;
         public float zoomDistance;
 
         public float Aspect()
         {
-            return (float)width / (float)height;
+            return (width / height);
         }
 
         public int CompareTo(object obj)

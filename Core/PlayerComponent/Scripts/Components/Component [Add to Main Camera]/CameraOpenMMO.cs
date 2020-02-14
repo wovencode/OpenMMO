@@ -72,9 +72,14 @@ namespace OpenMMO {
 		// Update
 		// -------------------------------------------------------------------------------
 		protected virtual void Update()
-		{
-			
-			float deltaTime = Time.deltaTime;
+        {
+            if (!target)
+            {
+                GameObject player = PlayerComponent.localPlayer;
+                if (player) target = player.transform;
+            }
+
+            float deltaTime = Time.deltaTime;
 		
 			if (Input.GetKey(hotKey))
 				useTargetYRotation = false;

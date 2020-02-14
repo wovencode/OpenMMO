@@ -23,9 +23,6 @@ namespace OpenMMO {
 		public TablePlayer tablePlayer 				= new TablePlayer();
 		public TablePlayerZones tablePlayerZones 	= new TablePlayerZones();
 		
-        //DEPRECIATED - Just use Camera.main for now, we can cache later in the Camera Dolly if it becomes a performance issue later.
-		//Camera mainCamera { get { return Camera.main; } } //TODO: This is never used and Camera.main does the same thing...consider removing
-		
 		// -------------------------------------------------------------------------------
 		// Start
 		// -------------------------------------------------------------------------------
@@ -40,12 +37,7 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		public override void OnStartLocalPlayer()
     	{
-    		base.OnStartLocalPlayer();
-    		
-            //DEPRECIATED - Cameras now find their own targets :)
-        	//mainCamera = Camera.main;
-        	//mainCamera.GetComponent<CameraOpenMMO>().target = this.transform;
-        	//mainCamera.GetComponent<CameraOpenMMO>().enabled = true;
+    		base.OnStartLocalPlayer(); // required
 		}
 		
 		// -------------------------------------------------------------------------------

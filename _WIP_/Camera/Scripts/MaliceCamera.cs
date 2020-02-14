@@ -14,7 +14,7 @@ public class MaliceCamera : MonoBehaviour
     public Transform target; 
     
     public float targetHeight = 2.5f; 
-    public float distance = 10.0f;
+    public float distance = 16.0f;
     public float offsetFromWall = 0.1f;
 
     public float maxDistance = 30; 

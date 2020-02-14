@@ -157,7 +157,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void OnClickDelete()
 		{	
-			UIPopupPrompt.singleton.Init(popupDescription, OnClickConfirmDelete);
+			UIPopupPrompt.singleton.Init(popupDescription, OnClickConfirmDelete, OnClickCancelDelete);
 			Hide();
 		}
 		
@@ -187,6 +187,14 @@ namespace OpenMMO.UI
 		public void OnClickConfirmDelete()
 		{
 			networkManager.TryDeletePlayer(networkManager.playerPreviews[index].name);
+			Show();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// OnClickCancelDelete
+		// -------------------------------------------------------------------------------
+		public void OnClickCancelDelete()
+		{
 			Show();
 		}
 		

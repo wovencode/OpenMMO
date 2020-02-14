@@ -7,7 +7,7 @@ public class CameraDolly : MonoBehaviour
 {
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
-    [SerializeField] [Range(1, 60)] int tickFrequency = 5; //TICK RATE
+    [SerializeField] [Range(1, 60)] int tickFrequency = 60; //TICK RATE
 
     [Header("CAMERA SELECT")]
     [Tooltip("Select a camera to load.")]

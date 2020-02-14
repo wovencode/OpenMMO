@@ -38,7 +38,7 @@ namespace OpenMMO
         public InputAxis moveAxisVertical = InputAxis.Vertical;
 
         [Header("Move Speed")]
-        [Range(0, 10)] public float turnSpeedMultiplier = 0.5f;
+        [Range(0, 10)] public float turnSpeedMultiplier = 0.8f;
         [Range(0, 10)] public float moveSpeedMultiplier = 1.0f;
 
         [Header("Move Speed Scale")]

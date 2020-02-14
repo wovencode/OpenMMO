@@ -1,6 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Network;
+using OpenMMO.Portals;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -93,7 +94,16 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			if (checkApplicationVersion && msg.clientVersion != Application.version)
+			// -- Check for Network Portals
+			// This prevents players from logging into a Network Zone. Directly logging
+			// into a zone should not be possible and can only be done by warping to
+			// that zone instead.
+			bool portalChecked = true;
+			
+			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetIsMainZone)
+				portalChecked = false;
+			
+			if ((checkApplicationVersion && msg.clientVersion != Application.version) || !portalChecked)
 			{
 				message.text = systemText.versionMismatch;
             	message.success = false;

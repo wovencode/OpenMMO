@@ -15,6 +15,8 @@ public class FadeOnChanged : MonoBehaviour
     [Header("TEXT FIELDS")]
     [SerializeField] TextMeshPro textField = null;
 
+    //[Tooltip("If this is set, only the local player will see the popup.")]
+    //[SerializeField] bool showLocalOnly = true;
     [Header("FADE IN/OUT DURATION")]
     [Tooltip("How fast this the text will fade in and out.")]
     [SerializeField] [Range(0.01f, 1.00f)] float fadeSpeed = 0.05f;
@@ -50,6 +52,8 @@ public class FadeOnChanged : MonoBehaviour
     //FADE
     void Show()
     {
+        //if (showLocalOnly && !transform.parent.gameObject.GetComponent<PlayerComponent>().isLocalPlayer) return;
+        //if (showLocalOnly && PlayerComponent.localPlayer && !transform.parent.name.Contains(PlayerComponent.localPlayer.name)) return;
         StartCoroutine("FadeIn");
     }
 

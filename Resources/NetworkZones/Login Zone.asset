@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848375a88a8914d74a8d7bc546bd7b52, type: 3}
   m_Name: Login Zone
   m_EditorClassIdentifier: 
-  title: Login Realm
+  title: Developer Test Room
   folderName: NetworkZones
   server: {fileID: 11400000, guid: f348574aedc9140eda570b43f06043f2, type: 2}
   scene:
     sceneAsset: {fileID: 102900000, guid: 43d3c1cb697c642e3b330597ba95ff41, type: 3}
     sceneName: Login Scene
-  maxPlayers: 0
   zoneTimeoutMultiplier: 6

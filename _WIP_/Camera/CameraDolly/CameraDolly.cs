@@ -21,6 +21,8 @@ public class CameraDolly : MonoBehaviour
     bool cameraSpawned = false;
     GameObject spawnedCamera;
 
+
+#if _CLIENT
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -28,7 +30,6 @@ public class CameraDolly : MonoBehaviour
     }
 #endif
 
-#if _CLIENT
     private void Awake()
     {
     }

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5053945538751103481}
   - component: {fileID: 4769897492077146287}
   - component: {fileID: -272401145901597495}
+  - component: {fileID: 5400889410254102364}
   m_Layer: 10
   m_Name: Humanoid[BASE]
   m_TagString: Untagged
@@ -192,6 +193,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 1
   syncInterval: 0.1
+--- !u!114 &5400889410254102364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930793167279634983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9759d70da58521e438e024507c2e7cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickFrequency: 5
+  cameraType: 0
+  activeCamera: {fileID: 3805302959580631209, guid: 9c0582a997a4eda4d96e78f2d035617c,
+    type: 3}
+  attachCameraToMe: 0
 --- !u!1001 &3887906202014870064
 PrefabInstance:
   m_ObjectHideFlags: 0

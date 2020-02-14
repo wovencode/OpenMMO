@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 114093129598254721}
+  - component: {fileID: 3003988379784218488}
   m_Layer: 0
   m_Name: '[Camera Dolly] (4 cameras)'
   m_TagString: Untagged
@@ -34,6 +35,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3003988379784218488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2522491381097040734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9759d70da58521e438e024507c2e7cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tickFrequency: 5
+  cameraType: 0
+  activeCamera: {fileID: 3805302959580631209, guid: 9c0582a997a4eda4d96e78f2d035617c,
+    type: 3}
+  attachCameraToMe: 0
 --- !u!1001 &337811928245343003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,6 +223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orbit Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805302959580631209, guid: fd017fa847ebf184a997f75fe1be3580,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3805302959580631214, guid: fd017fa847ebf184a997f75fe1be3580,
         type: 3}

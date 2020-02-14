@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3805302959580631209
+--- !u!1 &3321310163593043539
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3805302959580631214}
-  - component: {fileID: 3805302959580631215}
-  - component: {fileID: -1561339928979328201}
-  - component: {fileID: 3805302959580631208}
-  - component: {fileID: 3805302959439960057}
+  - component: {fileID: 3321310163593043540}
+  - component: {fileID: 3321310163593043541}
+  - component: {fileID: 5880245213882760647}
+  - component: {fileID: 3321310163183933699}
   m_Layer: 0
-  m_Name: MaliceCam
+  m_Name: IsometricCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3805302959580631214
+--- !u!4 &3321310163593043540
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
+  m_GameObject: {fileID: 3321310163593043539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &3805302959580631215
+--- !u!20 &3321310163593043541
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
+  m_GameObject: {fileID: 3321310163593043539}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -77,49 +76,43 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &-1561339928979328201
+--- !u!114 &5880245213882760647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
+  m_GameObject: {fileID: 3321310163593043539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f617755316bd34a9b550f41342a1eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 24bb4a8f9fe91d248b7a9aab281d424a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tickFrequency: 1
   target: {fileID: 0}
-  targetHeight: 2.5
-  distance: 10
-  offsetFromWall: 0.1
-  maxDistance: 30
-  minDistance: 3
-  xSpeed: 200
-  ySpeed: 200
-  yMinLimit: -80
-  yMaxLimit: 80
-  zoomRate: 200
-  rotationDampening: 3
-  zoomDampening: 5
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!81 &3805302959580631208
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
-  m_Enabled: 1
---- !u!114 &3805302959439960057
+  orbitKey: 324
+  zoomAxis: Mouse ScrollWheel
+  horizontalAxis: Mouse X
+  verticalAxis: Mouse Y
+  followSpeed: 10
+  turnSpeed: 2
+  pitchSpeed: 7
+  zoomSpeed: 5
+  distance: 12.5
+  distanceMin: 0.5
+  distanceMax: 15
+  heightOffset: 3
+  horizontalMax: 0
+  horizontalMin: -360
+  verticalMin: 45
+  verticalMax: 45
+--- !u!114 &3321310163183933699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
+  m_GameObject: {fileID: 3321310163593043539}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}

@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3805302959580631214}
   - component: {fileID: 3805302959580631215}
-  - component: {fileID: 5422998896932320061}
-  - component: {fileID: 3805302959580631208}
+  - component: {fileID: -1561339928979328201}
   - component: {fileID: 3805302959439960057}
   m_Layer: 0
-  m_Name: Fixed Camera
+  m_Name: MaliceCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +76,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &5422998896932320061
+--- !u!114 &-1561339928979328201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,35 +85,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3805302959580631209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bb4a8f9fe91d248b7a9aab281d424a, type: 3}
+  m_Script: {fileID: 11500000, guid: c6f617755316bd34a9b550f41342a1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tickFrequency: 1
   target: {fileID: 0}
-  orbitKey: 324
-  zoomAxis: Mouse ScrollWheel
-  horizontalAxis: Mouse X
-  verticalAxis: Mouse Y
-  followSpeed: 10
-  turnSpeed: 2
-  pitchSpeed: 7
-  zoomSpeed: 5
-  distance: 12
-  distanceMin: 0.5
-  distanceMax: 15
-  heightOffset: 3
-  horizontalMax: 15
-  horizontalMin: -15
-  verticalMin: 2
-  verticalMax: 80
---- !u!81 &3805302959580631208
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
-  m_Enabled: 1
+  targetHeight: 2.5
+  distance: 10
+  offsetFromWall: 0.1
+  maxDistance: 30
+  minDistance: 3
+  xSpeed: 200
+  ySpeed: 200
+  yMinLimit: -80
+  yMaxLimit: 80
+  zoomRate: 200
+  rotationDampening: 3
+  zoomDampening: 5
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &3805302959439960057
 MonoBehaviour:
   m_ObjectHideFlags: 0

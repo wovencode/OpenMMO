@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 3805302959580631214}
   - component: {fileID: 3805302959580631215}
   - component: {fileID: 5422998896932320061}
-  - component: {fileID: 3805302959580631208}
   - component: {fileID: 3805302959439960057}
   m_Layer: 0
-  m_Name: Orbit Camera
+  m_Name: FixedCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,21 +99,13 @@ MonoBehaviour:
   pitchSpeed: 7
   zoomSpeed: 5
   distance: 12
-  heightOffset: 3
-  horizontalMin: -360
-  horizontalMax: 0
-  verticalMin: 2
-  verticalMax: 80
   distanceMin: 0.5
   distanceMax: 15
---- !u!81 &3805302959580631208
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3805302959580631209}
-  m_Enabled: 1
+  heightOffset: 3
+  horizontalMax: 15
+  horizontalMin: -15
+  verticalMin: 2
+  verticalMax: 80
 --- !u!114 &3805302959439960057
 MonoBehaviour:
   m_ObjectHideFlags: 0

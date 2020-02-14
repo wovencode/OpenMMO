@@ -15,8 +15,8 @@ namespace OpenMMO.Network
 	[System.Serializable]
 	public partial class NetworkManager_Lang
 	{
-		public string clientDisconnected 	= "Disconnected.";
-		public string userAlreadyOnline		= "User is already online!";
+		public string clientDisconnected 		= "Disconnected.";
+		public string userAlreadyOnline			= "User is already online!";
 		
 		public string userLoginSuccess 			= ""; // no message here as it would display a popup on every login
 		public string userLoginFailure 			= "Account Login failed!";
@@ -36,6 +36,9 @@ namespace OpenMMO.Network
 		public string playerDeleteFailure 		= "Delete player failed!";
 		public string playerSwitchServerSuccess = "Server switch successful!";
 		public string playerSwitchServerFailure = "Server switch failed!";
+		
+		public string unknownError				= "Unknown error."; // usually used for hacking attempts
+		
 	}
 	
 }

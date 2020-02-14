@@ -205,11 +205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9759d70da58521e438e024507c2e7cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickFrequency: 5
+  tickFrequency: 60
   cameraType: 0
+  attachCameraToMe: 0
   activeCamera: {fileID: 3805302959580631209, guid: 9c0582a997a4eda4d96e78f2d035617c,
     type: 3}
-  attachCameraToMe: 0
 --- !u!1001 &3887906202014870064
 PrefabInstance:
   m_ObjectHideFlags: 0

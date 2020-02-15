@@ -1,13 +1,15 @@
-//BY: Davil [DX4D]
+//BY DX4D
 using UnityEngine;
 using OpenMMO;
 
 /// <summary>Turns this object to always face the camera.</summary>
 public class FaceTheCamera : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 5; //TICK RATE
+#pragma warning restore CS0414
 
 #if _CLIENT
     int frameCount = 0; //FRAME COUNTER

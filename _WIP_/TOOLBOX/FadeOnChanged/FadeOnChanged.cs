@@ -1,4 +1,4 @@
-//BY: Davil [DX4D]
+//BY DX4D
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -7,6 +7,7 @@ using OpenMMO;
 /// <summary>Watches a text field and display it for a period of time whenever it changes.</summary>
 public class FadeOnChanged : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 15; //TICK RATE
@@ -22,10 +23,11 @@ public class FadeOnChanged : MonoBehaviour
     [SerializeField] [Range(0.01f, 1.00f)] float fadeSpeed = 0.05f;
     [Tooltip("Once fully visible, display for this amount of time (in seconds) before fading.")]
     [SerializeField] float visibleDuration = 3f;
-
-    string formerValue = string.Empty;
+#pragma warning restore CS0414
 
 #if _CLIENT
+    string formerValue = string.Empty;
+
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {

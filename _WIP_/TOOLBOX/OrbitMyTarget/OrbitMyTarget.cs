@@ -1,4 +1,4 @@
-//BY: Davil [DX4D]
+//BY DX4D
 using System;
 using UnityEngine;
 using OpenMMO;
@@ -6,6 +6,7 @@ using OpenMMO;
 /// <summary>Turns this object to face the same direction of the target.</summary>
 public class OrbitMyTarget : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 1; //TICK RATE
@@ -49,12 +50,12 @@ public class OrbitMyTarget : MonoBehaviour
 
     public float verticalMin = 1f;
     public float verticalMax = 80f;
+#pragma warning restore CS0414
 
-
+#if _CLIENT
     float x = 0.0f;
     float y = 0.0f;
 
-#if _CLIENT
     //START
     bool set = false;
     void Update()

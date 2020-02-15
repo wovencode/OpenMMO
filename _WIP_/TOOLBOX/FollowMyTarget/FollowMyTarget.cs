@@ -1,4 +1,4 @@
-//BY: Davil [DX4D]
+//BY DX4D
 //#define SMOOTH_DAMPING //Smooth Damping tracks the velocity and allows velocity to be limited.
 using UnityEngine;
 using OpenMMO;
@@ -6,6 +6,7 @@ using OpenMMO;
 /// <summary>Turns this object to always face the camera.</summary>
 public class FollowMyTarget : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 1; //TICK RATE
@@ -20,15 +21,17 @@ public class FollowMyTarget : MonoBehaviour
     [SerializeField] int heightOffset = 6;
     [SerializeField] int followOffset = 12;
 
-    public Vector3 offset { get { return new Vector3(0, heightOffset, -followOffset); } }
-
 #if SMOOTH_DAMPING
     [Header("VELOCITY")]
     [SerializeField] Vector3 velocity = Vector3.zero;
     [SerializeField] float maxSpeed = 100.0f;
 #endif
 
+#pragma warning restore CS0414
+
 #if _CLIENT
+    public Vector3 offset { get { return new Vector3(0, heightOffset, -followOffset); } }
+
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {

@@ -1,10 +1,11 @@
-//BY: Davil [DX4D]
+//BY DX4D
 using UnityEngine;
 using OpenMMO;
 
 /// <summary>Carries a set of camera prefabs that are loaded from the Resources/Cameras folder.</summary>
 public class CameraDolly : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 60; //TICK RATE
@@ -20,7 +21,7 @@ public class CameraDolly : MonoBehaviour
     [SerializeField] GameObject activeCamera;
     bool cameraSpawned = false;
     GameObject spawnedCamera;
-
+#pragma warning restore CS0414
 
 #if _CLIENT
 #if UNITY_EDITOR

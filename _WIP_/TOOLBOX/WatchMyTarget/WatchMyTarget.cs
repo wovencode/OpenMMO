@@ -1,10 +1,11 @@
-//BY: Davil [DX4D]
+//BY DX4D
 using UnityEngine;
 using OpenMMO;
 
 /// <summary>Turns this object to always face a target.</summary>
 public class WatchMyTarget : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 1; //TICK RATE
@@ -18,10 +19,11 @@ public class WatchMyTarget : MonoBehaviour
     [Header("FOLLOW OFFSET")]
     [SerializeField] int heightOffset = 1;
     [SerializeField] int zoomOffset = -3;
-    
-    public Vector3 offset { get { return new Vector3(0, heightOffset, zoomOffset); } }
+#pragma warning restore CS0414
 
 #if _CLIENT
+    public Vector3 offset { get { return new Vector3(0, heightOffset, zoomOffset); } }
+
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {

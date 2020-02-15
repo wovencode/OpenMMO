@@ -1,4 +1,4 @@
-//BY: Davil [DX4D]
+//BY DX4D
 using UnityEngine;
 using TMPro;
 using OpenMMO;
@@ -6,6 +6,7 @@ using OpenMMO;
 /// <summary>Updates text fields to show this player's information.</summary>
 public class NameplateUpdater : MonoBehaviour
 {
+#pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 30; //TICK RATE
@@ -14,6 +15,7 @@ public class NameplateUpdater : MonoBehaviour
     [SerializeField] TextMeshPro nameField = null;
     [SerializeField] TextMeshPro guildField = null;
     [SerializeField] TextMeshPro zoneField = null;
+#pragma warning restore CS0414
 
 #if _CLIENT
     int frameCount = 0; //FRAME COUNTER

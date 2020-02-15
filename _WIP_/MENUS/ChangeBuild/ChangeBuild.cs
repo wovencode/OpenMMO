@@ -23,7 +23,7 @@ public class ChangeBuild
         if (config)
         {
             config.networkType = NetworkType.Server;
-            Debug.Log("<b><color=yellow>[SERVER] Build Mode Activated</color>...please wait...</b>");
+            Debug.Log("<b><color=yellow>[SERVER] Build Mode Activating</color>...please wait...</b>");
         }
 
         Project.ForceEditorRecompile();
@@ -38,14 +38,14 @@ public class ChangeBuild
         PortalManager portal = GameObject.FindObjectOfType<PortalManager>();
         if (portal)
         {
-            portal.active = false;
+            portal.active = true;
         }
 
         ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
         if (config)
         {
             config.networkType = NetworkType.Client;
-            Debug.Log("<b><color=blue>[CLIENT] Build Mode Activated</color>...please wait...</b>");
+            Debug.Log("<b><color=blue>[CLIENT] Build Mode Activating</color>...please wait...</b>");
         }
 
         Project.ForceEditorRecompile();
@@ -67,7 +67,7 @@ public class ChangeBuild
         if (config)
         {
             config.networkType = NetworkType.HostAndPlay;
-            Debug.Log("<b><color=green>[HOST+PLAY] Build Mode Activated</color>...please wait...</b>");
+            Debug.Log("<b><color=green>[HOST+PLAY] Build Mode Activating</color>...please wait...</b>");
         }
 
         Project.ForceEditorRecompile();

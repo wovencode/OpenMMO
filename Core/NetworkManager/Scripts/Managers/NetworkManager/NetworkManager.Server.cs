@@ -401,10 +401,11 @@ namespace OpenMMO.Network
 				
 				ValidatePlayerPosition(player);
 				NetworkServer.AddPlayerForConnection(conn, player);
-				player.name = playername;
+				
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;
 				
+				// -- Hooks & Events
 				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername);
 				eventListeners.OnLoginPlayer.Invoke(conn);
 

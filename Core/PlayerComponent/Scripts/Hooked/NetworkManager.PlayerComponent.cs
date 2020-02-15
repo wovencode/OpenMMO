@@ -95,7 +95,10 @@ namespace OpenMMO.Network
 				transform = GetStartPosition(player);
 
             if (transform != player.transform)
+			{ 
 			    player.GetComponent<PlayerComponent>().Warp(transform.position);
+				debug.Log("Player position not on navMesh, warping to start position instead.");
+			}
 			
 		}
 		

@@ -18,7 +18,7 @@ namespace OpenMMO
 	{
 
 		[Header("Project Configuration")]
-		[SerializeField]protected NetworkType networkType;
+		[SerializeField] internal NetworkType networkType;
 		public bool globalDebugMode;
 		
 		[Header("Security")]

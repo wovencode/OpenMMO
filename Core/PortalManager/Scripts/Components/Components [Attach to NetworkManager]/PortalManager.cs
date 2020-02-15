@@ -189,9 +189,9 @@ namespace OpenMMO.Portals
 		public void SpawnSubZones()
 		{
 
-			if (!GetIsMainZone || !active)
+			if (!GetIsMainZone || !GetCanSwitchZone)
 				return;
-debug.Log("SpawnSubZones");		
+
 			InvokeRepeating(nameof(SaveZone), 0, zoneIntervalMain);
 			
 			for (int i = 0; i < subZones.Count; i++)
@@ -205,18 +205,9 @@ debug.Log("SpawnSubZones");
     	// -------------------------------------------------------------------------------
 		protected void SpawnSubZone(int index)
 		{	
-			
-			debug.Log("Spawning Sub Zone...");
-			
-			// DEBUG START
-			String[] args = System.Environment.GetCommandLineArgs();
-			debug.Log("-->PATH: "+ Tools.GetProcessPath);
-			debug.Log("-->ARGS: " + argZoneIndex + " " + index.ToString());
-			// DEBUG END
-		
 			Process process = new Process();
-			process.StartInfo.FileName 	= Tools.GetProcessPath; //Path.GetFullPath(".") + "/test.app"; //Application.dataPath; //Tools.GetProcessPath;
-			process.StartInfo.Arguments = argZoneIndex + " " + index.ToString(); // Tools.GetArgumentsString + " " + argZoneIndex + " " + index.ToString();
+			process.StartInfo.FileName 	= Tools.GetProcessPath;
+			process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
 			process.Start();
 		}
 		
@@ -268,7 +259,7 @@ debug.Log("SpawnSubZones");
 				UIPopupNotify.singleton.Hide();
         }
 		
-		// ======================  =================================
+		// ===================================  OTHER ====================================
 		
 		// -------------------------------------------------------------------------------
     	// ReloadScene

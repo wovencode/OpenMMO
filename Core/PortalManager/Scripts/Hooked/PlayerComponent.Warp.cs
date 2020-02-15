@@ -57,7 +57,7 @@ namespace OpenMMO {
 		[Command]
 		public void Cmd_WarpLocal(string anchorName)
 		{
-			if (PortalManager.CheckPortalAnchor(anchorName))
+			if (AnchorManager.CheckPortalAnchor(anchorName))
 				WarpLocal(anchorName);
 		}
 		
@@ -101,12 +101,10 @@ namespace OpenMMO {
     		
     		UpdateCooldown(20);
     		
-    		// -- set anchor & zone
+    		// -- update anchor & zone
     		this.GetComponent<PlayerComponent>().tablePlayerZones.anchorname = anchorName;
     		this.GetComponent<PlayerComponent>().tablePlayerZones.zonename = zoneName;
     		securityToken = token; // token must not be set in table, can be fetched via GetToken
-    		
-    		debug.Log("SERVER TOKEN IS: " + securityToken);
     		
     		// -- save player
     		DatabaseManager.singleton.SaveDataPlayer(this.gameObject);
@@ -126,8 +124,8 @@ namespace OpenMMO {
 		public void WarpLocal(string anchorName)
     	{
 
-    		if (PortalManager.CheckPortalAnchor(anchorName))
-        		base.Warp(PortalManager.GetPortalAnchorPosition(anchorName));
+    		if (AnchorManager.CheckPortalAnchor(anchorName))
+        		base.Warp(AnchorManager.GetPortalAnchorPosition(anchorName));
         	
         	UpdateCooldown(20);
         	

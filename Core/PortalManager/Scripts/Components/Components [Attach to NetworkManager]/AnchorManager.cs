@@ -1,10 +1,8 @@
 ﻿
 using System;
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Mirror;
 using OpenMMO;
 using OpenMMO.Network;
@@ -16,9 +14,10 @@ namespace OpenMMO.Portals
 {
 
 	// ===================================================================================
-	// PortalManager
+	// AnchorManager
 	// ===================================================================================
-	public partial class PortalManager
+	[DisallowMultipleComponent]
+	public partial class AnchorManager : MonoBehaviour
 	{
 	
 		public static List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
@@ -36,7 +35,7 @@ namespace OpenMMO.Portals
         	
         	foreach (PortalAnchorEntry anchor in portalAnchors)
         	{
-        		UnityEngine.Debug.Log(anchor.name+"/"+_name);
+UnityEngine.Debug.Log("CheckPortalAnchor: "+anchor.name+"/"+_name);
         		if (anchor.name == _name)
         			return true;
         	}	
@@ -50,6 +49,7 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
         public static Vector3 GetPortalAnchorPosition(string _name)
         {
+Debug.Log("GetPortalAnchorPosition: "+_name);
         	foreach (PortalAnchorEntry anchor in portalAnchors)
         		if (anchor.name == _name)
 					return anchor.position;
@@ -69,7 +69,7 @@ namespace OpenMMO.Portals
             					position = _position
             				}
             );
-            
+Debug.Log("RegisterPortalAnchor: "+_name);
         }
 
         // -------------------------------------------------------------------------------

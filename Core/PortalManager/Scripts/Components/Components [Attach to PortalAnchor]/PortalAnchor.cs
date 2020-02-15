@@ -26,7 +26,7 @@ namespace OpenMMO.Portals
 		// -------------------------------------------------------------------------------
         public void Awake()
         {
-            PortalManager.RegisterPortalAnchor(name, transform.position);
+            AnchorManager.RegisterPortalAnchor(name, transform.position);
         }
 		
 		// -------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ namespace OpenMMO.Portals
 		// -------------------------------------------------------------------------------
         public void OnDestroy()
         {
-            PortalManager.UnRegisterPortalAnchor(name);
+            AnchorManager.UnRegisterPortalAnchor(name);
         }
     
     	// -------------------------------------------------------------------------------

@@ -27,7 +27,7 @@ namespace OpenMMO.Network
         {
             player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, userName);
         }
-
+        
         // -------------------------------------------------------------------------------
         // RegisterPlayer_PlayerComponent
         // -------------------------------------------------------------------------------

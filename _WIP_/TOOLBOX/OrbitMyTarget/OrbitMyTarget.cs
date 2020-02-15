@@ -20,7 +20,7 @@ public class OrbitMyTarget : MonoBehaviour
     [SerializeField] string verticalAxis = "Mouse Y";
 
     [Header("MOVEMENT SPEED")]
-    [SerializeField] float followSpeed = 10f;
+    //[SerializeField] float followSpeed = 10f; //DEPRRECIATED - unused
     [SerializeField] float turnSpeed = 2f;//0.02f;
     [SerializeField] float pitchSpeed = 7f;//0.06f;
     [SerializeField] float zoomSpeed = 5f;//0.06f;

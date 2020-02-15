@@ -115,11 +115,14 @@ namespace OpenMMO.Network
                             //X
                             (transform.position.x >= playerTransform.position.x - tolerence
                                 && transform.position.x <= playerTransform.position.x + tolerence)
-                            //X
-                            && (transform.position.x >= playerTransform.position.x - tolerence
-                                && transform.position.x <= playerTransform.position.x + tolerence)
-                                //TODO TODO TODO
-                            && (transform.rotation != playerTransform.rotation)
+                            //Y
+                            && (transform.position.y >= playerTransform.position.y - tolerence
+                                && transform.position.y <= playerTransform.position.y + tolerence)
+                            //Z
+                            && (transform.position.z >= playerTransform.position.z - tolerence
+                                && transform.position.z <= playerTransform.position.z + tolerence)
+                           //NOTE: Rotation can be turned on here, but it barely matters for this purpose
+                           // && (transform.rotation != playerTransform.rotation) //ROTATION - I don't think we care? Some games might, so just leave this here
                             );
                     }
                 case ValidationLevel.Low:

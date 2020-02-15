@@ -66,13 +66,13 @@ namespace OpenMMO
 			{
 				EditorTools.RemoveScriptingDefine(isClient);
 				EditorTools.AddScriptingDefine(isServer);
-				debug.Log("[ProjectConfig] Switched to SERVER mode.");
+				debug.Log("<b><color=yellow>[ProjectConfig] Switched to SERVER mode.</color></b>");
 			}
 			else if (networkType == NetworkType.HostAndPlay)
 			{
 				EditorTools.AddScriptingDefine(isServer);
 				EditorTools.AddScriptingDefine(isClient);
-				debug.Log("[ProjectConfig] Switched to HOST & PLAY mode.");
+				debug.Log("<b><color=green>[ProjectConfig] Switched to HOST & PLAY mode.</color></b>");
 			}
 			/*else if (networkType == NetworkType.Development)
 			{
@@ -84,7 +84,7 @@ namespace OpenMMO
 			{
 				EditorTools.AddScriptingDefine(isClient);
 				EditorTools.RemoveScriptingDefine(isServer);
-				debug.Log("[ProjectConfig] Switched to CLIENT mode.");
+				debug.Log("<b><color=blue>[ProjectConfig] Switched to CLIENT mode.</color></b>");
 			}
 #endif
 		}

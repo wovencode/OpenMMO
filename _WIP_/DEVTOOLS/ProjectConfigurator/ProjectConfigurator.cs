@@ -13,52 +13,64 @@ public partial class Project
         [MenuItem("OpenMMO/Server Mode")]
         public static void SetServer()
         {
-            ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
-            if (config)
-            {
-                config.networkType = NetworkType.Server;
-                Debug.Log("<b><color=yellow>[SERVER] Build Mode Activated</color></b>");
-            }
-
+            Debug.Log("Please wait...");
             PortalManager portal = GameObject.FindObjectOfType<PortalManager>();
             if (portal)
             {
                 portal.active = true;
             }
+
+            ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
+            if (config)
+            {
+                config.networkType = NetworkType.Server;
+                Debug.Log("<b><color=yellow>[SERVER] Build Mode Activated</color>...please wait...</b>");
+            }
+
+            Project.ForceEditorRecompile();
+            //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         }
 
         [MenuItem("OpenMMO/Client Mode")]
         public static void SetClient()
         {
-            ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
-            if (config)
-            {
-                config.networkType = NetworkType.Client;
-                Debug.Log("<b><color=blue>[CLIENT] Build Mode Activated</color></b>");
-            }
-
+            Debug.Log("Please wait...");
             PortalManager portal = GameObject.FindObjectOfType<PortalManager>();
             if (portal)
             {
                 portal.active = false;
             }
+
+            ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
+            if (config)
+            {
+                config.networkType = NetworkType.Client;
+                Debug.Log("<b><color=blue>[CLIENT] Build Mode Activated</color>...please wait...</b>");
+            }
+
+            Project.ForceEditorRecompile();
+            //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         }
 
         [MenuItem("OpenMMO/Host and Play Mode")]
         public static void SetHostAndPlay()
         {
-            ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
-            if (config)
-            {
-                config.networkType = NetworkType.HostAndPlay;
-                Debug.Log("<b><color=green>[HOST+PLAY] Build Mode Activated</color></b>");
-            }
-
+            Debug.Log("Please wait...");
             PortalManager portal = GameObject.FindObjectOfType<PortalManager>();
             if (portal)
             {
                 portal.active = false;
             }
+
+            ProjectConfigTemplate config = Resources.Load<ProjectConfigTemplate>("Configuration/ProjectConfiguration [Example]");
+            if (config)
+            {
+                config.networkType = NetworkType.HostAndPlay;
+                Debug.Log("<b><color=green>[HOST+PLAY] Build Mode Activated</color>...please wait...</b>");
+            }
+
+            Project.ForceEditorRecompile();
+            //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         }
     }
 }

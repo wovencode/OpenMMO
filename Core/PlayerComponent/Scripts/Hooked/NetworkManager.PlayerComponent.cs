@@ -10,15 +10,23 @@ using Mirror;
 
 namespace OpenMMO.Network
 {
-
     // ===================================================================================
     // NetworkManager
     // ===================================================================================
     public partial class NetworkManager
     {
+        [Header("SERVER AUTHORITY PROFILE")]
+        [SerializeField] public ServerAuthority serverAuthority;
 
         protected List<GameObject> _playerPrefabs = null;
 
+#if UNITY_EDITOR
+        private new void OnValidate()
+        {
+            if (!serverAuthority) serverAuthority = Resources.Load<ServerAuthority>("Config/DefaultServerAuthority");
+            base.OnValidate(); //TODO: Does this make it Validate twice? - TESTERS: place debug statements in the base method to find out...I expect it will not, but please verify
+        }
+#endif
         // -------------------------------------------------------------------------------
         // LoginPlayer_PlayerComponent
         // -------------------------------------------------------------------------------
@@ -82,19 +90,10 @@ namespace OpenMMO.Network
             return GetStartPosition();
 
         }
-        public enum ValidationLevel { Complete, Tolerant, Low, None }
+        
         // -------------------------------------------------------------------------------
         // ValidatePlayerPosition
         // -------------------------------------------------------------------------------
-        [Tooltip("When using Tolerant validation, a value will be tolerated if it is out of range by up to this amount in each direction.")]
-        [SerializeField] float tolerence = 7f;
-        [Tooltip("Smoothly Move back to the server dictated position.")]
-        [SerializeField] bool smooth = true;
-        [Tooltip("The level of validation to player movement desired." +
-            "\nComplete: Validates the entire transform - Warps the player instantly back in position if they stray."
-            + "Tolerant: Validates (only) positon with tolerance factored in - can return the player to the destired postion smoothly. - preferred"
-            + "Low: Just validates position and nothing else.")]
-        [SerializeField] ValidationLevel validation = ValidationLevel.Complete;
         protected void ValidatePlayerPosition(GameObject player)
         {
             Transform transform = player.transform;
@@ -105,13 +104,15 @@ namespace OpenMMO.Network
 
             if (!ValidPosition(player.transform))
             {
-                if (smooth)
+                if (serverAuthority.smooth)
                 {
-                    //TODO TODO TODO
-                    //Ease Position
-                    player.GetComponent<PlayerComponent>().Warp(transform.position);
+                    //SMOOTH POSITION
+                    Vector3 smoothedPosition = Vector3.Lerp(player.transform.position, transform.position, Time.deltaTime * serverAuthority.smoothing);
 
-                    Debug.LogWarning("TODO: SMOOTH MOVE IS NOT IMPLEMENTED");
+                    //WARP
+                    player.GetComponent<PlayerComponent>().Warp(smoothedPosition);
+
+                    Debug.LogWarning("TODO: SMOOTH MOVE IS IMPLEMENTED\nI HAVE NO IDEA WHAT THE smoothing factor should be...\nTESTERS: please test by building server + client in editor and try to change your player position...\nNOTE: You should not be out of sync with other players. TESTERS: verify this");
                 }
                 else
                 {
@@ -121,9 +122,10 @@ namespace OpenMMO.Network
 
         }
 
+        //[Server]
         bool ValidPosition(Transform playerTransform)
         {
-            switch (validation)
+            switch (serverAuthority.validation)
             {
                 case ValidationLevel.Complete:
                     {
@@ -133,14 +135,14 @@ namespace OpenMMO.Network
                     {
                         return (
                             //X
-                            (transform.position.x >= playerTransform.position.x - tolerence
-                                && transform.position.x <= playerTransform.position.x + tolerence)
+                            ( playerTransform.position.x >= transform.position.x - serverAuthority.tolerence
+                                && playerTransform.position.x <= transform.position.x + serverAuthority.tolerence)
                             //Y
-                            && (transform.position.y >= playerTransform.position.y - tolerence
-                                && transform.position.y <= playerTransform.position.y + tolerence)
+                            && (playerTransform.position.y >= transform.position.y - serverAuthority.tolerence
+                                && transform.position.y <= playerTransform.position.y + serverAuthority.tolerence)
                             //Z
-                            && (transform.position.z >= playerTransform.position.z - tolerence
-                                && transform.position.z <= playerTransform.position.z + tolerence)
+                            && (transform.position.z >= playerTransform.position.z - serverAuthority.tolerence
+                                && transform.position.z <= playerTransform.position.z + serverAuthority.tolerence)
                            //NOTE: Rotation can be turned on here, but it barely matters for this purpose
                            // && (transform.rotation != playerTransform.rotation) //ROTATION - I don't think we care? Some games might, so just leave this here
                             );

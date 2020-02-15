@@ -86,8 +86,14 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         // ValidatePlayerPosition
         // -------------------------------------------------------------------------------
-        [Tooltip("")]
-        [SerializeField] int tolerence = 5;
+        [Tooltip("When using Tolerant validation, a value will be tolerated if it is out of range by up to this amount in each direction.")]
+        [SerializeField] float tolerence = 7f;
+        [Tooltip("Smoothly Move back to the server dictated position.")]
+        [SerializeField] bool smooth = true;
+        [Tooltip("The level of validation to player movement desired." +
+            "\nComplete: Validates the entire transform - Warps the player instantly back in position if they stray."
+            + "Tolerant: Validates (only) positon with tolerance factored in - can return the player to the destired postion smoothly. - preferred"
+            + "Low: Just validates position and nothing else.")]
         [SerializeField] ValidationLevel validation = ValidationLevel.Complete;
         protected void ValidatePlayerPosition(GameObject player)
         {
@@ -97,7 +103,21 @@ namespace OpenMMO.Network
                 transform = GetStartPosition(player);
 
 
-            if (ValidPosition(player.transform)) player.GetComponent<PlayerComponent>().Warp(transform.position);
+            if (!ValidPosition(player.transform))
+            {
+                if (smooth)
+                {
+                    //TODO TODO TODO
+                    //Ease Position
+                    player.GetComponent<PlayerComponent>().Warp(transform.position);
+
+                    Debug.LogWarning("TODO: SMOOTH MOVE IS NOT IMPLEMENTED");
+                }
+                else
+                {
+                    player.GetComponent<PlayerComponent>().Warp(transform.position);
+                }
+            }
 
         }
 
@@ -107,7 +127,7 @@ namespace OpenMMO.Network
             {
                 case ValidationLevel.Complete:
                     {
-                        return (transform != playerTransform);
+                        return (transform == playerTransform);
                     }
                 case ValidationLevel.Tolerant:
                     {

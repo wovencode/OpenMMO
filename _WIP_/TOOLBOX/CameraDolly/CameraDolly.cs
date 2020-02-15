@@ -19,8 +19,8 @@ public class CameraDolly : MonoBehaviour
     [Header("-read only-")]
     [Tooltip("The currently active camera. (Set by the camera type)")]
     [SerializeField] GameObject activeCamera;
-    bool cameraSpawned = false;
-    GameObject spawnedCamera;
+    [SerializeField] bool cameraSpawned = false;
+    [SerializeField] GameObject spawnedCamera;
 #pragma warning restore CS0414
 
 #if _CLIENT

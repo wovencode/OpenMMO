@@ -33,21 +33,35 @@ namespace OpenMMO
     public class PlayerControlConfig : ScriptableObject
     {
 
+        [Header("Orientation")]
+        public bool faceCameraDirection = false;
+        [Tooltip("This basically overrides strafing. Turns strafe buttons into Turn buttons")]
+        public bool turnWhileStrafing = false;
+
         [Header("Input")]
         public KeyCode runKey = KeyCode.LeftShift;
+        public KeyCode strafeKey = KeyCode.LeftShift;
         public InputAxis moveAxisHorizontal = InputAxis.Horizontal;
         public InputAxis moveAxisVertical = InputAxis.Vertical;
+        public KeyCode strafeLeftKey = KeyCode.Q;
+        public KeyCode strafeRightKey = KeyCode.E;
 
         [Header("Move Speed")]
         [Range(0, 10)] public float turnSpeedMultiplier = 0.8f;
         [Range(0, 10)] public float moveSpeedMultiplier = 1.0f;
 
         [Header("Move Speed Scale")]
-        [Tooltip("")]
+        //WALK
+        [Tooltip("Scales speed while walking. 1.0f = normal speed")]
         [Range(0, 10)] public float walkSpeedScale = 1.0f;
-        [Tooltip("")]
+        //RUN
+        [Tooltip("Scales speed while running. 1.0f = normal speed")]
         [Range(0, 10)] public float runSpeedScale = 1.5f;
-        [Tooltip("")]
+        //STRAFE
+        [Tooltip("Scales speed while strafing. 1.0f = normal speed")]
+        [Range(0, 10)] public float strafeSpeedScale = 0.75f;
+        //BACKPEDAL
+        [Tooltip("Scales speed while backpedaling. 1.0f = normal speed")]
         [Range(0, 10)] public float backpedalSpeedScale = 0.5f;
     }
 }

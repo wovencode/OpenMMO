@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a06ca1889a75bf45986f4cad94c281c, type: 3}
   m_Name: DefaultPlayerControls
   m_EditorClassIdentifier: 
+  faceCameraDirection: 1
+  turnWhileStrafing: 0
   runKey: 304
+  strafeKey: 0
   moveAxisHorizontal: 0
   moveAxisVertical: 1
+  strafeLeftKey: 113
+  strafeRightKey: 101
   turnSpeedMultiplier: 0.7
   moveSpeedMultiplier: 1
-  walkSpeedScale: 1
-  runSpeedScale: 2
+  walkSpeedScale: 1.5
+  runSpeedScale: 2.5
+  strafeSpeedScale: 0.45
   backpedalSpeedScale: 0.5

@@ -19,9 +19,14 @@ namespace OpenMMO
         [Header("Player Control Config")]
         public PlayerControlConfig config;
 
+        //MOVE
         protected float verticalMovementInput;
         protected float horizontalMovementInput;
         protected bool running;
+        protected bool strafing;
+        //TURN
+        protected bool strafeLeft;
+        protected bool strafeRight;
 
 #if UNITY_EDITOR
         // -------------------------------------------------------------------------------
@@ -80,6 +85,9 @@ namespace OpenMMO
             horizontalMovementInput = Input.GetAxis(config.moveAxisHorizontal.ToString());
             verticalMovementInput = Input.GetAxis(config.moveAxisVertical.ToString());
             running = Input.GetKey(config.runKey);
+            strafing = Input.GetKey(config.strafeKey);
+            strafeLeft = Input.GetKey(config.strafeLeftKey);
+            strafeRight = Input.GetKey(config.strafeRightKey);
 
             UpdateVelocity();
 

@@ -34,6 +34,7 @@ namespace OpenMMO
     {
 
         [Header("Orientation")]
+        [Tooltip("NOTE: This setting will respond in strange ways with certain cameras. Turn it off if you get strange movement results.")]
         public bool faceCameraDirection = false;
         [Tooltip("This basically overrides strafing. Turns strafe buttons into Turn buttons")]
         public bool turnWhileStrafing = false;
@@ -47,8 +48,10 @@ namespace OpenMMO
         public KeyCode strafeRightKey = KeyCode.E;
 
         [Header("Move Speed")]
-        [Range(0, 10)] public float turnSpeedMultiplier = 0.8f;
+        [Tooltip("How fast you can move.")]
         [Range(0, 10)] public float moveSpeedMultiplier = 1.0f;
+        [Tooltip("How fast you can turn.")]
+        [Range(0, 10)] public float turnSpeedMultiplier = 0.8f;
 
         [Header("Move Speed Scale")]
         //WALK

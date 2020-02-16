@@ -135,20 +135,20 @@ namespace OpenMMO {
                 {
                     if (!strafeRight) //NOTE: Holding both turn buttons cancels out turning
                     {
-                        direction = -agent.transform.right;
+                        //direction = -agent.transform.right;
                         //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
                         if (config.turnWhileStrafing) transform.Rotate(0, -1.0f * config.turnSpeedMultiplier, 0); //TURN WHILE STRAFING
-                        newVelocity = direction * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                        newVelocity = -agent.transform.right * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                     }
                 }
                 //STRAFE RIGHT
                 else if (strafeRight)
                 {
-                    direction = agent.transform.right;
+                    //direction = agent.transform.right;
                     //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
                     if (config.turnWhileStrafing) transform.Rotate(0, 1.0f * config.turnSpeedMultiplier, 0); //TURN WHILE STRAFING
                     //newVelocity = direction * horizontalMovementInput * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
-                    newVelocity = direction * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                    newVelocity = agent.transform.right * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                 }
 
                 agent.velocity = newVelocity; //SET VELOCITY - ON NAVMESH AGENT

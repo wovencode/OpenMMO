@@ -31,10 +31,13 @@ public class CameraDolly : MonoBehaviour
     }
 #endif
 
-    private void Awake()
+    //ON DESTROYED
+    private void OnDestroy()
     {
+        DestroySpawnedCamera();
     }
 
+    //UPDATE
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {
@@ -55,6 +58,7 @@ public class CameraDolly : MonoBehaviour
         }
     }
 
+    //UPDATE ATTACHED CAMERA
     bool UpdateAttachedCamera()
     {
         if (!activeCamera || !activeCamera.name.Contains(cameraType.ToString() + "Camera")) //NOTE: We could use .ToUpper() so this is not case sensitive, but for performance reasons we do not...keep this in mind if you add new cameras.
@@ -66,16 +70,21 @@ public class CameraDolly : MonoBehaviour
         return false;
     }
 
-    //ON CAMERA CHANGED
-    void OnCameraChanged()
+    //DESTROY SPAWNED CAMERA
+    void DestroySpawnedCamera()
     {
         if (Application.isPlaying)
         {
-            //TODO: We really want to destroy this, but the logic needs to be different
-            //if (activeCamera) GameObject.DestroyImmediate(activeCamera, true); //DESTROY ACTIVE CAMERA
             if (spawnedCamera) GameObject.Destroy(spawnedCamera); //DESTROY ACTIVE CAMERA
+            //if (activeCamera) GameObject.DestroyImmediate(activeCamera, true); //DESTROY ACTIVE CAMERA
             //if (activeCamera) activeCamera.SetActive(false); //DISABLE ACTIVE CAMERA
         }
+    }
+
+    //ON CAMERA CHANGED
+    void OnCameraChanged()
+    {
+        DestroySpawnedCamera();
 
         activeCamera = Resources.Load<GameObject>("Cameras/" + cameraType.ToString() + "Camera"); //LOAD NEW ACTIVE CAMERA
         cameraSpawned = false;

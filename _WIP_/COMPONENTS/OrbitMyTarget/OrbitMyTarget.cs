@@ -33,6 +33,9 @@ public class OrbitMyTarget : MonoBehaviour
 
      [Header("OFFSETS")]
     [SerializeField] float heightOffset = 3;
+
+     [Header("ATTACH TO TARGET")]
+    [SerializeField] bool attachToTarget = false;
     //[SerializeField] int zoomOffset = 12;
 
     public Vector3 offset { get { return new Vector3(0f, heightOffset, -distance); } }
@@ -55,13 +58,19 @@ public class OrbitMyTarget : MonoBehaviour
 #if _CLIENT
     float x = 0.0f;
     float y = 0.0f;
-
-    //START
+    
+    //UPDATE
     bool set = false;
+    bool attached = false;
     void Update()
     {
         if (set) return;
 
+        if (!target)
+        {
+            GameObject player = PlayerComponent.localPlayer;
+            if (player) target = player.transform;
+        }
         if (target)
         {
             set = true;
@@ -70,6 +79,12 @@ public class OrbitMyTarget : MonoBehaviour
             y = angles.x;
 
             transform.forward = target.forward;
+
+            if (attachToTarget && !attached)
+            {
+                attached = true;
+                gameObject.transform.SetParent(target, false);
+            }
         }
         //if (!rigidbody) rigidbody = GetComponent<Rigidbody>();
 
@@ -121,7 +136,7 @@ public class OrbitMyTarget : MonoBehaviour
                 Vector3 position = rotation * invertedDistance + target.position;
 
                 position.y += heightOffset; //HEIGHT OFFSET
-
+                
                 transform.rotation = rotation;
                 transform.position = position;
                 //transform.position = new Vector3(transform.position.x, transform.position.y + heightOffset, transform.position.z - distance);

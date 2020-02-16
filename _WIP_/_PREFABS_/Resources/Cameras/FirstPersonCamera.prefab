@@ -94,16 +94,17 @@ MonoBehaviour:
   zoomAxis: Mouse ScrollWheel
   horizontalAxis: Mouse X
   verticalAxis: Mouse Y
-  turnSpeed: 2
-  pitchSpeed: 7
+  turnSpeed: 16
+  pitchSpeed: 8
   zoomSpeed: 5
   distance: -0.1
   distanceMin: -0.1
   distanceMax: -0.1
   heightOffset: 1.5
-  horizontalMax: 45
-  horizontalMin: -45
-  verticalMin: 0
+  attachToTarget: 1
+  horizontalMax: 90
+  horizontalMin: -90
+  verticalMin: -80
   verticalMax: 80
 --- !u!114 &3805302959439960057
 MonoBehaviour:

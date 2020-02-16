@@ -32,7 +32,7 @@ public class OrbitMyTarget : MonoBehaviour
     public float distanceMax = 25f;
 
      [Header("OFFSETS")]
-    [SerializeField] int heightOffset = 3;
+    [SerializeField] float heightOffset = 3;
     //[SerializeField] int zoomOffset = 12;
 
     public Vector3 offset { get { return new Vector3(0f, heightOffset, -distance); } }

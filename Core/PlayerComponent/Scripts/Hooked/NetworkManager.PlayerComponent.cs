@@ -23,7 +23,7 @@ namespace OpenMMO.Network
 #if UNITY_EDITOR
         private new void OnValidate()
         {
-            if (!serverAuthority) serverAuthority = Resources.Load<ServerAuthority>("Config/DefaultServerAuthority");
+            if (!serverAuthority) serverAuthority = Resources.Load<ServerAuthority>("Server/DefaultServerAuthority");
             base.OnValidate(); //TODO: Does this make it Validate twice? - TESTERS: place debug statements in the base method to find out...I expect it will not, but please verify
         }
 #endif

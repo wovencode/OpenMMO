@@ -1,13 +1,13 @@
 //BY DX4D
 using UnityEngine;
 
-/// <summary>Turns this object to always face the camera.</summary>
-public class FaceTheCamera : MonoBehaviour
+/// <summary>This object will always point up.</summary>
+public class AlwaysPointUp : MonoBehaviour
 {
 #pragma warning disable CS0414
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
-    [SerializeField] [Range(1, 60)] int tickFrequency = 5; //TICK RATE
+    [SerializeField] [Range(1, 60)] int tickFrequency = 60; //TICK RATE
 #pragma warning restore CS0414
 
 #if _CLIENT
@@ -22,7 +22,7 @@ public class FaceTheCamera : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 
-            if (Camera.main != null) gameObject.transform.forward = Camera.main.transform.forward; //FACE THE CAMERA
+            gameObject.transform.up = Vector3.up; //POINT UP
         }
     }
 #endif

@@ -29,7 +29,7 @@ namespace OpenMMO
         // -------------------------------------------------------------------------------
         private void OnValidate()
         {
-            if (!config) config = Resources.Load<PlayerControlConfig>("Config/DefaultPlayerControls"); //LOAD DEFAULT
+            if (!config) config = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT
         }
 #endif
         // -------------------------------------------------------------------------------

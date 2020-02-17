@@ -1,8 +1,3 @@
-// =======================================================================================
-// Attach this script to any GameObject with a NetworkIdentity on it (like your player
-// prefab) to remove the (Clone) from its name when it is instantiated.
-//
-// =======================================================================================
 
 using OpenMMO;
 using OpenMMO.Network;
@@ -16,10 +11,8 @@ namespace OpenMMO.Network
     /// Public class <c>NetworkName</c> inherits from Mirror.NetworkBehaviour.
     /// Attach this script to any GameObject with a NetworkIdentity on it (like your player prefab) to remove the (Clone) from its name when it is instantiated.
     /// </summary>
-	public class NetworkName : NetworkBehaviour
+	public partial class NetworkName : BaseNetworkBehaviour
 	{
-   		
-   		protected string _name;
    		
    		// -------------------------------------------------------------------------------
         /// <summary>
@@ -43,24 +36,6 @@ namespace OpenMMO.Network
 		public override void OnDeserialize(NetworkReader reader, bool initialState)
 		{
 			name = reader.ReadString();
-		}
-		
-		// -------------------------------------------------------------------------------
-		// name
-		// -------------------------------------------------------------------------------
-		public new string name
-		{
-			get
-			{
-				if (string.IsNullOrWhiteSpace(_name))
-					_name = base.name;
-					
-				return _name;
-			}
-			set
-			{
-				_name = base.name = value;
-			}
 		}
 		
 		// -------------------------------------------------------------------------------

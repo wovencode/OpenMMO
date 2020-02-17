@@ -124,14 +124,12 @@ namespace OpenMMO {
         // -------------------------------------------------------------------------------
         /// <summary>Movement Throttling</summary>
         /// <returns>Enough time has passed...ready to move again.</returns>
-        [Server]
         protected bool ReadyToMove() { return Time.time > _timerMovement; }
 
         // -------------------------------------------------------------------------------
         // LogMovement
         // -------------------------------------------------------------------------------
         /// <summary>Logs the last time that movement was processed.</summary>
-        [Server]
         private void LogMovement()
         {
             _timerMovement = Time.time + movementUpdateInterval;

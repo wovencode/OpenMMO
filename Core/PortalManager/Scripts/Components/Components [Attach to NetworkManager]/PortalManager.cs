@@ -48,12 +48,13 @@ namespace OpenMMO.Portals
 	
 		protected ushort originalPort;
 		protected int zoneIndex 					= -1;
+		protected int securityToken 				= 0;
 		protected NetworkZoneTemplate currentZone	= null;
-		protected string autoPlayerName 			= "";
-    	protected bool autoConnectClient 			= false;
 		protected string mainZoneName				= "_mainZone";
 		protected const string argZoneIndex 		= "-zone";
-		protected int securityToken 				= 0;
+		protected string autoPlayerName 			= "";
+		protected bool autoConnectClient 			= false;
+		protected bool spawnedSubZones				= false;
 		
 		// -------------------------------------------------------------------------------
     	// Awake
@@ -189,7 +190,7 @@ namespace OpenMMO.Portals
 		public void SpawnSubZones()
 		{
 
-			if (!GetIsMainZone || !GetCanSwitchZone)
+			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones)
 				return;
 
 			InvokeRepeating(nameof(SaveZone), 0, zoneIntervalMain);
@@ -198,6 +199,8 @@ namespace OpenMMO.Portals
     			if (subZones[i] != currentZone)
     				SpawnSubZone(i);
     		
+    		spawnedSubZones = true;
+    		
 		}
 
 		// -------------------------------------------------------------------------------
@@ -205,7 +208,7 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
 		protected void SpawnSubZone(int index)
 		{	
-			debug.Log("CALLED: SpawnSubZone "+index);
+			
 			Process process = new Process();
 			process.StartInfo.FileName 	= Tools.GetProcessPath;
 			process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();

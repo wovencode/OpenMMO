@@ -28,8 +28,19 @@ namespace OpenMMO.Network
 			NetworkServer.RegisterHandler<ClientMessageRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerAutoLogin>(OnClientMessageRequestPlayerAutoLogin);
             
-            GetComponent<PortalManager>().SpawnSubZones();
+            Invoke(nameof(SpawnSubZones), 0.5f);
 		}
+   		
+   		// -----------------------------------------------------------------------------------
+		// SpawnSubZones
+		// Called slightly delayed via Invoke, otherwise it might be called before/during Awake
+		// @Server
+		// -----------------------------------------------------------------------------------
+   		void SpawnSubZones()
+   		{
+   			if (GetComponent<PortalManager>() != null)
+   				GetComponent<PortalManager>().SpawnSubZones();
+   		}
    		
 		// -------------------------------------------------------------------------------
 		// LoginPlayer_NetworkPortals

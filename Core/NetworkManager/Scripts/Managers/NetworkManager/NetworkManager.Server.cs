@@ -403,8 +403,9 @@ namespace OpenMMO.Network
 				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
                 Debug.Log("LOADED - " + player.name + " on " + player.gameObject.name);
                 
-				ValidatePlayerPosition(player);
+				
 				NetworkServer.AddPlayerForConnection(conn, player);
+				ValidatePlayerPosition(player);
 				
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;

@@ -77,6 +77,9 @@ namespace OpenMMO.UI
 		public void OnClickRegister()
 		{
 			networkManager.TryRegisterUser(usernameInput.text, userpassInput.text, usermailInput.text);
+			
+			UIWindowLoginUser.singleton.Show();
+			Hide();
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -65,7 +65,8 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		protected void FadeInDelayed()
 		{
-			animator.SetTrigger(fadeInTriggerName);
+			if (root.activeSelf)
+				animator.SetTrigger(fadeInTriggerName);
 			Show();
 		}
 		

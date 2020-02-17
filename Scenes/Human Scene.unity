@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -195,6 +199,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -392,6 +400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -454,6 +466,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -548,6 +564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -610,6 +630,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -674,6 +698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -737,6 +765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -799,6 +831,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverWater (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
@@ -984,6 +1024,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 90
@@ -1046,6 +1094,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverSide (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1110,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (62)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -1172,6 +1232,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1236,6 +1300,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiver
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1299,6 +1371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1361,6 +1437,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1499,6 +1579,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1707,6 +1791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1769,6 +1857,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1833,6 +1925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -1896,6 +1992,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -1958,6 +2058,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (61)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2084,6 +2188,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2240,6 +2348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60
@@ -2302,6 +2414,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2461,6 +2577,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSideCorner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80
@@ -2523,6 +2647,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2662,6 +2790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -2724,6 +2856,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverWater (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2869,6 +3009,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverRocks (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -2931,6 +3079,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverSideCorner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2995,6 +3151,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -3057,6 +3221,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3155,6 +3323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -3247,6 +3419,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverRocks (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3386,6 +3566,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverRocks
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -3448,6 +3636,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverSide (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3713,6 +3909,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverBanks (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -3775,6 +3979,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (66)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3914,6 +4122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -3976,6 +4188,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4218,6 +4434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4313,6 +4533,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiver (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -4376,6 +4604,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -4438,6 +4674,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverEntrance (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4532,6 +4776,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverRocks (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ef527ea320707545985633ea70d2d34, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -4594,6 +4846,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverBanks
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c254646c984b5fe4abba96f0fbe71c55, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4753,6 +5013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -4885,6 +5149,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60
@@ -5011,6 +5283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60
@@ -5073,6 +5349,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5212,6 +5492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30
@@ -5274,6 +5558,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5478,6 +5766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -5540,6 +5832,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5679,6 +5975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -5741,6 +6041,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (64)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5805,6 +6109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60
@@ -5868,6 +6176,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60
@@ -5930,6 +6242,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (72)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6069,6 +6385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -6131,6 +6451,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6258,6 +6582,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverWater (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80
@@ -6320,6 +6652,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6384,6 +6720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6446,6 +6786,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverSide (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6591,6 +6939,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -6653,6 +7005,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6717,6 +7073,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -6779,6 +7139,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6876,6 +7240,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSideCorner
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -6938,6 +7310,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverWater (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7033,6 +7413,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -50
@@ -7126,6 +7510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 70
@@ -7188,6 +7576,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7252,6 +7644,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -7315,6 +7715,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiver (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1166071653d318349a6c829fa0a14053, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -7377,6 +7785,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7474,6 +7886,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverWater (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60
@@ -7536,6 +7956,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7600,6 +8024,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverWater
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -7662,6 +8094,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7726,6 +8162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -7788,6 +8228,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverSide (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7852,6 +8300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -7914,6 +8366,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7978,6 +8434,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60
@@ -8041,6 +8505,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSide (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -8103,6 +8575,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8196,6 +8672,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8292,6 +8772,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverWater (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80
@@ -8354,6 +8842,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8527,6 +9019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -8589,6 +9085,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (69)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8685,6 +9185,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8930,6 +9434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -8992,6 +9500,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverSide (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4808a1f7dd4373e4eacde21f95dbe31e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9056,6 +9572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -9118,6 +9638,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d51cffd90fcc68f4898e2227da1d72cb, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d51cffd90fcc68f4898e2227da1d72cb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d51cffd90fcc68f4898e2227da1d72cb, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d51cffd90fcc68f4898e2227da1d72cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9182,6 +9710,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (59)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -9244,6 +9776,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverWater (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9308,6 +9848,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSideCorner (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -9370,6 +9918,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverWater (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9434,6 +9990,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverWater (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50
@@ -9496,6 +10060,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_Name
       value: ground_dirtRiverWater (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dad86d911bd13fd4db53fd653e315830, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9560,6 +10132,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverSideCorner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dc9d1b206c395cc45becf959bc328ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -9622,6 +10202,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9686,6 +10270,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -9748,6 +10336,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9812,6 +10404,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirtRiverEntrance
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3ccd628ab34dfa549a8f482ff4a614d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40
@@ -9875,6 +10475,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ground_dirt (73)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x
       value: 100
@@ -9937,6 +10541,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_Name
       value: ground_dirt (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d65570657b713234485418e34d96fa89, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d65570657b713234485418e34d96fa89, type: 3}
       propertyPath: m_LocalPosition.x

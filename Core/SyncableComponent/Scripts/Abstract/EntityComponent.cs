@@ -20,7 +20,9 @@ namespace OpenMMO {
 		[Header("Components")]
 		public NavMeshAgent agent;
 		public NetworkProximityChecker proxChecker;
+#pragma warning disable CS0109
 		public new Collider collider;
+#pragma warning restore CS0109
 		
 		[Header("Default Data")]
 		public ArchetypeTemplate archeType;

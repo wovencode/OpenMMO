@@ -18,7 +18,9 @@ namespace OpenMMO
 	{
 
 		[Header("Project Configuration")]
+#pragma warning disable CS0649
 		[SerializeField] internal NetworkType networkType;
+#pragma warning restore CS0649
 		public bool globalDebugMode;
 		
 		[Header("Security")]

@@ -131,9 +131,16 @@ namespace OpenMMO.Network
 				playerPreviews.AddRange(msg.players);
 				maxPlayers	= msg.maxPlayers;
 				
-				// -- Show Player Select
+				// -- Show Player Select if there are players
+				// -- Show Player Creation if there are no players
+				if (msg.players.Length > 0)
+					UIWindowPlayerSelect.singleton.Show();
+				else
+					UIWindowPlayerCreate.singleton.Show();
+				
 				UIWindowLoginUser.singleton.Hide();
-				UIWindowPlayerSelect.singleton.Show();
+				
+				
         		
         	}
         	
@@ -157,7 +164,6 @@ namespace OpenMMO.Network
         	if (msg.success)
         	{
         		UIWindowRegisterUser.singleton.Hide();
-        		UIWindowMain.singleton.Show();
         	}
         		
         	OnServerMessageResponse(conn, msg);

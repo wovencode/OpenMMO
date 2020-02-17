@@ -37,6 +37,17 @@ namespace OpenMMO.UI
 		
 		protected int index = -1;
 		
+		public static UIWindowPlayerCreate singleton;
+		
+		// -------------------------------------------------------------------------------
+		// Awake
+		// -------------------------------------------------------------------------------
+		protected override void Awake()
+		{
+			singleton = this;
+			base.Awake();
+		}
+		
 		// -------------------------------------------------------------------------------
 		// Show
 		// -------------------------------------------------------------------------------
@@ -58,8 +69,6 @@ namespace OpenMMO.UI
 			UpdatePlayerIndex();
 			
 			// -- Buttons
-			
-			
 			createButton.interactable = (index != -1 && networkManager.CanRegisterPlayer(playernameInput.text) );
 			createButton.onClick.SetListener(() => { OnClickCreate(); });
 			

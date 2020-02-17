@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -19,7 +19,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		// ThrottledUpdate_PlayerComponent
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("ThrottledUpdate")]
+		[DevExtMethods(nameof(ThrottledUpdate))]
 		void ThrottledUpdate_PlayerComponent()
 		{
 			UpdatePlayerPrefabs();

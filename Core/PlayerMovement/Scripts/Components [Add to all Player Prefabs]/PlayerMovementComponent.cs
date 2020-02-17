@@ -68,7 +68,7 @@ namespace OpenMMO
         protected override void UpdateServer()
         {
             base.UpdateServer();
-            this.InvokeInstanceDevExtMethods(nameof(UpdateServer));
+            this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
         }
 
         // -------------------------------------------------------------------------------

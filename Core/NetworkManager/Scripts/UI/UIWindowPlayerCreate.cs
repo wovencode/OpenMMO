@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -52,7 +52,7 @@ namespace OpenMMO.UI
 		protected override void ThrottledUpdate()
 		{
 		
-			this.InvokeInstanceDevExtMethods(nameof(ThrottledUpdate));
+			this.InvokeInstanceDevExtMethods(nameof(ThrottledUpdate)); //HOOK
 			
 			// -- Available Players
 			UpdatePlayerIndex();

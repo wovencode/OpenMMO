@@ -49,7 +49,7 @@ namespace OpenMMO.Network
             // --- Error Message
             NetworkClient.RegisterHandler<ErrorMsg>(OnErrorMsg);
             
-            this.InvokeInstanceDevExtMethods(nameof(OnStartClient));
+            this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
             eventListeners.OnStartClient.Invoke();
             
         }

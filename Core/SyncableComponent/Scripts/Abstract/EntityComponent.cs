@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace OpenMMO {
 		[Server]
 		protected override void UpdateServer()
 		{
-			this.InvokeInstanceDevExtMethods(nameof(UpdateServer));
+			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ namespace OpenMMO {
 		[Client]
 		protected override void UpdateClient()
 		{
-			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
+			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

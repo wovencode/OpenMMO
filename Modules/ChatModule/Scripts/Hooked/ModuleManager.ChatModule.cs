@@ -18,7 +18,7 @@ namespace OpenMMO.Modules
 		// -------------------------------------------------------------------------------
 		// Constructor
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("Constructor")]
+		[DevExtMethods(nameof(Constructor))]
 		public static void Constructor_ChatModule()
 		{
 			

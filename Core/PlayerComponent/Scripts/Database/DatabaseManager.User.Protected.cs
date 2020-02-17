@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -68,16 +68,26 @@ namespace OpenMMO.Database
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET banned=? WHERE username=?", action, username);
 		}
-		
+
+        // -------------------------------------------------------------------------------
+        // DeleteDataUser
+        // Called when User Data has been deleted.
+        // -------------------------------------------------------------------------------
+        protected void DeleteDataUser(string username)
+        {
+			this.InvokeInstanceDevExtMethods(nameof(DeleteDataUser), username); //HOOK
+        }
+
 		// -------------------------------------------------------------------------------
 		// DeleteUser
 		// Permanently deletes the user and all of its data (hard delete)
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("DeleteUser")]
+		[DevExtMethods(nameof(DeleteUser))]
 		protected void DeleteUser(string username)
 		{			
-			this.InvokeInstanceDevExtMethods("DeleteDataPlayer", username); 		// delete player data too
-			this.InvokeInstanceDevExtMethods("DeleteDataUser", username);
+			this.InvokeInstanceDevExtMethods(nameof(DeleteDataPlayer), username); //HOOK 		// delete player data too
+
+            DeleteDataUser(username);
 		}
 		
 		// -------------------------------------------------------------------------------

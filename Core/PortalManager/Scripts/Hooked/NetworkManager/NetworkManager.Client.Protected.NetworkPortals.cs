@@ -21,7 +21,7 @@ namespace OpenMMO.Network
 		// OnStartClient_NetworkPortals
 		// @Client
 		// -----------------------------------------------------------------------------------
-		[DevExtMethods("OnStartClient")]
+		[DevExtMethods(nameof(OnStartClient))]
 		void OnStartClient_NetworkPortals()
 		{
 			NetworkClient.RegisterHandler<ServerMessageResponsePlayerSwitchServer>(GetComponent<PortalManager>().OnServerMessageResponsePlayerSwitchServer);

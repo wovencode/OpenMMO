@@ -25,7 +25,7 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		// Awake
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("AwakePriority")]
+		[DevExtMethods(nameof(AwakePriority))]
 		void AwakePriority_UI()
 		{
 #if _CLIENT

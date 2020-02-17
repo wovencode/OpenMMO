@@ -30,16 +30,18 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         // LoginPlayer_PlayerComponent
         // -------------------------------------------------------------------------------
-        [DevExtMethods("LoginPlayer")]
+        [DevExtMethods(nameof(LoginPlayer))]
         public void LoginPlayer_PlayerComponent(NetworkConnection conn, GameObject player, GameObject prefab, string userName, string playerName)
         {
-            player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, userName);
+            //Debug.LogWarning("TESTING: Added Bugfix: Changed " + prefab.name + " to " + player.name);
+            player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, userName); //TODO //DEPRECIATED
+            //player.GetComponent<PlayerComponent>().tablePlayer.Update(player, userName);
         }
         
         // -------------------------------------------------------------------------------
         // RegisterPlayer_PlayerComponent
         // -------------------------------------------------------------------------------
-        [DevExtMethods("RegisterPlayer")]
+        [DevExtMethods(nameof(RegisterPlayer))]
         public void RegisterPlayer_PlayerComponent(GameObject player, string userName, string prefabName)
         {
             player.transform.position = GetStartPosition(player).position;
@@ -112,7 +114,7 @@ namespace OpenMMO.Network
                     //WARP
                     player.GetComponent<PlayerComponent>().Warp(smoothedPosition);
 
-                    Debug.LogWarning("TODO: SMOOTH MOVE IS IMPLEMENTED\nI HAVE NO IDEA WHAT THE smoothing factor should be...\nTESTERS: please test by building server + client in editor and try to change your player position...\nNOTE: You should not be out of sync with other players. TESTERS: verify this");
+                    Debug.LogWarning("TODO: SMOOTH MOVEMENT AUTHENTICATION IS IMPLEMENTED\nI have no idea what the smoothing factor should be...\nTESTERS: please test by building server + client in editor and try to change your player position...\nNOTE: You should not be out of sync with other players. TESTERS: verify this");
                 }
                 else
                 {

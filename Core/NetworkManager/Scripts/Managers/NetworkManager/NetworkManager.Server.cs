@@ -43,7 +43,7 @@ namespace OpenMMO.Network
             NetworkServer.RegisterHandler<ClientMessageRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
             
 
-			this.InvokeInstanceDevExtMethods(nameof(OnStartServer));
+			this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
         	eventListeners.OnStartServer.Invoke();
         	
         }
@@ -371,7 +371,7 @@ namespace OpenMMO.Network
 			{
 				onlineUsers[conn] = name;
 			    state = NetworkState.Lobby;
-			    this.InvokeInstanceDevExtMethods(nameof(LoginUser));
+			    this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
 			}
 			else
 				ServerSendError(conn, systemText.userAlreadyOnline, true);
@@ -395,10 +395,14 @@ namespace OpenMMO.Network
 			{
 			
 				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
+                Debug.Log("SEARCHING DATABASE FOR - " + playername + "... Found " + prefabname);
+
 				GameObject prefab = GetPlayerPrefab(prefabname);
+                Debug.Log("LOADING PREFAB - " + prefab.name);
 				
 				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
-				
+                Debug.Log("LOADED - " + player.name + " on " + player.gameObject.name);
+                
 				ValidatePlayerPosition(player);
 				NetworkServer.AddPlayerForConnection(conn, player);
 				
@@ -406,7 +410,7 @@ namespace OpenMMO.Network
 				state = NetworkState.Game;
 				
 				// -- Hooks & Events
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername);
+				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername); //HOOK
 				eventListeners.OnLoginPlayer.Invoke(conn);
 
 			}
@@ -433,7 +437,7 @@ namespace OpenMMO.Network
 			GameObject player = Instantiate(prefab);
 			player.name = playername;
 			
-			this.InvokeInstanceDevExtMethods(nameof(RegisterPlayer), player, username, prefabname);
+			this.InvokeInstanceDevExtMethods(nameof(RegisterPlayer), player, username, prefabname); //HOOK
 		
 			DatabaseManager.singleton.CreateDefaultDataPlayer(player);
 			DatabaseManager.singleton.SaveDataPlayer(player, false);

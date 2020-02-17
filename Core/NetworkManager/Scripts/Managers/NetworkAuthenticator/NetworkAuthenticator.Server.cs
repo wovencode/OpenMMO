@@ -32,7 +32,7 @@ namespace OpenMMO.Network
 
             NetworkServer.RegisterHandler<ClientMessageRequestAuth>(OnClientMessageRequestAuth, false);
             
-        	this.InvokeInstanceDevExtMethods(nameof(OnStartServer));
+        	this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
         }
             	
         // -------------------------------------------------------------------------------

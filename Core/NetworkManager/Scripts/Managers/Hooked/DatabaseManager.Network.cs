@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -29,7 +29,7 @@ namespace OpenMMO.Database
         /// Method <c>SavePlayers_Network</c>.
         /// Saves the player data for each player on the network and commits it to the database.
         /// </summary>
-		[DevExtMethods("SavePlayers")]
+		[DevExtMethods(nameof(SavePlayers))]
 		void SavePlayers_Network()
     	{
 

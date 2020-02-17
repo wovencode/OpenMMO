@@ -55,7 +55,7 @@ namespace OpenMMO {
 		protected override void UpdateServer()
 		{
 			base.UpdateServer();
-			this.InvokeInstanceDevExtMethods(nameof(UpdateServer));
+			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ namespace OpenMMO {
 		protected override void UpdateClient()
 		{
 			base.UpdateClient();
-			this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
+			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ namespace OpenMMO {
 		[Client]
 		protected override void LateUpdateClient()
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient));
+			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -22,7 +22,7 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		// Awake
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("Awake")]
+		[DevExtMethods(nameof(Awake))]
 		void Awake_ScriptableTemplates()
 		{
 			

@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -19,7 +19,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// DeleteUsers_PlayerComponent
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("DeleteUsers")]
+		[DevExtMethods(nameof(DeleteUsers))]
 		void DeleteUsers_PlayerComponent()
 		{
 
@@ -29,7 +29,7 @@ namespace OpenMMO.Database
 				return;
 			
 			foreach (TableUser user in users)
-				this.InvokeInstanceDevExtMethods("DeleteUser", user.username);
+				this.InvokeInstanceDevExtMethods(nameof(DeleteUser), user.username); //HOOK
 			
 			if (users.Count > 0)
 				debug.Log("[DatabaseManager] Pruned " + users.Count + " inactive user(s)");

@@ -43,7 +43,7 @@ namespace OpenMMO.Network
         {
             NetworkClient.RegisterHandler<ServerMessageResponseAuth>(OnServerMessageResponseAuth, false);  
             
-            this.InvokeInstanceDevExtMethods(nameof(OnStartClient));   
+            this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
         }
 
         // -------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ namespace OpenMMO.Network
         	if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetAutoConnect)
         		Invoke(nameof(ClientAuthenticate), connectDelay);		
         	
-        	this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate), conn);   
+        	this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate), conn); //HOOK
         }
         
 		// -------------------------------------------------------------------------------

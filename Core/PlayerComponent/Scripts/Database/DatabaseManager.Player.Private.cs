@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -20,7 +20,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// Init_Player
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("Init")]
+		[DevExtMethods(nameof(Init))]
 		void Init_Player()
 		{
 	   		CreateTable<TablePlayer>();
@@ -29,7 +29,7 @@ namespace OpenMMO.Database
 	   	// -------------------------------------------------------------------------------
 	   	// CreateDefaultDataPlayer_Player
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("CreateDefaultDataPlayer")]
+	   	[DevExtMethods(nameof(CreateDefaultDataPlayer))]
 		void CreateDefaultDataPlayer_Player(GameObject player)
 		{
 			
@@ -38,7 +38,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// LoadDataPlayerPriority_Player
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("LoadDataPlayerPriority")]
+		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_Player(GameObject player)
 		{
 			
@@ -49,7 +49,7 @@ namespace OpenMMO.Database
 	   	// we simply fetch the table that is present on the local player object instead
 	   	// of copy-pasting all the individual properties, update it and forward it to the db
 	   	// -------------------------------------------------------------------------------
-		[DevExtMethods("LoadDataPlayer")]
+		[DevExtMethods(nameof(LoadDataPlayer))]
 		void LoadDataPlayer_Player(GameObject player)
 		{
 	   		TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND deleted=0", player.name);
@@ -62,7 +62,7 @@ namespace OpenMMO.Database
 	   	// we simply fetch the table that is present on the local player object instead
 	   	// of copy-pasting all the individual properties, update it and forward it to the db
 	   	// -------------------------------------------------------------------------------
-		[DevExtMethods("SaveDataPlayer")]
+		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_Player(GameObject player)
 		{
 			// you should delete all data of this player first, to prevent duplicates
@@ -75,7 +75,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 	   	// LoginPlayer_Player
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("LoginPlayer")]
+	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_Player(string name)
 	   	{
 	   		
@@ -84,7 +84,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 	   	// LogoutPlayer_Player
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("LogoutPlayer")]
+	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_Player(string name)
 	   	{
 	   		
@@ -93,7 +93,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 	   	// DeleteDataPlayer_Player
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("DeleteDataPlayer")]
+	   	[DevExtMethods(nameof(DeleteDataPlayer))]
 	   	void DeleteDataPlayer_Player(string playername)
 	   	{
 	   		Execute("DELETE FROM "+nameof(TablePlayer)+" WHERE playername=?", playername);

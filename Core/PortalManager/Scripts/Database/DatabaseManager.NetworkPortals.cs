@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// Init
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("Init")]
+		[DevExtMethods(nameof(Init))]
 		void Init_NetworkZones()
 		{
 	   		CreateTable<TablePlayerZones>();
@@ -28,7 +28,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// CreateDefaultDataPlayer
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("CreateDefaultDataPlayer")]
+		[DevExtMethods(nameof(CreateDefaultDataPlayer))]
 		void CreateDefaultDataPlayer_NetworkZones(GameObject player)
 		{
 	 		player.GetComponent<PlayerComponent>().tablePlayerZones = new TablePlayerZones
@@ -43,7 +43,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// LoadDataPlayerPriority
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("LoadDataPlayerPriority")]
+		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_NetworkZones(GameObject player)
 		{
 	   		/*
@@ -57,7 +57,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// LoadDataPlayer
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("LoadDataPlayer")]
+		[DevExtMethods(nameof(LoadDataPlayer))]
 		void LoadDataPlayer_NetworkZones(GameObject player)
 		{
 			TablePlayerZones tablePlayerZones = FindWithQuery<TablePlayerZones>("SELECT * FROM "+nameof(TablePlayerZones)+" WHERE playername=?", player.name);
@@ -67,7 +67,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// SaveDataPlayer
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("SaveDataPlayer")]
+		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_NetworkZones(GameObject player)
 		{
 		
@@ -89,7 +89,7 @@ namespace OpenMMO.Database
 	   	// -------------------------------------------------------------------------------
 	   	// DeleteDataPlayer_Example
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("DeleteDataPlayer")]
+	   	[DevExtMethods(nameof(DeleteDataPlayer))]
 	   	void DeleteDataPlayer_NetworkZones(string _name)
 	   	{
 	   		Execute("DELETE FROM "+nameof(TablePlayerZones)+" WHERE playername=?", _name);

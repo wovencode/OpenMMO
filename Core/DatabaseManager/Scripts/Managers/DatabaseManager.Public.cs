@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -25,8 +25,17 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public void CreateDefaultDataPlayer(GameObject player)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(CreateDefaultDataPlayer), player);
+			this.InvokeInstanceDevExtMethods(nameof(CreateDefaultDataPlayer), player); //HOOK
 		}
+
+        // -------------------------------------------------------------------------------
+        // LoadDataPlayerPriority
+        // Called at the start of LoadDataPlayer, before the rest of the method is called
+        // -------------------------------------------------------------------------------
+        public virtual void LoadDataPlayerPriority(GameObject prefab, GameObject player)
+        {
+			this.InvokeInstanceDevExtMethods(nameof(LoadDataPlayerPriority), player); //HOOK
+        }
 		
 		// -------------------------------------------------------------------------------
 		// LoadDataPlayer
@@ -37,8 +46,10 @@ namespace OpenMMO.Database
 		{
 			GameObject player = Instantiate(prefab);
 			player.name = _name;
-			this.InvokeInstanceDevExtMethods("LoadDataPlayerPriority", player);
-			this.InvokeInstanceDevExtMethods(nameof(LoadDataPlayer), player);
+
+            LoadDataPlayerPriority(prefab, player);
+
+			this.InvokeInstanceDevExtMethods(nameof(LoadDataPlayer), player); //HOOK
 			return player;
 		}
 		
@@ -52,7 +63,7 @@ namespace OpenMMO.Database
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username);
+			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username); //HOOK
 			
 			if (useTransaction)
 				databaseLayer.Commit();
@@ -68,7 +79,7 @@ namespace OpenMMO.Database
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataPlayer), player);
+			this.InvokeInstanceDevExtMethods(nameof(SaveDataPlayer), player); //HOOK
 			
 			if (useTransaction)
 				databaseLayer.Commit();
@@ -80,7 +91,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public void LoginUser(string name)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LoginUser), name);
+			this.InvokeInstanceDevExtMethods(nameof(LoginUser), name); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -90,7 +101,7 @@ namespace OpenMMO.Database
 		public void LogoutUser(string name)
 		{
 			SaveDataUser(name, false);
-			this.InvokeInstanceDevExtMethods(nameof(LogoutUser), name);
+			this.InvokeInstanceDevExtMethods(nameof(LogoutUser), name); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -99,7 +110,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public void LoginPlayer(string name)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), name);
+			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), name); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -109,8 +120,8 @@ namespace OpenMMO.Database
 		public void LogoutPlayer(GameObject player)
 		{
 			SaveDataPlayer(player, false);
-			this.InvokeInstanceDevExtMethods(nameof(LogoutPlayer), player);
-		}
+			this.InvokeInstanceDevExtMethods(nameof(LogoutPlayer), player); //HOOK
+        }
 		
 		// -------------------------------------------------------------------------------
 

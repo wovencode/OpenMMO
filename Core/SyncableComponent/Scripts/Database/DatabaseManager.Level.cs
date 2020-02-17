@@ -1,4 +1,4 @@
-﻿// =======================================================================================
+// =======================================================================================
 // Database
 // by Weaver (Fhiz)
 // MIT licensed
@@ -26,7 +26,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// Init_Level
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("Init")]
+		[DevExtMethods(nameof(Init))]
 		void Init_Level()
 		{
 			CreateTable<TablePlayerLevel>();
@@ -37,7 +37,7 @@ namespace OpenMMO.Database
 		// LoadDataPlayerPriority_Level
 		// We have to load levels first, because inventory size (etc.) could depend on them
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("LoadDataPlayerPriority")]
+		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_Level(GameObject player)
 		{
 			
@@ -63,7 +63,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// SaveDataPlayer_Level
 		// -------------------------------------------------------------------------------
-		[DevExtMethods("SaveDataPlayer")]
+		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_Level(GameObject player)
 		{
 		
@@ -93,7 +93,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 	   	// DeleteDataPlayer_Level
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("DeleteDataPlayer")]
+	   	[DevExtMethods(nameof(DeleteDataPlayer))]
 	   	void DeleteDataPlayer_Level(string _name)
 	   	{
 	   		Execute("DELETE FROM "+nameof(TablePlayerLevel)+" WHERE owner=?", _name);

@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -44,7 +44,7 @@ namespace OpenMMO.Database
 			if (databaseLayer)
 				databaseLayer.OnValidate();
 				
-			this.InvokeInstanceDevExtMethods(nameof(OnValidate));
+			this.InvokeInstanceDevExtMethods(nameof(OnValidate)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ namespace OpenMMO.Database
 					
 			*/
 			
-			this.InvokeInstanceDevExtMethods(nameof(DeleteUsers));
+			this.InvokeInstanceDevExtMethods(nameof(DeleteUsers)); //HOOK
 			
 		}
 		
@@ -90,7 +90,7 @@ namespace OpenMMO.Database
 			
 			*/
 			
-			this.InvokeInstanceDevExtMethods(nameof(SavePlayers));
+			this.InvokeInstanceDevExtMethods(nameof(SavePlayers)); //HOOK
 			
     	}
     	

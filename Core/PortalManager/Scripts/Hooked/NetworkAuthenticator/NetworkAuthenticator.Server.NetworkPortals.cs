@@ -20,7 +20,7 @@ namespace OpenMMO.Network
 		// OnStartServer
 		// @Server
 		// -------------------------------------------------------------------------------
-        [DevExtMethods("OnStartServer")]
+        [DevExtMethods(nameof(OnStartServer))]
         void OnStartServer_NetworkPortals()
         {
             NetworkServer.RegisterHandler<ClientMessageRequestAutoAuth>(OnClientMessageRequestAutoAuth, false);

@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.DebugManager;
@@ -48,7 +48,7 @@ namespace OpenMMO.Database
 			
 			databaseLayer.Init();
 			
-			this.InvokeInstanceDevExtMethods(nameof(Init));
+			this.InvokeInstanceDevExtMethods(nameof(Init)); //HOOK
 			
 			if (saveInterval > 0)
 				InvokeRepeating(nameof(SavePlayers), saveInterval, saveInterval);
@@ -56,7 +56,7 @@ namespace OpenMMO.Database
 			if (deleteInterval > 0)
 				InvokeRepeating(nameof(DeleteUsers), deleteInterval, deleteInterval);
 			
-			this.InvokeInstanceDevExtMethods(nameof(Init));
+			this.InvokeInstanceDevExtMethods(nameof(Init)); //HOOK
 			
 		}
 		

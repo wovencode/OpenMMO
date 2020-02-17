@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -41,7 +41,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void DeleteDataPlayer(string playername)
 		{			
-			this.InvokeInstanceDevExtMethods(nameof(DeleteDataPlayer), playername);
+			this.InvokeInstanceDevExtMethods(nameof(DeleteDataPlayer), playername); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

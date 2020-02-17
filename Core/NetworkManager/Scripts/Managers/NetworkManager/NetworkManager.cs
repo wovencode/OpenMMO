@@ -51,7 +51,18 @@ namespace OpenMMO.Network
 		
 		// You can use this to show/hide UI elements based on the network state (state == NetworkState.Game)
 		[HideInInspector]public NetworkState state = NetworkState.Offline;
-		
+
+        // -------------------------------------------------------------------------------
+        // AwakePriority
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// <c>AwakePriority</c> function that is called at the beginning of the awake method before others are called.
+        /// </summary>
+        public virtual void AwakePriority()
+        {
+			this.InvokeInstanceDevExtMethods(nameof(AwakePriority)); //HOOK
+        }
+
 		// -------------------------------------------------------------------------------
 		// Awake
 		// -------------------------------------------------------------------------------
@@ -62,8 +73,8 @@ namespace OpenMMO.Network
 		{
 			singleton = this;
 			base.Awake(); // required
-			
-			this.InvokeInstanceDevExtMethods("AwakePriority"); // must be first
+
+            AwakePriority(); // must be first
 			
 			// -- decide how to start
 #if _SERVER && _CLIENT
@@ -75,7 +86,7 @@ namespace OpenMMO.Network
 			StartClient();
 #endif
 			
-			this.InvokeInstanceDevExtMethods(nameof(Awake)); // must be last
+			this.InvokeInstanceDevExtMethods(nameof(Awake)); //HOOK // must be last
 			
 		}
 
@@ -87,7 +98,7 @@ namespace OpenMMO.Network
 		public override void Start()
 		{
 			base.Start(); // required
-			this.InvokeInstanceDevExtMethods(nameof(Start));
+			this.InvokeInstanceDevExtMethods(nameof(Start)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -192,7 +203,7 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
 		public override void OnClientConnect(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect), conn);
+			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect), conn); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -202,7 +213,7 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
 		public override void OnServerConnect(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnServerConnect), conn);
+			this.InvokeInstanceDevExtMethods(nameof(OnServerConnect), conn); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -212,7 +223,7 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
 		public override void OnClientSceneChanged(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnClientSceneChanged), conn);
+			this.InvokeInstanceDevExtMethods(nameof(OnClientSceneChanged), conn); //HOOK
 		}
 
 		// -------------------------------------------------------------------------------
@@ -222,7 +233,7 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
 		public override void OnServerAddPlayer(NetworkConnection conn) {
-			this.InvokeInstanceDevExtMethods(nameof(OnServerAddPlayer), conn);
+			this.InvokeInstanceDevExtMethods(nameof(OnServerAddPlayer), conn); //HOOK
 		}
 	
 		// -------------------------------------------------------------------------------
@@ -245,7 +256,7 @@ namespace OpenMMO.Network
 				if (conn.identity.gameObject != null)
 				{	
 					
-					this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn);
+					this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
 					eventListeners.OnLogoutPlayer.Invoke(conn);
 					
 					string name = conn.identity.gameObject.name;
@@ -278,7 +289,7 @@ namespace OpenMMO.Network
 				state = NetworkState.Offline;
 				UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
 			}
-			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect));
+			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect)); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

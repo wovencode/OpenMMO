@@ -19,7 +19,15 @@ namespace OpenMMO.Modules
 	{
 		
 		public static List<Module> modules = new List<Module>();
-		
+
+        // -------------------------------------------------------------------------------
+        // Constructor Hooks
+        // -------------------------------------------------------------------------------
+        static void Constructor()
+        {
+            DevExtUtils.InvokeStaticDevExtMethods(typeof(ModuleManager), nameof(Constructor));
+        }
+
 		// -------------------------------------------------------------------------------
 		// ModuleManager (Constructor)
 		// -------------------------------------------------------------------------------
@@ -27,9 +35,9 @@ namespace OpenMMO.Modules
 		{
 			
 			modules.Clear();
-			
-			// -- gather all modules
-			DevExtUtils.InvokeStaticDevExtMethods(typeof(ModuleManager), "Constructor");
+
+            // -- gather all modules
+            Constructor();
 			
 			// -- add/update all modules	
 			UpdateDefines(modules);

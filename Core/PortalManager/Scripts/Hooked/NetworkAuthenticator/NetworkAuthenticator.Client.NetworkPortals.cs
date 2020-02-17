@@ -22,7 +22,7 @@ namespace OpenMMO.Network
         // OnStartClient
         // @Client
 		// -------------------------------------------------------------------------------
-       	[DevExtMethods("OnStartClient")]
+       	[DevExtMethods(nameof(OnStartClient))]
         void OnStartClient_NetworkPortals()
         {
             NetworkClient.RegisterHandler<ServerMessageResponseAutoAuth>(OnServerMessageResponseAutoAuth, false);  
@@ -33,7 +33,7 @@ namespace OpenMMO.Network
         // OnClientAuthenticate_NetworkPortals
         // @Client
         // -------------------------------------------------------------------------------
-       	[DevExtMethods("OnClientAuthenticate")]
+       	[DevExtMethods(nameof(OnClientAuthenticate))]
         void OnClientAuthenticate_NetworkPortals(NetworkConnection conn)
         {
         	if (GetComponent<PortalManager>() != null && GetComponent<PortalManager>().GetAutoConnect)

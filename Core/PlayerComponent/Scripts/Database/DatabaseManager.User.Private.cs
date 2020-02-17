@@ -27,20 +27,6 @@ namespace OpenMMO.Database
 	   		CreateTable<TableUser>();
 		}
 		
-        /* //DEPRECIATED - unused
-	   	// -------------------------------------------------------------------------------
-	   	// CreateDefaultDataUser_User
-	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods("CreateDefaultDataUser")]
-		void CreateDefaultDataUser_User(GameObject player)
-		{
-			
-				//users have no default data, feel free to add your own
-				
-				//instead, user data is saved/loaded as part of the register/login process
-			
-		}*/
-		
 		// -------------------------------------------------------------------------------
 		// LoadDataWithPriority_User
 		// -------------------------------------------------------------------------------
@@ -67,22 +53,6 @@ namespace OpenMMO.Database
 			*/
 		}
 
-		/* //DEPRECIATED - unused
-		// -------------------------------------------------------------------------------
-	   	// LoadDataUser_User
-	   	// we simply fetch the table that is present on the local player object instead
-	   	// of copy-pasting all the individual properties, update it and forward it to the db
-	   	// -------------------------------------------------------------------------------
-		[DevExtMethods("LoadDataUser")]
-		void LoadDataUser_User(GameObject player)
-		{
-	   	
-				//users do not load any data, feel free to add your own
-				
-				//instead, user data is saved/loaded as part of the register/login process
-			
-		}*/
-		
 		// -------------------------------------------------------------------------------
 	   	// SaveDataPlayer_User
 	   	// -------------------------------------------------------------------------------

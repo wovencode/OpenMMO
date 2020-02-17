@@ -82,7 +82,7 @@ namespace OpenMMO.Portals
 			base.OnClickConfirm();
 			
 			if (UIPopupNotify.singleton)
-				UIPopupNotify.singleton.Init(popupZoning, 5f);
+				UIPopupNotify.singleton.Init(popupZoning, 5f, false);
 			
 		}
 		

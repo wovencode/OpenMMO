@@ -145,8 +145,8 @@ namespace OpenMMO.UI
 		{
 		
 			if (UIBackgroundLayer.singleton)
-        		UIBackgroundLayer.singleton.FadeIn();
-        		
+        		UIBackgroundLayer.singleton.BlackIn();
+        	
 			networkManager.TryLoginPlayer(networkManager.playerPreviews[index].name);
 			
 			Hide();

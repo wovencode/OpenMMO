@@ -40,10 +40,12 @@ namespace OpenMMO.UI
 		
 		// -------------------------------------------------------------------------------
 		// Init
+		// fade : true = slighty fade screen when fade is true
+		// fade : false = show completely black screen when fade is false
 		// -------------------------------------------------------------------------------
-		public void Init(string _description, float _duration=2)
+		public void Init(string _description, float _duration=2, bool fade=true)
 		{
-			base.Init();
+			base.Init(fade);
 			Show(_description);
 			Invoke(nameof(Close), _duration);
 		}

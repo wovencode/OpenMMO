@@ -248,7 +248,7 @@ namespace OpenMMO.Network
         {
         	
         	if (UIBackgroundLayer.singleton)
-        		UIBackgroundLayer.singleton.FadeOut(1);
+        		UIBackgroundLayer.singleton.BlackOut(2);
         		
         	OnServerMessageResponse(conn, msg);
         }

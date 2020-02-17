@@ -19,7 +19,8 @@ namespace OpenMMO.UI
 	// ===================================================================================
 	public partial class UIBackgroundLayer : UIRoot 
 	{
-
+		
+		[SerializeField] protected GameObject blackBackground;
 		[SerializeField] protected Animator animator;
 		[SerializeField] protected string fadeInTriggerName = "fadeIn";
 		[SerializeField] protected string fadeOutTriggerName = "fadeOut";
@@ -33,6 +34,15 @@ namespace OpenMMO.UI
 		{
 			singleton = this;
 			base.Awake();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// BlackIn
+		// Immediately shows the full black background (no fading animation)
+		// -------------------------------------------------------------------------------
+		public void BlackIn()
+		{
+			blackBackground.SetActive(true);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -53,6 +63,26 @@ namespace OpenMMO.UI
 		{
 			animator.SetTrigger(fadeInTriggerName);
 			Show();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// BlackOut
+		// Immediately hides the full black background (no fading animation)
+		// -------------------------------------------------------------------------------
+		public void BlackOut(float delay=0f)
+		{
+			if (delay > 0)
+				Invoke(nameof(BlackOutDelayed), delay);
+			else
+				blackBackground.SetActive(false);
+		}
+		
+		// -------------------------------------------------------------------------------
+		// BlackOutDelayed
+		// -------------------------------------------------------------------------------
+		protected void BlackOutDelayed()
+		{
+			blackBackground.SetActive(false);
 		}
 		
 		// -------------------------------------------------------------------------------

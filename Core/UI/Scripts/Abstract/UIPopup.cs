@@ -35,6 +35,8 @@ namespace OpenMMO.UI
 		[SerializeField] protected string closeTriggerName = "close";
 		[SerializeField] protected Text description;
 		
+		protected bool _fadeIn = true;
+		
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
@@ -42,20 +44,33 @@ namespace OpenMMO.UI
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual void Show(string _text)
+		public virtual void Show(string _text, bool fade=true)
 		{	
 			description.text = _text;
 			base.Show();
-			Init();
+			Init(fade);
 		}
 		
 		// -------------------------------------------------------------------------------
-		protected void Init()
+		// Init
+		// fade: true = fades the screen slightly when true
+		// fade: false = completely blacks-out the screen when false
+		// -------------------------------------------------------------------------------
+		protected void Init(bool fade=true)
 		{
 			animator.SetTrigger(showTriggerName);
 			
 			if (UIBackgroundLayer.singleton != null)
-				UIBackgroundLayer.singleton.FadeIn();
+			{
+				
+				_fadeIn = fade;
+				
+				if (fade)
+					UIBackgroundLayer.singleton.FadeIn();
+				else
+					UIBackgroundLayer.singleton.BlackIn();
+			}
+				
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -84,7 +99,12 @@ namespace OpenMMO.UI
 		{
 			
 			if (UIBackgroundLayer.singleton != null)
-				UIBackgroundLayer.singleton.FadeOut();
+			{
+				if (_fadeIn)
+					UIBackgroundLayer.singleton.FadeOut();
+				else
+					UIBackgroundLayer.singleton.BlackOut();
+			}
 			
 			animator.SetTrigger(closeTriggerName);
 			

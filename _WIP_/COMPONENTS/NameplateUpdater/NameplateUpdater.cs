@@ -28,15 +28,16 @@ public class NameplateUpdater : MonoBehaviour
         if (frameCount >= tickFrequency) //TICK THIS FRAME?
         {
             frameCount = 0; //RESET THE COUNTER
-
-            PlayerComponent player = transform.parent.gameObject.GetComponent<PlayerComponent>();
-            if (!player) player = transform.parent.gameObject.GetComponentInChildren<PlayerComponent>();
+			
+			GameObject player = transform.parent.gameObject;
+            PlayerComponent pc = player.GetComponent<PlayerComponent>();
+            if (!pc) pc = player.GetComponentInChildren<PlayerComponent>();
 
             if (player)
             {
                 if (nameField != null && nameField.enabled) nameField.text = player.name; //UPDATE PLAYER NAME
-                if (guildField != null && guildField.enabled) guildField.text = "level " + player.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
-                if (zoneField != null && zoneField.enabled) zoneField.text = player.currentZone.title; //UPDATE PLAYER ZONE
+                if (guildField != null && guildField.enabled) guildField.text = "level " + pc.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
+                if (zoneField != null && zoneField.enabled) zoneField.text = pc.currentZone.title; //UPDATE PLAYER ZONE
             }
         }
     }

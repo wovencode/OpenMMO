@@ -246,10 +246,7 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponsePlayerLogin(NetworkConnection conn, ServerMessageResponsePlayerLogin msg)
         {
-        	
-        	if (UIBackgroundLayer.singleton)
-        		UIBackgroundLayer.singleton.BlackOut(2);
-        		
+        
         	OnServerMessageResponse(conn, msg);
         }
 

@@ -36,6 +36,7 @@ namespace OpenMMO.UI
 		
 		[Header("System Texts")]
 		public string popupDescription = "Do you really want to delete this character?";
+		public string popupLogin		= "Logging in, please wait...";
 		
 		public static UIWindowPlayerSelect singleton;
 		
@@ -143,10 +144,15 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void OnClickSelect()
 		{
-		
+			
+			// -- UI stuff
 			if (UIBackgroundLayer.singleton)
-        		UIBackgroundLayer.singleton.BlackIn();
+        		UIBackgroundLayer.singleton.BlackIn(10f);
         	
+			if (UIPopupNotify.singleton)
+				UIPopupNotify.singleton.Init(popupLogin, 10f, false);
+        	
+        	// -- issue login
 			networkManager.TryLoginPlayer(networkManager.playerPreviews[index].name);
 			
 			Hide();

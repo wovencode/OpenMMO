@@ -40,9 +40,13 @@ namespace OpenMMO.UI
 		// BlackIn
 		// Immediately shows the full black background (no fading animation)
 		// -------------------------------------------------------------------------------
-		public void BlackIn()
+		public void BlackIn(float duration=0f)
 		{
+			
 			blackBackground.SetActive(true);
+			
+			if (duration > 0)
+				Invoke(nameof(BlackOutDelayed), duration);
 		}
 		
 		// -------------------------------------------------------------------------------

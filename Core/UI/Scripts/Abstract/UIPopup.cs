@@ -58,7 +58,9 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		protected void Init(bool fade=true)
 		{
-			animator.SetTrigger(showTriggerName);
+		
+			if (root.activeSelf)
+				animator.SetTrigger(showTriggerName);
 			
 			if (UIBackgroundLayer.singleton != null)
 			{

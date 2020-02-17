@@ -286,39 +286,6 @@ namespace OpenMMO.Network
 		}
 
         // -------------------------------------------------------------------------------
-        // RequestPlayerSwitchServer
-        // @Client
-        // -------------------------------------------------------------------------------
-        /// <summary>
-        /// Protected override function <c>RequestPlayerSwitchServer</c> that returns a boolean.
-        /// Sends a player switch server request to the server.
-        /// Checks whether the player switch server request is valid and can be sent to the server.
-        /// Returns a boolean detailing whether the request was sent or not.
-        /// </summary>
-        /// <param name="conn"></param>
-        /// <param name="playerName"></param>
-        /// <param name="anchorName"></param>
-        /// <param name="zoneName"></param>
-        /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
-        protected override bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, string anchorName, string zoneName)
-		{
-
-			if (!base.RequestPlayerSwitchServer(conn, playerName, anchorName, zoneName))
-				return false;
-
-			ClientMessageRequestPlayerSwitchServer message = new ClientMessageRequestPlayerSwitchServer
-			{
-				playername = playerName,
-				zonename = zoneName
-			};
-
-			conn.Send(message);
-
-			return true;
-
-		}
-
-        // -------------------------------------------------------------------------------
 
     }
 }

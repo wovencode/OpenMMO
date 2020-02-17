@@ -145,21 +145,6 @@ namespace OpenMMO.Network
 			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
 		}
 
-        // -------------------------------------------------------------------------------
-        /// <summary>
-        /// Public virtual player method <c>RequestPlayerSwitchServer</c> that switches the players server
-        /// The base version fo the method checks whether the player name is allowed, the anchor name is given and the zone name is given.
-        /// </summary>
-        /// <param name="conn"></param>
-        /// <param name="playerName"></param>
-        /// <param name="anchorName"></param>
-        /// <param name="zoneName"></param>
-        /// <returns> A boolean value determining whehter the player can switch server </returns>
-        protected virtual bool RequestPlayerSwitchServer(NetworkConnection conn, string playerName, string anchorName, string zoneName)
-		{
-			return (Tools.IsAllowedName(name) && !String.IsNullOrWhiteSpace(anchorName) && !String.IsNullOrWhiteSpace(zoneName));
-		}
-
 		// -------------------------------------------------------------------------------
 
 	}

@@ -350,23 +350,6 @@ namespace OpenMMO.Network
 			}
 		}
 
-        // -------------------------------------------------------------------------------
-        // TrySwitchServerPlayer
-        // @Client
-        // -------------------------------------------------------------------------------
-        /// <summary>
-        /// Public function <c>TrySwitchServerPlayer</c>.
-        /// Tries to switch the player's server.
-        /// Runs on the client.
-        /// </summary>
-        /// <param name="playerName"></param>
-        /// <param name="anchorName"></param>
-        /// <param name="zoneName"></param>
-        public void TrySwitchServerPlayer(string playerName, string anchorName, string zoneName)
-		{
-			RequestPlayerSwitchServer(NetworkClient.connection, playerName, anchorName, zoneName);
-		}
-
         // ======================== PUBLIC METHODS - OTHER ===============================
 
         // -------------------------------------------------------------------------------

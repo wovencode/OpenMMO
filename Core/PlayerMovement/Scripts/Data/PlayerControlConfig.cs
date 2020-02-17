@@ -39,11 +39,14 @@ namespace OpenMMO
         [Tooltip("This basically overrides strafing. Turns strafe buttons into Turn buttons")]
         public bool turnWhileStrafing = false;
 
-        [Header("Input")]
+        [Header("Input Keys")]
         public KeyCode runKey = KeyCode.LeftShift;
-        public KeyCode strafeKey = KeyCode.LeftShift;
+
+        //MOVE
         public InputAxis moveAxisHorizontal = InputAxis.Horizontal;
         public InputAxis moveAxisVertical = InputAxis.Vertical;
+
+        //STRAFE
         public KeyCode strafeLeftKey = KeyCode.Q;
         public KeyCode strafeRightKey = KeyCode.E;
 

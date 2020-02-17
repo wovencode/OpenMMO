@@ -1,11 +1,11 @@
 
-using System;
-using System.Text;
-using System.Collections.Generic;
+//using System;
+//using System.Text;
+//using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+//using UnityEngine.AI;
 using Mirror;
-using OpenMMO;
+//using OpenMMO;
 
 namespace OpenMMO {
 	
@@ -21,59 +21,6 @@ namespace OpenMMO {
 		public double movementUpdateInterval = 1f;
         
 		double _timerMovement = 0;
-		
-		// -------------------------------------------------------------------------------
-		// CheckMovementInterval
-		// -------------------------------------------------------------------------------
-		protected bool CheckMovementInterval => Time.time > _timerMovement;
-		
-		// -------------------------------------------------------------------------------
-		// RefreshMovementInterval
-		// -------------------------------------------------------------------------------
-		void RefreshMovementInterval()
-		{
-			_timerMovement = Time.time + movementUpdateInterval;
-		}
-		
-		// -------------------------------------------------------------------------------
-		// FixedUpdateClient
-		// @Client
-		// -------------------------------------------------------------------------------
-		[Client]
-		protected override void FixedUpdateClient()
-    	{
-        	if (isLocalPlayer									// only for local Player
-        		&& CheckMovementInterval						// we throttle a little bit
-        		)
-        	{
-				Cmd_UpdateState(new MovementStruct(transform.position, transform.rotation, verticalMovementInput, horizontalMovementInput, running, strafing, strafeLeft, strafeRight));
-				RefreshMovementInterval();
-			}
-        	
-		}
-		
-		// -------------------------------------------------------------------------------
-		// Cmd_UpdateState
-		// @Client -> @Server
-		// -------------------------------------------------------------------------------
-		[Command]
-		protected virtual void Cmd_UpdateState(MovementStruct movementStruct)
-    	{
-    		
-    		transform.position			= movementStruct.position;
-    		transform.rotation			= movementStruct.rotation;
-    		
-    		verticalMovementInput 		= Mathf.Clamp(movementStruct.verticalMovementInput, -1, 1);		// good enough for keyboard + controller
-    		horizontalMovementInput 	= Mathf.Clamp(movementStruct.horizontalMovementInput, -1, 1);	// good enough for keyboard + controller
-    		running						= movementStruct.movementRunning;
-    		strafing                    = movementStruct.movementStrafing;
-
-    		strafeLeft                    = movementStruct.movementTurnLeft;
-    		strafeRight                   = movementStruct.movementTurnRight;
-    		
-    		UpdateVelocity();
-    		RpcPosition(transform.position, transform.rotation, agent.velocity);
-		}
 		
 		// -------------------------------------------------------------------------------
 		// UpdateVelocity
@@ -120,16 +67,7 @@ namespace OpenMMO {
                         //float factor = running ? config.runSpeedScale : config.walkSpeedScale; 
                         newVelocity = direction * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                     }
-                //else agent.velocity = Vector3.zero; // -- required? //DEPRECIATED: This now happens below
-
-                /*if (config.turnWhileStrafing && !strafing) //TURN IF NOT STRAFING
-                {
-                    if (horizontalMovementInput != 0)       // -- Rotation (when not strafing)
-                    {
-                        transform.Rotate(0, horizontalMovementInput * config.turnSpeedMultiplier, 0);
-                    }
-                }*/
-
+                
                 //STRAFE LEFT
                 if (strafeLeft)
                 {
@@ -162,19 +100,78 @@ namespace OpenMMO {
 			}
 			
 		}
+
+
+        // S E R V E R  A U T H O R I T A T I V E  M O V E M E N T
+
+		// -------------------------------------------------------------------------------
+		// FixedUpdateClient
+		// @Client
+		// -------------------------------------------------------------------------------
+		[Client]
+		protected override void FixedUpdateClient()
+    	{
+        	if (isLocalPlayer && ReadyToMove()) // CHECK FOR THROTTLING
+        	{
+				Cmd_UpdateMovementState(new MovementStateInfo(transform.position, transform.rotation, verticalMovementInput, horizontalMovementInput, running, strafeLeft, strafeRight));
+				LogMovement();
+			}
+        	
+		}
+
+        // -------------------------------------------------------------------------------
+        // ReadyToMove
+        // -------------------------------------------------------------------------------
+        /// <summary>Movement Throttling</summary>
+        /// <returns>Enough time has passed...ready to move again.</returns>
+        [Server]
+        protected bool ReadyToMove() { return Time.time > _timerMovement; }
+
+        // -------------------------------------------------------------------------------
+        // LogMovement
+        // -------------------------------------------------------------------------------
+        /// <summary>Logs the last time that movement was processed.</summary>
+        [Server]
+        private void LogMovement()
+        {
+            _timerMovement = Time.time + movementUpdateInterval;
+        }
+		
 		
 		// -------------------------------------------------------------------------------
-		// RpcPosition
+		// Cmd_UpdateState
+		// @Client -> @Server
+		// -------------------------------------------------------------------------------
+        /// <summary>Sends movement state to the server, where the server updates velocity, then returns updated position info to clients.</summary>
+        /// <param name="moveState"></param>
+		[Command]
+		protected virtual void Cmd_UpdateMovementState(MovementStateInfo moveState)
+    	{
+    		
+    		transform.position			= moveState.position;
+    		transform.rotation			= moveState.rotation;
+    		
+    		verticalMovementInput 		= Mathf.Clamp(moveState.verticalMovementInput, -1, 1);		// good enough for keyboard + controller
+    		horizontalMovementInput 	= Mathf.Clamp(moveState.horizontalMovementInput, -1, 1);	// good enough for keyboard + controller
+    		running						= moveState.movementRunning;
+
+    		strafeLeft                    = moveState.movementStrafeLeft;
+    		strafeRight                   = moveState.movementStrafeRight;
+    		
+    		UpdateVelocity();
+    		RpcCorrectClientPosition(transform.position, transform.rotation, agent.velocity);
+		}
+		
+		// -------------------------------------------------------------------------------
+		// RpcCorrectClientPosition
 		// Updates the rotation, position and velocity on clients based on server stats
 		// @Server -> @Clients
 		// -------------------------------------------------------------------------------
+        /// <summary>Corrects the Client's position based upon the Server's interpretation of the simulation.</summary>
 		[ClientRpc]
-   		public void RpcPosition(Vector3 _position, Quaternion _rotation, Vector3 _velocity)
+   		public void RpcCorrectClientPosition(Vector3 _position, Quaternion _rotation, Vector3 _velocity)
     	{
-    	
-    		// -- not required to update local player
-    		if (isLocalPlayer)
-    			return;
+    		if (isLocalPlayer) return; //IGNORE LOCAL CLIENTS //TODO: Are we positive that local player does not need correction?
     		
     		agent.ResetPath();
         	agent.velocity = _velocity;

@@ -1,6 +1,5 @@
-
-using System;
-using System.Text;
+//using System;
+//using System.Text;
 //using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.AI;
@@ -22,21 +21,22 @@ namespace OpenMMO
         //MOVE
         protected float verticalMovementInput;
         protected float horizontalMovementInput;
-        protected bool running;
-        protected bool strafing;
+
         //TURN
         protected bool strafeLeft;
         protected bool strafeRight;
 
+        //RUN
+        protected bool running;
+
 #if UNITY_EDITOR
-        // -------------------------------------------------------------------------------
-        // OnValidate
-        // -------------------------------------------------------------------------------
+        // LOAD DEFAULTS
         private void OnValidate()
         {
             if (!config) config = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT
         }
 #endif
+
         // -------------------------------------------------------------------------------
         // Start
         // -------------------------------------------------------------------------------
@@ -82,17 +82,19 @@ namespace OpenMMO
             if (!isLocalPlayer) return;
             if (Tools.AnyInputFocused) return;
 
+            //MOVE
             horizontalMovementInput = Input.GetAxis(config.moveAxisHorizontal.ToString());
             verticalMovementInput = Input.GetAxis(config.moveAxisVertical.ToString());
-            running = Input.GetKey(config.runKey);
-            strafing = Input.GetKey(config.strafeKey);
+            //STRAFE
             strafeLeft = Input.GetKey(config.strafeLeftKey);
             strafeRight = Input.GetKey(config.strafeRightKey);
+            //RUN
+            running = Input.GetKey(config.runKey);
 
-            UpdateVelocity();
+            UpdateVelocity(); //UPDATE VELOCITY
 
             base.UpdateClient();
-            this.InvokeInstanceDevExtMethods(nameof(UpdateClient));
+            this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 
         }
 
@@ -103,7 +105,7 @@ namespace OpenMMO
         protected override void LateUpdateClient()
         {
             base.LateUpdateClient();
-            this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient));
+            this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
         }
 
         // -------------------------------------------------------------------------------

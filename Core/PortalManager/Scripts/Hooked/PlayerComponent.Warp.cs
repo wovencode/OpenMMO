@@ -83,9 +83,7 @@ namespace OpenMMO {
 		protected void Cmd_WarpRemote(string anchorName, string zoneName, int token)
 		{
 			if (!String.IsNullOrWhiteSpace(anchorName) && !String.IsNullOrWhiteSpace(zoneName))
-			{
 				WarpRemote(anchorName, zoneName, token);
-			}
 		}
 		
 		// -------------------------------------------------------------------------------

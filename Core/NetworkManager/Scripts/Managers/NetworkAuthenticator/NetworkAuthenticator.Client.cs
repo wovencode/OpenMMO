@@ -118,7 +118,7 @@ namespace OpenMMO.Network
                	
                	UIWindowAuth.singleton.Hide();
                	UIWindowMain.singleton.Show();
-debug.Log("NONONO OnServerMessageResponseAuth");
+
             }
         	
         }

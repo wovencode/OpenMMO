@@ -19,9 +19,11 @@ namespace OpenMMO.Database
 		public string	anchorname  { get; set; }
 		public int		token		{ get; set; }
 		
+		// -------------------------------------------------------------------------------
+		// ValidateToken
+		// -------------------------------------------------------------------------------
 		public bool ValidateToken(int _token)
 		{
-			Debug.Log("TOKEN:"+token+"/"+_token);
 			return (token == _token);
 		}
 		

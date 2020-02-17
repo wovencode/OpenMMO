@@ -101,14 +101,23 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		protected void FadeOutDelayed()
 		{
-			animator.SetTrigger(fadeOutTriggerName);
+		
+			if (root.activeSelf)
+				animator.SetTrigger(fadeOutTriggerName);
+			
 			StartCoroutine(nameof(DeactivateWindow));
 		}
 		
 		// -------------------------------------------------------------------------------
 		protected IEnumerator DeactivateWindow()
 		{
-			yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+			
+			float delay = 0;
+			
+			if (root.activeSelf)
+				delay = animator.GetCurrentAnimatorStateInfo(0).length;
+				
+			yield return new WaitForSeconds(delay);
 			Hide();
 		}
 		

@@ -106,7 +106,8 @@ namespace OpenMMO.UI
 					UIBackgroundLayer.singleton.BlackOut();
 			}
 			
-			animator.SetTrigger(closeTriggerName);
+			if (root.activeSelf)
+				animator.SetTrigger(closeTriggerName);
 			
 		}
 

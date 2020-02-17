@@ -30,10 +30,11 @@ public class NameplateUpdater : MonoBehaviour
             frameCount = 0; //RESET THE COUNTER
 
             PlayerComponent player = transform.parent.gameObject.GetComponent<PlayerComponent>();
+            if (!player) player = transform.parent.gameObject.GetComponentInChildren<PlayerComponent>();
 
             if (player)
             {
-                if (nameField != null && nameField.enabled) nameField.text = player.gameObject.name; //UPDATE PLAYER NAME
+                if (nameField != null && nameField.enabled) nameField.text = player.name; //UPDATE PLAYER NAME
                 if (guildField != null && guildField.enabled) guildField.text = "level " + player.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
                 if (zoneField != null && zoneField.enabled) zoneField.text = player.currentZone.title; //UPDATE PLAYER ZONE
             }

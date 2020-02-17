@@ -34,11 +34,8 @@ namespace OpenMMO.Portals
         		return false;
         	
         	foreach (PortalAnchorEntry anchor in portalAnchors)
-        	{
-UnityEngine.Debug.Log("CheckPortalAnchor: "+anchor.name+"/"+_name);
         		if (anchor.name == _name)
         			return true;
-        	}	
 
 			return false;
         }
@@ -49,10 +46,11 @@ UnityEngine.Debug.Log("CheckPortalAnchor: "+anchor.name+"/"+_name);
     	// -------------------------------------------------------------------------------
         public static Vector3 GetPortalAnchorPosition(string _name)
         {
-Debug.Log("GetPortalAnchorPosition: "+_name);
+        
         	foreach (PortalAnchorEntry anchor in portalAnchors)
         		if (anchor.name == _name)
 					return anchor.position;
+					
 			return Vector3.zero;
         }
         
@@ -69,7 +67,6 @@ Debug.Log("GetPortalAnchorPosition: "+_name);
             					position = _position
             				}
             );
-Debug.Log("RegisterPortalAnchor: "+_name);
         }
 
         // -------------------------------------------------------------------------------

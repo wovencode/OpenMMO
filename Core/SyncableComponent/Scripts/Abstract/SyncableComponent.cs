@@ -25,7 +25,6 @@ namespace OpenMMO {
 		double _timerManager = 0;
 		
 		protected DataCache cacheData;
-		protected string _name;
 		
 		public static GameObject localPlayer => ClientScene.localPlayer != null ? ClientScene.localPlayer.gameObject : null;
 		
@@ -45,23 +44,6 @@ namespace OpenMMO {
 		{
 			get {
 				return localPlayer != null && localPlayer == this.gameObject;
-			}
-		}
-		
-		// -------------------------------------------------------------------------------
-		// name
-		// -------------------------------------------------------------------------------
-		public new string name
-		{
-			get
-			{
-				if (string.IsNullOrWhiteSpace(_name))
-					_name = base.name;
-				return _name;
-			}
-			set
-			{
-				_name = base.name = value;
 			}
 		}
 		

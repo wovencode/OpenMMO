@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -272401145901597495, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: syncMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1037530943158960664, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: sceneId

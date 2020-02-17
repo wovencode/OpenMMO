@@ -10,13 +10,18 @@ using Mirror;
 
 namespace OpenMMO.Network
 {
+
+	// -----------------------------------------------------------------------------------
     /// <summary>
     /// Public class <c>NetworkName</c> inherits from Mirror.NetworkBehaviour.
     /// Attach this script to any GameObject with a NetworkIdentity on it (like your player prefab) to remove the (Clone) from its name when it is instantiated.
     /// </summary>
 	public class NetworkName : NetworkBehaviour
 	{
-   
+   		
+   		protected string _name;
+   		
+   		// -------------------------------------------------------------------------------
         /// <summary>
         /// public override function <c>OnSerialize</c> that writes the name to the network stream
         /// </summary>
@@ -28,7 +33,8 @@ namespace OpenMMO.Network
 			writer.WriteString(name);
 			return true;
 		}
-
+		
+		// -------------------------------------------------------------------------------
         /// <summary>
         /// Public override method <c>OnDeserialize</c> that reads the name from the network stream.
         /// </summary>
@@ -38,7 +44,27 @@ namespace OpenMMO.Network
 		{
 			name = reader.ReadString();
 		}
-	
+		
+		// -------------------------------------------------------------------------------
+		// name
+		// -------------------------------------------------------------------------------
+		public new string name
+		{
+			get
+			{
+				if (string.IsNullOrWhiteSpace(_name))
+					_name = base.name;
+					
+				return _name;
+			}
+			set
+			{
+				_name = base.name = value;
+			}
+		}
+		
+		// -------------------------------------------------------------------------------
+		
 	}
 
 }

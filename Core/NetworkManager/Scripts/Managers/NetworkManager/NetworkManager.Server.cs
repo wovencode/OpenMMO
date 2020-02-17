@@ -395,15 +395,10 @@ namespace OpenMMO.Network
 			{
 			
 				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
-                Debug.Log("SEARCHING DATABASE FOR - " + playername + "... Found " + prefabname);
-
-				GameObject prefab = GetPlayerPrefab(prefabname);
-                Debug.Log("LOADING PREFAB - " + prefab.name);
-				
-				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
-                Debug.Log("LOADED - " + player.name + " on " + player.gameObject.name);
                 
-				
+				GameObject prefab = GetPlayerPrefab(prefabname);
+				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+                
 				NetworkServer.AddPlayerForConnection(conn, player);
 				ValidatePlayerPosition(player);
 				

@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665dd2f43078442ed925257505f2901a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 1
+  syncMode: 0
   syncInterval: 0.1
 --- !u!114 &5400889410254102364
 MonoBehaviour:
@@ -210,6 +210,8 @@ MonoBehaviour:
   attachCameraToMe: 0
   activeCamera: {fileID: 3805302959580631209, guid: 9c0582a997a4eda4d96e78f2d035617c,
     type: 3}
+  cameraSpawned: 0
+  spawnedCamera: {fileID: 0}
 --- !u!1001 &3887906202014870064
 PrefabInstance:
   m_ObjectHideFlags: 0

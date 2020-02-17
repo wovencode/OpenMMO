@@ -205,6 +205,7 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
 		protected void SpawnSubZone(int index)
 		{	
+			debug.Log("CALLED: SpawnSubZone");
 			Process process = new Process();
 			process.StartInfo.FileName 	= Tools.GetProcessPath;
 			process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();

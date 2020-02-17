@@ -145,10 +145,6 @@ namespace OpenMMO.UI
 		public void OnClickSelect()
 		{
 			
-			// -- UI stuff
-			if (UIBackgroundLayer.singleton)
-        		UIBackgroundLayer.singleton.BlackIn(10f);
-        	
 			if (UIPopupNotify.singleton)
 				UIPopupNotify.singleton.Init(popupLogin, 10f, false);
         	

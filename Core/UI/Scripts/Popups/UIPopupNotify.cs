@@ -45,8 +45,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void Init(string _description, float _duration=2, bool fade=true)
 		{
-			base.Init(fade);
-			Show(_description);
+			Show(_description, fade);
 			Invoke(nameof(Close), _duration);
 		}
 		

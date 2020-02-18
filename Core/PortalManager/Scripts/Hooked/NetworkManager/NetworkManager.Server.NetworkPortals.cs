@@ -160,53 +160,46 @@ namespace OpenMMO.Network
 		protected void AutoLoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
 		
-			// -- we check for user instead of player because that covers all characters on the same account
-			if (!UserLoggedIn(username))
+			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
+			GameObject prefab = GetPlayerPrefab(prefabname);
+			
+			// -- load player from database
+			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+			
+			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			
+			// -- re-validate the security token
+			if (pc.tablePlayerZones.ValidateToken(token))
 			{
 			
-				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
-				GameObject prefab = GetPlayerPrefab(prefabname);
+				// -- update zone
+				pc.tablePlayerZones.zonename = pc.currentZone.name;
 				
-				// -- load player from database
-				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+				NetworkServer.AddPlayerForConnection(conn, player);
 				
-				PlayerComponent pc = player.GetComponent<PlayerComponent>();
+				// -- warp to anchor location
+				// -- OR use start position if anchor is empty
+				string anchorName = pc.tablePlayerZones.anchorname;
 				
-				// -- re-validate the security token
-				if (pc.tablePlayerZones.ValidateToken(token))
-				{
-				
-					// -- update zone
-					pc.tablePlayerZones.zonename = pc.currentZone.name;
-					
-					NetworkServer.AddPlayerForConnection(conn, player);
-					
-					// -- warp to anchor location
-					// -- OR use start position if anchor is empty
-					string anchorName = pc.tablePlayerZones.anchorname;
-					
-					if (!String.IsNullOrWhiteSpace(anchorName))
-						pc.WarpLocal(anchorName);
-					else
-						player.transform.position = GetStartPosition(player).position;
-					
-					ValidatePlayerPosition(player);
-					
-					onlinePlayers[player.name] = player;
-					state = NetworkState.Game;
-					
-					this.InvokeInstanceDevExtMethods(nameof(AutoLoginPlayer), conn, player, prefab, username, playername); //HOOK
-					
-					// -- same as OnLoginPlayer
-					eventListeners.OnLoginPlayer.Invoke(conn);
-					
-				}
+				if (!String.IsNullOrWhiteSpace(anchorName))
+					pc.WarpLocal(anchorName);
 				else
-					ServerSendError(conn, systemText.unknownError, true);
-
+					player.transform.position = GetStartPosition(player).position;
+				
+				ValidatePlayerPosition(player);
+				
+				onlinePlayers[player.name] = player;
+				state = NetworkState.Game;
+				
+				this.InvokeInstanceDevExtMethods(nameof(AutoLoginPlayer), conn, player, prefab, username, playername); //HOOK
+				
+				// -- same as OnLoginPlayer
+				eventListeners.OnLoginPlayer.Invoke(conn);
+				
 			}
 			else
-				ServerSendError(conn, systemText.userAlreadyOnline, true);
+				ServerSendError(conn, systemText.unknownError, true);
+		
 		}
 		
                 

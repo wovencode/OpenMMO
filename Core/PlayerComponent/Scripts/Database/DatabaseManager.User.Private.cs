@@ -63,6 +63,16 @@ namespace OpenMMO.Database
 			SaveDataUser_User(userName);
 		}
 		
+		// -------------------------------------------------------------------------------
+	   	// LoginPlayer_User
+	   	// -------------------------------------------------------------------------------
+	   	[DevExtMethods(nameof(LoginPlayer))]
+	   	void LoginPlayer_User(string playername, string username)
+	   	{
+	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, username);
+	   	}
+		
 	   	// -------------------------------------------------------------------------------
 	   	// SaveDataUser_User
 	   	// -------------------------------------------------------------------------------
@@ -78,7 +88,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LoginUser))]
 	   	void LoginUser_User(string username)
 	   	{
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, username);
+	   		// -- Note: We do NOT set the lastlogin time here as it would lock us out!
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -87,7 +97,8 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutUser))]
 	   	void LogoutUser_User(string username)
 	   	{
-	   		
+	   		// -- this resets lastlogin to allow immediate re-login
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.MinValue, username);
 	   	}
 		
 		// -------------------------------------------------------------------------------

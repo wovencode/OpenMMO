@@ -31,7 +31,7 @@ namespace OpenMMO.Database
 			else
 			{
 				double timePassed = (DateTime.UtcNow - tableUser.lastlogin).TotalSeconds;
-Debug.Log("time passed:"+timePassed+"/"+saveInterval);
+debug.Log("[TIME] "+timePassed+"/"+saveInterval);
 				return timePassed <= saveInterval;
 			}
 			
@@ -48,7 +48,6 @@ Debug.Log("time passed:"+timePassed+"/"+saveInterval);
 			if (!base.TryUserLogin(name, password) || !UserValid(name, password))
 				return false;
 			
-			LoginUser(name);
 			return true;
 			
 		}

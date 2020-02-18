@@ -61,6 +61,20 @@ namespace OpenMMO.Database
 		}
 		
 		// -------------------------------------------------------------------------------
+		// GetPlayerCount
+		// returns the number of players registered on this user account
+		// -------------------------------------------------------------------------------
+		protected int GetPlayerCount(string username)
+		{
+			List<TablePlayer> result =  Query<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE username=? AND deleted=0", username);
+			
+			if (result == null)
+				return 0;
+			else
+				return result.Count;
+		}
+		
+		// -------------------------------------------------------------------------------
 		
 	}
 

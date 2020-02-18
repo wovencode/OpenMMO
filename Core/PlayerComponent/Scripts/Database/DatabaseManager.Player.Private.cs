@@ -76,9 +76,9 @@ namespace OpenMMO.Database
 	   	// LoginPlayer_Player
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LoginPlayer))]
-	   	void LoginPlayer_Player(string name)
+	   	void LoginPlayer_Player(string playername, string username)
 	   	{
-	   		
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastlogin=? WHERE playername=?", DateTime.UtcNow, playername);
 	   	}
 		
 		// -------------------------------------------------------------------------------

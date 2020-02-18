@@ -113,7 +113,7 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
-		public bool UserLoggedIn(string userName)
+		public bool UserLoggedIn(string userName, bool checkRemote=true)
 		{
 		
 			bool online = false;
@@ -124,14 +124,14 @@ namespace OpenMMO.Network
 					online = true;
 			
 			// -- lookup in database if not online locally
-			if (!online)
+			if (!online && checkRemote)
 				online = DatabaseManager.singleton.GetUserOnline(userName);
 			
 			return online;
 		}
 		
 		// -------------------------------------------------------------------------------
-		public bool PlayerLoggedIn(string playerName)
+		public bool PlayerLoggedIn(string playerName, bool checkRemote=true)
 		{
 			
 			bool online = false;
@@ -142,7 +142,7 @@ namespace OpenMMO.Network
 					online = true;
 			
 			// -- lookup in database if not online locally
-			if (!online)
+			if (!online && checkRemote)
 				online = DatabaseManager.singleton.GetPlayerOnline(playerName);
 				
 			return online;

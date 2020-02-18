@@ -48,13 +48,12 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// TryPlayerLogin
 		// -------------------------------------------------------------------------------
-		public override bool TryPlayerLogin(string name, string username)
+		public override bool TryPlayerLogin(string playername, string username)
 		{
 			
-			if (!base.TryPlayerLogin(name, username) || !PlayerValid(name, username))
+			if (!base.TryPlayerLogin(playername, username) || !PlayerValid(playername, username))
 				return false;
 			
-			LoginPlayer(name);
 			return true;
 			
 		}

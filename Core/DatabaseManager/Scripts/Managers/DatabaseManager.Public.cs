@@ -108,9 +108,9 @@ namespace OpenMMO.Database
 		// LoginPlayer
 		// @NetworkManager
 		// -------------------------------------------------------------------------------
-		public void LoginPlayer(string name)
+		public void LoginPlayer(string username, string playername)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), name); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), playername, username); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -398,7 +398,9 @@ namespace OpenMMO.Network
 			// -- we check for user instead of player because that covers all characters on the same account
 			if (!UserLoggedIn(username))
 			{
-			
+				
+				DatabaseManager.singleton.LoginPlayer(playername, username);
+				
 				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
                 
 				GameObject prefab = GetPlayerPrefab(prefabname);

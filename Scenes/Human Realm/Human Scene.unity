@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.114802085, g: 0.11976777, b: 0.105756596, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -901,11 +901,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 3}
       propertyPath: m_Name
-      value: FLOOR
+      value: (removeme)FLOOR
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967255
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3681543e5b0f59742b73073cb379cdc6, type: 3}
       propertyPath: m_LocalPosition.x

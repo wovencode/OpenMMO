@@ -113,18 +113,39 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
-        /// <summary>
-        /// Public function <c>UserLoggedIn</c> returns boolean.
-        /// Checks if a user has logged in.
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns> Returns a boolean detailing whether a user has logged in. </returns>
 		public bool UserLoggedIn(string userName)
 		{
-			foreach (KeyValuePair<string, GameObject> player in onlinePlayers)
-				if (player.Value != null && player.Value.name == userName) return true;
+		
+			bool online = false;
 			
-			return false;
+			// -- lookup in local dict
+			foreach (KeyValuePair<NetworkConnection, string> user in onlineUsers)
+				if (user.Key != null && user.Value == userName)
+					online = true;
+			
+			// -- lookup in database if not online locally
+			if (!online)
+				online = DatabaseManager.singleton.GetUserOnline(userName);
+			
+			return online;
+		}
+		
+		// -------------------------------------------------------------------------------
+		public bool PlayerLoggedIn(string playerName)
+		{
+			
+			bool online = false;
+			
+			// -- lookup in local dict
+			foreach (KeyValuePair<string, GameObject> player in onlinePlayers)
+				if (player.Value != null && player.Value.name == playerName)
+					online = true;
+			
+			// -- lookup in database if not online locally
+			if (!online)
+				online = DatabaseManager.singleton.GetPlayerOnline(playerName);
+				
+			return online;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -247,7 +268,8 @@ namespace OpenMMO.Network
 
 			// -- this logs out the user on the database
 			DatabaseManager.singleton.LogoutUser(GetUserName(conn));
-
+			
+			// -- this logs out the player
 			if (conn.identity != null)
 			{
 			

@@ -26,7 +26,7 @@ namespace OpenMMO.Database
 			if (row != null)
 			{
 			
-				double timePassed = (DateTime.UtcNow - DateTime.Parse(row.online)).TotalSeconds;
+				double timePassed = (DateTime.UtcNow - row.online).TotalSeconds;
 
 				// -- enough time passed = shutdown
 				if (timePassed > timeoutInterval)
@@ -51,11 +51,9 @@ namespace OpenMMO.Database
 	   		// delete data first, to prevent duplicates
 	   		Execute("DELETE FROM "+nameof(TableNetworkZones)+" WHERE zone=?", zoneName);
 	   		
-	   		string onlineString = DateTime.UtcNow.ToString("s");
-	   		
 	   		InsertOrReplace(new TableNetworkZones{
                 	zone 			= zoneName,
-                	online 			= onlineString
+                	online 			= DateTime.UtcNow
             });
 	   			   		
 	   	}
@@ -71,7 +69,7 @@ namespace OpenMMO.Database
 	   		TableNetworkZones row = FindWithQuery<TableNetworkZones>("SELECT * FROM "+nameof(TableNetworkZones)+" WHERE zone=?", zoneName);
 	   		
 	   		if (row != null)
-	   			return (DateTime.UtcNow - DateTime.Parse(row.online)).TotalSeconds;
+	   			return (DateTime.UtcNow - row.online).TotalSeconds;
 	   		
 	   		return Mathf.Infinity;
 	   		

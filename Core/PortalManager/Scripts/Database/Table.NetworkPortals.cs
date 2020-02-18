@@ -36,7 +36,7 @@ namespace OpenMMO.Database
 	{
 		[PrimaryKey]
 		public string	zone 	{ get; set; }
-		public string 	online 	{ get; set; }
+		public DateTime 	online 	{ get; set; }
 	}
 	
 	// -----------------------------------------------------------------------------------

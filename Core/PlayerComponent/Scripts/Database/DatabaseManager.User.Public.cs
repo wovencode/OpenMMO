@@ -14,7 +14,28 @@ namespace OpenMMO.Database
 	// ===================================================================================
 	public partial class DatabaseManager
 	{
-				
+		
+		
+		// -------------------------------------------------------------------------------
+		// GetUserOnline
+		// 
+		// -------------------------------------------------------------------------------
+		public bool GetUserOnline(string userName)
+		{
+			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND banned=0 AND deleted=0", userName);
+			
+			if (tableUser == null)
+			{
+				return false;
+			}
+			else
+			{
+				double timePassed = (DateTime.UtcNow - tableUser.lastsaved).TotalSeconds;
+				return timePassed < saveInterval * 2;
+			}
+			
+		}
+		
 		// ============================== PUBLIC METHODS =================================
 		
 		// -------------------------------------------------------------------------------

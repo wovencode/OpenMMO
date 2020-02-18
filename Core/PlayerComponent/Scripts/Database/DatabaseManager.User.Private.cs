@@ -59,15 +59,12 @@ namespace OpenMMO.Database
 		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_User(GameObject player)
 		{
-	   		/*
-				users do not save any player data, feel free to add your own
-			*/
+			string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
+			SaveDataUser_User(userName);
 		}
 		
 	   	// -------------------------------------------------------------------------------
 	   	// SaveDataUser_User
-	   	// we simply fetch the table that is present on the local player object instead
-	   	// of copy-pasting all the individual properties, update it and forward it to the db
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataUser))]
 		void SaveDataUser_User(string username)

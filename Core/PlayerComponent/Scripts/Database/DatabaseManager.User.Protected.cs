@@ -84,8 +84,10 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(DeleteUser))]
 		protected void DeleteUser(string username)
-		{			
-			this.InvokeInstanceDevExtMethods(nameof(DeleteDataPlayer), username); //HOOK 		// delete player data too
+		{
+		
+			// delete player data too
+			this.InvokeInstanceDevExtMethods(nameof(DeleteDataPlayer), username); //HOOK
 
             DeleteDataUser(username);
 		}

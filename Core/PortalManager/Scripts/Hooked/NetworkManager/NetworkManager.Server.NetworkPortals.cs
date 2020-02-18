@@ -159,6 +159,8 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected void AutoLoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
+		
+			// -- we check for user instead of player because that covers all characters on the same account
 			if (!UserLoggedIn(username))
 			{
 			

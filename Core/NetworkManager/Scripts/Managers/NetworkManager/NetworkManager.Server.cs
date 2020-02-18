@@ -391,6 +391,8 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
+		
+			// -- we check for user instead of player because that covers all characters on the same account
 			if (!UserLoggedIn(username))
 			{
 			

@@ -60,7 +60,9 @@ namespace OpenMMO.Database
 		void SaveDataPlayer_User(GameObject player)
 		{
 			string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
-			Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, userName);
+			// TODO:
+			// saving the time here locks us out
+			//Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, userName);
 		}
 		
 		// -------------------------------------------------------------------------------

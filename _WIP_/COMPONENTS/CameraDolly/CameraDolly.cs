@@ -2,6 +2,8 @@
 using UnityEngine;
 using OpenMMO;
 
+[RequireComponent(typeof(PlayerComponent))] //ONLY FOR PLAYERS
+
 /// <summary>Carries a set of camera prefabs that are loaded from the Resources/Cameras folder.</summary>
 public class CameraDolly : MonoBehaviour
 {
@@ -17,53 +19,105 @@ public class CameraDolly : MonoBehaviour
     public bool attachCameraToMe = false;
 
     [Header("-read only-")]
-    [Tooltip("The currently active camera. (Set by the camera type)")]
-    [SerializeField] GameObject activeCamera;
-    [SerializeField] bool cameraSpawned = false;
-    [SerializeField] GameObject spawnedCamera;
+    [Tooltip("The camera prefab that will be spawned. (Set by the camera type)")]
+    [SerializeField] GameObject cameraPrefab;
+
+    public static GameObject spawnedCamera;
+    [SerializeField] bool cameraIsSpawned = false;
 #pragma warning restore CS0414
+
+    //PLAYER COMPONENT REFERENCE
+    PlayerComponent _player;
+    PlayerComponent player
+    {
+        get
+        {
+            if (!_player) _player = GetComponent<PlayerComponent>();
+            return _player;
+        }
+    }
 
 #if _CLIENT
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        UpdateAttachedCamera();
+        if (UpdateAttachedCamera())
+        {
+            DestroySpawnedCamera();
+            cameraIsSpawned = false;
+        }
     }
 #endif
 
     //ON DESTROYED
     private void OnDestroy()
     {
-        DestroySpawnedCamera();
+        cameraIsSpawned = false;
     }
 
     //UPDATE
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {
+        if (!Application.isPlaying || !player) return; //MUST BE PLAYING A SCENE AND LOGGED IN
+
         frameCount++; //INCREMENT TICK
 
         if (frameCount >= tickFrequency) //TICK THIS FRAME?
         {
             frameCount = 0; //RESET THE COUNTER
 
-            if (UpdateAttachedCamera()) //UPDATE CAMERA
-            {
-            }
+            if (player && !player.isLocalPlayer) { enabled = false; return; } //DISABLE IF NOT LOCAL PLAYER
 
-            if (!cameraSpawned && activeCamera) //SPAWN CAMERA
-            {
-                SpawnCamera();
-            }
+            if (cameraIsSpawned) return; //CAMERA ALREADY SPAWNED
+
+            //if (AttachExistingCamera())
+            //{
+            //    Debug.Log("ATTACHING CAMERA FROM SCENE");
+            //}
+            //else
+            //{
+                //if (!cameraIsSpawned)
+                //{
+                    if (!CameraDolly.spawnedCamera)
+                    {
+                        Debug.Log("SPAWNING NEW CAMERA");
+                        LoadCameraPrefab(); //LOAD CAMERA PREFAB
+                        SpawnCamera(); //SPAWN CAMERA
+                    }
+                    else
+                    {
+                        AttachExistingCamera();
+                    }
+                //}
+            //}
+
+            //if (!cameraIsSpawned && spawnedCamera) DestroySpawnedCamera(); //DESTROY UNSPAWNED CAMERA
+
+            //if (!AttachExistingCamera()) //ATTACH EXISTING CAMERA
+            //{
+            //    if (UpdateAttachedCamera()) //UPDATE CAMERA
+            //    {
+            //        SpawnCamera(); //SPAWN CAMERA
+            //    }
+            //}
+
         }
     }
 
     //UPDATE ATTACHED CAMERA
+    /// <summary></summary>
+    /// <returns></returns>
     bool UpdateAttachedCamera()
     {
-        if (!activeCamera || !activeCamera.name.Contains(cameraType.ToString() + "Camera")) //NOTE: We could use .ToUpper() so this is not case sensitive, but for performance reasons we do not...keep this in mind if you add new cameras.
+        if (!cameraPrefab || !cameraPrefab.name.Contains(cameraType.ToString() + "Camera")) //NOTE: We could use .ToUpper() so this is not case sensitive, but for performance reasons we do not...keep this in mind if you add new cameras.
         {
-            OnCameraChanged();
+            //TODO if not usescenecamera
+
+            //DestroySpawnedCamera(); //DESTROY OLD CAMERA
+            LoadCameraPrefab(); //LOAD CAMERA PREFAB
+
+            //cameraSpawned = false;
             return true;
         }
 
@@ -73,34 +127,49 @@ public class CameraDolly : MonoBehaviour
     //DESTROY SPAWNED CAMERA
     void DestroySpawnedCamera()
     {
-        if (Application.isPlaying)
+        if (CameraDolly.spawnedCamera)
         {
-            if (spawnedCamera) GameObject.Destroy(spawnedCamera); //DESTROY ACTIVE CAMERA
-            //if (activeCamera) GameObject.DestroyImmediate(activeCamera, true); //DESTROY ACTIVE CAMERA
-            //if (activeCamera) activeCamera.SetActive(false); //DISABLE ACTIVE CAMERA
+            cameraIsSpawned = false;
+            GameObject.Destroy(CameraDolly.spawnedCamera); //DESTROY SPAWNED CAMERA
         }
     }
 
     //ON CAMERA CHANGED
-    void OnCameraChanged()
+    void LoadCameraPrefab()
     {
-        DestroySpawnedCamera();
-
-        activeCamera = Resources.Load<GameObject>("Cameras/" + cameraType.ToString() + "Camera"); //LOAD NEW ACTIVE CAMERA
-        cameraSpawned = false;
+        cameraPrefab = Resources.Load<GameObject>("Cameras/" + cameraType.ToString() + "Camera"); //LOAD NEW CAMERA PREFAB
     }
 
     //SPAWN CAMERA
     void SpawnCamera()
     {
-        if (!Application.isPlaying) return; //DON'T SPAWN IF NOT PLAYING
+        //DestroySpawnedCamera(); //DESTROY EXISTING CAMERA
 
-        if (attachCameraToMe) { spawnedCamera = Instantiate<GameObject>(activeCamera, transform); } //INSTANTIATE (PARENTED)
-        else { spawnedCamera = Instantiate<GameObject>(activeCamera); } //INSTANTIATE (UNPARENTED)
+        if (attachCameraToMe) { CameraDolly.spawnedCamera = Instantiate<GameObject>(cameraPrefab, transform); } //INSTANTIATE (PARENTED)
+        else { CameraDolly.spawnedCamera = Instantiate<GameObject>(cameraPrefab); } //INSTANTIATE (UNPARENTED)
 
-        cameraSpawned = true;
+        cameraIsSpawned = true;
+    }
 
-        if (Camera.main && Camera.main.name.Contains("Main")) { Camera.main.gameObject.SetActive(false); }
+    //ATTACH EXISTING CAMERA
+    /// <summary>Attaches an existing camera to the camera dolly. Disables the main camera if the dolly does not handle it.</summary>
+    /// <returns></returns>
+    bool AttachExistingCamera()
+    {
+        if (Camera.main) //MAIN CAMERA EXISTS?
+        {
+            if (System.Enum.TryParse<CameraType>(Camera.main.name.Trim("Camera".ToCharArray()), out cameraType)) //SUPPORTED CAMERA?
+            {
+                CameraDolly.spawnedCamera = Camera.main.gameObject;
+                cameraIsSpawned = true;
+                return true;
+            }
+            else //DISABLE MAIN CAMERA
+            {
+                if (Camera.main && cameraPrefab != Camera.main && Camera.main.name.Contains("Main")) { Camera.main.gameObject.SetActive(false); }
+            }
+        }
+        return false; //NO CAMERA IN THE SCENE
     }
 #endif
 }

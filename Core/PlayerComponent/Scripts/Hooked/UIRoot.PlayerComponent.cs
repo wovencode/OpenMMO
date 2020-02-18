@@ -21,7 +21,7 @@ namespace OpenMMO.UI
 		{
 			get
 			{
-				if (_localPlayer = null)
+				if (_localPlayer == null)
 					_localPlayer = PlayerComponent.localPlayer;
 				return _localPlayer;
 			}

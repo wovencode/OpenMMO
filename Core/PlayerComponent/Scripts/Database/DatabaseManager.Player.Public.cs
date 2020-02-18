@@ -38,7 +38,7 @@ namespace OpenMMO.Database
 			else
 			{
 				double timePassed = (DateTime.UtcNow - tablePlayer.lastsaved).TotalSeconds;
-				return timePassed < saveInterval * 2;
+				return timePassed <= saveInterval;
 			}
 			
 		}

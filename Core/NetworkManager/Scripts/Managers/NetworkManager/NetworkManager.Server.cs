@@ -263,12 +263,12 @@ namespace OpenMMO.Network
 			
 			ServerMessageResponsePlayerLogin message = new ServerMessageResponsePlayerLogin
 			{
-				success = true,
+				success 			= true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
 			
-			if (DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
+			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
 				LoginPlayer(conn, msg.username, msg.playername);
 				message.text = systemText.playerLoginSuccess;
@@ -278,7 +278,7 @@ namespace OpenMMO.Network
 				message.text = systemText.playerLoginFailure;
 				message.success = false;
 			}
-					
+			
 			conn.Send(message);
 			
 		}
@@ -394,31 +394,24 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
-		
-			// -- we check for user instead of player because that covers all characters on the same account
-			if (!UserLoggedIn(username))
-			{
-				
-				DatabaseManager.singleton.LoginPlayer(playername, username);
-				
-				string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
-                
-				GameObject prefab = GetPlayerPrefab(prefabname);
-				GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
-                
-				NetworkServer.AddPlayerForConnection(conn, player);
-				ValidatePlayerPosition(player);
-				
-				onlinePlayers[player.name] = player;
-				state = NetworkState.Game;
-				
-				// -- Hooks & Events
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername); //HOOK
-				eventListeners.OnLoginPlayer.Invoke(conn);
+	
+			DatabaseManager.singleton.LoginPlayer(playername, username);
+			
+			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
+			
+			GameObject prefab = GetPlayerPrefab(prefabname);
+			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+			
+			NetworkServer.AddPlayerForConnection(conn, player);
+			ValidatePlayerPosition(player);
+			
+			onlinePlayers[player.name] = player;
+			state = NetworkState.Game;
+			
+			// -- Hooks & Events
+			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername); //HOOK
+			eventListeners.OnLoginPlayer.Invoke(conn);
 
-			}
-			else
-				ServerSendError(conn, systemText.userAlreadyOnline, true);
 		}
 		
 		// -------------------------------------------------------------------------------

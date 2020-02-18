@@ -60,7 +60,7 @@ namespace OpenMMO.Database
 		void SaveDataPlayer_User(GameObject player)
 		{
 			string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
-			SaveDataUser_User(userName);
+			Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, userName);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ namespace OpenMMO.Database
 		void SaveDataUser_User(string username)
 		{
 			// -- we update lastaved and lastlogin in this case to update the login timeout check
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=?, lastlogin=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, username);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=? WHERE username=?", DateTime.UtcNow, username);
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using Mirror;
 using OpenMMO;
+using OpenMMO.Network;
 
 namespace OpenMMO {
 
@@ -11,7 +12,7 @@ namespace OpenMMO {
 	// SyncableComponent
 	// ===================================================================================
 	[System.Serializable]
-	public abstract partial class SyncableComponent : NetworkBehaviour
+	public abstract partial class SyncableComponent : BaseNetworkBehaviour
 	{
 	
 		[Header("Caching")]

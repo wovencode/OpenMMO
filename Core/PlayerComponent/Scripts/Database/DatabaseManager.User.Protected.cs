@@ -40,7 +40,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserRegister(string userName, string userPassword, string userEmail, string userDeviceid)
 		{
-			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastlogin=DateTime.Now});
+			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow});
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -371,6 +371,9 @@ namespace OpenMMO.Network
 			{
 				onlineUsers[conn] = name;
 			    state = NetworkState.Lobby;
+			    
+			    DatabaseManager.singleton.LoginUser(username);
+			    
 			    this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
 			}
 			else

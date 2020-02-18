@@ -78,7 +78,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LoginUser))]
 	   	void LoginUser_User(string username)
 	   	{
-	   		
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, username);
 	   	}
 		
 		// -------------------------------------------------------------------------------

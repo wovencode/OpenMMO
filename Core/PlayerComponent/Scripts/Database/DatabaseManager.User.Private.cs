@@ -80,7 +80,7 @@ namespace OpenMMO.Database
 		void SaveDataUser_User(string username)
 		{
 			// -- we update lastaved and lastlogin in this case to update the login timeout check
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=?, lastlogin=? WHERE username=?", DateTime.UtcNow, username, username);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=?, lastlogin=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, username);
 		}
 		
 		// -------------------------------------------------------------------------------

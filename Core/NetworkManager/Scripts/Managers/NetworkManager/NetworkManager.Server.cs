@@ -90,6 +90,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
+			// -- check for UserLoggedIn because that covers all players on the account
 			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
 				LoginUser(conn, msg.username);
@@ -128,7 +129,7 @@ namespace OpenMMO.Network
 				text			 	= "",
 				causesDisconnect 	= false
 			};
-
+			
         	if (DatabaseManager.singleton.TryUserRegister(msg.username, msg.password, msg.email, msg.deviceid))
 			{
 				DatabaseManager.singleton.SaveDataUser(msg.username, false);
@@ -163,8 +164,8 @@ namespace OpenMMO.Network
 				text			 	= "",
 				causesDisconnect 	= false
 			};
-        	
-        	if (DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
+			
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
 			{
 				message.text = systemText.userDeleteSuccess;
 			}
@@ -197,8 +198,8 @@ namespace OpenMMO.Network
 				text			 	= "",
 				causesDisconnect 	= false
 			};
-        	
-        	if (DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
+			
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
 			{
 				message.text = systemText.userChangePasswordSuccess;
 			}
@@ -232,7 +233,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
 			{
 				message.text = systemText.userConfirmSuccess;
 			}
@@ -268,6 +269,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
+			// -- check for UserLoggedIn because that covers all players on the account
 			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
 				LoginPlayer(conn, msg.username, msg.playername);

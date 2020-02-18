@@ -79,7 +79,8 @@ namespace OpenMMO.Database
 		[DevExtMethods(nameof(SaveDataUser))]
 		void SaveDataUser_User(string username)
 		{
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=? WHERE username=?", DateTime.UtcNow, username);
+			// -- we update lastaved and lastlogin in this case to update the login timeout check
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=?, lastlogin=? WHERE username=?", DateTime.UtcNow, username, username);
 		}
 		
 		// -------------------------------------------------------------------------------

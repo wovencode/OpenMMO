@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7890701178789268689}
   - component: {fileID: 7890701179065248849}
   - component: {fileID: 7890701179065248850}
+  - component: {fileID: 8424107384611860847}
   m_Layer: 0
   m_Name: DatabaseManager
   m_TagString: Untagged
@@ -81,5 +82,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   databaseName: Database.sqlite
-  initOnAwake: 0
-  checkIntegrity: 0
+--- !u!114 &8424107384611860847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890701178789268690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

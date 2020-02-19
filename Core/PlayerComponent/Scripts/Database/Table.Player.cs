@@ -37,10 +37,9 @@ namespace OpenMMO.Database
 
 			Update(player, userName);
 			
-			created = DateTime.UtcNow;
-			lastonline = DateTime.UtcNow;
-			
 			prefab = prefabName;
+			
+			created = DateTime.UtcNow;
 			
 		}
 				
@@ -50,13 +49,13 @@ namespace OpenMMO.Database
 		public void Update(GameObject player, string userName="")
 		{
 			
+			lastonline = DateTime.UtcNow;
+			lastsaved = DateTime.UtcNow;
+			
 			playername = player.name;
 			
 			if (!String.IsNullOrWhiteSpace(userName))
 				username = userName;
-			
-			lastsaved = DateTime.UtcNow;
-			lastonline = DateTime.UtcNow;
 			
 			cooldown = player.GetComponent<PlayerComponent>().GetCooldownTimeRemaining();
 			

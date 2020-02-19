@@ -364,6 +364,7 @@ namespace OpenMMO.Network
         {
         
         	string username = GetUserName(conn);
+        	
 			if (!String.IsNullOrWhiteSpace(username) && (GetIsUserLoggedIn(username) || conn.identity != null))
 				DatabaseManager.singleton.LogoutUser(username);
 			
@@ -371,23 +372,32 @@ namespace OpenMMO.Network
         }
         
         // -------------------------------------------------------------------------------
-		// LogoutPlayer
+		// LogoutPlayerAndUser
 		// @Server
 		// -------------------------------------------------------------------------------
-        protected void LogoutPlayer(NetworkConnection conn)
+        protected void LogoutPlayerAndUser(NetworkConnection conn)
         {
         	if (conn.identity != null && conn.identity.gameObject != null)
 			{
 				
+				GameObject player = conn.identity.gameObject;
+				
+				// -- logout the user as well (handled differently than LogoutUser)
+				string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
+				
+				DatabaseManager.singleton.LogoutUser(userName);
+				
+				// -- Hooks & Events
 				this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
 				eventListeners.OnLogoutPlayer.Invoke(conn);
 				
-				string name = conn.identity.gameObject.name;
-				onlinePlayers.Remove(name);
-				
+				onlinePlayers.Remove(player.name);
+								
 				debug.Log("[NetworkManager] Logged out player: " + name);
 				
 			}
+			else
+				LogoutUser(conn);
         }
         
         // -------------------------------------------------------------------------------

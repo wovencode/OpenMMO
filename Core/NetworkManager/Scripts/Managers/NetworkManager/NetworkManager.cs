@@ -1,14 +1,14 @@
 
-//using OpenMMO;
-//using OpenMMO.Network;
+using OpenMMO;
+using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
 using OpenMMO.Portals;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Events;
-//using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Mirror;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -113,7 +113,7 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
-		public bool UserAccountLoggedIn(string userName)
+		public bool UserLoggedIn(string userName)
 		{
 		
 			bool online = false;
@@ -150,12 +150,12 @@ namespace OpenMMO.Network
 		
 		// -------------------------------------------------------------------------------
         /// <summary>
-        /// Public function <c>GetUserAccountName</c> returns a String.
+        /// Public function <c>GetUserName</c> returns a String.
         /// Finds a players username based on their <c>NetworkConnection</c>.
         /// </summary>
         /// <param name="conn"></param>
         /// <returns> Returns the user's username </returns>
-		public string GetUserAccountName(NetworkConnection conn)
+		public string GetUserName(NetworkConnection conn)
 		{
 			foreach (KeyValuePair<NetworkConnection, string> user in onlineUsers)
 				if (user.Key == conn) return user.Value;
@@ -169,7 +169,9 @@ namespace OpenMMO.Network
         /// Sends an error using the user's <c>NetworkConnection</c>.
         /// Can send the user a error sting and disconnect them. 
         /// </summary>
-        /// <param name="conn"></param> <param name="error"></param> <param name="disconnect"></param>
+        /// <param name="conn"></param>
+        /// <param name="error"></param>
+        /// <param name="disconnect"></param>
 		public void ServerSendError(NetworkConnection conn, string error, bool disconnect)
 		{
 			conn.Send(new ErrorMsg{text=error, causesDisconnect=disconnect});
@@ -181,7 +183,8 @@ namespace OpenMMO.Network
         /// Triggers when the client receives an error response from the server.
         /// Reacts to the error message.
         /// </summary>
-        /// <param name="conn"></param> <param name="message"></param>
+        /// <param name="conn"></param>
+        /// <param name="message"></param>
 		void OnClientError(NetworkConnection conn, ErrorMsg message)
 		{
 			
@@ -264,7 +267,7 @@ namespace OpenMMO.Network
 		{
 
 			// -- this logs out the user on the database
-			DatabaseManager.singleton.LogoutUserAccount(GetUserAccountName(conn));
+			DatabaseManager.singleton.LogoutUser(GetUserName(conn));
 			
 			// -- this logs out the player
 			if (conn.identity != null)

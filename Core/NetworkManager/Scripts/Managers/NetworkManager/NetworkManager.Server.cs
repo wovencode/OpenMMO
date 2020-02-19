@@ -1,11 +1,11 @@
 
-//using OpenMMO;
-//using OpenMMO.Network;
+using OpenMMO;
+using OpenMMO.Network;
 using OpenMMO.Database;
 using UnityEngine;
-//using UnityEngine.Events;
-//using System;
-//using System.Collections.Generic;
+using UnityEngine.Events;
+using System;
+using System.Collections.Generic;
 using Mirror;
 
 namespace OpenMMO.Network
@@ -61,7 +61,8 @@ namespace OpenMMO.Network
         /// Triggerd when the server receives a Client message request from the client.
         /// Doesn't do anything as htis message is never called directly.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequest(NetworkConnection conn, ClientMessageRequest msg)
         {
     		// do nothing (this message is never called directly)
@@ -77,7 +78,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestUserLogin</c>.
         /// Triggered when the server receives a user login request from the client.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserLogin(NetworkConnection conn, ClientMessageRequestUserLogin msg)
 		{
 			
@@ -89,9 +91,9 @@ namespace OpenMMO.Network
 			};
 			
 			// -- check for UserLoggedIn because that covers all players on the account
-			if (!UserAccountLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
+			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
-				LoginUserAccount(conn, msg.username);
+				LoginUser(conn, msg.username);
 				
 				// TODO: Add increased maxPlayers from user data later
 				message.maxPlayers = GameRulesTemplate.singleton.maxPlayersPerUser;
@@ -116,7 +118,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestUserRegister</c>.
         /// Triggered when the server receives a user registration request from the client.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserRegister(NetworkConnection conn, ClientMessageRequestUserRegister msg)
         {
         	
@@ -129,7 +132,7 @@ namespace OpenMMO.Network
 			
         	if (DatabaseManager.singleton.TryUserRegister(msg.username, msg.password, msg.email, msg.deviceid))
 			{
-				RegisterUserAccount(msg.username);
+				RegisterUser(msg.username);
 				message.text = systemText.userRegisterSuccess;
 			}
 			else
@@ -150,7 +153,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestUserDelete</c>.
         /// Triggered when the server receives a user deletion request.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserDelete(NetworkConnection conn, ClientMessageRequestUserDelete msg)
         {
         	
@@ -161,7 +165,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-        	if (!UserAccountLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
 			{
 				message.text = systemText.userDeleteSuccess;
 			}
@@ -183,7 +187,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestUserChangePassword</c>.
         /// Triggered when the server receives a user change password request.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserChangePassword(NetworkConnection conn, ClientMessageRequestUserChangePassword msg)
         {
         	
@@ -194,7 +199,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-        	if (!UserAccountLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
 			{
 				message.text = systemText.userChangePasswordSuccess;
 			}
@@ -216,7 +221,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestUserConfirm</c>.
         /// Triggered by the server receiving a user confirmation request from the client.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestUserConfirm(NetworkConnection conn, ClientMessageRequestUserConfirm msg)
         {
         	
@@ -227,7 +233,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (!UserAccountLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
 			{
 				message.text = systemText.userConfirmSuccess;
 			}
@@ -251,7 +257,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestPlayerLogin</c>.
         /// Triggered by the server receiving a player login request from the client.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestPlayerLogin(NetworkConnection conn, ClientMessageRequestPlayerLogin msg)
 		{
 			
@@ -263,7 +270,7 @@ namespace OpenMMO.Network
 			};
 			
 			// -- check for UserLoggedIn because that covers all players on the account
-			if (!UserAccountLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
+			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
 				LoginPlayer(conn, msg.username, msg.playername);
 				message.text = systemText.playerLoginSuccess;
@@ -321,7 +328,8 @@ namespace OpenMMO.Network
         /// Event <c>OnClientMessageRequestPlayerDelete</c>.
         /// Triggered by the server receiving a player deletion request from the client.
         /// </summary>
-        /// <param name="conn"></param> <param name="msg"></param>
+        /// <param name="conn"></param>
+        /// <param name="msg"></param>
         void OnClientMessageRequestPlayerDelete(NetworkConnection conn, ClientMessageRequestPlayerDelete msg)
         {
         	
@@ -332,7 +340,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (!UserAccountLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
 			{
 				message.text = systemText.playerDeleteSuccess;
 			}
@@ -349,18 +357,18 @@ namespace OpenMMO.Network
         // ============================== MAJOR ACTIONS ==================================
         
         // -------------------------------------------------------------------------------
-		// RegisterUserAccount
+		// RegisterUser
 		// @Server
 		// -------------------------------------------------------------------------------
-		protected void RegisterUserAccount(string username)
+		protected void RegisterUser(string username)
 		{
 			// isNew = true
 			// Transaction = false
-			DatabaseManager.singleton.SaveUserAccount(username, true, false);
+			DatabaseManager.singleton.SaveDataUser(username, true, false);
 		}
         
         // -------------------------------------------------------------------------------
-		// LoginUserAccount
+		// LoginUser
 		// @Server
 		// -------------------------------------------------------------------------------
         /// <summary>
@@ -368,17 +376,18 @@ namespace OpenMMO.Network
         /// Run on the server.
         /// Logs the user in.
         /// </summary>
-        /// <param name="conn"></param> <param name="username"></param>
-		protected void LoginUserAccount(NetworkConnection conn, string username)
+        /// <param name="conn"></param>
+        /// <param name="username"></param>
+		protected void LoginUser(NetworkConnection conn, string username)
 		{
-			if (!UserAccountLoggedIn(username))
+			if (!UserLoggedIn(username))
 			{
 				onlineUsers[conn] = name;
 			    state = NetworkState.Lobby;
 			    
-			    DatabaseManager.singleton.LoginUserAccount(username);
+			    DatabaseManager.singleton.LoginUser(username);
 			    
-			    this.InvokeInstanceDevExtMethods(nameof(LoginUserAccount)); //HOOK
+			    this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
 			}
 			else
 				ServerSendError(conn, systemText.userAlreadyOnline, true);
@@ -393,7 +402,9 @@ namespace OpenMMO.Network
         /// Run on the server.
         /// Logs in the player.
         /// </summary>
-        /// <param name="conn"></param><param name="username"></param><param name="playername"></param>
+        /// <param name="conn"></param>
+        /// <param name="username"></param>
+        /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
 
@@ -425,7 +436,9 @@ namespace OpenMMO.Network
         /// Runs on the server.
         /// Registers the player.
         /// </summary>
-        /// <param name="username"></param> <param name="playername"></param> <param name="prefabname"></param>
+        /// <param name="username"></param>
+        /// <param name="playername"></param>
+        /// <param name="prefabname"></param>
 		protected void RegisterPlayer(string username, string playername, string prefabname)
 		{
 

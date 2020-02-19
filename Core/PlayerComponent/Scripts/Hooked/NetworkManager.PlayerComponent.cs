@@ -1,8 +1,8 @@
 
-//using OpenMMO;
-//using OpenMMO.Network;
-//using OpenMMO.Database;
-//using System;
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.Database;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;

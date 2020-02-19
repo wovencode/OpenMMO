@@ -1,13 +1,12 @@
 
-//using OpenMMO;
-//using OpenMMO.Database;
-using OpenMMO.Database.Table;
-//using UnityEngine;
+using OpenMMO;
+using OpenMMO.Database;
+using UnityEngine;
 using System;
-//using System.IO;
+using System.IO;
 using System.Collections.Generic;
-//using SQLite;
-//using UnityEngine.AI;
+using SQLite;
+using UnityEngine.AI;
 
 namespace OpenMMO.Database
 {
@@ -25,7 +24,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected bool UserValid(string username, string password)
 		{
-			return FindWithQuery<UserAccount>("SELECT * FROM "+nameof(UserAccount)+" WHERE username=? AND password=? AND banned=0 AND deleted=0", username, password) != null;
+			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND password=? AND banned=0 AND deleted=0", username, password) != null;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -33,7 +32,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected bool UserExists(string username)
 		{
-			return FindWithQuery<UserAccount>("SELECT * FROM "+nameof(UserAccount)+" WHERE username=?", username) != null;
+			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=?", username) != null;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -42,7 +41,7 @@ namespace OpenMMO.Database
 		protected void UserRegister(string userName, string userPassword, string userEmail, string userDeviceid)
 		{
 			// -- lastlogin is UtcNow minus SaveInterval to allow immediate login
-			Insert(new UserAccount{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastonline=DateTime.MinValue });
+			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastonline=DateTime.MinValue });
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -50,7 +49,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserChangePassword(string username, string oldpassword, string newpassword)
 		{
-			Execute("UPDATE "+nameof(UserAccount)+" SET password=? WHERE username=? AND password=?", newpassword, username, oldpassword);
+			Execute("UPDATE "+nameof(TableUser)+" SET password=? WHERE username=? AND password=?", newpassword, username, oldpassword);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -59,7 +58,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserSetDeleted(string username, int action=1)
 		{
-			Execute("UPDATE "+nameof(UserAccount)+" SET deleted=? WHERE username=?", action, username);
+			Execute("UPDATE "+nameof(TableUser)+" SET deleted=? WHERE username=?", action, username);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -68,7 +67,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserSetBanned(string username, int action=1)
 		{
-			Execute("UPDATE "+nameof(UserAccount)+" SET banned=? WHERE username=?", action, username);
+			Execute("UPDATE "+nameof(TableUser)+" SET banned=? WHERE username=?", action, username);
 		}
 
         // -------------------------------------------------------------------------------
@@ -100,7 +99,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserSetConfirmed(string username, int action=1)
 		{
-			Execute("UPDATE "+nameof(UserAccount)+" SET confirmed=? WHERE username=?", action, username);
+			Execute("UPDATE "+nameof(TableUser)+" SET confirmed=? WHERE username=?", action, username);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -110,7 +109,7 @@ namespace OpenMMO.Database
 		protected int GetUserCount(string deviceId, string eMail)
 		{
 
-			List<UserAccount> result = Query<UserAccount>("SELECT * FROM "+nameof(UserAccount)+" WHERE deviceid=? AND email=? AND deleted=0", deviceId, eMail);
+			List<TableUser> result = Query<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE deviceid=? AND email=? AND deleted=0", deviceId, eMail);
 			
 			if (result == null)
 				return 0;

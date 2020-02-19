@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using SQLite;
+using Mirror;
 
 namespace OpenMMO.Database
 {
@@ -78,9 +79,9 @@ namespace OpenMMO.Database
 	   	// LoginPlayer_Player
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LoginPlayer))]
-	   	void LoginPlayer_Player(string playername, string username)
+	   	void LoginPlayer_Player(NetworkConnection conn, GameObject player, string playerName, string userName)
 	   	{
-	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playerName);
 	   	}
 		
 		// -------------------------------------------------------------------------------

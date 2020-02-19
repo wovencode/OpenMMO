@@ -1,12 +1,11 @@
 
-//using OpenMMO;
-//using OpenMMO.Database;
-using OpenMMO.Database.Table;
-//using UnityEngine;
-//using System;
-//using System.IO;
+using OpenMMO;
+using OpenMMO.Database;
+using UnityEngine;
+using System;
+using System.IO;
 using System.Collections.Generic;
-//using SQLite;
+using SQLite;
 
 namespace OpenMMO.Database
 {

@@ -1,17 +1,17 @@
-
-//using OpenMMO;
-//using OpenMMO.Database;
+﻿
+using OpenMMO;
+using OpenMMO.Database;
 using System;
 using SQLite;
 using UnityEngine;
 
-namespace OpenMMO.Database.Table
+namespace OpenMMO.Database
 {
 
 	// ===================================================================================
 	// DatabaseManager
 	// ===================================================================================
-	public partial class PlayerCharacter
+	public partial class TablePlayer
 	{
 		[PrimaryKey]
 		[Collation("NOCASE")]

@@ -1,11 +1,10 @@
-
-//using OpenMMO;
-//using OpenMMO.Database;
-using OpenMMO.Database.Table;
-//using OpenMMO.Network;
-//using UnityEngine;
+﻿
+using OpenMMO;
+using OpenMMO.Database;
+using OpenMMO.Network;
+using UnityEngine;
 using System;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace OpenMMO.Database
 {
@@ -21,7 +20,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public string GetPlayerPrefabName(string playername)
 		{
-			return FindWithQuery<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE playername=?", playername).prefab;
+			return FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=?", playername).prefab;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -30,7 +29,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public bool GetPlayerOnline(string playerName)
 		{
-			PlayerCharacter tablePlayer = FindWithQuery<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE playername=? AND banned=0 AND deleted=0", playerName);
+			TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND banned=0 AND deleted=0", playerName);
 			
 			if (tablePlayer == null || (tablePlayer != null && tablePlayer.lastonline <= DateTime.MinValue))
 			{

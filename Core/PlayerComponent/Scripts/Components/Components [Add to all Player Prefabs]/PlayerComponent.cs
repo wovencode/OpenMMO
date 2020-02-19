@@ -6,7 +6,6 @@ using UnityEngine;
 using Mirror;
 //using OpenMMO;
 using OpenMMO.Database;
-using OpenMMO.Database.Table;
 //using UnityEngine.AI;
 
 namespace OpenMMO {
@@ -21,7 +20,7 @@ namespace OpenMMO {
 	
 		// holds exact replica of table data as in database
 		// no need to sync, can be done individually if required
-		public PlayerCharacter tablePlayer 				= new PlayerCharacter();
+		public TablePlayer tablePlayer 				= new TablePlayer();
 		public TablePlayerZones tablePlayerZones 	= new TablePlayerZones();
 		
 		// -------------------------------------------------------------------------------

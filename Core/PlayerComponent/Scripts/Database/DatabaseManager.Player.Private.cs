@@ -1,11 +1,10 @@
 
-//using OpenMMO;
-//using OpenMMO.Database;
-using OpenMMO.Database.Table;
+using OpenMMO;
+using OpenMMO.Database;
 using UnityEngine;
 using System;
-//using System.Collections.Generic;
-//using SQLite;
+using System.Collections.Generic;
+using SQLite;
 
 namespace OpenMMO.Database
 {
@@ -24,7 +23,7 @@ namespace OpenMMO.Database
 		[DevExtMethods(nameof(Init))]
 		void Init_Player()
 		{
-	   		CreateTable<PlayerCharacter>();
+	   		CreateTable<TablePlayer>();
 		}
 		
 	   	// -------------------------------------------------------------------------------
@@ -53,7 +52,7 @@ namespace OpenMMO.Database
 		[DevExtMethods(nameof(LoadDataPlayer))]
 		void LoadDataPlayer_Player(GameObject player)
 		{
-	   		PlayerCharacter tablePlayer = FindWithQuery<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE playername=? AND deleted=0", player.name);
+	   		TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND deleted=0", player.name);
 	   		player.GetComponent<PlayerComponent>().tablePlayer = tablePlayer;
 	   		player.transform.position = new Vector3(tablePlayer.x, tablePlayer.y, tablePlayer.z);
 		}
@@ -81,7 +80,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_Player(string playername, string username)
 	   	{
-	   		Execute("UPDATE "+nameof(PlayerCharacter)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -91,7 +90,7 @@ namespace OpenMMO.Database
 	   	void LogoutPlayer_Player(string playername)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(PlayerCharacter)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -100,7 +99,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(DeleteDataPlayer))]
 	   	void DeleteDataPlayer_Player(string playername)
 	   	{
-	   		Execute("DELETE FROM "+nameof(PlayerCharacter)+" WHERE playername=?", playername);
+	   		Execute("DELETE FROM "+nameof(TablePlayer)+" WHERE playername=?", playername);
 	   	}
 		
 		// -------------------------------------------------------------------------------

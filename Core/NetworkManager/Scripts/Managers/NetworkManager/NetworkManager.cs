@@ -284,25 +284,12 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnServerDisconnect(NetworkConnection conn)
 		{
-
-			// -- 1) log out the local user (if any)
-			string username = GetUserName(conn);
-			if (!String.IsNullOrWhiteSpace(username) && (GetIsUserLoggedIn(username) || conn.identity != null))
-				DatabaseManager.singleton.LogoutUser(username);
 			
-			// -- 2) log out the player (if any)
-			if (conn.identity != null && conn.identity.gameObject != null)
-			{
-				debug.Log("[NetworkManager] Logged out player: " + conn.identity.gameObject.name);
-				
-				this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
-				eventListeners.OnLogoutPlayer.Invoke(conn);
-				
-				string name = conn.identity.gameObject.name;
-				onlinePlayers.Remove(name);
-			}
+			//GetComponent<PlayerComponent<().isZoning
 			
-			onlineUsers.Remove(conn);
+			LogoutPlayer(conn);
+			LogoutUser(conn);
+			
 			base.OnServerDisconnect(conn);
 			
 		}

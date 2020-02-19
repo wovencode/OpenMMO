@@ -284,14 +284,9 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnServerDisconnect(NetworkConnection conn)
 		{
-			
-			//GetComponent<PlayerComponent<().isZoning
-			
 			LogoutPlayer(conn);
 			LogoutUser(conn);
-			
 			base.OnServerDisconnect(conn);
-			
 		}
 		
 		// -------------------------------------------------------------------------------

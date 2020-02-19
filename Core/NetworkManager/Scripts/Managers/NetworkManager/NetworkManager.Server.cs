@@ -438,13 +438,14 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
-			
-			DatabaseManager.singleton.LoginPlayer(playername, username);
-			
+
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
 			
 			GameObject prefab = GetPlayerPrefab(prefabname);
 			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+			
+			// -- log the player in
+			DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
 			
 			NetworkServer.AddPlayerForConnection(conn, player);
 			
@@ -454,7 +455,7 @@ namespace OpenMMO.Network
 			state = NetworkState.Game;
 			
 			// -- Hooks & Events
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, username, playername); //HOOK
 			eventListeners.OnLoginPlayer.Invoke(conn);
 
 		}

@@ -117,9 +117,9 @@ debug.Log("DatabaseManager->LogoutUser");
 		// LoginPlayer
 		// From: @NetworkManager
 		// -------------------------------------------------------------------------------
-		public void LoginPlayer(string username, string playername)
+		public void LoginPlayer(NetworkConnection conn, GameObject player, string playerName, string userName)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), playername, username); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playerName, userName); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

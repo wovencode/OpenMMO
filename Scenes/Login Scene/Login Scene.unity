@@ -1927,16 +1927,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DatabaseManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7890701178789268690, guid: 28db4ceed746f4a62963adde76a4fbef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7890701179065248850, guid: 28db4ceed746f4a62963adde76a4fbef,
-        type: 3}
-      propertyPath: databaseName
-      value: DatabaseOpenMMO.sqlite
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28db4ceed746f4a62963adde76a4fbef, type: 3}
 --- !u!114 &8285225109501110961 stripped

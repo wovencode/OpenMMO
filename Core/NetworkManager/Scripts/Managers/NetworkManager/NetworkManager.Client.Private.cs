@@ -87,7 +87,6 @@ namespace OpenMMO.Network
             
         }
         
-        
         // ========================== MESSAGE HANDLERS - USER ============================
         
 		// -------------------------------------------------------------------------------
@@ -140,8 +139,6 @@ namespace OpenMMO.Network
 				
 				UIWindowLoginUser.singleton.Hide();
 				
-				
-        		
         	}
         	
         	OnServerMessageResponse(conn, msg);

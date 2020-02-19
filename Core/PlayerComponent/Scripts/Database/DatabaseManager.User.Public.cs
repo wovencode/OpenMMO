@@ -30,10 +30,8 @@ namespace OpenMMO.Database
 			}
 			else
 			{
-            
-                //NOTE: We double the save interval here as a failsafe, otherwise there are small windows of opportunity to login twice during world saves.
-                DateTime nextAllowedLoginTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
-                return DateTime.Now.ToUniversalTime() <= nextAllowedLoginTime;
+                DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);;
+                return DateTime.UtcNow <= dateTime;
             }
            
 		}

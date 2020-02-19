@@ -380,6 +380,14 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
 		protected void LoginUser(NetworkConnection conn, string username)
 		{
+	
+			onlineUsers[conn] = name;
+			state = NetworkState.Lobby;
+			    
+			DatabaseManager.singleton.LoginUser(username);
+			    
+			this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
+			
 			if (!UserLoggedIn(username))
 			{
 				onlineUsers[conn] = name;
@@ -391,6 +399,7 @@ namespace OpenMMO.Network
 			}
 			else
 				ServerSendError(conn, systemText.userAlreadyOnline, true);
+
 		}
 		
 		// -------------------------------------------------------------------------------

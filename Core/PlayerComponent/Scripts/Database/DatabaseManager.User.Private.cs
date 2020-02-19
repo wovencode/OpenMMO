@@ -64,6 +64,7 @@ namespace OpenMMO.Database
 			
 			string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
 			Execute("UPDATE "+nameof(TableUser)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, userName);
+
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -95,7 +96,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LoginUser))]
 	   	void LoginUser_User(string username)
 	   	{
-	   		// -- Note: We do NOT set the lastlogin time here as it would lock us out!
+	   		// -- Note: We do NOT set the lastonline time here as it would lock us out!
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -104,8 +105,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutUser))]
 	   	void LogoutUser_User(string username)
 	   	{
-	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, username);
+	   		// -- Note: We do NOT set the lastonline time here as it done by save already
 	   	}
 		
 		// -------------------------------------------------------------------------------

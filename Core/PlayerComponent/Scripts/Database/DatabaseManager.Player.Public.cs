@@ -37,8 +37,8 @@ namespace OpenMMO.Database
 			}
 			else
 			{
-				DateTime nextAllowedLoginTime = tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);
-                return DateTime.Now.ToUniversalTime() <= nextAllowedLoginTime;
+				DateTime dateTime = tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);
+                return DateTime.UtcNow <= dateTime;
 			}
 			
 		}

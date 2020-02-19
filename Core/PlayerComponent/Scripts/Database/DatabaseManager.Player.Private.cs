@@ -14,9 +14,7 @@ namespace OpenMMO.Database
 	// ===================================================================================
 	public partial class DatabaseManager
 	{
-		
-		// ============================= PRIVATE METHODS =================================
-		
+
 		// -------------------------------------------------------------------------------
 		// Init_Player
 		// -------------------------------------------------------------------------------
@@ -25,6 +23,8 @@ namespace OpenMMO.Database
 		{
 	   		CreateTable<TablePlayer>();
 		}
+		
+		// =================================== PLAYER ====================================
 		
 	   	// -------------------------------------------------------------------------------
 	   	// CreateDefaultDataPlayer_Player
@@ -87,10 +87,10 @@ namespace OpenMMO.Database
 	   	// LogoutPlayer_Player
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LogoutPlayer))]
-	   	void LogoutPlayer_Player(string playername)
+	   	void LogoutPlayer_Player(GameObject player)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.MinValue, playername);
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.MinValue, player.name);
 	   	}
 		
 		// -------------------------------------------------------------------------------

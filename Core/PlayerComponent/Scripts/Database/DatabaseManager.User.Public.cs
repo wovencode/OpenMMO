@@ -1,6 +1,7 @@
 
 //using OpenMMO;
 //using OpenMMO.Database;
+using OpenMMO.Database.Table;
 //using UnityEngine;
 using System;
 //using System.IO;
@@ -22,21 +23,16 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public bool GetUserOnline(string userName)
 		{
-			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND banned=0 AND deleted=0", userName);
+			TableUser tableUser = FindWithQuery<UserAccount>("SELECT * FROM "+nameof(UserAccount)+" WHERE username=? AND banned=0 AND deleted=0", userName);
 			
 			if (tableUser == null || (tableUser != null && tableUser.lastonline <= DateTime.MinValue))
+
 			{
 				return false;
 			}
 			else
 			{
-                //NOTE: We double the save interval here as a failsafe, otherwise there are small windows of opportunity to login twice during world saves.
                 DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);;
-                
-debug.Log("[GETUSERONLINE (Server/Database)]");
-debug.Log(DateTime.UtcNow+" / "+tableUser.lastonline);
-debug.Log(DateTime.UtcNow+" <= "+dateTime);
-
                 return DateTime.UtcNow <= dateTime;
             }
            

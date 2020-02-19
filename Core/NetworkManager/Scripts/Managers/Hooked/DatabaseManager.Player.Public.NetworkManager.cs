@@ -1,9 +1,10 @@
-﻿
-using OpenMMO;
-using OpenMMO.Database;
+
+//using OpenMMO;
+//using OpenMMO.Database;
+using OpenMMO.Database.Table;
 using OpenMMO.Network;
-using UnityEngine;
-using System;
+//using UnityEngine;
+//using System;
 using System.Collections.Generic;
 
 namespace OpenMMO.Database
@@ -27,14 +28,14 @@ namespace OpenMMO.Database
 		public List<PlayerPreview> GetPlayers(string username)
 		{
 
-			List<TablePlayer> results = Query<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE username=? AND deleted=0 AND banned=0", username);
+			List<PlayerCharacter> results = Query<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE username=? AND deleted=0 AND banned=0", username);
 			
 			List<PlayerPreview> players = new List<PlayerPreview>();
 			
 			if (results == null)
 				return players;
 			
-			foreach (TablePlayer result in results)
+			foreach (PlayerCharacter result in results)
 			{
 				players.Add(new PlayerPreview { name = result.playername} );
 			}

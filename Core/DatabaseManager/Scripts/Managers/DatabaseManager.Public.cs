@@ -1,11 +1,11 @@
 
-using OpenMMO;
-using OpenMMO.Database;
+//using OpenMMO;
+//using OpenMMO.Database;
 using UnityEngine;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using Mirror;
+//using System;
+//using System.IO;
+//using System.Collections.Generic;
+//using Mirror;
 
 namespace OpenMMO.Database
 {
@@ -54,19 +54,19 @@ namespace OpenMMO.Database
 		}
 		
 		// -------------------------------------------------------------------------------
-		// SaveDataUser
+		// SaveUserAccount
 		// called when a user is saved to the database, the hook is executed on all
 		// modules and used to save additional data.
 		//
 		// isNew = Is it a new user account? (Saving might be different)
 		// useTransaction = When saved individually we can use a transaction
 		// -------------------------------------------------------------------------------
-		public void SaveDataUser(string username, bool isNew = false, bool useTransaction = true)
+		public void SaveUserAccount(string username, bool isNew = false, bool useTransaction = true)
 		{
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username, isNew); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(SaveUserAccount), username, isNew); //HOOK
 			
 			if (useTransaction)
 				databaseLayer.Commit();
@@ -94,22 +94,22 @@ namespace OpenMMO.Database
 		// ============================= NETWORK MANAGER EVENTS ==========================
 		
 		// -------------------------------------------------------------------------------
-		// LoginUser
+		// LoginUserAccount
 		// From: @NetworkManager
 		// -------------------------------------------------------------------------------
-		public void LoginUser(string name)
+		public void LoginUserAccount(string name)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LoginUser), name); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoginUserAccount), name); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------
-		// LogoutUser
+		// LogoutUserAccount
 		// From : @NetworkManager
 		// -------------------------------------------------------------------------------
-		public void LogoutUser(string name)
+		public void LogoutUserAccount(string name)
 		{
-			SaveDataUser(name, false);
-			this.InvokeInstanceDevExtMethods(nameof(LogoutUser), name); //HOOK
+			SaveUserAccount(name, false);
+			this.InvokeInstanceDevExtMethods(nameof(LogoutUserAccount), name); //HOOK
 		}
 		
 		// -------------------------------------------------------------------------------

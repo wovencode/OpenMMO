@@ -32,7 +32,7 @@ namespace OpenMMO {
             //FACE DIRECTION OF TRAVEL
             //if (config.faceCameraDirection && Camera.main) transform.LookAt(agent.velocity, Vector3.up);
 
-            if (verticalMovementInput != 0 || horizontalMovementInput != 0)
+            if (verticalMovementInput != 0 || horizontalMovementInput != 0 || strafeLeft || strafeRight)
            	{
 				Vector3 input = new Vector3(horizontalMovementInput, 0, verticalMovementInput);
 				if (input.magnitude > 1) input = input.normalized;

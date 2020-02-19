@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using SQLite;
+using Mirror;
 
 namespace OpenMMO.Database
 {
@@ -63,10 +64,10 @@ namespace OpenMMO.Database
 	   	// LoginPlayer_User
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LoginPlayer))]
-	   	void LoginPlayer_User(string playername, string username)
+	   	void LoginPlayer_User(NetworkConnection conn, GameObject player, string playerName, string userName)
 	   	{
 	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, username);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, userName);
 	   	}
 	   	
 	   	// -------------------------------------------------------------------------------

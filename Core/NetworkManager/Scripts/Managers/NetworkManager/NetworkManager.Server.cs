@@ -360,15 +360,12 @@ namespace OpenMMO.Network
 		// LogoutUser
 		// @Server
 		// -------------------------------------------------------------------------------
-        protected void LogoutUser(NetworkConnection conn, bool logoutGlobally=true)
+        protected void LogoutUser(NetworkConnection conn)
         {
         
-        	if (logoutGlobally)
-        	{
-        		string username = GetUserName(conn);
-				if (!String.IsNullOrWhiteSpace(username) && (GetIsUserLoggedIn(username) || conn.identity != null))
-					DatabaseManager.singleton.LogoutUser(username);
-			}
+        	string username = GetUserName(conn);
+			if (!String.IsNullOrWhiteSpace(username) && (GetIsUserLoggedIn(username) || conn.identity != null))
+				DatabaseManager.singleton.LogoutUser(username);
 			
 			onlineUsers.Remove(conn);
         }
@@ -377,20 +374,18 @@ namespace OpenMMO.Network
 		// LogoutPlayer
 		// @Server
 		// -------------------------------------------------------------------------------
-        protected void LogoutPlayer(NetworkConnection conn, bool logoutGlobally=true)
+        protected void LogoutPlayer(NetworkConnection conn)
         {
         	if (conn.identity != null && conn.identity.gameObject != null)
 			{
-				if (logoutGlobally)
-        		{
-					this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
-					eventListeners.OnLogoutPlayer.Invoke(conn);
-				}
+				
+				this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
+				eventListeners.OnLogoutPlayer.Invoke(conn);
 				
 				string name = conn.identity.gameObject.name;
 				onlinePlayers.Remove(name);
 				
-				debug.Log("[NetworkManager] Logged out player: " + conn.identity.gameObject.name);
+				debug.Log("[NetworkManager] Logged out player: " + name);
 				
 			}
         }
@@ -452,10 +447,10 @@ namespace OpenMMO.Network
 			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
 			
 			NetworkServer.AddPlayerForConnection(conn, player);
+			
 			ValidatePlayerPosition(player);
 			
 			onlinePlayers[player.name] = player;
-			
 			state = NetworkState.Game;
 			
 			// -- Hooks & Events

@@ -89,12 +89,10 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_Player(string playername)
 	   	{
-<<<<<<< HEAD
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
-=======
+	   		//Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
+
 	   		// -- Note: We do NOT set the lastonline time here as it done by save already
->>>>>>> 18d2e10d965cff7618bc2751e58a6618c4bfc1d6
 	   	}
 		
 		// -------------------------------------------------------------------------------

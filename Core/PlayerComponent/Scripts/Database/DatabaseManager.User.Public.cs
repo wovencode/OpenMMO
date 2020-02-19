@@ -22,9 +22,9 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public bool GetUserOnline(string userName)
 		{
-			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND banned=0 AND deleted=0", userName);
+			UserAccount account = FindWithQuery<UserAccount>("SELECT * FROM "+nameof(UserAccount)+" WHERE username=? AND banned=0 AND deleted=0", userName);
 			
-			if (tableUser == null || (tableUser != null && tableUser.lastonline <= DateTime.MinValue)) //NOTE: "<=" used instead of "==" just to be safe (in case one day we use NetworkTime.time or a double value)
+			if (account == null || (account != null && account.lastonline <= DateTime.MinValue)) //NOTE: "<=" used instead of "==" just to be safe (in case one day we use NetworkTime.time or a double value)
 			{
 				return false;
 			}
@@ -32,7 +32,7 @@ namespace OpenMMO.Database
 			{
             
                 //NOTE: We double the save interval here as a failsafe, otherwise there are small windows of opportunity to login twice during world saves.
-                DateTime nextAllowedLoginTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
+                DateTime nextAllowedLoginTime = account.lastonline.AddSeconds(saveInterval * 2.0f);
                 return DateTime.Now.ToUniversalTime() <= nextAllowedLoginTime;
             }
            

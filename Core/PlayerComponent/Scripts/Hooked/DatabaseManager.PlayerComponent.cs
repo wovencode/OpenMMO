@@ -23,12 +23,12 @@ namespace OpenMMO.Database
 		void DeleteUsers_PlayerComponent()
 		{
 
-			List<TableUser> users = Query<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE deleted=1");
+			List<UserAccount> users = Query<UserAccount>("SELECT * FROM "+nameof(UserAccount)+" WHERE deleted=1");
 			
 			if (users == null)
 				return;
 			
-			foreach (TableUser user in users)
+			foreach (UserAccount user in users)
 				this.InvokeInstanceDevExtMethods(nameof(DeleteUser), user.username); //HOOK
 			
 			if (users.Count > 0)

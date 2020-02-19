@@ -1,11 +1,12 @@
 
-using OpenMMO;
-using OpenMMO.Database;
+//using OpenMMO;
+//using OpenMMO.Database;
 using UnityEngine;
 using System;
-using System.IO;
-using System.Collections.Generic;
-using SQLite;
+//using System.IO;
+//using System.Collections.Generic;
+//using SQLite;
+using OpenMMO.Database.Table; //NEW
 
 namespace OpenMMO.Database
 {
@@ -24,7 +25,7 @@ namespace OpenMMO.Database
 		[DevExtMethods(nameof(Init))]
 		void Init_User()
 		{
-	   		CreateTable<TableUser>();
+	   		CreateTable<UserAccount>();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ namespace OpenMMO.Database
 			if (isNew) return; 
 			
 			string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
-			Execute("UPDATE "+nameof(TableUser)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, userName);
+			Execute("UPDATE "+nameof(UserAccount)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, userName);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -73,26 +74,26 @@ namespace OpenMMO.Database
 	   	void LoginPlayer_User(string playername, string username)
 	   	{
 	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, username);
+	   		Execute("UPDATE "+nameof(UserAccount)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, username);
 	   	}
 		
 	   	// -------------------------------------------------------------------------------
-	   	// SaveDataUser_User
+	   	// SaveDataUserAccount_User
 	   	// -------------------------------------------------------------------------------
-		[DevExtMethods(nameof(SaveDataUser))]
-		void SaveDataUser_User(string username, bool isNew)
+		[DevExtMethods(nameof(SaveUserAccount))]
+		void SaveUserAccount_User(string username, bool isNew)
 		{
 		
 			// dont update the time on a new player or we log ourselves out of login
 			if (isNew) return; 
 			
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, username);
+	   		Execute("UPDATE "+nameof(UserAccount)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, username);
 		}
 		
 		// -------------------------------------------------------------------------------
 	   	// LoginUser_User
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods(nameof(LoginUser))]
+	   	[DevExtMethods(nameof(LoginUserAccount))]
 	   	void LoginUser_User(string username)
 	   	{
 	   		// -- Note: We do NOT set the lastlogin time here as it would lock us out!
@@ -101,11 +102,11 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 	   	// LogoutUser_User
 	   	// -------------------------------------------------------------------------------
-	   	[DevExtMethods(nameof(LogoutUser))]
+	   	[DevExtMethods(nameof(LogoutUserAccount))]
 	   	void LogoutUser_User(string username)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, username);
+	   		Execute("UPDATE "+nameof(UserAccount)+" SET lastonline=? WHERE username=?", DateTime.MinValue, username);
 	   	}
 		
 		// -------------------------------------------------------------------------------
@@ -115,7 +116,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(DeleteDataUser))]
 	   	void DeleteDataUser_User(string name)
 	   	{
-	   		Execute("DELETE FROM "+nameof(TableUser)+" WHERE username=?", name);
+	   		Execute("DELETE FROM "+nameof(UserAccount)+" WHERE username=?", name);
 	   	}
 	   	
 		// -------------------------------------------------------------------------------

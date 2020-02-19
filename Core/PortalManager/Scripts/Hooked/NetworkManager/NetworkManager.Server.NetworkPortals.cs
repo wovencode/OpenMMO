@@ -193,9 +193,9 @@ namespace OpenMMO.Network
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;
 				
-				// Hooks & Events
+				// -- Hooks & Events
 				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername); //HOOK
-				eventListeners.OnLoginPlayer.Invoke(conn); // -- same as OnLoginPlayer
+				eventListeners.OnLoginPlayer.Invoke(conn);
 				
 			}
 			else

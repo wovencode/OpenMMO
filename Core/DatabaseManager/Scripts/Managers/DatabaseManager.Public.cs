@@ -57,13 +57,16 @@ namespace OpenMMO.Database
 		// SaveDataUser
 		// called when a user is saved to the database, the hook is executed on all
 		// modules and used to save additional data.
+		//
+		// isNew = Is it a new user account? (Saving might be different)
+		// useTransaction = When saved individually we can use a transaction
 		// -------------------------------------------------------------------------------
-		public void SaveDataUser(string username, bool useTransaction = true)
+		public void SaveDataUser(string username, bool isNew = false, bool useTransaction = true)
 		{
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(SaveDataUser), username, isNew); //HOOK
 			
 			if (useTransaction)
 				databaseLayer.Commit();
@@ -73,21 +76,26 @@ namespace OpenMMO.Database
 		// SaveDataPlayer
 		// called when a player is saved to the database, the hook is executed on all
 		// modules and used to save additional data.
+		//
+		// isNew = Is it a new player character? (Saving might be different)
+		// useTransaction = When saved individually we can use a transaction
 		// -------------------------------------------------------------------------------
-		public void SaveDataPlayer(GameObject player, bool useTransaction = true)
+		public void SaveDataPlayer(GameObject player, bool isNew = false, bool useTransaction = true)
 		{
 			if (useTransaction)
 				databaseLayer.BeginTransaction();
 			
-			this.InvokeInstanceDevExtMethods(nameof(SaveDataPlayer), player); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(SaveDataPlayer), player, isNew); //HOOK
 			
 			if (useTransaction)
 				databaseLayer.Commit();
 		}
 		
+		// ============================= NETWORK MANAGER EVENTS ==========================
+		
 		// -------------------------------------------------------------------------------
 		// LoginUser
-		// @NetworkManager
+		// From: @NetworkManager
 		// -------------------------------------------------------------------------------
 		public void LoginUser(string name)
 		{
@@ -96,7 +104,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// LogoutUser
-		// @NetworkManager
+		// From : @NetworkManager
 		// -------------------------------------------------------------------------------
 		public void LogoutUser(string name)
 		{
@@ -106,7 +114,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// LoginPlayer
-		// @NetworkManager
+		// From: @NetworkManager
 		// -------------------------------------------------------------------------------
 		public void LoginPlayer(string username, string playername)
 		{
@@ -115,7 +123,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// LogoutPlayer
-		// @NetworkManager
+		// From: @NetworkManager
 		// -------------------------------------------------------------------------------
 		public void LogoutPlayer(GameObject player)
 		{

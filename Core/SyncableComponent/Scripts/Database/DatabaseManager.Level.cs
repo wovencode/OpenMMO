@@ -64,7 +64,7 @@ namespace OpenMMO.Database
 		// SaveDataPlayer_Level
 		// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataPlayer))]
-		void SaveDataPlayer_Level(GameObject player)
+		void SaveDataPlayer_Level(GameObject player, bool isNew)
 		{
 		
 			// you should delete all data of this player first, to prevent duplicates

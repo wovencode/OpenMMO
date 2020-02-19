@@ -18,7 +18,7 @@ namespace OpenMMO.Database
 		public string email			{ get; set; }
 		public string deviceid		{ get; set; }
 		public DateTime created 	{ get; set; }
-		public DateTime lastlogin 	{ get; set; }
+		public DateTime lastonline 	{ get; set; }
 		public bool deleted 		{ get; set; }
 		public bool banned 			{ get; set; }
 		public bool confirmed		{ get; set; }

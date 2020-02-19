@@ -63,12 +63,14 @@ namespace OpenMMO.Database
 	   	// of copy-pasting all the individual properties, update it and forward it to the db
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataPlayer))]
-		void SaveDataPlayer_Player(GameObject player)
+		void SaveDataPlayer_Player(GameObject player, bool isNew)
 		{
 			// you should delete all data of this player first, to prevent duplicates
 	   		DeleteDataPlayer_Player(player.name);
 	   		
+	   		// -- times are updated in the tablePlayer.Update function
 			player.GetComponent<PlayerComponent>().tablePlayer.Update(player);
+			
 			InsertOrReplace(player.GetComponent<PlayerComponent>().tablePlayer);
 		}
 		
@@ -78,16 +80,17 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_Player(string playername, string username)
 	   	{
-	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastlogin=? WHERE playername=?", DateTime.UtcNow, playername);
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
 	   	}
 		
 		// -------------------------------------------------------------------------------
 	   	// LogoutPlayer_Player
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LogoutPlayer))]
-	   	void LogoutPlayer_Player(string name)
+	   	void LogoutPlayer_Player(string playername)
 	   	{
-	   		
+	   		// -- this resets lastlogin to allow immediate re-login
+	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playername);
 	   	}
 		
 		// -------------------------------------------------------------------------------

@@ -40,7 +40,7 @@ namespace OpenMMO.Database
         	
         	foreach (GameObject player in OpenMMO.Network.NetworkManager.onlinePlayers.Values)
         		if (player)
-            		SaveDataPlayer(player, false);
+            		SaveDataPlayer(player, false, false); // isNew = false / Transaction = false
             
         	databaseLayer.Commit();
         	

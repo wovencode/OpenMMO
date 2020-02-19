@@ -132,7 +132,7 @@ namespace OpenMMO.Network
 			
         	if (DatabaseManager.singleton.TryUserRegister(msg.username, msg.password, msg.email, msg.deviceid))
 			{
-				DatabaseManager.singleton.SaveDataUser(msg.username, false);
+				RegisterUser(msg.username);
 				message.text = systemText.userRegisterSuccess;
 			}
 			else
@@ -340,7 +340,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
+        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
 			{
 				message.text = systemText.playerDeleteSuccess;
 			}
@@ -355,6 +355,17 @@ namespace OpenMMO.Network
         }
 
         // ============================== MAJOR ACTIONS ==================================
+        
+        // -------------------------------------------------------------------------------
+		// RegisterUser
+		// @Server
+		// -------------------------------------------------------------------------------
+		protected void RegisterUser(string username)
+		{
+			// isNew = true
+			// Transaction = false
+			DatabaseManager.singleton.SaveDataUser(username, true, false);
+		}
         
         // -------------------------------------------------------------------------------
 		// LoginUser
@@ -396,7 +407,7 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
-	
+
 			DatabaseManager.singleton.LoginPlayer(playername, username);
 			
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
@@ -438,7 +449,11 @@ namespace OpenMMO.Network
 			this.InvokeInstanceDevExtMethods(nameof(RegisterPlayer), player, username, prefabname); //HOOK
 		
 			DatabaseManager.singleton.CreateDefaultDataPlayer(player);
-			DatabaseManager.singleton.SaveDataPlayer(player, false);
+			
+			// -- Save Player Data
+			// isNew = true
+			// Transaction = false
+			DatabaseManager.singleton.SaveDataPlayer(player, true, false);
 			
 			Destroy(player);
 		}

@@ -57,12 +57,13 @@ namespace OpenMMO.Database
 	   	// SaveDataPlayer_User
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataPlayer))]
-		void SaveDataPlayer_User(GameObject player)
+		void SaveDataPlayer_User(GameObject player, bool isNew)
 		{
+			// dont update the time on a new player or we log ourselves out of login
+			if (isNew) return; 
+			
 			string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
-			// TODO:
-			// saving the time here locks us out
-			//Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, userName);
+			Execute("UPDATE "+nameof(TableUser)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, userName);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -72,17 +73,20 @@ namespace OpenMMO.Database
 	   	void LoginPlayer_User(string playername, string username)
 	   	{
 	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.UtcNow, username);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, username);
 	   	}
 		
 	   	// -------------------------------------------------------------------------------
 	   	// SaveDataUser_User
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataUser))]
-		void SaveDataUser_User(string username)
+		void SaveDataUser_User(string username, bool isNew)
 		{
-			// -- we update lastaved and lastlogin in this case to update the login timeout check
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastsaved=? WHERE username=?", DateTime.UtcNow, username);
+		
+			// dont update the time on a new player or we log ourselves out of login
+			if (isNew) return; 
+			
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, username);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -101,7 +105,7 @@ namespace OpenMMO.Database
 	   	void LogoutUser_User(string username)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastlogin=? WHERE username=?", DateTime.MinValue, username);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, username);
 	   	}
 		
 		// -------------------------------------------------------------------------------

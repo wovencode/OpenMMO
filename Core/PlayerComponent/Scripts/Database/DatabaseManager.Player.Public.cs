@@ -31,14 +31,14 @@ namespace OpenMMO.Database
 		{
 			TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND banned=0 AND deleted=0", playerName);
 			
-			if (tablePlayer == null || (tablePlayer != null && tablePlayer.lastlogin == DateTime.MinValue))
+			if (tablePlayer == null || (tablePlayer != null && tablePlayer.lastonline <= DateTime.MinValue))
 			{
 				return false;
 			}
 			else
 			{
-				double timePassed = (DateTime.UtcNow - tablePlayer.lastlogin).TotalSeconds;
-				return timePassed <= saveInterval;
+				DateTime nextAllowedLoginTime = tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);
+                return DateTime.Now.ToUniversalTime() <= nextAllowedLoginTime;
 			}
 			
 		}

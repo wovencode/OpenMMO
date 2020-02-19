@@ -68,7 +68,7 @@ namespace OpenMMO.Database
 		// SaveDataPlayer
 		// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataPlayer))]
-		void SaveDataPlayer_NetworkZones(GameObject player)
+		void SaveDataPlayer_NetworkZones(GameObject player, bool isNew)
 		{
 		
 			// you should delete all data of this player first, to prevent duplicates

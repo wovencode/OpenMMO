@@ -1,4 +1,5 @@
-﻿
+#define SQL_TIME //Get Time from SQL Server instead of local machine time
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -23,20 +24,49 @@ namespace OpenMMO.Database
 		public bool GetUserOnline(string userName)
 		{
 			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND banned=0 AND deleted=0", userName);
-			
-			if (tableUser.lastlogin == DateTime.MinValue)
-				debug.Log("[TIME IS MINVALUE]");
-			
+
+            Debug.LogWarning("TEST: Evaluating GetUserOnline");
+            //START TEST: DX4D - Testing SQL Time - Prevents NullException if incorrect login name
+            if (tableUser != null)
+            {
+#if SQL_TIME
+                if (tableUser.lastlogin <= System.Data.SqlTypes.SqlDateTime.MinValue)
+                    debug.Log("[TIME IS MINVALUE] - (" + tableUser.lastlogin + " vs " + System.Data.SqlTypes.SqlDateTime.MinValue + ") instead of " + DateTime.MinValue);
+#else
+                if (tableUser.lastlogin == DateTime.MinValue)
+                    debug.Log("[TIME IS MINVALUE]" + tableUser.lastlogin + " vs " + DateTime.MinValue);
+#endif
+            }
+            else
+            {
+                debug.LogWarning("TEST1: Can we double click this error to come back to this code? (NO)");
+                Debug.LogWarning("<b>TEST2: Can we double click this error to come back to this code? (YES)</b>");
+                Debug.LogWarning("TABLEUSER NOT FOUND");
+            }
+
 			if (tableUser == null || (tableUser != null && tableUser.lastlogin == DateTime.MinValue))
 			{
 				return false;
 			}
 			else
 			{
-				double timePassed = (DateTime.UtcNow - tableUser.lastlogin).TotalSeconds;
-debug.Log("[TIME] "+timePassed+"/"+saveInterval);
-				return timePassed <= saveInterval;
-			}
+
+                DateTime nextAllowedLoginTime = tableUser.lastlogin.AddSeconds(saveInterval); //NEW
+
+                TimeSpan timesincelastlogin = (DateTime.Now.ToUniversalTime() - tableUser.lastlogin);
+                double timePassed = timesincelastlogin.TotalSeconds;
+                Debug.Log("<b>[LOGIN TIME STAMP]</b>"
+                    + "\n last login time:" + tableUser.lastlogin
+                    + "\n next login time:" + nextAllowedLoginTime
+                    + "\n duration until next login:" + timesincelastlogin
+                    + "\n time since last login:" + timePassed
+                    + "\n save interval:" + saveInterval);
+
+
+                return DateTime.Now <= nextAllowedLoginTime; //NEW
+                //return timePassed <= saveInterval; //OLD
+            }
+            //END TEST
 			
 		}
 		

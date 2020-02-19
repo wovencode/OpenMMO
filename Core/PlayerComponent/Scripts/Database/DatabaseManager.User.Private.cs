@@ -15,9 +15,7 @@ namespace OpenMMO.Database
 	// ===================================================================================
 	public partial class DatabaseManager
 	{
-		
-		// ============================= PRIVATE METHODS =================================
-		
+
 		// -------------------------------------------------------------------------------
 		// Init_User
 		// -------------------------------------------------------------------------------
@@ -27,30 +25,24 @@ namespace OpenMMO.Database
 	   		CreateTable<TableUser>();
 		}
 		
+		// ================================ PLAYER =======================================
+		
 		// -------------------------------------------------------------------------------
-		// LoadDataWithPriority_User
+		// LoadDataPlayerPriority_User
 		// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_User(GameObject player)
 		{
-			/*
-				users do not load priority data, feel free to add your own
-				
-				instead, user data is saved/loaded as part of the register/login process
-			*/
-		}
 		
+		}
+				
 	   	// -------------------------------------------------------------------------------
 	   	// LoadDataPlayer_User
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(LoadDataPlayer))]
 		void LoadDataPlayer_User(GameObject player)
 		{
-	   		/*
-				users do not load any data, feel free to add your own
-				
-				instead, user data is saved/loaded as part of the register/login process
-			*/
+	   	
 		}
 
 		// -------------------------------------------------------------------------------
@@ -76,8 +68,21 @@ namespace OpenMMO.Database
 	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, username);
 	   	}
-		
+	   	
 	   	// -------------------------------------------------------------------------------
+	   	// LogoutPlayer_User
+	   	// -------------------------------------------------------------------------------
+	   	[DevExtMethods(nameof(LogoutPlayer))]
+	   	void LogoutPlayer_User(GameObject player)
+	   	{
+	   		// -- this resets lastlogin to allow immediate re-login
+	   		string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, userName);
+	   	}
+	   	
+	   	// ============================= USER HOOKS ======================================
+	   	
+		// -------------------------------------------------------------------------------
 	   	// SaveDataUser_User
 	   	// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(SaveDataUser))]
@@ -114,9 +119,9 @@ namespace OpenMMO.Database
 	   	// Note: This one is not called "DeleteDataPlayer" because its the user, not a player
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(DeleteDataUser))]
-	   	void DeleteDataUser_User(string name)
+	   	void DeleteDataUser_User(string username)
 	   	{
-	   		Execute("DELETE FROM "+nameof(TableUser)+" WHERE username=?", name);
+	   		Execute("DELETE FROM "+nameof(TableUser)+" WHERE username=?", username);
 	   	}
 	   	
 		// -------------------------------------------------------------------------------

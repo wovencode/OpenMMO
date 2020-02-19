@@ -105,7 +105,8 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutUser))]
 	   	void LogoutUser_User(string username)
 	   	{
-	   		// -- Note: We do NOT set the lastonline time here as it done by save already
+	   		// -- this resets lastlogin to allow immediate re-login
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, username);
 	   	}
 		
 		// -------------------------------------------------------------------------------

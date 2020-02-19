@@ -1,10 +1,11 @@
 
-using OpenMMO;
-using OpenMMO.Database;
-using UnityEngine;
-using System;
+//using OpenMMO;
+//using OpenMMO.Database;
+using OpenMMO.Database.Table;
+//using UnityEngine;
+//using System;
 using System.Collections.Generic;
-using SQLite;
+//using SQLite;
 
 namespace OpenMMO.Database
 {
@@ -23,7 +24,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void PlayerSetDeleted(string playername, int action=1)
 		{
-			Execute("UPDATE "+nameof(TablePlayer)+" SET deleted=? WHERE playername=?", action, playername);
+			Execute("UPDATE "+nameof(PlayerCharacter)+" SET deleted=? WHERE playername=?", action, playername);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -32,7 +33,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void PlayerSetBanned(string playername, int action=1)
 		{
-			Execute("UPDATE "+nameof(TablePlayer)+" SET banned=? WHERE playername=?", action, playername);
+			Execute("UPDATE "+nameof(PlayerCharacter)+" SET banned=? WHERE playername=?", action, playername);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -49,7 +50,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public bool PlayerValid(string playername, string username)
 		{
-			return FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND username=? AND banned=0 AND deleted=0", playername, username) != null;
+			return FindWithQuery<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE playername=? AND username=? AND banned=0 AND deleted=0", playername, username) != null;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -57,7 +58,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public bool PlayerExists(string playername, string username)
 		{
-			return FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND username=?", playername, username) != null;
+			return FindWithQuery<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE playername=? AND username=?", playername, username) != null;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -66,7 +67,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected int GetPlayerCount(string username)
 		{
-			List<TablePlayer> result =  Query<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE username=? AND deleted=0", username);
+			List<PlayerCharacter> result =  Query<PlayerCharacter>("SELECT * FROM "+nameof(PlayerCharacter)+" WHERE username=? AND deleted=0", username);
 			
 			if (result == null)
 				return 0;

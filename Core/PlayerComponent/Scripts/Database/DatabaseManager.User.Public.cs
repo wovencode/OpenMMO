@@ -1,6 +1,7 @@
 
 //using OpenMMO;
 //using OpenMMO.Database;
+using OpenMMO.Database.Table;
 //using UnityEngine;
 using System;
 //using System.IO;

@@ -284,8 +284,7 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnServerDisconnect(NetworkConnection conn)
 		{
-			LogoutPlayer(conn);
-			LogoutUser(conn);
+			LogoutPlayerAndUser(conn);
 			base.OnServerDisconnect(conn);
 		}
 		

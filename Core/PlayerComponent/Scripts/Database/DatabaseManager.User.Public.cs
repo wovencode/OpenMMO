@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -33,10 +33,26 @@ namespace OpenMMO.Database
 			}
 			else
 			{
-				double timePassed = (DateTime.UtcNow - tableUser.lastlogin).TotalSeconds;
-debug.Log("[TIME] "+timePassed+"/"+saveInterval);
-				return timePassed <= saveInterval;
-			}
+                DateTime nextAllowedLoginTime = tableUser.lastlogin.AddSeconds(saveInterval); //NEW
+
+                TimeSpan timesincelastlogin = (DateTime.Now.ToUniversalTime() - tableUser.lastlogin);
+                double timePassed = timesincelastlogin.TotalSeconds;
+                Debug.Log("<b>[LOGIN TIME STAMP]</b>"
+                    + "\n last login time:" + tableUser.lastlogin
+                    + "\n next login time:" + nextAllowedLoginTime
+
+                    + "\n\n current local time:" + DateTime.Now
+                    + "\n current UTC time:" + DateTime.Now.ToUniversalTime()
+
+                    + "\n\n duration until next login:" + timesincelastlogin
+                    + "\n time since last login:" + timePassed
+                    + "\n save interval:" + saveInterval);
+
+
+                return DateTime.Now.ToUniversalTime() <= nextAllowedLoginTime; //NEW
+                //return timePassed <= saveInterval; //OLD
+            }
+            //END TEST
 			
 		}
 		

@@ -38,7 +38,7 @@ namespace OpenMMO.Database
 			else
 			{
 				DateTime dateTime = tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);
-                return DateTime.UtcNow <= dateTime;
+                return DateTime.Compare(DateTime.UtcNow, dateTime) <= 0;
 			}
 			
 		}

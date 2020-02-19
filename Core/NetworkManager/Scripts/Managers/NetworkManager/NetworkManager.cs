@@ -5,6 +5,7 @@ using OpenMMO.Database;
 using OpenMMO.UI;
 using OpenMMO.Portals;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -120,12 +121,12 @@ namespace OpenMMO.Network
 		
 			bool online = false;
 			
-			// -- lookup in local dict
+			// -- 1) lookup in dictionary of local server
 			foreach (KeyValuePair<NetworkConnection, string> user in onlineUsers)
 				if (user.Key != null && user.Value == userName)
 					online = true;
 			
-			// -- lookup in database if not online locally
+			// -- 2) lookup in database if not online locally
 			if (!online)
 				online = DatabaseManager.singleton.GetUserOnline(userName);
 			
@@ -140,12 +141,12 @@ namespace OpenMMO.Network
 			
 			bool online = false;
 			
-			// -- lookup in local dict
+			// -- 1) lookup in dictionary of local server
 			foreach (KeyValuePair<string, GameObject> player in onlinePlayers)
 				if (player.Value != null && player.Value.name == playerName)
 					online = true;
 			
-			// -- lookup in database if not online locally
+			// -- 2) lookup in database if not online locally
 			if (!online)
 				online = DatabaseManager.singleton.GetPlayerOnline(playerName);
 				
@@ -162,7 +163,11 @@ namespace OpenMMO.Network
 		public string GetUserName(NetworkConnection conn)
 		{
 			foreach (KeyValuePair<NetworkConnection, string> user in onlineUsers)
+			{
+			debug.Log("----------GetUserName:"+user.Value);
+			
 				if (user.Key == conn) return user.Value;
+			}
 			
 			return "";
 		}
@@ -209,8 +214,18 @@ namespace OpenMMO.Network
         /// </summary>
 		public override void OnStopServer()
 		{
-			// -- this closes the database connection
-			DatabaseManager.singleton.Destruct();	
+			
+			// -- 1) saves all online players data
+			DatabaseManager.singleton.SavePlayers();
+			
+			// -- 2) force log-out out all online players
+			if (onlinePlayers != null)
+				foreach (KeyValuePair<string, GameObject> player in onlinePlayers.ToList())
+					if (player.Value != null)
+						OnServerDisconnect(player.Value.GetComponent<PlayerComponent>().connectionToClient);
+					
+			// -- 3) closes the database connection
+			DatabaseManager.singleton.Destruct();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -270,28 +285,22 @@ namespace OpenMMO.Network
 		public override void OnServerDisconnect(NetworkConnection conn)
 		{
 
-			// -- this logs out the user on the database
+			// -- 1) log out the user
 			string username = GetUserName(conn);
-			
+debug.Log("OnServerDisconnect: "+username);
 			if (UserLoggedIn(username) || conn.identity != null)
 				DatabaseManager.singleton.LogoutUser(username);
 			
-			// -- this logs out the player
-			if (conn.identity != null)
+			// -- 2) log out the player
+			if (conn.identity != null && conn.identity.gameObject != null)
 			{
-			
-				debug.Log("[NetworkManager] Logged out player: " + conn.identity.name);
+				debug.Log("[NetworkManager] Logged out player: " + conn.identity.gameObject.name);
 				
-				if (conn.identity.gameObject != null)
-				{	
-					
-					this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
-					eventListeners.OnLogoutPlayer.Invoke(conn);
-					
-					string name = conn.identity.gameObject.name;
-					onlinePlayers.Remove(name);
-				}
-					
+				this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
+				eventListeners.OnLogoutPlayer.Invoke(conn);
+				
+				string name = conn.identity.gameObject.name;
+				onlinePlayers.Remove(name);
 			}
 			
 			onlineUsers.Remove(conn);

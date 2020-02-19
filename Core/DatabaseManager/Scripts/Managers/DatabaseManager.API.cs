@@ -62,15 +62,11 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// Destruct
-		// closes the connection, cancels saving and updates the checksum (if required),
-		// saves all online players and sets them offline.
-		// for a multiplayer server based game, this should only be called on the server
+		// closes the connection, cancels saving 
 		// -------------------------------------------------------------------------------
 		public void Destruct()
 		{
 			CancelInvoke();
-			SavePlayers();
-            
 			CloseConnection();
 		}
 		

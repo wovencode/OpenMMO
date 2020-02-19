@@ -270,7 +270,7 @@ namespace OpenMMO.Network
 			};
 			
 			// -- check for UserLoggedIn because that covers all players on the account
-			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
+			if (UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
 				LoginPlayer(conn, msg.username, msg.playername);
 				message.text = systemText.playerLoginSuccess;
@@ -380,26 +380,14 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
 		protected void LoginUser(NetworkConnection conn, string username)
 		{
-	
-			onlineUsers[conn] = name;
+
+			onlineUsers[conn] = username;
 			state = NetworkState.Lobby;
 			    
 			DatabaseManager.singleton.LoginUser(username);
 			    
 			this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
 			
-			if (!UserLoggedIn(username))
-			{
-				onlineUsers[conn] = name;
-			    state = NetworkState.Lobby;
-			    
-			    DatabaseManager.singleton.LoginUser(username);
-			    
-			    this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
-			}
-			else
-				ServerSendError(conn, systemText.userAlreadyOnline, true);
-
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -416,7 +404,7 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
 		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
 		{
-
+			
 			DatabaseManager.singleton.LoginPlayer(playername, username);
 			
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
@@ -428,6 +416,7 @@ namespace OpenMMO.Network
 			ValidatePlayerPosition(player);
 			
 			onlinePlayers[player.name] = player;
+			
 			state = NetworkState.Game;
 			
 			// -- Hooks & Events

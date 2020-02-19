@@ -90,8 +90,8 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			// -- check for UserLoggedIn because that covers all players on the account
-			if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
+			// -- check for GetIsUserLoggedIn because that covers all players on the account
+			if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
 				LoginUser(conn, msg.username);
 				
@@ -165,7 +165,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
+        	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
 			{
 				message.text = systemText.userDeleteSuccess;
 			}
@@ -199,7 +199,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
+        	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
 			{
 				message.text = systemText.userChangePasswordSuccess;
 			}
@@ -233,7 +233,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
+        	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
 			{
 				message.text = systemText.userConfirmSuccess;
 			}
@@ -269,8 +269,8 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			// -- check for UserLoggedIn because that covers all players on the account
-			if (UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
+			// -- check for GetIsUserLoggedIn because that covers all players on the account
+			if (GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
 				LoginPlayer(conn, msg.username, msg.playername);
 				message.text = systemText.playerLoginSuccess;
@@ -340,7 +340,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (!UserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
+        	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
 			{
 				message.text = systemText.playerDeleteSuccess;
 			}

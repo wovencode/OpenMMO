@@ -31,10 +31,8 @@ namespace OpenMMO.Database
 		{
 			TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND banned=0 AND deleted=0", playerName);
 			
-			if (tablePlayer == null || (tablePlayer != null && tablePlayer.lastonline <= DateTime.MinValue))
-			{
+			if (tablePlayer == null)
 				return false;
-			}
 			else
 			{
 				DateTime dateTime = tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);

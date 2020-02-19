@@ -159,7 +159,9 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected void AutoLoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
-		
+			
+			DatabaseManager.singleton.LoginPlayer(playername, username);
+			
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
 			GameObject prefab = GetPlayerPrefab(prefabname);
 			

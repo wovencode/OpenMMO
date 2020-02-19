@@ -273,7 +273,7 @@ namespace OpenMMO.Network
 			// -- this logs out the user on the database
 			string username = GetUserName(conn);
 			
-			if (UserLoggedIn(username))
+			if (UserLoggedIn(username) || conn.identity != null)
 				DatabaseManager.singleton.LogoutUser(username);
 			
 			// -- this logs out the player

@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efe93c46745b4af8bf39b1e9379125a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseName: Database.sqlite
+  databaseName: DatabaseOpenMMO.sqlite
 --- !u!114 &8424107384611860847
 MonoBehaviour:
   m_ObjectHideFlags: 0

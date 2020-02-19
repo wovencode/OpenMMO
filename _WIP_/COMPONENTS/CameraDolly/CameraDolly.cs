@@ -48,6 +48,19 @@ public class CameraDolly : MonoBehaviour
         }
     }
 #endif
+    //AWAKE
+    private void Start()
+    {
+        if (!AttachExistingCamera())
+        {
+            //if (!CameraDolly.spawnedCamera)
+            //{
+                Debug.Log("SPAWNING NEW CAMERA");
+                LoadCameraPrefab(); //LOAD CAMERA PREFAB
+                SpawnCamera(); //SPAWN CAMERA
+            //}
+        }
+    }
 
     //ON DESTROYED
     private void OnDestroy()

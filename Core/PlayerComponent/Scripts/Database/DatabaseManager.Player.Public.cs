@@ -37,7 +37,8 @@ namespace OpenMMO.Database
 			}
 			else
 			{
-                return DateTime.UtcNow <= tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);;
+				DateTime dateTime = tablePlayer.lastonline.AddSeconds(saveInterval * 2.0f);;
+                return DateTime.UtcNow <= dateTime;
 			}
 			
 		}

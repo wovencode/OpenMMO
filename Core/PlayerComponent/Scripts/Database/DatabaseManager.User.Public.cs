@@ -31,7 +31,13 @@ namespace OpenMMO.Database
 			else
 			{
                 //NOTE: We double the save interval here as a failsafe, otherwise there are small windows of opportunity to login twice during world saves.
-                return DateTime.UtcNow <= tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
+                DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);;
+                
+debug.Log("[GETUSERONLINE (Server/Database)]");
+debug.Log(DateTime.UtcNow+" / "+tableUser.lastonline);
+debug.Log(DateTime.UtcNow+" <= "+dateTime);
+
+                return DateTime.UtcNow <= dateTime;
             }
            
 		}

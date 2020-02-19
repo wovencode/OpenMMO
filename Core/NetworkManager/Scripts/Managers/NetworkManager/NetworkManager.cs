@@ -114,9 +114,9 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
-		// UserLoggedIn
+		// GetIsUserLoggedIn
 		// -------------------------------------------------------------------------------
-		public bool UserLoggedIn(string userName)
+		public bool GetIsUserLoggedIn(string userName)
 		{
 		
 			bool online = false;
@@ -134,9 +134,9 @@ namespace OpenMMO.Network
 		}
 		
 		// -------------------------------------------------------------------------------
-		// PlayerLoggedIn
+		// GetIsPlayerLoggedIn
 		// -------------------------------------------------------------------------------
-		public bool PlayerLoggedIn(string playerName)
+		public bool GetIsPlayerLoggedIn(string playerName)
 		{
 			
 			bool online = false;
@@ -285,13 +285,12 @@ namespace OpenMMO.Network
 		public override void OnServerDisconnect(NetworkConnection conn)
 		{
 
-			// -- 1) log out the user
+			// -- 1) log out the local user (if any)
 			string username = GetUserName(conn);
-debug.Log("OnServerDisconnect: "+username);
-			if (UserLoggedIn(username) || conn.identity != null)
+			if (!String.IsNullOrWhiteSpace(username) && (GetIsUserLoggedIn(username) || conn.identity != null))
 				DatabaseManager.singleton.LogoutUser(username);
 			
-			// -- 2) log out the player
+			// -- 2) log out the player (if any)
 			if (conn.identity != null && conn.identity.gameObject != null)
 			{
 				debug.Log("[NetworkManager] Logged out player: " + conn.identity.gameObject.name);

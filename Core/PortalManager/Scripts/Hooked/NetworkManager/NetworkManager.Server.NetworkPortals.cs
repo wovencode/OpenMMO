@@ -37,7 +37,7 @@ namespace OpenMMO.Network
 		// @Server
 		// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(LoginPlayer))]
-		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, GameObject prefab, string userName, string playerName)
+		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, string playerName, string userName)
 		{
 			
 			if (!PortalManager.singleton.GetCanSwitchZone)
@@ -160,13 +160,14 @@ namespace OpenMMO.Network
 		protected void AutoLoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
 			
-			DatabaseManager.singleton.LoginPlayer(playername, username);
-			
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
 			GameObject prefab = GetPlayerPrefab(prefabname);
 			
 			// -- load player from database
 			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+			
+			// -- log the player in (again)
+			DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
 			
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
@@ -194,7 +195,7 @@ namespace OpenMMO.Network
 				state = NetworkState.Game;
 				
 				// -- Hooks & Events
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, prefab, username, playername); //HOOK
+				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), player, playername, username); //HOOK
 				eventListeners.OnLoginPlayer.Invoke(conn);
 				
 			}

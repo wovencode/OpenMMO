@@ -33,9 +33,7 @@ namespace OpenMMO.Network
         [DevExtMethods(nameof(LoginPlayer))]
         public void LoginPlayer_PlayerComponent(NetworkConnection conn, GameObject player, GameObject prefab, string userName, string playerName)
         {
-            //Debug.LogWarning("TESTING: Bugfix: Changed " + prefab.name + " to " + player.name);
-            //player.GetComponent<PlayerComponent>().tablePlayer.Update(player, userName);
-            player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, userName); //TODO?
+            player.GetComponent<PlayerComponent>().tablePlayer.Update(prefab, userName);
         }
         
         // -------------------------------------------------------------------------------

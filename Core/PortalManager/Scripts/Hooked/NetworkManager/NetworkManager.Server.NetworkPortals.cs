@@ -180,16 +180,18 @@ namespace OpenMMO.Network
 				
 				NetworkServer.AddPlayerForConnection(conn, player);
 				
-				// -- warp to anchor location
-				// -- OR use start position if anchor is empty
+				// -- warp to anchor location (if any)
 				string anchorName = pc.tablePlayerZones.anchorname;
 				
-				if (!String.IsNullOrWhiteSpace(anchorName))
-					pc.WarpLocal(anchorName);
-				else
+				if (anchorName == Constants.StringKeywordStartPosition) // -- warp to start position
 					player.transform.position = GetStartPosition(player).position;
+				else if (!String.IsNullOrWhiteSpace(anchorName)) // -- warp to anchor
+					pc.WarpLocal(anchorName);
 				
-				ValidatePlayerPosition(player);
+				// -- in any other case we start at the saved x,y,z position
+				
+				// -- now clear the anchor name
+				pc.tablePlayerZones.anchorname = "";
 				
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;

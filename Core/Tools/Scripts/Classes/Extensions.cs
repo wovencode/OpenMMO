@@ -9,6 +9,21 @@ public static partial class Extensions
 {
 	
 	// -----------------------------------------------------------------------------------
+	// Shuffle
+	// Shuffles a List without Linq
+	// -----------------------------------------------------------------------------------
+	public static void Shuffle<T>(this IList<T> ts) {
+        var count = ts.Count;
+        var last = count - 1;
+        for (var i = 0; i < last; ++i) {
+            var r = UnityEngine.Random.Range(i, count);
+            var tmp = ts[i];
+            ts[i] = ts[r];
+            ts[r] = tmp;
+        }
+    }
+	
+	// -----------------------------------------------------------------------------------
 	// ToInt
 	// Converts a boolean value to an int (0/1)
 	// -----------------------------------------------------------------------------------

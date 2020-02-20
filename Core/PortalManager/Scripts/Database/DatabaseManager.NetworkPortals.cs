@@ -35,7 +35,7 @@ namespace OpenMMO.Database
 	   		{
                 playername 		= player.name,
                 zonename 		= player.GetComponent<PlayerComponent>().startingZone.name,
-                anchorname 		= "",
+                anchorname 		= Constants.StringKeywordStartPosition,
                 token			= 0
             };
 		}

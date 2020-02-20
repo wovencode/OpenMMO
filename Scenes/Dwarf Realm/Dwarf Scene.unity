@@ -850,7 +850,7 @@ PrefabInstance:
     - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
       propertyPath: m_Name
-      value: StartAnchor - Dwarves
+      value: DS StartAnchor - Dwarves
       objectReference: {fileID: 0}
     - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
@@ -7303,12 +7303,12 @@ PrefabInstance:
     - target: {fileID: 148017138344104603, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.63
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 148017138344104603, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.72
+      value: -36.73
       objectReference: {fileID: 0}
     - target: {fileID: 148017138344104603, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
@@ -10192,17 +10192,17 @@ PrefabInstance:
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.73
+      value: 6.013
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.38
+      value: -36.46
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}

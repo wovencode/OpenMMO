@@ -118,6 +118,7 @@ namespace OpenMMO.Database
 	   		// -- this resets lastlogin to allow immediate re-login
 	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
 			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+debug.Log("LogoutUser_User modified DateTime: "+dateTime);
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, username);
 	   	}
 		

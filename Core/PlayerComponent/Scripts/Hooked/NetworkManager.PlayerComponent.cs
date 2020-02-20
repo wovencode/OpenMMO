@@ -94,7 +94,7 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         // ValidatePlayerPosition
         // -------------------------------------------------------------------------------
-        protected void ValidatePlayerPosition(GameObject player)
+        public void ValidatePlayerPosition(GameObject player)
         {
             Transform transform = player.transform;
 

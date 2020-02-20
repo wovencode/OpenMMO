@@ -293,6 +293,7 @@ namespace OpenMMO.Network
 		{
 			LogoutPlayerAndUser(conn);
 			base.OnServerDisconnect(conn);
+			debug.Log("[NetworkManager] OnServerDisconnect: "+conn.connectionId);
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -365,7 +365,7 @@ namespace OpenMMO.Network
         
         	string username = GetUserName(conn);
         	
-			if (!String.IsNullOrWhiteSpace(username) && (GetIsUserLoggedIn(username) || conn.identity != null))
+			if (!String.IsNullOrWhiteSpace(username) && GetIsUserLoggedIn(username) )
 				DatabaseManager.singleton.LogoutUser(username);
 			
 			onlineUsers.Remove(conn);

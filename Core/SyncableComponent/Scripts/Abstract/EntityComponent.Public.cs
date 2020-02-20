@@ -38,7 +38,11 @@ namespace OpenMMO {
 		[ClientRpc]
    		public void RpcWarp(Vector3 position)
     	{
+    		if (isLocalPlayer)
+    			return;
+    			
         	agent.Warp(position);
+        	
     	}
 		
 		// -------------------------------------------------------------------------------

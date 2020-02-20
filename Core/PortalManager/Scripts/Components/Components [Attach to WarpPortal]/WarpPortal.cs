@@ -66,9 +66,11 @@ namespace OpenMMO.Portals
 			
 			if (player == null)
 				return;
-				
-			if (player != null && targetAnchor != null)
-				player.GetComponent<PlayerComponent>().Cmd_WarpLocal(targetAnchor.name);
+			
+			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			
+			if (player != null && targetAnchor != null && pc.CheckCooldown)
+				pc.Cmd_WarpLocal(targetAnchor.name);
 			
 			base.OnClickConfirm();
 			

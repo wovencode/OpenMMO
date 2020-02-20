@@ -35,7 +35,8 @@ namespace OpenMMO.Database
 	   		{
                 playername 		= player.name,
                 zonename 		= player.GetComponent<PlayerComponent>().startingZone.name,
-                anchorname 		= Constants.StringKeywordStartPosition,
+                anchorname 		= "",
+                startpos		= true,
                 token			= 0
             };
 		}
@@ -71,7 +72,7 @@ namespace OpenMMO.Database
 		void SaveDataPlayer_NetworkZones(GameObject player, bool isNew)
 		{
 		
-			// you should delete all data of this player first, to prevent duplicates
+			// -- delete all data of this player first, to prevent duplicates
 	   		DeleteDataPlayer_NetworkZones(player.name);
 	   		
 	   		InsertOrReplace(
@@ -80,6 +81,7 @@ namespace OpenMMO.Database
                 		playername 		= player.name,
                 		zonename 		= player.GetComponent<PlayerComponent>().tablePlayerZones.zonename,
                 		anchorname 		= player.GetComponent<PlayerComponent>().tablePlayerZones.anchorname,
+                		startpos		= player.GetComponent<PlayerComponent>().tablePlayerZones.startpos,
                 		token			= player.GetComponent<PlayerComponent>().GetToken
             		}
             );

@@ -2,7 +2,9 @@
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Network;
+using OpenMMO.Portals;
 using UnityEngine;
+using UnityEngine.AI;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -48,9 +50,6 @@ namespace OpenMMO.Database
 			GameObject player = Instantiate(prefab);
 			player.name = _name;
 			
-			// -- place on navmesh in case it changed
-			OpenMMO.Network.NetworkManager.singleton.ValidatePlayerPosition(player);
-		
             LoadDataPlayerPriority(prefab, player);
 
 			this.InvokeInstanceDevExtMethods(nameof(LoadDataPlayer), player); //HOOK

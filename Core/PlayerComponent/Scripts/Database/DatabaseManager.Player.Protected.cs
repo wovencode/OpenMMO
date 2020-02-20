@@ -55,6 +55,14 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// PlayerExists
 		// -------------------------------------------------------------------------------
+		public bool PlayerExists(string playername)
+		{
+			return FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=?", playername) != null;
+		}
+		
+		// -------------------------------------------------------------------------------
+		// PlayerExists
+		// -------------------------------------------------------------------------------
 		public bool PlayerExists(string playername, string username)
 		{
 			return FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND username=?", playername, username) != null;

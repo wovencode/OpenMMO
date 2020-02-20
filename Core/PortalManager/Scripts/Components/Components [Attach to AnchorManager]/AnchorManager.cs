@@ -42,8 +42,10 @@ namespace OpenMMO.Portals
 
                 foreach (ArchetypeTemplate template in sc.archeTypes)
                     if (template == pc.archeType)
+                    {
+debug.Log("GetArcheTypeStartPosition: "+anchor.name);
                         return anchor.transform;
-
+}
             }
 
             return player.transform;
@@ -56,6 +58,7 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
         public static void RegisterStartAnchor(GameObject anchor)
         {
+        Debug.Log(anchor.name);
             startAnchors.Add(anchor);
         }
 

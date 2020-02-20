@@ -23,6 +23,15 @@ namespace OpenMMO.Portals
 		public static List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
 		public static List<GameObject> startAnchors = new List<GameObject>();
 		
+		// -------------------------------------------------------------------------------
+        // OnDestroy
+        // -------------------------------------------------------------------------------
+		void OnDestroy()
+		{
+			portalAnchors.Clear();
+			startAnchors.Clear();
+		}
+		
         // ============================ START ANCHORS ===================================
         
         // -------------------------------------------------------------------------------
@@ -69,7 +78,7 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
         public static void UnRegisterStartAnchor(GameObject anchor)
         {
            for (int i = 0; i < startAnchors.Count; i++)
-           		if (startAnchors[i] == anchor)
+           		if (startAnchors[i].name == anchor.name)
            			startAnchors.RemoveAt(i);
         }
 		

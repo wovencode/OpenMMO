@@ -1,6 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Database;
+using OpenMMO.Network;
 using UnityEngine;
 using System;
 using System.IO;
@@ -48,7 +49,7 @@ namespace OpenMMO.Database
 			player.name = _name;
 			
 			// -- place on navmesh in case it changed
-			ValidatePlayerPosition(player);
+			OpenMMO.Network.NetworkManager.singleton.ValidatePlayerPosition(player);
 		
             LoadDataPlayerPriority(prefab, player);
 

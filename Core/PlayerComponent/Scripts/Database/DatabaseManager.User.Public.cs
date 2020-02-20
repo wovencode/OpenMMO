@@ -34,7 +34,6 @@ debug.Log("modified:"+tableUser.lastonline.AddSeconds(saveInterval * 2.0f));
                 DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
 debug.Log(DateTime.UtcNow+" / "+dateTime);
 				return DateTime.Compare(DateTime.UtcNow, dateTime) <= 0;
-                //return DateTime.UtcNow <= dateTime;
             }
            
 		}

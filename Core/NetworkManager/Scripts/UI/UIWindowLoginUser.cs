@@ -93,7 +93,7 @@ namespace OpenMMO.UI
 				PlayerPrefs.SetString(Constants.PlayerPrefsPassword, userpassInput.text);
 			}
 			
-			Invoke(nameof(OnExecuteLogin), UnityEngine.Random.Range(0, maxDelayDuration));
+			Invoke(nameof(OnExecuteLogin), UnityEngine.Random.Range(maxDelayDuration/4, maxDelayDuration));
 			
 			loginButton.interactable 	= false;
 			usernameInput.interactable 	= false;

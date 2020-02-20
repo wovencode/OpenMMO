@@ -460,8 +460,6 @@ namespace OpenMMO.Network
 			
 			NetworkServer.AddPlayerForConnection(conn, player);
 			
-			ValidatePlayerPosition(player);
-			
 			onlinePlayers[player.name] = player;
 			state = NetworkState.Game;
 			

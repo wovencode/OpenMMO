@@ -17,6 +17,7 @@ namespace OpenMMO.Database
 		public string 	playername 	{ get; set; }
 		public string 	zonename 	{ get; set; }
 		public string	anchorname  { get; set; }
+		public bool		startpos	{ get; set; }
 		public int		token		{ get; set; }
 		
 		// -------------------------------------------------------------------------------
@@ -36,7 +37,7 @@ namespace OpenMMO.Database
 	{
 		[PrimaryKey]
 		public string	zone 	{ get; set; }
-		public DateTime 	online 	{ get; set; }
+		public DateTime online 	{ get; set; }
 	}
 	
 	// -----------------------------------------------------------------------------------

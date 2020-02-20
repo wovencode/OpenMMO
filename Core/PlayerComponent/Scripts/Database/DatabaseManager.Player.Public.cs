@@ -62,7 +62,7 @@ namespace OpenMMO.Database
 		public override bool TryPlayerRegister(string name, string username, string prefabname)
 		{
 		
-			if (!base.TryPlayerRegister(name, username, prefabname) || PlayerExists(name, username))
+			if (!base.TryPlayerRegister(name, username, prefabname) || PlayerExists(name))
 				return false;
 			
 			// -- check if maximum amount of characters per account reached

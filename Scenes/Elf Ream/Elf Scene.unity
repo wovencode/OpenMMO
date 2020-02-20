@@ -732,6 +732,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1188090206, guid: f92a1d6adff3347b19b2da2e6ca3b76c, type: 3}
+      propertyPath: archeTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fa97d898095824de19c0b30dc457b2f0,
+        type: 2}
     - target: {fileID: 697381104668126445, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -812,7 +817,7 @@ PrefabInstance:
     - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}
       propertyPath: m_Name
-      value: NetworkStartPosition - Elves
+      value: StartAnchor - Elves
       objectReference: {fileID: 0}
     - target: {fileID: 697381104668126451, guid: f92a1d6adff3347b19b2da2e6ca3b76c,
         type: 3}

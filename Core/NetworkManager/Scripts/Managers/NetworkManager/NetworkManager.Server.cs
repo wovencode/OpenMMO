@@ -386,6 +386,7 @@ namespace OpenMMO.Network
 				string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
 				
 				DatabaseManager.singleton.LogoutUser(userName);
+				onlineUsers.Remove(conn);
 				
 				// -- Hooks & Events
 				this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK

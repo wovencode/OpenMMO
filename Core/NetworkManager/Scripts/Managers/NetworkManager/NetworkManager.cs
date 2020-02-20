@@ -218,12 +218,19 @@ namespace OpenMMO.Network
 			// -- 1) saves all online players data
 			DatabaseManager.singleton.SavePlayers();
 			
-			// -- 2) force log-out out all online players
-			if (onlinePlayers != null)
-				foreach (KeyValuePair<string, GameObject> player in onlinePlayers.ToList())
-					if (player.Value != null)
-						OnServerDisconnect(player.Value.GetComponent<PlayerComponent>().connectionToClient);
-					
+			// -- Only in Host+Play as OnServerDisconnect does not get called:
+			
+			if (ProjectConfigTemplate.singleton.networkType == NetworkType.HostAndPlay)
+			{
+			
+				// -- 2) force log-out out all online players
+				if (onlinePlayers != null)
+					foreach (KeyValuePair<string, GameObject> player in onlinePlayers.ToList())
+						if (player.Value != null)
+							OnServerDisconnect(player.Value.GetComponent<PlayerComponent>().connectionToClient);
+			
+			}
+			
 			// -- 3) closes the database connection
 			DatabaseManager.singleton.Destruct();
 		}

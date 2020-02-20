@@ -29,6 +29,7 @@ namespace OpenMMO.UI
 		
 		[Header("Settings")]
 		public bool rememberCredentials;
+		[Range(0,9)] public float maxDelayDuration = 1;
 		
 		public static UIWindowLoginUser singleton;
 		
@@ -92,8 +93,26 @@ namespace OpenMMO.UI
 				PlayerPrefs.SetString(Constants.PlayerPrefsPassword, userpassInput.text);
 			}
 			
-			networkManager.TryLoginUser(usernameInput.text, userpassInput.text);
+			Invoke(nameof(OnExecuteLogin), UnityEngine.Random.Range(0, maxDelayDuration));
+			
+			loginButton.interactable 	= false;
+			usernameInput.interactable 	= false;
+			userpassInput.interactable 	= false;
 
+		}
+		
+		// -------------------------------------------------------------------------------
+		// OnExecuteLogin
+		// -------------------------------------------------------------------------------
+		protected void OnExecuteLogin()
+		{
+		
+			networkManager.TryLoginUser(usernameInput.text, userpassInput.text);
+			
+			loginButton.interactable 	= true;
+			usernameInput.interactable 	= true;
+			userpassInput.interactable 	= true;
+			
 		}
 		
 		// -------------------------------------------------------------------------------

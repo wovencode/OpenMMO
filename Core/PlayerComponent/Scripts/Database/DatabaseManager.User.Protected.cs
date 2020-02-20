@@ -40,8 +40,9 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserRegister(string userName, string userPassword, string userEmail, string userDeviceid)
 		{
-			// -- lastlogin is UtcNow minus SaveInterval to allow immediate login
-			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastonline=DateTime.MinValue });
+			// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
+			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastonline=dateTime });
 		}
 		
 		// -------------------------------------------------------------------------------

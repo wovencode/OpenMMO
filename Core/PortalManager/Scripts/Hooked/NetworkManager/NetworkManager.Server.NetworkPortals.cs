@@ -182,22 +182,24 @@ namespace OpenMMO.Network
 				
 				// -- warp to anchor location (if any)
 				string anchorName = pc.tablePlayerZones.anchorname;
-debug.Log("anchorName:"+anchorName);
-				if (anchorName == Constants.StringKeywordStartPosition) // -- warp to start position
-					player.transform.position = AnchorManager.GetArchetypeStartPosition(player).position;
-				else if (!String.IsNullOrWhiteSpace(anchorName)) // -- warp to anchor
+debug.Log("anchorName:"+anchorName+"/"+pc.tablePlayerZones.startpos);
+
+				if (pc.tablePlayerZones.startpos) 							// -- warp to start position
+					player.transform.position = AnchorManager.GetArchetypeStartPosition(player).position;	
+				else if (!String.IsNullOrWhiteSpace(anchorName)) 			// -- warp to anchor
 					pc.WarpLocal(anchorName);
 				
 				// -- in any other case we start at the saved x,y,z position
 				
-				// -- now clear the anchor name
+				// -- now clear the anchor & startpos
 				pc.tablePlayerZones.anchorname = "";
+				pc.tablePlayerZones.startpos = false;
 				
 				onlinePlayers[player.name] = player;
 				state = NetworkState.Game;
 				
 				// -- Hooks & Events
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), player, playername, username); //HOOK
+				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, username, playername); //HOOK
 				eventListeners.OnLoginPlayer.Invoke(conn);
 				
 			}

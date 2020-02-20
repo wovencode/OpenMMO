@@ -67,11 +67,13 @@ namespace OpenMMO.Portals
 			if (player == null)
 				return;
 			
+			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			
 			int index = UnityEngine.Random.Range(0, targetAnchors.Length);
 			string targetAnchor = targetAnchors[index].name;
 
-			if (player != null && !String.IsNullOrWhiteSpace(targetAnchor))
-				player.GetComponent<PlayerComponent>().Cmd_WarpLocal(targetAnchor);
+			if (player != null && !String.IsNullOrWhiteSpace(targetAnchor) && pc.CheckCooldown)
+				pc.Cmd_WarpLocal(targetAnchor);
 			
 			base.OnClickConfirm();
 			

@@ -29,6 +29,12 @@ namespace OpenMMO {
 		public const string EditorPrefsMySQLDatabase		= "mySQLDatabase";
 		public const string EditorPrefsMySQLCharset			= "mySQLCharset";
 		
+		/*
+			Names used in a few string property fields:
+		*/
+		
+		public const string StringKeywordStartPosition		= "[START_POSITION]";
+		
 	}
 	
 }

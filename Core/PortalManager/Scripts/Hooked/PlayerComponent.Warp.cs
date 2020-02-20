@@ -100,8 +100,8 @@ namespace OpenMMO {
     		NetworkZoneTemplate template = NetworkZoneTemplate.GetZoneBySceneName(zoneName);
     		
     		// -- update anchor & zone
-    		this.GetComponent<PlayerComponent>().tablePlayerZones.anchorname = anchorName;
-    		this.GetComponent<PlayerComponent>().tablePlayerZones.zonename = zoneName;
+    		this.GetComponent<PlayerComponent>().tablePlayerZones.anchorname 	= anchorName;
+    		this.GetComponent<PlayerComponent>().tablePlayerZones.zonename	 	= zoneName;
     		securityToken = token; // token must not be set in table, can be fetched via GetToken
     		
     		// -- save player

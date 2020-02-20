@@ -12,6 +12,8 @@ The very first free and open-source, small-scale MMORPG kit for Unity3d.
 Installation
 ---
 * Please refer to "Quickstart Guide" in Documentation.
+* You have to install Text Mesh Pro!
+* Make sure you use the recommended Unity version (or newer).
 
 Third Party Notices
 ---
@@ -23,7 +25,7 @@ Changelog
 
 Compatibility
 ---
-* Unity3d 2018-2019 (inclusive)
+* Unity3d 2019
 * Client: Windows, MacOS, Android, iOS, Linux
 * Server: Windows, MacOs, Linux
 * Single-Player: Windows, MacOS, Android, iOS, Linux

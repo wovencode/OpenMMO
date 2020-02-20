@@ -24,7 +24,7 @@ namespace OpenMMO.Database
 		{
 			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND banned=0 AND deleted=0", userName);
 			
-			if (tableUser == null || (tableUser != null && tableUser.lastonline <= DateTime.MinValue))
+			if (tableUser == null)
 				return false;
 			else
 			{
@@ -37,7 +37,7 @@ debug.Log("original:"+tableUser.lastonline);
 debug.Log("modified:"+dateTime);
 debug.Log(DateTime.UtcNow+" / "+dateTime);
 				
-				// now < (now-120s) == Is Online 
+				
 				
 				
 				return DateTime.Compare(DateTime.UtcNow, dateTime) <= 0;

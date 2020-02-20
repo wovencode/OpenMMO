@@ -28,11 +28,18 @@ namespace OpenMMO.Database
 				return false;
 			else
 			{
+			
+
+                DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
+
 debug.Log("<b>GetUserOnline</b>");
 debug.Log("original:"+tableUser.lastonline);
-debug.Log("modified:"+tableUser.lastonline.AddSeconds(saveInterval * 2.0f));
-                DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
+debug.Log("modified:"+dateTime);
 debug.Log(DateTime.UtcNow+" / "+dateTime);
+				
+				// now < (now-120s) == Is Online 
+				
+				
 				return DateTime.Compare(DateTime.UtcNow, dateTime) <= 0;
             }
            

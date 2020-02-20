@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 697381104668126445}
-  - component: {fileID: 697381104668126450}
+  - component: {fileID: 1188090206}
   m_Layer: 0
   m_Name: NetworkStartPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &697381104668126450
+--- !u!114 &1188090206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,8 +40,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 697381104668126451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e046137e3be4966b41c48c35343f98, type: 3}
+  m_Script: {fileID: 11500000, guid: 47de3bf0cf4c34b1e9b70075ebca8f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: []
-  archeType: []
+  archeTypes:
+  - {fileID: 11400000, guid: 23ccce11a08934912ba41bb76c4c972d, type: 2}

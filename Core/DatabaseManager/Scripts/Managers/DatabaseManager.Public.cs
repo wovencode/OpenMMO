@@ -46,7 +46,10 @@ namespace OpenMMO.Database
 		{
 			GameObject player = Instantiate(prefab);
 			player.name = _name;
-
+			
+			// -- place on navmesh in case it changed
+			ValidatePlayerPosition(player);
+		
             LoadDataPlayerPriority(prefab, player);
 
 			this.InvokeInstanceDevExtMethods(nameof(LoadDataPlayer), player); //HOOK

@@ -90,8 +90,8 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_Player(GameObject player)
 	   	{
-	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
-			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+	   		// -- lastlogin is UtcNow minus SaveInterval*3 to allow immediate login
+			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -3.0f);
 	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", dateTime, player.name);
 	   	}
 		

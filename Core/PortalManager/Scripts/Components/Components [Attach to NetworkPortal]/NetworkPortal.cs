@@ -73,11 +73,13 @@ namespace OpenMMO.Portals
 		
 			GameObject player = PlayerComponent.localPlayer;
 			
-			if (!player)
+			if (player = null)
 				return;
-				
-			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor))
-				player.GetComponent<PlayerComponent>().WarpRemote(targetAnchor, targetZone.name);
+			
+			PlayerComponent pc = player.GetComponent<PlayerComponent>();
+			
+			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor) && pc.CheckCooldown)
+				pc.WarpRemote(targetAnchor, targetZone.name);
 			
 			base.OnClickConfirm();
 			

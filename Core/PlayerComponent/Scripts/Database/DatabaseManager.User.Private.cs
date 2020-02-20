@@ -72,13 +72,16 @@ namespace OpenMMO.Database
 	   	
 	   	// -------------------------------------------------------------------------------
 	   	// LogoutPlayer_User
+	   	// Trigger: On Player Logout, only if a Player object is available
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_User(GameObject player)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
 	   		string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, userName);
+	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
+			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, userName);
 	   	}
 	   	
 	   	// ============================= USER HOOKS ======================================
@@ -107,12 +110,15 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 	   	// LogoutUser_User
+	   	// Trigger: On User Logout and on Player Logout (when available)
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LogoutUser))]
 	   	void LogoutUser_User(string username)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.MinValue, username);
+	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
+			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, username);
 	   	}
 		
 		// -------------------------------------------------------------------------------

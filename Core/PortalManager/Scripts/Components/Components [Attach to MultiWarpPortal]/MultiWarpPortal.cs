@@ -9,7 +9,7 @@ using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 
 namespace OpenMMO.Portals
 {

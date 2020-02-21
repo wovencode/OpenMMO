@@ -165,7 +165,7 @@ namespace OpenMMO.Network
     /// </summary>
     public partial class ServerMessageResponsePlayerRegister : ServerMessageResponse
 	{
-
+		public string playername;
 	}
 
     // -----------------------------------------------------------------------------------

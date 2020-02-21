@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace OpenMMO.DebugManager
 {
@@ -19,6 +20,7 @@ namespace OpenMMO.DebugManager
 		public bool debugMode;
 		
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();
+		protected StreamWriter streamWriter;
 		
 		// -------------------------------------------------------------------------------
 		// Init (Constructor)
@@ -29,43 +31,84 @@ namespace OpenMMO.DebugManager
 				debugMode = ProjectConfigTemplate.singleton.globalDebugMode;
 		}
 		
-		// ======================= PUBLIC METHODS - DEBUG ================================
+		// ===================== PUBLIC METHODS - DEBUG LOG ==============================
 		
 		// -------------------------------------------------------------------------------
 		// Log
 		// @debugMode
 		// -------------------------------------------------------------------------------
-		public void Log(string message)
+		public void Log(string message, bool trace=true)
 		{
-			if (!debugMode) return;
-			string trace = new System.Diagnostics.StackTrace().ToString();
-			UnityEngine.Debug.Log("<b>"+message+"</b>\n"+trace);
-			
+			WriteToLog(message, LogType.Log, trace);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// LogWarning
 		// @debugMode
 		// -------------------------------------------------------------------------------
-		public void LogWarning(string message)
+		public void LogWarning(string message, bool trace=true)
 		{
-			if (!debugMode) return;
-			string trace = new System.Diagnostics.StackTrace().ToString();
-			UnityEngine.Debug.LogWarning("<b>"+message+"</b>\n"+trace);
+			WriteToLog(message, LogType.Warning, trace);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// LogError
 		// @debugMode
 		// -------------------------------------------------------------------------------
-		public void LogError(string message)
+		public void LogError(string message, bool trace=true)
 		{
-			if (!debugMode) return;
-			string trace = new System.Diagnostics.StackTrace().ToString();
-			UnityEngine.Debug.LogError("<b>"+message+"</b>\n"+trace);
+			WriteToLog(message, LogType.Error, trace);
+		}
+		
+		// =================== PROTECTED METHODS - DEBUG LOG =============================
+		
+		// -------------------------------------------------------------------------------
+		// WriteToLog
+		// -------------------------------------------------------------------------------
+		protected void WriteToLog(string message, LogType logType, bool trace=true)
+		{
+		
+			if (!debugMode || String.IsNullOrWhiteSpace(message))
+				return;
+			
+			string traceString 	= "";
+			string logString 	= "";
+			
+			if (trace)
+				traceString = new System.Diagnostics.StackTrace().ToString();
+			
+			logString = "<b>" + message + "</b>";
+			
+			if (trace)
+				logString += "\n" + traceString;
+			
+			if (logType == LogType.Log)
+				UnityEngine.Debug.Log(logString);
+			else if (logType == LogType.Warning)
+				UnityEngine.Debug.LogWarning(logString);
+			else if (logType == LogType.Error)
+				UnityEngine.Debug.LogError(logString);
+
+			WriteToLogFile(message);
+
 		}
 		
 		// -------------------------------------------------------------------------------
+		// WriteToLogFile
+		// -------------------------------------------------------------------------------
+		protected void WriteToLogFile(string message)
+		{
+
+			if (!ProjectConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
+				return;
+			
+			streamWriter = new StreamWriter(Tools.GetPath(ProjectConfigTemplate.singleton.logFilename), true);
+
+			streamWriter.WriteLine(message);
+			
+			streamWriter.Close();
+			
+		}
 		
 		// ===================== PUBLIC METHODS - PROFILING ==============================
 		
@@ -121,6 +164,8 @@ namespace OpenMMO.DebugManager
 				profile.Reset();
 		}
 		
+		// ==================== PROTECTED METHODS - PROFILING ============================
+		
 		// -------------------------------------------------------------------------------
 		// HasProfile
 		// -------------------------------------------------------------------------------
@@ -154,8 +199,6 @@ namespace OpenMMO.DebugManager
 			if (index != -1)
 				debugProfiles[index].Restart();
 		}
-		
-		
 		
 		// -------------------------------------------------------------------------------
 		

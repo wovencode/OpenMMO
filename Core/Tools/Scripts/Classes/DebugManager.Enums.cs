@@ -5,7 +5,7 @@ using UnityEngine;
 using OpenMMO;
 using OpenMMO.Database;
 
-namespace OpenMMO.DebugManager {
+namespace OpenMMO.Debugging {
 
 	public enum LogType {Log, Warning, Error}
 		

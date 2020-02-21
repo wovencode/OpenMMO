@@ -1,12 +1,12 @@
 
 using OpenMMO;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
 
 
-namespace OpenMMO.DebugManager
+namespace OpenMMO.Debugging
 {
 	
 	// ===================================================================================

@@ -56,7 +56,8 @@ namespace OpenMMO.Network
 
         // -------------------------------------------------------------------------------
         // OnClientMessageRequest
-        // @Client -> @Server
+        // Direction: @Client -> @Server
+        // Execution: @Server
         // --------------------------------------------------------------------------------
         /// <summary>
         /// Event <c>OnClientMessageRequest</c>.
@@ -67,14 +68,15 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnClientMessageRequest(NetworkConnection conn, ClientMessageRequest msg)
         {
-    	
+    		// do nothing (this message is never called directly)
         }
 
         // ========================== MESSAGE HANDLERS - AUTH ============================
 
         // -------------------------------------------------------------------------------
         // OnAuthRequestMessage
-        // @Client -> @Server
+        // Direction: @Client -> @Server
+        // Execution: @Server
         // -------------------------------------------------------------------------------      
         /// <summary>
         /// Event <c>OnClientMessageRequestAuth</c>.
@@ -110,7 +112,8 @@ namespace OpenMMO.Network
 			}
 			else
 			{
-				base.OnServerAuthenticated.Invoke(conn);
+				base.OnServerAuthenticated.Invoke(conn); //EVENT
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "Authenticated"); //DEBUG
 			}
 			
 			conn.Send(message);
@@ -119,6 +122,8 @@ namespace OpenMMO.Network
 			{
 				conn.isAuthenticated = false;
 				conn.Disconnect();
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "DENIED"); //DEBUG
 			}
 		
 		}

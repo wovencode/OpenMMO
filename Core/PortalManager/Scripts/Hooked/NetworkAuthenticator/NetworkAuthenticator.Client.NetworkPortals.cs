@@ -86,6 +86,8 @@ namespace OpenMMO.Network
                	base.OnClientAuthenticated.Invoke(conn);
                	PortalManager.singleton.AutoLogin();
             }
+            
+            debug.LogFormat(this.name, nameof(OnServerMessageResponseAutoAuth), msg.success.ToString(), msg.text); //DEBUG
         	
         }
         

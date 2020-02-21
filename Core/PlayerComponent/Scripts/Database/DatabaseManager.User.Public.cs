@@ -30,7 +30,7 @@ namespace OpenMMO.Database
 			{
 			
 
-                DateTime dateTime = tableUser.lastonline.AddSeconds(saveInterval * 2.0f);
+                DateTime dateTime = tableUser.lastonline.AddSeconds(logoutInterval);
 
 debug.Log("<b>GetUserOnline</b>");
 debug.Log("original:"+tableUser.lastonline);

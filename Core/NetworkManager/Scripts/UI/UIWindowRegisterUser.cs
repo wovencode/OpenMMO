@@ -2,7 +2,7 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;

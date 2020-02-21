@@ -39,8 +39,7 @@ namespace OpenMMO.Network
         /// <summary>
         /// The game will setup both client and server networks having a player run the game server
         /// </summary>
-		HostAndPlay/*,
-		Development*/
+		HostAndPlay
 	}
 	
 }

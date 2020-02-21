@@ -264,6 +264,11 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponsePlayerRegister(NetworkConnection conn, ServerMessageResponsePlayerRegister msg)
         {
+        	if (msg.success)
+        	{
+        		playerPreviews.Add(new PlayerPreview{name=msg.playername});
+        		UIWindowPlayerSelect.singleton.UpdatePlayerPreviews(true);
+        	}
         	
         	OnServerMessageResponse(conn, msg);
         }

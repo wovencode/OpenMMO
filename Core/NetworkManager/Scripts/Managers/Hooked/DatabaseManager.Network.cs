@@ -45,7 +45,7 @@ namespace OpenMMO.Database
         	databaseLayer.Commit();
         	
         	if (OpenMMO.Network.NetworkManager.onlinePlayers.Count > 0)
-        		debug.Log("[Database] Saved " + OpenMMO.Network.NetworkManager.onlinePlayers.Count + " player(s)");
+        		debug.LogFormat(this.name, nameof(SavePlayers_Network), OpenMMO.Network.NetworkManager.onlinePlayers.Count.ToString());
 
     	}
     	

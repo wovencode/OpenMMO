@@ -6,7 +6,7 @@ using Mirror;
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Portals;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 
 namespace OpenMMO {
 	
@@ -110,6 +110,8 @@ namespace OpenMMO {
     		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName, securityToken);
     		
     		NetworkServer.Destroy(this.gameObject);
+    		
+    		DebugManager.LogFormat(this.name, nameof(WarpRemote), zoneName, anchorName); //DEBUG
     		
 		}
 		

@@ -60,10 +60,31 @@ namespace OpenMMO.DebugManager
 			WriteToLog(message, LogType.Error, trace);
 		}
 		
+		// -------------------------------------------------------------------------------
+		// LogFormat
+		// @debugMode
+		// -------------------------------------------------------------------------------
+		public void LogFormat(params string[] list)
+		{
+			
+			if (list.Length == 0)
+				return;
+			
+			string message = "["+list[0]+"] ";
+			
+			for (int i = 1; i < list.Length; i++)
+				message += list[i] + " ";
+		
+			WriteToLog(message, LogType.Log, false);
+			
+		}
+		
+		
 		// =================== PROTECTED METHODS - DEBUG LOG =============================
 		
 		// -------------------------------------------------------------------------------
 		// WriteToLog
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		protected void WriteToLog(string message, LogType logType, bool trace=true)
 		{
@@ -95,6 +116,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// WriteToLogFile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		protected void WriteToLogFile(string message)
 		{
@@ -114,6 +136,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// StartProfile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		public void StartProfile(string name)
 		{
@@ -128,6 +151,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// StopProfile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		public void StopProfile(string name)
 		{
@@ -141,6 +165,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// PrintProfile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		public void PrintProfile(string name)
 		{
@@ -154,6 +179,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// Reset
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		public void Reset()
 		{
@@ -168,6 +194,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// HasProfile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		protected bool HasProfile(string _name)
 		{
@@ -176,6 +203,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// GetProfileIndex
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		protected int GetProfileIndex(string _name)
 		{
@@ -184,6 +212,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// AddProfile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		protected void AddProfile(string name)
 		{
@@ -192,6 +221,7 @@ namespace OpenMMO.DebugManager
 		
 		// -------------------------------------------------------------------------------
 		// RestartProfile
+		// @debugMode
 		// -------------------------------------------------------------------------------
 		protected void RestartProfile(string name)
 		{

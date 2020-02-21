@@ -23,7 +23,7 @@ namespace OpenMMO.Database
         /// Used to retrieve a user's player characters.
         /// </summary>
         /// <param name="username"></param>
-        /// <returns> A list of unbanned <c>PlayerPreviews</c> created by a user.  </returns>
+        /// <returns> A list of unbanned and undeleted <c>PlayerPreviews</c> created by a user.  </returns>
 		public List<PlayerPreview> GetPlayers(string username)
 		{
 

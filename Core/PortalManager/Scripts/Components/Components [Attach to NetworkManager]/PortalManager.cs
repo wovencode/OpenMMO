@@ -10,7 +10,7 @@ using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.Portals;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using OpenMMO.UI;
 
 namespace OpenMMO.Portals
@@ -77,6 +77,7 @@ namespace OpenMMO.Portals
     		if (!active || GetIsMainZone || !GetCanSwitchZone)
     		{
     			currentZone = mainZone;
+    			debug.LogFormat(this.name, nameof(Awake), "mainZone"); //DEBUG
     			return;
     		}
     		
@@ -182,6 +183,8 @@ namespace OpenMMO.Portals
     		networkManager.networkAddress 	= _template.server.ip;
     		networkManager.onlineScene 		= _template.scene.SceneName;
     		networkManager.StartServer();
+    		
+    		debug.LogFormat(this.name, nameof(InitAsSubZone), _template.name); //DEBUG
     	}
     	
 		// -------------------------------------------------------------------------------
@@ -201,6 +204,8 @@ namespace OpenMMO.Portals
     		
     		spawnedSubZones = true;
     		
+    		debug.LogFormat(this.name, nameof(SpawnSubZones), subZones.Count.ToString()); //DEBUG
+    		
 		}
 
 		// -------------------------------------------------------------------------------
@@ -213,6 +218,9 @@ namespace OpenMMO.Portals
 			process.StartInfo.FileName 	= Tools.GetProcessPath;
 			process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
 			process.Start();
+			
+			debug.LogFormat(this.name, nameof(SpawnSubZone), index.ToString()); //DEBUG
+			
 		}
 		
 		// ====================== MESSAGE EVENT HANDLERS =================================
@@ -243,10 +251,15 @@ namespace OpenMMO.Portals
 					networkTransport.port = GetZonePort;
 					autoConnectClient = true;
 					Invoke(nameof(ReloadScene), 0.25f);
+					
+					debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), i.ToString()); //DEBUG
+					
 					return;
 				}
 				
 			}
+			
+			debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), "NOT FOUND"); //DEBUG
 			
 		}
 		

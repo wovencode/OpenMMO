@@ -5,7 +5,7 @@ using Mirror;
 using System.Collections.Generic;
 using OpenMMO;
 using OpenMMO.Network;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif

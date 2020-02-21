@@ -41,7 +41,7 @@ namespace OpenMMO.Network
 		
 			singleton = this;
 
-			connectDelay = UnityEngine.Random.Range(connectDelayMin,connectDelayMax);
+			connectDelay = UnityEngine.Random.Range(connectDelayMin,connectDelayMax); // randomize connection delay
     		
 		}
 		

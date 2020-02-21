@@ -82,6 +82,7 @@ namespace OpenMMO.Network
 
             NetworkClient.Send(msg);
             
+            debug.LogFormat(this.name, nameof(ClientAuthenticate)); //DEBUG
 		}
 
         // ========================== MESSAGE HANDLERS - AUTH ============================
@@ -108,6 +109,8 @@ namespace OpenMMO.Network
                 conn.isAuthenticated = false;
                 conn.Disconnect();
                 NetworkManager.singleton.StopClient();
+                
+                debug.LogFormat(this.name, nameof(OnServerMessageResponseAuth), conn.Id(), "DENIED"); //DEBUG
             }
             
             // -- ready client
@@ -118,7 +121,8 @@ namespace OpenMMO.Network
                	
                	UIWindowAuth.singleton.Hide();
                	UIWindowMain.singleton.Show();
-
+               	
+				debug.LogFormat(this.name, nameof(OnServerMessageResponseAuth), conn.Id(), "Authenticated"); //DEBUG
             }
         	
         }

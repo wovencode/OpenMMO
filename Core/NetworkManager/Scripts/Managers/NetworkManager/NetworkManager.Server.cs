@@ -300,9 +300,10 @@ namespace OpenMMO.Network
         	
         	ServerMessageResponsePlayerRegister message = new ServerMessageResponsePlayerRegister
 			{
-				success = true,
+				success 			= true,
 				text			 	= "",
-				causesDisconnect 	= false
+				causesDisconnect 	= false,
+				playername 			= msg.playername
 			};
         	
         	if (DatabaseManager.singleton.TryPlayerRegister(msg.playername, msg.username, msg.prefabname))
@@ -377,7 +378,7 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
         protected void LogoutPlayerAndUser(NetworkConnection conn)
         {
-        	if (conn.identity != null && conn.identity.gameObject != null)
+        	if (conn.identity != null)
 			{
 				
 				GameObject player = conn.identity.gameObject;
@@ -394,7 +395,7 @@ namespace OpenMMO.Network
 				
 				onlinePlayers.Remove(player.name);
 								
-				debug.Log("[NetworkManager] Logged out player: " + name);
+				debug.Log("[NetworkManager] Logged out player: " + player.name);
 				
 			}
 			else
@@ -464,7 +465,7 @@ namespace OpenMMO.Network
 			state = NetworkState.Game;
 			
 			// -- Hooks & Events
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, username, playername); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
 			eventListeners.OnLoginPlayer.Invoke(conn);
 
 		}

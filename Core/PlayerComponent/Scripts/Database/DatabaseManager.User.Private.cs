@@ -80,7 +80,7 @@ namespace OpenMMO.Database
 	   		// -- this resets lastlogin to allow immediate re-login
 	   		string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
 	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
-			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, userName);
 	   	}
 	   	
@@ -117,7 +117,7 @@ namespace OpenMMO.Database
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
 	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
-			DateTime dateTime = DateTime.UtcNow.AddSeconds(saveInterval * -2.0f);
+			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
 debug.Log("LogoutUser_User modified DateTime: "+dateTime);
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, username);
 	   	}

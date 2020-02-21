@@ -6,7 +6,7 @@ using System.Reflection;
 using MySql.Data.MySqlClient;
 using OpenMMO;
 using OpenMMO.Database;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 
 namespace OpenMMO.Database {
 	

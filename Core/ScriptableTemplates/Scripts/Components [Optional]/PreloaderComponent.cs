@@ -1,6 +1,6 @@
 ﻿
 using OpenMMO;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

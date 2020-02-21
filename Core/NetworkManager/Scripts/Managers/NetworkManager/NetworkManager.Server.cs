@@ -44,7 +44,7 @@ namespace OpenMMO.Network
             
 
 			this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
-        	eventListeners.OnStartServer.Invoke();
+        	eventListeners.OnStartServer.Invoke(); //EVENT
         	
         }
            
@@ -104,6 +104,9 @@ namespace OpenMMO.Network
 			{
 				message.text = systemText.userLoginFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserLogin), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 			
 			conn.Send(message);
@@ -139,6 +142,9 @@ namespace OpenMMO.Network
 			{
 				message.text = systemText.userRegisterFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserRegister), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 
         	conn.Send(message);
@@ -168,11 +174,17 @@ namespace OpenMMO.Network
         	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
 			{
 				message.text = systemText.userDeleteSuccess;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserDelete), conn.Id(), "Success"); //DEBUG
+				
 			}
 			else
 			{
 				message.text = systemText.userDeleteFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserDelete), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 					
         	conn.Send(message);
@@ -202,11 +214,17 @@ namespace OpenMMO.Network
         	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
 			{
 				message.text = systemText.userChangePasswordSuccess;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserChangePassword), conn.Id(), "Success"); //DEBUG
+				
 			}
 			else
 			{
 				message.text = systemText.userChangePasswordFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserChangePassword), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 					
         	conn.Send(message);
@@ -236,11 +254,17 @@ namespace OpenMMO.Network
         	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
 			{
 				message.text = systemText.userConfirmSuccess;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserConfirm), conn.Id(), "Success"); //DEBUG
+				
 			}
 			else
 			{
 				message.text = systemText.userConfirmFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestUserConfirm), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 					
         	conn.Send(message);
@@ -279,6 +303,9 @@ namespace OpenMMO.Network
 			{
 				message.text = systemText.playerLoginFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerLogin), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 			
 			conn.Send(message);
@@ -315,6 +342,9 @@ namespace OpenMMO.Network
 			{
 				message.text = systemText.playerRegisterFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerRegister), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 					
         	conn.Send(message);
@@ -344,11 +374,17 @@ namespace OpenMMO.Network
         	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
 			{
 				message.text = systemText.playerDeleteSuccess;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerDelete), conn.Id(), "Success"); //DEBUG
+				
 			}
 			else
 			{
 				message.text = systemText.playerDeleteFailure;
 				message.success = false;
+				
+				debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerDelete), conn.Id(), "DENIED"); //DEBUG
+				
 			}
 					
         	conn.Send(message);
@@ -370,6 +406,9 @@ namespace OpenMMO.Network
 				DatabaseManager.singleton.LogoutUser(username);
 			
 			onlineUsers.Remove(conn);
+			
+			debug.LogFormat(this.name, nameof(LogoutUser), conn.Id()); //DEBUG
+			
         }
         
         // -------------------------------------------------------------------------------
@@ -391,11 +430,11 @@ namespace OpenMMO.Network
 				
 				// -- Hooks & Events
 				this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
-				eventListeners.OnLogoutPlayer.Invoke(conn);
+				eventListeners.OnLogoutPlayer.Invoke(conn); //EVENT
 				
 				onlinePlayers.Remove(player.name);
-								
-				debug.Log("[NetworkManager] Logged out player: " + player.name);
+				
+				debug.LogFormat(this.name, nameof(LogoutPlayerAndUser), conn.Id(), player.name, userName); //DEBUG
 				
 			}
 			else
@@ -411,6 +450,7 @@ namespace OpenMMO.Network
 			// isNew = true
 			// Transaction = false
 			DatabaseManager.singleton.SaveDataUser(username, true, false);
+			debug.LogFormat(this.name, nameof(RegisterUser), userName); //DEBUG
 		}
         
         // -------------------------------------------------------------------------------
@@ -431,8 +471,9 @@ namespace OpenMMO.Network
 			state = NetworkState.Lobby;
 			    
 			DatabaseManager.singleton.LoginUser(username);
-			    
+			
 			this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
+			debug.LogFormat(this.name, nameof(LoginUser), username); //DEBUG
 			
 		}
 		
@@ -464,10 +505,11 @@ namespace OpenMMO.Network
 			onlinePlayers[player.name] = player;
 			state = NetworkState.Game;
 			
-			// -- Hooks & Events
 			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
-			eventListeners.OnLoginPlayer.Invoke(conn);
-
+			eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
+			
+			debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG
+			
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -499,6 +541,9 @@ namespace OpenMMO.Network
 			DatabaseManager.singleton.SaveDataPlayer(player, true, false);
 			
 			Destroy(player);
+			
+			debug.LogFormat(this.name, nameof(RegisterPlayer), username, playername, prefabname); //DEBUG
+			
 		}
 		
         // -------------------------------------------------------------------------------

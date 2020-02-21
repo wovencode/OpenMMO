@@ -1,16 +1,11 @@
-﻿// =======================================================================================
-// Wovencore
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// =======================================================================================
-
+﻿
 using System;
 using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using OpenMMO;
+using OpenMMO.Debugging;
 
 namespace OpenMMO {
 	
@@ -29,6 +24,7 @@ namespace OpenMMO {
     	{
     		agent.Warp(position);
     		RpcWarp(position);
+    		DebugManager.LogFormat(this.name, nameof(Warp), position.ToString()); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------

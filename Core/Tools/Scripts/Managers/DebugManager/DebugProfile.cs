@@ -75,7 +75,7 @@ namespace OpenMMO.DebugManager
 			get
 			{
 				CheckActive();
-				return "[DebugProfile] '"+name+"' ~"+lastOperation.ToString()+"ms (~"+GetAverage.ToString()+"ms average)";
+				return "["+this.GetType().Name+"] '"+name+"' ~"+lastOperation.ToString()+"ms (~"+GetAverage.ToString()+"ms average)";
 			}
 		}
 		

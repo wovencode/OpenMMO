@@ -51,10 +51,16 @@ namespace OpenMMO.Database
 			this.InvokeInstanceDevExtMethods(nameof(Init)); //HOOK
 			
 			if (saveInterval > 0)
+			{
 				InvokeRepeating(nameof(SavePlayers), saveInterval, saveInterval);
+				debug.Log("["+name+"] InvokeRepeating: SavePlayers every "+saveInterval+" seconds"); //DEBUG
+			}
 			
 			if (deleteInterval > 0)
+			{
 				InvokeRepeating(nameof(DeleteUsers), deleteInterval, deleteInterval);
+				debug.Log("["+name+"] InvokeRepeating: DeleteUsers every "+deleteInterval+" seconds"); //DEBUG
+			}
 			
 			this.InvokeInstanceDevExtMethods(nameof(Init)); //HOOK
 			
@@ -76,7 +82,7 @@ namespace OpenMMO.Database
 		public void OpenConnection()
 		{
 			databaseLayer.OpenConnection();
-			debug.Log("[DatabaseManager] OpenConnection");
+			debug.Log("["+name+"] OpenConnection"); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -85,7 +91,7 @@ namespace OpenMMO.Database
 		public void CloseConnection()
 		{
 			databaseLayer.CloseConnection();
-			debug.Log("[DatabaseManager] CloseConnection");
+			debug.Log("["+name+"] CloseConnection"); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -94,7 +100,7 @@ namespace OpenMMO.Database
 		public void CreateTable<T>()
 		{
 			databaseLayer.CreateTable<T>();
-			debug.Log("[DatabaseManager] CreateTable: "+typeof(T));
+			debug.Log("["+name+"] CreateTable: "+typeof(T)); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -103,7 +109,7 @@ namespace OpenMMO.Database
 		public void CreateIndex(string tableName, string[] columnNames, bool unique = false)
 		{
 			databaseLayer.CreateIndex(tableName, columnNames, unique);
-			debug.Log("[DatabaseManager] CreateIndex: "+tableName + " ("+string.Join ("_", columnNames)+")");
+			debug.Log("["+name+"] CreateIndex: "+tableName + " ("+string.Join ("_", columnNames)+")"); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -111,7 +117,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public List<T> Query<T>(string query, params object[] args) where T : new()
 		{
-			debug.Log("[DatabaseManager] Query: "+typeof(T)+ "("+query+")");
+			debug.Log("["+name+"] Query: "+typeof(T)+ "("+query+")"); //DEBUG
 			return databaseLayer.Query<T>(query, args);
 		}
 		
@@ -121,7 +127,7 @@ namespace OpenMMO.Database
 		public void Execute(string query, params object[] args)
 		{
 			databaseLayer.Execute(query, args);
-			debug.Log("[DatabaseManager] Execute: "+query);
+			debug.Log("["+name+"] Execute: "+query); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -129,7 +135,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public T FindWithQuery<T>(string query, params object[] args) where T : new()
 		{
-			debug.Log("[DatabaseManager] FindWithQuery: "+typeof(T)+" ("+query+")");
+			debug.Log("["+name+"] FindWithQuery: "+typeof(T)+" ("+query+")"); //DEBUG
 			return databaseLayer.FindWithQuery<T>(query, args);
 		}
 		
@@ -139,7 +145,7 @@ namespace OpenMMO.Database
 		public void Insert(object obj)
 		{
 			databaseLayer.Insert(obj);
-			debug.Log("[DatabaseManager] Insert: "+obj);
+			debug.Log("["+name+"] Insert: "+obj); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -148,7 +154,7 @@ namespace OpenMMO.Database
 		public void InsertOrReplace(object obj)
 		{
 			databaseLayer.InsertOrReplace(obj);
-			debug.Log("[DatabaseManager] InsertOrReplace: "+obj);
+			debug.Log("["+name+"] InsertOrReplace: "+obj); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -157,7 +163,7 @@ namespace OpenMMO.Database
 		public void BeginTransaction()
 		{
 			databaseLayer.BeginTransaction();
-			debug.Log("[DatabaseManager] BeginTransaction");
+			debug.Log("["+name+"] BeginTransaction"); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -166,7 +172,7 @@ namespace OpenMMO.Database
 		public void Commit()
 		{
 			databaseLayer.Commit();
-			debug.Log("[DatabaseManager] Commit");
+			debug.Log("["+name+"] Commit"); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------

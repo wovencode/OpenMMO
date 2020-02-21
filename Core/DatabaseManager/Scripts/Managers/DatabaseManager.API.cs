@@ -1,7 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Database;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using OpenMMO.Network;
 using UnityEngine;
 using System;

@@ -91,7 +91,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		// UpdatePlayerPreviews
 		// -------------------------------------------------------------------------------
-		protected void UpdatePlayerPreviews(bool forced=false)
+		public void UpdatePlayerPreviews(bool forced=false)
 		{
 			
 			if (!forced && contentViewport.childCount > 0)

@@ -29,10 +29,12 @@ namespace OpenMMO
 		[Header("Servers")]
 		public ServerInfoTemplate[] serverList;
 		
+		[Header("Logging")]
+		public bool logMode;
+		public string logFilename = "OpenMMOLog.txt";
+		
 		static ProjectConfigTemplate _instance;
 		
-		protected const string isServer = "_SERVER";
-    	protected const string isClient = "_CLIENT";
 		
 		// -------------------------------------------------------------------------------
 		// singleton
@@ -66,26 +68,20 @@ namespace OpenMMO
 #if UNITY_EDITOR
 			if (networkType == NetworkType.Server)
 			{
-				EditorTools.RemoveScriptingDefine(isClient);
-				EditorTools.AddScriptingDefine(isServer);
+				EditorTools.RemoveScriptingDefine(Constants.BuildModeClient);
+				EditorTools.AddScriptingDefine(Constants.BuildModeServer);
 				debug.Log("<b><color=yellow>[ProjectConfig] Switched to SERVER mode.</color></b>");
 			}
 			else if (networkType == NetworkType.HostAndPlay)
 			{
-				EditorTools.AddScriptingDefine(isServer);
-				EditorTools.AddScriptingDefine(isClient);
+				EditorTools.AddScriptingDefine(Constants.BuildModeServer);
+				EditorTools.AddScriptingDefine(Constants.BuildModeClient);
 				debug.Log("<b><color=green>[ProjectConfig] Switched to HOST & PLAY mode.</color></b>");
 			}
-			/*else if (networkType == NetworkType.Development)
-			{
-				EditorTools.AddScriptingDefine(isServer);
-				EditorTools.AddScriptingDefine(isClient);
-				debug.Log("[ProjectConfig] Switched to DEVELOPMENT mode.");
-			}*/
 			else
 			{
-				EditorTools.AddScriptingDefine(isClient);
-				EditorTools.RemoveScriptingDefine(isServer);
+				EditorTools.AddScriptingDefine(Constants.BuildModeClient);
+				EditorTools.RemoveScriptingDefine(Constants.BuildModeServer);
 				debug.Log("<b><color=blue>[ProjectConfig] Switched to CLIENT mode.</color></b>");
 			}
 #endif

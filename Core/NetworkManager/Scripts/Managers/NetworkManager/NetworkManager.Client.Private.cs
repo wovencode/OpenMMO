@@ -47,10 +47,11 @@ namespace OpenMMO.Network
             NetworkClient.RegisterHandler<ServerMessageResponsePlayerDelete>(OnServerMessageResponsePlayerDelete);
             
             // --- Error Message
-            NetworkClient.RegisterHandler<ErrorMsg>(OnErrorMsg);
+            // @Server -> @Client
+            NetworkClient.RegisterHandler<ServerMessageResponse>(OnServerMessageResponse);
             
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
-            eventListeners.OnStartClient.Invoke();
+            eventListeners.OnStartClient.Invoke(); //EVENT
             
         }
         
@@ -60,7 +61,8 @@ namespace OpenMMO.Network
         
         // -------------------------------------------------------------------------------
 		// OnServerMessageResponse
-		// @Server -> @Client
+		// Direction: @Server -> @Client
+		// Execution: @Client
 		// -------------------------------------------------------------------------------
         /// <summary>
         /// Event <c>OnServerMessageResponse</c>.
@@ -85,31 +87,9 @@ namespace OpenMMO.Network
                 NetworkManager.singleton.StopClient();
             }
             
+            debug.LogFormat(this.name, nameof(OnServerMessageResponse), conn.Id(), msg.causesDisconnect.ToString(), msg.text); //DEBUG
         }
         
-        // ========================== MESSAGE HANDLERS - USER ============================
-        
-		// -------------------------------------------------------------------------------
-		// OnErrorMsg
-		// @Server -> @Client
-		// -------------------------------------------------------------------------------
-		void OnErrorMsg(NetworkConnection conn, ErrorMsg msg)
-		{
-		
-			// -- show popup if error message is not empty
-        	if (!String.IsNullOrWhiteSpace(msg.text))
-               	UIPopupConfirm.singleton.Init(msg.text);
-    		
-        	// -- disconnect and un-authenticate if anything went wrong
-            if (msg.causesDisconnect)
-            {
-                conn.isAuthenticated = false;
-                conn.Disconnect();
-                NetworkManager.singleton.StopClient();
-            }
-		
-		}
-		
         // ========================== MESSAGE HANDLERS - USER ============================
 
         // -------------------------------------------------------------------------------
@@ -141,6 +121,8 @@ namespace OpenMMO.Network
 				
         	}
         	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserLogin), conn.Id(), msg.players.Length.ToString()); //DEBUG
+        	
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -162,7 +144,9 @@ namespace OpenMMO.Network
         	{
         		UIWindowRegisterUser.singleton.Hide();
         	}
-        		
+        	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserRegister), conn.Id(), msg.success.ToString()); //DEBUG
+        	
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -177,7 +161,7 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponseUserDelete(NetworkConnection conn, ServerMessageResponseUserDelete msg)
         {
-        	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserDelete), conn.Id(), msg.success.ToString()); //DEBUG
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -192,7 +176,7 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponseUserChangePassword(NetworkConnection conn, ServerMessageResponseUserChangePassword msg)
         {
-        	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserChangePassword), conn.Id(), msg.success.ToString()); //DEBUG
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -207,7 +191,7 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponseUserConfirm(NetworkConnection conn, ServerMessageResponseUserConfirm msg)
         {
-        	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserConfirm), conn.Id(), msg.success.ToString()); //DEBUG
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -233,6 +217,8 @@ namespace OpenMMO.Network
 				maxPlayers	= msg.maxPlayers;
 			}
 			
+			debug.LogFormat(this.name, nameof(OnServerMessageResponseUserPlayerPreviews), conn.Id(), msg.players.Length.ToString()); //DEBUG
+			
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -249,7 +235,13 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponsePlayerLogin(NetworkConnection conn, ServerMessageResponsePlayerLogin msg)
         {
-        
+        	if (msg.success)
+        	{
+        		ClientScene.Ready(conn);
+        	}
+        	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerLogin), conn.Id(), msg.success.ToString()); //DEBUG
+        	
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -270,6 +262,8 @@ namespace OpenMMO.Network
         		UIWindowPlayerSelect.singleton.UpdatePlayerPreviews(true);
         	}
         	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerRegister), conn.Id(), msg.success.ToString()); //DEBUG
+        	
         	OnServerMessageResponse(conn, msg);
         }
 
@@ -284,6 +278,8 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponsePlayerDelete(NetworkConnection conn, ServerMessageResponsePlayerDelete msg)
         {
+        	
+        	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerDelete), conn.Id(), msg.success.ToString()); //DEBUG
         	
         	OnServerMessageResponse(conn, msg);
         }

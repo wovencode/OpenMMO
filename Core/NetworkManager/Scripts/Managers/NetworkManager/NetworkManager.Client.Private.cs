@@ -235,10 +235,6 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponsePlayerLogin(NetworkConnection conn, ServerMessageResponsePlayerLogin msg)
         {
-        	if (msg.success)
-        	{
-        		ClientScene.Ready(conn);
-        	}
         	
         	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerLogin), conn.Id(), msg.success.ToString()); //DEBUG
         	

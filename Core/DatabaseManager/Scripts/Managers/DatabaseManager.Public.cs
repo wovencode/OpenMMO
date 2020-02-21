@@ -111,7 +111,6 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public void LogoutUser(string name)
 		{
-debug.Log("DatabaseManager->LogoutUser");
 			SaveDataUser(name, false);
 			this.InvokeInstanceDevExtMethods(nameof(LogoutUser), name); //HOOK
 		}

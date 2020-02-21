@@ -324,10 +324,7 @@ namespace OpenMMO.Network
         /// <param name="prefabName"></param>
         public void TryRegisterPlayer(string playerName, string prefabName)
 		{
-			if (RequestPlayerRegister(NetworkClient.connection, playerName, userName, prefabName))
-			{
-				playerPreviews.Add(new PlayerPreview{name=playerName});
-			}
+			RequestPlayerRegister(NetworkClient.connection, playerName, userName, prefabName);
 		}
 
         // -------------------------------------------------------------------------------

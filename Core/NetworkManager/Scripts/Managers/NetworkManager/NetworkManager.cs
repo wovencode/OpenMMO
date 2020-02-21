@@ -164,9 +164,11 @@ namespace OpenMMO.Network
 		{
 			foreach (KeyValuePair<NetworkConnection, string> user in onlineUsers)
 			{
-			debug.Log("----------GetUserName:"+user.Value);
-			
-				if (user.Key == conn) return user.Value;
+				if (user.Key == conn)
+				{
+					debug.Log("["+this.name+"] GetUserName: "+conn.connectionId + " = " + user.Value); //DEBUG
+					return user.Value;
+				}
 			}
 			
 			return "";
@@ -184,6 +186,7 @@ namespace OpenMMO.Network
 		public void ServerSendError(NetworkConnection conn, string error, bool disconnect)
 		{
 			conn.Send(new ErrorMsg{text=error, causesDisconnect=disconnect});
+			debug.Log("["+this.name+"] ServerSendError: "+conn.connectionId); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -205,6 +208,8 @@ namespace OpenMMO.Network
 				conn.Disconnect();
 				if (NetworkServer.active) StopHost();
 			}
+			
+			debug.Log("["+this.name+"] OnClientError: "+conn.connectionId); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -233,6 +238,8 @@ namespace OpenMMO.Network
 			
 			// -- 3) closes the database connection
 			DatabaseManager.singleton.Destruct();
+			
+			debug.Log("["+this.name+"] OnStopServer"); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -251,16 +258,18 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnClientConnect(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect), conn); //HOOK
+			debug.Log("["+this.name+"] OnClientConnect: "+conn.connectionId); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
         /// <summary>
         /// Public event <c>OnServerConnect</c>.
-        /// Triggered when the server connects.
+        /// Triggered when the server receives a client connection.
         /// </summary>
         /// <param name="conn"></param>
 		public override void OnServerConnect(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnServerConnect), conn); //HOOK
+			debug.Log("["+this.name+"] OnServerConnect: "+conn.connectionId); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -271,6 +280,7 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnClientSceneChanged(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnClientSceneChanged), conn); //HOOK
+			debug.Log("["+this.name+"] OnClientSceneChanged: "+conn.connectionId); //DEBUG
 		}
 
 		// -------------------------------------------------------------------------------
@@ -281,6 +291,7 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
 		public override void OnServerAddPlayer(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnServerAddPlayer), conn); //HOOK
+			debug.Log("["+this.name+"] OnServerAddPlayer: "+conn.connectionId); //DEBUG
 		}
 	
 		// -------------------------------------------------------------------------------
@@ -293,7 +304,7 @@ namespace OpenMMO.Network
 		{
 			LogoutPlayerAndUser(conn);
 			base.OnServerDisconnect(conn);
-			debug.Log("[NetworkManager] OnServerDisconnect: "+conn.connectionId);
+			debug.Log("["+this.name+"] OnServerDisconnect: "+conn.connectionId); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -316,6 +327,7 @@ namespace OpenMMO.Network
 				UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
 			}
 			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect)); //HOOK
+			debug.Log("["+this.name+"] OnClientDisconnect: "+conn.connectionId); //DEBUG
 		}
 		
 		// -------------------------------------------------------------------------------

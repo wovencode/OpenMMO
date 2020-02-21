@@ -4,15 +4,32 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mirror;
 
+// =======================================================================================
+// Extensions
+// =======================================================================================
 public static partial class Extensions
 {
 	
 	// -----------------------------------------------------------------------------------
+	// Id
+	// Returns the connection id of a NetworkConnection as formatted string
+	// used very often in logfiles
+	// Extends: NetworkConnection
+	// -----------------------------------------------------------------------------------
+	public static string Id(this NetworkConnection conn)
+	{
+		return "ID" + conn.connectionId.ToString();
+	}
+	
+	// -----------------------------------------------------------------------------------
 	// Shuffle
 	// Shuffles a List without Linq
+	// Extends: IList
 	// -----------------------------------------------------------------------------------
-	public static void Shuffle<T>(this IList<T> ts) {
+	public static void Shuffle<T>(this IList<T> ts)
+	{
         var count = ts.Count;
         var last = count - 1;
         for (var i = 0; i < last; ++i) {
@@ -26,6 +43,7 @@ public static partial class Extensions
 	// -----------------------------------------------------------------------------------
 	// ToInt
 	// Converts a boolean value to an int (0/1)
+	// Extends: int
 	// -----------------------------------------------------------------------------------
 	public static int ToInt(this bool value)
 	{
@@ -34,6 +52,7 @@ public static partial class Extensions
 	
 	// -----------------------------------------------------------------------------------
 	// ReplaceFirstInstance
+	// Extends: string
 	// -----------------------------------------------------------------------------------
 	public static string ReplaceFirstInstance(this string source, string find, string replace)
 	{
@@ -46,6 +65,7 @@ public static partial class Extensions
 	// Converts any string into a hash
 	// 64 bit safe and deterministic, generated values rarely change
 	// truly unique hashes are not possible due to technical limitations
+	// Extends: string
 	// -----------------------------------------------------------------------------------
     public static int GetDeterministicHashCode(this string value)
     {
@@ -69,6 +89,7 @@ public static partial class Extensions
     
 	// -----------------------------------------------------------------------------------
 	// Converts a float into a string and abbreviates it (e.g. 5m or 4d)
+	// Extends: string
 	// -----------------------------------------------------------------------------------
 	public static string TimeFormat(this float seconds)
 	{
@@ -91,6 +112,7 @@ public static partial class Extensions
 	
 	// -----------------------------------------------------------------------------------
 	// Converts a long into a string and abbreviates it (e.g. 5M or 3K)
+	// Extends: long
 	// -----------------------------------------------------------------------------------
 	public static string KiloFormat(this long num)
     {
@@ -111,6 +133,7 @@ public static partial class Extensions
     
     // -----------------------------------------------------------------------------------
 	// ReplaceIgnoreCase
+	// Extends: string
 	// -----------------------------------------------------------------------------------
     public static string ReplaceIgnoreCase(this string source, string oldString, string newString, StringComparison comparison=StringComparison.OrdinalIgnoreCase)
 	{
@@ -129,6 +152,7 @@ public static partial class Extensions
     
 	// -----------------------------------------------------------------------------------
 	// Removes all previous listeners and adds the new listener (for onClick etc.)
+	// Extends: UnityEvent
 	// -----------------------------------------------------------------------------------
     public static void SetListener(this UnityEvent _event, UnityAction _call)
     {
@@ -137,6 +161,7 @@ public static partial class Extensions
     }
 	// -----------------------------------------------------------------------------------
 	// Removes all previous listeners and adds the new listener (for onValueChanged etc.)
+	// Extends: UnityEvent<T>
 	// -----------------------------------------------------------------------------------
     public static void SetListener<T>(this UnityEvent<T> _event, UnityAction<T> _call)
     {
@@ -148,6 +173,7 @@ public static partial class Extensions
 	// HasDuplicates
 	// checks if a list contains any duplicates
 	// better performance than GroupBy or Distinct in most cases
+	// Extends: IEnumerable<T>
 	// -----------------------------------------------------------------------------------
 	public static bool HasDuplicates<T>(this IEnumerable<T> list)
 	{

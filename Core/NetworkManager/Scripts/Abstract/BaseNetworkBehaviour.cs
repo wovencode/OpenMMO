@@ -6,7 +6,9 @@ using Mirror;
 namespace OpenMMO.Network
 {
 
-	// -----------------------------------------------------------------------------------
+	// ===================================================================================
+	// BaseNetworkBehaviour
+	// ===================================================================================
 	public abstract partial class BaseNetworkBehaviour : NetworkBehaviour
 	{
    		
@@ -21,7 +23,6 @@ namespace OpenMMO.Network
 			{
 				if (string.IsNullOrWhiteSpace(_name))
 					_name = base.name;
-					
 				return _name;
 			}
 			set

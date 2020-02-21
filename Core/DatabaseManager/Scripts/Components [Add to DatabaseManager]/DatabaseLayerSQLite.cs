@@ -19,8 +19,8 @@ namespace OpenMMO.Database
 	{
 		
 		[Header("Options")]
-		public string databaseName 	= "Database.sqlite";
-				
+		public string databaseName 	= "DatabaseOpenMMO.sqlite";
+		
 		protected 			SQLiteConnection 	connection = null;
 		protected static 	string 				_dbPath = "";
 		

@@ -45,7 +45,9 @@ namespace OpenMMO.Network
 			};
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestUserLogin), conn.Id(), userName); //DEBUG
+			
 			return true;
 
 		}
@@ -79,7 +81,9 @@ namespace OpenMMO.Network
 			};
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestUserRegister), conn.Id(), userName); //DEBUG
+						
 			return true;
 
 		}
@@ -111,7 +115,9 @@ namespace OpenMMO.Network
 			};
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestUserDelete), conn.Id(), userName); //DEBUG
+						
 			return true;
 
 		}
@@ -147,7 +153,9 @@ namespace OpenMMO.Network
 			PlayerPrefs.SetString(Constants.PlayerPrefsPassword, "");
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestUserChangePassword), conn.Id(), userName); //DEBUG
+			
 			return true;
 
 		}
@@ -179,7 +187,9 @@ namespace OpenMMO.Network
 			};
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestUserConfirm), conn.Id(), userName); //DEBUG
+			
 			return true;
 
 		}
@@ -212,10 +222,12 @@ namespace OpenMMO.Network
 				username = username
 			};
 
-			ClientScene.Ready(conn);
+			//ClientScene.Ready(conn); // OBSOLETE ? (moved to answer event)
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestPlayerLogin), conn.Id(), username, playername); //DEBUG
+			
 			return true;
 
 		}
@@ -248,7 +260,9 @@ namespace OpenMMO.Network
 			};
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestPlayerRegister), conn.Id(), playerName, prefabName); //DEBUG
+			
 			return true;
 
 		}
@@ -280,7 +294,9 @@ namespace OpenMMO.Network
 			};
 
 			conn.Send(message);
-
+			
+			debug.LogFormat(this.name, nameof(RequestPlayerDelete), conn.Id(), userName); //DEBUG
+			
 			return true;
 
 		}

@@ -8,7 +8,16 @@ namespace OpenMMO {
 
 	public partial class Constants
 	{
-			
+		
+		
+		/*
+			Names of defines used to indicate CLIENT or SERVER mode
+		*/
+		
+		public const string BuildModeServer 				= "_SERVER";
+    	public const string BuildModeClient 				= "_CLIENT";
+
+		
 		/*
 			Names of variables saved in player preferences:
 		*/

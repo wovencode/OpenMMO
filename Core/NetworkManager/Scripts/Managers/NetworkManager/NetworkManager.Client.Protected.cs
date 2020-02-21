@@ -221,8 +221,9 @@ namespace OpenMMO.Network
 				playername = playername,
 				username = username
 			};
-
-			//ClientScene.Ready(conn); // OBSOLETE ? (moved to answer event)
+			
+			// must be readied here, not in the response - otherwise it generates a warning
+			ClientScene.Ready(conn);
 
 			conn.Send(message);
 			

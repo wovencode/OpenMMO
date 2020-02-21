@@ -25,7 +25,7 @@ namespace OpenMMO.Modules
         // -------------------------------------------------------------------------------
         static void Constructor()
         {
-            DevExtUtils.InvokeStaticDevExtMethods(typeof(ModuleManager), nameof(Constructor));
+            DevExtUtils.InvokeStaticDevExtMethods(typeof(ModuleManager), nameof(Constructor)); //HOOK
         }
 
 		// -------------------------------------------------------------------------------
@@ -71,8 +71,6 @@ namespace OpenMMO.Modules
 		public static void ValidateModules(List<Module> _modules)
 		{
 
-			debug.Log("[ModuleManager] Validating installed Modules...");
-			
 			int i = 0;
 			
 			foreach (Module module in _modules)
@@ -88,7 +86,8 @@ namespace OpenMMO.Modules
 				}
 			}
 			
-			debug.Log("[ModuleManager] Validation complete, encountered "+i.ToString()+" error(s).");
+			if (i > 0)
+				debug.Log("[ModuleManager] Validation complete, encountered "+i.ToString()+" error(s).");
 
 		}
 		

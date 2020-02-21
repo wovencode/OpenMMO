@@ -60,6 +60,8 @@ namespace OpenMMO.Network
 				conn.isAuthenticated = false;
 				conn.Disconnect();
 			}
+			
+			debug.LogFormat(this.name, nameof(OnClientMessageRequestAutoAuth), conn.Id(), msg.success.ToString(), msg.text); //DEBUG
 		
 		}
 

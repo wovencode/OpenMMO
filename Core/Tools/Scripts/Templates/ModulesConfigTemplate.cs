@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 using OpenMMO;
 using OpenMMO.Network;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using OpenMMO.Modules;
 
 namespace OpenMMO

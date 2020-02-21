@@ -2,7 +2,7 @@
 
 using OpenMMO;
 using OpenMMO.Modules;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 using System;
 using System.Collections.Generic;
 using UnityEditor;

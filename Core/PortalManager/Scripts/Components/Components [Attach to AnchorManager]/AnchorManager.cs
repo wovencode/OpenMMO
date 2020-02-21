@@ -8,7 +8,7 @@ using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.Portals;
-using OpenMMO.DebugManager;
+using OpenMMO.Debugging;
 
 namespace OpenMMO.Portals
 {
@@ -50,13 +50,16 @@ namespace OpenMMO.Portals
                 StartAnchor sc = anchor.GetComponent<StartAnchor>();
 
                 foreach (ArchetypeTemplate template in sc.archeTypes)
+                {
                     if (template == pc.archeType)
                     {
-debug.Log("GetArcheTypeStartPosition: "+anchor.name);
+						DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name); //DEBUG
                         return anchor.transform;
-}
+					}
+				}
             }
-
+			
+			DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), "NOT FOUND"); //DEBUG
             return player.transform;
 
         }
@@ -67,8 +70,8 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
     	// -------------------------------------------------------------------------------
         public static void RegisterStartAnchor(GameObject anchor)
         {
-        Debug.Log(anchor.name);
             startAnchors.Add(anchor);
+            DebugManager.LogFormat(nameof(AnchorManager), nameof(RegisterStartAnchor), anchor.name); //DEBUG
         }
 
         // -------------------------------------------------------------------------------
@@ -78,8 +81,13 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
         public static void UnRegisterStartAnchor(GameObject anchor)
         {
            for (int i = 0; i < startAnchors.Count; i++)
+           {
            		if (startAnchors[i].name == anchor.name)
+           		{
            			startAnchors.RemoveAt(i);
+           			DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterStartAnchor), anchor.name); //DEBUG
+           		}
+           	}
         }
 		
         // ============================ PORTAL ANCHORS ===================================
@@ -90,13 +98,20 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
     	// -------------------------------------------------------------------------------
         public static bool CheckPortalAnchor(string _name)
         {
+        
         	if (String.IsNullOrWhiteSpace(_name))
         		return false;
         	
         	foreach (PortalAnchorEntry anchor in portalAnchors)
+        	{
         		if (anchor.name == _name)
+        		{
+        			DebugManager.LogFormat(nameof(AnchorManager), nameof(CheckPortalAnchor), anchor.name); //DEBUG
         			return true;
-
+				}
+			}
+			
+			DebugManager.LogFormat(nameof(AnchorManager), nameof(CheckPortalAnchor), _name, "NOT FOUND"); //DEBUG
 			return false;
         }
         
@@ -108,9 +123,15 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
         {
         
         	foreach (PortalAnchorEntry anchor in portalAnchors)
+        	{
         		if (anchor.name == _name)
+				{
+					DebugManager.LogFormat(nameof(AnchorManager), nameof(GetPortalAnchorPosition), anchor.name); //DEBUG
 					return anchor.position;
-					
+				}
+			}
+			
+			DebugManager.LogFormat(nameof(AnchorManager), nameof(GetPortalAnchorPosition), _name, "NOT FOUND"); //DEBUG
 			return Vector3.zero;
         }
         
@@ -127,6 +148,8 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
             					position = _position
             				}
             );
+            
+            DebugManager.LogFormat(nameof(AnchorManager), nameof(RegisterPortalAnchor), _name); //DEBUG
         }
 
         // -------------------------------------------------------------------------------
@@ -137,8 +160,13 @@ debug.Log("GetArcheTypeStartPosition: "+anchor.name);
         {
            
            for (int i = 0; i < portalAnchors.Count; i++)
+           {
            		if (portalAnchors[i].name == _name)
+           		{
            			portalAnchors.RemoveAt(i);
+            		DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterPortalAnchor), _name); //DEBUG
+            	}
+            }
             
         }
 

@@ -85,14 +85,14 @@ public class CameraDolly : MonoBehaviour
     { Enable(); }
     private void Enable()
     {
-        Debug.Log("ENABLING CAMERA DOLLY");
-
         if (player != null && !player.IsLocalPlayer) //DISABLE IF NOT LOCAL PLAYER
         {
             //DestroySpawnedCamera(); //<-- Destroys on Disable now
             //enabled = false;
             return;
         }
+
+        Debug.Log("ENABLING CAMERA DOLLY");
 
         //DISABLE MAIN CAMERA
         if (Camera.main != null && Camera.main.name.Contains("Main"))
@@ -122,7 +122,7 @@ public class CameraDolly : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 
-            if (player != null && !player.IsLocalPlayer) { enabled = false; return; } //DISABLE IF NOT LOCAL PLAYER
+            if (player != null && !player.IsLocalPlayer) { DestroySpawnedCamera(); return; } //DISABLE IF NOT LOCAL PLAYER
 
             if (cameraIsSpawned) return; //CAMERA ALREADY SPAWNED
 

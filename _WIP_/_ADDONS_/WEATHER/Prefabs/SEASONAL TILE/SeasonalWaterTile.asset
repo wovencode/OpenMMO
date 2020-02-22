@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d50f277bde67564f9263740d0ba73af, type: 3}
+  m_Name: SeasonalWaterTile
+  m_EditorClassIdentifier: 
+  materials:
+    spring:
+      baseMaterial: {fileID: 2100000, guid: df05d35d958e1784894e2f683803aeb3, type: 2}
+      topMaterial: {fileID: 2100000, guid: df05d35d958e1784894e2f683803aeb3, type: 2}
+    summer:
+      baseMaterial: {fileID: 2100000, guid: df05d35d958e1784894e2f683803aeb3, type: 2}
+      topMaterial: {fileID: 2100000, guid: df05d35d958e1784894e2f683803aeb3, type: 2}
+    fall:
+      baseMaterial: {fileID: 2100000, guid: ed6d559f57e61c149ba8049b4cec67f8, type: 2}
+      topMaterial: {fileID: 2100000, guid: ed6d559f57e61c149ba8049b4cec67f8, type: 2}
+    winter:
+      baseMaterial: {fileID: 2100000, guid: ed6d559f57e61c149ba8049b4cec67f8, type: 2}
+      topMaterial: {fileID: 2100000, guid: 9ef022136f01ed542809b5fd1e3a9eb1, type: 2}

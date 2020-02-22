@@ -15,12 +15,14 @@ public class CameraDolly : MonoBehaviour
     [Header("CAMERA SELECT")]
     [Tooltip("Select a camera to load.")]
     [SerializeField] CameraType cameraType = CameraType.Malice;
-    [Tooltip("Parent the camera to this object.")]
+    [Tooltip("Parent the camera to this object?")]
     public bool attachCameraToMe = false;
 
     [Header("-read only-")]
     [Tooltip("The camera prefab that will be spawned. (Set by the camera type)")]
     [SerializeField] GameObject cameraPrefab;
+
+    GameObject mainCamera;
 
     public static GameObject spawnedCamera;
     [SerializeField] bool cameraIsSpawned = false;
@@ -49,10 +51,16 @@ public class CameraDolly : MonoBehaviour
     }
 #endif
     //AWAKE
-    private void Start()
+    /*private void Start()
     {
         if (!AttachExistingCamera())
         {
+            if (player != null && !player.IsLocalPlayer) //DISABLE IF NOT LOCAL PLAYER
+            {
+                DestroySpawnedCamera();
+                return;
+            }
+               
             //if (!CameraDolly.spawnedCamera)
             //{
                 Debug.Log("SPAWNING NEW CAMERA");
@@ -60,19 +68,53 @@ public class CameraDolly : MonoBehaviour
                 SpawnCamera(); //SPAWN CAMERA
             //}
         }
-    }
+    }*/
+    //ON DISABLE
+    private void OnDisable()
+    {
+        Debug.Log("DISABLING CAMERA DOLLY");
 
+        DestroySpawnedCamera();
+        //cameraIsSpawned = false;
+
+        //ENABLE MAIN CAMERA
+        if (mainCamera != null) { mainCamera.SetActive(true); }
+    }
+    //ON ENABLE
+    private void OnEnable()
+    { Enable(); }
+    private void Enable()
+    {
+        Debug.Log("ENABLING CAMERA DOLLY");
+
+        if (player != null && !player.IsLocalPlayer) //DISABLE IF NOT LOCAL PLAYER
+        {
+            //DestroySpawnedCamera(); //<-- Destroys on Disable now
+            //enabled = false;
+            return;
+        }
+
+        //DISABLE MAIN CAMERA
+        if (Camera.main != null && Camera.main.name.Contains("Main"))
+        {
+            mainCamera = Camera.main.gameObject;
+            mainCamera.SetActive(false);
+        }
+
+        SpawnCamera(); //SPAWN CAMERA
+    }
     //ON DESTROYED
     private void OnDestroy()
     {
-        cameraIsSpawned = false;
+        DestroySpawnedCamera();
+        //cameraIsSpawned = false;
     }
 
     //UPDATE
     int frameCount = 0; //FRAME COUNTER
     void FixedUpdate()
     {
-        if (!Application.isPlaying || !player) return; //MUST BE PLAYING A SCENE AND LOGGED IN
+        if (!Application.isPlaying || player == null) return; //MUST BE PLAYING A SCENE AND LOGGED IN
 
         frameCount++; //INCREMENT TICK
 
@@ -80,9 +122,11 @@ public class CameraDolly : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 
-            if (player && !player.isLocalPlayer) { enabled = false; return; } //DISABLE IF NOT LOCAL PLAYER
+            if (player != null && !player.IsLocalPlayer) { enabled = false; return; } //DISABLE IF NOT LOCAL PLAYER
 
             if (cameraIsSpawned) return; //CAMERA ALREADY SPAWNED
+
+            Enable();
 
             //if (AttachExistingCamera())
             //{
@@ -90,18 +134,27 @@ public class CameraDolly : MonoBehaviour
             //}
             //else
             //{
-                //if (!cameraIsSpawned)
-                //{
-                    if (!CameraDolly.spawnedCamera)
-                    {
-                        Debug.Log("SPAWNING NEW CAMERA");
-                        LoadCameraPrefab(); //LOAD CAMERA PREFAB
-                        SpawnCamera(); //SPAWN CAMERA
-                    }
-                    else
-                    {
-                        AttachExistingCamera();
-                    }
+            //if (!cameraIsSpawned)
+            //{
+
+
+
+            //if (!CameraDolly.spawnedCamera)
+            //{
+            //    Debug.Log("SPAWNING NEW CAMERA");
+            //    LoadCameraPrefab(); //LOAD CAMERA PREFAB
+            //    SpawnCamera(); //SPAWN CAMERA
+            //}
+            //else
+            //{
+            //    if (!AttachExistingCamera())
+            //    {
+            //        DestroySpawnedCamera();
+            //    }
+            //}
+
+
+
                 //}
             //}
 
@@ -125,8 +178,6 @@ public class CameraDolly : MonoBehaviour
     {
         if (!cameraPrefab || !cameraPrefab.name.Contains(cameraType.ToString() + "Camera")) //NOTE: We could use .ToUpper() so this is not case sensitive, but for performance reasons we do not...keep this in mind if you add new cameras.
         {
-            //TODO if not usescenecamera
-
             //DestroySpawnedCamera(); //DESTROY OLD CAMERA
             LoadCameraPrefab(); //LOAD CAMERA PREFAB
 
@@ -142,9 +193,9 @@ public class CameraDolly : MonoBehaviour
     {
         if (CameraDolly.spawnedCamera)
         {
-            cameraIsSpawned = false;
             GameObject.Destroy(CameraDolly.spawnedCamera); //DESTROY SPAWNED CAMERA
         }
+        cameraIsSpawned = false;
     }
 
     //ON CAMERA CHANGED
@@ -156,12 +207,12 @@ public class CameraDolly : MonoBehaviour
     //SPAWN CAMERA
     void SpawnCamera()
     {
-        //DestroySpawnedCamera(); //DESTROY EXISTING CAMERA
+        LoadCameraPrefab(); //LOAD CAMERA PREFAB
 
         if (attachCameraToMe) { CameraDolly.spawnedCamera = Instantiate<GameObject>(cameraPrefab, transform); } //INSTANTIATE (PARENTED)
         else { CameraDolly.spawnedCamera = Instantiate<GameObject>(cameraPrefab); } //INSTANTIATE (UNPARENTED)
 
-        cameraIsSpawned = true;
+        cameraIsSpawned = CameraDolly.spawnedCamera != null;
     }
 
     //ATTACH EXISTING CAMERA
@@ -169,7 +220,7 @@ public class CameraDolly : MonoBehaviour
     /// <returns></returns>
     bool AttachExistingCamera()
     {
-        if (Camera.main) //MAIN CAMERA EXISTS?
+        if (Camera.main != null) //MAIN CAMERA EXISTS?
         {
             if (System.Enum.TryParse<CameraType>(Camera.main.name.Trim("Camera".ToCharArray()), out cameraType)) //SUPPORTED CAMERA?
             {
@@ -177,10 +228,11 @@ public class CameraDolly : MonoBehaviour
                 cameraIsSpawned = true;
                 return true;
             }
-            else //DISABLE MAIN CAMERA
-            {
-                if (Camera.main && cameraPrefab != Camera.main && Camera.main.name.Contains("Main")) { Camera.main.gameObject.SetActive(false); }
-            }
+            //else //DISABLE MAIN CAMERA
+            //{
+                //if (Camera.main && cameraPrefab != Camera.main && Camera.main.name.Contains("Main")) { Camera.main.gameObject.SetActive(false); }
+                //GameObject.Destroy(Camera.main.gameObject);//.SetActive(false);
+            //}
         }
         return false; //NO CAMERA IN THE SCENE
     }

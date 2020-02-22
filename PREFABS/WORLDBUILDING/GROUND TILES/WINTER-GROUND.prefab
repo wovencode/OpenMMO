@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6764831773056456523}
   - component: {fileID: 6494398733107658881}
   m_Layer: 0
-  m_Name: GROUND_ROCK
+  m_Name: WINTER-GROUND
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,8 +59,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2551240767032753910, guid: 62e9db03f2ee16448b1f54f3952beed7, type: 3}
-  - {fileID: 2100000, guid: 5f1194c80ea1de247a105fe249093bbe, type: 2}
+  - {fileID: 2100000, guid: cfe1a27079a81de4f80c223ff165bf81, type: 2}
+  - {fileID: 2100000, guid: 14946e9b148153345a67087466e77e22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

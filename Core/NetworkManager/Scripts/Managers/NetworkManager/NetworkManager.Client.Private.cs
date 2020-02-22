@@ -103,25 +103,25 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnServerMessageResponseUserLogin(NetworkConnection conn, ServerMessageResponseUserLogin msg)
         {
-        	
-        	if (msg.success)
-        	{
-				playerPreviews.Clear();
-				playerPreviews.AddRange(msg.players);
-				maxPlayers	= msg.maxPlayers;
-				
-				// -- Show Player Select if there are players
-				// -- Show Player Creation if there are no players
-				if (msg.players.Length > 0)
-					UIWindowPlayerSelect.singleton.Show();
-				else
-					UIWindowPlayerCreate.singleton.Show();
-				
-				UIWindowLoginUser.singleton.Hide();
-				
-        	}
-        	
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserLogin), conn.Id(), msg.players.Length.ToString()); //DEBUG
+
+            if (msg.success)
+            {
+                playerPreviews.Clear();
+                playerPreviews.AddRange(msg.players);
+                maxPlayers = msg.maxPlayers;
+
+                // -- Show Player Select if there are players
+                // -- Show Player Creation if there are no players
+                if (msg.players.Length > 0)
+                    UIWindowPlayerSelect.singleton.Show();
+                else
+                    UIWindowPlayerCreate.singleton.Show();
+
+                UIWindowLoginUser.singleton.Hide();
+
+                debug.LogFormat(this.name, nameof(OnServerMessageResponseUserLogin), conn.Id(), msg.players.Length.ToString()); //DEBUG
+
+            }
         	
         	OnServerMessageResponse(conn, msg);
         }

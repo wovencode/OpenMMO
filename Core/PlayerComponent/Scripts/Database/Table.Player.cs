@@ -29,6 +29,9 @@ namespace OpenMMO.Database
 		public float y 				{ get; set; }
 		public float z 				{ get; set; }
 		
+		public float roty			{ get; set; }
+		// TODO: do we need rotation x and z ?
+		
 		// -------------------------------------------------------------------------------
 		// Create
 		// -------------------------------------------------------------------------------
@@ -61,6 +64,8 @@ namespace OpenMMO.Database
 			x = player.transform.position.x;
 			y = player.transform.position.y;
 			z = player.transform.position.z;
+			
+			roty = player.transform.rotation.eulerAngles.y;
 			
 		}
 		

@@ -87,6 +87,8 @@ namespace OpenMMO.Network
 			}
 			
         	conn.Send(message);
+        	
+        	LogoutPlayerAndUser(conn); // TODO: does this work?
 		
 		}
 		

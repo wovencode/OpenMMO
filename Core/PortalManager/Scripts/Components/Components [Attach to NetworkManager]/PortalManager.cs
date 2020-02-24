@@ -232,9 +232,6 @@ namespace OpenMMO.Portals
 		public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerMessageResponsePlayerSwitchServer msg)
 		{
 			
-			if (NetworkServer.active)
-				return;
-			
 			networkManager.StopClient();
 			
 			NetworkClient.Shutdown();

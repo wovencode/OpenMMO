@@ -49,7 +49,6 @@ namespace OpenMMO.Database
 		public void Update(GameObject player, string userName="")
 		{
 			
-			lastonline = DateTime.UtcNow;		// has to be updated here, otherwise it never happens
 			lastsaved = DateTime.UtcNow;		// has to be updated here, otherwise it never happens
 			
 			playername = player.name;

@@ -55,7 +55,9 @@ namespace OpenMMO.Database
 		{
 	   		TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND deleted=0", player.name);
 	   		player.GetComponent<PlayerComponent>().tablePlayer = tablePlayer;
+	   		
 	   		player.transform.position = new Vector3(tablePlayer.x, tablePlayer.y, tablePlayer.z);
+	   		player.transform.rotation = Quaternion.Euler(0, tablePlayer.roty, 0);
 		}
 		
 	   	// -------------------------------------------------------------------------------

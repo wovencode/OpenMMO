@@ -167,15 +167,18 @@ namespace OpenMMO.Network
 			
 			// -- load player from database
 			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
-			
-			// -- log the player in (again)
-			DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
-			
+						
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
 			// -- re-validate the security token
 			if (pc.tablePlayerZones.ValidateToken(token))
 			{
+			
+				// -- log the player in (again)
+				DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
+			
+				// -- log the user in (again)
+				LoginUser(conn, username);
 			
 				// -- update zone
 				pc.tablePlayerZones.zonename = pc.currentZone.name;

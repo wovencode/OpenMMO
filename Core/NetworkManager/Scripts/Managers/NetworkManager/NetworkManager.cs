@@ -78,6 +78,13 @@ namespace OpenMMO.Network
 
             AwakePriority(); // must be first
 			
+			Invoke(nameof(AwakeLate), 0.25f);
+			
+		}
+		
+		protected void AwakeLate()
+		{
+		
 			// -- decide how to start
 #if _SERVER && _CLIENT
 			StartHost();
@@ -95,8 +102,8 @@ namespace OpenMMO.Network
 			debug.LogFormat(this.name, nameof(StartClient)); //DEBUG
 #endif
 			
-			this.InvokeInstanceDevExtMethods(nameof(Awake)); //HOOK // must be last
-			
+			this.InvokeInstanceDevExtMethods(nameof(Awake)); //HOOK // must be last		
+		
 		}
 
 		// -------------------------------------------------------------------------------

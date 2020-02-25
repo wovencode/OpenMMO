@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: syncMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 437119546735497029, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1037530943158960664, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: sceneId
@@ -20,6 +25,11 @@ PrefabInstance:
     - target: {fileID: 1037530943158960664, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135409919634608934, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2608952967195419366, guid: 646f03a0ef17d3b49962414b11da55f6,
@@ -99,5 +109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dwarf
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8667312959870260543, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5400889410254102364, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}

@@ -19,9 +19,6 @@ namespace OpenMMO.Areas
     public partial class AreaManager : MonoBehaviour
     {
 		
-		[Header("Options")]
-		public static bool active = true;
-		
         [Header("Debug Helper")]
 		public DebugHelper debug;
         
@@ -72,9 +69,7 @@ namespace OpenMMO.Areas
         {
         	get
         	{
-				if (ProjectConfigTemplate.singleton.GetNetworkType == NetworkType.HostAndPlay)
-					return active;
-				return false;
+				return ProjectConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay;
         	}
         }
         

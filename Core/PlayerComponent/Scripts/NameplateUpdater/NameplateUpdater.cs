@@ -7,6 +7,10 @@ using OpenMMO;
 public class NameplateUpdater : MonoBehaviour
 {
 #pragma warning disable CS0414
+
+	
+	public PlayerComponent playerComponent;
+
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
     [SerializeField] [Range(1, 60)] int tickFrequency = 30; //TICK RATE
@@ -15,6 +19,7 @@ public class NameplateUpdater : MonoBehaviour
     [SerializeField] TextMeshPro nameField = null;
     [SerializeField] TextMeshPro guildField = null;
     [SerializeField] TextMeshPro zoneField = null;
+    
 #pragma warning restore CS0414
 
 #if _CLIENT
@@ -30,16 +35,23 @@ public class NameplateUpdater : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 			
+			/*
 			GameObject player = transform.parent.gameObject;
             PlayerComponent pc = player.GetComponent<PlayerComponent>();
             if (!pc) pc = player.GetComponentInChildren<PlayerComponent>();
+			*/
 
-            if (player)
+            if (playerComponent)
             {
-                if (nameField != null && nameField.enabled) nameField.text = player.name; //UPDATE PLAYER NAME
-                if (guildField != null && guildField.enabled) guildField.text = "level " + pc.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
+                if (nameField != null && nameField.enabled)
+                	nameField.text = playerComponent.gameObject.name; //UPDATE PLAYER NAME
+                	
+                if (guildField != null && guildField.enabled)
+                	guildField.text = "level " + playerComponent.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
                 
-                if (zoneField != null && zoneField.enabled && pc.IsLocalPlayer) zoneField.text = pc.currentZone.title; //UPDATE PLAYER ZONE
+                if (zoneField != null && zoneField.enabled && playerComponent.IsLocalPlayer && playerComponent.currentZone)
+                	zoneField.text = playerComponent.currentZone.title; //UPDATE PLAYER ZONE
+                	
             }
         }
     }

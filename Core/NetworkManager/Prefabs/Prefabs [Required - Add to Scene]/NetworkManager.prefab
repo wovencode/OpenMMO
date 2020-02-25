@@ -157,7 +157,6 @@ MonoBehaviour:
   newPassword: 
   maxPlayers: 0
   state: 0
-  serverAuthority: {fileID: 11400000, guid: 4592bc402899b9844a45baa38249caa4, type: 2}
   guiScene:
     sceneAsset: {fileID: 102900000, guid: 4a25c1de28bc2489d9c68ea564410fc7, type: 3}
     sceneName: UI Scene
@@ -246,6 +245,8 @@ MonoBehaviour:
     type: 2}
   gameRulesTemplate: {fileID: 11400000, guid: 81b1bccee2cc74db09102b9c49833726, type: 2}
   badwordsTemplate: {fileID: 11400000, guid: 2dd504f4359e543bd9231874f5b3db7c, type: 2}
+  serverAuthorityTemplate: {fileID: 11400000, guid: 4592bc402899b9844a45baa38249caa4,
+    type: 2}
 --- !u!114 &3252435990677973888
 MonoBehaviour:
   m_ObjectHideFlags: 0

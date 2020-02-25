@@ -16,18 +16,9 @@ namespace OpenMMO.Network
     // ===================================================================================
     public partial class NetworkManager
     {
-        [Header("SERVER AUTHORITY PROFILE")]
-        [SerializeField] public ServerAuthority serverAuthority;
-
+    
         protected List<GameObject> _playerPrefabs = null;
 
-#if UNITY_EDITOR
-        private new void OnValidate()
-        {
-            if (!serverAuthority) serverAuthority = Resources.Load<ServerAuthority>("Server/DefaultServerAuthority");
-            base.OnValidate(); //TODO: Does this make it Validate twice? - TESTERS: place debug statements in the base method to find out...I expect it will not, but please verify
-        }
-#endif
         // -------------------------------------------------------------------------------
         // LoginPlayer_PlayerComponent
         // -------------------------------------------------------------------------------
@@ -76,10 +67,10 @@ namespace OpenMMO.Network
 
             if (!ValidPosition(player.transform))
             {
-                if (serverAuthority.smooth)
+                if (ServerAuthorityTemplate.singleton.smooth)
                 {
                     //SMOOTH POSITION
-                    Vector3 smoothedPosition = Vector3.Lerp(player.transform.position, transform.position, Time.deltaTime * serverAuthority.smoothing);
+                    Vector3 smoothedPosition = Vector3.Lerp(player.transform.position, transform.position, Time.deltaTime * ServerAuthorityTemplate.singleton.smoothing);
 
                     //WARP
                     player.GetComponent<PlayerComponent>().Warp(smoothedPosition);
@@ -97,7 +88,7 @@ namespace OpenMMO.Network
         //[Server]
         bool ValidPosition(Transform playerTransform)
         {
-            switch (serverAuthority.validation)
+            switch (ServerAuthorityTemplate.singleton.validation)
             {
                 case ValidationLevel.Complete:
                     {
@@ -107,14 +98,14 @@ namespace OpenMMO.Network
                     {
                         return (
                             //X
-                            ( playerTransform.position.x >= transform.position.x - serverAuthority.tolerence
-                                && playerTransform.position.x <= transform.position.x + serverAuthority.tolerence)
+                            ( playerTransform.position.x >= transform.position.x - ServerAuthorityTemplate.singleton.tolerence
+                                && playerTransform.position.x <= transform.position.x + ServerAuthorityTemplate.singleton.tolerence)
                             //Y
-                            && (playerTransform.position.y >= transform.position.y - serverAuthority.tolerence
-                                && transform.position.y <= playerTransform.position.y + serverAuthority.tolerence)
+                            && (playerTransform.position.y >= transform.position.y - ServerAuthorityTemplate.singleton.tolerence
+                                && transform.position.y <= playerTransform.position.y + ServerAuthorityTemplate.singleton.tolerence)
                             //Z
-                            && (transform.position.z >= playerTransform.position.z - serverAuthority.tolerence
-                                && transform.position.z <= playerTransform.position.z + serverAuthority.tolerence)
+                            && (transform.position.z >= playerTransform.position.z - ServerAuthorityTemplate.singleton.tolerence
+                                && transform.position.z <= playerTransform.position.z + ServerAuthorityTemplate.singleton.tolerence)
                            //NOTE: Rotation can be turned on here, but it barely matters for this purpose
                            // && (transform.rotation != playerTransform.rotation) //ROTATION - I don't think we care? Some games might, so just leave this here
                             );

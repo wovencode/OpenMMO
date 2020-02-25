@@ -69,7 +69,7 @@ namespace OpenMMO.Areas
         {
         	get
         	{
-				return ProjectConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay;
+				return false; //ProjectConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay;
         	}
         }
         
@@ -82,7 +82,7 @@ namespace OpenMMO.Areas
         public static void RegisterAreaAnchor(UnityScene subScene)
         {
        
-        	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName))
+        	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName) )
         		return;
         		
             subScenes.Add(subScene);
@@ -96,7 +96,7 @@ namespace OpenMMO.Areas
         public static void UnRegisterAreaAnchor(UnityScene subScene)
         {
         	
-        	if (!GetIsActive)
+        	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName) )
         		return;
         	
 			for (int i = 0; i < subScenes.Count; i++)
@@ -120,7 +120,7 @@ namespace OpenMMO.Areas
     	public static void LoadSceneAdditive(NetworkIdentity ni, string SceneName)
     	{
     	
-    		if (!GetIsActive)
+    		if (!GetIsActive || ni == null || String.IsNullOrWhiteSpace(SceneName))
         		return;
         	
         	 NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = SceneName, sceneOperation = SceneOperation.LoadAdditive });
@@ -134,7 +134,7 @@ namespace OpenMMO.Areas
     	public static void UnloadSceneAdditive(NetworkIdentity ni, string SceneName)
     	{
     	
-    		if (!GetIsActive)
+    		if (!GetIsActive || ni == null || String.IsNullOrWhiteSpace(SceneName))
         		return;
         	
         	NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = SceneName, sceneOperation = SceneOperation.UnloadAdditive });

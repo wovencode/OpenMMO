@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bad064de84834bafb9937c32e2cb90d, type: 3}
-  m_Name: BadwordsConfiguration [Example]
+  m_Script: {fileID: 11500000, guid: f0e44e89746aa446f9df5202e988a177, type: 3}
+  m_Name: ServerInfoLocal
   m_EditorClassIdentifier: 
-  badwords:
-  - foo
-  - bar
+  title: Localhost
+  folderName: ServerInfo
+  ip: localhost
+  visible: 1

@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffec39ba1c9ae40faa90fe864b177d43, type: 3}
-  m_Name: GameRules [Example]
+  m_Name: GameRules
   m_EditorClassIdentifier: 
   maxPlayersPerUser: 10
   maxUsersPerDevice: 10
   maxUsersPerEmail: 10
+  localWarpDelay: 5
+  remoteWarpDelay: 10

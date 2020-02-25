@@ -79,9 +79,12 @@ namespace OpenMMO.Network
             AwakePriority(); // must be first
 			
 			Invoke(nameof(AwakeLate), 0.25f);
-			
+						
 		}
 		
+		// -------------------------------------------------------------------------------
+		// AwakeLate
+		// -------------------------------------------------------------------------------
 		protected void AwakeLate()
 		{
 		

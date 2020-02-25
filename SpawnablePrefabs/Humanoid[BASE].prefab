@@ -477,17 +477,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 591176418054301437, guid: bce0f47624088b94ab971da9a918a744,
+        type: 3}
+      propertyPath: m_Name
+      value: Zone
       objectReference: {fileID: 0}
     - target: {fileID: 1525336138970681737, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1683758940587512094, guid: bce0f47624088b94ab971da9a918a744,
+        type: 3}
+      propertyPath: m_Name
+      value: Name
       objectReference: {fileID: 0}
     - target: {fileID: 3108958881530658323, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3580274217010626743, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Mesh
@@ -502,7 +512,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5762143174932880077, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Mesh
@@ -511,18 +521,28 @@ PrefabInstance:
     - target: {fileID: 6018388885363125830, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Name
-      value: NAMEPLATE
+      value: Nameplate
       objectReference: {fileID: 0}
+    - target: {fileID: 6293004362055142396, guid: bce0f47624088b94ab971da9a918a744,
+        type: 3}
+      propertyPath: playerComponent
+      value: 
+      objectReference: {fileID: 5053945538751103481}
     - target: {fileID: 6582908969997545330, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7017788160054381950, guid: bce0f47624088b94ab971da9a918a744,
+        type: 3}
+      propertyPath: m_Name
+      value: Guild
       objectReference: {fileID: 0}
     - target: {fileID: 7492141690578241723, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8490554799455582278, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_LocalPosition.x

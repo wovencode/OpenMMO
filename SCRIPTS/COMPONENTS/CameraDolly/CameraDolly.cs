@@ -122,7 +122,7 @@ public class CameraDolly : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 
-            if (player != null && !player.IsLocalPlayer) { DestroySpawnedCamera(); return; } //DISABLE IF NOT LOCAL PLAYER
+            //if (player != null && !player.IsLocalPlayer) { DestroySpawnedCamera(); return; } //DISABLE IF NOT LOCAL PLAYER
 
             if (cameraIsSpawned) return; //CAMERA ALREADY SPAWNED
 

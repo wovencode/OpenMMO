@@ -1,11 +1,13 @@
 using OpenMMO;
 using OpenMMO.Debugging;
 using OpenMMO.Areas;
+using OpenMMO.Network;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 namespace OpenMMO.Areas
 {
@@ -16,11 +18,14 @@ namespace OpenMMO.Areas
 	[DisallowMultipleComponent]
     public partial class AreaManager : MonoBehaviour
     {
-
+		
+		[Header("Options")]
+		public static bool active;
+		
         [Header("Debug Helper")]
 		public DebugHelper debug;
         
-        public static List<UnityScene> subScenes = new List<UnityScene>();
+        protected static List<UnityScene> subScenes = new List<UnityScene>();
         
         protected OpenMMO.Network.NetworkManager networkManager;
         
@@ -32,6 +37,9 @@ namespace OpenMMO.Areas
     		debug = new DebugHelper();
 			debug.Init();
 			
+			if (!GetIsActive)
+				return;
+				
 			networkManager = FindObjectOfType<OpenMMO.Network.NetworkManager>();
 			
 			networkManager.eventListeners.OnStartServer.AddListener(OnStartServer);
@@ -44,10 +52,30 @@ namespace OpenMMO.Areas
     	// -------------------------------------------------------------------------------
         void OnDestroy()
         {
+        	
+        	if (networkManager == null)
+        		return;
+        	
         	networkManager.eventListeners.OnStartServer.RemoveListener(OnStartServer);
 			networkManager.eventListeners.OnStopServer.RemoveListener(OnStopServer);
 			networkManager.eventListeners.OnStopClient.RemoveListener(OnStopClient);
         	networkManager = null;
+        }
+        
+        // ================================== PUBLIC =====================================
+        
+        // -------------------------------------------------------------------------------
+    	// GetIsActive
+    	// @Client / @Server
+    	// -------------------------------------------------------------------------------
+        public static bool GetIsActive
+        {
+        	get
+        	{
+				if (ProjectConfigTemplate.singleton.GetNetworkType == NetworkType.HostAndPlay)
+					return active;
+				return false;
+        	}
         }
         
    		// ================================ SCENE ANCHORS ================================
@@ -58,8 +86,8 @@ namespace OpenMMO.Areas
     	// -------------------------------------------------------------------------------
         public static void RegisterAreaAnchor(UnityScene subScene)
         {
-        
-        	if (subScene == null|| String.IsNullOrWhiteSpace(subScene.SceneName))
+       
+        	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName))
         		return;
         		
             subScenes.Add(subScene);
@@ -72,19 +100,52 @@ namespace OpenMMO.Areas
     	// -------------------------------------------------------------------------------
         public static void UnRegisterAreaAnchor(UnityScene subScene)
         {
-           for (int i = 0; i < subScenes.Count; i++)
-           {
-           		if (subScenes[i] == null|| String.IsNullOrWhiteSpace(subScenes[i].SceneName))
-           			continue;
-           		
-           		if (subScenes[i].SceneName == subScene.SceneName)
-           		{
-           			subScenes.RemoveAt(i);
-           			DebugManager.LogFormat(nameof(AreaManager), nameof(UnRegisterAreaAnchor), subScene.SceneName); //DEBUG
-           		}
-           	}
+        	
+        	if (!GetIsActive)
+        		return;
+        	
+			for (int i = 0; i < subScenes.Count; i++)
+			{
+				if (subScenes[i] == null|| String.IsNullOrWhiteSpace(subScenes[i].SceneName))
+					continue;
+	
+				if (subScenes[i].SceneName == subScene.SceneName)
+				{
+					subScenes.RemoveAt(i);
+					DebugManager.LogFormat(nameof(AreaManager), nameof(UnRegisterAreaAnchor), subScene.SceneName); //DEBUG
+				}
+			}
+			
         }
-    
+        
+    	// -------------------------------------------------------------------------------
+    	// LoadSceneAdditive
+    	// @Server
+    	// -------------------------------------------------------------------------------
+    	public static void LoadSceneAdditive(NetworkIdentity ni, string SceneName)
+    	{
+    	
+    		if (!GetIsActive)
+        		return;
+        	
+        	 NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = SceneName, sceneOperation = SceneOperation.LoadAdditive });
+        	
+    	}
+    	
+    	// -------------------------------------------------------------------------------
+    	// UnloadSceneAdditive
+    	//  @Server
+    	// -------------------------------------------------------------------------------
+    	public static void UnloadSceneAdditive(NetworkIdentity ni, string SceneName)
+    	{
+    	
+    		if (!GetIsActive)
+        		return;
+        	
+        	NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = SceneName, sceneOperation = SceneOperation.UnloadAdditive });
+        	
+    	}
+    	
         // ================================ PUBLIC EVENTS ================================
         
 		// -------------------------------------------------------------------------------

@@ -117,27 +117,27 @@ namespace OpenMMO.Areas
     	// LoadSceneAdditive
     	// @Server
     	// -------------------------------------------------------------------------------
-    	public static void LoadSceneAdditive(NetworkIdentity ni, string SceneName)
+    	public static void LoadScenesAdditive(NetworkIdentity ni, UnityScene scene)
     	{
     	
-    		if (!GetIsActive || ni == null || String.IsNullOrWhiteSpace(SceneName))
+    		if (!GetIsActive || ni == null)
         		return;
         	
-        	 NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = SceneName, sceneOperation = SceneOperation.LoadAdditive });
-        	
-    	}
+			NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.LoadAdditive });
+    
+      	}
     	
     	// -------------------------------------------------------------------------------
     	// UnloadSceneAdditive
     	//  @Server
     	// -------------------------------------------------------------------------------
-    	public static void UnloadSceneAdditive(NetworkIdentity ni, string SceneName)
+    	public static void UnloadScenesAdditive(NetworkIdentity ni, UnityScene scene)
     	{
     	
-    		if (!GetIsActive || ni == null || String.IsNullOrWhiteSpace(SceneName))
+    		if (!GetIsActive || ni == null)
         		return;
-        	
-        	NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = SceneName, sceneOperation = SceneOperation.UnloadAdditive });
+        		
+			NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.UnloadAdditive });
         	
     	}
     	

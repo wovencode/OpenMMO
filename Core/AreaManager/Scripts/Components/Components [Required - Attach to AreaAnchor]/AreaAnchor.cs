@@ -19,8 +19,11 @@ namespace OpenMMO.Areas
     {
     
     	[Header("Sub Scene")]
-        [Tooltip("Assign the sub-scene to load for this area")]
+        [Tooltip("Assign the sub-scene(s) to load or unload for this area")]
         public UnityScene subScene;
+        public bool loadOnEnter;
+        public bool unloadOnExit;
+        
         
         // -------------------------------------------------------------------------------
 		// Awake
@@ -45,12 +48,11 @@ namespace OpenMMO.Areas
         [Server]
         void OnTriggerEnter(Collider co)
         {
-            
-			DebugManager.LogFormat(this.name, nameof(OnTriggerEnter), subScene.SceneName); //DEBUG
+			if (!loadOnEnter) return;
 			
             NetworkIdentity ni = co.gameObject.GetComponentInParent<NetworkIdentity>();
            
-           AreaManager.LoadSceneAdditive(ni, subScene.SceneName);
+            AreaManager.LoadScenesAdditive(ni, subScene);
            
         }
         
@@ -61,12 +63,11 @@ namespace OpenMMO.Areas
         [Server]
         void OnTriggerExit(Collider co)
         {
-        
-            DebugManager.LogFormat(this.name, nameof(OnTriggerExit), subScene.SceneName); //DEBUG
-
+ 			if (!unloadOnExit) return;
+ 			
             NetworkIdentity ni = co.gameObject.GetComponentInParent<NetworkIdentity>();
            	
-           	AreaManager.UnloadSceneAdditive(ni, subScene.SceneName);
+           	AreaManager.UnloadScenesAdditive(ni, subScene);
            
         }
         

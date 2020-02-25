@@ -24,6 +24,15 @@ namespace OpenMMO.Portals
 		public static List<GameObject> startAnchors = new List<GameObject>();
 		
 		// -------------------------------------------------------------------------------
+        // Start
+        // -------------------------------------------------------------------------------
+		void Start()
+		{
+			portalAnchors.Clear();
+			startAnchors.Clear();
+		}
+		
+		// -------------------------------------------------------------------------------
         // OnDestroy
         // -------------------------------------------------------------------------------
 		void OnDestroy()
@@ -82,7 +91,7 @@ namespace OpenMMO.Portals
         {
            for (int i = 0; i < startAnchors.Count; i++)
            {
-           		if (startAnchors[i].name == anchor.name)
+           		if (startAnchors[i] == anchor) //if (startAnchors[i].name == anchor.name)
            		{
            			startAnchors.RemoveAt(i);
            			DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterStartAnchor), anchor.name); //DEBUG

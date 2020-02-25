@@ -1,10 +1,5 @@
 
-//using OpenMMO;
-//using OpenMMO.Database;
-//using UnityEngine;
 using System;
-//using System.IO;
-//using System.Collections.Generic;
 
 namespace OpenMMO.Database
 {
@@ -14,7 +9,6 @@ namespace OpenMMO.Database
 	// ===================================================================================
 	public partial class DatabaseManager
 	{
-		
 		
 		// -------------------------------------------------------------------------------
 		// GetUserOnline
@@ -28,18 +22,7 @@ namespace OpenMMO.Database
 				return false;
 			else
 			{
-			
-
                 DateTime dateTime = tableUser.lastonline.AddSeconds(logoutInterval);
-
-debug.Log("<b>GetUserOnline</b>");
-debug.Log("original:"+tableUser.lastonline);
-debug.Log("modified:"+dateTime);
-debug.Log(DateTime.UtcNow+" / "+dateTime);
-				
-				
-				
-				
 				return DateTime.Compare(DateTime.UtcNow, dateTime) <= 0;
             }
            

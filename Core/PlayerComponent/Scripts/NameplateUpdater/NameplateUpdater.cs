@@ -51,7 +51,10 @@ public class NameplateUpdater : MonoBehaviour
                 
                 if (zoneField != null && zoneField.enabled && playerComponent.IsLocalPlayer && playerComponent.currentZone)
                 	zoneField.text = playerComponent.currentZone.title; //UPDATE PLAYER ZONE
-                	
+                
+                Debug.Log(playerComponent.IsLocalPlayer);
+                Debug.Log(playerComponent.currentZone);
+                
             }
         }
     }

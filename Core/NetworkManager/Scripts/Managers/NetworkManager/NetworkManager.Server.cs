@@ -296,7 +296,7 @@ namespace OpenMMO.Network
 			// -- check for GetIsUserLoggedIn because that covers all players on the account
 			if (GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
-				LoginPlayer(conn, msg.username, msg.playername);
+				LoginPlayer(conn, msg.username, msg.playername, 0); //dont check for token
 				message.text = systemText.playerLoginSuccess;
 			}
 			else
@@ -489,7 +489,7 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
         /// <param name="username"></param>
         /// <param name="playername"></param>
-		protected void LoginPlayer(NetworkConnection conn, string username, string playername)
+		protected GameObject LoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
 
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
@@ -497,18 +497,30 @@ namespace OpenMMO.Network
 			GameObject prefab = GetPlayerPrefab(prefabname);
 			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
 			
-			// -- log the player in
-			DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
+			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
-			NetworkServer.AddPlayerForConnection(conn, player);
+			// -- check the security token if required
+			if (token == 0 || (token > 0 && pc.tablePlayerZones.ValidateToken(token)) )
+			{
 			
-			onlinePlayers[player.name] = player;
-			state = NetworkState.Game;
+				// -- log the player in
+				DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
 			
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
-			eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
+				NetworkServer.AddPlayerForConnection(conn, player);
 			
-			debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG
+				onlinePlayers[player.name] = player;
+				state = NetworkState.Game;
+			
+				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
+				eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
+			
+				debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG
+				
+				return player;
+				
+			}
+			
+			return null;
 			
 		}
 		

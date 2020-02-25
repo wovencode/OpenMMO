@@ -162,32 +162,21 @@ namespace OpenMMO.Network
 		protected void AutoLoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
 			
-			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
-			GameObject prefab = GetPlayerPrefab(prefabname);
+			GameObject player = LoginPlayer(conn, username, playername, token);
 			
-			// -- load player from database
-			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
-						
-			PlayerComponent pc = player.GetComponent<PlayerComponent>();
-			
-			// -- re-validate the security token
-			if (pc.tablePlayerZones.ValidateToken(token))
+			if (player)
 			{
-			
-				// -- log the player in (again)
-				DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
-			
+				
+				PlayerComponent pc = player.GetComponent<PlayerComponent>();
+				
 				// -- log the user in (again)
 				LoginUser(conn, username);
-			
+				
 				// -- update zone
 				pc.tablePlayerZones.zonename = pc.currentZone.name;
 				
-				NetworkServer.AddPlayerForConnection(conn, player);
-				
 				// -- warp to anchor location (if any)
 				string anchorName = pc.tablePlayerZones.anchorname;
-debug.Log("anchorName:"+anchorName+"/"+pc.tablePlayerZones.startpos);
 
 				if (pc.tablePlayerZones.startpos) 							// -- warp to start position
 					player.transform.position = AnchorManager.GetArchetypeStartPosition(player).position;	
@@ -200,20 +189,12 @@ debug.Log("anchorName:"+anchorName+"/"+pc.tablePlayerZones.startpos);
 				pc.tablePlayerZones.anchorname = "";
 				pc.tablePlayerZones.startpos = false;
 				
-				onlinePlayers[player.name] = player;
-				state = NetworkState.Game;
-				
-				// -- Hooks & Events
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
-				eventListeners.OnLoginPlayer.Invoke(conn);
-				
 			}
 			else
 				ServerSendError(conn, systemText.unknownError, true);
 		
 		}
 		
-                
 		// -------------------------------------------------------------------------------
 	
 	}

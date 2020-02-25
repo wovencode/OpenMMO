@@ -48,8 +48,10 @@ namespace OpenMMO.Areas
             
 			DebugManager.LogFormat(this.name, nameof(OnTriggerEnter), subScene.SceneName); //DEBUG
 			
-            NetworkIdentity networkIdentity = co.gameObject.GetComponentInParent<NetworkIdentity>();
-            NetworkServer.SendToClientOfPlayer(networkIdentity, new SceneMessage { sceneName = subScene.SceneName, sceneOperation = SceneOperation.LoadAdditive });
+            NetworkIdentity ni = co.gameObject.GetComponentInParent<NetworkIdentity>();
+           
+           AreaManager.LoadSceneAdditive(ni, subScene.SceneName);
+           
         }
         
 		// -------------------------------------------------------------------------------
@@ -62,8 +64,10 @@ namespace OpenMMO.Areas
         
             DebugManager.LogFormat(this.name, nameof(OnTriggerExit), subScene.SceneName); //DEBUG
 
-            NetworkIdentity networkIdentity = co.gameObject.GetComponentInParent<NetworkIdentity>();
-            NetworkServer.SendToClientOfPlayer(networkIdentity, new SceneMessage { sceneName = subScene.SceneName, sceneOperation = SceneOperation.UnloadAdditive });
+            NetworkIdentity ni = co.gameObject.GetComponentInParent<NetworkIdentity>();
+           	
+           	AreaManager.UnloadSceneAdditive(ni, subScene.SceneName);
+           
         }
         
         // -------------------------------------------------------------------------------

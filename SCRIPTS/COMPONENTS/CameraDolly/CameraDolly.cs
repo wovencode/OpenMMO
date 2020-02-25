@@ -122,9 +122,9 @@ public class CameraDolly : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 
-            if (player != null && !player.IsLocalPlayer) { DestroySpawnedCamera(); return; } //DISABLE IF NOT LOCAL PLAYER
+            //if (player != null && !player.IsLocalPlayer) { DestroySpawnedCamera(); return; } //DISABLE IF NOT LOCAL PLAYER
 
-            if (cameraIsSpawned) return; //CAMERA ALREADY SPAWNED
+            //if (cameraIsSpawned) return; //CAMERA ALREADY SPAWNED
 
             Enable();
 
@@ -212,7 +212,7 @@ public class CameraDolly : MonoBehaviour
         if (attachCameraToMe) { CameraDolly.spawnedCamera = Instantiate<GameObject>(cameraPrefab, transform); } //INSTANTIATE (PARENTED)
         else { CameraDolly.spawnedCamera = Instantiate<GameObject>(cameraPrefab); } //INSTANTIATE (UNPARENTED)
 
-        cameraIsSpawned = CameraDolly.spawnedCamera != null;
+        cameraIsSpawned = (CameraDolly.spawnedCamera != null);
     }
 
     //ATTACH EXISTING CAMERA

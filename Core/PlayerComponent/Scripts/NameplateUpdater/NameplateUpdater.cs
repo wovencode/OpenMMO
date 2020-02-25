@@ -19,6 +19,7 @@ public class NameplateUpdater : MonoBehaviour
 
 #if _CLIENT
     int frameCount = 0; //FRAME COUNTER
+    
     void FixedUpdate()
     {
         //if (!PlayerComponent.localPlayer) return; //NOT LOGGED IN
@@ -37,7 +38,8 @@ public class NameplateUpdater : MonoBehaviour
             {
                 if (nameField != null && nameField.enabled) nameField.text = player.name; //UPDATE PLAYER NAME
                 if (guildField != null && guildField.enabled) guildField.text = "level " + pc.level; //UPDATE PLAYER GUILD (TODO: temporarily just level for proof of concept)
-                if (zoneField != null && zoneField.enabled) zoneField.text = pc.currentZone.title; //UPDATE PLAYER ZONE
+                
+                if (zoneField != null && zoneField.enabled && pc.IsLocalPlayer) zoneField.text = pc.currentZone.title; //UPDATE PLAYER ZONE
             }
         }
     }

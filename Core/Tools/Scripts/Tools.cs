@@ -352,8 +352,23 @@ namespace OpenMMO
         		return false;
         	}
     	}
-				
+    	
+		// ========================= CAMERA & 3d STUFF ===================================
+		
 		// -------------------------------------------------------------------------------
+		// ClampAngleBetweenMinAndMax
+		// -------------------------------------------------------------------------------
+		public static float ClampAngleBetweenMinAndMax(float angle, float min, float max)
+		{
+			if (angle < -360)
+				angle += 360;
+			if (angle > 360)
+				angle -= 360;
+			return Mathf.Clamp(angle, min, max);
+		}
+		
+		// -------------------------------------------------------------------------------
+		
 	}
 
 }

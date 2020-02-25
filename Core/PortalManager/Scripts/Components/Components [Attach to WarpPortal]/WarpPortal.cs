@@ -23,7 +23,7 @@ namespace OpenMMO.Portals
 	
 		[Header("Teleportation")]
 		[Tooltip("Anchor in the same scene to teleport to")]
-		public PortalAnchor targetAnchor;
+		public string targetAnchor;
 		
 		// -------------------------------------------------------------------------------
 		// OnTriggerEnter
@@ -46,7 +46,7 @@ namespace OpenMMO.Portals
 			if (!triggerOnEnter)
 			{
 				if (pc.CheckCooldown)
-					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetAnchor.name), OnClickConfirm);
+					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetAnchor), OnClickConfirm);
 				else
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
 			}
@@ -70,7 +70,7 @@ namespace OpenMMO.Portals
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
 			if (player != null && targetAnchor != null && pc.CheckCooldown)
-				pc.Cmd_WarpLocal(targetAnchor.name);
+				pc.Cmd_WarpLocal(targetAnchor);
 			
 			base.OnClickConfirm();
 			

@@ -90,8 +90,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			// -- check for GetIsUserLoggedIn because that covers all players on the account
-			if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
+			if (DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
 				LoginUser(conn, msg.username);
 				
@@ -371,7 +370,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
         	
-        	if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
+        	if (DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
 			{
 				message.text = systemText.playerDeleteSuccess;
 				

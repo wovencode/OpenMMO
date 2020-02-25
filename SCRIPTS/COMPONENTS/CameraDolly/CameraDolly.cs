@@ -191,7 +191,7 @@ public class CameraDolly : MonoBehaviour
     //DESTROY SPAWNED CAMERA
     void DestroySpawnedCamera()
     {
-        if (CameraDolly.spawnedCamera)
+        if (CameraDolly.spawnedCamera && player.IsLocalPlayer)
         {
             GameObject.Destroy(CameraDolly.spawnedCamera); //DESTROY SPAWNED CAMERA
         }

@@ -43,7 +43,9 @@ namespace OpenMMO.Database
 			
 			Component[] components = player.GetComponents<UpgradableComponent>();
 			
-	   		foreach (TablePlayerLevel row in Query<TablePlayerLevel>("SELECT * FROM "+nameof(TablePlayerLevel)+" WHERE owner=?", player.name))
+			List<TablePlayerLevel> levels = Query<TablePlayerLevel>("SELECT * FROM "+nameof(TablePlayerLevel)+" WHERE owner=?", player.name);
+			
+	   		foreach (TablePlayerLevel row in levels)
 			{
 				foreach (Component component in components)
 	   			{

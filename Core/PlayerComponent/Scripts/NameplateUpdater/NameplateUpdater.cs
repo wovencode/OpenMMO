@@ -35,12 +35,6 @@ public class NameplateUpdater : MonoBehaviour
         {
             frameCount = 0; //RESET THE COUNTER
 			
-			/*
-			GameObject player = transform.parent.gameObject;
-            PlayerComponent pc = player.GetComponent<PlayerComponent>();
-            if (!pc) pc = player.GetComponentInChildren<PlayerComponent>();
-			*/
-
             if (playerComponent)
             {
                 if (nameField != null && nameField.enabled)
@@ -51,10 +45,7 @@ public class NameplateUpdater : MonoBehaviour
                 
                 if (zoneField != null && zoneField.enabled && playerComponent.IsLocalPlayer && playerComponent.currentZone)
                 	zoneField.text = playerComponent.currentZone.title; //UPDATE PLAYER ZONE
-                
-                Debug.Log(playerComponent.IsLocalPlayer);
-                Debug.Log(playerComponent.currentZone);
-                
+                                
             }
         }
     }

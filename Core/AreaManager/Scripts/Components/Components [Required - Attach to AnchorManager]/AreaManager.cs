@@ -20,7 +20,7 @@ namespace OpenMMO.Areas
     {
 		
 		[Header("Options")]
-		public static bool active;
+		public static bool active = true;
 		
         [Header("Debug Helper")]
 		public DebugHelper debug;

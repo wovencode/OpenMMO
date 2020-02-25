@@ -23,7 +23,7 @@ namespace OpenMMO.Portals
 	
 		[Header("Teleportation")]
 		[Tooltip("Anchor in the same scene to teleport to")]
-		public PortalAnchor[] targetAnchors;
+		public string[] targetAnchors;
 		
 		// -------------------------------------------------------------------------------
 		// OnTriggerEnter
@@ -70,7 +70,7 @@ namespace OpenMMO.Portals
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 			
 			int index = UnityEngine.Random.Range(0, targetAnchors.Length);
-			string targetAnchor = targetAnchors[index].name;
+			string targetAnchor = targetAnchors[index];
 
 			if (player != null && !String.IsNullOrWhiteSpace(targetAnchor) && pc.CheckCooldown)
 				pc.Cmd_WarpLocal(targetAnchor);

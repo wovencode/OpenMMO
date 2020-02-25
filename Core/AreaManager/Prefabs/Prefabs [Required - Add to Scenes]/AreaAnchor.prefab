@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5851247720566011933}
   - component: {fileID: 3917935858873504122}
   - component: {fileID: 3232913263468093570}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AreaAnchor
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

@@ -26,15 +26,24 @@ namespace OpenMMO.Portals
 		// -------------------------------------------------------------------------------
         public void Awake()
         {
-            AnchorManager.RegisterPortalAnchor(name, transform.position);
+            Invoke(nameof(AwakeLate), 0.1f);
         }
+        
+		// -------------------------------------------------------------------------------
+		// AwakeLate
+		// -------------------------------------------------------------------------------
+		void AwakeLate()
+		{
+			AnchorManager.singleton.RegisterPortalAnchor(name, transform.position);
+		}
 		
 		// -------------------------------------------------------------------------------
 		// OnDestroy
 		// -------------------------------------------------------------------------------
         public void OnDestroy()
         {
-            AnchorManager.UnRegisterPortalAnchor(name);
+        	if (AnchorManager.singleton)
+            	AnchorManager.singleton.UnRegisterPortalAnchor(name);
         }
     
     	// -------------------------------------------------------------------------------

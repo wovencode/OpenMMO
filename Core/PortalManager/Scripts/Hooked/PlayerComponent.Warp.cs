@@ -129,6 +129,9 @@ namespace OpenMMO {
     		if (AnchorManager.singleton.CheckPortalAnchor(anchorName))
         		base.Warp(AnchorManager.singleton.GetPortalAnchorPosition(anchorName));
         	
+        	if (AnchorManager.singleton.CheckStartAnchor(anchorName))
+        		base.Warp(AnchorManager.singleton.GetStartAnchorPosition(anchorName));
+        	
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -158,9 +158,28 @@ namespace OpenMMO.Portals
         }
 
         // -------------------------------------------------------------------------------
-    	// UnRegisterPortalAnchor
-    	// @Client / @Server
-    	// -------------------------------------------------------------------------------
+        // UnRegisterPortalAnchor
+        // @Client / @Server
+        // -------------------------------------------------------------------------------
+        public void UnRegisterPortalAnchor(string _name)
+        {
+            List<int> indicesToRemove = new List<int>();
+
+            for (int i = 0; i < portalAnchors.Count; i++)
+            {
+                if (portalAnchors[i].name == _name)
+                {
+                    indicesToRemove.Add(i);
+                    DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterPortalAnchor), _name); //DEBUG
+                }
+            }
+
+            foreach (int indice in indicesToRemove)
+            {
+                portalAnchors.RemoveAt(indice);
+            }
+        }
+        /* //DEPRECIATED
         public void UnRegisterPortalAnchor(string _name)
         {
            
@@ -173,7 +192,7 @@ namespace OpenMMO.Portals
             	}
             }
             
-        }
+        }*/
 
     	// -------------------------------------------------------------------------------
     	

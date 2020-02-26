@@ -1426,10 +1426,21 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: ab03650d9a3964219ade5299193a500b
       objectReference: {fileID: 0}
+    - target: {fileID: 6629307785899757726, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: subScene.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: b4c1160ed902446f7a5581504f3650ab,
+        type: 3}
+    - target: {fileID: 6629307785899757726, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: subScene.sceneName
+      value: Elf Sub Scene 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015968, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: m_Name
-      value: AreaAnchor
+      value: AreaPortal
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015968, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -1474,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -1490,6 +1501,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8532601404586520098, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -2492,7 +2518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1648715625
 PrefabInstance:

@@ -104,7 +104,7 @@ namespace OpenMMO
             {
                 buildLog.AppendLine("<color=green><b>" + targetPlatform + " " + buildType + " build succeeded..." + "</b></color>"
                     + "\nBuild size: " + summary.totalSize + " bytes"
-                    + "\nBuild duration: " + (summary.buildEndedAt - summary.buildStartedAt) + "s" );
+                    + "\nBuild duration: " + System.Math.Round((summary.buildEndedAt - summary.buildStartedAt).TotalSeconds) + "s" );
             }
             //FAILURE
             if (summary.result == BuildResult.Failed)

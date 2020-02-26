@@ -21,16 +21,13 @@ namespace OpenMMO.Areas
     	[Header("Sub Scene")]
         [Tooltip("Assign the sub-scene(s) to load or unload for this area")]
         public UnityScene subScene;
-        public bool loadOnEnter;
-        public bool unloadOnExit;
-        
-        
+       
         // -------------------------------------------------------------------------------
 		// Awake
 		// -------------------------------------------------------------------------------
         public void Awake()
         {
-            AreaManager.RegisterAreaAnchor(subScene);
+            AreaManager.singleton.RegisterAreaAnchor(subScene);
         }
 		
 		// -------------------------------------------------------------------------------
@@ -38,7 +35,8 @@ namespace OpenMMO.Areas
 		// -------------------------------------------------------------------------------
         public void OnDestroy()
         {
-            AreaManager.UnRegisterAreaAnchor(subScene);
+        	if (AreaManager.singleton)
+            	AreaManager.singleton.UnRegisterAreaAnchor(subScene);
         }
 
 		// -------------------------------------------------------------------------------
@@ -48,12 +46,8 @@ namespace OpenMMO.Areas
         [Server]
         void OnTriggerEnter(Collider co)
         {
-			if (!loadOnEnter) return;
-			
             NetworkIdentity ni = co.gameObject.GetComponentInParent<NetworkIdentity>();
-           
-            AreaManager.LoadScenesAdditive(ni, subScene);
-           
+            AreaManager.singleton.LoadScenesAdditive(ni, subScene);
         }
         
 		// -------------------------------------------------------------------------------
@@ -63,12 +57,8 @@ namespace OpenMMO.Areas
         [Server]
         void OnTriggerExit(Collider co)
         {
- 			if (!unloadOnExit) return;
- 			
             NetworkIdentity ni = co.gameObject.GetComponentInParent<NetworkIdentity>();
-           	
-           	AreaManager.UnloadScenesAdditive(ni, subScene);
-           
+           	AreaManager.singleton.UnloadScenesAdditive(ni, subScene);
         }
         
         // -------------------------------------------------------------------------------

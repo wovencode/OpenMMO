@@ -798,7 +798,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &491758842
 PrefabInstance:
@@ -1138,7 +1138,7 @@ PrefabInstance:
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
@@ -1509,76 +1509,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScenes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScene.sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: d3d7d44598ee4402780595bcb309759f,
-        type: 3}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScene.sceneName
-      value: Login Sub Scene 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: loadSubScene.sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: d3d7d44598ee4402780595bcb309759f,
-        type: 3}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: loadSubScene.sceneName
-      value: Login Sub Scene 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: unloadSubScene.sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: 43d3c1cb697c642e3b330597ba95ff41,
-        type: 3}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: unloadSubScene.sceneName
-      value: Login Scene
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScenes.Array.data[0].sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: d3d7d44598ee4402780595bcb309759f,
-        type: 3}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScenes.Array.data[0].sceneName
-      value: Login Sub Scene 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScenes.Array.data[1].sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: d3d7d44598ee4402780595bcb309759f,
-        type: 3}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: subScenes.Array.data[1].sceneName
-      value: Login Sub Scene 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: unloadOnExit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3232913263468093570, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: loadOnEnter
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3917935858873504122, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: sceneId
@@ -1589,15 +1519,21 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: ab03650d9a3964219ade5299193a500b
       objectReference: {fileID: 0}
-    - target: {fileID: 8474342443939015968, guid: ab03650d9a3964219ade5299193a500b,
+    - target: {fileID: 6629307785899757726, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
-      propertyPath: m_Name
-      value: AreaAnchor
+      propertyPath: subScene.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: d3d7d44598ee4402780595bcb309759f,
+        type: 3}
+    - target: {fileID: 6629307785899757726, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: subScene.sceneName
+      value: Login Sub Scene 1
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015968, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Name
+      value: AreaPortal
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -1637,7 +1573,7 @@ PrefabInstance:
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -1653,36 +1589,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 74
-      objectReference: {fileID: 0}
-    - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 74
-      objectReference: {fileID: 0}
-    - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 74
-      objectReference: {fileID: 0}
-    - target: {fileID: 8532601404586520098, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8532601404586520098, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8532601404586520098, guid: ab03650d9a3964219ade5299193a500b,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab03650d9a3964219ade5299193a500b, type: 3}
@@ -2108,7 +2014,7 @@ PrefabInstance:
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
@@ -2579,7 +2485,7 @@ PrefabInstance:
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
@@ -4437,7 +4343,7 @@ PrefabInstance:
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}

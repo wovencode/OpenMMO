@@ -57,7 +57,7 @@ namespace OpenMMO {
 		[Command]
 		public void Cmd_WarpLocal(string anchorName)
 		{
-			if (AnchorManager.CheckPortalAnchor(anchorName))
+			if (AnchorManager.singleton.CheckPortalAnchor(anchorName))
 				WarpLocal(anchorName);
 		}
 		
@@ -126,8 +126,8 @@ namespace OpenMMO {
 			
 			UpdateCooldown(GameRulesTemplate.singleton.localWarpDelay);
 			
-    		if (AnchorManager.CheckPortalAnchor(anchorName))
-        		base.Warp(AnchorManager.GetPortalAnchorPosition(anchorName));
+    		if (AnchorManager.singleton.CheckPortalAnchor(anchorName))
+        		base.Warp(AnchorManager.singleton.GetPortalAnchorPosition(anchorName));
         	
 		}
 		

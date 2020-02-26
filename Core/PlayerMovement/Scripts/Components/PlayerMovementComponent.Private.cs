@@ -95,7 +95,7 @@ namespace OpenMMO {
            	else
            	{
            		// -- required?
-         	  	agent.ResetPath();
+         	  	if (agent.isOnNavMesh) agent.ResetPath();
 				agent.velocity = Vector3.zero;
 			}
 			

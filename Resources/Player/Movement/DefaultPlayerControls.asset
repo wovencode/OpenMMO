@@ -15,7 +15,6 @@ MonoBehaviour:
   faceCameraDirection: 0
   turnWhileStrafing: 0
   runKey: 304
-  strafeKey: 0
   moveAxisHorizontal: 0
   moveAxisVertical: 1
   strafeLeftKey: 113
@@ -24,5 +23,5 @@ MonoBehaviour:
   turnSpeedMultiplier: 0.7
   walkSpeedScale: 1.5
   runSpeedScale: 2.5
-  strafeSpeedScale: 0.45
+  strafeSpeedScale: 0.35
   backpedalSpeedScale: 0.5

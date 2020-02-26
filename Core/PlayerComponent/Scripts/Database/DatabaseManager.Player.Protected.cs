@@ -46,6 +46,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// PlayerValid
+		// Checks if a player exists using playername and username combination
 		// -------------------------------------------------------------------------------
 		public bool PlayerValid(string playername, string username)
 		{
@@ -54,6 +55,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// PlayerExists
+		// Checks if a player exists, using only the playername
 		// -------------------------------------------------------------------------------
 		public bool PlayerExists(string playername)
 		{

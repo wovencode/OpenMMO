@@ -45,6 +45,8 @@ namespace OpenMMO.Database
 			
 			List<TablePlayerLevel> levels = Query<TablePlayerLevel>("SELECT * FROM "+nameof(TablePlayerLevel)+" WHERE owner=?", player.name);
 			
+			if (levels == null || levels.Count < 1) return;
+			
 	   		foreach (TablePlayerLevel row in levels)
 			{
 				foreach (Component component in components)

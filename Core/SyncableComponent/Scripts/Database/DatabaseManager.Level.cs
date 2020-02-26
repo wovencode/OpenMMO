@@ -41,7 +41,7 @@ namespace OpenMMO.Database
 		void LoadDataPlayerPriority_Level(GameObject player)
 		{
 			
-			Component[] components = player.GetComponents<UpgradableComponent>();
+			Component[] components = player.GetComponents<LevelableComponent>();
 			
 			List<TablePlayerLevel> levels = Query<TablePlayerLevel>("SELECT * FROM "+nameof(TablePlayerLevel)+" WHERE owner=?", player.name);
 			
@@ -51,10 +51,10 @@ namespace OpenMMO.Database
 			{
 				foreach (Component component in components)
 	   			{
-	   				if (component is UpgradableComponent)
+	   				if (component is LevelableComponent)
 	   				{
 	   				
-	   					UpgradableComponent manager = (UpgradableComponent)component;
+	   					LevelableComponent manager = (LevelableComponent)component;
 	   				
 	   					if (manager.GetType().ToString() == row.name)
 	   						manager.level = row.level;
@@ -74,19 +74,19 @@ namespace OpenMMO.Database
 			// you should delete all data of this player first, to prevent duplicates
 	   		DeleteDataPlayer_Level(player.name);
 	   		
-	   		Component[] components = player.GetComponents<UpgradableComponent>();
+	   		Component[] components = player.GetComponents<LevelableComponent>();
 	   		
 	   		foreach (Component component in components)
 	   		{
-	   			if (component is UpgradableComponent)
+	   			if (component is LevelableComponent)
 	   			{
 	   			
-	   				UpgradableComponent manager = (UpgradableComponent)component;
+	   				LevelableComponent lc = (LevelableComponent)component;
 	   			
 	   				InsertOrReplace(new TablePlayerLevel{
                 		owner 			= player.name,
-                		name 			= manager.GetType().ToString(),
-                		level 			= manager.level
+                		name 			= lc.GetType().ToString(),
+                		level 			= lc.level
             		});
             	
             	}

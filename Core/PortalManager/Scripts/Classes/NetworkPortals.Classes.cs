@@ -38,6 +38,16 @@ namespace OpenMMO.Portals
 	}
 	
 	// -----------------------------------------------------------------------------------
+	// StartAnchorEntry
+	// -----------------------------------------------------------------------------------
+	public partial class StartAnchorEntry
+	{
+		public string name;
+		public Vector3 position;
+		public ArchetypeTemplate[] archeTypes;
+	}
+	
+	// -----------------------------------------------------------------------------------
 	
 }
 

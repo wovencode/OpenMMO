@@ -70,7 +70,6 @@ namespace OpenMMO.Chat
         void Awake()
         {
             singleton = this;
-            DontDestroyOnLoad(gameObject);
         }
 		
 		// ================================ PUBLIC =======================================

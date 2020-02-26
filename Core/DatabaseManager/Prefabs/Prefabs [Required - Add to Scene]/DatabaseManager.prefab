@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug:
-    debugMode: 1
+    debugMode: 0
   databaseLayer: {fileID: 7890701179065248850}
   saveInterval: 60
   deleteInterval: 60
+  logoutInterval: 90
 --- !u!114 &7890701179065248849
 MonoBehaviour:
   m_ObjectHideFlags: 0

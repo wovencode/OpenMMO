@@ -38,7 +38,13 @@ namespace OpenMMO.Network
 		{
 			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(password));
 		}
-
+		
+		// -------------------------------------------------------------------------------
+		protected virtual bool RequestUserLogout(NetworkConnection conn)
+		{
+			return (conn != null);
+		}
+		
         // -------------------------------------------------------------------------------
         /// <summary>
         /// Public virtual user method <c>RequestUserRegister</c> requests whether the user can regsiter and returns a boolean value.

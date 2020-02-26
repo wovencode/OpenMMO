@@ -68,7 +68,7 @@ namespace OpenMMO.Database
 		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_Player(GameObject player, bool isNew)
 		{
-			// you should delete all data of this player first, to prevent duplicates
+			// -- delete all data of this player first, to prevent duplicates
 	   		DeleteDataPlayer_Player(player.name);
 	   		
 	   		// -- times are updated in the tablePlayer.Update function
@@ -79,6 +79,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 	   	// LoginPlayer_Player
+	   	// update last login time when a player logs in to prevent multi-login
 	   	// -------------------------------------------------------------------------------
 	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_Player(NetworkConnection conn, GameObject player, string playerName, string userName)
@@ -92,7 +93,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_Player(GameObject player)
 	   	{
-	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
+	   		// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login
 			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
 	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", dateTime, player.name);
 	   	}

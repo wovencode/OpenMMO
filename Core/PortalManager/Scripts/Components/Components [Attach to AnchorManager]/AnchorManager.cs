@@ -38,9 +38,9 @@ namespace OpenMMO.Portals
         // ============================ START ANCHORS ====================================
         
         // -------------------------------------------------------------------------------
-        // GetArchetypeStartPosition
+        // GetArchetypeStartPositionAnchorName
         // -------------------------------------------------------------------------------
-        public Vector3 GetArchetypeStartPosition(GameObject player)
+        public string GetArchetypeStartPositionAnchorName(GameObject player)
         {
 
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
@@ -50,21 +50,64 @@ namespace OpenMMO.Portals
             foreach (StartAnchorEntry anchor in startAnchors)
             {
 				
-				DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name+": "+anchor.position); //DEBUG
+				DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPositionAnchorName), anchor.name+": "+anchor.position); //DEBUG
 				
                 foreach (ArchetypeTemplate template in anchor.archeTypes)
                 {
                     if (template == pc.archeType)
                     {
-						DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name); //DEBUG
-                        return anchor.position;
+						DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPositionAnchorName), anchor.name); //DEBUG
+                        return anchor.name;
 					}
 				}
             }
 			
-			DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), "NOT FOUND"); //DEBUG
-            return player.transform.position;
+			DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPositionAnchorName), "NOT FOUND"); //DEBUG
+            return "";
 
+        }
+        
+        // -------------------------------------------------------------------------------
+    	// CheckStartAnchor
+    	// @Client / @Server
+    	// -------------------------------------------------------------------------------
+        public bool CheckStartAnchor(string _name)
+        {
+        
+        	if (String.IsNullOrWhiteSpace(_name))
+        		return false;
+        	
+        	foreach (StartAnchorEntry anchor in startAnchors)
+        	{
+        		if (anchor.name == _name)
+        		{
+        			DebugManager.LogFormat(nameof(AnchorManager), nameof(CheckStartAnchor), anchor.name); //DEBUG
+        			return true;
+				}
+			}
+			
+			DebugManager.LogFormat(nameof(AnchorManager), nameof(CheckStartAnchor), _name, "NOT FOUND"); //DEBUG
+			return false;
+        }
+        
+        // -------------------------------------------------------------------------------
+    	// GetStartAnchorPosition
+    	// @Client / @Server
+    	// -------------------------------------------------------------------------------
+        public Vector3 GetStartAnchorPosition(string _name)
+        {
+        
+        	foreach (StartAnchorEntry anchor in startAnchors)
+        	{
+        		if (anchor.name == _name)
+				{
+					DebugManager.LogFormat(nameof(AnchorManager), nameof(GetStartAnchorPosition), anchor.name); //DEBUG
+					return anchor.position;
+				}
+			}
+			
+			DebugManager.LogFormat(nameof(AnchorManager), nameof(GetStartAnchorPosition), _name, "NOT FOUND"); //DEBUG
+			return Vector3.zero;
         }
         
         // -------------------------------------------------------------------------------

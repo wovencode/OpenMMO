@@ -20,33 +20,27 @@ namespace OpenMMO.Portals
 	public partial class AnchorManager : MonoBehaviour
 	{
 	
-		public static List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
-		public static List<GameObject> startAnchors = new List<GameObject>();
+		public List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
+		public List<GameObject> startAnchors = new List<GameObject>();
+		
+		public static AnchorManager singleton;
 		
 		// -------------------------------------------------------------------------------
-        // Start
+        // Awake
         // -------------------------------------------------------------------------------
-		void Start()
+		void Awake()
 		{
 			portalAnchors.Clear();
 			startAnchors.Clear();
+			singleton = this;
 		}
 		
-		// -------------------------------------------------------------------------------
-        // OnDestroy
-        // -------------------------------------------------------------------------------
-		void OnDestroy()
-		{
-			portalAnchors.Clear();
-			startAnchors.Clear();
-		}
-		
-        // ============================ START ANCHORS ===================================
+        // ============================ START ANCHORS ====================================
         
         // -------------------------------------------------------------------------------
         // GetArchetypeStartPosition
         // -------------------------------------------------------------------------------
-        public static Transform GetArchetypeStartPosition(GameObject player)
+        public Transform GetArchetypeStartPosition(GameObject player)
         {
 
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
@@ -55,7 +49,9 @@ namespace OpenMMO.Portals
 			
             foreach (GameObject anchor in startAnchors)
             {
-
+				
+				DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name+": "+anchor.transform.position); //DEBUG
+				
                 StartAnchor sc = anchor.GetComponent<StartAnchor>();
 
                 foreach (ArchetypeTemplate template in sc.archeTypes)
@@ -77,7 +73,7 @@ namespace OpenMMO.Portals
     	// RegisterStartAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static void RegisterStartAnchor(GameObject anchor)
+        public void RegisterStartAnchor(GameObject anchor)
         {
             startAnchors.Add(anchor);
             DebugManager.LogFormat(nameof(AnchorManager), nameof(RegisterStartAnchor), anchor.name); //DEBUG
@@ -87,7 +83,7 @@ namespace OpenMMO.Portals
     	// UnRegisterStartAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static void UnRegisterStartAnchor(GameObject anchor)
+        public void UnRegisterStartAnchor(GameObject anchor)
         {
            for (int i = 0; i < startAnchors.Count; i++)
            {
@@ -105,7 +101,7 @@ namespace OpenMMO.Portals
     	// CheckPortalAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static bool CheckPortalAnchor(string _name)
+        public bool CheckPortalAnchor(string _name)
         {
         
         	if (String.IsNullOrWhiteSpace(_name))
@@ -128,7 +124,7 @@ namespace OpenMMO.Portals
     	// GetPortalAnchorPosition
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static Vector3 GetPortalAnchorPosition(string _name)
+        public Vector3 GetPortalAnchorPosition(string _name)
         {
         
         	foreach (PortalAnchorEntry anchor in portalAnchors)
@@ -148,7 +144,7 @@ namespace OpenMMO.Portals
     	// RegisterPortalAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static void RegisterPortalAnchor(string _name, Vector3 _position)
+        public void RegisterPortalAnchor(string _name, Vector3 _position)
         {
             portalAnchors.Add(
             				new PortalAnchorEntry
@@ -165,7 +161,7 @@ namespace OpenMMO.Portals
     	// UnRegisterPortalAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static void UnRegisterPortalAnchor(string _name)
+        public void UnRegisterPortalAnchor(string _name)
         {
            
            for (int i = 0; i < portalAnchors.Count; i++)

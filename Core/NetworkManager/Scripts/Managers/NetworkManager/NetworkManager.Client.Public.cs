@@ -207,7 +207,17 @@ namespace OpenMMO.Network
 			RequestUserLogin(NetworkClient.connection, username, password);
 			
 		}
-
+		
+		// -------------------------------------------------------------------------------
+        // TryLogoutUser
+        // @Client
+        // we try to logout into an existing user on the current connection
+        // -------------------------------------------------------------------------------
+        public void TryLogoutUser()
+		{
+			RequestUserLogout(NetworkClient.connection);
+		}
+		
         // -------------------------------------------------------------------------------
         // TryRegisterUser
         // @Client

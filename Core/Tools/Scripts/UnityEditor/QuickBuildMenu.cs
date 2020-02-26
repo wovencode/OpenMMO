@@ -266,7 +266,7 @@ namespace OpenMMO
         //TODO: PS4, XBoxOne, Switch
 
 #if TEST_MODE
-        
+        //OSX
         [MenuItem("OpenMMO/Quick Build/TEST_MODE/OSX Client and Server (NOT headless)", priority = 0)]
         public static void BuildOSXClientAndServer()
         {
@@ -277,6 +277,25 @@ namespace OpenMMO
         #endregion
 
             BuildClientAndServer(BuildTarget.StandaloneOSX); //BUILD
+
+        #region  BUILD REPORT
+#if !SKIP_BUILD_REPORT
+            Debug.Log(buildLog.ToString()); //PRINT BUILD LOG
+            buildLog.Clear(); //CLEAR BUILD LOG
+#endif
+        #endregion
+        }
+        //WIN64
+        [MenuItem("OpenMMO/Quick Build/TEST_MODE/Win64 Client and Server (NOT headless)", priority = 1)]
+        public static void BuildWin64ClientAndServer()
+        {
+        #region  BUILD REPORT - title
+#if !SKIP_BUILD_REPORT
+            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Windows 64 Server and Client</b>"); //BUILD REPORT
+#endif
+        #endregion
+
+            BuildClientAndServer(BuildTarget.StandaloneWindows64); //BUILD
 
         #region  BUILD REPORT
 #if !SKIP_BUILD_REPORT

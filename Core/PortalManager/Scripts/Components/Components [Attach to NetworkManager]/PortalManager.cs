@@ -309,7 +309,8 @@ namespace OpenMMO.Portals
     	// -------------------------------------------------------------------------------
 		public void AutoLogin()
 		{
-			networkManager.TryAutoLoginPlayer(autoPlayerName, GetToken);
+			if (!String.IsNullOrWhiteSpace(autoPlayerName))
+				networkManager.TryAutoLoginPlayer(autoPlayerName, GetToken);
 		}
 		
 		// ================================= OTHER =======================================

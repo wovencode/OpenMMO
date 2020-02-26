@@ -87,7 +87,7 @@ namespace OpenMMO
             //SETUP BUILD OPTIONS
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = GetScenesFromBuild();
-            buildPlayerOptions.locationPathName = targetPlatform + "/" + "" + buildType + "." + buildFileExtension;
+            buildPlayerOptions.locationPathName = "_BUILD" + "/" + buildType.ToString().ToUpper() + "/" + targetPlatform + "/" + buildType + "." + buildFileExtension;
             buildPlayerOptions.target = targetPlatform;
             buildPlayerOptions.options = (headless) ? (BuildOptions.EnableHeadlessMode) : (BuildOptions.None);
 

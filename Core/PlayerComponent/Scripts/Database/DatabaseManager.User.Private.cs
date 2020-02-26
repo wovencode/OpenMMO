@@ -77,9 +77,8 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_User(GameObject player)
 	   	{
-	   		// -- this resets lastlogin to allow immediate re-login
+	   		// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login
 	   		string userName = player.GetComponent<PlayerComponent>().tablePlayer.username;
-	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
 			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, userName);
 	   	}
@@ -116,9 +115,8 @@ namespace OpenMMO.Database
 	   	void LogoutUser_User(string username)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
-	   		// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
+	   		// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login
 			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
-debug.Log("LogoutUser_User modified DateTime: "+dateTime);
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, username);
 	   	}
 		

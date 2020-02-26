@@ -27,6 +27,7 @@ namespace OpenMMO.Network
         {
             NetworkClient.RegisterHandler<ServerMessageResponseAutoAuth>(OnServerMessageResponseAutoAuth, false);  
             
+            OnClientAuthenticated.AddListener(OnClientAuthenticated_NetworkPortals);
         }
         
         // -------------------------------------------------------------------------------
@@ -56,7 +57,17 @@ namespace OpenMMO.Network
             NetworkClient.Send(msg);
             
 		}
-
+		
+		// -------------------------------------------------------------------------------
+        // OnClientAuthenticated_NetworkPortals
+        // @Client
+        // -------------------------------------------------------------------------------
+        public void OnClientAuthenticated_NetworkPortals(NetworkConnection conn)
+        {
+        	Debug.Log("<<<<< OnClientAuthenticated_NetworkPortals");
+        	PortalManager.singleton.AutoLogin();
+        }
+		
         // ========================== MESSAGE HANDLERS - AUTH ============================
         
         // -------------------------------------------------------------------------------
@@ -84,7 +95,7 @@ namespace OpenMMO.Network
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);
-               	PortalManager.singleton.AutoLogin();
+               	ClientScene.Ready(conn);
             }
             
             debug.LogFormat(this.name, nameof(OnServerMessageResponseAutoAuth), msg.success.ToString(), msg.text); //DEBUG

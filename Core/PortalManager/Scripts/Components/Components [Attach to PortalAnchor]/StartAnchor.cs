@@ -21,7 +21,7 @@ namespace OpenMMO.Portals
 	public class StartAnchor : MonoBehaviour
 	{
 		
-		[Tooltip("Add any number of archetypes")]
+		[Tooltip("Add any number of archetypes who can start the game here")]
 		public ArchetypeTemplate[] archeTypes;
 		
 		// -------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ namespace OpenMMO.Portals
 		// -------------------------------------------------------------------------------
 		void AwakeLate()
 		{
-			AnchorManager.singleton.RegisterStartAnchor(this.gameObject);
+			AnchorManager.singleton.RegisterStartAnchor(name, transform.position, archeTypes);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ namespace OpenMMO.Portals
         public void OnDestroy()
         {
         	if (AnchorManager.singleton)
-            	AnchorManager.singleton.UnRegisterStartAnchor(this.gameObject);
+            	AnchorManager.singleton.UnRegisterStartAnchor(name);
         }
     
     	// -------------------------------------------------------------------------------

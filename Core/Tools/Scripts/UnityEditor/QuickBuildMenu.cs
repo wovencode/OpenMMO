@@ -113,9 +113,12 @@ namespace OpenMMO
 #if SHOW_BUILD_REPORT
                 float sizeInMegabytes = (summary.totalSize / 1024f / 1024f);
                 sizeInMegabytes -= sizeInMegabytes % 0.0001f;
+                float durationInSeconds = (float)((summary.buildEndedAt - summary.buildStartedAt).TotalSeconds);
+                durationInSeconds -= durationInSeconds % 0.01f;
+
                 buildLog.AppendLine("<color=green><b>" + targetPlatform + " " + buildType + " build succeeded..." + "</b></color>"
                     + ((summary.totalSize > 0) ? ("\nBuild size: " + sizeInMegabytes + " MB") : (""))
-                    + "\nBuild duration: " + System.Math.Round((summary.buildEndedAt - summary.buildStartedAt).TotalSeconds) + "s");
+                    + "\nBuild duration: " + durationInSeconds + "s");
 #endif
                 #endregion
             }

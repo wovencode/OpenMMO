@@ -22,15 +22,20 @@ namespace OpenMMO.Areas
         [Header("Debug Helper")]
 		public DebugHelper debug;
         
-        protected static List<UnityScene> subScenes = new List<UnityScene>();
+        protected List<UnityScene> subScenes = new List<UnityScene>();
         
         protected OpenMMO.Network.NetworkManager networkManager;
         
+        public static AreaManager singleton;
+       
         // -------------------------------------------------------------------------------
     	// Awake
     	// -------------------------------------------------------------------------------
 		void Awake()
     	{
+    		
+    		singleton = this;
+    		
     		debug = new DebugHelper();
 			debug.Init();
 			
@@ -65,7 +70,7 @@ namespace OpenMMO.Areas
     	// GetIsActive
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static bool GetIsActive
+        public bool GetIsActive
         {
         	get
         	{
@@ -79,7 +84,7 @@ namespace OpenMMO.Areas
     	// RegisterAreaAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static void RegisterAreaAnchor(UnityScene subScene)
+        public void RegisterAreaAnchor(UnityScene subScene)
         {
        
         	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName) )
@@ -93,7 +98,7 @@ namespace OpenMMO.Areas
     	// UnRegisterAreaAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public static void UnRegisterAreaAnchor(UnityScene subScene)
+        public void UnRegisterAreaAnchor(UnityScene subScene)
         {
         	
         	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName) )
@@ -117,7 +122,7 @@ namespace OpenMMO.Areas
     	// LoadSceneAdditive
     	// @Server
     	// -------------------------------------------------------------------------------
-    	public static void LoadScenesAdditive(NetworkIdentity ni, UnityScene scene)
+    	public void LoadScenesAdditive(NetworkIdentity ni, UnityScene scene)
     	{
     	
     		if (!GetIsActive || ni == null)
@@ -131,7 +136,7 @@ namespace OpenMMO.Areas
     	// UnloadSceneAdditive
     	//  @Server
     	// -------------------------------------------------------------------------------
-    	public static void UnloadScenesAdditive(NetworkIdentity ni, UnityScene scene)
+    	public void UnloadScenesAdditive(NetworkIdentity ni, UnityScene scene)
     	{
     	
     		if (!GetIsActive || ni == null)

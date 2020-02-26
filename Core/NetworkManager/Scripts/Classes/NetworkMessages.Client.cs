@@ -55,7 +55,16 @@ namespace OpenMMO.Network
 		public string username;
 		public string password;
 	}
-
+	
+	// -----------------------------------------------------------------------------------
+    // ClientMessageRequestUserLogout
+    // @Client -> @Server
+    // -----------------------------------------------------------------------------------
+    public partial class ClientMessageRequestUserLogout : ClientMessageRequest
+	{
+	
+	}
+	
     // -----------------------------------------------------------------------------------
     // ClientMessageRequestUserRegister
     // @Client -> @Server

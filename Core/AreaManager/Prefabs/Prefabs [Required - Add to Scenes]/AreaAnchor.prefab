@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8532601404586520098}
   - component: {fileID: 5851247720566011933}
   - component: {fileID: 3917935858873504122}
-  - component: {fileID: 3232913263468093570}
+  - component: {fileID: 6629307785899757726}
   m_Layer: 9
   m_Name: AreaAnchor
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8474342443939015968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.6, y: 0, z: 30.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 74, y: 74, z: 74}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 74, y: 74, z: 74}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5851247720566011933
 MonoBehaviour:
@@ -76,7 +76,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 1
   m_AssetId: 
---- !u!114 &3232913263468093570
+--- !u!114 &6629307785899757726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,11 +85,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8474342443939015968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c03adefa949e4d5e8b1a7bb2ef77fc8, type: 3}
+  m_Script: {fileID: 11500000, guid: a6f420c74d91a4beabc216125ee1ac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
   subScene:
-    sceneAsset: {fileID: 102900000, guid: d3d7d44598ee4402780595bcb309759f, type: 3}
-    sceneName: Login Sub Scene 1
+    sceneAsset: {fileID: 0}
+    sceneName: 

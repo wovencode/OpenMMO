@@ -47,7 +47,7 @@ namespace OpenMMO.Network
 				token 		= _token
 			};
 			
-			ClientScene.Ready(conn);
+			//ClientScene.Ready(conn);
 			
 			conn.Send(message);
 			

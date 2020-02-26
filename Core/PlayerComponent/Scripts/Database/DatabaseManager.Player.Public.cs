@@ -20,7 +20,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// GetPlayerOnline
-		// 
+		// Checks if a player is online anywhere using 'lastonline' time frame
 		// -------------------------------------------------------------------------------
 		public bool GetPlayerOnline(string playerName)
 		{

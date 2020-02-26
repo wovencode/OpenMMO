@@ -40,13 +40,14 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		protected void UserRegister(string userName, string userPassword, string userEmail, string userDeviceid)
 		{
-			// -- lastlogin is UtcNow minus SaveInterval*2 to allow immediate login
+			// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login
 			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
 			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastonline=dateTime });
 		}
 		
 		// -------------------------------------------------------------------------------
 		// UserChangePassword
+		// updates the oldpassword of a user to the new password, requires oldpassword to match
 		// -------------------------------------------------------------------------------
 		protected void UserChangePassword(string username, string oldpassword, string newpassword)
 		{
@@ -88,7 +89,7 @@ namespace OpenMMO.Database
 		protected void DeleteUser(string username)
 		{
 		
-			// delete player data too
+			// -- delete player data too
 			this.InvokeInstanceDevExtMethods(nameof(DeleteDataPlayer), username); //HOOK
 
             DeleteDataUser(username);

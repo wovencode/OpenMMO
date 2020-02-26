@@ -34,7 +34,10 @@ namespace OpenMMO.Network
         [DevExtMethods(nameof(RegisterPlayer))]
         public void RegisterPlayer_PlayerComponent(GameObject player, string userName, string prefabName)
         {
-            player.transform.position = AnchorManager.singleton.GetArchetypeStartPosition(player); // required for host+play
+            // --  setup local zone position, required for host+play
+            string anchorName = AnchorManager.singleton.GetArchetypeStartPositionAnchorName(player);
+            player.transform.position = AnchorManager.singleton.GetStartAnchorPosition(anchorName); 
+            
             player.GetComponent<PlayerComponent>().tablePlayer.Create(player, userName, prefabName);
         }
 
@@ -63,8 +66,8 @@ namespace OpenMMO.Network
             Transform transform = player.transform;
 
             if (!NavMesh.SamplePosition(player.transform.position, out NavMeshHit hit, 0.1f, NavMesh.AllAreas))
-                transform.position = AnchorManager.singleton.GetArchetypeStartPosition(player);
-
+				player.GetComponent<PlayerComponent>().WarpLocal(AnchorManager.singleton.GetArchetypeStartPositionAnchorName(player));
+           
             if (!ValidPosition(player.transform))
             {
                 if (ServerAuthorityTemplate.singleton.smooth)

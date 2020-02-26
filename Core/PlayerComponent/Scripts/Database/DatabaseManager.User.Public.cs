@@ -12,7 +12,7 @@ namespace OpenMMO.Database
 		
 		// -------------------------------------------------------------------------------
 		// GetUserOnline
-		// 
+		// Checks if the user is online right now, using 'lastonline' time
 		// -------------------------------------------------------------------------------
 		public bool GetUserOnline(string userName)
 		{

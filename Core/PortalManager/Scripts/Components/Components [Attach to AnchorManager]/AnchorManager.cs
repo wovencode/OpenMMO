@@ -21,7 +21,7 @@ namespace OpenMMO.Portals
 	{
 	
 		public List<PortalAnchorEntry> portalAnchors = new List<PortalAnchorEntry>();
-		public List<GameObject> startAnchors = new List<GameObject>();
+		public List<StartAnchorEntry> startAnchors = new List<StartAnchorEntry>();
 		
 		public static AnchorManager singleton;
 		
@@ -40,57 +40,65 @@ namespace OpenMMO.Portals
         // -------------------------------------------------------------------------------
         // GetArchetypeStartPosition
         // -------------------------------------------------------------------------------
-        public Transform GetArchetypeStartPosition(GameObject player)
+        public Vector3 GetArchetypeStartPosition(GameObject player)
         {
 
 			PlayerComponent pc = player.GetComponent<PlayerComponent>();
 
 			startAnchors.Shuffle();
 			
-            foreach (GameObject anchor in startAnchors)
+            foreach (StartAnchorEntry anchor in startAnchors)
             {
 				
-				DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name+": "+anchor.transform.position); //DEBUG
+				DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name+": "+anchor.position); //DEBUG
 				
-                StartAnchor sc = anchor.GetComponent<StartAnchor>();
-
-                foreach (ArchetypeTemplate template in sc.archeTypes)
+                foreach (ArchetypeTemplate template in anchor.archeTypes)
                 {
                     if (template == pc.archeType)
                     {
 						DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), anchor.name); //DEBUG
-                        return anchor.transform;
+                        return anchor.position;
 					}
 				}
             }
 			
 			DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPosition), "NOT FOUND"); //DEBUG
-            return player.transform;
+            return player.transform.position;
 
         }
         
         // -------------------------------------------------------------------------------
     	// RegisterStartAnchor
+    	// we are not using a game object or component here as this won't work across scenes!
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public void RegisterStartAnchor(GameObject anchor)
+        public void RegisterStartAnchor(string _name, Vector3 _position, ArchetypeTemplate[] _archeTypes)
         {
-            startAnchors.Add(anchor);
-            DebugManager.LogFormat(nameof(AnchorManager), nameof(RegisterStartAnchor), anchor.name); //DEBUG
+        
+            startAnchors.Add(
+            				new StartAnchorEntry
+            				{
+            					name 		= _name,
+            					position 	= _position,
+            					archeTypes 	= _archeTypes
+            				}
+            );
+            
+            DebugManager.LogFormat(nameof(AnchorManager), nameof(RegisterStartAnchor), _name); //DEBUG
         }
 
         // -------------------------------------------------------------------------------
     	// UnRegisterStartAnchor
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public void UnRegisterStartAnchor(GameObject anchor)
+        public void UnRegisterStartAnchor(string _name)
         {
-           for (int i = 0; i < startAnchors.Count; i++)
+           for (int i = startAnchors.Count-1; i >= 0; i--)
            {
-           		if (startAnchors[i] == anchor) //if (startAnchors[i].name == anchor.name)
+           		if (startAnchors[i].name == _name)
            		{
            			startAnchors.RemoveAt(i);
-           			DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterStartAnchor), anchor.name); //DEBUG
+           			DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterStartAnchor), _name); //DEBUG
            		}
            	}
         }
@@ -142,6 +150,7 @@ namespace OpenMMO.Portals
         
         // -------------------------------------------------------------------------------
     	// RegisterPortalAnchor
+    	// we are not using a game object or component here as this won't work across scenes!
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
         public void RegisterPortalAnchor(string _name, Vector3 _position)
@@ -163,27 +172,7 @@ namespace OpenMMO.Portals
         // -------------------------------------------------------------------------------
         public void UnRegisterPortalAnchor(string _name)
         {
-            List<int> indicesToRemove = new List<int>();
-
-            for (int i = 0; i < portalAnchors.Count; i++)
-            {
-                if (portalAnchors[i].name == _name)
-                {
-                    indicesToRemove.Add(i);
-                    DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterPortalAnchor), _name); //DEBUG
-                }
-            }
-
-            foreach (int indice in indicesToRemove)
-            {
-                portalAnchors.RemoveAt(indice);
-            }
-        }
-        /* //DEPRECIATED
-        public void UnRegisterPortalAnchor(string _name)
-        {
-           
-           for (int i = 0; i < portalAnchors.Count; i++)
+           for (int i = portalAnchors.Count-1; i >= 0; i--)
            {
            		if (portalAnchors[i].name == _name)
            		{
@@ -191,9 +180,8 @@ namespace OpenMMO.Portals
             		DebugManager.LogFormat(nameof(AnchorManager), nameof(UnRegisterPortalAnchor), _name); //DEBUG
             	}
             }
-            
-        }*/
-
+        }
+       
     	// -------------------------------------------------------------------------------
     	
 	}

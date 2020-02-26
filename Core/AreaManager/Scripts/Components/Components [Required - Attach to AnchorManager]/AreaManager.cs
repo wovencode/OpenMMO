@@ -78,27 +78,27 @@ namespace OpenMMO.Areas
         	}
         }
         
-   		// ================================ SCENE ANCHORS ================================
-    
+   		// ================================ AREA PORTALS =================================
+
     	// -------------------------------------------------------------------------------
-    	// RegisterAreaAnchor
+    	// RegisterAreaPortal
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public void RegisterAreaAnchor(UnityScene subScene)
+        public void RegisterAreaPortal(UnityScene subScene)
         {
        
         	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName) )
         		return;
         		
             subScenes.Add(subScene);
-            DebugManager.LogFormat(nameof(AreaManager), nameof(RegisterAreaAnchor), subScene.SceneName); //DEBUG
+            DebugManager.LogFormat(nameof(AreaManager), nameof(RegisterAreaPortal), subScene.SceneName); //DEBUG
         }
 
         // -------------------------------------------------------------------------------
-    	// UnRegisterAreaAnchor
+    	// UnRegisterAreaPortal
     	// @Client / @Server
     	// -------------------------------------------------------------------------------
-        public void UnRegisterAreaAnchor(UnityScene subScene)
+        public void UnRegisterAreaPortal(UnityScene subScene)
         {
         	
         	if (!GetIsActive || subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName) )
@@ -112,7 +112,7 @@ namespace OpenMMO.Areas
 				if (subScenes[i].SceneName == subScene.SceneName)
 				{
 					subScenes.RemoveAt(i);
-					DebugManager.LogFormat(nameof(AreaManager), nameof(UnRegisterAreaAnchor), subScene.SceneName); //DEBUG
+					DebugManager.LogFormat(nameof(AreaManager), nameof(UnRegisterAreaPortal), subScene.SceneName); //DEBUG
 				}
 			}
 			

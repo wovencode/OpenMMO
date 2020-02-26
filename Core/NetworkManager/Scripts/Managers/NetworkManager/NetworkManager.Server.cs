@@ -32,6 +32,7 @@ namespace OpenMMO.Network
         
             // ---- User
             NetworkServer.RegisterHandler<ClientMessageRequestUserLogin>(OnClientMessageRequestUserLogin);
+            NetworkServer.RegisterHandler<ClientMessageRequestUserLogout>(OnClientMessageRequestUserLogout);
             NetworkServer.RegisterHandler<ClientMessageRequestUserRegister>(OnClientMessageRequestUserRegister);
             NetworkServer.RegisterHandler<ClientMessageRequestUserDelete>(OnClientMessageRequestUserDelete);
             NetworkServer.RegisterHandler<ClientMessageRequestUserChangePassword>(OnClientMessageRequestUserChangePassword);
@@ -90,7 +91,7 @@ namespace OpenMMO.Network
 				causesDisconnect 	= false
 			};
 			
-			if (DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
+			if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserLogin(msg.username, msg.password))
 			{
 				LoginUser(conn, msg.username);
 				
@@ -111,7 +112,16 @@ namespace OpenMMO.Network
 			conn.Send(message);
 			
 		}
-
+		
+		// -------------------------------------------------------------------------------
+        // OnClientMessageRequestUserLogout
+        // @Client -> @Server
+        // -------------------------------------------------------------------------------
+        void OnClientMessageRequestUserLogout(NetworkConnection conn, ClientMessageRequestUserLogout msg)
+		{
+			LogoutUser(conn);
+		}
+		
         // -------------------------------------------------------------------------------
         // OnClientMessageRequestUserRegister
         // @Client -> @Server

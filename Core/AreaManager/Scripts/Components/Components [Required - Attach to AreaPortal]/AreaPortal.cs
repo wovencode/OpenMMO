@@ -23,6 +23,14 @@ namespace OpenMMO.Areas
 		// -------------------------------------------------------------------------------
         public void Awake()
         {
+            Invoke(nameof(AwakeLate), 0.1f);
+        }
+        
+        // -------------------------------------------------------------------------------
+		// AwakeLate
+		// -------------------------------------------------------------------------------
+        public void AwakeLate()
+        {
             AreaManager.singleton.RegisterAreaPortal(subScene);
         }
 		

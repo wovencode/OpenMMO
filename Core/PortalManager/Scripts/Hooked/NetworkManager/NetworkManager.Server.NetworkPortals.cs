@@ -88,7 +88,9 @@ namespace OpenMMO.Network
 			
         	conn.Send(message);
         	
-        	LogoutPlayerAndUser(conn); // TODO: does this work?
+        	// -- Required: now log the user/player out server-side
+        	// -- it is never guaranteed that OnServerDisconnect is called correctly and in-time
+        	LogoutPlayerAndUser(conn);
 		
 		}
 		
@@ -179,7 +181,7 @@ namespace OpenMMO.Network
 				string anchorName = pc.tablePlayerZones.anchorname;
 
 				if (pc.tablePlayerZones.startpos) 							// -- warp to start position
-					player.transform.position = AnchorManager.singleton.GetArchetypeStartPosition(player).position;	
+					player.transform.position = AnchorManager.singleton.GetArchetypeStartPosition(player);	
 				else if (!String.IsNullOrWhiteSpace(anchorName)) 			// -- warp to anchor
 					pc.WarpLocal(anchorName);
 				

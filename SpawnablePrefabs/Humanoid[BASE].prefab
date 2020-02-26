@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  visRange: 100
+  visRange: 50
   visUpdateInterval: 1
   checkMethod: 0
   forceHidden: 0

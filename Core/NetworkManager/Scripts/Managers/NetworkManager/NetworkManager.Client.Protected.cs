@@ -51,7 +51,27 @@ namespace OpenMMO.Network
 			return true;
 
 		}
+		
+		// -------------------------------------------------------------------------------
+        // RequestUserLogout
+        // @Client
+		// -------------------------------------------------------------------------------
+		protected override bool RequestUserLogout(NetworkConnection conn)
+		{
+		
+			ClientMessageRequestUserLogout message = new ClientMessageRequestUserLogout
+			{
 
+			};
+
+			conn.Send(message);
+			
+			debug.LogFormat(this.name, nameof(RequestUserLogout), conn.Id(), userName); //DEBUG
+			
+			return true;
+
+		}
+		
         // -------------------------------------------------------------------------------
         // RequestUserRegister
         // @Client

@@ -1,4 +1,5 @@
 //BY DX4D
+//#define TEST_MODE //Uncomment this to access additional menus for testing purposes.
 //#define SKIP_BUILD_REPORT //Uncomment this to turn off build reporting - May speed up build times slightly, but you will get no console feedback about your build.
 #if UNITY_EDITOR
 
@@ -149,8 +150,15 @@ namespace OpenMMO
             }
         }
         //SERVER + CLIENT
-        /// <summary>Builds a client and a headless server back to back.</summary>
+        /// <summary>Builds a client and a server back to back. It is recommended to use a Headless Server instead.</summary>
 		public static void BuildClientAndServer(BuildTarget targetPlatform)
+		{
+            BuildServer(targetPlatform);
+            BuildClient(targetPlatform);
+        }
+        //HEADLESS SERVER + CLIENT
+        /// <summary>Builds a client and a headless server back to back.</summary>
+		public static void BuildClientAndHeadlessServer(BuildTarget targetPlatform)
 		{
             BuildHeadlessServer(targetPlatform);
             BuildClient(targetPlatform);
@@ -178,7 +186,7 @@ namespace OpenMMO
         // BuildClientAndServer - Windows - Mac - Linux
         // -------------------------------------------------------------------------------
         //FULL DEPLOYMENT
-        [MenuItem("OpenMMO/Quick Build/FULL BUILD/Full Deployment", priority = 10)]
+        [MenuItem("OpenMMO/Quick Build/FULL BUILD/Full Deployment (headless + multi-client)", priority = 1)]
         public static void BuildFull()
         {
             #region  BUILD REPORT - title
@@ -197,8 +205,8 @@ namespace OpenMMO
             #endregion
         }
         //WINDOWS
-        [MenuItem("OpenMMO/Quick Build/WIN64/Client and Server", priority = 11)]
-        public static void BuildWindows64ClientAndServer()
+        [MenuItem("OpenMMO/Quick Build/WIN64/Client and Server (headless)", priority = 10)]
+        public static void BuildWindows64ClientAndHeadlessServer()
         {
             #region  BUILD REPORT - title
 #if !SKIP_BUILD_REPORT
@@ -206,7 +214,7 @@ namespace OpenMMO
 #endif
             #endregion
 
-            BuildClientAndServer(BuildTarget.StandaloneWindows64); //BUILD
+            BuildClientAndHeadlessServer(BuildTarget.StandaloneWindows64); //BUILD
 
             #region  BUILD REPORT
 #if !SKIP_BUILD_REPORT
@@ -216,8 +224,8 @@ namespace OpenMMO
             #endregion
         }
         //MAC
-        [MenuItem("OpenMMO/Quick Build/OSX/Client and Server", priority = 12)]
-        public static void BuildMacClientAndServer()
+        [MenuItem("OpenMMO/Quick Build/OSX/Client and Server (headless)", priority = 20)]
+        public static void BuildOSXClientAndHeadlessServer()
         {
             #region  BUILD REPORT - title
 #if !SKIP_BUILD_REPORT
@@ -225,7 +233,7 @@ namespace OpenMMO
 #endif
             #endregion
 
-            BuildClientAndServer(BuildTarget.StandaloneOSX); //BUILD
+            BuildClientAndHeadlessServer(BuildTarget.StandaloneOSX); //BUILD
 
             #region  BUILD REPORT
 #if !SKIP_BUILD_REPORT
@@ -235,8 +243,8 @@ namespace OpenMMO
             #endregion
         }
         //LINUX
-        [MenuItem("OpenMMO/Quick Build/Linux/Client and Server", priority = 13)]
-        public static void BuildLinuxClientAndServer()
+        [MenuItem("OpenMMO/Quick Build/Linux/Client and Server (headless)", priority = 30)]
+        public static void BuildLinuxClientAndHeadlessServer()
         {
             #region  BUILD REPORT - title
 #if !SKIP_BUILD_REPORT
@@ -244,7 +252,7 @@ namespace OpenMMO
 #endif
             #endregion
 
-            BuildClientAndServer(BuildTarget.StandaloneLinux64); //BUILD
+            BuildClientAndHeadlessServer(BuildTarget.StandaloneLinux64); //BUILD
 
             #region  BUILD REPORT
 #if !SKIP_BUILD_REPORT
@@ -256,10 +264,31 @@ namespace OpenMMO
 
         //TODO: Android and iOS
         //TODO: PS4, XBoxOne, Switch
-		
-		// -------------------------------------------------------------------------------
-		
-	}
+
+#if TEST_MODE
+        
+        [MenuItem("OpenMMO/Quick Build/TEST_MODE/OSX Client and Server (NOT headless)", priority = 0)]
+        public static void BuildOSXClientAndServer()
+        {
+        #region  BUILD REPORT - title
+#if !SKIP_BUILD_REPORT
+            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>OSX Server and Client</b>"); //BUILD REPORT
+#endif
+        #endregion
+
+            BuildClientAndServer(BuildTarget.StandaloneOSX); //BUILD
+
+        #region  BUILD REPORT
+#if !SKIP_BUILD_REPORT
+            Debug.Log(buildLog.ToString()); //PRINT BUILD LOG
+            buildLog.Clear(); //CLEAR BUILD LOG
+#endif
+        #endregion
+        }
+#endif
+        // -------------------------------------------------------------------------------
+
+    }
 
 }
 #endif

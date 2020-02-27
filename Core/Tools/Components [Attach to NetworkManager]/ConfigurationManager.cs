@@ -15,9 +15,6 @@ namespace OpenMMO
 	public partial class ConfigurationManager : MonoBehaviour
 	{
 		
-		[Header("Modules Configuration")]
-		public ModulesConfigTemplate modulesConfigTemplate;
-		
 		[Header("Project Configuration")]
 		public ProjectConfigTemplate projectConfigTemplate;
 		

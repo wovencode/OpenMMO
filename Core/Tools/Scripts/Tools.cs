@@ -10,6 +10,7 @@ using UnityEngine.AI;
 using System.Security.Cryptography;
 using System.IO;
 using System.Text.RegularExpressions;
+using OpenMMO.Chat;
 
 namespace OpenMMO
 {
@@ -196,15 +197,24 @@ namespace OpenMMO
 		// ============================== VALIDATION =====================================
 		
 		// -------------------------------------------------------------------------------
-		// Validates a name by simply checking length and allowed characters
-		// Could be expanded here if required
 		// -------------------------------------------------------------------------------
-		public static bool IsAllowedName(string _text)
+        /// <summary>
+        /// Validates a name by simply checking length and allowed characters
+		/// Could be expanded here if required
+        /// </summary>
+        /// <param name="textToCheck"></param>
+        /// <returns></returns>
+		public static bool IsAllowedName(string textToCheck)
 		{
-			return _text.Length >= MIN_LENGTH_NAME && 
-					_text.Length <= MAX_LENGTH_NAME &&
-					Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$"); // &&
-					//!ArrayContains(BadwordsTemplate.singleton.badwords, _text);
+            return textToCheck.Length >= MIN_LENGTH_NAME &&
+                    textToCheck.Length <= MAX_LENGTH_NAME &&
+                    Regex.IsMatch(textToCheck, @"^[a-zA-Z0-9_" + " " + "]+$") && //ALLOWED LETTERS & SYMBOLS & BLANK SPACES
+                    (textToCheck[textToCheck.Length - 1] != ' ') && //LAST CHARACTER NOT WHITESPACE
+                    (textToCheck[0] != ' ') && //FIRST CHARACTER NOT WHITESPACE
+                    (ChatManager.singleton.profanityFilter.FilterText(textToCheck).Contains(ChatManager.ProfanityMask)); //DOES NOT CONTAIN PROFANITY
+                    
+					//Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$"); // && //OLD WAY //DEPRECIATED
+					//!ArrayContains(BadwordsTemplate.singleton.badwords, _text); //DEPRECIATED? NOTE: This was commented out already?
 		}
 
 		// -------------------------------------------------------------------------------

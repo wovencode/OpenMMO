@@ -1,4 +1,4 @@
-//IMPROVEMENTS BY DX4D
+//BY DX4D
 using UnityEngine;
 
 namespace OpenMMO.Chat
@@ -6,12 +6,14 @@ namespace OpenMMO.Chat
     [CreateAssetMenu(menuName = "OpenMMO/Chat/Profanity Filter")]
     public class ProfanityFilter : ScriptableObject
     {
+#pragma warning disable CS0649
         [Header("PROFANITY FILTER")]
         [Tooltip("This will be shown instead of any words that are considered profanity.")]
         [SerializeField] string profanityMask = "****";
 
         [Tooltip("These words will be replaced in chat by the profanity mask.")]
         [SerializeField] string[] wordsToFilter;
+#pragma warning restore CS0649
 
         public string FilterText(string text)
         {

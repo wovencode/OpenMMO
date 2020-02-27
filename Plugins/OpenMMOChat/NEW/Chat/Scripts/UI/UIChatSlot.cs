@@ -7,14 +7,17 @@ namespace OpenMMO.Chat
 {
     public partial class UIChatSlot : UIButton
     {
+#pragma warning disable CS0649
         [Header("TEXT LABEL")]
         [SerializeField] TextMeshProUGUI label;
-        
+#pragma warning restore CS0649
+
         //INIT
         public void Init(ChatMessage message)
         {
-            label.text = message.GetMessage();
+            if (label == null || message == null) return;
 
+            label.text = message.GetMessage();
         }
     }
 }

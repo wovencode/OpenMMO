@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4672676154308553654}
   - component: {fileID: 4672676154308553655}
+  - component: {fileID: 1314063873}
   m_Layer: 0
-  m_Name: ChatManager
+  m_Name: CHAT-MANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebec0cf185a33fc44b2ea81004fdb277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profanityFilter: {fileID: 11400000, guid: acf542244978f5c40b85cb9ec3c570e2, type: 2}
   defaultChannel:
     channelId: public
     command: 
@@ -50,6 +52,11 @@ MonoBehaviour:
     prefixReceive: 
     color: {r: 0, g: 0, b: 0, a: 1}
   channelList:
+  - channelId: public
+    command: 
+    prefixSend: 
+    prefixReceive: 
+    color: {r: 0, g: 0, b: 0, a: 0}
   - channelId: private
     command: 
     prefixSend: 
@@ -65,3 +72,20 @@ MonoBehaviour:
     prefixSend: 
     prefixReceive: 
     color: {r: 0, g: 0, b: 0, a: 0}
+  - channelId: info
+    command: 
+    prefixSend: 
+    prefixReceive: 
+    color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1314063873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672676154308553640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

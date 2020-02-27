@@ -2417,24 +2417,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a1d6adff3347b19b2da2e6ca3b76c, type: 3}
---- !u!1 &1314063872 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4672676154308553640, guid: b0c05a8c28acf4055b20e97b935f7dab,
-    type: 3}
-  m_PrefabInstance: {fileID: 4672676155883969159}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1314063873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314063872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28bb777f2651439bbaa55373f9211c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1336504295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3100,7 +3082,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4672676155883969159}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314063872}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebec0cf185a33fc44b2ea81004fdb277, type: 3}
@@ -4160,11 +4142,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553640, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4672676154308553654, guid: b0c05a8c28acf4055b20e97b935f7dab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4219,36 +4196,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[3].channelId
-      value: guild
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[2].channelId
-      value: party
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[1].channelId
-      value: private
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[0].channelId
-      value: public
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[4].channelId
-      value: info
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0c05a8c28acf4055b20e97b935f7dab, type: 3}

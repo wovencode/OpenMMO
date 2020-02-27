@@ -66,7 +66,10 @@ namespace OpenMMO.Network
             Transform transform = player.transform;
 
             if (!NavMesh.SamplePosition(player.transform.position, out NavMeshHit hit, 0.1f, NavMesh.AllAreas))
+            {
+				debug.Log("Last saved position invalid, reverting to start position for: "+player.name);
 				player.GetComponent<PlayerComponent>().WarpLocal(AnchorManager.singleton.GetArchetypeStartPositionAnchorName(player));
+           	}
            
             if (!ValidPosition(player.transform))
             {

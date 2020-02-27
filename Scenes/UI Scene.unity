@@ -16384,7 +16384,7 @@ MonoBehaviour:
   channelIdInfo: info
   maximizedImage: {fileID: 21300000, guid: ee848ab255467414f9dd8486830370c0, type: 3}
   minimizedImage: {fileID: 21300000, guid: 43e80c8363c0042ccac63a2d68e7af56, type: 3}
-  enterKeys: 0d0000000f010000
+  sendKeys: 0d0000000f010000
   maxMessages: 100
 --- !u!1 &1633802282
 GameObject:
@@ -21832,7 +21832,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 29328075}
   m_HandleRect: {fileID: 29328074}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22547,16 +22547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4845378030659323786, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937480448395434530, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
-        type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7206641377673900427, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -22655,6 +22645,11 @@ PrefabInstance:
     - target: {fileID: 7206641378864536420, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
         type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206641379256247532, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7206641379462796388, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
@@ -22821,7 +22816,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 7aa84f5362eb2e848b7b4c4731f6977e, type: 3}
 --- !u!1 &6431196507507859842 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7656232649863235796, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
+  m_CorrespondingSourceObject: {fileID: 4129625650527035952, guid: 7aa84f5362eb2e848b7b4c4731f6977e,
     type: 3}
   m_PrefabInstance: {fileID: 6431196507507859841}
   m_PrefabAsset: {fileID: 0}

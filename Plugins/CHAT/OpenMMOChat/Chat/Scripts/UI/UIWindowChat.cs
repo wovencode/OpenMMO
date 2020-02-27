@@ -50,8 +50,8 @@ namespace OpenMMO.Chat
 		public Sprite maximizedImage;
 		public Sprite minimizedImage;
 		
-		[Header("Chat Keys")]
-		public KeyCode[] enterKeys = {KeyCode.Return, KeyCode.KeypadEnter};
+		[Header("Chat Send Keys")]
+		public KeyCode[] sendKeys = {KeyCode.Return, KeyCode.KeypadEnter};
 		
 		public int maxMessages = 100;
 		
@@ -73,10 +73,10 @@ namespace OpenMMO.Chat
 		// -------------------------------------------------------------------------------
 		// Show
 		// -------------------------------------------------------------------------------
-		public override void Show()
-		{
-			base.Show();
-		}
+		//public override void Show()
+		//{
+		//	base.Show();
+		//}
 		
 		// -------------------------------------------------------------------------------
 		// Update
@@ -86,7 +86,7 @@ namespace OpenMMO.Chat
 			
 			// -- check for 'Enter' pressed while Input has focus
 			
-			foreach (KeyCode enterKey in enterKeys)
+			foreach (KeyCode enterKey in sendKeys)
 				if (Input.GetKeyDown(enterKey) && inputActive)
 					OnClickSendMessage();
 			
@@ -98,9 +98,13 @@ namespace OpenMMO.Chat
 		// ThrottledUpdate
 		// -------------------------------------------------------------------------------
 		protected override void ThrottledUpdate()
-		{
-		
-			sendButton.interactable = !String.IsNullOrWhiteSpace(sendInputField.text);
+        {
+            if (!networkManager || networkManager.state != Network.NetworkState.Game)
+                Hide();
+            else
+                Show();
+
+            sendButton.interactable = !String.IsNullOrWhiteSpace(sendInputField.text);
 			sendButton.onClick.SetListener(() 				=> { OnClickSendMessage(); });
 			
 			toggleChatLogButton.onClick.SetListener(() 		=> { OnClickToggleMinimized(); });

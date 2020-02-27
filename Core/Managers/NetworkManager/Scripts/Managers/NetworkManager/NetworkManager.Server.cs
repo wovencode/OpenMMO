@@ -475,8 +475,9 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
 		protected void LoginUser(NetworkConnection conn, string username)
 		{
-
-			onlineUsers[conn] = username;
+			
+			onlineUsers.Add(conn, username);
+			//onlineUsers[conn] = username;
 			state = NetworkState.Lobby;
 			    
 			DatabaseManager.singleton.LoginUser(username);
@@ -517,7 +518,9 @@ namespace OpenMMO.Network
 			
 				NetworkServer.AddPlayerForConnection(conn, player);
 			
-				onlinePlayers[player.name] = player;
+				//onlinePlayers[player.name] = player;
+				onlinePlayers.Add(player.name, player);
+				
 				state = NetworkState.Game;
 			
 				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK

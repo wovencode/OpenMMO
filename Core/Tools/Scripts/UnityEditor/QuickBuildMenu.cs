@@ -7,7 +7,7 @@ using OpenMMO;
 using UnityEngine;
 using UnityEditor;
 using OpenMMO.Network;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 using UnityEditor.Build.Reporting;
 using System.Collections.Generic;
 using System.Text;

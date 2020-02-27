@@ -234,7 +234,7 @@ PrefabInstance:
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Name
-      value: NetworkPortal
+      value: ZonePortal
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}

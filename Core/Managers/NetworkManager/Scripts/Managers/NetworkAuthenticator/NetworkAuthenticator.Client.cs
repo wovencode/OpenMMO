@@ -2,7 +2,7 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -58,7 +58,7 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
         public override void OnClientAuthenticate(NetworkConnection conn)
         {
-        	if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetAutoConnect)
+        	if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetAutoConnect)
         		Invoke(nameof(ClientAuthenticate), connectDelay);		
         	
         	this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate), conn); //HOOK

@@ -3,7 +3,7 @@ using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -94,8 +94,8 @@ namespace OpenMMO.Network
 			debug.LogFormat(this.name, nameof(StartHost)); //DEBUG
 #elif _SERVER
 			// -- only start the server now if we are the MainZone and not a SubZone
-			// SubZones are handled differently (in PortalManager) and start later
-			if (GetComponent<PortalManager>() != null && GetComponent<PortalManager>().GetIsMainZone)
+			// SubZones are handled differently (in ZoneManager) and start later
+			if (GetComponent<ZoneManager>() != null && GetComponent<ZoneManager>().GetIsMainZone)
 			{
 				StartServer();
 				debug.LogFormat(this.name, nameof(StartServer)); //DEBUG
@@ -322,7 +322,7 @@ namespace OpenMMO.Network
 		public override void OnClientDisconnect(NetworkConnection conn)
 		{
 			// -- required: otherwise a zone switch would disconnect the client
-			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetAutoConnect)
+			if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetAutoConnect)
 			{
 				base.OnClientDisconnect(conn);
 				state = NetworkState.Offline;

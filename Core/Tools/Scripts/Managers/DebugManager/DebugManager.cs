@@ -1,7 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Debugging;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 using System;
 using System.IO;
 using System.Collections.Generic;

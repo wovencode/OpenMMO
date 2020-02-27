@@ -1,7 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Network;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
@@ -102,7 +102,7 @@ namespace OpenMMO.Network
 			// that zone instead.
 			bool portalChecked = true;
 			
-			if (GetComponent<PortalManager>() != null && !GetComponent<PortalManager>().GetIsMainZone)
+			if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetIsMainZone)
 				portalChecked = false;
 			
 			if ((checkApplicationVersion && msg.clientVersion != Application.version) || !portalChecked)

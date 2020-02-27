@@ -4,7 +4,7 @@ using OpenMMO;
 using UnityEngine;
 using UnityEditor;
 using OpenMMO.Network;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 
 namespace OpenMMO
 {

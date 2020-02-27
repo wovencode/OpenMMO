@@ -2,7 +2,7 @@
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Network;
-using OpenMMO.Portals;
+using OpenMMO.Zones;
 using UnityEngine;
 using UnityEngine.AI;
 using System;

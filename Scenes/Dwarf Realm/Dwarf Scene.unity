@@ -224,7 +224,7 @@ PrefabInstance:
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Name
-      value: NetworkPortal
+      value: ZonePortal
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
@@ -3417,7 +3417,7 @@ PrefabInstance:
     - target: {fileID: 4374841326114086299, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}
       propertyPath: m_Name
-      value: NetworkPortalAnchor
+      value: ZoneAnchor
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526,
         type: 3}

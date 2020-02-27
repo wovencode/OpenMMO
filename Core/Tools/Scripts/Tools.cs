@@ -211,7 +211,7 @@ namespace OpenMMO
                     Regex.IsMatch(textToCheck, @"^[a-zA-Z0-9_" + " " + "]+$") && //ALLOWED LETTERS & SYMBOLS & BLANK SPACES
                     (textToCheck[textToCheck.Length - 1] != ' ') && //LAST CHARACTER NOT WHITESPACE
                     (textToCheck[0] != ' ') && //FIRST CHARACTER NOT WHITESPACE
-                    (ChatManager.singleton.profanityFilter.FilterText(textToCheck).Contains(ChatManager.ProfanityMask)); //DOES NOT CONTAIN PROFANITY
+                    (!ChatManager.singleton.profanityFilter.FilterText(textToCheck).Contains(ChatManager.ProfanityMask)); //DOES NOT CONTAIN PROFANITY
                     
 					//Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$"); // && //OLD WAY //DEPRECIATED
 					//!ArrayContains(BadwordsTemplate.singleton.badwords, _text); //DEPRECIATED? NOTE: This was commented out already?

@@ -25,8 +25,6 @@ namespace OpenMMO
 		protected const int 	MIN_LENGTH_NAME		= 4;
 		protected const int 	MAX_LENGTH_NAME 	= 16;
 		
-		protected const string	BADWORD_REPLACE		= "***";
-		
 		protected static string sOldChecksum, sNewChecksum	= "";
 	
 		// ============================ PATH & DIRECTORIES ===============================
@@ -43,7 +41,6 @@ namespace OpenMMO
         	return Path.Combine(Application.persistentDataPath, fileName);
 #else
 			return Path.Combine(Application.dataPath, fileName);
-        	//return Path.Combine(Directory.GetParent(Application.persistentDataPath).FullName, fileName);
 #endif
 		}
 		
@@ -218,18 +215,6 @@ namespace OpenMMO
 		public static bool IsAllowedPassword(string _text)
 		{
 			return !String.IsNullOrWhiteSpace(_text);
-		}
-
-		// -------------------------------------------------------------------------------
-		// FilterText
-		// -------------------------------------------------------------------------------
-		public static string FilterText(string text)
-		{
-
-			foreach (string badword in BadwordsTemplate.singleton.badwords)
-				text = text.ReplaceIgnoreCase(badword, BADWORD_REPLACE);
-			
-			return text;
 		}
 
 		// -------------------------------------------------------------------------------

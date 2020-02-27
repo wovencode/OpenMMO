@@ -18,4 +18,4 @@ MonoBehaviour:
   serverList:
   - {fileID: 11400000, guid: f348574aedc9140eda570b43f06043f2, type: 2}
   logMode: 1
-  logFilename: OpenMMOLog.txt
+  logFilename: OpenMMOLog

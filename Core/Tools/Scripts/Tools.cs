@@ -42,8 +42,9 @@ namespace OpenMMO
 #elif UNITY_IOS
         	return Path.Combine(Application.persistentDataPath, fileName);
 #else
-        	return Path.Combine(Directory.GetParent(Application.persistentDataPath).FullName, fileName);
-#endif			
+			return Path.Combine(Application.dataPath, fileName);
+        	//return Path.Combine(Directory.GetParent(Application.persistentDataPath).FullName, fileName);
+#endif
 		}
 		
 		// =========================== (WEAK) LOCAL SECURITY =============================
@@ -119,7 +120,16 @@ namespace OpenMMO
 			}
 			return 0;
 		}
-				
+		
+		// -------------------------------------------------------------------------------
+		// GetRandomAlphaString
+		// -------------------------------------------------------------------------------
+		public static string GetRandomAlphaString(int length=4)
+		{
+			string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    		return new string(Enumerable.Repeat(chars, length).Select(s => s[UnityEngine.Random.Range(0, s.Length)]).ToArray());
+		}
+		
 		// ================================= OTHER =======================================
 		
 		// -------------------------------------------------------------------------------

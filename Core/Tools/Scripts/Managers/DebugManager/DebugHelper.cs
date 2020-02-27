@@ -1,6 +1,7 @@
 
 using OpenMMO;
 using OpenMMO.Debugging;
+using OpenMMO.Portals;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,6 @@ namespace OpenMMO.Debugging
 		public bool debugMode;
 		
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();
-		protected StreamWriter streamWriter;
 		
 		// -------------------------------------------------------------------------------
 		// Init (Constructor)
@@ -39,7 +39,7 @@ namespace OpenMMO.Debugging
 		// -------------------------------------------------------------------------------
 		public void Log(string message, bool trace=true)
 		{
-			WriteToLog(message, LogType.Log, trace);
+			DebugManager.WriteToLog(message, LogType.Log, trace);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ namespace OpenMMO.Debugging
 		// -------------------------------------------------------------------------------
 		public void LogWarning(string message, bool trace=true)
 		{
-			WriteToLog(message, LogType.Warning, trace);
+			DebugManager.WriteToLog(message, LogType.Warning, trace);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ namespace OpenMMO.Debugging
 		// -------------------------------------------------------------------------------
 		public void LogError(string message, bool trace=true)
 		{
-			WriteToLog(message, LogType.Error, trace);
+			DebugManager.WriteToLog(message, LogType.Error, trace);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -66,70 +66,7 @@ namespace OpenMMO.Debugging
 		// -------------------------------------------------------------------------------
 		public void LogFormat(params string[] list)
 		{
-			
-			if (list.Length == 0)
-				return;
-			
-			string message = "["+list[0]+"] ";
-			
-			for (int i = 1; i < list.Length; i++)
-				message += list[i] + " ";
-		
-			WriteToLog(message, LogType.Log, false);
-			
-		}
-		
-		
-		// =================== PROTECTED METHODS - DEBUG LOG =============================
-		
-		// -------------------------------------------------------------------------------
-		// WriteToLog
-		// @debugMode
-		// -------------------------------------------------------------------------------
-		protected void WriteToLog(string message, LogType logType, bool trace=true)
-		{
-		
-			if (!debugMode || String.IsNullOrWhiteSpace(message))
-				return;
-			
-			string traceString 	= "";
-			string logString 	= "";
-			
-			if (trace)
-				traceString = new System.Diagnostics.StackTrace().ToString();
-			
-			logString = "<b>" + message + "</b>";
-			
-			if (trace)
-				logString += "\n" + traceString;
-			
-			if (logType == LogType.Log)
-				UnityEngine.Debug.Log(logString);
-			else if (logType == LogType.Warning)
-				UnityEngine.Debug.LogWarning(logString);
-			else if (logType == LogType.Error)
-				UnityEngine.Debug.LogError(logString);
-
-			WriteToLogFile(message);
-
-		}
-		
-		// -------------------------------------------------------------------------------
-		// WriteToLogFile
-		// @debugMode
-		// -------------------------------------------------------------------------------
-		protected void WriteToLogFile(string message)
-		{
-
-			if (!ProjectConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
-				return;
-			
-			streamWriter = new StreamWriter(Tools.GetPath(ProjectConfigTemplate.singleton.logFilename), true);
-
-			streamWriter.WriteLine(message);
-			
-			streamWriter.Close();
-			
+			DebugManager.LogFormat(list);	
 		}
 		
 		// ===================== PUBLIC METHODS - PROFILING ==============================

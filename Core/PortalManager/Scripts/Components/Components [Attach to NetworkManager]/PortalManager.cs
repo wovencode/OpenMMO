@@ -104,20 +104,10 @@ namespace OpenMMO.Portals
     		}
     	}
     	
-		// -------------------------------------------------------------------------------
-    	// GetSubZoneTimeoutInterval
-    	// -------------------------------------------------------------------------------
-		protected float GetSubZoneTimeoutInterval
-		{
-			get {
-				return zoneIntervalMain * currentZone.zoneTimeoutMultiplier;
-			}
-		}
-		
     	// -------------------------------------------------------------------------------
     	// GetZonePort
     	// -------------------------------------------------------------------------------
-    	protected ushort GetZonePort
+    	public ushort GetZonePort
     	{
     		get
     		{
@@ -158,6 +148,16 @@ namespace OpenMMO.Portals
 			get
 			{
 				return securityToken;
+			}
+		}
+		
+		// -------------------------------------------------------------------------------
+    	// GetSubZoneTimeoutInterval
+    	// -------------------------------------------------------------------------------
+		protected float GetSubZoneTimeoutInterval
+		{
+			get {
+				return zoneIntervalMain * currentZone.zoneTimeoutMultiplier;
 			}
 		}
 		

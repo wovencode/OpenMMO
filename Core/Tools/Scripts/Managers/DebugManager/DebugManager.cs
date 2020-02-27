@@ -2,6 +2,7 @@
 using OpenMMO;
 using OpenMMO.Modules;
 using OpenMMO.Debugging;
+using OpenMMO.Portals;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace OpenMMO.Debugging
 	
 		public static bool debugMode;
 		protected static StreamWriter streamWriter;
+		protected static string fileName;
 		
 		// -------------------------------------------------------------------------------
 		// LogFormat
@@ -49,7 +51,7 @@ namespace OpenMMO.Debugging
 		// WriteToLog
 		// @debugMode
 		// -------------------------------------------------------------------------------
-		protected static void WriteToLog(string message, LogType logType, bool trace=true)
+		public static void WriteToLog(string message, LogType logType, bool trace=true)
 		{
 		
 			if (!debugMode || String.IsNullOrWhiteSpace(message))
@@ -87,7 +89,10 @@ namespace OpenMMO.Debugging
 			if (!ProjectConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
 				return;
 			
-			streamWriter = new StreamWriter(Tools.GetPath(ProjectConfigTemplate.singleton.logFilename), true);
+			if (String.IsNullOrWhiteSpace(fileName))
+				fileName = ProjectConfigTemplate.singleton.logFilename + Tools.GetRandomAlphaString() + ".txt";
+			
+			streamWriter = new StreamWriter(Tools.GetPath(fileName), true);
 
 			streamWriter.WriteLine(message);
 			

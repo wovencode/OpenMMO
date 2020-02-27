@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
 using OpenMMO.Debugging;
-using OpenMMO.Chat;
+//using OpenMMO.Chat; //DEPRECIATED - Creates a Depencency With the Chat - This completely breaks the potential modularity of the Chat Plugin.
 
 namespace OpenMMO.Portals
 {
@@ -36,22 +36,24 @@ namespace OpenMMO.Portals
 		// @Client / @Server
 		// -------------------------------------------------------------------------------
 		public abstract void OnTriggerEnter(Collider co);
-		
+
+
 		// -------------------------------------------------------------------------------
 		// OnClickConfirm
 		// @Client
 		// -------------------------------------------------------------------------------
 		public virtual void OnClickConfirm()
 		{
-			if (ChatManager.singleton)
-				ChatManager.singleton.LocalChatSend(infoEntered);
+        /*DEPRECIATED - Creates a Depencency With the Chat - This completely breaks the potential modularity of the Chat Plugin.
+			if (ChatManager.singleton) ChatManager.singleton.LocalChatSend(infoEntered);
+        */
 		}
-		
-		// -------------------------------------------------------------------------------
-		// OnTriggerExit
-		// @Client / @Server
-		// -------------------------------------------------------------------------------
-		public virtual void OnTriggerExit(Collider co)
+
+        // -------------------------------------------------------------------------------
+        // OnTriggerExit
+        // @Client / @Server
+        // -------------------------------------------------------------------------------
+        public virtual void OnTriggerExit(Collider co)
 		{
 			
 			PlayerComponent pc = co.GetComponentInParent<PlayerComponent>();

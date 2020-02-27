@@ -92,15 +92,13 @@ namespace OpenMMO.Debugging
 			if (String.IsNullOrWhiteSpace(fileName))
 				fileName = ProjectConfigTemplate.singleton.logFilename + Tools.GetRandomAlphaString() + ".txt";
 			
-			streamWriter = new StreamWriter(Tools.GetPath(fileName), true);
-
-			streamWriter.WriteLine(message);
-			
-			streamWriter.Close();
+			using (streamWriter = new StreamWriter(Tools.GetPath(fileName), true))
+			{
+				streamWriter.WriteLine(message);
+				streamWriter.Close();
+			}
 			
 		}
-		
-		
 		
 		// -------------------------------------------------------------------------------
 	

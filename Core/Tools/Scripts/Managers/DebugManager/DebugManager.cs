@@ -1,6 +1,5 @@
 
 using OpenMMO;
-using OpenMMO.Modules;
 using OpenMMO.Debugging;
 using OpenMMO.Portals;
 using System;

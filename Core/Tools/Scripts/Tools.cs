@@ -203,8 +203,8 @@ namespace OpenMMO
 		{
 			return _text.Length >= MIN_LENGTH_NAME && 
 					_text.Length <= MAX_LENGTH_NAME &&
-					Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$") &&
-					!ArrayContains(BadwordsTemplate.singleton.badwords, _text);
+					Regex.IsMatch(_text, @"^[a-zA-Z0-9_]+$"); // &&
+					//!ArrayContains(BadwordsTemplate.singleton.badwords, _text);
 		}
 
 		// -------------------------------------------------------------------------------

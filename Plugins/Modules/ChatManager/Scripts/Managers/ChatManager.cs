@@ -13,7 +13,16 @@ namespace OpenMMO.Chat
     public class ChatManager : MonoBehaviour
     {
         [Header("PROFANITY FILTER")]
-        [SerializeField] ProfanityFilter profanityFilter;
+        [SerializeField] internal ProfanityFilter profanityFilter;
+        internal static string[] WordsToFilter
+        {
+            get { return singleton.profanityFilter.wordsToFilter; }
+        }
+
+        internal static string ProfanityMask
+        {
+            get { return singleton.profanityFilter.profanityMask; }
+        }
 
         [Header("CHAT CHANNELS")]
         public ChatChannelData defaultChannel = new ChatChannelData("default", "", "", "", Color.white);

@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: DefaultProfanityFilter
   m_EditorClassIdentifier: 
   profanityMask: '****'
-  wordsToFilter: []
+  wordsToFilter:
+  - fuck
+  - shit
+  - dick
+  - pussy
+  - faggot
+  - cunt
+  - bitch

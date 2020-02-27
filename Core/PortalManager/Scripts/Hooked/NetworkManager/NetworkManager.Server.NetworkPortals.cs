@@ -182,9 +182,6 @@ namespace OpenMMO.Network
 
 				if (pc.tablePlayerZones.startpos) 							// -- warp to start position
 				{
-					//debug.Log(">>> Now Warping to start position: "+ AnchorManager.singleton.GetArchetypeStartPosition(player));
-					//player.transform.position = AnchorManager.singleton.GetArchetypeStartPosition(player);
-					
 					pc.WarpLocal(AnchorManager.singleton.GetArchetypeStartPositionAnchorName(player));
 				}
 				else if (!String.IsNullOrWhiteSpace(anchorName)) 			// -- warp to anchor

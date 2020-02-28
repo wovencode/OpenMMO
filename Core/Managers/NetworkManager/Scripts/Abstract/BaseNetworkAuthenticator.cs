@@ -21,7 +21,7 @@ namespace OpenMMO.Network
 	{
 		
 		[Header("Debug Helper")]
-		public DebugHelper debug;
+		public DebugHelper debug = new DebugHelper();
 		
 		// -------------------------------------------------------------------------------
 		// Awake (Base)
@@ -31,7 +31,7 @@ namespace OpenMMO.Network
         /// </summary>
         public virtual void Awake()
 		{
-			debug = new DebugHelper();
+			
 		}
 		
 		// -------------------------------------------------------------------------------

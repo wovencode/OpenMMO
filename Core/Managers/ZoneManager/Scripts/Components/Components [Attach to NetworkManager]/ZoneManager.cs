@@ -37,7 +37,7 @@ namespace OpenMMO.Zones
 		public float zoneIntervalMain = 60f;
 		
 		[Header("Debug Helper")]
-		public DebugHelper debug;
+		public DebugHelper debug = new DebugHelper();
 		
 		// -------------------------------------------------------------------------------
 		
@@ -64,8 +64,6 @@ namespace OpenMMO.Zones
 
     		singleton = this;
     		
-    		debug = new DebugHelper();
-			    		
     		networkManager 		= GetComponent<OpenMMO.Network.NetworkManager>();
     		networkTransport 	= GetComponent<Mirror.TelepathyTransport>();
     		

@@ -15,14 +15,14 @@ namespace OpenMMO.Database
 	{
 		
 		[Header("Debug Helper")]
-		public DebugHelper debug;
+		public DebugHelper debug = new DebugHelper();
 		
 		/// <summary>
 		/// The base class includes a debug helper, it is only initialized when set to active
 		/// </summary>
 		public virtual void Awake()
 		{
-			debug = new DebugHelper();
+			
 		}
 		
     	/// <summary>

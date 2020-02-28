@@ -24,7 +24,7 @@ namespace OpenMMO.Network
 	{
 	
 		[Header("Debug Helper")]
-		public DebugHelper debug;
+		public DebugHelper debug = new DebugHelper();
 		
 		[Header("Spawnable Prefabs (use the template below - never edit the list in NetworkManager directly)")]
 		public SpawnablePrefabsTemplate spawnPrefabsTemplate;
@@ -38,8 +38,7 @@ namespace OpenMMO.Network
         /// </summary>
         public override void Awake()
 		{
-			debug = new DebugHelper();
-			
+		
 			base.Awake(); // required
 			
 			if (spawnPrefabsTemplate)

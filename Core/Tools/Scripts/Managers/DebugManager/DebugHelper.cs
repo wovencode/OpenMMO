@@ -18,17 +18,20 @@ namespace OpenMMO.Debugging
 	public partial class DebugHelper
 	{
 		
-		public bool debugMode;
+		public bool _debugMode;
 		
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();
 		
 		// -------------------------------------------------------------------------------
-		// DebugHelper (Constructor)
+		// debugMode
 		// -------------------------------------------------------------------------------
-		public DebugHelper()
+		public bool debugMode
 		{
-			if (!debugMode)
-				debugMode = ProjectConfigTemplate.singleton.globalDebugMode;
+			get {
+				if (!_debugMode)
+					return ProjectConfigTemplate.singleton.globalDebugMode;
+				return _debugMode;
+			}
 		}
 		
 		// ===================== PUBLIC METHODS - DEBUG LOG ==============================

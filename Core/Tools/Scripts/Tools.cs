@@ -253,7 +253,7 @@ namespace OpenMMO
 					if (!String.IsNullOrWhiteSpace(args[0]))
 						return args[0];
 
-				return "";
+				return String.Empty;
 			}
 		}
 

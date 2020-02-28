@@ -19,6 +19,9 @@ namespace OpenMMO.Debugging
 	public partial class DebugHelper
 	{
 		
+		/// <summary>
+		/// Used to set the debug mode on a per object basis.
+		/// </summary>
 		public DebugMode _debugMode;
 		
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();
@@ -63,7 +66,9 @@ namespace OpenMMO.Debugging
 		}
 		
 		/// <summary>
-		/// 
+		/// Adds a formatted error to the log. This special log type expects a list of strings and formats them.
+		/// <para>The first entry is always the name of the object itself. Its parsed in bold and brackets.</para>
+		/// <para>All subsequent entries are simply parsed as strings with whitespace between them.</para>
 		/// </summary>
 		public void LogFormat(params string[] list)
 		{
@@ -71,7 +76,7 @@ namespace OpenMMO.Debugging
 		}
 		
 		/// <summary>
-		/// 
+		/// Starts a new performance profile with the given name or restarts a profile of the same name.
 		/// </summary>
 		public void StartProfile(string name)
 		{
@@ -85,7 +90,7 @@ namespace OpenMMO.Debugging
 		}
 		
 		/// <summary>
-		/// 
+		/// Stops a existing performance profile of the given name.
 		/// </summary>
 		public void StopProfile(string name)
 		{
@@ -98,7 +103,7 @@ namespace OpenMMO.Debugging
 		}
 		
 		/// <summary>
-		/// 
+		/// Prints the last and total average results of a existing debug profile of the given name.
 		/// </summary>
 		public void PrintProfile(string name)
 		{
@@ -111,7 +116,7 @@ namespace OpenMMO.Debugging
 		}
 		
 		/// <summary>
-		/// 
+		/// Resets all debug profiles, deleting names, last results and all average results altogether.
 		/// </summary>
 		public void Reset()
 		{
@@ -122,39 +127,33 @@ namespace OpenMMO.Debugging
 				profile.Reset();
 		}
 		
-		// ==================== PROTECTED METHODS - PROFILING ============================
-		
-		// -------------------------------------------------------------------------------
-		// HasProfile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if a profile of the given name exists.
+		/// </summary>
 		protected bool HasProfile(string _name)
 		{
 			return debugProfiles.Any(x => x.name == _name);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetProfileIndex
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Gets the index of a profile of the given name (better check for HasProfile first).
+		/// </summary>
 		protected int GetProfileIndex(string _name)
 		{
 			return debugProfiles.FindIndex(x => x.name == _name);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// AddProfile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a new profile of the given name (better check for HasProfile first).
+		/// </summary>
 		protected void AddProfile(string name)
 		{
 			debugProfiles.Add(new DebugProfile(name));
 		}
 		
-		// -------------------------------------------------------------------------------
-		// RestartProfile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Restarts a profile of the given name if it exists.
+		/// </summary>
 		protected void RestartProfile(string name)
 		{
 			int index = GetProfileIndex(name);
@@ -162,10 +161,6 @@ namespace OpenMMO.Debugging
 				debugProfiles[index].Restart();
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

@@ -1,19 +1,19 @@
-
+//by Fhiz
 using OpenMMO;
 using OpenMMO.Debugging;
-using OpenMMO.Zones;
 using System;
 using System.IO;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
 
 namespace OpenMMO.Debugging
 {
 	
-	// ===================================================================================
-	// DebugManager
-	// ===================================================================================
+	/// <summary>
+	/// Static DebugManager can be accessed globally w/o adding it to any other class.
+	/// </summary>
+	/// <remarks>
+	/// Contrary to the DebugHelper, the DebugManager cannot generate DebugProfiles.
+	/// </remarks>
 	public partial class DebugManager
 	{
 	
@@ -21,37 +21,33 @@ namespace OpenMMO.Debugging
 		protected static StreamWriter streamWriter;
 		protected static string fileName;
 		
-		// -------------------------------------------------------------------------------
-		// Log
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a standard log entry and (optionally) the stack trace as well.
+		/// </summary>
 		public static void Log(string message, bool trace=true)
 		{
 			WriteToLog(message, LogType.Log, trace);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogWarning
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a warning log entry and (optionally) the stack trace as well.
+		/// </summary>
 		public static void LogWarning(string message, bool trace=true)
 		{
 			WriteToLog(message, LogType.Log, trace);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogError
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a error log entry and (optionally) the stack trace as well.
+		/// </summary>
 		public static void LogError(string message, bool trace=true)
 		{
 			WriteToLog(message, LogType.Log, trace);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogFormat
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a formatted standard log entry of separated strings (w/o stack trace).
+		/// </summary>
 		public static void LogFormat(params string[] list)
 		{
 			
@@ -70,13 +66,9 @@ namespace OpenMMO.Debugging
 			
 		}
 		
-		
-		// =================== PROTECTED METHODS - DEBUG LOG =============================
-		
-		// -------------------------------------------------------------------------------
-		// WriteToLog
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Formats and writes the actual log entry to the log and the text log (when in debug mode only).
+		/// </summary>
 		public static void WriteToLog(string message, LogType logType, bool trace=true)
 		{
 		
@@ -105,10 +97,9 @@ namespace OpenMMO.Debugging
 
 		}
 		
-		// -------------------------------------------------------------------------------
-		// WriteToLogFile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Writes the actual log entry to the text log, using a subfolder and appending a suffix (to differentiate logs from various server processes).
+		/// </summary>
 		protected static void WriteToLogFile(string message)
 		{
 
@@ -129,10 +120,6 @@ namespace OpenMMO.Debugging
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-	
 	}
 
 }
-
-// =======================================================================================

@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}
       propertyPath: targetAnchor
-      value: NetworkPortalAnchor
+      value: ZoneAnchor
       objectReference: {fileID: 0}
     - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}

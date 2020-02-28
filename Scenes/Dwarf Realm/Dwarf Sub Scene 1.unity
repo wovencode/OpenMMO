@@ -1946,7 +1946,7 @@ PrefabInstance:
     - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: targetAnchor
-      value: NetworkPortalAnchor
+      value: ZoneAnchor
       objectReference: {fileID: 0}
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}

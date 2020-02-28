@@ -115,8 +115,11 @@ namespace OpenMMO.Debugging
 			if (!ProjectConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
 				return;
 			
+			if (!Directory.Exists(ProjectConfigTemplate.singleton.logFolder))
+				Directory.CreateDirectory(ProjectConfigTemplate.singleton.logFolder);
+			
 			if (String.IsNullOrWhiteSpace(fileName))
-				fileName = ProjectConfigTemplate.singleton.logFilename + Tools.GetRandomAlphaString() + ".txt";
+				fileName = ProjectConfigTemplate.singleton.logFolder + "/" + ProjectConfigTemplate.singleton.logFilename + "_" + Tools.GetRandomAlphaString() + ".txt";
 			
 			using (streamWriter = new StreamWriter(Tools.GetPath(fileName), true))
 			{

@@ -189,7 +189,7 @@ namespace OpenMMO.Zones
     	// -------------------------------------------------------------------------------
 		public void SpawnSubZones()
 		{
-
+DebugManager.Log(">>>>spawn subzones");
 			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones)
 				return;
 

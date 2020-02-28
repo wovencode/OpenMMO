@@ -213,7 +213,7 @@ namespace OpenMMO
 		// -------------------------------------------------------------------------------
 		public static int GetArgumentInt(string name)
 		{
-			String[] args = System.Environment.GetCommandLineArgs();
+			string[] args = System.Environment.GetCommandLineArgs();
 			
 			int idx = args.ToList().FindIndex(x => x == name);
 			
@@ -233,7 +233,7 @@ namespace OpenMMO
 		public static string GetArgumentsString
 		{
 			get {
-				String[] args = System.Environment.GetCommandLineArgs();
+				string[] args = System.Environment.GetCommandLineArgs();
 				return args != null ? String.Join(" ", args.Skip(1).ToArray()) : "";
 			}
 		}
@@ -247,7 +247,7 @@ namespace OpenMMO
 		{
 			get
 			{
-				String[] args = System.Environment.GetCommandLineArgs();
+				string[] args = System.Environment.GetCommandLineArgs();
 				
 				if (args != null)
 					if (!String.IsNullOrWhiteSpace(args[0]))

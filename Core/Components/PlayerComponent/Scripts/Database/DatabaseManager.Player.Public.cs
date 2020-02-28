@@ -4,9 +4,9 @@ using System;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// 
+	/// </summary>
 	public partial class DatabaseManager
 	{
 		
@@ -72,7 +72,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// TryPlayerDeleteSoft
 		// -------------------------------------------------------------------------------
-		public override bool TryPlayerDeleteSoft(string name, string username, int _action=1)
+		public override bool TryPlayerDeleteSoft(string name, string username, DatabaseAction _action = DatabaseAction.Do)
 		{
 		
 			if (!base.TryPlayerDeleteSoft(name, username) || !PlayerValid(name, username))
@@ -101,7 +101,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// TryPlayerBan
 		// -------------------------------------------------------------------------------
-		public override bool TryPlayerBan(string name, string username, int _action=1)
+		public override bool TryPlayerBan(string name, string username, DatabaseAction _action = DatabaseAction.Do)
 		{
 			
 			if (!base.TryPlayerBan(name, username) || !PlayerValid(name, username))

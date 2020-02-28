@@ -4,9 +4,9 @@ using System;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// 
+	/// </summary>
 	public partial class DatabaseManager
 	{
 		
@@ -66,7 +66,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// TryUserDelete
 		// -------------------------------------------------------------------------------
-		public override bool TryUserDelete(string name, string password, int action=1)
+		public override bool TryUserDelete(string name, string password, DatabaseAction action = DatabaseAction.Do)
 		{
 		
 			if (!base.TryUserDelete(name, password) || !UserValid(name, password))
@@ -94,7 +94,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// TryUserBan
 		// -------------------------------------------------------------------------------
-		public override bool TryUserBan(string name, string password, int action=1)
+		public override bool TryUserBan(string name, string password, DatabaseAction action = DatabaseAction.Do)
 		{
 			
 			if (!base.TryUserBan(name, password) || !UserValid(name, password))
@@ -108,7 +108,7 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		// TryUserConfirm
 		// -------------------------------------------------------------------------------
-		public override bool TryUserConfirm(string name, string password, int action=1)
+		public override bool TryUserConfirm(string name, string password, DatabaseAction action = DatabaseAction.Do)
 		{
 		
 			if (!base.TryUserConfirm(name, password) || !UserValid(name, password))

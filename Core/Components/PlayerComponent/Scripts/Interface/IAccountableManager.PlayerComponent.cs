@@ -17,10 +17,10 @@ namespace OpenMMO.Database
 		// ---- User
 		bool TryUserLogin(string name, string password);
 		bool TryUserRegister(string name, string password, string email, string deviceid);
-		bool TryUserDelete(string name, string password, int action=1);
-		bool TryUserBan(string name, string password, int action=1);
+		bool TryUserDelete(string name, string password, DatabaseAction action = DatabaseAction.Do);
+		bool TryUserBan(string name, string password, DatabaseAction action = DatabaseAction.Do);
 		bool TryUserChangePassword(string name, string oldpassword, string newpassword);
-		bool TryUserConfirm(string name, string password, int action=1);
+		bool TryUserConfirm(string name, string password, DatabaseAction action = DatabaseAction.Do);
 		bool TryUserGetValid(string name, string password);
 		bool TryUserGetExists(string name);
 		int TryUserGetPlayerCount(string name);
@@ -28,9 +28,9 @@ namespace OpenMMO.Database
 		// ---- Player
 		bool TryPlayerLogin(string name, string username);
 		bool TryPlayerRegister(string name, string username, string prefabname);
-		bool TryPlayerDeleteSoft(string name, string username, int action=1);
+		bool TryPlayerDeleteSoft(string name, string username, DatabaseAction action = DatabaseAction.Do);
 		bool TryPlayerDeleteHard(string name, string username);
-		bool TryPlayerBan(string name, string username, int action=1);
+		bool TryPlayerBan(string name, string username, DatabaseAction action = DatabaseAction.Do);
 		
 	}
 		

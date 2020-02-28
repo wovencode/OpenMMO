@@ -53,23 +53,23 @@ namespace OpenMMO.Database
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET password=? WHERE username=? AND password=?", newpassword, username, oldpassword);
 		}
-		
+
 		// -------------------------------------------------------------------------------
 		// UserSetDeleted
 		// Sets the user to deleted (1) or undeletes it (0)
 		// -------------------------------------------------------------------------------
-		protected void UserSetDeleted(string username, int action=1)
+		protected void UserSetDeleted(string username, DatabaseAction action = DatabaseAction.Do)
 		{
-			Execute("UPDATE "+nameof(TableUser)+" SET deleted=? WHERE username=?", action, username);
+			Execute("UPDATE "+nameof(TableUser)+" SET deleted=? WHERE username=?", action == DatabaseAction.Do ? 1 : 0, username);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// UserSetBanned
 		// Bans (1) or unbans (0) the user
 		// -------------------------------------------------------------------------------
-		protected void UserSetBanned(string username, int action=1)
+		protected void UserSetBanned(string username, DatabaseAction action = DatabaseAction.Do)
 		{
-			Execute("UPDATE "+nameof(TableUser)+" SET banned=? WHERE username=?", action, username);
+			Execute("UPDATE "+nameof(TableUser)+" SET banned=? WHERE username=?", action == DatabaseAction.Do ? 1 : 0, username);
 		}
 
         // -------------------------------------------------------------------------------
@@ -99,9 +99,9 @@ namespace OpenMMO.Database
 		// UserSetConfirmed
 		// Sets the user to confirmed (1) or unconfirms it (0)
 		// -------------------------------------------------------------------------------
-		protected void UserSetConfirmed(string username, int action=1)
+		protected void UserSetConfirmed(string username, DatabaseAction action = DatabaseAction.Do)
 		{
-			Execute("UPDATE "+nameof(TableUser)+" SET confirmed=? WHERE username=?", action, username);
+			Execute("UPDATE "+nameof(TableUser)+" SET confirmed=? WHERE username=?", action == DatabaseAction.Do ? 1 : 0, username);
 		}
 		
 		// -------------------------------------------------------------------------------

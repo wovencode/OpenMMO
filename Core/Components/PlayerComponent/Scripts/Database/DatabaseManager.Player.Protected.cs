@@ -21,18 +21,18 @@ namespace OpenMMO.Database
 		// PlayerSetDeleted
 		// Sets the player to deleted (1) or undeletes it (0)
 		// -------------------------------------------------------------------------------
-		protected void PlayerSetDeleted(string playername, int action=1)
+		protected void PlayerSetDeleted(string playername, DatabaseAction action = DatabaseAction.Do)
 		{
-			Execute("UPDATE "+nameof(TablePlayer)+" SET deleted=? WHERE playername=?", action, playername);
+			Execute("UPDATE "+nameof(TablePlayer)+" SET deleted=? WHERE playername=?", action == DatabaseAction.Do ? 1 : 0, playername);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// PlayerSetBanned
 		// Bans (1) or unbans (0) the user
 		// -------------------------------------------------------------------------------
-		protected void PlayerSetBanned(string playername, int action=1)
+		protected void PlayerSetBanned(string playername, DatabaseAction action = DatabaseAction.Do)
 		{
-			Execute("UPDATE "+nameof(TablePlayer)+" SET banned=? WHERE playername=?", action, playername);
+			Execute("UPDATE "+nameof(TablePlayer)+" SET banned=? WHERE playername=?", action == DatabaseAction.Do ? 1 : 0, playername);
 		}
 		
 		// -------------------------------------------------------------------------------

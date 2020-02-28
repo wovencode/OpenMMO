@@ -1,8 +1,8 @@
-﻿using System;
+﻿// by Fhiz
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
-//using MySql.Data;
 using MySql.Data.MySqlClient;
 using OpenMMO;
 using OpenMMO.Database;
@@ -10,25 +10,21 @@ using OpenMMO.Debugging;
 
 namespace OpenMMO.Database {
 	
-	// ===================================================================================
-	// PrimaryKeyAttribute
-	// ===================================================================================
+	/// <summary>
+	/// [PrimaryKey] This property attribute is used to mark a field as "Primary Key"
+	/// </summary>
 	[AttributeUsage (AttributeTargets.Property)]
-	public class PrimaryKeyAttribute : Attribute
-	{
-	}
+	public class PrimaryKeyAttribute : Attribute {}
 	
-	// ===================================================================================
-	// AutoIncrementAttribute
-	// ===================================================================================
+	/// <summary>
+	/// [AutoIncrement] This property attribute is used to mark a field as "Auto Increment"
+	/// </summary>
 	[AttributeUsage (AttributeTargets.Property)]
-	public class AutoIncrementAttribute : Attribute
-	{
-	}
+	public class AutoIncrementAttribute : Attribute {}
 	
-	// ===================================================================================
-	// TableMap
-	// ===================================================================================
+	/// <summary>
+	/// 
+	/// </summary>
 	public class TableMap
 	{
 		
@@ -36,13 +32,12 @@ namespace OpenMMO.Database {
 		public string name;
 		public TableRow[] rows;
 		
-		// Caches
 		protected string mySQLString			= "";
 		protected string mySQLString_Prefixed 	= "";
 		
-		// -------------------------------------------------------------------------------
-		// TableMap (Constructor)
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Constructor sets type, name and creates a set of rows.
+		/// </summary>
 		public TableMap(Type _type, string _name, int rowCount)
 		{
 			type = _type;
@@ -50,9 +45,9 @@ namespace OpenMMO.Database {
 			rows = new TableRow[rowCount];
 		}
 		
-		// -------------------------------------------------------------------------------
-		// RowsToMySQLInsertString
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Iterates all rows of this table and returns them as mySQL compliant query string (usually used for Insert).
+		/// </summary>
 		public string RowsToMySQLInsertString
 		{
 			get
@@ -75,9 +70,9 @@ namespace OpenMMO.Database {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// RowsToMySQLString
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Iterates all rows of this table and returns them as mySQL compliant query string.
+		/// </summary>
 		public string RowsToMySQLString(string prefix="")
 		{
 		
@@ -115,9 +110,9 @@ namespace OpenMMO.Database {
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// RowsToMySQLParameters
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Converts all rows of this table to an array of mySQL parameters (usually used as param args).
+		/// </summary>
 		public MySqlParameter[] RowsToMySQLParameters
 		{
 			get
@@ -133,9 +128,9 @@ namespace OpenMMO.Database {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// HasPrimaryKey
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if any field of this table has the "Primary Key" attribute.
+		/// </summary>
 		public bool HasPrimaryKey
 		{
 			get
@@ -146,9 +141,9 @@ namespace OpenMMO.Database {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetPrimaryKey
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns the field that has the "Primary Key" attribute.
+		/// </summary>
 		public string GetPrimaryKey
 		{
 			get
@@ -159,9 +154,9 @@ namespace OpenMMO.Database {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateValue
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates the value stored in the field of the given name. Where obj is a property value (like an integer or a string).
+		/// </summary>
 		public void UpdateValue(string rowname, object obj)
 		{
 			foreach (TableRow row in rows)
@@ -169,9 +164,9 @@ namespace OpenMMO.Database {
 					row.value = obj;
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateValues
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates all values in the fields of this table according to obj. Where obj is a TableClass that has to match this table.
+		/// </summary>
 		public void UpdateValues(object obj)
 		{
 		
@@ -183,9 +178,9 @@ namespace OpenMMO.Database {
 
 		}
 		
-		// -------------------------------------------------------------------------------
-		// ToType
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Converts this TableMap into a type T. Where T is a TableClass.
+		/// </summary>
 		public T ToType<T>()
 		{
 		
@@ -201,13 +196,11 @@ namespace OpenMMO.Database {
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 	
-	// ===================================================================================
-	// TableRow
-	// ===================================================================================
+	/// <summary>
+	/// Used to represent the fields in a table row. Each field can be used like a class property or a mySQL query string.
+	/// </summary>
 	public class TableRow
 	{
 		public string name;
@@ -223,9 +216,9 @@ namespace OpenMMO.Database {
 		const string typeFloat		= " FLOAT";
 		const string typeDouble		= " DOUBLE";
 		
-		// -------------------------------------------------------------------------------
-		// ToMySQLString
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Converts the name and type of this field into a mySQL compliant query string.
+		/// </summary>
 		public string ToMySQLString
 		{
 			get
@@ -263,10 +256,6 @@ namespace OpenMMO.Database {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 		
 }
-
-// =======================================================================================

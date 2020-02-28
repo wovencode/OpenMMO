@@ -1,4 +1,4 @@
-﻿
+﻿// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using System;
@@ -13,20 +13,22 @@ using UnityEngine;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// DatabaseCompatibility
-	// ===================================================================================
+	/// <summary>
+	/// Translates queries from SQLite to mySQL using System.Reflection. This is possible because the syntax of both languages is very similar.
+	/// <remarks>This solution is a bit slower and more cumbersome, but not used too frequently (not in update etc.). It allows to drive all database queries off the same codebase.</remarks>
+	/// <remarks>Several caches store common queries, parameter lists and table maps to increase performance. Those caches are built the first time they are used and then simply fetched.</remarks>
+	/// </summary>
 	public partial class DatabaseCompatibility
 	{
 		
-		// Caches
 		protected Dictionary<int, TableMap> tableMaps = new Dictionary<int, TableMap>();
 		protected Dictionary<int, MySqlParameter[]> mySQLParameters = new Dictionary<int, MySqlParameter[]>();
 		protected Dictionary<int, string> mySQLQueries = new Dictionary<int, string>();
 		
-		// -------------------------------------------------------------------------------
-		// GetTableMap
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Creates a TableMap class instance from the provided object T. Where T is a TableClass.
+		/// <remarks>If the TableMap is found in the cache already, it is returned. Which is much faster than rebuilding it every time.</remarks>
+		/// </summary>
 		public TableMap GetTableMap<T>()
 		{
 			
@@ -45,9 +47,10 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetTableMap
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns a TableMap class instance or builds a new one from the provided object. Where the object is a TableClass.
+		/// <remarks>If the TableMap is found in the cache already, it is returned. Which is much faster than rebuilding it every time.</remarks>
+		/// </summary>
 		public TableMap GetTableMap(object obj)
 		{
 			
@@ -71,10 +74,10 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetConvertedParameters
-		// converts parameters or returns cached ones
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Converts provided SQLite parameters to mySQL or returns cached ones.
+		/// <remarks>If the exact parameter list is found in the cache already, it returns that instead. Which is much faster than rebuilding it every time.</remarks>
+		/// </summary>
 		public MySqlParameter[] GetConvertedParameters(object[] args)
 		{
 		
@@ -93,10 +96,10 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetConvertedQuery
-		// converts the query or returns a cached one
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Converts the provided SQLite query to mySQL or returns a cached one.
+		/// <remarks>If the exact query (without parameters) is found in the cache already, it returns that instead. Which is much faster than rebuilding it every time.</remarks>
+		/// </summary>
 		public string GetConvertedQuery(string query)
 		{
 			
@@ -115,9 +118,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// ConvertReader
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Converts a mySQLRowsReader into a list of results of type T. Where T is a TableClass.
+		/// </summary>
 		public List<T> ConvertReader<T>(MySQLRowsReader reader)
 		{
 
@@ -176,9 +179,9 @@ namespace OpenMMO.Database
 			
 		}
 				
-		// -------------------------------------------------------------------------------
-		// BuildTableMapFromType
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Builds a TableMap instance from the provided type T. Where T is a TableClass.
+		/// </summary>
 		protected TableMap BuildTableMapFromType<T>()
 		{
 			
@@ -207,11 +210,9 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// ============================= PROTECTED =======================================
-		
-		// -------------------------------------------------------------------------------
-		// BuildTableMapFromObject
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Builds a TableMap instance from the provided object obj. Where obj is a TableClass.
+		/// </summary>
 		protected TableMap BuildTableMapFromObject(object obj)
 		{
 			
@@ -240,9 +241,9 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BuildConvertedParameters
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Takes a SQLite parameter list and converts it to mySQL.
+		/// </summary>
 		protected MySqlParameter[] BuildConvertedParameters(object[] args)
 		{
 			
@@ -255,9 +256,9 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BuildConvertedQuery
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Takes a SQLite query in form of a string and converts it to mySQL.
+		/// </summary>
 		protected string BuildConvertedQuery(string query)
 		{
 		
@@ -270,18 +271,20 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// IsPK
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if the provided column is of the type "Primary Key"
+		/// <remarks>This function requires the SQLite.net open-source code that is present anyway in this project.</remarks>
+		/// </summary>
         protected bool IsPK (MemberInfo p)
 		{
 			return p.CustomAttributes.Any (x => x.AttributeType == typeof (PrimaryKeyAttribute));
 		}
 		
-        // -------------------------------------------------------------------------------
-		// IsAutoInc
-		// -------------------------------------------------------------------------------
-        protected  bool IsAutoInc (MemberInfo p)
+        /// <summary>
+		/// Checks if the provided column is of the type "Auto Increment"
+		/// <remarks>This function requires the SQLite.net open-source code that is present anyway in this project.</remarks>
+		/// </summary>
+        protected bool IsAutoInc (MemberInfo p)
 		{
 			return p.CustomAttributes.Any (x => x.AttributeType == typeof (AutoIncrementAttribute));
 		}

@@ -1,4 +1,4 @@
-
+// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -10,9 +10,9 @@ using SQLite;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// Database
-	// ===================================================================================
+	/// <summary>
+	/// The actual DatabaseManager class is almost empty and extended via partial. Derived from BaseDatabaseManager and implements the interface.
+	/// </summary>
 	[DisallowMultipleComponent]
 	public partial class DatabaseManager : BaseDatabaseManager, IAbstractableDatabase
 	{
@@ -26,21 +26,22 @@ namespace OpenMMO.Database
 		[Tooltip("Allow relogin after client inactivity in seconds (should be saveInterval or more).")]
 		public float logoutInterval = 90f;
 		
+		/// <summary>
+		/// Singletons are OK for all manager type classes
+		/// </summary>
 		public static DatabaseManager singleton;
 		
-		// -------------------------------------------------------------------------------
-		// OnEnable
-		// updates the define to set the database layer depending of chosen database type
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates the define to set the database layer according to chosen database type
+		/// </summary>
 		void OnEnable()
 		{
 			OnValidate();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OnValidate
-		// updates the define to set the database layer depending of chosen database type
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates the define to set the database layer depending of chosen database type
+		/// </summary>
 		void OnValidate()
 		{
 			if (databaseLayer)
@@ -49,29 +50,24 @@ namespace OpenMMO.Database
 			this.InvokeInstanceDevExtMethods(nameof(OnValidate)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// DeleteUsers
-		// hard deletes all users that have been soft deleted before
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hard deletes all users that have been soft deleted before
+		/// </summary>
 		void DeleteUsers()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(DeleteUsers)); //HOOK
 			debug.Log("["+name+"] Invoking: DeleteUsers"); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// SavePlayers
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Saves all online players. The actual saving is done via the hooked methods.
+		/// </summary>
 		public void SavePlayers()
     	{
 			this.InvokeInstanceDevExtMethods(nameof(SavePlayers)); //HOOK
     		debug.Log("["+name+"] Invoking: SavePlayers"); //DEBUG
     	}
     	
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

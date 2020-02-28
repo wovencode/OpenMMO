@@ -1,4 +1,4 @@
-﻿
+﻿// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -8,9 +8,9 @@ using System.Collections.Generic;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// DatabaseAbstractionLayer
-	// ===================================================================================
+	/// <summary>
+	/// Abstract base class for DatabaseAbstractionLayers. Features all methods required by its interface already.
+	/// </summary>
 	[System.Serializable]
 	public abstract partial class DatabaseAbstractionLayer : MonoBehaviour, IAbstractableDatabase
 	{
@@ -32,5 +32,3 @@ namespace OpenMMO.Database
 	}
 
 }
-
-// =======================================================================================

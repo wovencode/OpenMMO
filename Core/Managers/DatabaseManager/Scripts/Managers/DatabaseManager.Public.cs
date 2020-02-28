@@ -1,10 +1,8 @@
-
+// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Network;
-using OpenMMO.Zones;
 using UnityEngine;
-using UnityEngine.AI;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -13,38 +11,31 @@ using Mirror;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of the DatabaseManager contains only public methods that are independent of the database layer in use.
+	/// </summary>
 	public partial class DatabaseManager
 	{
-		
-		// ============================= PUBLIC METHODS ==================================
-		
-    	// -------------------------------------------------------------------------------
-		// CreateDefaultDataPlayer
-		// called when a new player is registered, the hook is executed on all modules and
-		// used to parse default data onto the player (like starting Equipment etc.).
-		// -------------------------------------------------------------------------------
+    	
+		/// <summary>
+		/// This hook is called when a player (= character) is registered and is executed on all modules to parse default data onto the player (like starting Equipment etc.).
+		/// </summary>
 		public void CreateDefaultDataPlayer(GameObject player)
 		{
 			this.InvokeInstanceDevExtMethods(nameof(CreateDefaultDataPlayer), player); //HOOK
 		}
 
-        // -------------------------------------------------------------------------------
-        // LoadDataPlayerPriority
-        // Called at the start of LoadDataPlayer, before the rest of the method is called
-        // -------------------------------------------------------------------------------
+        /// <summary>
+		/// This hook is called at the start of LoadDataPlayer, before the rest of the method is called (some data needs to get loaded first).
+		/// </summary>
         public virtual void LoadDataPlayerPriority(GameObject prefab, GameObject player)
         {
 			this.InvokeInstanceDevExtMethods(nameof(LoadDataPlayerPriority), player); //HOOK
         }
 		
-		// -------------------------------------------------------------------------------
-		// LoadDataPlayer
-		// called when a player is loaded from the database, the hooks are executed on
-		// all modules and used to load additional player data.
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// This hook is called when a player (= character) is loaded from the database, the hook is executed on all modules and used to load additional data provided by those.
+		/// </summary>
 		public GameObject LoadDataPlayer(GameObject prefab, string _name)
 		{
 			GameObject player = Instantiate(prefab);
@@ -56,14 +47,11 @@ namespace OpenMMO.Database
 			return player;
 		}
 		
-		// -------------------------------------------------------------------------------
-		// SaveDataUser
-		// called when a user is saved to the database, the hook is executed on all
-		// modules and used to save additional data.
-		//
-		// isNew = Is it a new user account? (Saving might be different)
-		// useTransaction = When saved individually we can use a transaction
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Called when a user is saved to the database, this hook is executed on all modules and used to save additional data provided by those.
+		/// <para>isNew = Is this a new player character? (Saving might be different in that case)</para>
+		/// <para>useTransaction = When saved individually we can use a transaction</para>
+		/// </summary>
 		public void SaveDataUser(string username, bool isNew = false, bool useTransaction = true)
 		{
 			if (useTransaction)
@@ -75,14 +63,11 @@ namespace OpenMMO.Database
 				databaseLayer.Commit();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// SaveDataPlayer
-		// called when a player is saved to the database, the hook is executed on all
-		// modules and used to save additional data.
-		//
-		// isNew = Is it a new player character? (Saving might be different)
-		// useTransaction = When saved individually we can use a transaction
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// This hook is called when a player is saved to the database and executed on all modules to save additional data.
+		/// <para>isNew = Is this a new player character? (Saving might be different in that case)</para>
+		/// <para>useTransaction = When saved individually we can use a transaction</para>
+		/// </summary>
 		public void SaveDataPlayer(GameObject player, bool isNew = false, bool useTransaction = true)
 		{
 			if (useTransaction)
@@ -94,50 +79,44 @@ namespace OpenMMO.Database
 				databaseLayer.Commit();
 		}
 		
-		// ============================= NETWORK MANAGER EVENTS ==========================
-		
-		// -------------------------------------------------------------------------------
-		// LoginUser
-		// From: @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Logs a existing but logged-out user (= account) into the database.
+		/// <remarks>This method is called from the NetworkManager</remarks>
+		/// </summary>
 		public void LoginUser(string name)
 		{
 			this.InvokeInstanceDevExtMethods(nameof(LoginUser), name); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogoutUser
-		// From : @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Logs out a logged-in user (= account) from the database.
+		/// <remarks>This method is called from the NetworkManager</remarks>
+		/// </summary>
 		public void LogoutUser(string name)
 		{
 			SaveDataUser(name, false);
 			this.InvokeInstanceDevExtMethods(nameof(LogoutUser), name); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LoginPlayer
-		// From: @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Logs a existing but logged-out player (= character) into the database.
+		/// <remarks>This method is called from the NetworkManager</remarks>
+		/// </summary>
 		public void LoginPlayer(NetworkConnection conn, GameObject player, string playerName, string userName)
 		{
 			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playerName, userName); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogoutPlayer
-		// From: @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Logs out an logged-in player (= character) from the database.
+		/// <remarks>This method is called from the NetworkManager</remarks>
+		/// </summary>
 		public void LogoutPlayer(GameObject player)
 		{
 			SaveDataPlayer(player, false);
 			this.InvokeInstanceDevExtMethods(nameof(LogoutPlayer), player); //HOOK
         }
 		
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

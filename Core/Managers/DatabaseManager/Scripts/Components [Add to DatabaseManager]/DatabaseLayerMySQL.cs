@@ -1,4 +1,4 @@
-﻿
+﻿// by Fhiz, insthync
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Debugging;
@@ -18,9 +18,9 @@ using UnityEditor;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// DatabaseLayerMySQL
-	// ===================================================================================
+	/// <summary>
+	/// The DatabaseLayerMySQL overrides all methods of the DatabaseAbstractionLayer and translates the queries to match the database type.
+	/// </summary>
 	[System.Serializable]
 	public partial class DatabaseLayerMySQL : DatabaseAbstractionLayer
 	{
@@ -44,18 +44,14 @@ namespace OpenMMO.Database
 		
 		protected DatabaseCompatibility dbCompat = new DatabaseCompatibility();
 		
-		// ================================ API METHODS ==================================
+		/// <summary>
+		/// Overridable Init that might be required for certain database layer implementations.
+		/// <summary>
+		public override void Init() {}
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// -------------------------------------------------------------------------------
-		public override void Init()
-		{
-		}
-		
-		// -------------------------------------------------------------------------------
-		// OpenConnection
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Opens a new connection or re-establishes a existing connection.
+		/// <summary>
 		public override void OpenConnection()
 		{
 			
@@ -65,18 +61,18 @@ namespace OpenMMO.Database
 			connection.Open();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// CloseConnection
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Closes a connection if it exists and is open.
+		/// <summary>
 		public override void CloseConnection()
 		{
 			if (connection != null)
 				connection.Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// CreateTable
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Creates a table of type T. Where T is a TableClass.
+		/// <summary>
 		public override void CreateTable<T>()
 		{
 			TableMap tableMap = dbCompat.GetTableMap<T>();
@@ -92,9 +88,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// CreateIndex
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Creates an index on a existing table. Where columnNames is a string array of column names on the table.
+		/// <summary>
 		public override void CreateIndex(string tableName, string[] columnNames, bool unique = false)
 		{
 			
@@ -109,26 +105,26 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Execute
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Queries the given table and returns a list of matching TableClasses.
+		/// <summary>
 		public override void Execute(string query, params object[] args)
 		{
 			ExecuteNonQuery(connection, null, dbCompat.GetConvertedQuery(query), dbCompat.GetConvertedParameters(args));
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Query
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Executes a query that does not return anything. Where arguments is a list of parameters.
+		/// <summary>
 		public override List<T> Query<T>(string query, params object[] args)
 		{
 			MySQLRowsReader reader = ExecuteReader(connection, null, dbCompat.GetConvertedQuery(query), dbCompat.GetConvertedParameters(args));
 			return dbCompat.ConvertReader<T>(reader);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FindWithQuery
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Finds a matching object using a query. Where arguments is a list of properties. Returns a TableClass.
+		/// <summary>
 		public override T FindWithQuery<T>(string query, params object[] args)
 		{
 			List<T> list = Query<T>(query, args);
@@ -140,9 +136,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Insert
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Executes a Insert. Where object is a TableClass.
+		/// <summary>
 		public override void Insert(object obj)
 		{
 
@@ -157,9 +153,9 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// InsertOrReplace
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Executes a InsertOrReplace. Where objects is a TableClass.
+		/// <summary>
 		public override void InsertOrReplace(object obj)
 		{
 		
@@ -174,26 +170,26 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BeginTransaction
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Begins a transaction.
+		/// <summary>
 		public override void BeginTransaction()
 		{
 			ExecuteNonQuery("START TRANSACTION");
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Commit
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Commits a transaction.
+		/// <summary>
 		public override void Commit()
 		{
 			ExecuteNonQuery("COMMIT");
 		}
 		
 		
-        // -------------------------------------------------------------------------------
-		// OnValidate
-		// -------------------------------------------------------------------------------
+        /// <summary>
+		/// Called when the inspector properties change due to user input.
+		/// <summary>
 		public override void OnValidate()
 		{
 #if UNITY_EDITOR
@@ -237,9 +233,6 @@ namespace OpenMMO.Database
 		
 		*/
 		
-		// -------------------------------------------------------------------------------
-		// GetConnectionString
-		// -------------------------------------------------------------------------------
 		string GetConnectionString
 		{
 			get
@@ -261,17 +254,11 @@ namespace OpenMMO.Database
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// NewConnection
-		// -------------------------------------------------------------------------------
 		MySqlConnection NewConnection()
         {
             return new MySqlConnection(GetConnectionString);
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteInsertData
-		// -------------------------------------------------------------------------------
         long ExecuteInsertData(string sql, params MySqlParameter[] args)
         {
             MySqlConnection connection = NewConnection();
@@ -281,9 +268,6 @@ namespace OpenMMO.Database
             return result;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteInsertData
-		// -------------------------------------------------------------------------------
         long ExecuteInsertData(MySqlConnection connection, MySqlTransaction transaction, string sql, params MySqlParameter[] args)
         {
             bool createLocalConnection = false;
@@ -311,9 +295,6 @@ namespace OpenMMO.Database
             return result;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteNonQuery
-		// -------------------------------------------------------------------------------
         int ExecuteNonQuery(string sql, params MySqlParameter[] args)
         {
             MySqlConnection connection = NewConnection();
@@ -323,9 +304,6 @@ namespace OpenMMO.Database
             return result;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteNonQuery
-		// -------------------------------------------------------------------------------
         int ExecuteNonQuery(MySqlConnection connection, MySqlTransaction transaction, string sql, params MySqlParameter[] args)
         {
             bool createLocalConnection = false;
@@ -352,9 +330,6 @@ namespace OpenMMO.Database
             return numRows;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteScalar
-		// -------------------------------------------------------------------------------
         object ExecuteScalar(string sql, params MySqlParameter[] args)
         {
             MySqlConnection connection = NewConnection();
@@ -364,9 +339,6 @@ namespace OpenMMO.Database
             return result;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteScalar
-		// -------------------------------------------------------------------------------
         object ExecuteScalar(MySqlConnection connection, MySqlTransaction transaction, string sql, params MySqlParameter[] args)
         {
             bool createLocalConnection = false;
@@ -393,9 +365,6 @@ namespace OpenMMO.Database
             return result;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteReader
-		// -------------------------------------------------------------------------------
         MySQLRowsReader ExecuteReader(string sql, params MySqlParameter[] args)
         {
             MySqlConnection connection = NewConnection();
@@ -405,9 +374,6 @@ namespace OpenMMO.Database
             return result;
         }
 		
-		// -------------------------------------------------------------------------------
-		// ExecuteReader
-		// -------------------------------------------------------------------------------
         MySQLRowsReader ExecuteReader(MySqlConnection connection, MySqlTransaction transaction, string sql, params MySqlParameter[] args)
         {
             bool createLocalConnection = false;
@@ -436,10 +402,6 @@ namespace OpenMMO.Database
             return result;
         }
         
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

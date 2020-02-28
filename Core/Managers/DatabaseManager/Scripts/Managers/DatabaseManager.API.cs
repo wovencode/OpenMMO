@@ -1,4 +1,4 @@
-
+// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Debugging;
@@ -12,19 +12,15 @@ using SQLite;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of the DatabaseManager accepts all kinds of queries and forwards them to the DatabaseLayer currently in use.
+	/// </summary>
 	public partial class DatabaseManager
 	{
-		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// Sets the singleton on awake, database can be accessed from anywhere by using it
-		// also calls "Init" on database and the databaseLayer to create database and 
-		// open connection if
-		// that is required
-		// -------------------------------------------------------------------------------
+	
+		/// <summary>
+		/// Sets the singleton on awake, database can be accessed from anywhere by using it. Calls Init only when we are the server.
+		/// </summary>
 		public override void Awake()
 		{
 			base.Awake(); // required
@@ -36,11 +32,9 @@ namespace OpenMMO.Database
 
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// creates/connects to the database and creates all tables
-		// for a multiplayer server based game, this should only be called on the server
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// creates/connects to the database and creates all (non-existant) tables plus indices
+		/// </summary>
 		public void Init()
 		{
 			
@@ -66,119 +60,114 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Destruct
-		// closes the connection, cancels saving 
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Closes the connection and cancels player saving. Usually called from OnDestroy
+		/// </summary>
 		public void Destruct()
 		{
 			CancelInvoke();
 			CloseConnection();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OpenConnection
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to open the connection to the database
+		/// </summary>
 		public void OpenConnection()
 		{
 			databaseLayer.OpenConnection();
 			debug.Log("["+name+"] OpenConnection"); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// CloseConnection
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to close the connection to the database
+		/// </summary>
 		public void CloseConnection()
 		{
 			databaseLayer.CloseConnection();
 			debug.Log("["+name+"] CloseConnection"); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// CreateTable
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to create a new table of type T
+		/// </summary>
 		public void CreateTable<T>()
 		{
 			databaseLayer.CreateTable<T>();
 			debug.Log("["+name+"] CreateTable: "+typeof(T)); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// CreateIndex
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to create a new index for the given table
+		/// </summary>
 		public void CreateIndex(string tableName, string[] columnNames, bool unique = false)
 		{
 			databaseLayer.CreateIndex(tableName, columnNames, unique);
 			debug.Log("["+name+"] CreateIndex: "+tableName + " ("+string.Join ("_", columnNames)+")"); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Query
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to query a table and return a list of matching objects
+		/// </summary>
 		public List<T> Query<T>(string query, params object[] args) where T : new()
 		{
 			debug.Log("["+name+"] Query: "+typeof(T)+ "("+query+")"); //DEBUG
 			return databaseLayer.Query<T>(query, args);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Execute
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to execute a query that does not return anything
+		/// </summary>
 		public void Execute(string query, params object[] args)
 		{
 			databaseLayer.Execute(query, args);
 			debug.Log("["+name+"] Execute: "+query); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FindWithQuery
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to return one object of type T that matches the query
+		/// </summary>
 		public T FindWithQuery<T>(string query, params object[] args) where T : new()
 		{
 			debug.Log("["+name+"] FindWithQuery: "+typeof(T)+" ("+query+")"); //DEBUG
 			return databaseLayer.FindWithQuery<T>(query, args);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Insert
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to insert a new object into the database. Where object is a TableClass.
+		/// </summary>
 		public void Insert(object obj)
 		{
 			databaseLayer.Insert(obj);
 			debug.Log("["+name+"] Insert: "+obj); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// InsertOrReplace
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to insert or replace a object into the database. Where object is a TableClass.
+		/// </summary>
 		public void InsertOrReplace(object obj)
 		{
 			databaseLayer.InsertOrReplace(obj);
 			debug.Log("["+name+"] InsertOrReplace: "+obj); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BeginTransaction
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to begin a transaction.
+		/// </summary>
 		public void BeginTransaction()
 		{
 			databaseLayer.BeginTransaction();
 			debug.Log("["+name+"] BeginTransaction"); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Commit
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tells the DatabaseLayer to commit a transaction.
+		/// </summary>
 		public void Commit()
 		{
 			databaseLayer.Commit();
 			debug.Log("["+name+"] Commit"); //DEBUG
 		}
 		
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

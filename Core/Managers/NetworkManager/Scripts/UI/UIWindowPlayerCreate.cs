@@ -61,9 +61,10 @@ namespace OpenMMO.UI
 		// ThrottledUpdate
 		// -------------------------------------------------------------------------------
 		protected override void ThrottledUpdate()
-		{
-		
-			this.InvokeInstanceDevExtMethods(nameof(ThrottledUpdate)); //HOOK
+        {
+            playernameInput.text = Tools.TrimExcessWhitespace(playernameInput.text); //TRIM EXTRA WHITESPACE
+
+            this.InvokeInstanceDevExtMethods(nameof(ThrottledUpdate)); //HOOK
 			
 			// -- Available Players
 			UpdatePlayerIndex();

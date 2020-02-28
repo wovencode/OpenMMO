@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -56,12 +56,16 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		protected override void ThrottledUpdate()
 		{
+            usernameInput.text = Tools.TrimExcessWhitespace(usernameInput.text, true); //TRIM ALL WHITESPACE
 			
-			if (!Tools.IsAllowedName(usernameInput.text) || !Tools.IsAllowedPassword(userpassInput.text))
-				statusText.text = "Check Name/Password";
+			if (!Tools.IsAllowedName(usernameInput.text))
+				statusText.text = "ENTER A VALID USERNAME";
+            else if (!Tools.IsAllowedPassword(userpassInput.text))
+				statusText.text = "ENTER A VALID PASSWORD";
 			else
 				statusText.text = "";
-			
+
+
 			registerButton.interactable = networkManager.CanRegisterUser(usernameInput.text, userpassInput.text);
 			registerButton.onClick.SetListener(() => { OnClickRegister(); });
 			

@@ -22,6 +22,33 @@ namespace OpenMMO.Debugging
 		protected static string fileName;
 		
 		// -------------------------------------------------------------------------------
+		// Log
+		// @debugMode
+		// -------------------------------------------------------------------------------
+		public static void Log(string message, bool trace=true)
+		{
+			WriteToLog(message, LogType.Log, trace);
+		}
+		
+		// -------------------------------------------------------------------------------
+		// LogWarning
+		// @debugMode
+		// -------------------------------------------------------------------------------
+		public static void LogWarning(string message, bool trace=true)
+		{
+			WriteToLog(message, LogType.Log, trace);
+		}
+		
+		// -------------------------------------------------------------------------------
+		// LogError
+		// @debugMode
+		// -------------------------------------------------------------------------------
+		public static void LogError(string message, bool trace=true)
+		{
+			WriteToLog(message, LogType.Log, trace);
+		}
+		
+		// -------------------------------------------------------------------------------
 		// LogFormat
 		// @debugMode
 		// -------------------------------------------------------------------------------

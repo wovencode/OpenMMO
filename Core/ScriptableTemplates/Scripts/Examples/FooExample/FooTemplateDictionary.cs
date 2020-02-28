@@ -24,7 +24,7 @@ namespace OpenMMO
 			List<FooTemplate> templates = Resources.LoadAll<FooTemplate>(folderName).ToList();
 			
 			if (templates.HasDuplicates())
-				debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + folderName);
+				DebugManager.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + folderName);
 			else
 				data = new ReadOnlyDictionary<int, FooTemplate>(templates.ToDictionary(x => x.hash, x => x));
 		}

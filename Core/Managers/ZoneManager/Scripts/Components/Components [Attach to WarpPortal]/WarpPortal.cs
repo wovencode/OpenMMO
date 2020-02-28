@@ -34,7 +34,7 @@ namespace OpenMMO.Zones
 			
 			if (targetAnchor == null)
 			{
-				debug.LogWarning("You forgot to set an anchor to WarpPortal: "+this.name);
+				DebugManager.LogWarning("You forgot to set an anchor to WarpPortal: "+this.name);
 				return;
 			}
 			

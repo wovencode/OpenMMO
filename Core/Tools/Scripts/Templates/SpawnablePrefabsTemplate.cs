@@ -102,7 +102,7 @@ namespace OpenMMO {
 
 			autoPrefabs.AddRange(toSelect.ToArray());
 			
-			debug.Log("[NetworkManager] Added [" + toSelect.Count + "] prefabs to spawnables prefabs list.");
+			DebugManager.Log("[NetworkManager] Added [" + toSelect.Count + "] prefabs to spawnables prefabs list.");
 
 		}
 		

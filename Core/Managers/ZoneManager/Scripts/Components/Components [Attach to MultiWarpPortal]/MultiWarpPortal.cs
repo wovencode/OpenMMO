@@ -34,7 +34,7 @@ namespace OpenMMO.Zones
 			
 			if (targetAnchors == null || targetAnchors.Length == 0)
 			{
-				debug.LogWarning("You forgot to add anchors to MultiWarpPortal: "+this.name);
+				DebugManager.LogWarning("You forgot to add anchors to MultiWarpPortal: "+this.name);
 				return;
 			}
 			

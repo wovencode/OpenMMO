@@ -29,8 +29,6 @@ namespace OpenMMO
 		bool CanRemove(long amount=1);
 		void Remove(long amount=1);
 		
-		void Reset();
-		
 		int level { get; }
 		
 	}

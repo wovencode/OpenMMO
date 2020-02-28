@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -208,28 +208,45 @@ namespace OpenMMO.Zones
     		
 		}
 
-		// -------------------------------------------------------------------------------
-    	// SpawnSubZone
-    	// -------------------------------------------------------------------------------
-		protected void SpawnSubZone(int index)
-		{	
-			
-			Process process = new Process();
-			process.StartInfo.FileName 	= Tools.GetProcessPath;
-			process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
-			process.Start();
-			
-			debug.LogFormat(this.name, nameof(SpawnSubZone), index.ToString()); //DEBUG
-			
-		}
-		
-		// ====================== MESSAGE EVENT HANDLERS =================================
-		
-		// -------------------------------------------------------------------------------
-    	// OnServerMessageResponsePlayerSwitchServer
-    	// @Client
-    	// -------------------------------------------------------------------------------
-		public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerMessageResponsePlayerSwitchServer msg)
+        // -------------------------------------------------------------------------------
+        // SpawnSubZone
+        // -------------------------------------------------------------------------------
+        public enum AppExtension { exe, x86_64, app }
+        protected void SpawnSubZone(int index)
+        {
+            AppExtension extension = AppExtension.exe;
+            switch (Application.platform)
+            {
+                //STANDALONE
+                case RuntimePlatform.WindowsPlayer: extension = AppExtension.exe; break;
+                case RuntimePlatform.OSXPlayer: extension = AppExtension.app; break;
+                case RuntimePlatform.LinuxPlayer: extension = AppExtension.x86_64; break;
+                //EDITOR
+                case RuntimePlatform.WindowsEditor: extension = AppExtension.exe; break;
+                case RuntimePlatform.OSXEditor: extension = AppExtension.app; break;
+                case RuntimePlatform.LinuxEditor: extension = AppExtension.x86_64; break;
+                    //MOBILE + CONSOLE
+                    /* //NOTE: Probably no reason to use these for a server...maybe in some cases though (couch co-op games etc)
+                    case RuntimePlatform.WebGLPlayer: break; case RuntimePlatform.IPhonePlayer: break; case RuntimePlatform.Android: break;
+                    case RuntimePlatform.PS4: break; case RuntimePlatform.XboxOne: break; case RuntimePlatform.Switch: break;*/
+            }
+            Process process = new Process();
+            //process.StartInfo.FileName = Tools.GetProcessPath; //DEPRECIATED
+            process.StartInfo.FileName = "Server" + "." + extension.ToString();
+            process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
+            process.Start();
+
+            debug.LogFormat(this.name, nameof(SpawnSubZone), index.ToString()); //DEBUG
+
+        }
+
+        // ====================== MESSAGE EVENT HANDLERS =================================
+
+        // -------------------------------------------------------------------------------
+        // OnServerMessageResponsePlayerSwitchServer
+        // @Client
+        // -------------------------------------------------------------------------------
+        public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerMessageResponsePlayerSwitchServer msg)
 		{
 			
 			networkManager.StopClient();

@@ -1,4 +1,4 @@
-﻿
+﻿// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Debugging;
@@ -7,108 +7,109 @@ using System;
 
 namespace OpenMMO.Database
 {
-	
-	// ===================================================================================
-	// BaseDatabase
-	// ===================================================================================
+
+	/// <summary>
+	/// Abstract base class for DatabaseManagers
+	/// </summary>
 	public abstract partial class BaseDatabaseManager : MonoBehaviour, IAccountableManager
 	{
 		
 		[Header("Debug Helper")]
 		public DebugHelper debug;
 		
-		// -------------------------------------------------------------------------------
-		// Awake (Base)
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// The base class includes a debug helper, it is only initialized when set to active
+		/// </summary>
 		public virtual void Awake()
 		{
 			debug = new DebugHelper();
-			debug.Init();
 		}
 		
-    	// ======================= PUBLIC METHODS - USER =================================
-    	
-		// -------------------------------------------------------------------------------
-		public virtual bool TryUserLogin(string username, string userpassword)
+    	/// <summary>
+		/// Basic input validation when trying to login a user (= account)
+		/// </summary>
+		public virtual bool TryUserLogin(string userName, string userPassword)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(userpassword));
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(userPassword));
 		}
 		
-		// -------------------------------------------------------------------------------
-		public virtual bool TryUserRegister(string username, string userpassword, string email, string deviceid)
+		/// <summary>
+		/// Basic input validation when trying to login a user
+		/// </summary>
+		public virtual bool TryUserRegister(string userName, string userPassword, string email, string deviceid)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(userpassword));
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(userPassword));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryUserDelete(string username, string userpassword, int action=1)
+		public virtual bool TryUserDelete(string userName, string userPassword, int action=1)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(userpassword));
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(userPassword));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryUserBan(string username, string userpassword, int action=1)
+		public virtual bool TryUserBan(string userName, string userPassword, int action=1)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(userpassword));
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(userPassword));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryUserChangePassword(string username, string oldPassword, string newPassword)
+		public virtual bool TryUserChangePassword(string userName, string oldPassword, string newPassword)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(oldPassword) && Tools.IsAllowedPassword(newPassword) && oldPassword != newPassword);
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(oldPassword) && Tools.IsAllowedPassword(newPassword) && oldPassword != newPassword);
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryUserConfirm(string username, string userpassword, int action=1)
+		public virtual bool TryUserConfirm(string userName, string userPassword, int action=1)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(userpassword));
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(userPassword));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryUserGetValid(string username, string userpassword)
+		public virtual bool TryUserGetValid(string userName, string userPassword)
 		{
-			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(userpassword));
+			return (Tools.IsAllowedName(userName) && Tools.IsAllowedPassword(userPassword));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryUserGetExists(string username)
+		public virtual bool TryUserGetExists(string userName)
 		{
-			return (Tools.IsAllowedName(username));
+			return (Tools.IsAllowedName(userName));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public abstract int TryUserGetPlayerCount(string username);
+		public abstract int TryUserGetPlayerCount(string userName);
 				
 		// ======================= PUBLIC METHODS - PLAYER ===============================
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerLogin(string playername, string username)
+		public virtual bool TryPlayerLogin(string playername, string userName)
 		{
-			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
+			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(userName));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerRegister(string playername, string username, string prefabname)
+		public virtual bool TryPlayerRegister(string playername, string userName, string prefabname)
 		{
-			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username) && !String.IsNullOrWhiteSpace(prefabname));
+			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(userName) && !String.IsNullOrWhiteSpace(prefabname));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerDeleteSoft(string playername, string username, int action=1)
+		public virtual bool TryPlayerDeleteSoft(string playername, string userName, int action=1)
 		{
-			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
+			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(userName));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerDeleteHard(string playername, string username)
+		public virtual bool TryPlayerDeleteHard(string playername, string userName)
 		{
-			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
+			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(userName));
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual bool TryPlayerBan(string playername, string username, int action=1)
+		public virtual bool TryPlayerBan(string playername, string userName, int action=1)
 		{
-			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
+			return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(userName));
 		}
 		
 		// -------------------------------------------------------------------------------

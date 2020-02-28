@@ -37,8 +37,7 @@ namespace OpenMMO.Areas
     		singleton = this;
     		
     		debug = new DebugHelper();
-			debug.Init();
-			
+						
 			if (!GetIsActive)
 				return;
 				

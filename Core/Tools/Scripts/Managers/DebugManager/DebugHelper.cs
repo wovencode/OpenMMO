@@ -23,9 +23,9 @@ namespace OpenMMO.Debugging
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();
 		
 		// -------------------------------------------------------------------------------
-		// Init (Constructor)
+		// DebugHelper (Constructor)
 		// -------------------------------------------------------------------------------
-		public void Init()
+		public DebugHelper()
 		{
 			if (!debugMode)
 				debugMode = ProjectConfigTemplate.singleton.globalDebugMode;

@@ -65,8 +65,7 @@ namespace OpenMMO.Zones
     		singleton = this;
     		
     		debug = new DebugHelper();
-			debug.Init();
-    		
+			    		
     		networkManager 		= GetComponent<OpenMMO.Network.NetworkManager>();
     		networkTransport 	= GetComponent<Mirror.TelepathyTransport>();
     		

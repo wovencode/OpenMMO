@@ -32,7 +32,6 @@ namespace OpenMMO.Network
         public virtual void Awake()
 		{
 			debug = new DebugHelper();
-			debug.Init();
 		}
 		
 		// -------------------------------------------------------------------------------

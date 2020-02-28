@@ -39,7 +39,7 @@ namespace OpenMMO.Network
         public override void Awake()
 		{
 			debug = new DebugHelper();
-			debug.Init();
+			
 			base.Awake(); // required
 			
 			if (spawnPrefabsTemplate)

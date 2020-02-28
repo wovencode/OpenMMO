@@ -106,9 +106,9 @@ namespace OpenMMO.Debugging
 			if (!ProjectConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
 				return;
 			
-			if (!Directory.Exists(ProjectConfigTemplate.singleton.logFolder))
-				Directory.CreateDirectory(ProjectConfigTemplate.singleton.logFolder);
-			
+			if (!Directory.Exists(Tools.GetPath(ProjectConfigTemplate.singleton.logFolder)))
+				Directory.CreateDirectory(Tools.GetPath(ProjectConfigTemplate.singleton.logFolder));
+						
 			if (String.IsNullOrWhiteSpace(fileName))
 				fileName = ProjectConfigTemplate.singleton.logFolder + "/" + ProjectConfigTemplate.singleton.logFilename + "_" + Tools.GetRandomAlphaString() + ".txt";
 			

@@ -25,7 +25,6 @@ Changelog
 
 Compatibility
 ---
-* Unity3d 2019
+* Unity3d 2019+
 * Client: Windows, MacOS, Android, iOS, Linux
 * Server: Windows, MacOs, Linux
-* Single-Player: Windows, MacOS, Android, iOS, Linux

@@ -231,6 +231,7 @@ namespace OpenMMO.Zones
                     case RuntimePlatform.PS4: break; case RuntimePlatform.XboxOne: break; case RuntimePlatform.Switch: break;*/
             }
             Process process = new Process();
+            //process.StartInfo.FileName = Tools.GetProcessPath; //DEPRECIATED
             process.StartInfo.FileName = "Server" + "." + extension.ToString();
             process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
             process.Start();

@@ -1,6 +1,7 @@
 //BY DX4D
 using UnityEngine;
 using UnityEngine.UI;
+using OpenMMO.Network;
 
 namespace OpenMMO.UI
 {
@@ -21,8 +22,10 @@ namespace OpenMMO.UI
         //ON CLOSE BUTTON CLICKED
         void OnCloseButtonClicked()
         {
-            Quit();
+            NetworkManager.singleton.Quit();
+            //Quit();
         }
+        /*
         //QUIT
         void Quit()
         {
@@ -31,6 +34,6 @@ namespace OpenMMO.UI
 #else
             Application.Quit();
 #endif
-        }
+        }*/
     }
 }

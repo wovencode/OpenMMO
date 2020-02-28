@@ -1,8 +1,6 @@
-
+//by Fhiz
 using OpenMMO;
 using OpenMMO.Debugging;
-using OpenMMO.Zones;
-using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,73 +9,70 @@ using System.IO;
 namespace OpenMMO.Debugging
 {
 	
-	// ===================================================================================
-	// DebugHelper
-	// ===================================================================================
+	/// <summary>
+	/// Non-static class DebugHelper can be added to any class, component, mono or network behaviour
+	/// </summary>
+	/// <remarks>
+	/// The DebugHelper is able to generate DebugProfiles of the object it is part of. DebugProfiles are used to measure code execution time.
+	/// </remarks>
 	[System.Serializable]
 	public partial class DebugHelper
 	{
 		
-		public bool _debugMode;
+		public DebugMode _debugMode;
 		
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();
 		
-		// -------------------------------------------------------------------------------
-		// debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns a bool that indicates if the debug mode is on or off. 
+		/// </summary>
 		public bool debugMode
 		{
 			get {
-				if (!_debugMode)
+				if (_debugMode == DebugMode.On)
+					return true;
+				else if (_debugMode == DebugMode.Off)
+					return false;
+				else
 					return ProjectConfigTemplate.singleton.globalDebugMode;
-				return _debugMode;
 			}
 		}
 		
-		// ===================== PUBLIC METHODS - DEBUG LOG ==============================
-		
-		// -------------------------------------------------------------------------------
-		// Log
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a standard entry to the log. It depends on the debug settings if the entry is also added to the text log.
+		/// </summary>
 		public void Log(string message, bool trace=true)
 		{
 			DebugManager.WriteToLog(message, LogType.Log, trace);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogWarning
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a warning entry to the log. It depends on the debug settings if the entry is also added to the text log.
+		/// </summary>
 		public void LogWarning(string message, bool trace=true)
 		{
 			DebugManager.WriteToLog(message, LogType.Warning, trace);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogError
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Adds a error entry to the log. It depends on the debug settings if the entry is also added to the text log.
+		/// </summary>
 		public void LogError(string message, bool trace=true)
 		{
 			DebugManager.WriteToLog(message, LogType.Error, trace);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LogFormat
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		public void LogFormat(params string[] list)
 		{
 			DebugManager.LogFormat(list);	
 		}
 		
-		// ===================== PUBLIC METHODS - PROFILING ==============================
-		
-		// -------------------------------------------------------------------------------
-		// StartProfile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		public void StartProfile(string name)
 		{
 			if (!debugMode)
@@ -89,10 +84,9 @@ namespace OpenMMO.Debugging
 				AddProfile(name);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// StopProfile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		public void StopProfile(string name)
 		{
 			if (!debugMode)
@@ -103,10 +97,9 @@ namespace OpenMMO.Debugging
 				debugProfiles[index].Stop();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// PrintProfile
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		public void PrintProfile(string name)
 		{
 			if (!debugMode)
@@ -117,10 +110,9 @@ namespace OpenMMO.Debugging
 				Log(debugProfiles[index].Print);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Reset
-		// @debugMode
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		public void Reset()
 		{
 			if (!debugMode)

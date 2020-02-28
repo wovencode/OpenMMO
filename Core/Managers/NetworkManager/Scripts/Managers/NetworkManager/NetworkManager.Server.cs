@@ -477,7 +477,7 @@ namespace OpenMMO.Network
 		{
 			
 			onlineUsers.Add(conn, username);
-			//onlineUsers[conn] = username;
+			
 			state = NetworkState.Lobby;
 			    
 			DatabaseManager.singleton.LoginUser(username);
@@ -518,7 +518,6 @@ namespace OpenMMO.Network
 			
 				NetworkServer.AddPlayerForConnection(conn, player);
 			
-				//onlinePlayers[player.name] = player;
 				onlinePlayers.Add(player.name, player);
 				
 				state = NetworkState.Game;

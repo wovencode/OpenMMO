@@ -64,7 +64,6 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         public void OnClientAuthenticated_NetworkPortals(NetworkConnection conn)
         {
-        	Debug.Log("<<<<< OnClientAuthenticated_NetworkPortals");
         	ZoneManager.singleton.AutoLogin();
         }
 		

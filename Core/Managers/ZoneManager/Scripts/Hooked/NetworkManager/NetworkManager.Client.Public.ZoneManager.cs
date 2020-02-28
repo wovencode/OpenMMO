@@ -29,7 +29,6 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
         public void TryAutoLoginPlayer(string playername, int token)
 		{
-Debug.Log("<<<<<<< TryAutoLoginPlayer");
 			RequestPlayerAutoLogin(NetworkClient.connection, playername, userName, token);
 		}
 

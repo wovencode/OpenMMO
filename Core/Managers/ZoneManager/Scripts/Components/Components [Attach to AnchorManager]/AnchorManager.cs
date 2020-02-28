@@ -49,9 +49,6 @@ namespace OpenMMO.Zones
 			
             foreach (StartAnchorEntry anchor in startAnchors)
             {
-				
-				DebugManager.LogFormat(nameof(AnchorManager), nameof(GetArchetypeStartPositionAnchorName), anchor.name+": "+anchor.position); //DEBUG
-				
                 foreach (ArchetypeTemplate template in anchor.archeTypes)
                 {
                     if (template == pc.archeType)

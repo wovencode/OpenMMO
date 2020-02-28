@@ -25,7 +25,6 @@ namespace OpenMMO {
 		[Header("Prefabs (Added via button below)")]
 		public List<GameObject> autoPrefabs;
 		
-		
 		[Header("Spawnable Prefab Filters")]
 		
 		[Tooltip("Exclude all prefabs in this list")]

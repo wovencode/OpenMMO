@@ -22989,6 +22989,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7120287439500909854, guid: 25eff1337614cb54fa811b22b49a8c09,
+        type: 3}
+      propertyPath: requiresActiveRoot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7823617400009934262, guid: 25eff1337614cb54fa811b22b49a8c09,
         type: 3}
       propertyPath: m_Name
@@ -23697,6 +23702,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI SETTINGS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014951793236864300, guid: c0891634dd2d87740978a9357605b15b,
+        type: 3}
+      propertyPath: requiresActiveRoot
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8935534423543390148, guid: c0891634dd2d87740978a9357605b15b,
         type: 3}

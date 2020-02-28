@@ -18,10 +18,12 @@ namespace OpenMMO.UI
         {
             quitButton.onClick.SetListener(() => { OnCloseButtonClicked(); });
         }
+        //ON CLOSE BUTTON CLICKED
         void OnCloseButtonClicked()
         {
             Quit();
         }
+        //QUIT
         void Quit()
         {
 #if UNITY_EDITOR

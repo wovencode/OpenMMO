@@ -14,23 +14,22 @@ namespace OpenMMO
 	// ===================================================================================
 	public class ChangeBuildMenu
 	{
-	
-		// -------------------------------------------------------------------------------
-		// SetBuildType
-		// -------------------------------------------------------------------------------
+
+        // -------------------------------------------------------------------------------
+        // SetBuildType
+        // -------------------------------------------------------------------------------
         public static void SetBuildType(NetworkType buildType, bool headless = false)
         {
             ProjectConfigTemplate.singleton.networkType = buildType;
+            ProjectConfigTemplate.singleton.OnValidate();
 
             EditorUserBuildSettings.enableHeadlessMode = headless;
-            
+
             if (PlayerSettings.GetApiCompatibilityLevel(BuildTargetGroup.Standalone) != ApiCompatibilityLevel.NET_4_6)
             {
                 Debug.Log("<color=orange><b>OpenMMO requires .NET 4.x</b></color>\n<b>Changing to .NET 4.x</b>"); //DEBUG
                 PlayerSettings.SetApiCompatibilityLevel(BuildTargetGroup.Standalone, ApiCompatibilityLevel.NET_4_6);
             }
-
-            ProjectConfigTemplate.singleton.OnValidate();
         }
 	
 		// -------------------------------------------------------------------------------

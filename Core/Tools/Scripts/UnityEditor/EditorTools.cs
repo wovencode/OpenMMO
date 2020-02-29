@@ -1,9 +1,4 @@
-// =======================================================================================
-// EditorTools
-// by Weaver (Fhiz)
-// MIT licensed
-// =======================================================================================
-
+//by Fhiz
 #if UNITY_EDITOR
 
 using OpenMMO;
@@ -14,9 +9,9 @@ using UnityEngine;
 namespace OpenMMO
 {
 	
-	// ===================================================================================
-	// EditorTools
-	// ===================================================================================
+	/// <summary>
+	/// Static partial class EditorTools is only used inside the Unity Editor and not in builds.
+	/// </summary>
 	[InitializeOnLoad]
 	public static partial class EditorTools
 	{
@@ -25,11 +20,9 @@ namespace OpenMMO
 		public static string definesString;
 		public static BuildTargetGroup buildTargetGroup;
 		
-		// ============================== EDITOR PREFERENCES =============================
-		
-		// -------------------------------------------------------------------------------
-		// EditorPrefsUpdateString
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates a string value in editor preferences or adds if if it does not exist.
+		/// </summary>
 		public static string EditorPrefsUpdateString(string keyName, string value)
 		{	
 			if (EditorPrefs.HasKey(keyName))
@@ -52,9 +45,9 @@ namespace OpenMMO
 			return value;		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// EditorPrefsUpdateInt
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates a integer value in editor preferences or adds if if it does not exist.
+		/// </summary>
 		public static int EditorPrefsUpdateInt(string keyName, int value)
 		{	
 			if (EditorPrefs.HasKey(keyName))
@@ -77,13 +70,12 @@ namespace OpenMMO
 			return value;		
 		}
 		
-		// ============================== SCRIPTING DEFINES ==============================
-		
-		// -------------------------------------------------------------------------------
-		// AddScriptingDefine
-		// Removes the passed define (string) from scripting defines of the current target
-		// platform, without touching other defines.
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Removes the passed define (string) from scripting defines of the current target platform, without touching other defines.
+		/// </summary>
+		/// <remarks>
+		/// Results in recompile if the symbol is added.
+		/// </remarks>
 		public static void AddScriptingDefine(string define)
 		{
 			if (HasScriptingDefine(define))
@@ -91,12 +83,13 @@ namespace OpenMMO
 				
 			PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, (definesString + ";" + define));
 		}
-
-		// -------------------------------------------------------------------------------
-		// RemoveScriptingDefine
-		// Adds the passed define (string) to scripting defines of the current target 
-		// platform, without adding duplicates.
-		// -------------------------------------------------------------------------------
+		
+		/// <summary>
+		/// Adds the passed define (string) to scripting defines of the current target platform, without adding duplicates.
+		/// </summary>
+		/// <remarks>
+		/// Results in recompile if the symbol is added.
+		/// </remarks>
 		public static void RemoveScriptingDefine(string define)
 		{
 			if (!HasScriptingDefine(define))
@@ -109,10 +102,9 @@ namespace OpenMMO
 			PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, (definesString));
 		}
 		
-		// -------------------------------------------------------------------------------
-		// HasScriptingDefine
-		// Checks if the provided string is present in scripting defines
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if the provided string is present in scripting defines
+		/// </summary>
 		public static bool HasScriptingDefine(string define)
 		{
 			buildTargetGroup 	= EditorUserBuildSettings.selectedBuildTargetGroup;
@@ -125,12 +117,8 @@ namespace OpenMMO
 			return false;
 		}
 	
-		// -------------------------------------------------------------------------------
-	
 	}
 
 }
 
 #endif
-
-// =======================================================================================

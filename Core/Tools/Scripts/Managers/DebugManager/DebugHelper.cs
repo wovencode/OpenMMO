@@ -1,6 +1,7 @@
 //by Fhiz
 using OpenMMO;
 using OpenMMO.Debugging;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace OpenMMO.Debugging
 		/// <summary>
 		/// Used to set the debug mode on a per object basis.
 		/// </summary>
+		[Tooltip("Toggle debug mode for logging (On = always on, Off = always off, Use Global = use global setting in ProjectConfigTemplate)")]
 		public DebugMode _debugMode;
 		
 		protected List<DebugProfile> debugProfiles = new List<DebugProfile>();

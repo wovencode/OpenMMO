@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +10,19 @@ using OpenMMO.Debugging;
 namespace OpenMMO
 {
 	
-	// ===================================================================================
-	// ProjectConfigTemplate
-	// ===================================================================================
+	/// <summary>
+	/// Contains configuration for the project itself (like debug mode, location of logs etc.)
+	/// </summary>
 	[CreateAssetMenu(fileName = "New Project Configuration", menuName = "OpenMMO - Configuration/New Project Configuration", order = 999)]
 	public partial class ProjectConfigTemplate : ScriptableObject
 	{
 
 		[Header("Project Configuration")]
 #pragma warning disable CS0649
+		[Tooltip("Toggle type of build: Server, Client or Host+Play")]
 		[SerializeField] internal NetworkType networkType;
 #pragma warning restore CS0649
+		[Tooltip("Toggle debug mode for logging (globally, affects all components with a DebugHelper as well)")]
 		public bool globalDebugMode;
 		
 		[Header("Security")]
@@ -31,14 +33,16 @@ namespace OpenMMO
 		
 		[Header("Logging")]
 		public bool logMode;
+		[Tooltip("Filename for the text log file (zone and chat servers append a random suffix to this)")]
 		public string logFilename = "OpenMMOLog";
+		[Tooltip("Foldername for all text log files (normally found inside project folder or project package)")]
 		public string logFolder = "OpenMMOLogs";
 		
 		static ProjectConfigTemplate _instance;
 		
-		// -------------------------------------------------------------------------------
-		// singleton
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Creates a singleton on this class to be accesible from code anywhere. Singleton is OK in this situation because this template (= Scriptable Object) exists only once.
+		/// </summary>
 		public static ProjectConfigTemplate singleton
 		{
 			get
@@ -49,9 +53,9 @@ namespace OpenMMO
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetNetworkType
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Public getter for NetworkType, so that the original property cannot be modified from external code.
+		/// </summary>
 		public NetworkType GetNetworkType
 		{
 			get
@@ -60,9 +64,9 @@ namespace OpenMMO
 			}
 		}
 		
-		// -----------------------------------------------------------------------------------
-		// OnValidate
-		// -----------------------------------------------------------------------------------
+		/// <summary>
+		/// After changing, updates scripting defines and recompiles the code.
+		/// </summary>
 		public void OnValidate()
 		{
 #if UNITY_EDITOR
@@ -86,10 +90,7 @@ namespace OpenMMO
 			}
 #endif
 		}
-	
-		// -------------------------------------------------------------------------------
+
 	}
 
 }
-
-// =======================================================================================

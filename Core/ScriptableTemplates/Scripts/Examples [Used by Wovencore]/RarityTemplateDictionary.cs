@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,15 +10,18 @@ using OpenMMO.Debugging;
 namespace OpenMMO
 {
 
-	// ===================================================================================
-	// RarityTemplateDictionary
-	// ===================================================================================
+	/// <summary>
+	/// A custom read only Dictionary exclusively used for this type of template. Speeds up loading and lookup of entries.
+	/// <remarks>Every template type (ScriptableObject based on ScriptableTemplate or BaseTemplate) requires a dictionary of its own in order to work at full potential.</remarks>
+	/// </summary>
 	public partial class RarityTemplateDictionary
 	{
 		
 		public readonly ReadOnlyDictionary<int, RarityTemplate> data;
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Constructor. Loads all templates of the matching type from the stated folder (or from the root folder if no name supplied).
+		/// </summary>
 		public RarityTemplateDictionary(string folderName="")
 		{
 			List<RarityTemplate> templates = Resources.LoadAll<RarityTemplate>(folderName).ToList();
@@ -29,10 +32,6 @@ namespace OpenMMO
 				data = new ReadOnlyDictionary<int, RarityTemplate>(templates.ToDictionary(x => x.hash, x => x));
 		}
 
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

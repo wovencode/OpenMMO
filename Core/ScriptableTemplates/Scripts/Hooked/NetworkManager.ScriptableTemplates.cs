@@ -1,41 +1,34 @@
-
+//by Fhiz
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
-using OpenMMO.UI;
+
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using Mirror;
 
 namespace OpenMMO.Network
 {
 
-    // ===================================================================================
-	// NetworkManager
-	// ===================================================================================
+    /// <summary>
+	///
+	/// </summary>
 	public partial class NetworkManager
 	{
 		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into awake of the NetworkManager to automatically preload templates (= scriptable objects) only if we are the server & a preloader is available.
+		/// </summary>
 		[DevExtMethods(nameof(Awake))]
 		void Awake_ScriptableTemplates()
 		{
-			
-			// -- preload scriptable objects only if we are server & preloader available
 #if _SERVER && !_CLIENT
 			PreloadScriptableTemplates();
 #endif
-	
 		}
 
-		// -------------------------------------------------------------------------------
-		// PreloadScriptableTemplates
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Executes the actual preload process if the required component is available.
+		/// </summary>
 		protected void PreloadScriptableTemplates()
     	{
        		PreloaderComponent preloader = GetComponent<PreloaderComponent>();
@@ -43,10 +36,6 @@ namespace OpenMMO.Network
         		preloader.PreloadTemplates();
     	}
 
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

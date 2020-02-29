@@ -1,13 +1,13 @@
-
+//by DXD4
 using UnityEngine;
 using System.Linq;
 
 namespace OpenMMO
 {
 
-	// ===================================================================================
-	// ServerAuthorityTemplate
-	// ===================================================================================
+	/// <summary>
+	/// Contains various server authority configurations (like rubberbanding settings etc.)
+	/// </summary>
 	[CreateAssetMenu(menuName = "OpenMMO - Configuration/New Server Authority")]
 	public partial class ServerAuthorityTemplate : ScriptableObject
 	{
@@ -25,13 +25,11 @@ namespace OpenMMO
 		[Tooltip("How quickly the server will smooth player movement.")]
 		[SerializeField] public float smoothing = 1f;
 		
-		
 		static ServerAuthorityTemplate _instance;
 		
-		
-		// -------------------------------------------------------------------------------
-		// singleton
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Creates a singleton on this class to be accesible from code anywhere. Singleton is OK in this situation because this template (= Scriptable Object) exists only once.
+		/// </summary>
 		public static ServerAuthorityTemplate singleton
 		{
 			get
@@ -42,10 +40,6 @@ namespace OpenMMO
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 	
-	// ===================================================================================
-
 }

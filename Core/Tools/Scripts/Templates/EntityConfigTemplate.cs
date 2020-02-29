@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,18 +10,20 @@ using OpenMMO.Debugging;
 namespace OpenMMO
 {
 	
-	// ===================================================================================
-	// EntityConfigTemplate
-	// ===================================================================================
+	/// <summary>
+	/// Contains configurations shared by all Entities (Players, Monsters, NPCs) like Race, Class etc.
+	/// </summary>
 	[CreateAssetMenu(fileName = "New Entity Configuration", menuName = "OpenMMO - Configuration/New Entity Configuration", order = 999)]
 	public partial class EntityConfigTemplate : ScriptableObject
 	{
 		
+		// .. empty, is added via partial ...
+		
 		static EntityConfigTemplate _instance;
 		
-		// -------------------------------------------------------------------------------
-		// singleton
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Creates a singleton on this class to be accesible from code anywhere. Singleton is OK in this situation because this template (= Scriptable Object) exists only once.
+		/// </summary>
 		public static EntityConfigTemplate singleton
 		{
 			get
@@ -32,9 +34,6 @@ namespace OpenMMO
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
 	}
 
 }
-
-// =======================================================================================

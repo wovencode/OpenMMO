@@ -1,9 +1,4 @@
-// =======================================================================================
-// ReadOnlyAttribute
-// by Weaver (Fhiz)
-// MIT licensed
-// =======================================================================================
-
+//by Fhiz
 using OpenMMO;
 using System;
 using UnityEngine;
@@ -14,16 +9,16 @@ using UnityEditor;
 namespace OpenMMO
 {
 	
-	// -----------------------------------------------------------------------------------
-	// ReadOnlyAttribute
-	// -----------------------------------------------------------------------------------
+	/// <summary>
+	/// Used to create a inspector exposable property field that cannot be modified by the user (= read only).
+	/// </summary>
 	[AttributeUsage (AttributeTargets.Field,Inherited = true)]
 	public class ReadOnlyAttribute : PropertyAttribute {}
 	
-	// -----------------------------------------------------------------------------------
-	// ReadOnlyAttributeDrawer
-	// -----------------------------------------------------------------------------------
-	#if UNITY_EDITOR
+	/// <summary>
+	/// Renders the read-only property drawer
+	/// </summary>
+#if UNITY_EDITOR
 	[UnityEditor.CustomPropertyDrawer (typeof(ReadOnlyAttribute))]
 	public class ReadOnlyAttributeDrawer : UnityEditor.PropertyDrawer
 	{
@@ -35,10 +30,6 @@ namespace OpenMMO
 			GUI.enabled = wasEnabled;
 		}
 	}
-	#endif
-	
-	// -----------------------------------------------------------------------------------
+#endif
 	
 }
-
-// =======================================================================================

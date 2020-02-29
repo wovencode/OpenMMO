@@ -7,17 +7,20 @@ using UnityEngine.UI;
 
 public class TabThroughUI : MonoBehaviour
 {
-    [Header("KEY ASSIGNMENT")]
-    [Tooltip("Moves to the next input field in the UI.\ndefault:Tab")]
-    [SerializeField] KeyCode nextFieldKey = KeyCode.Tab;
-    [Tooltip("When holding this key the next field key will select the previous field instead.\ndefault:Shift+Tab")]
-    [SerializeField] KeyCode previousFieldKey = KeyCode.LeftShift;
-    [Tooltip("Remove focus from all selected UI fields.\ndefault:Escape")]
-    [SerializeField] KeyCode escapeFocusKey = KeyCode.Escape;
-
     [Header("SELECTABLE UI FIELDS")]
     [Tooltip("A list of objects that can be tabbed through.")]
     [SerializeField] internal List<Selectable> selectables = new List<Selectable>();
+
+    [Header("KEY ASSIGNMENT")]
+    [Tooltip("Moves to the next input field in the UI.\ndefault:Tab")]
+    [SerializeField] KeyCode nextFieldKey = KeyCode.Tab;
+    //TODO: More Keys
+    [Tooltip("When holding this key the next field key will select the previous field instead.\ndefault:Shift+Tab")]
+    [SerializeField] KeyCode previousFieldKey = KeyCode.LeftShift;
+    //TODO: More Keys
+    [Tooltip("Remove focus from all selected UI fields.\ndefault:Escape")]
+    [SerializeField] KeyCode escapeFocusKey = KeyCode.Escape;
+    //TODO: More Keys
 
     private void Update()
     {

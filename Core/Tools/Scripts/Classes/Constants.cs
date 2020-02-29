@@ -17,12 +17,10 @@ namespace OpenMMO {
 		public const string BuildModeServer 				= "_SERVER";
     	public const string BuildModeClient 				= "_CLIENT";
 
-		
 		/*
 			Names of variables saved in player preferences:
 		*/
 		
-		public const string PlayerPrefsChecksum 			= "CS";
 		public const string PlayerPrefsUserName 			= "UserName";
 		public const string PlayerPrefsPassword 			= "UserPass";	
 		public const string PlayerPrefsLastServer 			= "LastServer";

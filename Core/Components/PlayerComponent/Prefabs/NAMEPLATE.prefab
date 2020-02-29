@@ -456,8 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a1d1fb34f9618488af5feeced35de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alwaysPointUp: 1
-  tickFrequency: 5
+  tickFrequency: 1
 --- !u!114 &6293004362055142396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c78a6fe5b8a88d4681eabb7353818c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerComponent: {fileID: 0}
   tickFrequency: 30
   nameField: {fileID: 7492141690578241723}
   guildField: {fileID: 6582908969997545330}

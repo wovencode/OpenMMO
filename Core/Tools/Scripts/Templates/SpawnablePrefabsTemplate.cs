@@ -1,4 +1,4 @@
-﻿
+﻿//by Fhiz
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +12,9 @@ using UnityEditor;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// SpawnablePrefabsTemplate
-	// ===================================================================================
+	/// <summary>
+	/// Holds a list of all prefabs that can be spawned on the network server. The default spawnable prefabs list on NetworkManager is implemented very weak, thats why we use our own.
+	/// </summary>
 	[CreateAssetMenu(fileName = "New SpawnablePrefabs", menuName = "OpenMMO - Templates/New SpawnablePrefabs", order = 999)]
 	public partial class SpawnablePrefabsTemplate : ScriptableObject
 	{
@@ -33,14 +33,16 @@ namespace OpenMMO {
 		[Tooltip("Only prefabs of the listed categories are included")]
     	public string[] categoryTags;
 		
-		
 		[Header("Spawnable Prefabs Folders")]
 		[Tooltip("Adding spawnable prefabs to network manager will only search in the folders below")]
 		public string[] spawnablePrefabFolders;		
 		
-		// -------------------------------------------------------------------------------
-		// GetRegisteredSpawnablePrefabs
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns a list of registered prefabs during runtime.
+		/// </summary>
+		/// <remarks>
+		/// The list has been built inside the editor already and is available during runtime.
+		/// </remarks>
 		public List<GameObject> GetRegisteredSpawnablePrefabs
 		{
 			get {
@@ -57,10 +59,12 @@ namespace OpenMMO {
 		
 #if UNITY_EDITOR
 	
-		// -------------------------------------------------------------------------------
-		// AutoRegisterSpawnablePrefabs
-		// @Editor
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Searches the "spawnablePrefabs" folder(s) inside the project and adds all matching prefabs to the spawnable prefabs list.
+		/// </summary>
+		/// <remarks>
+		/// Only prefabs inside the "spawnablePrefabs" folder(s) are added and only if they have a NetworkIdentity on them.
+		/// </remarks>
 		public void AutoRegisterSpawnablePrefabs()
 		{
 
@@ -108,10 +112,6 @@ namespace OpenMMO {
 		
 #endif
 
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

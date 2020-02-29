@@ -42,12 +42,7 @@ namespace OpenMMO.Zones
 		// OnClickConfirm
 		// @Client
 		// -------------------------------------------------------------------------------
-		public virtual void OnClickConfirm()
-		{
-        /*DEPRECIATED - Creates a Depencency With the Chat - This completely breaks the potential modularity of the Chat Plugin.
-			if (ChatManager.singleton) ChatManager.singleton.LocalChatSend(infoEntered);
-        */
-		}
+		public virtual void OnClickConfirm() {}
 
         // -------------------------------------------------------------------------------
         // OnTriggerExit

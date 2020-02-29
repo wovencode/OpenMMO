@@ -2069,31 +2069,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[5].channelId
-      value: world
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[5].color.r
-      value: 0.9150943
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[5].color.g
-      value: 0.7432795
-      objectReference: {fileID: 0}
-    - target: {fileID: 4672676154308553655, guid: b0c05a8c28acf4055b20e97b935f7dab,
-        type: 3}
-      propertyPath: channelList.Array.data[5].color.b
-      value: 0.051797807
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0c05a8c28acf4055b20e97b935f7dab, type: 3}
 --- !u!1001 &951757444

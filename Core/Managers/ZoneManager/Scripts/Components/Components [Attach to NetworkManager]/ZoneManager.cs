@@ -228,8 +228,15 @@ DebugManager.Log(">>>>spawn subzones");
                     case RuntimePlatform.PS4: break; case RuntimePlatform.XboxOne: break; case RuntimePlatform.Switch: break;*/
             }
             Process process = new Process();
-            //process.StartInfo.FileName = Tools.GetProcessPath; //DEPRECIATED
-            process.StartInfo.FileName = "Server" + "." + extension.ToString();
+            //NOTE: This is a workaround, we leave the switch logic above just in case we ever check this extension variable in the future to extend this method.
+            if (Application.platform == RuntimePlatform.OSXPlayer)
+            {
+                process.StartInfo.FileName = Tools.GetProcessPath; //OSX
+            }
+            else
+            {
+                process.StartInfo.FileName = "server" + "." + extension.ToString(); //LINUX and WINDOWS
+            }
             process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
             process.Start();
 

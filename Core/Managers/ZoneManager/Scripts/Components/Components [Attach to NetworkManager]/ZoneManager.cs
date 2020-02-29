@@ -232,10 +232,15 @@ DebugManager.Log(">>>>spawn subzones");
             if (Application.platform == RuntimePlatform.OSXPlayer)
             {
                 process.StartInfo.FileName = Tools.GetProcessPath; //OSX
+                //TODO: This is a potential fix for the server executable being locked into requiring a specific name.
+                //process.StartInfo.FileName = Path.GetFullPath(Tools.GetProcessPath) + "/" + Path.GetFileNameWithoutExtension(Tools.GetProcessPath) + "." + Path.GetExtension(Tools.GetProcessPath);
+
             }
             else
             {
                 process.StartInfo.FileName = "server" + "." + extension.ToString(); //LINUX and WINDOWS
+                //TODO: This is a potential fix for the server executable being locked into requiring a specific name.
+                //process.StartInfo.FileName = Path.GetFileNameWithoutExtension(Tools.GetProcessPath) + "." + Path.GetExtension(Tools.GetProcessPath);
             }
             process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
             process.Start();

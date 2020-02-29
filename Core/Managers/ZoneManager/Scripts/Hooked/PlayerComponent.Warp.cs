@@ -57,8 +57,7 @@ namespace OpenMMO {
 		[Command]
 		public void Cmd_WarpLocal(string anchorName)
 		{
-			if (AnchorManager.singleton.CheckPortalAnchor(anchorName))
-				WarpLocal(anchorName);
+			WarpLocal(anchorName);
 		}
 		
 		// -------------------------------------------------------------------------------

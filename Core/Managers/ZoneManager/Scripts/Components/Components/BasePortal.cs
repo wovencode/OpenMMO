@@ -37,7 +37,6 @@ namespace OpenMMO.Zones
 		// -------------------------------------------------------------------------------
 		public abstract void OnTriggerEnter(Collider co);
 
-
 		// -------------------------------------------------------------------------------
 		// OnClickConfirm
 		// @Client

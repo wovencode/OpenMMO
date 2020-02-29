@@ -75,7 +75,7 @@ namespace OpenMMO {
                     {
                         //direction = -agent.transform.right;
                         //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
-                        if (config.turnWhileStrafing) transform.Rotate(0, -1.0f * config.turnSpeedMultiplier, 0); //TURN WHILE STRAFING
+                        if (config.turnWhileStrafing) transform.Rotate(0, -1.0f * config.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
                         newVelocity = -agent.transform.right * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                     }
                 }
@@ -84,13 +84,14 @@ namespace OpenMMO {
                 {
                     //direction = agent.transform.right;
                     //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
-                    if (config.turnWhileStrafing) transform.Rotate(0, 1.0f * config.turnSpeedMultiplier, 0); //TURN WHILE STRAFING
+                    if (config.turnWhileStrafing) transform.Rotate(0, 1.0f * config.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
                     //newVelocity = direction * horizontalMovementInput * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                     newVelocity = agent.transform.right * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                 }
 
+                if (!strafeLeft && !strafeRight) transform.Rotate(0, horizontalMovementInput * config.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //SET ROTATION - ON TRANSFORM - NOT WHILE STRAFING
+
                 agent.velocity = newVelocity; //SET VELOCITY - ON NAVMESH AGENT
-                if (!strafeLeft && !strafeRight) transform.Rotate(0, horizontalMovementInput * config.turnSpeedMultiplier, 0); //SET ROTATION - ON TRANSFORM - NOT WHILE STRAFING
            	}
            	else
            	{

@@ -191,18 +191,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
---- !u!114 &35902644 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8285225109501110961, guid: 28d19a645708c4a7892003b0d15e6526,
-    type: 3}
-  m_PrefabInstance: {fileID: 35902643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57969e8b0d8cc4941864864178236cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &39635768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -695,18 +683,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
---- !u!114 &143881922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8285225109501110961, guid: 28d19a645708c4a7892003b0d15e6526,
-    type: 3}
-  m_PrefabInstance: {fileID: 143881921}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57969e8b0d8cc4941864864178236cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &299808585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2566,18 +2542,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
---- !u!114 &1309277973 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8285225109501110961, guid: 28d19a645708c4a7892003b0d15e6526,
-    type: 3}
-  m_PrefabInstance: {fileID: 1309277972}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57969e8b0d8cc4941864864178236cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1355596625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2941,18 +2905,18 @@ PrefabInstance:
     - target: {fileID: 845895271640242814, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: targetAnchors.Array.data[0]
-      value: 
-      objectReference: {fileID: 35902644}
+      value: PortalAnchor1
+      objectReference: {fileID: 0}
     - target: {fileID: 845895271640242814, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: targetAnchors.Array.data[1]
-      value: 
-      objectReference: {fileID: 1309277973}
+      value: PortalAnchor2
+      objectReference: {fileID: 0}
     - target: {fileID: 845895271640242814, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: targetAnchors.Array.data[2]
-      value: 
-      objectReference: {fileID: 143881922}
+      value: PortalAnchor3
+      objectReference: {fileID: 0}
     - target: {fileID: 845895271640242814, guid: e1941773f80494e7abe915facd269b59,
         type: 3}
       propertyPath: popupEnter
@@ -3476,18 +3440,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
---- !u!114 &1870357959 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8285225109501110961, guid: 28d19a645708c4a7892003b0d15e6526,
-    type: 3}
-  m_PrefabInstance: {fileID: 1870357958}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57969e8b0d8cc4941864864178236cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1883715312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3567,8 +3519,8 @@ PrefabInstance:
     - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}
       propertyPath: targetAnchor
-      value: 
-      objectReference: {fileID: 1870357959}
+      value: PortalAnchor3
+      objectReference: {fileID: 0}
     - target: {fileID: 786512980222896387, guid: 905dc9f464df34259a8875f486633d6c,
         type: 3}
       propertyPath: popupEnter

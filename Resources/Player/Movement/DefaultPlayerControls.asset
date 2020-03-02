@@ -20,8 +20,8 @@ MonoBehaviour:
   strafeLeftKey: 113
   strafeRightKey: 101
   moveSpeedMultiplier: 1
-  turnSpeedMultiplier: 0.7
+  turnSpeedMultiplier: 0.75
   walkSpeedScale: 1.5
-  runSpeedScale: 2.5
+  runSpeedScale: 3
   strafeSpeedScale: 0.35
   backpedalSpeedScale: 0.5

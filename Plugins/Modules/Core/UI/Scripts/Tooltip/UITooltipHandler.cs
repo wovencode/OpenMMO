@@ -1,12 +1,4 @@
-// =======================================================================================
-// Wovencore
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// 
-//
-// =======================================================================================
-
+//by Fhiz
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -16,9 +8,9 @@ using OpenMMO.UI;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UITooltipHandler
-	// ===================================================================================
+	/// <summary>
+    /// Attach this script to any game object to enable a tooltip when hovered over it. Only works on objects inside a Canvas.
+    /// </summary>
 	public partial class UITooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 
@@ -27,9 +19,9 @@ namespace OpenMMO.UI
 		
 		protected bool _tooltipActive;
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// When called, shows the tooltip at mouse position.
+    	/// </summary>
 		protected void ShowToolTip()
 		{
 			HideTooltip();
@@ -40,9 +32,9 @@ namespace OpenMMO.UI
 			_tooltipActive = true;
 		}
 		
-		// -------------------------------------------------------------------------------
-		// HideTooltip
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// When called, immediately hides the tooltip.
+    	/// </summary>
 		protected void HideTooltip()
 		{
 			_tooltipActive = false;
@@ -50,28 +42,26 @@ namespace OpenMMO.UI
 			UITooltip.singleton.Hide();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OnPointerEnter
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Show the tooltip, when the mouse pointer enters the object.
+    	/// </summary>
 		public void OnPointerEnter(PointerEventData d)
 		{
 			ShowToolTip();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OnPointerExit
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Hide the tooltip again, when the mouse pointer leaves the object.
+    	/// </summary>
 		public void OnPointerExit(PointerEventData d)
 		{
 			if (_tooltipActive)
 				HideTooltip();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Update
-		// constantly update the tooltip text (as long as its visible) because values might
-		// change
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Constantly update the tooltip text (as long as its visible) because values might change.
+    	/// </summary>
 		protected void Update()
 		{
 			if (!_tooltipActive) return;
@@ -79,18 +69,18 @@ namespace OpenMMO.UI
 			UITooltip.singleton.transform.position = Input.mousePosition;
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OnDisable
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Hide the tooltip immediately when the object itself is disabled.
+    	/// </summary>
 		protected void OnDisable()
 		{
 			if (_tooltipActive)
 				HideTooltip();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OnDestroy
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Hide the tooltip immediately when the object itself is destroyed.
+    	/// </summary>
 		protected void OnDestroy()
 		{
 			if (_tooltipActive)
@@ -99,8 +89,4 @@ namespace OpenMMO.UI
 		
 	}
 	
-	// -----------------------------------------------------------------------------------
-	
 }
-
-// =======================================================================================

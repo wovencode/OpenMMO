@@ -1,4 +1,4 @@
-
+//by Fhiz
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
@@ -13,42 +13,36 @@ using Mirror;
 namespace OpenMMO.Network
 {
 
-    // ===================================================================================
-	// NetworkManager
-	// ===================================================================================
+    /// <summary>
+    /// This partial section of NetworkManager adds the GUI scene and loading to it.
+    /// </summary>
 	public partial class NetworkManager
 	{
 				
 		[Header("GUI Scene")]
 		public UnityScene guiScene;
 
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Hooks into AwakePriority to additively load the UI scene.
+    	/// </summary>
 		[DevExtMethods(nameof(AwakePriority))]
 		void AwakePriority_UI()
 		{
 #if _CLIENT
-
 			// -- load the UI scene only if we are client & UI available
 			LoadUIAdditive();
-			
 #endif
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LoadUIAdditive
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// This actually loads the UI scene.
+    	/// </summary>
 		protected void LoadUIAdditive()
 		{
 			if (guiScene != null)
 				SceneManager.LoadScene(guiScene, LoadSceneMode.Additive);
 		}
 	
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

@@ -1,14 +1,4 @@
-﻿// =======================================================================================
-// UIPopupSlider
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// This popup provides a slider that is used to input a numeric value. The process can
-// be confirmed and cancelled. Confirmation passes the sliders input value. This class
-// is universal and can be used everywhere you want to prompt the user for numeric input.
-//
-// =======================================================================================
-
+﻿//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -19,9 +9,11 @@ using UnityEngine.UI;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIPopupInput
-	// ===================================================================================
+	/// <summary>
+    /// This popup provides a slider that is used to input a numeric value. The process can
+	/// be confirmed and cancelled. Confirmation passes the sliders input value. This class
+	/// is universal and can be used everywhere you want to prompt the user for numeric input.
+    /// </summary>
 	[DisallowMultipleComponent]
 	public partial class UIPopupSlider : UIPopup
 	{
@@ -36,18 +28,18 @@ namespace OpenMMO.UI
 		[SerializeField] protected Button 	confirmButton;
 		[SerializeField] protected Button 	cancelButton;
 		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Awake sets the singleton (as this popup is unique) and calls base.Awake
+    	/// </summary>
 		protected override void Awake()
 		{
 			singleton = this;
 			base.Awake();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Initializes the popup by setting its texts, button actions and max slider value.
+    	/// </summary>
 		public void Init(string _description, Action<long> _confirmAction, Action _cancelAction=null, long _maxValue=100, string _confirmText="", string _cancelText="")
 		{
 			
@@ -77,29 +69,35 @@ namespace OpenMMO.UI
 		
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the minus button is pressed. This changes the slider.
+    	/// </summary>
 		public void onClickMinus()
 		{
 			slider.value--;
 			onSliderChange();
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the plus button is pressed. This changes the slider.
+    	/// </summary>
 		public void onClickPlus()
 		{
 			slider.value++;
 			onSliderChange();
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the slider changed to update the slider text.
+    	/// </summary>
 		public void onSliderChange()
 		{
 			sliderValueText.text = slider.value.ToString() + "/" + slider.maxValue.ToString();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickConfirm
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the Confirm button is pressed. This always closes the popup.
+    	/// </summary>
 		public override void onClickConfirm()
 		{
 			if (confirmAction != null)
@@ -108,9 +106,9 @@ namespace OpenMMO.UI
 			Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickCancel
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the cancel button is pressed. This always closes the popup.
+    	/// </summary>
 		public override void onClickCancel()
 		{
 			if (cancelAction != null)
@@ -119,10 +117,6 @@ namespace OpenMMO.UI
 			Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

@@ -1,4 +1,4 @@
-
+//by Fhiz
 using UnityEngine;
 using UnityEngine.UI;
 using OpenMMO;
@@ -7,9 +7,9 @@ using OpenMMO.UI;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIButton
-	// ===================================================================================
+	/// <summary>
+    /// Bartial base class for many kinds of UIButtons. Supports Button Groups.
+    /// </summary>
 	public partial class UIButton : MonoBehaviour
 	{
 		
@@ -19,7 +19,9 @@ namespace OpenMMO.UI
 		protected UIButtonGroup buttonGroup;
 		protected bool _interactable;
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Initializes the button and adds support for Button Group (if any).
+    	/// </summary>
 		public virtual void Init(UIButtonGroup _buttonGroup = null)
 		{
 			
@@ -44,23 +46,23 @@ namespace OpenMMO.UI
 		
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the button is pressed to temporarily disable it in order to prevent click-spamming.
+    	/// </summary>
 		public virtual void OnPressed(bool deselect=false)
 		{
 			button.interactable = false;
 			Invoke(nameof(EnableAgain), delayDuration);
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Re-enables the button again after a certain amount of time.
+    	/// </summary>
 		public void EnableAgain()
 		{
 			button.interactable = _interactable;
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

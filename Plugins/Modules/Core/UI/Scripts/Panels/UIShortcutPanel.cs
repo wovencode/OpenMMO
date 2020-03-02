@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//by Fhiz
+using UnityEngine;
 using OpenMMO;
 using OpenMMO.UI;
 using OpenMMO.Network;
@@ -6,15 +7,15 @@ using OpenMMO.Network;
 namespace OpenMMO.UI
 {
 	
-	// ===================================================================================
-	// UIShortcutPanel
-	// ===================================================================================
+	/// <summary>
+    /// Attach this script to the UIShortcutPanel that holds shortcut buttons.
+    /// </summary>
 	public partial class UIShortcutPanel : UIRoot
 	{
 
-		// -------------------------------------------------------------------------------
-		// ThrottledUpdate
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Throttled update shows/hides the panel depending on NetworkManager NetworkState.
+    	/// </summary>
 		protected override void ThrottledUpdate()
 		{
 		
@@ -24,8 +25,6 @@ namespace OpenMMO.UI
 				Show();
 			
 		}
-		
-		// -------------------------------------------------------------------------------
 		
     }
 

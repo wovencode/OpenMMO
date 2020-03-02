@@ -1,15 +1,4 @@
-﻿// =======================================================================================
-// UIPopupInput
-// by Weaver (Fhiz)
-// MIT licensed
-// 
-// This popup provides your user with an input field for text or numeric values. It offers
-// a way to Confirm or Cancel the process and each decision can result in a unique action.
-// This class is universal and can be used anywhere you want your user to input a name,
-// text or number.
-// 
-// =======================================================================================
-
+﻿//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -20,9 +9,12 @@ using UnityEngine.UI;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIPopupInput
-	// ===================================================================================
+	/// <summary>
+    /// This popup provides your user with an input field for text or numeric values. It offers
+	/// a way to Confirm or Cancel the process and each decision can result in a unique action.
+	/// This class is universal and can be used anywhere you want your user to input a name,
+	/// text or number.
+    /// </summary>
 	[DisallowMultipleComponent]
 	public partial class UIPopupInput : UIPopup
 	{
@@ -36,18 +28,18 @@ namespace OpenMMO.UI
 		[SerializeField] protected Button 		confirmButton;
 		[SerializeField] protected Button 		cancelButton;
 		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Awake sets the singleton (as this popup is unique) and calls base.Awake
+    	/// </summary>
 		protected override void Awake()
 		{
 			singleton = this;
 			base.Awake();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Initializes the popup by setting its texts and button actions.
+    	/// </summary>
 		public void Init(string _description, Action<string> _confirmAction, Action _cancelAction=null, string _confirmText="", string _cancelText="")
 		{
 			
@@ -74,17 +66,17 @@ namespace OpenMMO.UI
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onInputChange
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Enables/Disables the confirm button when the input field changed.
+    	/// </summary>
 		public void onInputChange()
 		{
 			confirmButton.interactable = !String.IsNullOrWhiteSpace(inputField.text);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickConfirm
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the confirm button is pressed.
+    	/// </summary>
 		public override void onClickConfirm()
 		{
 			if (confirmAction != null)
@@ -93,9 +85,9 @@ namespace OpenMMO.UI
 			Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickCancel
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the cancel button is pressed.
+    	/// </summary>
 		public override void onClickCancel()
 		{
 			if (cancelAction != null)
@@ -104,10 +96,6 @@ namespace OpenMMO.UI
 			Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

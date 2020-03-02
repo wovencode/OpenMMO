@@ -1,9 +1,4 @@
-// =======================================================================================
-// UISlot
-// by Weaver (Fhiz)
-// MIT licensed
-// =======================================================================================
-
+//by Fhiz
 using UnityEngine;
 using UnityEngine.UI;
 using OpenMMO;
@@ -12,9 +7,9 @@ using OpenMMO.UI;
 namespace OpenMMO.UI
 {
 	
-	// ===================================================================================
-	// UISlot
-	// ===================================================================================
+	/// <summary>
+    /// Abstract partial base class for many kinds of 'UI slots'
+    /// </summary>
 	public abstract partial class UISlot<T> : UIRoot
 	{
 	
@@ -40,13 +35,11 @@ namespace OpenMMO.UI
     	
 		protected T					entry;
 		
-		// -------------------------------------------------------------------------------
 		public virtual void Init(ref T _entry)
 		{
 			entry = _entry;
 		}
 		
-		// -------------------------------------------------------------------------------
 		public virtual void Reset()
 		{
 			image.sprite = null;
@@ -55,10 +48,6 @@ namespace OpenMMO.UI
 			button.onClick.RemoveAllListeners();
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

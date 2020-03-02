@@ -1,11 +1,4 @@
-﻿// =======================================================================================
-// Attached to a UI element that stretches across the entire screen in order to hide
-// all other UI elements underneath it. This is used as a background for all kinds of
-// popup windows. It blocks ray-casting, so the user may only interact with the popup
-// instead of clicking on other UI elements.
-//
-// =======================================================================================
-
+﻿//by Fhiz
 using UnityEngine;
 using System.Collections;
 using OpenMMO;
@@ -14,9 +7,12 @@ using OpenMMO.UI;
 namespace OpenMMO.UI
 {
 	
-	// ===================================================================================
-	// UIBackgroundLayer
-	// ===================================================================================
+	/// <summary>
+    /// Attached to a UI element that stretches across the entire screen in order to hide
+	/// all other UI elements underneath it. This is used as a background for all kinds of
+	/// popup windows. It blocks ray-casting, so the user may only interact with the popup
+	/// instead of clicking on other UI elements.
+    /// </summary>
 	public partial class UIBackgroundLayer : UIRoot 
 	{
 		
@@ -27,19 +23,18 @@ namespace OpenMMO.UI
 		
 		public static UIBackgroundLayer singleton;
 		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Awake sets the singleton (as this popup is unique) and calls base.Awake
+    	/// </summary>
 		protected override void Awake()
 		{
 			singleton = this;
 			base.Awake();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BlackIn
-		// Immediately shows the full black background (no fading animation)
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Immediately shows the full black background (no fading animation)
+    	/// </summary>
 		public void BlackIn(float duration=0f)
 		{
 			
@@ -49,9 +44,9 @@ namespace OpenMMO.UI
 				Invoke(nameof(BlackOutDelayed), duration);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FadeIn
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Shows the background with a smooth fade-in effect.
+    	/// </summary>
 		public void FadeIn(float delay=0f)
 		{
 			if (delay > 0)
@@ -60,9 +55,9 @@ namespace OpenMMO.UI
 				FadeInDelayed();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FadeInDelayed
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Fades the background in after a certain delay.
+    	/// </summary>
 		protected void FadeInDelayed()
 		{
 			if (root.activeSelf)
@@ -70,10 +65,9 @@ namespace OpenMMO.UI
 			Show();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BlackOut
-		// Immediately hides the full black background (no fading animation)
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Immediately hides the full black background (no fading animation)
+    	/// </summary>
 		public void BlackOut(float delay=0f)
 		{
 			if (delay > 0)
@@ -82,17 +76,17 @@ namespace OpenMMO.UI
 				blackBackground.SetActive(false);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// BlackOutDelayed
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Hides the black background immediately again after a delay.
+    	/// </summary>
 		protected void BlackOutDelayed()
 		{
 			blackBackground.SetActive(false);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FadeOut
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Smoothly fades out the black background.
+    	/// </summary>
 		public void FadeOut(float delay=0f)
 		{
 			if (delay > 0)
@@ -101,9 +95,9 @@ namespace OpenMMO.UI
 				FadeOutDelayed();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FadeOutDelayed
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Smoothly fades out the black background after a delay.
+    	/// </summary>
 		protected void FadeOutDelayed()
 		{
 		
@@ -113,7 +107,9 @@ namespace OpenMMO.UI
 			StartCoroutine(nameof(DeactivateWindow));
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Used to deactivate the black background window that blocks raycast after a certain delay.
+    	/// </summary>
 		protected IEnumerator DeactivateWindow()
 		{
 			
@@ -126,10 +122,6 @@ namespace OpenMMO.UI
 			Hide();
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

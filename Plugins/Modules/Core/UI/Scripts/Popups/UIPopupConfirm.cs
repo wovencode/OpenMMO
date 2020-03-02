@@ -1,16 +1,4 @@
-﻿// =======================================================================================
-// UIPopupConfirm
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// This simple popup displays a short message to your user and asks for a button click in
-// order to confirm and hide the popup. You can add an action to the button as well, but
-// the popup hides even if there is no action associated. This class is universal and can
-// be used to display small pieces of information to your user, that require attention and
-// confirmation.
-//
-// =======================================================================================
-
+﻿//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -21,9 +9,13 @@ using UnityEngine.UI;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIPopupConfirm
-	// ===================================================================================
+	/// <summary>
+    /// This simple popup displays a short message to your user and asks for a button click in
+	/// order to confirm and hide the popup. You can add an action to the button as well, but
+	/// the popup hides even if there is no action associated. This class is universal and can
+	/// be used to display small pieces of information to your user, that require attention and
+	/// confirmation.
+    /// </summary>
 	[DisallowMultipleComponent]
 	public partial class UIPopupConfirm : UIPopup
 	{
@@ -34,18 +26,18 @@ namespace OpenMMO.UI
 		
 		[SerializeField] protected Button confirmButton;
 		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Awake sets the singleton (as this popup is unique) and calls base.Awake
+    	/// </summary>
 		protected override void Awake()
 		{
 			singleton = this;
 			base.Awake();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Initializes the popup by setting the button actions and optional texts. Then shows the popup.
+    	/// </summary>
 		public void Init(string _description, Action _confirmAction=null, string _confirmText="")
 		{
 			
@@ -63,9 +55,9 @@ namespace OpenMMO.UI
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickConfirm
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the Confirm button is pressed to execute the action that it is set to.
+    	/// </summary>
 		public override void onClickConfirm()
 		{
 			if (confirmAction != null)
@@ -74,10 +66,6 @@ namespace OpenMMO.UI
 			Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

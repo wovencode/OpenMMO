@@ -1,14 +1,4 @@
-﻿// =======================================================================================
-// UIPopupPrompt
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// This popup offers the user with choices: Confirm or Cancel. Both can trigger a unique
-// action so you can use it for A/B decisions as well. This class is universal and can be
-// used anywhere you require the user to make a Yes/No decision.
-//
-// =======================================================================================
-
+﻿//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -19,9 +9,11 @@ using UnityEngine.UI;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIPopupPrompt
-	// ===================================================================================
+	/// <summary>
+    /// This popup offers the user with choices: Confirm or Cancel. Both can trigger a unique
+	/// action so you can use it for A/B decisions as well. This class is universal and can be
+	/// used anywhere you require the user to make a Yes/No decision.
+    /// </summary>
 	[DisallowMultipleComponent]
 	public partial class UIPopupPrompt : UIPopup
 	{
@@ -34,18 +26,18 @@ namespace OpenMMO.UI
 		[SerializeField] protected Button confirmButton;
 		[SerializeField] protected Button cancelButton;
 		
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Awake sets the singleton (as this popup is unique) and calls base.Awake
+    	/// </summary>
 		protected override void Awake()
 		{
 			singleton = this;
 			base.Awake();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Init
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Initializes the popup by setting its texts and button actions.
+    	/// </summary>
 		public void Init(string _description, Action _confirmAction, Action _cancelAction=null, string _confirmText="", string _cancelText="")
 		{
 			
@@ -70,9 +62,9 @@ namespace OpenMMO.UI
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickConfirm
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the Confirm button is pressed.
+    	/// </summary>
 		public override void onClickConfirm()
 		{
 			if (confirmAction != null)
@@ -81,9 +73,9 @@ namespace OpenMMO.UI
 			Close();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// onClickCancel
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Called when the Cancel button is pressed.
+    	/// </summary>
 		public override void onClickCancel()
 		{
 			if (cancelAction != null)
@@ -91,11 +83,7 @@ namespace OpenMMO.UI
 
 			Close();
 		}
-		
-		// -------------------------------------------------------------------------------
-		
+
 	}
 
 }
-
-// =======================================================================================

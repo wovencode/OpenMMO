@@ -1,16 +1,4 @@
-// =======================================================================================
-// UIRoot
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// based of Suriyun's UIBase class to provide a root class for all other UI elements.
-// This class makes the Update function private and implements a ThrottledUpdate function 
-// to be used instead. This way, all updates run at a throttled rate (that can be set
-// via the inspector) instead of once per frame. The result is a major performance
-// improvement, implemented right at the root of any UI element.
-//
-// =======================================================================================
-
+//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -18,9 +6,13 @@ using UnityEngine;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIRoot
-	// ===================================================================================
+	/// <summary>
+    /// Based on Suriyun's UIBase class to provide a root class for all other UI elements.
+	/// This class makes the Update function private and implements a ThrottledUpdate function 
+	/// to be used instead. This way, all updates run at a throttled rate (that can be set
+	/// via the inspector) instead of once per frame. The result is a major performance
+	/// improvement, implemented right at the root of any UI element.
+    /// </summary>
 	public abstract partial class UIRoot : UIBase
 	{
 	
@@ -31,17 +23,17 @@ namespace OpenMMO.UI
 		
 		protected float fInterval = 0.01f;
 
-		// -------------------------------------------------------------------------------
-		// Awake
-		// -------------------------------------------------------------------------------
+		/// <summary>
+   		/// Awake calls base awake.
+    	/// </summary>
 		protected override void Awake()
 		{
 			base.Awake();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Update is called every frame
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Update is called every frame. Throttled update is only called in certain intervals to lessen client load. Protected so that child class can still use it (it's sometimes required to gather user input).
+   	 	/// </summary>
 		protected virtual void Update()
 		{
 			if (updateInterval > 0 && Time.time > fInterval)
@@ -52,16 +44,11 @@ namespace OpenMMO.UI
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// ThrottledUpdated is called once per updateInterval
-		// Protected to allow child classes to use it 
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// ThrottledUpdated is called once per 'updateInterval'. Protected to allow child classes to use it 
+    	/// </summary>
 		protected virtual void ThrottledUpdate() {}
-        
-        // -------------------------------------------------------------------------------
         
 	}
 
 }
-
-// =======================================================================================

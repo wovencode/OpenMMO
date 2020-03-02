@@ -1,16 +1,13 @@
-//using System;
-//using System.Text;
-//using System.Collections.Generic;
+// by Fhiz, DXD4
 using UnityEngine;
-//using UnityEngine.AI;
 using Mirror;
-//using OpenMMO;
 
 namespace OpenMMO
 {
-    // ===================================================================================
-    // PlayerMovement
-    // ===================================================================================
+
+    /// <summary>
+    /// 
+    /// </summary>
     [DisallowMultipleComponent]
     [System.Serializable]
     public partial class PlayerMovementComponent : EntityMovementComponent
@@ -28,7 +25,10 @@ namespace OpenMMO
 
         //RUN
         protected bool running;
-
+		
+		/// <summary>
+    	/// Lodas default OnValidate from PlayerControlConfig in Editor only.
+    	/// </summary>
 #if UNITY_EDITOR
         // LOAD DEFAULTS
         private void OnValidate()
@@ -37,33 +37,32 @@ namespace OpenMMO
         }
 #endif
 
-        // -------------------------------------------------------------------------------
-        // Start
-        // -------------------------------------------------------------------------------
+        /// <summary>
+    	/// Start called client and server-side to initialize properties.
+    	/// </summary>
         protected override void Start()
         {
             agent.updateRotation = false;
             base.Start();
         }
 
-        // -------------------------------------------------------------------------------
-        // 
-        // -------------------------------------------------------------------------------
+        /// <summary>
+    	/// OnStartLocalPlayer. Not used yet.
+    	/// </summary>
         public override void OnStartLocalPlayer()
         {
         }
 
-        // -------------------------------------------------------------------------------
-        // 
-        // -------------------------------------------------------------------------------
+        /// <summary>
+    	/// OnDestroy client and side-server. Not used yet.
+    	/// </summary>
         void OnDestroy()
         {
         }
 
-        // -------------------------------------------------------------------------------
-        // UpdateServer
-        // @Server
-        // -------------------------------------------------------------------------------
+        /// <summary>
+    	/// Server-side throttled update.
+    	/// </summary>
         [Server]
         protected override void UpdateServer()
         {
@@ -71,10 +70,9 @@ namespace OpenMMO
             this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
         }
 
-        // -------------------------------------------------------------------------------
-        // UpdateClient
-        // @Client
-        // -------------------------------------------------------------------------------
+        /// <summary>
+    	/// Client-side, throttled update.
+    	/// </summary>
         [Client]
         protected override void UpdateClient()
         {
@@ -98,20 +96,15 @@ namespace OpenMMO
 
         }
 
-        // -------------------------------------------------------------------------------
-        // LateUpdateClient
-        // @Client
-        // -------------------------------------------------------------------------------
+        /// <summary>
+    	/// Client only, late update.
+    	/// </summary>
         protected override void LateUpdateClient()
         {
             base.LateUpdateClient();
             this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
         }
 
-        // -------------------------------------------------------------------------------
-
     }
 
 }
-
-// =======================================================================================

@@ -3,7 +3,10 @@ using UnityEngine;
 
 namespace OpenMMO
 {
-    /// <summary>Input Axis are set from Edit>PlayerSettings>Input</summary>
+
+    /// <summary>
+    /// Input Axis are set from Edit>PlayerSettings>Input
+    /// </summary>
     public enum InputAxis
     {
         /// <summary>Horizontal Input axis. Corresponds to Left/Right Arrows or A and D Keys.</summary>
@@ -28,7 +31,10 @@ namespace OpenMMO
         [Tooltip("Cancel Button. Corresponds to Escape Key and Gamepad Button 1.")]
         Cancel
     }
-
+	
+	/// <summary>
+    /// 
+    /// </summary>
     [CreateAssetMenu(menuName = "OpenMMO/Controls/Player Movement Config")]
     public class PlayerControlConfig : ScriptableObject
     {

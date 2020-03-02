@@ -1,17 +1,12 @@
-
-//using System;
-//using System.Text;
-//using System.Collections.Generic;
+//by Fhiz, DXD4
 using UnityEngine;
-//using UnityEngine.AI;
 using Mirror;
-//using OpenMMO;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// PlayerMovement
-	// ===================================================================================
+	/// <summary>
+    /// Partial PlayerMovementComponent class is responsible for all player related input and movement.
+    /// </summary>
 	public partial class PlayerMovementComponent
 	{
 		
@@ -22,11 +17,9 @@ namespace OpenMMO {
         
 		double _timerMovement = 0;
 		
-		// -------------------------------------------------------------------------------
-		// UpdateVelocity
-		// This recalculates the agent velocity based on the current input axis'
-		// @Client / @Server
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// This recalculates the agent velocity based on the current input axis'
+   	 	/// </summary>
 		protected virtual void UpdateVelocity()
         {
             //FACE DIRECTION OF TRAVEL
@@ -102,13 +95,11 @@ namespace OpenMMO {
 			
 		}
 
-
         // S E R V E R  A U T H O R I T A T I V E  M O V E M E N T
 
-		// -------------------------------------------------------------------------------
-		// FixedUpdateClient
-		// @Client
-		// -------------------------------------------------------------------------------
+		/// <summary>
+    	/// Client-side, fixed update.
+    	/// </summary>
 		[Client]
 		protected override void FixedUpdateClient()
     	{
@@ -120,28 +111,26 @@ namespace OpenMMO {
         	
 		}
 
-        // -------------------------------------------------------------------------------
-        // ReadyToMove
-        // -------------------------------------------------------------------------------
-        /// <summary>Movement Throttling</summary>
-        /// <returns>Enough time has passed...ready to move again.</returns>
+        /// <summary>
+        /// Movement Throttling
+        /// </summary>
+        /// <returns>
+        /// Enough time has passed...ready to move again.
+        /// </returns>
         protected bool ReadyToMove() { return Time.time > _timerMovement; }
 
-        // -------------------------------------------------------------------------------
-        // LogMovement
-        // -------------------------------------------------------------------------------
-        /// <summary>Logs the last time that movement was processed.</summary>
+        
+        /// <summary>
+        /// Logs the last time that movement was processed.
+        /// </summary>
         private void LogMovement()
         {
             _timerMovement = Time.time + movementUpdateInterval;
         }
 		
-		
-		// -------------------------------------------------------------------------------
-		// Cmd_UpdateState
-		// @Client -> @Server
-		// -------------------------------------------------------------------------------
-        /// <summary>Sends movement state to the server, where the server updates velocity, then returns updated position info to clients.</summary>
+        /// <summary>
+        /// Sends movement state to the server, where the server updates velocity, then returns updated position info to clients.
+        /// </summary>
         /// <param name="moveState"></param>
 		[Command]
 		protected virtual void Cmd_UpdateMovementState(MovementStateInfo moveState)
@@ -161,12 +150,9 @@ namespace OpenMMO {
     		RpcCorrectClientPosition(transform.position, transform.rotation, agent.velocity);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// RpcCorrectClientPosition
-		// Updates the rotation, position and velocity on clients based on server stats
-		// @Server -> @Clients
-		// -------------------------------------------------------------------------------
-        /// <summary>Corrects the Client's position based upon the Server's interpretation of the simulation.</summary>
+		/// <summary>
+    	/// Corrects the Client's position based upon the Server's interpretation of the simulation
+    	/// </summary>
 		[ClientRpc]
    		public void RpcCorrectClientPosition(Vector3 _position, Quaternion _rotation, Vector3 _velocity)
     	{
@@ -179,10 +165,6 @@ namespace OpenMMO {
         	
     	}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

@@ -17,5 +17,7 @@ MonoBehaviour:
   securitySalt: 16_or_more_bytes
   serverList:
   - {fileID: 11400000, guid: f348574aedc9140eda570b43f06043f2, type: 2}
+  - {fileID: 11400000, guid: 62fd62690fd1e44a48b25b17cf96fd7e, type: 2}
   logMode: 1
   logFilename: OpenMMOLog
+  logFolder: OpenMMOLogs

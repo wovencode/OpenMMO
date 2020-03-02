@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a06ca1889a75bf45986f4cad94c281c, type: 3}
-  m_Name: EncumberedPlayerControls
+  m_Name: FrozenPlayerControls
   m_EditorClassIdentifier: 
   faceCameraDirection: 0
   turnWhileStrafing: 0
@@ -19,9 +19,9 @@ MonoBehaviour:
   moveAxisVertical: 1
   strafeLeftKey: 113
   strafeRightKey: 101
-  moveSpeedMultiplier: 0.5
-  turnSpeedMultiplier: 0.4
-  walkSpeedScale: 1.5
-  runSpeedScale: 2.5
-  strafeSpeedScale: 0.35
+  moveSpeedMultiplier: 0
+  turnSpeedMultiplier: 0
+  walkSpeedScale: 1
+  runSpeedScale: 1.5
+  strafeSpeedScale: 0.75
   backpedalSpeedScale: 0.5

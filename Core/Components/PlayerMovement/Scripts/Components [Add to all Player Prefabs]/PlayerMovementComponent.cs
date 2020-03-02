@@ -15,8 +15,8 @@ namespace OpenMMO
     [System.Serializable]
     public partial class PlayerMovementComponent : EntityMovementComponent
     {
-        [Header("Player Control Config")]
-        public PlayerControlConfig config;
+        [Header("Player Movement Config")]
+        public PlayerControlConfig movementConfig;
 
         //MOVE
         protected float verticalMovementInput;
@@ -33,7 +33,7 @@ namespace OpenMMO
         // LOAD DEFAULTS
         private void OnValidate()
         {
-            if (!config) config = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT
+            if (!movementConfig) movementConfig = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT
         }
 #endif
 
@@ -83,13 +83,13 @@ namespace OpenMMO
             if (Tools.AnyInputFocused) return;
 
             //MOVE
-            horizontalMovementInput = Input.GetAxis(config.moveAxisHorizontal.ToString());
-            verticalMovementInput = Input.GetAxis(config.moveAxisVertical.ToString());
+            horizontalMovementInput = Input.GetAxis(movementConfig.moveAxisHorizontal.ToString());
+            verticalMovementInput = Input.GetAxis(movementConfig.moveAxisVertical.ToString());
             //STRAFE
-            strafeLeft = Input.GetKey(config.strafeLeftKey);
-            strafeRight = Input.GetKey(config.strafeRightKey);
+            strafeLeft = Input.GetKey(movementConfig.strafeLeftKey);
+            strafeRight = Input.GetKey(movementConfig.strafeRightKey);
             //RUN
-            running = Input.GetKey(config.runKey);
+            running = Input.GetKey(movementConfig.runKey);
 
             UpdateVelocity(); //UPDATE VELOCITY
 

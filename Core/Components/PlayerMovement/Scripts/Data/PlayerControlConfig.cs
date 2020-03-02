@@ -29,7 +29,7 @@ namespace OpenMMO
         Cancel
     }
 
-    [CreateAssetMenu(menuName = "OpenMMO/Config/Player Controls")]
+    [CreateAssetMenu(menuName = "OpenMMO/Controls/Player Movement Config")]
     public class PlayerControlConfig : ScriptableObject
     {
 

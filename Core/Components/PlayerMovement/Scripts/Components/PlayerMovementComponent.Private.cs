@@ -40,7 +40,7 @@ namespace OpenMMO {
                 //Vector3 angles = transform.rotation.eulerAngles;
                 Vector3 angles = 
                     (
-                    (config.faceCameraDirection && Camera.main)
+                    (movementConfig.faceCameraDirection && Camera.main)
                     ? new Vector3(transform.rotation.eulerAngles.x, Camera.main.transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z)
                     : transform.rotation.eulerAngles
                     );
@@ -53,19 +53,19 @@ namespace OpenMMO {
 
                     if (verticalMovementInput > 0)                                  // -- Movement: Forward
                     {
-                        float factor = running ? config.runSpeedScale : config.walkSpeedScale;
-                        newVelocity = direction * verticalMovementInput * agent.speed * factor * config.moveSpeedMultiplier;
+                        float factor = running ? movementConfig.runSpeedScale : movementConfig.walkSpeedScale;
+                        newVelocity = direction * verticalMovementInput * agent.speed * factor * movementConfig.moveSpeedMultiplier;
                     }
                     else if (verticalMovementInput < 0)                             // -- Movement: Backward
                     {
-                        float factor = running ? config.runSpeedScale : config.walkSpeedScale;
-                        newVelocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * factor * config.backpedalSpeedScale * config.moveSpeedMultiplier;
+                        float factor = running ? movementConfig.runSpeedScale : movementConfig.walkSpeedScale;
+                        newVelocity = direction * Mathf.Abs(verticalMovementInput) * agent.speed * factor * movementConfig.backpedalSpeedScale * movementConfig.moveSpeedMultiplier;
                     }
                     else if (horizontalMovementInput != 0) //STRAFE
                     {
                         //NOTE: We do not want to factor run speed into strafing...we do not want both multipliers to make diagonal speed faster than forward speed.
                         //float factor = running ? config.runSpeedScale : config.walkSpeedScale; 
-                        newVelocity = direction * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                        newVelocity = direction * agent.speed * movementConfig.strafeSpeedScale * movementConfig.moveSpeedMultiplier;
                     }
                 
                 //STRAFE LEFT
@@ -75,8 +75,8 @@ namespace OpenMMO {
                     {
                         //direction = -agent.transform.right;
                         //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
-                        if (config.turnWhileStrafing) transform.Rotate(0, -1.0f * config.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
-                        newVelocity = -agent.transform.right * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                        if (movementConfig.turnWhileStrafing) transform.Rotate(0, -1.0f * movementConfig.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
+                        newVelocity = -agent.transform.right * 5f * agent.speed * movementConfig.strafeSpeedScale * movementConfig.moveSpeedMultiplier;
                     }
                 }
                 //STRAFE RIGHT
@@ -84,12 +84,12 @@ namespace OpenMMO {
                 {
                     //direction = agent.transform.right;
                     //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
-                    if (config.turnWhileStrafing) transform.Rotate(0, 1.0f * config.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
+                    if (movementConfig.turnWhileStrafing) transform.Rotate(0, 1.0f * movementConfig.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
                     //newVelocity = direction * horizontalMovementInput * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
-                    newVelocity = agent.transform.right * 5f * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                    newVelocity = agent.transform.right * 5f * agent.speed * movementConfig.strafeSpeedScale * movementConfig.moveSpeedMultiplier;
                 }
 
-                if (!strafeLeft && !strafeRight) transform.Rotate(0, horizontalMovementInput * config.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //SET ROTATION - ON TRANSFORM - NOT WHILE STRAFING
+                if (!strafeLeft && !strafeRight) transform.Rotate(0, horizontalMovementInput * movementConfig.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //SET ROTATION - ON TRANSFORM - NOT WHILE STRAFING
 
                 agent.velocity = newVelocity; //SET VELOCITY - ON NAVMESH AGENT
            	}

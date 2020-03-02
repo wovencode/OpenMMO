@@ -1,4 +1,4 @@
-﻿
+﻿//by Fhiz
 using System;
 using System.Text;
 using UnityEngine;
@@ -7,9 +7,9 @@ using OpenMMO;
 
 namespace OpenMMO {
 
-	// ===================================================================================
-	// LevelableComponent
-	// ===================================================================================
+	/// <summary>
+	/// Abstract partial Levelable Component is the base class for all SyncableComponents that feature a level. This could be the entity itself, but also inventories etc.
+	/// </summary>
 	[System.Serializable]
 	public abstract partial class LevelableComponent : SyncableComponent
 	{
@@ -19,59 +19,26 @@ namespace OpenMMO {
 		public int level = 1;
 		public int maxLevel = 3;
 		
-#if oCURRENCY
-		public LevelCurrencyCost[] upgradeCost;
-#endif
-		
-		// -------------------------------------------------------------------------------
-		// Start
-		// @Server
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Server-side Start for initializiation.
+		/// </summary>
 		[ServerCallback]
 		protected override void Start() {
 			base.Start();
 		}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Server-side, throttled update.
+		/// </summary>
 		[Server]
 		protected override void UpdateServer() {}
 		
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Client-side, throttled update.
+		/// </summary>
 		[Client]
 		protected override void UpdateClient() {}
-		
-		// -------------------------------------------------------------------------------
-		public bool CanUpgradeLevel()
-		{
-			return (level < maxLevel
-#if _CURRENCY
-					&& GetComponentInParent<PlayerCurrencyComponent>().CanPayCost(upgradeCost, level)
-#endif
-					);
-		}
-		
-		// -------------------------------------------------------------------------------
-		[Command]
-		public void CmdUpgradeLevel()
-		{
-			if (CanUpgradeLevel())
-				UpgradeLevel();
-		}
-		
-		// -------------------------------------------------------------------------------
-		[Server]
-		protected virtual void UpgradeLevel()
-		{
-#if _CURRENCY
-			GetComponentInParent<PlayerCurrencyComponent>().PayCost(upgradeCost, level);
-#endif
-			level++;
-		}
-		
-		// -------------------------------------------------------------------------------
 		
 	}
 
 }
-
-// =======================================================================================

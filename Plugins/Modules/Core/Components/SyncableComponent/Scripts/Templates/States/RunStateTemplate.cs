@@ -9,10 +9,10 @@ using OpenMMO;
 namespace OpenMMO {
 	
 	/// <summary>
-	/// A basic, partial Template that represents the "Walk State".
+	/// A basic, partial Template that represents the "Run State".
 	/// </summary>
-	[CreateAssetMenu(fileName = "New WalkState", menuName = "OpenMMO - States/New WalkState", order = 999)]
-	public partial class WalkStateTemplate : StateTemplate
+	[CreateAssetMenu(fileName = "New RunState", menuName = "OpenMMO - States/New RunState", order = 999)]
+	public partial class RunStateTemplate : StateTemplate
 	{
     
 		/// <summary>
@@ -20,13 +20,12 @@ namespace OpenMMO {
 		/// </summary>
 		public override bool GetIsActive(EntityComponent entityComponent)
 		{
-		
 			// -- special case:
 			// only players have a "walk state" while monsters and NPCs only feature
 			// a "move state".
 			
 			if (entityComponent is PlayerComponent)
-				return ((PlayerComponent)entityComponent).playerMovementComponent.GetIsWalking;
+				return ((PlayerComponent)entityComponent).playerMovementComponent.GetIsRunning;
 			else
 				return entityComponent.movementComponent.GetIsMoving;
 		}

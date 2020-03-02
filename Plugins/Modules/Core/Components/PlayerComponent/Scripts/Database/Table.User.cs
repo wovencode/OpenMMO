@@ -1,4 +1,4 @@
-﻿
+﻿//by  Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using System;
@@ -7,9 +7,9 @@ using SQLite;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// TableUser
-	// ===================================================================================
+	/// <summary>
+	/// Partial TableUser contains all user (= account) related data.
+	/// </summary>
 	public partial class TableUser
 	{
 		[PrimaryKey]
@@ -27,7 +27,5 @@ namespace OpenMMO.Database
 		public int maxPlayers		{ get; set; }
 		
 	}
-	
-	// -------------------------------------------------------------------------------
 	
 }

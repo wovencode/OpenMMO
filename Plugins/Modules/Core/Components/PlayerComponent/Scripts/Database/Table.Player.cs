@@ -1,4 +1,4 @@
-﻿
+﻿//by  Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using System;
@@ -8,9 +8,9 @@ using UnityEngine;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// Partial TablePlayer class contains all player (= character) related core data.
+	/// </summary>
 	public partial class TablePlayer
 	{
 		[PrimaryKey]
@@ -32,9 +32,9 @@ namespace OpenMMO.Database
 		public float roty			{ get; set; }
 		// TODO: do we need rotation x and z ?
 		
-		// -------------------------------------------------------------------------------
-		// Create
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Called when a new player (= character) is created to populate the fields.
+		/// </summary>
 		public void Create(GameObject player, string userName="", string prefabName="")
 		{
 
@@ -46,9 +46,9 @@ namespace OpenMMO.Database
 			
 		}
 				
-		// -------------------------------------------------------------------------------
-		// Update
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Called when a already existing player (= character) is saved to the database, in order to update it's data beforehand.
+		/// </summary>
 		public void Update(GameObject player, string userName="")
 		{
 			
@@ -69,10 +69,6 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// ---------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

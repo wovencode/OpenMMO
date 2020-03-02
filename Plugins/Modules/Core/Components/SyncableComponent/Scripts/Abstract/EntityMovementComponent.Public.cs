@@ -1,25 +1,20 @@
-﻿
+﻿//by Fhiz
 using System;
-using System.Text;
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Mirror;
 using OpenMMO;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// EntityMovementComponent
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of the EntityMovementComponent is exposed to public and used to check various movement related states.
+	/// </summary>
 	public partial class EntityMovementComponent
 	{
 	
-		// -------------------------------------------------------------------------------
-		// GetIsMoving
-		// @Server / @Client
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if the entity is currently moving
+		/// </summary>
 		public bool GetIsMoving
     	{
     		get
@@ -27,11 +22,7 @@ namespace OpenMMO {
     			return agent.velocity != Vector3.zero;
     		}
 		}
-		
-		// -------------------------------------------------------------------------------
-		
+
 	}
 
 }
-
-// =======================================================================================

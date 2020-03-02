@@ -8,9 +8,9 @@ using OpenMMO.Network;
 
 namespace OpenMMO {
 
-	// ===================================================================================
-	// SyncableComponent
-	// ===================================================================================
+	/// <summary>
+	/// 
+	/// </summary>
 	[System.Serializable]
 	public abstract partial class SyncableComponent : BaseNetworkBehaviour
 	{

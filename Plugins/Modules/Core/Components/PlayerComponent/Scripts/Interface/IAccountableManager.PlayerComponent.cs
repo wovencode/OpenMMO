@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +8,9 @@ using OpenMMO.Database;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// IAccountableManager
-	// ===================================================================================
+	/// <summary>
+	/// Adds the required user and player methods to IAccountableManager via partial 
+	/// </summary>
 	public partial interface IAccountableManager
 	{
 		
@@ -35,5 +35,3 @@ namespace OpenMMO.Database
 	}
 		
 }
-
-// =======================================================================================

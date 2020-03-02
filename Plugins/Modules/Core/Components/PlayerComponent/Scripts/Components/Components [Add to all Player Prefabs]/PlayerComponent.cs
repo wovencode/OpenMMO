@@ -1,18 +1,13 @@
-
-//using System;
-//using System.Text;
-//using System.Collections.Generic;
+//by Fhiz
 using UnityEngine;
 using Mirror;
-//using OpenMMO;
 using OpenMMO.Database;
-//using UnityEngine.AI;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// PlayerComponent
-	// ===================================================================================
+	/// <summary>
+	/// Partial class PlayerComponent, derived from EntityComponent. Base class for all Players.
+	/// </summary>
 	[DisallowMultipleComponent]
 	[System.Serializable]
 	public partial class PlayerComponent : EntityComponent
@@ -23,34 +18,34 @@ namespace OpenMMO {
 		public TablePlayer tablePlayer 				= new TablePlayer();
 		public TablePlayerZones tablePlayerZones 	= new TablePlayerZones();
 		
-		// -------------------------------------------------------------------------------
-		// Start
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Server side start
+		/// </summary>
 		[ServerCallback]
 		protected override void Start()
     	{
         	base.Start(); // required
 		}
 		
-		// -------------------------------------------------------------------------------
-		// OnStartLocalPlayer
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Called when the local player enters the game.
+		/// </summary>
 		public override void OnStartLocalPlayer()
     	{
     		base.OnStartLocalPlayer(); // required
 		}
 		
-		// -------------------------------------------------------------------------------
-		// 
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Called client and server-side, when the player object is destroyed
+		/// </summary>
 		void OnDestroy()
     	{
     	
         }
 		
-		// -------------------------------------------------------------------------------
-		// UpdateServer
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Server side, throttled update
+		/// </summary>
 		[Server]
 		protected override void UpdateServer()
 		{
@@ -58,9 +53,9 @@ namespace OpenMMO {
 			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateClient
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		[Client]
 		protected override void UpdateClient()
 		{
@@ -68,29 +63,24 @@ namespace OpenMMO {
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LateUpdateClient
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Client-based late update
+		/// </summary>
 		[Client]
 		protected override void LateUpdateClient()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FixedClient
-		// @Client
-		// -------------------------------------------------------------------------------
+		//// <summary>
+		/// Client-based fixed update
+		/// </summary>
 		[Client]
 		protected override void FixedUpdateClient()
 		{
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

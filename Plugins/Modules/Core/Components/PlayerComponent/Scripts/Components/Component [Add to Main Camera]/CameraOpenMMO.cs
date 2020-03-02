@@ -1,12 +1,12 @@
-
+//by Fhiz, MaliceA4Thought
 using UnityEngine;
 using OpenMMO;
 
 namespace OpenMMO {
 
-	// ===================================================================================
-	// CameraOpenMMO
-	// ===================================================================================
+	/// <summary>
+	/// Default camera controller for OpenMMO with follow, rotation, zoom and collision detection.
+	/// </summary>
 	[DisallowMultipleComponent]
 	public class CameraOpenMMO : MonoBehaviour
 	{
@@ -42,9 +42,9 @@ namespace OpenMMO {
 		private float desiredDistance; 
 		private float correctedDistance; 
 		
-		// -------------------------------------------------------------------------------
-		// Start
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Setup the required basic properties in Start
+		/// </summary>
 		void Start() 
 		{ 
 			Vector3 angles = transform.eulerAngles; 
@@ -60,9 +60,9 @@ namespace OpenMMO {
 				GetComponent<Rigidbody>().freezeRotation = true; 
 		} 
 		
-		// -------------------------------------------------------------------------------
-		// LateUpdate
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updated in LateUpdate to be frame rate independent.
+		/// </summary>
 		void LateUpdate() 
 		{ 
 			Vector3 vTargetOffset;
@@ -136,10 +136,6 @@ namespace OpenMMO {
 			transform.position = position; 
 		} 
 
-		// -------------------------------------------------------------------------------
-		
 	}
 	
-	// ===================================================================================
-
 }

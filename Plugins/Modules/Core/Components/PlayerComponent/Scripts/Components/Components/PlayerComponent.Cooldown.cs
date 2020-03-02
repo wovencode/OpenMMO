@@ -1,24 +1,14 @@
-﻿// =======================================================================================
-// Wovencore
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// =======================================================================================
-
+﻿//by Fhiz
 using System;
-using System.Text;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using OpenMMO;
-using OpenMMO.Database;
-using UnityEngine.AI;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// PlayerComponent
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of the player component takes care of the global cooldown (used to limit 'Risky Actions')
+	/// </summary>
 	public partial class PlayerComponent
 	{
 
@@ -28,9 +18,9 @@ namespace OpenMMO {
 		// a global player cooldown to handle "risky actions"
 		[SyncVar] double cooldown = 0;
 		
-		// -------------------------------------------------------------------------------
-		// CheckCooldown
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
 		public bool CheckCooldown
     	{
     		get
@@ -39,20 +29,24 @@ namespace OpenMMO {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// Cmd_UpdateCooldown
-		// @Client -> @Server
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <remarks>
+		/// Sent from CLIENT to SERVER.
+		/// </remarks>
 		[Command]
 		public void Cmd_UpdateCooldown(float extraCooldown)
 		{
 			UpdateCooldown(extraCooldown);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateCooldown
-		// @Server
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates the cooldown timer on the server.
+		/// </summary>
+		/// <remarks>
+		/// Sent from CLIENT to SERVER.
+		/// </remarks>
 		[Server]
 		protected void UpdateCooldown(float extraCooldown)
 		{
@@ -60,18 +54,14 @@ namespace OpenMMO {
 			tablePlayer.cooldown = GetCooldownTimeRemaining();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetCooldownTimeRemaining
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns the remaining cooldown (until another Risky Action is allowed).
+		/// </summary>
 		public float GetCooldownTimeRemaining()
 		{
 			return CheckCooldown ? 0 : (float)(cooldown - NetworkTime.time);
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

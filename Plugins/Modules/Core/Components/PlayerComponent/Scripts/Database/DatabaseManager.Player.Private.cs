@@ -1,4 +1,4 @@
-
+//by  Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -10,46 +10,45 @@ using Mirror;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of DatabaseManager is responsible for player related actions.
+	/// </summary>
+	/// <remarks>
+	/// 
+	/// </remarks>
 	public partial class DatabaseManager
 	{
-
-		// -------------------------------------------------------------------------------
-		// Init_Player
-		// -------------------------------------------------------------------------------
+	
+		/// <summary>
+		/// Hooks into Init and creates the TablePlayer on the database if it does not exist yet.
+		/// </summary>
 		[DevExtMethods(nameof(Init))]
 		void Init_Player()
 		{
 	   		CreateTable<TablePlayer>();
 		}
 		
-		// =================================== PLAYER ====================================
-		
-	   	// -------------------------------------------------------------------------------
-	   	// CreateDefaultDataPlayer_Player
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into CreateDefaultDataPlayer. Not used yet.
+		/// </summary>
 	   	[DevExtMethods(nameof(CreateDefaultDataPlayer))]
 		void CreateDefaultDataPlayer_Player(GameObject player)
 		{
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LoadDataPlayerPriority_Player
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LoadDataPlayerPriority. Not used yet.
+		/// </summary>
 		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_Player(GameObject player)
 		{
 			
 		}
 		
-	   	// -------------------------------------------------------------------------------
-	   	// LoadDataPlayer_Player
-	   	// we simply fetch the table that is present on the local player object instead
-	   	// of copy-pasting all the individual properties, update it and forward it to the db
-	   	// -------------------------------------------------------------------------------
+	   	/// <summary>
+		/// Fetches the table that is present on the local player object instead of copy-pasting all the individual properties, update it and forward it to the database.
+		/// </summary>
 		[DevExtMethods(nameof(LoadDataPlayer))]
 		void LoadDataPlayer_Player(GameObject player)
 		{
@@ -60,11 +59,9 @@ namespace OpenMMO.Database
 	   		player.transform.rotation = Quaternion.Euler(0, tablePlayer.roty, 0);
 		}
 		
-	   	// -------------------------------------------------------------------------------
-	   	// SaveDataPlayer_Player
-	   	// we simply fetch the table that is present on the local player object instead
-	   	// of copy-pasting all the individual properties, update it and forward it to the db
-	   	// -------------------------------------------------------------------------------
+	   	/// <summary>
+		/// Fetches the table that is present on the local player object instead of copy-pasting individual properties, update it and forward it to the database.
+		/// </summary>
 		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_Player(GameObject player, bool isNew)
 		{
@@ -77,19 +74,18 @@ namespace OpenMMO.Database
 			InsertOrReplace(player.GetComponent<PlayerComponent>().tablePlayer);
 		}
 		
-		// -------------------------------------------------------------------------------
-	   	// LoginPlayer_Player
-	   	// update last login time when a player logs in to prevent multi-login
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LoginPlayer and updates last login time when a player logs in to prevent multi-login
+		/// </summary>
 	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_Player(NetworkConnection conn, GameObject player, string playerName, string userName)
 	   	{
 	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playerName);
 	   	}
 		
-		// -------------------------------------------------------------------------------
-	   	// LogoutPlayer_Player
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LogoutPlayer and updates the lastonline time on TablePlayer when the player (= character) logs out.
+		/// </summary>
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_Player(GameObject player)
 	   	{
@@ -98,19 +94,15 @@ namespace OpenMMO.Database
 	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", dateTime, player.name);
 	   	}
 		
-		// -------------------------------------------------------------------------------
-	   	// DeleteDataPlayer_Player
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into DeleteDataPlayer and removes all data from TablePlayer when the player (= character) is hard-deleted.
+		/// </summary>
 	   	[DevExtMethods(nameof(DeleteDataPlayer))]
 	   	void DeleteDataPlayer_Player(string playername)
 	   	{
 	   		Execute("DELETE FROM "+nameof(TablePlayer)+" WHERE playername=?", playername);
 	   	}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

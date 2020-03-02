@@ -1,4 +1,4 @@
-
+//by  Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -6,17 +6,17 @@ using UnityEngine;
 namespace OpenMMO.UI
 {
 
-	// ===================================================================================
-	// UIRoot
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of UIRoot adds a localPlayer object to it. It can be used to quickly fetch the local player without a GetComponent call everywhere.
+	/// </summary>
 	public abstract partial class UIRoot
 	{
 
 		protected GameObject _localPlayer = null;
 
-		// -------------------------------------------------------------------------------
-		// localPlayer
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns the cached local player object or fetches it once and caches it.
+		/// </summary>
 		protected GameObject localPlayer
 		{
 			get
@@ -31,5 +31,3 @@ namespace OpenMMO.UI
 	}
 
 }
-
-// =======================================================================================

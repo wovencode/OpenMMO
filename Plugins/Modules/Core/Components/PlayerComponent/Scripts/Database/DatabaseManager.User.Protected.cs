@@ -1,4 +1,4 @@
-
+//by  Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -11,33 +11,31 @@ using UnityEngine.AI;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of DatabaseManager is responsible to handle user (= account) related actions.
+	/// </summary>
 	public partial class DatabaseManager
 	{
 		
-		// ============================ PROTECTED METHODS ================================
-		
-		// -------------------------------------------------------------------------------
-		// UserValid
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if a user (= account) of the provided name and password is valid (exists, not banned and not deleted).
+		/// </summary>
 		protected bool UserValid(string username, string password)
 		{
 			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND password=? AND banned=0 AND deleted=0", username, password) != null;
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UserExists
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if a user of the provided name exists (ignores banned and/or deleted).
+		/// </summary>
 		protected bool UserExists(string username)
 		{
 			return FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=?", username) != null;
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UserRegister
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Registers a new user (= account) using the provided name, password, email and deviceId (email and deviceId are optional).
+		/// </summary>
 		protected void UserRegister(string userName, string userPassword, string userEmail, string userDeviceid)
 		{
 			// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login
@@ -45,46 +43,40 @@ namespace OpenMMO.Database
 			Insert(new TableUser{ username=userName, password=userPassword, email=userEmail, deviceid=userDeviceid, created=DateTime.UtcNow, lastonline=dateTime });
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UserChangePassword
-		// updates the oldpassword of a user to the new password, requires oldpassword to match
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Updates the password of a user to the new password. The provided oldPassword must match the one in the database in order to verify the process.
+		/// </summary>
 		protected void UserChangePassword(string username, string oldpassword, string newpassword)
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET password=? WHERE username=? AND password=?", newpassword, username, oldpassword);
 		}
-
-		// -------------------------------------------------------------------------------
-		// UserSetDeleted
-		// Sets the user to deleted (1) or undeletes it (0)
-		// -------------------------------------------------------------------------------
+		
+		/// <summary>
+		/// Sets the user to deleted (1) or undeletes it (0).
+		/// </summary>
 		protected void UserSetDeleted(string username, DatabaseAction action = DatabaseAction.Do)
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET deleted=? WHERE username=?", action == DatabaseAction.Do ? 1 : 0, username);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UserSetBanned
-		// Bans (1) or unbans (0) the user
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Bans (1) or unbans (0) the user
+		/// </summary>
 		protected void UserSetBanned(string username, DatabaseAction action = DatabaseAction.Do)
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET banned=? WHERE username=?", action == DatabaseAction.Do ? 1 : 0, username);
 		}
-
-        // -------------------------------------------------------------------------------
-        // DeleteDataUser
-        // Called when User Data has been deleted.
-        // -------------------------------------------------------------------------------
+		
+		/// <summary>
+		/// Called when user (= account) Data has been deleted.
+		/// </summary>
         protected void DeleteDataUser(string username)
         {
 			this.InvokeInstanceDevExtMethods(nameof(DeleteDataUser), username); //HOOK
         }
-
-		// -------------------------------------------------------------------------------
-		// DeleteUser
-		// Permanently deletes the user and all of its data (hard delete)
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Permanently deletes the user (= account) and all of its data (hard delete)
+		/// </summary>
 		[DevExtMethods(nameof(DeleteUser))]
 		protected void DeleteUser(string username)
 		{
@@ -95,19 +87,17 @@ namespace OpenMMO.Database
             DeleteDataUser(username);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UserSetConfirmed
-		// Sets the user to confirmed (1) or unconfirms it (0)
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Sets the user (= account) to confirmed (1) or unconfirms it (0)
+		/// </summary>
 		protected void UserSetConfirmed(string username, DatabaseAction action = DatabaseAction.Do)
 		{
 			Execute("UPDATE "+nameof(TableUser)+" SET confirmed=? WHERE username=?", action == DatabaseAction.Do ? 1 : 0, username);
 		}
 		
-		// -------------------------------------------------------------------------------
-		// GetUserCount
-		// returns the number of user accounts registered on this device-id and/or email
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns the number of user accounts registered on this device-id and/or email
+		/// </summary>
 		protected int GetUserCount(string deviceId, string eMail)
 		{
 
@@ -120,10 +110,6 @@ namespace OpenMMO.Database
 
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

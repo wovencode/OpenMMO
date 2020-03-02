@@ -1,27 +1,25 @@
-﻿
+﻿//by  Fhiz
 using System;
 
 namespace OpenMMO.Database
 {
 
 	/// <summary>
-	/// 
+	/// This partial section of DatabaseManager is exposed to the public and used from other components.
 	/// </summary>
 	public partial class DatabaseManager
 	{
 		
-		// -------------------------------------------------------------------------------
-		// GetPlayerPrefabName
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns a existing player's prefab from the database, according to the players name.
+		/// </summary>
 		public string GetPlayerPrefabName(string playername)
 		{
 			return FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=?", playername).prefab;
 		}
-		
-		// -------------------------------------------------------------------------------
-		// GetPlayerOnline
-		// Checks if a player is online anywhere using 'lastonline' time frame
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if a player (= character) is online anywhere using 'lastonline' time frame
+		/// </summary>
 		public bool GetPlayerOnline(string playerName)
 		{
 			TablePlayer tablePlayer = FindWithQuery<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE playername=? AND banned=0 AND deleted=0", playerName);
@@ -36,11 +34,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// ============================== PUBLIC METHODS =================================
-		
-		// -------------------------------------------------------------------------------
-		// TryPlayerLogin
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tries to login a existing player (= character) using the provided playername (= charactername) and username (= accountname).
+		/// </summary>
 		public override bool TryPlayerLogin(string playername, string username)
 		{
 			
@@ -51,9 +47,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryPlayerRegister
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tries to register a new player (= character) on the provided account, using the provided prefab.
+		/// </summary>
 		public override bool TryPlayerRegister(string name, string username, string prefabname)
 		{
 		
@@ -69,9 +65,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryPlayerDeleteSoft
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tries do soft-delete a player (= character). Soft-deletion does not delete any data, only marks the player as 'deleted'.
+		/// </summary>
 		public override bool TryPlayerDeleteSoft(string name, string username, DatabaseAction _action = DatabaseAction.Do)
 		{
 		
@@ -83,10 +79,9 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryPlayerDeleteHard
-		// Permanently deletes the player and all of its data
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tries to permanently delete the player (= character) and all of its data.
+		/// </summary>
 		public override bool TryPlayerDeleteHard(string name, string username)
 		{
 		
@@ -98,9 +93,9 @@ namespace OpenMMO.Database
 				
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryPlayerBan
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Tries to ban a player (= character), so it cannot be used to play anymore.
+		/// </summary>
 		public override bool TryPlayerBan(string name, string username, DatabaseAction _action = DatabaseAction.Do)
 		{
 			
@@ -112,10 +107,6 @@ namespace OpenMMO.Database
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

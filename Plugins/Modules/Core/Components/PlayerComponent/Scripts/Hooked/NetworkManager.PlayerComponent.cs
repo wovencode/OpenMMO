@@ -1,4 +1,4 @@
-
+//by  Fhiz
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
@@ -11,26 +11,26 @@ using Mirror;
 
 namespace OpenMMO.Network
 {
-    // ===================================================================================
-    // NetworkManager
-    // ===================================================================================
+    /// <summary>
+	/// This partial section of the NetworkManager is responsible for player (= character) related actions.
+	/// </summary>
     public partial class NetworkManager
     {
     
         protected List<GameObject> _playerPrefabs = null;
 
-        // -------------------------------------------------------------------------------
-        // LoginPlayer_PlayerComponent
-        // -------------------------------------------------------------------------------
+        /// <summary>
+		/// Hooks into LoginPlayer and updates the core data in TablePlayer.
+		/// </summary>
         [DevExtMethods(nameof(LoginPlayer))]
         public void LoginPlayer_PlayerComponent(NetworkConnection conn, GameObject player, string playerName, string userName)
         {
             player.GetComponent<PlayerComponent>().tablePlayer.Update(player, userName);
         }
         
-        // -------------------------------------------------------------------------------
-        // RegisterPlayer_PlayerComponent
-        // -------------------------------------------------------------------------------
+       	/// <summary>
+		/// Hooks into RegisterPlayer and adds player (= character) related core data to it. This includes the TablePlayer as well as the start position (that is used for Host+Play only).
+		/// </summary>
         [DevExtMethods(nameof(RegisterPlayer))]
         public void RegisterPlayer_PlayerComponent(GameObject player, string userName, string prefabName)
         {
@@ -41,11 +41,9 @@ namespace OpenMMO.Network
             player.GetComponent<PlayerComponent>().tablePlayer.Create(player, userName, prefabName);
         }
 
-        // ================================== PUBLIC =====================================
-
-        // -------------------------------------------------------------------------------
-        // playerPrefabs
-        // -------------------------------------------------------------------------------
+       	/// <summary>
+		/// Returns the player (= character) prefabs from cache. If no cache available, it filters and caches them first.
+		/// </summary>
         public List<GameObject> playerPrefabs
         {
             get
@@ -56,11 +54,9 @@ namespace OpenMMO.Network
             }
         }
 
-        // ================================== PROTECTED ==================================
-
-        // -------------------------------------------------------------------------------
-        // ValidatePlayerPosition
-        // -------------------------------------------------------------------------------
+        /// <summary>
+		/// Validates the player (= character) position on login and teleport. Checks if the target destination is on the NavMesh and teleports to the closest start position if it is not.
+		/// </summary>
         public void ValidatePlayerPosition(GameObject player)
         {
             Transform transform = player.transform;
@@ -91,10 +87,9 @@ namespace OpenMMO.Network
 
         }
         
-		// -------------------------------------------------------------------------------
-		// ValidPosition
-		// -------------------------------------------------------------------------------
-        //[Server],0
+		/// <summary>
+		/// Used to validate the current position of the player (= character) according to the level set in ServerAuthorityTemplate.
+		/// </summary>
         bool ValidPosition(Transform playerTransform)
         {
             switch (ServerAuthorityTemplate.singleton.validation)
@@ -132,9 +127,9 @@ namespace OpenMMO.Network
             return false;
         }
 		
-		// -------------------------------------------------------------------------------
-		// GetPlayerPrefab
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Returns the player (= character) prefab that matches the provided prefab name.
+		/// </summary>
 		protected override GameObject GetPlayerPrefab(string prefabName)
 		{
 			
@@ -147,9 +142,9 @@ namespace OpenMMO.Network
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FilterPlayerPrefabs
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Filters all network identities contained in the 'spawnPrefabs' list of NetworkManager and only returns player (= character) prefabs.
+		/// </summary>
 		protected void FilterPlayerPrefabs()
     	{
        		
@@ -168,10 +163,6 @@ namespace OpenMMO.Network
         	
     	}
     	
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

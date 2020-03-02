@@ -1,4 +1,4 @@
-
+//by  Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -11,44 +11,45 @@ using Mirror;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of DatabaseManager is responsible to handle user (= account) related actions.
+	/// </summary>
 	public partial class DatabaseManager
 	{
 
-		// -------------------------------------------------------------------------------
-		// Init_User
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into init and creates TableUser if it does not exist yet on the database.
+		/// </summary>
 		[DevExtMethods(nameof(Init))]
 		void Init_User()
 		{
 	   		CreateTable<TableUser>();
 		}
 		
-		// ================================ PLAYER =======================================
-		
-		// -------------------------------------------------------------------------------
-		// LoadDataPlayerPriority_User
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LoadDataPlayerPriority. Not used yet.
+		/// </summary>
 		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_User(GameObject player)
 		{
 		
 		}
 				
-	   	// -------------------------------------------------------------------------------
-	   	// LoadDataPlayer_User
-	   	// -------------------------------------------------------------------------------
+	   	/// <summary>
+		/// Hooks into LoadDataPlayer. Not used yet.
+		/// </summary>
 		[DevExtMethods(nameof(LoadDataPlayer))]
 		void LoadDataPlayer_User(GameObject player)
 		{
 	   	
 		}
 
-		// -------------------------------------------------------------------------------
-	   	// SaveDataPlayer_User
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into SaveDataPlayer and is called when a player (= character) is saved to the database.
+		/// </summary>
+		/// <remarks>
+		/// It is correct that this code modifies user, when the player logs in. As we have to update the user (= account) lastonline time as well.
+		/// </remarks>
 		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_User(GameObject player, bool isNew)
 		{
@@ -60,9 +61,12 @@ namespace OpenMMO.Database
 
 		}
 		
-		// -------------------------------------------------------------------------------
-	   	// LoginPlayer_User
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LoginPlayer and is called when a player (= character) logs in.
+		/// </summary>
+		/// <remarks>
+		/// It is correct that this code modifies user, when the player logs in. As we have to update the user (= account) lastonline time as well.
+		/// </remarks>
 	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_User(NetworkConnection conn, GameObject player, string playerName, string userName)
 	   	{
@@ -70,10 +74,12 @@ namespace OpenMMO.Database
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, userName);
 	   	}
 	   	
-	   	// -------------------------------------------------------------------------------
-	   	// LogoutPlayer_User
-	   	// Trigger: On Player Logout, only if a Player object is available
-	   	// -------------------------------------------------------------------------------
+	   	/// <summary>
+		/// Hooks into LogoutPlayer and is called when a player (= character) logs out.
+		/// </summary>
+		/// <remarks>
+		/// It is correct that this code modifies user, when the player logs out. As we have to update the user (= account) lastonline time as well.
+		/// </remarks>
 	   	[DevExtMethods(nameof(LogoutPlayer))]
 	   	void LogoutPlayer_User(GameObject player)
 	   	{
@@ -83,11 +89,9 @@ namespace OpenMMO.Database
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, userName);
 	   	}
 	   	
-	   	// ============================= USER HOOKS ======================================
-	   	
-		// -------------------------------------------------------------------------------
-	   	// SaveDataUser_User
-	   	// -------------------------------------------------------------------------------
+	   	/// <summary>
+		/// Hooks into SaveDataUser and is called when a user (= account) is saved to the database.
+		/// </summary>
 		[DevExtMethods(nameof(SaveDataUser))]
 		void SaveDataUser_User(string username, bool isNew)
 		{
@@ -98,19 +102,18 @@ namespace OpenMMO.Database
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=?, lastsaved=? WHERE username=?", DateTime.UtcNow, DateTime.UtcNow, username);
 		}
 		
-		// -------------------------------------------------------------------------------
-	   	// LoginUser_User
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LoginUser. Not used yet.
+		/// </summary>
 	   	[DevExtMethods(nameof(LoginUser))]
 	   	void LoginUser_User(string username)
 	   	{
 	   		// -- Note: We do NOT set the lastonline time here as it would lock us out!
 	   	}
-		
-		// -------------------------------------------------------------------------------
-	   	// LogoutUser_User
-	   	// Trigger: On User Logout and on Player Logout (when available)
-	   	// -------------------------------------------------------------------------------
+	   	
+		/// <summary>
+		/// Hooks into LogoutUser and is called when either the user (= account) or player (= character) logs out.
+		/// </summary>
 	   	[DevExtMethods(nameof(LogoutUser))]
 	   	void LogoutUser_User(string username)
 	   	{
@@ -119,21 +122,16 @@ namespace OpenMMO.Database
 			DateTime dateTime = DateTime.UtcNow.AddSeconds(-logoutInterval);
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", dateTime, username);
 	   	}
-		
-		// -------------------------------------------------------------------------------
-	   	// DeleteDataUser_User
-	   	// Note: This one is not called "DeleteDataPlayer" because its the user, not a player
-	   	// -------------------------------------------------------------------------------
+	   	
+		/// <summary>
+		/// Hooks into DeleteDataUser and is called when a user (= account) is deleted.
+		/// </summary>
 	   	[DevExtMethods(nameof(DeleteDataUser))]
 	   	void DeleteDataUser_User(string username)
 	   	{
 	   		Execute("DELETE FROM "+nameof(TableUser)+" WHERE username=?", username);
 	   	}
 	   	
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

@@ -1,4 +1,4 @@
-
+//by  Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using UnityEngine;
@@ -10,15 +10,15 @@ using SQLite;
 namespace OpenMMO.Database
 {
 	
-	// ===================================================================================
-	// Database
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of DataBaseManager removes soft-deleted users (= accounts) permanently from the database in regular intervals.
+	/// </summary>
 	public partial class DatabaseManager
 	{
 		
-		// -------------------------------------------------------------------------------
-		// DeleteUsers_PlayerComponent
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into the DeleteUsers function that is called in regular intervals, to permanently delete soft-deleted users (= accounts).
+		/// </summary>
 		[DevExtMethods(nameof(DeleteUsers))]
 		void DeleteUsers_PlayerComponent()
 		{
@@ -36,10 +36,6 @@ namespace OpenMMO.Database
 
 		}
 		
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

@@ -1,22 +1,21 @@
-
+//by  Fhiz
 using System;
 
 namespace OpenMMO.Database
 {
 
 	/// <summary>
-	/// 
+	/// This partial section of DatabaseManager is exposed to the public and responsible for user (= account) related actions.
 	/// </summary>
 	public partial class DatabaseManager
 	{
-		
-		// -------------------------------------------------------------------------------
-		// GetUserOnline
-		// Checks if the user is online right now, using 'lastonline' time
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Checks if the user is online right now, using 'lastonline' time
+		/// </summary>
 		public bool GetUserOnline(string userName)
 		{
-			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE username=? AND banned=0 AND deleted=0", userName);
+		
+			TableUser tableUser = FindWithQuery<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE userName=? AND banned=0 AND deleted=0", userName);
 			
 			if (tableUser == null)
 				return false;
@@ -28,28 +27,26 @@ namespace OpenMMO.Database
            
 		}
 		
-		// ============================== PUBLIC METHODS =================================
-		
-		// -------------------------------------------------------------------------------
-		// TryUserLogin
-		// -------------------------------------------------------------------------------
-		public override bool TryUserLogin(string name, string password)
+		/// <summary>
+		/// Tries to login an existing user (= account) with the provided name and password.
+		/// </summary>
+		public override bool TryUserLogin(string userName, string password)
 		{
 		
-			if (!base.TryUserLogin(name, password) || !UserValid(name, password))
+			if (!base.TryUserLogin(userName, password) || !UserValid(userName, password))
 				return false;
 			
 			return true;
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserRegister
-		// -------------------------------------------------------------------------------
-		public override bool TryUserRegister(string name, string password, string email, string deviceid)
+		/// <summary>
+		/// Tries to register a new user (= account) using the provided name and password. email and deviceId are optional and used for extra security checks.
+		/// </summary>
+		public override bool TryUserRegister(string userName, string password, string email, string deviceid)
 		{
 		
-			if (!base.TryUserRegister(name, password, email, deviceid) || UserExists(name))
+			if (!base.TryUserRegister(userName, password, email, deviceid) || UserExists(userName))
 				return false;
 
 			// -- check if maximum amount of users per device reached
@@ -58,106 +55,102 @@ namespace OpenMMO.Database
 			if (userCount >= GameRulesTemplate.singleton.maxUsersPerDevice || userCount >= GameRulesTemplate.singleton.maxUsersPerEmail)
 				return false;
 
-			UserRegister(name, password, email, Tools.GetDeviceId);
+			UserRegister(userName, password, email, Tools.GetDeviceId);
 			return true;
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserDelete
-		// -------------------------------------------------------------------------------
-		public override bool TryUserDelete(string name, string password, DatabaseAction action = DatabaseAction.Do)
+		/// <summary>
+		/// Tries to delete an existing user (= account) using the provided name and password.
+		/// </summary>
+		public override bool TryUserDelete(string userName, string password, DatabaseAction action = DatabaseAction.Do)
 		{
 		
-			if (!base.TryUserDelete(name, password) || !UserValid(name, password))
+			if (!base.TryUserDelete(userName, password) || !UserValid(userName, password))
 				return false;
 				
-			UserSetDeleted(name, action);
+			UserSetDeleted(userName, action);
 			return true;	
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserChangePassword
-		// -------------------------------------------------------------------------------
-		public override bool TryUserChangePassword(string name, string oldpassword, string newpassword)
+		/// <summary>
+		/// Tries to change the password of a existing user (= account) using the provided name, password and new password.
+		/// </summary>
+		public override bool TryUserChangePassword(string userName, string oldpassword, string newpassword)
 		{
 		
-			if (!base.TryUserChangePassword(name, oldpassword, newpassword) || !UserValid(name, oldpassword))
+			if (!base.TryUserChangePassword(userName, oldpassword, newpassword) || !UserValid(userName, oldpassword))
 				return false;
 			
-			UserChangePassword(name, oldpassword, newpassword);
+			UserChangePassword(userName, oldpassword, newpassword);
 			return true;	
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserBan
-		// -------------------------------------------------------------------------------
-		public override bool TryUserBan(string name, string password, DatabaseAction action = DatabaseAction.Do)
+		/// <summary>
+		/// Tries to ban an existing user (= account) using the provided name and password.
+		/// </summary>
+		public override bool TryUserBan(string userName, string password, DatabaseAction action = DatabaseAction.Do)
 		{
 			
-			if (!base.TryUserBan(name, password) || !UserValid(name, password))
+			if (!base.TryUserBan(userName, password) || !UserValid(userName, password))
 				return false;
 				
-			UserSetBanned(name, action);
+			UserSetBanned(userName, action);
 			return true;	
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserConfirm
-		// -------------------------------------------------------------------------------
-		public override bool TryUserConfirm(string name, string password, DatabaseAction action = DatabaseAction.Do)
+		/// <summary>
+		/// Tries to confirm an existing, non-confirmed user (= account), using the provided name and password.
+		/// </summary>
+		public override bool TryUserConfirm(string userName, string password, DatabaseAction action = DatabaseAction.Do)
 		{
 		
-			if (!base.TryUserConfirm(name, password) || !UserValid(name, password))
+			if (!base.TryUserConfirm(userName, password) || !UserValid(userName, password))
 				return false;
 				
-			UserSetConfirmed(name, action);
+			UserSetConfirmed(userName, action);
 			return true;	
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserGetValid
-		// -------------------------------------------------------------------------------
-		public override bool  TryUserGetValid(string name, string password)
+		/// <summary>
+		/// Tries to check if a existing user is valid (not banned or deleted) using the provided name and password.
+		/// </summary>
+		public override bool  TryUserGetValid(string userName, string password)
 		{
-			if (!base.TryUserGetValid(name, password))
+			if (!base.TryUserGetValid(userName, password))
 				return false;
 		
-			return UserValid(name, password);
+			return UserValid(userName, password);
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserGetExists
-		// -------------------------------------------------------------------------------
-		public override bool  TryUserGetExists(string name)
+		/// <summary>
+		/// Tries to check if a user (= account) of the provided name exists.
+		/// </summary>
+		public override bool  TryUserGetExists(string userName)
 		{
-			if (!base.TryUserGetExists(name))
+			if (!base.TryUserGetExists(userName))
 				return false;
 			
-			return UserExists(name);
+			return UserExists(userName);
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// TryUserGetPlayerCount
-		// -------------------------------------------------------------------------------
-		public override int TryUserGetPlayerCount(string name)
+		/// <summary>
+		/// Tries to get the number of players (= characters) of this user (= account).
+		/// </summary>
+		public override int TryUserGetPlayerCount(string userName)
 		{
-			if (!Tools.IsAllowedName(name))
+			if (!Tools.IsAllowedName(userName))
 				return 0;
 			
-			return GetPlayerCount(name);
+			return GetPlayerCount(userName);
 		}
-		
-		// -------------------------------------------------------------------------------
 		
 	}
 
 }
-
-// =======================================================================================

@@ -22,6 +22,10 @@ public class TabThroughUI : MonoBehaviour
     [SerializeField] KeyCode escapeFocusKey = KeyCode.Escape;
     //TODO: More Keys
 
+    private void Start()
+    {
+        if (selectables != null && selectables.Count > 0) selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
+    }
     private void Update()
     {
         if (!gameObject.activeInHierarchy) return;

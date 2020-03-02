@@ -51,6 +51,7 @@ namespace OpenMMO.UI
 		{
 			loaded = false;
 			connectTimer = -1;
+			LoadServers(true);
 			base.Show();
 		}
 		

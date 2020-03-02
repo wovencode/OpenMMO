@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ using OpenMMO.Network;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// EntityComponent
-	// ===================================================================================
+	/// <summary>
+	/// Abstract partial EntityComponent is the base class for all Entities (Players, NPCs, Monsters, Pets etc.)
+	/// </summary>
 	[System.Serializable]
 	public abstract partial class EntityComponent : LevelableComponent
 	{
@@ -30,9 +30,9 @@ namespace OpenMMO {
 		// -- Component Cache
 		[HideInInspector]public EntityMovementComponent movementComponent;
 		
-		// -------------------------------------------------------------------------------
-		// 
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// The Start methods initializes the component and prepares its basic properties.
+		/// </summary>
 		protected override void Start()
     	{
     		proxChecker = GetComponent<NetworkProximityChecker>();
@@ -42,28 +42,24 @@ namespace OpenMMO {
         	base.Start();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateServer
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Server-side throttled update
+		/// </summary>
 		[Server]
 		protected override void UpdateServer()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateClient
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Client-side throttled update
+		/// </summary>
 		[Client]
 		protected override void UpdateClient()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Text;
 using System.Linq;
@@ -10,9 +10,9 @@ using OpenMMO;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// EntityMovementComponent
-	// ===================================================================================
+	/// <summary>
+	/// Partial Entity Movement Component is the base component for all entities and in charge of controlling movement.
+	/// </summary>
 	[RequireComponent(typeof(NavMeshAgent), typeof(Animator), typeof(EntityComponent))]
 	[DisallowMultipleComponent]
 	[System.Serializable]
@@ -27,29 +27,24 @@ namespace OpenMMO {
 		protected EntityComponent entityComponent;
 		//public EntityEnergyComponent energyComponent; // TODO: add later to check "death" in states!
 		
-		// -------------------------------------------------------------------------------
-
 		[SyncVar] protected int state;
 		
-		// -------------------------------------------------------------------------------
-		// Start
-		// @Server / @Client
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Start caches components and does basic initialization.
+		/// </summary>
 		protected override void Start()
     	{
     	
     		agent = GetComponent<NavMeshAgent>();
     		animator = GetComponent<Animator>();
-    		
     		entityComponent = GetComponent<EntityComponent>();
     		
         	base.Start();
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateServer
-		// @Server
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Server-side, throttled update.
+		/// </summary>
 		[Server]
 		protected override void UpdateServer()
 		{
@@ -67,20 +62,18 @@ namespace OpenMMO {
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		// UpdateClient
-		// @Client
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Client-side, throttled update.
+		/// </summary>
 		[Client]
 		protected override void UpdateClient()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LateUpdateClient
-		// @Client
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Client-side, late-update responsible to update the animation state.
+		/// </summary>
 		[Client]
 		protected override void LateUpdateClient()
 		{
@@ -118,20 +111,15 @@ namespace OpenMMO {
 
 		}
 		
-		// -------------------------------------------------------------------------------
-		// FixedClient
-		// @Client
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Client-side, fixed update. Not used yet.
+		/// </summary>
 		[Client]
 		protected override void FixedUpdateClient()
 		{
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

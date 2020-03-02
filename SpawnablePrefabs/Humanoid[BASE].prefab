@@ -176,7 +176,7 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   agent: {fileID: 8539800676653855757}
   animator: {fileID: 7661905598344120033}
-  config: {fileID: 11400000, guid: 42c68c1577850d24e8c89bf1d146e357, type: 2}
+  movementConfig: {fileID: 11400000, guid: 42c68c1577850d24e8c89bf1d146e357, type: 2}
   movementUpdateInterval: 0.05000000074505806
 --- !u!114 &-272401145901597495
 MonoBehaviour:
@@ -431,6 +431,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458309466355777081, guid: e17d8759e6cf9b047a1b1bcd3598fe03,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9571858, guid: e17d8759e6cf9b047a1b1bcd3598fe03, type: 3}

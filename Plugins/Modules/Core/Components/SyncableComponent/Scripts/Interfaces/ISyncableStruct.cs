@@ -1,20 +1,13 @@
-// =======================================================================================
-// ISyncableStruct
-// by Weaver (Fhiz)
-// MIT licensed
-//
-// A simple interface shared by all SyncStructs
-//
-// =======================================================================================
-
+//by Fhiz
 using UnityEngine;
 using OpenMMO;
 
 namespace OpenMMO
 {
-	// ===================================================================================
-	// 
-	// ===================================================================================
+
+	/// <summary>
+	/// A simple, partial interface shared by all ISyncableStructs. Those structs are data-holders and part of a sync-list that rests on a SyncableComponent.
+	/// </summary>
 	public partial interface ISyncableStruct<T>
 	{
 
@@ -34,5 +27,3 @@ namespace OpenMMO
 	}
 		
 }
-
-// =======================================================================================

@@ -1,4 +1,4 @@
-﻿
+﻿//by Fhiz
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using OpenMMO;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// StateTemplate
-	// ===================================================================================
+	/// <summary>
+	/// Partial abstract State Template as base class for all Animation State Templates.
+	/// </summary>
 	public abstract partial class StateTemplate : BaseTemplate
 	{
     
@@ -18,14 +18,11 @@ namespace OpenMMO {
 		
 		static StateTemplateDictionary _data;
 		
-		// -------------------------------------------------------------------------------
-        // GetIsActive
-        // -------------------------------------------------------------------------------
+		/// <summary>
+		/// Abstract bool GetIsActive. Used to check if the Animation State is currently active.
+		/// </summary>
 		public abstract bool GetIsActive(EntityComponent entityComponent);
 		
-		// -------------------------------------------------------------------------------
-        // data
-        // -------------------------------------------------------------------------------
 		public static ReadOnlyDictionary<int, StateTemplate> data
 		{
 			get {
@@ -34,18 +31,12 @@ namespace OpenMMO {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-        // BuildCache
-        // -------------------------------------------------------------------------------
 		public static void BuildCache(bool forced=false)
 		{
 			if (_data == null || forced)
 				_data = new StateTemplateDictionary(StateTemplate._folderName);
 		}
 		
-		// -------------------------------------------------------------------------------
-        // OnEnable
-        // -------------------------------------------------------------------------------
 		public void OnEnable()
 		{
 			if (_folderName != folderName)
@@ -55,19 +46,11 @@ namespace OpenMMO {
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-        // OnValidate
-        // You can add custom validation checks here
-        // -------------------------------------------------------------------------------
 		public override void OnValidate()
 		{
 			base.OnValidate();
 		}
 		
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

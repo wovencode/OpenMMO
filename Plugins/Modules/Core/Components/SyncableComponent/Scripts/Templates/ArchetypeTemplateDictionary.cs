@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,15 +10,14 @@ using OpenMMO.Debugging;
 namespace OpenMMO
 {
 
-	// ===================================================================================
-	// ArchetypeTemplateDictionary
-	// ===================================================================================
+	/// <summary>
+	/// Partial Archetype Template Dictionary to exclusively hold Archetype Templates.
+	/// </summary>
 	public partial class ArchetypeTemplateDictionary
 	{
 		
 		public readonly ReadOnlyDictionary<int, ArchetypeTemplate> data;
 		
-		// -------------------------------------------------------------------------------
 		public ArchetypeTemplateDictionary(string folderName="")
 		{
 			List<ArchetypeTemplate> templates = Resources.LoadAll<ArchetypeTemplate>(folderName).ToList();
@@ -29,10 +28,6 @@ namespace OpenMMO
 				data = new ReadOnlyDictionary<int, ArchetypeTemplate>(templates.ToDictionary(x => x.hash, x => x));
 		}
 
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

@@ -1,9 +1,4 @@
-﻿// =======================================================================================
-// EntityReward
-// by Weaver (Fhiz)
-// MIT licensed
-// =======================================================================================
-
+﻿//by Fhiz
 using System;
 using System.Text;
 using UnityEngine;
@@ -11,9 +6,9 @@ using OpenMMO;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// EntityReward
-	// ===================================================================================
+	/// <summary>
+	/// Abstract partial Entity Reward comprises all kinds of rewards that feature a level (pets, mounts etc.)
+	/// </summary>
 	[System.Serializable]
 	public abstract partial class EntityReward : BaseReward
 	{
@@ -33,5 +28,3 @@ namespace OpenMMO {
 	}
 
 }
-
-// =======================================================================================

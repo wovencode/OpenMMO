@@ -1,4 +1,4 @@
-﻿
+﻿//by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using System;
@@ -7,9 +7,9 @@ using SQLite;
 namespace OpenMMO.Database
 {
 
-	// -------------------------------------------------------------------------------
-	// TablePlayerLevel
-	// -------------------------------------------------------------------------------
+	/// <summary>
+	/// TablePlayerLevel contains all data related to the level of player components.
+	/// </summary>
 	partial class TablePlayerLevel
 	{
 		public string 	owner 		{ get; set; }
@@ -17,6 +17,4 @@ namespace OpenMMO.Database
 		public int 		level 		{ get; set; }
 	}
 
-	// -------------------------------------------------------------------------------
-	
 }

@@ -1,9 +1,4 @@
-// =======================================================================================
-// Database
-// by Weaver (Fhiz)
-// MIT licensed
-// =======================================================================================
-
+//by Fhiz
 using UnityEngine;
 using Mirror;
 using System;
@@ -17,15 +12,15 @@ using OpenMMO.Database;
 namespace OpenMMO.Database
 {
 
-	// ===================================================================================
-	// DatabaseManager
-	// ===================================================================================
+	/// <summary>
+	/// This partial section of DatabaseManager is responsible to save and load level data of players.
+	/// </summary>
 	public partial class DatabaseManager
 	{
 	
-		// -------------------------------------------------------------------------------
-		// Init_Level
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into Init. Creates the Level table if it does not exist yet.
+		/// </summary>
 		[DevExtMethods(nameof(Init))]
 		void Init_Level()
 		{
@@ -33,10 +28,9 @@ namespace OpenMMO.Database
         	CreateIndex(nameof(TablePlayerLevel), new []{"owner", "name"});
 		}
 		
-		// -------------------------------------------------------------------------------
-		// LoadDataPlayerPriority_Level
-		// We have to load levels first, because inventory size (etc.) could depend on them
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into LoadDataPlayerPriority to load levels first, because inventory size (etc.) could depend on them.
+		/// </summary>
 		[DevExtMethods(nameof(LoadDataPlayerPriority))]
 		void LoadDataPlayerPriority_Level(GameObject player)
 		{
@@ -64,9 +58,9 @@ namespace OpenMMO.Database
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-		// SaveDataPlayer_Level
-		// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into SaveDataPlayer. Saves all levels of all components on a player.
+		/// </summary>
 		[DevExtMethods(nameof(SaveDataPlayer))]
 		void SaveDataPlayer_Level(GameObject player, bool isNew)
 		{
@@ -94,19 +88,15 @@ namespace OpenMMO.Database
 		
 		}
 		
-		// -------------------------------------------------------------------------------
-	   	// DeleteDataPlayer_Level
-	   	// -------------------------------------------------------------------------------
+		/// <summary>
+		/// Hooks into DeleteDataPlayer. Deletes all component level data from the database.
+		/// </summary>
 	   	[DevExtMethods(nameof(DeleteDataPlayer))]
 	   	void DeleteDataPlayer_Level(string _name)
 	   	{
 	   		Execute("DELETE FROM "+nameof(TablePlayerLevel)+" WHERE owner=?", _name);
 	   	}
 		
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

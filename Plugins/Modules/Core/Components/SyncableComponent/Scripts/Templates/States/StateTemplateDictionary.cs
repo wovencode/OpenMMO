@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,15 +10,14 @@ using OpenMMO.Debugging;
 namespace OpenMMO
 {
 
-	// ===================================================================================
-	// StateTemplateDictionary
-	// ===================================================================================
+	/// <summary>
+	/// Basic, partial State Template Dictionary that exclusively holds State Templates.
+	/// </summary>
 	public partial class StateTemplateDictionary
 	{
 		
 		public readonly ReadOnlyDictionary<int, StateTemplate> data;
 		
-		// -------------------------------------------------------------------------------
 		public StateTemplateDictionary(string folderName="")
 		{
 			List<StateTemplate> templates = Resources.LoadAll<StateTemplate>(folderName).ToList();
@@ -29,10 +28,6 @@ namespace OpenMMO
 				data = new ReadOnlyDictionary<int, StateTemplate>(templates.ToDictionary(x => x.hash, x => x));
 		}
 
-		// -------------------------------------------------------------------------------
-		
 	}
 
 }
-
-// =======================================================================================

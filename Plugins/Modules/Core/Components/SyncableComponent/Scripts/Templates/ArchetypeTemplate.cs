@@ -1,4 +1,4 @@
-﻿
+﻿//by Fhiz
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -8,26 +8,21 @@ using OpenMMO;
 
 namespace OpenMMO {
 	
-	// ===================================================================================
-	// ArchetypeTemplate
-	// ===================================================================================
+	/// <summary>
+	/// Archetypes represent the class or race of a entity and allow for base stats shared by all instances of that entity.
+	/// </summary>
 	[CreateAssetMenu(fileName = "New Archetype", menuName = "OpenMMO - Templates/New Archetype", order = 999)]
 	public partial class ArchetypeTemplate : IterateableTemplate
 	{
     	
     	/*
-    		Reserved for future functionality
+    		...added via partial...
     	*/
 
-    	// -------------------------------------------------------------------------------
-    	
 		public static string _folderName = "";
 		
 		static ArchetypeTemplateDictionary _data;
 		
-		// -------------------------------------------------------------------------------
-        // data
-        // -------------------------------------------------------------------------------
 		public static ReadOnlyDictionary<int, ArchetypeTemplate> data
 		{
 			get {
@@ -36,18 +31,12 @@ namespace OpenMMO {
 			}
 		}
 		
-		// -------------------------------------------------------------------------------
-        // BuildCache
-        // -------------------------------------------------------------------------------
 		public static void BuildCache(bool forced=false)
 		{
 			if (_data == null || forced)
 				_data = new ArchetypeTemplateDictionary(ArchetypeTemplate._folderName);
 		}
 		
-		// -------------------------------------------------------------------------------
-        // OnEnable
-        // -------------------------------------------------------------------------------
 		public void OnEnable()
 		{
 			if (_folderName != folderName)
@@ -57,19 +46,11 @@ namespace OpenMMO {
 			
 		}
 		
-		// -------------------------------------------------------------------------------
-        // OnValidate
-        // You can add custom validation checks here
-        // -------------------------------------------------------------------------------
 		public override void OnValidate()
 		{
 			base.OnValidate();
 		}
 		
-		// -------------------------------------------------------------------------------
-
 	}
 
 }
-
-// =======================================================================================

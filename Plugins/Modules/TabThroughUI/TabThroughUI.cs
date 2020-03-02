@@ -14,13 +14,13 @@ public class TabThroughUI : MonoBehaviour
     [Header("KEY ASSIGNMENT")]
     [Tooltip("Moves to the next input field in the UI.\ndefault:Tab")]
     [SerializeField] KeyCode nextFieldKey = KeyCode.Tab;
-    //TODO: More Keys
+    //TODO: Add More Keys
     [Tooltip("When holding this key the next field key will select the previous field instead.\ndefault:Shift+Tab")]
     [SerializeField] KeyCode previousFieldKey = KeyCode.LeftShift;
-    //TODO: More Keys
+    //TODO: Add More Keys
     [Tooltip("Remove focus from all selected UI fields.\ndefault:Escape")]
     [SerializeField] KeyCode escapeFocusKey = KeyCode.Escape;
-    //TODO: More Keys
+    //TODO: Add More Keys
 
     private void Start()
     {

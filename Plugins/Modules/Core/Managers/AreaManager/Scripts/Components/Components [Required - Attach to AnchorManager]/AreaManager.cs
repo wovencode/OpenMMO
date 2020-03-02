@@ -1,3 +1,4 @@
+//by Fhiz
 using OpenMMO;
 using OpenMMO.Debugging;
 using OpenMMO.Areas;
@@ -12,9 +13,9 @@ using Mirror;
 namespace OpenMMO.Areas
 {
 
-    // ===================================================================================
-	// AreaManager
-	// ===================================================================================
+   	/// <summary>
+   	/// Attach the Area Manager component to any game object inside a scene. It will register all additive scenes to itself automatically.
+   	/// </summary>
 	[DisallowMultipleComponent]
     public partial class AreaManager : MonoBehaviour
     {
@@ -28,9 +29,9 @@ namespace OpenMMO.Areas
         
         public static AreaManager singleton;
        
-        // -------------------------------------------------------------------------------
-    	// Awake
-    	// -------------------------------------------------------------------------------
+       	/// <summary>
+   		/// Sets reference to NetworkManager and adds event listeners to it.
+   		/// </summary>
 		void Awake()
     	{
     		
@@ -48,9 +49,9 @@ namespace OpenMMO.Areas
 			networkManager.eventListeners.OnStopClient.AddListener(OnStopClient);
 		}
 		
-        // -------------------------------------------------------------------------------
-    	// OnDestroy
-    	// -------------------------------------------------------------------------------
+        /// <summary>
+   		/// Removes event listeners from NetworkManager again and clears up NetworkManager reference.
+   		/// </summary>
         void OnDestroy()
         {
         	
@@ -63,12 +64,9 @@ namespace OpenMMO.Areas
         	networkManager = null;
         }
         
-        // ================================== PUBLIC =====================================
-        
-        // -------------------------------------------------------------------------------
-    	// GetIsActive
-    	// @Client / @Server
-    	// -------------------------------------------------------------------------------
+        /// <summary>
+   		/// Returns true if we are not in Host+Play mode, as additive areas only work in client/server environments.
+   		/// </summary>
         public bool GetIsActive
         {
         	get
@@ -79,10 +77,9 @@ namespace OpenMMO.Areas
         
    		// ================================ AREA PORTALS =================================
 
-    	// -------------------------------------------------------------------------------
-    	// RegisterAreaPortal
-    	// @Client / @Server
-    	// -------------------------------------------------------------------------------
+    	/// <summary>
+   		/// Registers a new area portal to the area manager. Only the scenes of registered portals can be loaded/unloaded additively.
+   		/// </summary>
         public void RegisterAreaPortal(UnityScene subScene)
         {
        
@@ -93,10 +90,9 @@ namespace OpenMMO.Areas
             DebugManager.LogFormat(nameof(AreaManager), nameof(RegisterAreaPortal), subScene.SceneName); //DEBUG
         }
 
-        // -------------------------------------------------------------------------------
-    	// UnRegisterAreaPortal
-    	// @Client / @Server
-    	// -------------------------------------------------------------------------------
+        /// <summary>
+   		/// Unregisters a new area portal to the area manager. Only the scenes of registered portals can be loaded/unloaded additively.
+   		/// </summary>
         public void UnRegisterAreaPortal(UnityScene subScene)
         {
         	
@@ -117,10 +113,9 @@ namespace OpenMMO.Areas
 			
         }
         
-    	// -------------------------------------------------------------------------------
-    	// LoadSceneAdditive
-    	// @Server
-    	// -------------------------------------------------------------------------------
+    	/// <summary>
+   		/// Additively loads a scene on the client who entered the area portal.
+   		/// </summary>
     	public void LoadScenesAdditive(NetworkIdentity ni, UnityScene scene)
     	{
     	
@@ -131,10 +126,9 @@ namespace OpenMMO.Areas
     
       	}
     	
-    	// -------------------------------------------------------------------------------
-    	// UnloadSceneAdditive
-    	//  @Server
-    	// -------------------------------------------------------------------------------
+    	/// <summary>
+   		/// Additively unloads a scene on the client who left the area portal.
+   		/// </summary>	
     	public void UnloadScenesAdditive(NetworkIdentity ni, UnityScene scene)
     	{
     	
@@ -147,28 +141,34 @@ namespace OpenMMO.Areas
     	
         // ================================ PUBLIC EVENTS ================================
         
-		// -------------------------------------------------------------------------------
-		// OnStartServer
-		// From: @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+   		/// Loads all scenes additively when the server starts. Server-side only.
+   		/// </summary>
+   		/// <remarks>
+   		/// Called from NetworkManager
+   		/// </remarks>
         public void OnStartServer()
         {
             StartCoroutine(LoadSubScenes());
         }
         
-		// -------------------------------------------------------------------------------
-		// OnStopServer
-		// From: @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+   		/// Unloads all additively loaded scenes when the server stops.
+   		/// </summary>
+   		/// <remarks>
+   		/// Called from NetworkManager
+   		/// </remarks>
         public void OnStopServer()
         {
             StartCoroutine(UnloadScenes());
         }
         
-		// -------------------------------------------------------------------------------
-		// OnStopClient
-		// From: @NetworkManager
-		// -------------------------------------------------------------------------------
+		/// <summary>
+   		/// Unloads all additively loaded scenes when the client stops.
+   		/// </summary>
+   		/// <remarks>
+   		/// Called from NetworkManager
+   		/// </remarks>
         public void OnStopClient()
         {
             StartCoroutine(UnloadScenes());
@@ -176,9 +176,9 @@ namespace OpenMMO.Areas
 		
 		// ================================== PROTECTED ==================================
 		
-		// -------------------------------------------------------------------------------
-		// LoadSubScenes
-		// -------------------------------------------------------------------------------
+		/// <summary>
+   		/// Additively loads all sub scenes to the current scene. Server-Side only. 
+   		/// </summary>
         IEnumerator LoadSubScenes()
         {
 
@@ -197,9 +197,9 @@ namespace OpenMMO.Areas
             
         }
 		
-		// -------------------------------------------------------------------------------
-		// UnloadScenes
-		// -------------------------------------------------------------------------------
+		/// <summary>
+   		/// Additively unloads all sub scenes to the current scene.
+   		/// </summary>
         IEnumerator UnloadScenes()
         {
             
@@ -221,10 +221,6 @@ namespace OpenMMO.Areas
             yield return Resources.UnloadUnusedAssets();
         }
         
-        // -------------------------------------------------------------------------------
-        
     }
-    
-    // ===================================================================================
     
 }

@@ -12,32 +12,63 @@ public class TabThroughUI : MonoBehaviour
     [SerializeField] internal List<Selectable> selectables = new List<Selectable>();
 
     [Header("KEY ASSIGNMENT")]
+    //NEXT KEY
     [Tooltip("Moves to the next input field in the UI.\ndefault:Tab")]
-    [SerializeField] KeyCode nextFieldKey = KeyCode.Tab;
-    //TODO: Add More Keys
+    [SerializeField] KeyCode nextFieldKey = KeyCode.DownArrow | KeyCode.Tab | KeyCode.JoystickButton5;
+    //PREVIOUS KEY
+    [Tooltip("Moves to the previous input field in the UI.\ndefault:UpArrow")]
+    [SerializeField] KeyCode previousFieldKey = KeyCode.UpArrow | KeyCode.JoystickButton4;
+    //PREVIOUS SHIFT KEY
     [Tooltip("When holding this key the next field key will select the previous field instead.\ndefault:Shift+Tab")]
-    [SerializeField] KeyCode previousFieldKey = KeyCode.LeftShift;
-    //TODO: Add More Keys
+    [SerializeField] KeyCode previousFieldShiftKey = KeyCode.LeftShift;
+    //ESCAPE
     [Tooltip("Remove focus from all selected UI fields.\ndefault:Escape")]
-    [SerializeField] KeyCode escapeFocusKey = KeyCode.Escape;
-    //TODO: Add More Keys
+    [SerializeField] KeyCode escapeFocusKey = KeyCode.Escape | KeyCode.JoystickButton1;
+
+    [Header("FOCUS SETTINGS")]
+    //ALWAYS FOCUS
+    [Tooltip("When this is checked, clearing the input with the cancel button etc will return focus to the first selectable element.")]
+    [SerializeField] bool alwaysFocused = true;
+
+    bool AnyKeyPressed(KeyCode[] keys)
+    {
+        foreach (KeyCode key in keys)
+        {
+            if (Input.GetKeyDown(key)) return true;
+        }
+
+        return false;
+    }
 
     private void Start()
     {
-        if (selectables != null && selectables.Count > 0) selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
+        SelectFirstSelectable();
+        //if (selectables != null && selectables.Count > 0) selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
     }
     private void Update()
     {
         if (!gameObject.activeInHierarchy) return;
 
+        //NEXT
         if (Input.GetKeyDown(nextFieldKey))
         {
             // Navigate backward when holding shift, else navigate forward.
-            this.HandleHotkeySelect(Input.GetKey(previousFieldKey), true);
+            this.HandleHotkeySelect(Input.GetKey(previousFieldShiftKey), true);
         }
-        if (Input.GetKeyDown(escapeFocusKey) || Input.GetKeyDown(KeyCode.Return)) //DEPRECIATED - We do not want the enter key to break focus
+        //PREVIOUS
+        else if (Input.GetKeyDown(previousFieldKey))
+        {
+            this.HandleHotkeySelect(true, true);
+        }
+        //CANCEL
+        if (Input.GetKeyDown(escapeFocusKey))// || Input.GetKeyDown(KeyCode.Return)) //DEPRECIATED - We do not want the enter key to break focus
         {
             EventSystem.current.SetSelectedGameObject(null, null);
+        }
+
+        if (alwaysFocused && EventSystem.current.currentSelectedGameObject == null)
+        {
+            SelectFirstSelectable();
         }
     }
 

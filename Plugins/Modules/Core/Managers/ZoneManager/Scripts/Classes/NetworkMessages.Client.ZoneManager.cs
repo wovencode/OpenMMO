@@ -1,4 +1,4 @@
-
+//by Fhiz
 using OpenMMO.Network;
 using OpenMMO;
 using Mirror;
@@ -6,15 +6,13 @@ using Mirror;
 namespace OpenMMO.Network
 {
 
-    // -----------------------------------------------------------------------------------
-    // ClientMessageRequestPlayerSwitchServer
-    // @Client -> @Server
-    // -----------------------------------------------------------------------------------
+   
     /// <summary>
-    /// Public Partial Class <c>ClientMessageRequestPlayerSwitchServer</c> inherits from <c>ClientMessageRequest</c>
-    /// Sent from Client to Server
-    /// Client sent pplayer switch server request containing playername and zonename
+    /// Switch Server Request Message
     /// </summary>
+    /// <remarks>
+    /// Sent from Client to Server
+    /// </remarks>
     public partial class ClientMessageRequestPlayerSwitchServer : ClientMessageRequest
 	{
 		public string playername;
@@ -23,10 +21,12 @@ namespace OpenMMO.Network
 		public int token;
 	}
 	
-	// -----------------------------------------------------------------------------------
-	// ClientMessageRequestPlayerAutoLogin
-	// @Client -> @Server
-	// -----------------------------------------------------------------------------------
+	/// <summary>
+    /// Auto Login Player Request Message
+    /// </summary>
+    /// <remarks>
+    /// Sent from Client to Server
+    /// </remarks>
 	public partial class ClientMessageRequestPlayerAutoLogin : ClientMessageRequest
 	{
 		public string username;
@@ -34,19 +34,15 @@ namespace OpenMMO.Network
 		public int token;
 	}
 	
-	// ================================= MESSAGES AUTH ===================================
-
-    // -----------------------------------------------------------------------------------
-    // ClientMessageRequestAutoAuth
-    // Unauthorized -> results in Authorization
-    // @Client -> @Server
-    // -----------------------------------------------------------------------------------
+	/// <summary>
+    /// Auto Authentication Request Message
+    /// </summary>
+    /// <remarks>
+    /// Sent from Client to Server
+    /// </remarks>
     public partial class ClientMessageRequestAutoAuth : ClientMessageRequest
 	{
 		public string clientVersion;
 	}
 
-	
-	// -------------------------------------------------------------------------------
-	
 }

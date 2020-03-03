@@ -1,4 +1,4 @@
-
+//by Fhiz
 using System.Collections.Generic;
 using OpenMMO.Network;
 using OpenMMO;
@@ -7,10 +7,12 @@ using Mirror;
 namespace OpenMMO.Network
 {
 
-    // -----------------------------------------------------------------------------------
-    // ServerMessageResponsePlayerSwitchServer
-    // @Server -> @Client
-    // -----------------------------------------------------------------------------------
+   	/// <summary>
+    /// Player Switch Server Response Message
+    /// </summary>
+    /// <remarks>
+    /// Sent from Server to Client
+    /// </remarks>
     public partial class ServerMessageResponsePlayerSwitchServer : ServerMessageResponse
 	{
 		public string playername;
@@ -19,26 +21,20 @@ namespace OpenMMO.Network
 		public int token;
 	}
 	
-	// -----------------------------------------------------------------------------------
-    // ServerMessageResponsePlayerAutoLogin
-    // @Server -> @Client
-    // -----------------------------------------------------------------------------------
-    public partial class ServerMessageResponsePlayerAutoLogin : ServerMessageResponse
-	{
-		
-	}
+	/// <summary>
+    /// Player Auto Login Response Message
+    /// </summary>
+    /// <remarks>
+    /// Sent from Server to Client
+    /// </remarks>
+    public partial class ServerMessageResponsePlayerAutoLogin : ServerMessageResponse {}
 	
-	// ================================= MESSAGES AUTH ===================================
-
-    // -----------------------------------------------------------------------------------
-    // ServerMessageResponseAutoAuth
-    // @Server -> @Client
-    // -----------------------------------------------------------------------------------
-    public partial class ServerMessageResponseAutoAuth : ServerMessageResponse
-	{
-		
-	}
-	
-	// -----------------------------------------------------------------------------------
+	/// <summary>
+    /// Auto Authentication Response Message
+    /// </summary>
+    /// <remarks>
+    /// Sent from Server to Client
+    /// </remarks>
+    public partial class ServerMessageResponseAutoAuth : ServerMessageResponse {}
 	
 }

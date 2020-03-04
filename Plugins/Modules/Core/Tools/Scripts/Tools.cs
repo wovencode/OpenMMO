@@ -210,7 +210,7 @@ namespace OpenMMO
 		{
             return textToCheck.Length >= MIN_LENGTH_NAME &&
                     textToCheck.Length <= MAX_LENGTH_NAME &&
-                    Regex.IsMatch(textToCheck, @"^[a-zA-Z0-9_" + " " + "]+$") && //ALLOWED LETTERS & SYMBOLS & BLANK SPACES
+                    Regex.IsMatch(textToCheck, @"^[a-zA-Z0-9_@" + " " + "]+$") && //ALLOWED LETTERS & SYMBOLS & BLANK SPACES
                     (textToCheck[textToCheck.Length - 1] != ' ') && //LAST CHARACTER NOT WHITESPACE
                     (textToCheck[0] != ' ') && //FIRST CHARACTER NOT WHITESPACE
                     (!ChatManager.singleton.profanityFilter.FilterText(textToCheck).Contains(ChatManager.ProfanityMask)); //DOES NOT CONTAIN PROFANITY

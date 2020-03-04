@@ -40,33 +40,60 @@ public class UINavigation : MonoBehaviour
 
 
 #if UNITY_EDITOR
+    public bool resetValues = true;
     private void OnValidate()
     {
-        nextFieldKey = KeyCode.Tab;
-        previousFieldShiftKey = KeyCode.LeftShift;
-        escapeFocusKey = KeyCode.Escape;
-        tickDelay = 10;
+        if (resetValues)
+        {
+            nextFieldKey = KeyCode.Tab;
+            previousFieldShiftKey = KeyCode.LeftShift;
+            escapeFocusKey = KeyCode.Escape;
+            tickDelay = 10;
+            resetValues = false;
+        }
         //if (previousFieldKey == null || previousFieldKey.Length < 1) previousFieldKey = new KeyCode[] { KeyCode.UpArrow, KeyCode.JoystickButton4 };
     }
 #endif
     private void Start()
     {
-        //HandleNavigation(false);
-        SelectFirstSelectable();
+        //InitialFocus();
+        HandleNavigation(false);
+        //SelectFirstSelectable();
+        //if (selectables != null && selectables.Count > 0)
+        //{
+        //    EventSystem.current.SetSelectedGameObject(selectables[0].gameObject);
+            //selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
+        //}
     }
     private void OnEnable()
     {
         //HandleNavigation(false);
-        SelectFirstSelectable();
+        //SelectFirstSelectable();
+        //InitialFocus();
         //if (selectables != null && selectables.Count > 0) selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
     }
+
+    void InitialFocus()
+    {
+        SelectFirstSelectable();
+
+        GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+        if (selectedObject != null && selectedObject.activeInHierarchy) // Ensure a selection exists and is not an inactive object.
+        {
+            Selectable currentSelection = selectedObject.GetComponent<Selectable>();
+            if (currentSelection != null)
+            {
+                currentSelection.Select();
+            }
+        }
+    }
     
-    //int framecount = 0;
-    //private void FixedUpdate()
-    //{
-    //    framecount++;
-    //    if (framecount > 60) framecount = 0;
-    //}
+    int framecount = 0;
+    private void FixedUpdate()
+    {
+        framecount++;
+        if (framecount > 60) framecount = 0;
+    }
     bool moveNext = false;
     bool moveLast = false;
     bool moveFirst = false;
@@ -75,6 +102,14 @@ public class UINavigation : MonoBehaviour
     {
         //if (framecount % tickDelay != 0) return;
         if (!gameObject.activeInHierarchy) return;
+
+        //AUTOFOCUS
+        //if (alwaysFocused && EventSystem.current.currentSelectedGameObject == null)
+        //{
+        //    HandleNavigation(false);
+            //EventSystem.current.SetSelectedGameObject(selectables[0].gameObject);
+        //    SelectFirstSelectable();
+        //}
 
         //NEXT
         if (Input.GetKeyDown(nextFieldKey))//Input.GetKeyDown(nextFieldKey))
@@ -105,11 +140,11 @@ public class UINavigation : MonoBehaviour
             //SelectFirstSelectable();
             //this.HandleNavigation(false, true);
         }
-    //}
-    //private void LateUpdate()
-    //{
-        //if ((framecount % tickDelay) != 0) return;
-        //if (!gameObject.activeInHierarchy) return;
+    }
+    private void LateUpdate()
+    {
+        if ((framecount % tickDelay) != 0) return;
+        if (!gameObject.activeInHierarchy) return;
 
         if (moveNext) HandleNavigation(false);
         else if (moveLast) HandleNavigation(true);
@@ -132,6 +167,7 @@ public class UINavigation : MonoBehaviour
     private void HandleNavigation(bool isNavigateBackward)
     {
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+
         if (selectedObject != null && selectedObject.activeInHierarchy) // Ensure a selection exists and is not an inactive object.
         {
             Selectable currentSelection = selectedObject.GetComponent<Selectable>();
@@ -184,16 +220,17 @@ public class UINavigation : MonoBehaviour
         {
             selectables[0].Select();
         }
-        else
-        {
-            EventSystem.current.SetSelectedGameObject(null, null);
-        }
+        //else
+        //{
+        //    EventSystem.current.SetSelectedGameObject(null, null);
+        //}
     }
 
+    /*
     private void SetSelectedGameObjectTo(GameObject toSelect)
     {
         EventSystem.current.SetSelectedGameObject(toSelect);
-    }
+    }*/
 
     /// <summary>
     /// Looks at ordered selectable list to find the selectable we are trying to navigate to and returns it.

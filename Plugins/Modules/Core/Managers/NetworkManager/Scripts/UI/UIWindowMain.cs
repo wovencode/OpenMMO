@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -26,7 +26,7 @@ namespace OpenMMO.UI
 		public Button registerButton;
 		public Button changePasswordButton;
 		public Button deleteButton;
-		public Button serverButton;
+		//public Button serverButton; //DEPRECIATED
 		public Button quitButton;
 		
 		public static UIWindowMain singleton;
@@ -67,9 +67,11 @@ namespace OpenMMO.UI
 			deleteButton.interactable = networkManager.CanClick();
 			deleteButton.onClick.SetListener(() => { OnClickDeleteUser(); });
 		
+            /* //DEPRECIATED
 			serverButton.interactable = networkManager.CanStartServer();
 			serverButton.onClick.SetListener(() => { OnClickStartServer(); });
-		
+		    */
+
 			quitButton.onClick.SetListener(() => { OnClickQuit(); });
 
 		}

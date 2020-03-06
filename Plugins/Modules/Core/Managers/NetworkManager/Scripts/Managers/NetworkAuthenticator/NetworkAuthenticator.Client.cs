@@ -25,7 +25,7 @@ namespace OpenMMO.Network
     	[Range(0,99)]
     	public int connectDelayMax = 8;
     	[Range(1,999)]
-    	public int connectTimeout = 60;
+    	public int connectTimeout = 999;
     	
     	[HideInInspector] public int connectDelay;
     	
@@ -104,7 +104,7 @@ namespace OpenMMO.Network
                	UIPopupConfirm.singleton.Init(msg.text);
     		
         	// -- disconnect and un-authenticate if anything went wrong
-            if (!msg.success || msg.causesDisconnect)
+            if (msg.causesDisconnect)//!msg.success || 
             {
                 conn.isAuthenticated = false;
                 conn.Disconnect();
@@ -114,7 +114,7 @@ namespace OpenMMO.Network
             }
             
             // -- ready client
-            if (msg.success && !msg.causesDisconnect)
+            if (msg.success)// && !msg.causesDisconnect
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);

@@ -1,4 +1,3 @@
-#if _CLIENT
 //MODIFIED BY DX4D
 //SOURCE: "jlt" @ https://forum.unity.com/threads/tab-between-input-fields.263779/page-2
 using System.Collections.Generic;
@@ -8,13 +7,15 @@ using UnityEngine.UI;
 
 public class UINavigation : MonoBehaviour
 {
+    #if _CLIENT
     [Header("SELECTABLE UI FIELDS")]
     [Tooltip("A list of objects that can be tabbed through.")]
     [SerializeField] internal List<Selectable> selectables = new List<Selectable>();
 
-    [Header("TICK FREQUENCY")]
+    /*[Header("TICK FREQUENCY")]
     [Tooltip("The delay in fixed frames between update ticks.")]
     [SerializeField][Range(1, 60)] int tickDelay = 20;
+    */
 
     [Header("KEY ASSIGNMENT")]
     //NEXT KEY
@@ -48,7 +49,7 @@ public class UINavigation : MonoBehaviour
             nextFieldKey = KeyCode.Tab;
             previousFieldShiftKey = KeyCode.LeftShift;
             escapeFocusKey = KeyCode.Escape;
-            tickDelay = 10;
+            //tickDelay = 10;
             resetValues = false;
         }
         //if (previousFieldKey == null || previousFieldKey.Length < 1) previousFieldKey = new KeyCode[] { KeyCode.UpArrow, KeyCode.JoystickButton4 };
@@ -56,14 +57,7 @@ public class UINavigation : MonoBehaviour
 #endif
     private void Start()
     {
-        //InitialFocus();
         HandleNavigation(false);
-        //SelectFirstSelectable();
-        //if (selectables != null && selectables.Count > 0)
-        //{
-        //    EventSystem.current.SetSelectedGameObject(selectables[0].gameObject);
-            //selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
-        //}
     }
     private void OnEnable()
     {
@@ -73,7 +67,7 @@ public class UINavigation : MonoBehaviour
         //if (selectables != null && selectables.Count > 0) selectables[0].Select(); //AUTOFOCUS FIRST SELECTABLE
     }
 
-    void InitialFocus()
+    /*void InitialFocus()
     {
         SelectFirstSelectable();
 
@@ -86,14 +80,14 @@ public class UINavigation : MonoBehaviour
                 currentSelection.Select();
             }
         }
-    }
+    }*/
     
-    int framecount = 0;
+    /*int framecount = 0;
     private void FixedUpdate()
     {
         framecount++;
         if (framecount > 60) framecount = 0;
-    }
+    }*/
     bool moveNext = false;
     bool moveLast = false;
     bool moveFirst = false;
@@ -102,21 +96,12 @@ public class UINavigation : MonoBehaviour
     {
         //if (framecount % tickDelay != 0) return;
         if (!gameObject.activeInHierarchy) return;
-
-        //AUTOFOCUS
-        //if (alwaysFocused && EventSystem.current.currentSelectedGameObject == null)
-        //{
-        //    HandleNavigation(false);
-            //EventSystem.current.SetSelectedGameObject(selectables[0].gameObject);
-        //    SelectFirstSelectable();
-        //}
-
+        
         //NEXT
-        if (Input.GetKeyDown(nextFieldKey))//Input.GetKeyDown(nextFieldKey))
+        if (Input.GetKeyDown(nextFieldKey))
         {
             if (Input.GetKey(previousFieldShiftKey)) { moveLast = true; }
             else { moveNext = true; }
-            //HandleNavigation(Input.GetKey(previousFieldShiftKey));
         }
 
         //PREVIOUS
@@ -130,20 +115,16 @@ public class UINavigation : MonoBehaviour
         if (Input.GetKeyDown(escapeFocusKey))// || Input.GetKeyDown(KeyCode.Return)) //DEPRECIATED - We do not want the enter key to break focus
         {
             moveFirst = true;
-            //EventSystem.current.SetSelectedGameObject(null, null);
-            //SelectFirstSelectable();
         }
         //ALWAYS FOCUSED
         else if (alwaysFocused && EventSystem.current.currentSelectedGameObject == null)
         {
             moveFirst = true;
-            //SelectFirstSelectable();
-            //this.HandleNavigation(false, true);
         }
     }
     private void LateUpdate()
     {
-        if ((framecount % tickDelay) != 0) return;
+        //if ((framecount % tickDelay) != 0) return;
         if (!gameObject.activeInHierarchy) return;
 
         if (moveNext) HandleNavigation(false);
@@ -196,8 +177,7 @@ public class UINavigation : MonoBehaviour
                         nextSelection = currentSelection.FindSelectableOnDown();
                     }
                 }
-                //Selectable nextSelection = this.FindNextSelectable(
-                //    selectables.IndexOf(currentSelection), isNavigateBackward, wrapAroundMode);
+
                 if (nextSelection != null)
                 {
                     nextSelection.Select();
@@ -220,18 +200,8 @@ public class UINavigation : MonoBehaviour
         {
             selectables[0].Select();
         }
-        //else
-        //{
-        //    EventSystem.current.SetSelectedGameObject(null, null);
-        //}
     }
-
-    /*
-    private void SetSelectedGameObjectTo(GameObject toSelect)
-    {
-        EventSystem.current.SetSelectedGameObject(toSelect);
-    }*/
-
+    
     /// <summary>
     /// Looks at ordered selectable list to find the selectable we are trying to navigate to and returns it.
     /// </summary>
@@ -268,5 +238,5 @@ public class UINavigation : MonoBehaviour
 
         return nextSelection;
     }
-}
 #endif
+}

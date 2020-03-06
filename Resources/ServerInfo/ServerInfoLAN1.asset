@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0e44e89746aa446f9df5202e988a177, type: 3}
-  m_Name: ServerInfoLocal
+  m_Name: ServerInfoLAN1
   m_EditorClassIdentifier: 
-  title: Localhost
+  title: LAN (192.168.1.100)
   folderName: ServerInfo
-  ip: localhost
   visible: 1
+  _ip: 192.168.1.100
+  loadFromFile: 0
+  fileExtension: ip

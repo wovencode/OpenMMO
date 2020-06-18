@@ -378,6 +378,26 @@ namespace OpenMMO
 #endif
             #endregion
         }
+        //WEBGL
+        //client
+        [MenuItem("OpenMMO/Quick Build/WEBGL/Client", priority = 42)]
+        public static void BuildWebGLClient()
+        {
+            #region  BUILD REPORT - title
+#if !SKIP_BUILD_REPORT
+            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>WebGL Client</b>"); //BUILD REPORT
+#endif
+            #endregion
+
+            BuildClient(BuildTarget.WebGL); //BUILD
+
+            #region  BUILD REPORT
+#if !SKIP_BUILD_REPORT
+            Debug.Log(buildLog.ToString()); //PRINT BUILD LOG
+            buildLog.Clear(); //CLEAR BUILD LOG
+#endif
+            #endregion
+        }
 
         //TODO: Android and iOS
         //TODO: PS4, XBoxOne, Switch

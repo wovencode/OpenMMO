@@ -19,7 +19,7 @@ namespace OpenMMO.Targeting
         public static KeyCode[] CANCEL_TARGET_KEYS = new KeyCode[2] { KeyCode.Escape, KeyCode.Joystick1Button1 };
 
 #if _CLIENT
-        [Header("PLUGINS")]
+        [Header("TARGET FETCHER")]
         [Tooltip("Fetches nearby targets based upon the Fetcher used.")]
         [SerializeField] internal TargetFetcher fetch;
 

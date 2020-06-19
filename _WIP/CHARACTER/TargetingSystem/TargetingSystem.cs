@@ -12,6 +12,7 @@ namespace OpenMMO.Targeting
         public const int DEFAULT_RANGE_CHECK_FREQUENCY = 60;
         public const int DEFAULT_VITAL_CHECK_FREQUENCY = 60;
         public const int DEFAULT_TARGETING_RANGE = 12;
+        public const float RANGE_VERIFICATION_TOLERENCE = 0.99f;
 
         public static KeyCode[] NEXT_TARGET_KEYS = new KeyCode[3] { KeyCode.Tab, KeyCode.RightBracket, KeyCode.Joystick1Button5 };
         public static KeyCode[] LAST_TARGET_KEYS = new KeyCode[2] { KeyCode.LeftBracket, KeyCode.Joystick1Button4 };
@@ -245,13 +246,20 @@ namespace OpenMMO.Targeting
             if (findNextTarget) //SELECT NEXT TARGET
             {
                 findNextTarget = false;
-                FindNextTarget(transform, targetingRange, out currentTarget);
+                Targetable nextTarget;
+                FindNextTarget(transform, targetingRange, out nextTarget);
+
+                if (currentTarget != nextTarget && distanceToTarget <= targetingRange) currentTarget = nextTarget;
+
                 return;
             }
             else if (findLastTarget) //SELECT LAST TARGET
             {
                 findLastTarget = false;
-                FindLastTarget(transform.position, targetingRange, out currentTarget);
+                Targetable lastTarget;
+                FindLastTarget(transform.position, targetingRange, out lastTarget);
+
+                if (currentTarget != lastTarget && distanceToTarget <= targetingRange) currentTarget = lastTarget;
                 return;
             }
             else if (currentTarget != null)
@@ -260,7 +268,7 @@ namespace OpenMMO.Targeting
                 if (verifyRange)
                 {
                     verifyRange = false;
-                    if (Vector3.Distance(currentTarget.position, transform.position) > targetingRange)
+                    if (Vector3.Distance(currentTarget.position, transform.position) > targetingRange * RANGE_VERIFICATION_TOLERENCE)
                     {
                         CancelTarget();
                         return;

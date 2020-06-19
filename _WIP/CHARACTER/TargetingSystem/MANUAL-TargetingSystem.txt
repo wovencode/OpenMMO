@@ -1,0 +1,22 @@
+//BY DX4D
+ADDON: OpenMMO Targeting System
+CREATOR: DX4D (Davil)
+PHASE: Open Beta
+
+SETUP PROCESS:
+(beta folder=Assets/OpenMMO/_WIP/TargetingSystem/)
+(release folder=Assets/OpenMMO/Plugins/Addons/TargetingSystem)
+1-Add a Targetable component to objects in the scene that you want to be able to target.
+2-Add a Targeting System component to your player prefab.
+3-Configure the components as desired. (Autotarget is recommended)
+4-Drop the TARGET UI prefab into your Scene.
+
+CONTROLS:
+[ or LB on a controller = Select Previous Target (may be depreciated in final release)
+Tab ] or RB on a controller = Select Nearest Target (must be in range)
+
+FEATURES:
+Autotargeting - Select the closest target automatically. Enable on the Targeting System component.
+Scriptable Targeting Methods - Extendable by creating custom Targeting Methods.
+Raycast Targeting - Select the nearest target in front of you.
+Spherecast Targeting - Select the nearest target in a radius around you.

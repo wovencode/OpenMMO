@@ -1,9 +1,10 @@
 //BY DX4D
 using UnityEngine;
+using Mirror;
 
 namespace OpenMMO.Targeting
 {
-    public class TargetingSystem : MonoBehaviour
+    public class TargetingSystem : NetworkBehaviour
     {
         public const bool AUTOTARGETING = false;
 
@@ -116,6 +117,8 @@ namespace OpenMMO.Targeting
         public void FindNextTarget(Transform location, float range, out Targetable nextTarget)
         {
             Transform[] targets = fetch.Targets(location, range);
+
+            /*
             #region DEBUG
 #if UNITY_EDITOR && DEBUG
             if (targets != null && targets.Length > 0)
@@ -135,6 +138,7 @@ namespace OpenMMO.Targeting
             }
 #endif
             #endregion
+            */
 
             Targetable targ = GetNearestTarget(targets);
 

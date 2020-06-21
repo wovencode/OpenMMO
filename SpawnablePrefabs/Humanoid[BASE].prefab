@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5053945538751103481}
   - component: {fileID: 4769897492077146287}
   - component: {fileID: -272401145901597495}
+  - component: {fileID: 1987860213569691667}
+  - component: {fileID: 9151763338681259257}
   m_Layer: 10
   m_Name: Humanoid[BASE]
   m_TagString: Untagged
@@ -192,6 +194,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+--- !u!114 &1987860213569691667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930793167279634983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c871e711ccffd4495929d09c4b6dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  fetch: {fileID: 11400000, guid: 75a5ae50d97f8d44a892d625d906270f, type: 2}
+  currentTarget: {fileID: 0}
+  previousTarget: {fileID: 0}
+  distanceToTarget: 999
+  autoTargeting: 1
+  targetingRange: 12
+  targetableLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  autoTargetFrequency: 60
+  verifyRangeFrequency: 60
+  verifyVitalsFrequency: 60
+  nextTargetKey: 090000005d00000063010000
+  previousTargetKey: 5b00000062010000
+  cancelTargetKey: 1b0000005f010000
+--- !u!114 &9151763338681259257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930793167279634983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 243f9a5857f08f3429ed7c7d6adca6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  targeting: {fileID: 1987860213569691667}
+  interactKey: 13
+  inUse: 0
 --- !u!1001 &3887906202014870064
 PrefabInstance:
   m_ObjectHideFlags: 0

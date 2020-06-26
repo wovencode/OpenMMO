@@ -7,13 +7,14 @@ namespace OpenMMO.Targeting
     [RequireComponent(typeof(Targetable))]
     public abstract class Interaction : NetworkBehaviour
     {
-        //RANGE
+        
+        //INTERACTION RANGE
         [SerializeField] private int _interactionRange;
         public int interactionRange { get { return _interactionRange; } }
 
-        public bool CanInteract(InteractionSystem interactionSystem)
+        public bool CanInteract(Transform location)
         {
-            if (Vector3.Distance( interactionSystem.gameObject.transform.position, gameObject.transform.position) <= interactionRange)
+            if (Vector3.Distance( location.position, gameObject.transform.position) <= interactionRange)
             {
                 return true;
             }
@@ -21,10 +22,11 @@ namespace OpenMMO.Targeting
             return false;
         }
 
+        //INTERACT
         [Server]
         public void Interact(InteractionSystem interactionSystem)
         {
-            if (CanInteract(interactionSystem))
+            if (CanInteract(interactionSystem.gameObject.transform))
             {
                 OnInteractServer(interactionSystem.gameObject);
             }

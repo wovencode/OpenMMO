@@ -18,12 +18,16 @@ namespace OpenMMO.Targeting
             //GET DIALOGUE COMPONENT
             Dialogue[] dialogues = gameObject.GetComponents<Dialogue>();
             if (dialogues.Length == 0) return; //NO DIALOGUES
-            
-            //ITERATE THROUGH SPEECHES
-            foreach (Dialogue speech in dialogues)
+
+            if (!ui)
             {
-                //ASSIGN UI HEADER VARIABLES
-                if (ui != null)
+                ui = FindObjectOfType<DialogueUI>();
+            }
+            //ASSIGN UI HEADER VARIABLES
+            if (ui != null)
+            {
+                //ITERATE THROUGH SPEECHES
+                foreach (Dialogue speech in dialogues)
                 {
                     if (speech.isActiveAndEnabled) ui.dialogue = speech;
                     //ui.speakerImage.sprite = speech.icon; //SET UI IMAGE
@@ -33,7 +37,7 @@ namespace OpenMMO.Targeting
                 //QUEUE SPEECH LINES
                 //foreach (string line in speech.lines)
                 //{
-                    //if (line.StartsWith("?")) { } //Use later for Dialogue Options
+                //if (line.StartsWith("?")) { } //Use later for Dialogue Options
                 //    _dialogue.Enqueue(line);
                 //}
             }

@@ -19,7 +19,6 @@ namespace OpenMMO.Targeting
         public static KeyCode[] LAST_TARGET_KEYS = new KeyCode[2] { KeyCode.LeftBracket, KeyCode.Joystick1Button4 };
         public static KeyCode[] CANCEL_TARGET_KEYS = new KeyCode[2] { KeyCode.Escape, KeyCode.Joystick1Button1 };
 
-#if _CLIENT
         [Header("TARGET FETCHER")]
         [Tooltip("Fetches nearby targets based upon the Fetcher used.")]
         [SerializeField] internal TargetFetcher fetch;
@@ -61,6 +60,7 @@ namespace OpenMMO.Targeting
         [Tooltip("Cancel the active target.\ndefault: Escape - Cancel")]
         [SerializeField] internal KeyCode[] cancelTargetKey = CANCEL_TARGET_KEYS;
 
+#if _CLIENT
         //VALIDATE
 #if UNITY_EDITOR
         [Tooltip("Reset this component to default values?")]
@@ -119,7 +119,7 @@ namespace OpenMMO.Targeting
             Transform[] targets = fetch.Targets(location, range);
 
             /*
-            #region DEBUG
+        #region DEBUG
 #if UNITY_EDITOR && DEBUG
             if (targets != null && targets.Length > 0)
             {
@@ -137,7 +137,7 @@ namespace OpenMMO.Targeting
                 Debug.Log("<color=red>NO TARGETS FOUND</color>");
             }
 #endif
-            #endregion
+        #endregion
             */
 
             Targetable targ = GetNearestTarget(targets);

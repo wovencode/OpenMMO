@@ -10,7 +10,7 @@ namespace OpenMMO.Targeting
     {
         [SerializeField] TargetingSystem targeting;
         [SerializeField] KeyCode interactKey = KeyCode.Return;
-        [SerializeField] bool inUse;
+        [SerializeField] bool inUse = false;
 
         Targetable target { get { return targeting.currentTarget; } }
 
@@ -29,8 +29,8 @@ namespace OpenMMO.Targeting
         {
             if (inUse)
             {
-                CmdInteract();
                 inUse = false;
+                CmdInteract();
             }
         }
 

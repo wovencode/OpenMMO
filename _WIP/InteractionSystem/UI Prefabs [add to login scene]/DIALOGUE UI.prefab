@@ -305,11 +305,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 0}
+  dialogueChanged: 1
   dialoguePanel: {fileID: 8123835534873225097}
   speakerImage: {fileID: 7542163297978062567}
   speakerTitle: {fileID: 4124807392508346541}
   dialogueLine: {fileID: 686348562366445785}
   nextButton: {fileID: 0}
+  duration: 24
 --- !u!114 &909264066011233067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,7 +854,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4858457793001319278}
-  - component: {fileID: 6230646408657556443}
   m_Layer: 5
   m_Name: WINDOW
   m_TagString: Untagged
@@ -880,19 +881,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6230646408657556443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8123835534873225097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af25023b73ba8024c8133ef3e39b387e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 5
 --- !u!1 &8805786448852209015
 GameObject:
   m_ObjectHideFlags: 0

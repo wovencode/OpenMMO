@@ -7,7 +7,6 @@ namespace OpenMMO.Targeting
     [RequireComponent(typeof(Targetable))]
     public abstract class Interaction : NetworkBehaviour
     {
-        
         //INTERACTION RANGE
         [SerializeField] private int _interactionRange;
         public int interactionRange { get { return _interactionRange; } }
@@ -30,6 +29,9 @@ namespace OpenMMO.Targeting
             {
                 OnInteractServer(interactionSystem.gameObject);
             }
+#if UNITY_EDITOR && DEBUG
+            else { Debug.Log(name.ToUpper() + " CANNOT INTERACT"); }
+#endif
         }
 
         [Server] public abstract void ServerAction(GameObject user);

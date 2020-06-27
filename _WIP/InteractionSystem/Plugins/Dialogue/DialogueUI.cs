@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -14,10 +15,10 @@ public class DialogueUI : MonoBehaviour
         {
             //if (_dialogue == value) return;
             _dialogue = value;
-            dialogueChanged = true;
+            if (_dialogue != null) dialogueChanged = true;
         }
     }
-    bool dialogueChanged = true;
+    [SerializeField] bool dialogueChanged = true;
 
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] internal Image speakerImage;
@@ -27,45 +28,80 @@ public class DialogueUI : MonoBehaviour
 
     private void OnValidate()
     {
-        if (dialogue == null) { dialogue = gameObject.GetComponent<Dialogue>(); }
+        //if (dialogue == null) { dialogue = gameObject.GetComponent<Dialogue>(); }
     }
 
     private void UpdateFields()
     {
-        speakerImage.sprite = dialogue.icon;
-        speakerTitle.text = dialogue.title;
-        dialogueLine.text = string.Empty; //clear lines
-
-        for (int i = 0; i < dialogue.dialogue.lines.Length; i++)
+        if (dialogue != null)
         {
-            dialogueLine.text += ((i > 0) ? "\n" : "") + dialogue.dialogue.lines[i];
+            speakerImage.sprite = dialogue.icon;
+            speakerTitle.text = dialogue.title;
+            dialogueLine.text = string.Empty; //clear lines
+
+            System.Text.StringBuilder dialogueBlock = new System.Text.StringBuilder();
+
+            for (int i = 0; i < dialogue.dialogue.lines.Length; i++)
+            {
+                dialogueBlock.AppendLine(dialogue.dialogue.lines[i]);
+                //dialogueLine.text += ((i > 0) ? "\n" : "") + dialogue.dialogue.lines[i];
+            }
+
+            dialogueLine.text = dialogueBlock.ToString();
+
+            //dialogueChanged = true;
         }
         //foreach (string line in dialogue.dialogue.lines)
         //{
         //    dialogueLine.text += "\n" + line;
         //}
 
-        dialogueChanged = false;
     }
 
-    private void Awake()
+    private void ShowDialogue() { dialoguePanel.SetActive(true); }
+    private void HideDialogue() { dialoguePanel.SetActive(false); }
+    [Header("DISABLE IN:")]
+    [Tooltip("The amount of time (in seconds) before the attached gameobject is deactivated.")]
+    [SerializeField] double duration = 4.0f;
+    double endTime = -1;
+
+    void Awake()
     {
-        dialogueChanged = true;
+        endTime = NetworkTime.time + duration;//Time.fixedTime
     }
-    private void OnDisable()
+
+    void Update()
     {
-        dialogueChanged = true;
     }
+
     private void FixedUpdate()
     {
-        if (!dialogueChanged) return; //NOTHING CHANGED - No update needed
+        if (endTime < 0 && dialoguePanel.activeSelf) { endTime = NetworkTime.time + duration; }
+
+        if (NetworkTime.time > endTime) { endTime = -1; HideDialogue(); }
+        
+        //if (!dialogueChanged) return; //NOTHING CHANGED - No update needed
+
+        //if (dialogueChanged) UpdateFields();
+
         if (dialogue == null) //NO DIALOGUE - No update needed
         {
-            if (dialoguePanel.activeSelf) { dialoguePanel.SetActive(false); }
+            //if (dialogueChanged) UpdateFields();
+            if (dialoguePanel.activeSelf) HideDialogue();
             return;
         }
-        else if (!dialoguePanel.activeSelf) { dialoguePanel.SetActive(true); }
+        else
+        {
+            //if (dialogueChanged)
+            //{
+            if (dialogueChanged)
+            {
+                UpdateFields();
+                if (!dialoguePanel.activeSelf) ShowDialogue();
+                dialogueChanged = false;
+            }
+            //}
 
-        UpdateFields();
+        }
     }
 }

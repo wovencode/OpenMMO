@@ -129,6 +129,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 523773955662288228, guid: be4e190f5ccb1cd478cc7b6269cbdb85,
+        type: 3}
+      propertyPath: dialogueChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523773955662288228, guid: be4e190f5ccb1cd478cc7b6269cbdb85,
+        type: 3}
+      propertyPath: duration
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 874954831171989234, guid: be4e190f5ccb1cd478cc7b6269cbdb85,
         type: 3}
       propertyPath: m_Name
@@ -188,11 +202,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6230646408657556443, guid: be4e190f5ccb1cd478cc7b6269cbdb85,
-        type: 3}
-      propertyPath: duration
-      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be4e190f5ccb1cd478cc7b6269cbdb85, type: 3}
@@ -330,7 +339,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_Name
-      value: stone_obelisk
+      value: stone_obelisk 3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -370,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1199,7 +1208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: c7f59e9563514472fb07ed453a45ee21, type: 3}
-  _title: Stone Icon
+  _title: ANCIENT STONE IDOL
   _dialogue:
     _lines:
     - It stares at you lifelessly...
@@ -1254,8 +1263,8 @@ Transform:
   - {fileID: 527536711}
   - {fileID: 1966655383}
   - {fileID: 1403479256}
-  - {fileID: 894437598}
   - {fileID: 217949744}
+  - {fileID: 894437598}
   - {fileID: 706643403}
   m_Father: {fileID: 1833757939}
   m_RootOrder: 1
@@ -1602,7 +1611,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_Name
-      value: stone_obelisk (2)
+      value: stone_obelisk 4
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1642,7 +1651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2569,7 +2578,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_Name
-      value: stone_obelisk
+      value: stone_obelisk 2
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3309,7 +3318,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_Name
-      value: stone_obelisk (1)
+      value: stone_obelisk 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 302aace323e20e74a9ce6661dc76c2a9, type: 3}
       propertyPath: m_StaticEditorFlags

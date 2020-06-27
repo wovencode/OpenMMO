@@ -311,7 +311,7 @@ MonoBehaviour:
   speakerTitle: {fileID: 4124807392508346541}
   dialogueLine: {fileID: 686348562366445785}
   nextButton: {fileID: 0}
-  duration: 24
+  duration: 4
 --- !u!114 &909264066011233067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,8 +536,8 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 14
+    m_MaxSize: 128
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

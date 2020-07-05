@@ -9,6 +9,6 @@ namespace OpenMMO
     /// </summary>
     public abstract class CharacterMotor : ScriptableObject
     {
-        internal abstract Vector3 GetVelocity(MovementStateInfo movement, PlayerControlConfig movementConfig, NavMeshAgent agent);
+        internal abstract Vector3 GetVelocity(MovementStateInfo movement, MovementModifiers movementConfig, NavMeshAgent agent);
     }
 }

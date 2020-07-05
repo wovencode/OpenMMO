@@ -1,4 +1,4 @@
-//by Fhiz, DXD4
+//by Fhiz, DX4D
 using UnityEngine;
 using Mirror;
 
@@ -149,7 +149,7 @@ namespace OpenMMO {
     		strafeLeft                    = moveState.movementStrafeLeft;
     		strafeRight                   = moveState.movementStrafeRight;
 
-            agent.velocity = motor.GetVelocity(moveState, movementConfig, agent); //UPDATE THE MOTOR
+            agent.velocity = motor.GetVelocity(moveState, movement, agent); //UPDATE THE MOTOR
 
     		RpcCorrectClientPosition(transform.position, transform.rotation, agent.velocity); //CLIENT CORRECTION
 		} 

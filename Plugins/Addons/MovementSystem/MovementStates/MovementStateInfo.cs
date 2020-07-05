@@ -1,4 +1,4 @@
-//by Fhiz, DXD4
+//by Fhiz, DX4D
 using UnityEngine;
 
 namespace OpenMMO

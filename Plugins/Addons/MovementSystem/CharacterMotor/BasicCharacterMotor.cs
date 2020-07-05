@@ -4,10 +4,10 @@ using UnityEngine.AI;
 
 namespace OpenMMO
 {
-    [CreateAssetMenu(menuName = "OpenMMO/Controls/Basic Player Motor")]
-    public partial class BasicPlayerMotor : CharacterMotor
+    [CreateAssetMenu(menuName = "OpenMMO/Controls/Basic Character Motor")]
+    public partial class BasicCharacterMotor : CharacterMotor
     {
-        internal override Vector3 GetVelocity(MovementStateInfo movement, PlayerControlConfig movementConfig, NavMeshAgent agent)
+        internal override Vector3 GetVelocity(MovementStateInfo movement, MovementModifiers movementConfig, NavMeshAgent agent)
         {
             return CalculateVelocity(movement, movementConfig, agent);
         }
@@ -15,7 +15,7 @@ namespace OpenMMO
         /// <summary>
         /// This recalculates the agent velocity based on the current input axis'
         /// </summary>
-        protected virtual Vector3 CalculateVelocity(MovementStateInfo movement, PlayerControlConfig movementConfig, NavMeshAgent agent)
+        protected virtual Vector3 CalculateVelocity(MovementStateInfo movement, MovementModifiers movementConfig, NavMeshAgent agent)
         {
             //FACE DIRECTION OF TRAVEL
             //if (config.faceCameraDirection && Camera.main) transform.LookAt(agent.velocity, Vector3.up);

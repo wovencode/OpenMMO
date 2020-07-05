@@ -1,4 +1,4 @@
-// by Fhiz, DXD4
+// by Fhiz, DX4D
 using UnityEngine;
 using Mirror;
 
@@ -12,8 +12,14 @@ namespace OpenMMO
     [System.Serializable]
     public partial class PlayerMovementComponent : EntityMovementComponent
     {
-        [Header("Player Movement Config")]
-        public PlayerControlConfig movementConfig;
+        //
+        [Header("Character Movement Modifiers")]
+        public MovementModifiers movement;
+
+        //CONTROLS
+        [Header("Character Movement Keys")]
+        [Tooltip("The Keys and Buttons used to control this object.")]
+        public MovementKeys keys;
 
         //MOTOR
         [Header("Character Motor")]
@@ -31,15 +37,16 @@ namespace OpenMMO
         //RUN
         protected bool running;
 		
-		/// <summary>
-    	/// Lodas default OnValidate from PlayerControlConfig in Editor only.
-    	/// </summary>
 #if UNITY_EDITOR
-        // LOAD DEFAULTS
+        // LOAD PLUGINS
+		/// <summary>
+    	/// Loads default OnValidate from PlayerControlConfig in Editor only.
+    	/// </summary>
         private void OnValidate()
         {
-            if (!movementConfig) movementConfig = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT CONTROLS
-            if (!motor) motor = Resources.Load<CharacterMotor>("Player/Movement/DefaultPlayerMotor"); //LOAD DEFAULT MOTOR
+            if (!movement) movement = Resources.Load<MovementModifiers>("Player/Movement/DefaultMovementModifiers"); //LOAD MOVEMENT MODS
+            if (!keys) keys = Resources.Load<MovementKeys>("Player/Movement/DefaultMovementKeys"); //LOAD DEFAULT MOVE KEYS
+            if (!motor) motor = Resources.Load<CharacterMotor>("Player/Movement/DefaultCharacterMotor"); //LOAD DEFAULT MOTOR
         }
 #endif
 
@@ -87,18 +94,18 @@ namespace OpenMMO
             if (Tools.AnyInputFocused) return;
 
             //MOVE
-            horizontalMovementInput = Input.GetAxis(movementConfig.moveAxisHorizontal.ToString());
-            verticalMovementInput = Input.GetAxis(movementConfig.moveAxisVertical.ToString());
+            horizontalMovementInput = Input.GetAxis(keys.moveAxisHorizontal.ToString());
+            verticalMovementInput = Input.GetAxis(keys.moveAxisVertical.ToString());
             //STRAFE
-            strafeLeft = Input.GetKey(movementConfig.strafeLeftKey);
-            strafeRight = Input.GetKey(movementConfig.strafeRightKey);
+            strafeLeft = Input.GetKey(keys.strafeLeftKey);
+            strafeRight = Input.GetKey(keys.strafeRightKey);
             //RUN
-            running = Input.GetKey(movementConfig.runKey);
+            running = Input.GetKey(keys.runKey);
 
             //UPDATE VELOCITY
             agent.velocity = motor.GetVelocity(
                 new MovementStateInfo(transform.position, transform.rotation, verticalMovementInput, horizontalMovementInput, running, strafeLeft, strafeRight) 
-                , movementConfig
+                , movement
                 , agent
                 );
 

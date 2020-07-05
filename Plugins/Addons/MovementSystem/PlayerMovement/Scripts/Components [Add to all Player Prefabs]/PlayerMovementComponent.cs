@@ -15,6 +15,11 @@ namespace OpenMMO
         [Header("Player Movement Config")]
         public PlayerControlConfig movementConfig;
 
+        //MOTOR
+        [Header("Character Motor")]
+        [Tooltip("The Motor is the plugin responsible for updating the velocity of the attached agent.")]
+        public CharacterMotor motor;
+
         //MOVE
         protected float verticalMovementInput;
         protected float horizontalMovementInput;
@@ -33,7 +38,8 @@ namespace OpenMMO
         // LOAD DEFAULTS
         private void OnValidate()
         {
-            if (!movementConfig) movementConfig = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT
+            if (!movementConfig) movementConfig = Resources.Load<PlayerControlConfig>("Player/Movement/DefaultPlayerControls"); //LOAD DEFAULT CONTROLS
+            if (!motor) motor = Resources.Load<CharacterMotor>("Player/Movement/DefaultPlayerMotor"); //LOAD DEFAULT MOTOR
         }
 #endif
 
@@ -89,7 +95,12 @@ namespace OpenMMO
             //RUN
             running = Input.GetKey(movementConfig.runKey);
 
-            UpdateVelocity(); //UPDATE VELOCITY
+            //UPDATE VELOCITY
+            agent.velocity = motor.GetVelocity(
+                new MovementStateInfo(transform.position, transform.rotation, verticalMovementInput, horizontalMovementInput, running, strafeLeft, strafeRight) 
+                , movementConfig
+                , agent
+                );
 
             base.UpdateClient();
             this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK

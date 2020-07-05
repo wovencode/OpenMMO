@@ -17,6 +17,7 @@ namespace OpenMMO {
         
 		double _timerMovement = 0;
 		
+        /* //MOVED TO PLAYERMOTOR
 		/// <summary>
     	/// This recalculates the agent velocity based on the current input axis'
    	 	/// </summary>
@@ -94,6 +95,8 @@ namespace OpenMMO {
 			}
 			
 		}
+        */
+
 
         // S E R V E R  A U T H O R I T A T I V E  M O V E M E N T
 
@@ -145,10 +148,11 @@ namespace OpenMMO {
 
     		strafeLeft                    = moveState.movementStrafeLeft;
     		strafeRight                   = moveState.movementStrafeRight;
-    		
-    		UpdateVelocity();
-    		RpcCorrectClientPosition(transform.position, transform.rotation, agent.velocity);
-		}
+
+            agent.velocity = motor.GetVelocity(moveState, movementConfig, agent); //UPDATE THE MOTOR
+
+    		RpcCorrectClientPosition(transform.position, transform.rotation, agent.velocity); //CLIENT CORRECTION
+		} 
 		
 		/// <summary>
     	/// Corrects the Client's position based upon the Server's interpretation of the simulation

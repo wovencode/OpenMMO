@@ -9,7 +9,8 @@ namespace OpenMMO.Targeting
         [SerializeField] GameObject _objectToSpawn;
         public GameObject objectToSpawn { get { return _objectToSpawn; } }
         
+        public override void ClientAction(GameObject user) { }
         public override void ServerAction(GameObject user) { }
-        public override void ClientResponse() { }
+        //public override void ClientResponse() { }
     }
 }

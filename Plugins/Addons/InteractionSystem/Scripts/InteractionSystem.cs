@@ -20,6 +20,7 @@ namespace OpenMMO.Targeting
         }
         private void Update()
         {
+            if (!isLocalPlayer) return;
             if (!inUse && Input.GetKeyDown(interactKey))
             {
                 inUse = true;
@@ -27,14 +28,22 @@ namespace OpenMMO.Targeting
         }
         private void LateUpdate()
         {
+            if (!isLocalPlayer) return;
+
+            if (!hasAuthority)
+            {
+                Debug.Log(gameObject.name.ToUpper() + " HAS NO AUTHORITY");
+            }
+            // isClient
             if (inUse)
             {
                 inUse = false;
                 CmdInteract();
+                Interact();
             }
         }
 
-        [Server]
+        //[Server]
         public virtual void Interact()
         {
             if (target != null)
@@ -54,6 +63,12 @@ namespace OpenMMO.Targeting
         }
         
         [Command]
-        public void CmdInteract() { Interact(); }
+        public void CmdInteract()
+        {
+            PerformServerInteraction();
+        }
+
+        [Server]
+        private void PerformServerInteraction() { Interact(); }
     }
 }

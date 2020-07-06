@@ -12,8 +12,10 @@ namespace OpenMMO.Targeting
         [SerializeField] Queue<string> _dialogue = new Queue<string>();
         public Queue<string> dialogue { get { return _dialogue; } }
 
+        public override void ClientAction(GameObject user) { ClientResponse(); }
         public override void ServerAction(GameObject user) { }
-        public override void ClientResponse()
+
+        public void ClientResponse()
         {
             //GET DIALOGUE COMPONENT
             Dialogue[] dialogues = gameObject.GetComponents<Dialogue>();

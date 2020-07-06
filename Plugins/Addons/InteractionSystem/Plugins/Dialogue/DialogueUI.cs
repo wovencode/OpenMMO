@@ -72,10 +72,6 @@ public class DialogueUI : MonoBehaviour
 
     void Update()
     {
-    }
-
-    private void FixedUpdate()
-    {
         if (endTime < 0 && dialoguePanel.activeSelf) { endTime = NetworkTime.time + duration; }
 
         if (NetworkTime.time > endTime) { endTime = -1; HideDialogue(); }

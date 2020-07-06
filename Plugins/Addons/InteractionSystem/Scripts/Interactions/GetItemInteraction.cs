@@ -9,7 +9,8 @@ namespace OpenMMO.Targeting
         [SerializeField] Item _itemToAdd;
         public Item itemToAdd { get { return _itemToAdd; } }
         
+        public override void ClientAction(GameObject user) { }
         public override void ServerAction(GameObject user) { }
-        public override void ClientResponse() { }
+        //public override void ClientResponse() { }
     }
 }

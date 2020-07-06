@@ -1,0 +1,21 @@
+//BY DX4D
+ADDON: OpenMMO Interaction System
+CREATOR: DX4D (Davil)
+PHASE: Open Beta (RC1)
+
+SETUP PROCESS:
+(beta folder=Assets/OpenMMO/_WIP/InteractionSystem/)
+(release folder=Assets/OpenMMO/Plugins/Addons/InteractionSystem)
+1-Add any Interaction component to objects in the scene that you want to be able to interact with.
+2-Add an Interaction System component to your player prefab.
+3-Configure the components as desired.
+4-Add the UI prefabs that you plan to use to your Scene and link to any interactions that use them.
+
+CONTROLS:
+Enter or A on a controller = Interact with your current target (must be in range)
+
+FEATURES:
+Dialogue Interaction Plugin - Display dialogue text on the client.
+Get Item Interaction - The one who activates this gets an item. (incomplete: awaiting Item System)
+Spawn Interaction - Spawns something when the character interacts with this. (incomplete: awaiting Spawn System)
+Debug Interaction - Displays debug info to confirm that ServerAction and ClientAction methods are called in the right place.

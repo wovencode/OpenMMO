@@ -1,7 +1,7 @@
 //BY DX4D
 ADDON: OpenMMO Targeting System
 CREATOR: DX4D (Davil)
-PHASE: Open Beta
+PHASE: Open Beta (RC1)
 
 SETUP PROCESS:
 (beta folder=Assets/OpenMMO/_WIP/TargetingSystem/)

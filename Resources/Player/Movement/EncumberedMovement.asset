@@ -17,6 +17,6 @@ MonoBehaviour:
   moveSpeedMultiplier: 0.5
   turnSpeedMultiplier: 0.4
   walkSpeedScale: 1.5
-  runSpeedScale: 2.5
+  runSpeedScale: 3
   strafeSpeedScale: 0.35
   backpedalSpeedScale: 0.5

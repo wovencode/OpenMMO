@@ -16,7 +16,7 @@ MonoBehaviour:
   turnWhileStrafing: 0
   moveSpeedMultiplier: 0
   turnSpeedMultiplier: 0
-  walkSpeedScale: 1
-  runSpeedScale: 1.5
-  strafeSpeedScale: 0.75
+  walkSpeedScale: 1.5
+  runSpeedScale: 3
+  strafeSpeedScale: 0.35
   backpedalSpeedScale: 0.5

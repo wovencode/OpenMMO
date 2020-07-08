@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b331187c68e8746973bdfca73d53e4, type: 3}
+  m_Name: DefaultMovementProfile
+  m_EditorClassIdentifier: 
+  movement: {fileID: 11400000, guid: 42c68c1577850d24e8c89bf1d146e357, type: 2}
+  keys: {fileID: 11400000, guid: 19f66ee9296dbdd42a6c7c6b81d3d0df, type: 2}
+  motor: {fileID: 11400000, guid: 2f86366b29d470e4fb0461b5dcf62f43, type: 2}

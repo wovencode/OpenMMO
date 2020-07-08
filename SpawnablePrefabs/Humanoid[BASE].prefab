@@ -178,7 +178,7 @@ MonoBehaviour:
   cacheUpdateInterval: 1
   agent: {fileID: 8539800676653855757}
   animator: {fileID: 7661905598344120033}
-  movementConfig: {fileID: 11400000, guid: 42c68c1577850d24e8c89bf1d146e357, type: 2}
+  input: {fileID: 11400000, guid: 4aebf00843374a3408dcca73b17e11bc, type: 2}
   movementUpdateInterval: 0.05000000074505806
 --- !u!114 &-272401145901597495
 MonoBehaviour:

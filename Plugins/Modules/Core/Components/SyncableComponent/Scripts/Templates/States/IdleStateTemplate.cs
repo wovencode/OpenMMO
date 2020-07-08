@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;

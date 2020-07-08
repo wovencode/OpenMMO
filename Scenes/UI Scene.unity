@@ -1030,7 +1030,6 @@ MonoBehaviour:
   - {fileID: 292646246}
   - {fileID: 783364732}
   - {fileID: 1214912528}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -4213,7 +4212,6 @@ MonoBehaviour:
   - {fileID: 2070013678}
   - {fileID: 29871834}
   - {fileID: 337169063}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -4338,7 +4336,6 @@ MonoBehaviour:
   selectables:
   - {fileID: 685842385}
   - {fileID: 287205192}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -7512,7 +7509,6 @@ MonoBehaviour:
   - {fileID: 2002165524}
   - {fileID: 1832288721}
   - {fileID: 557530482}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -12175,7 +12171,6 @@ MonoBehaviour:
   - {fileID: 1592913207}
   - {fileID: 1748055326}
   - {fileID: 362799881}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -13322,7 +13317,6 @@ MonoBehaviour:
   - {fileID: 406856076}
   - {fileID: 1890153550}
   - {fileID: 693418105}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -14022,7 +14016,6 @@ MonoBehaviour:
   - {fileID: 6315459}
   - {fileID: 787265750}
   - {fileID: 2036430817}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -14734,7 +14727,6 @@ MonoBehaviour:
   - {fileID: 2056258490}
   - {fileID: 1914151735}
   - {fileID: 127639037}
-  tickDelay: 10
   nextFieldKey: 9
   previousFieldShiftKey: 304
   escapeFocusKey: 27
@@ -22923,12 +22915,12 @@ PrefabInstance:
     - target: {fileID: 3321310163593043540, guid: 611e62c0a05c846f290a8a241b21e0cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3321310163593043540, guid: 611e62c0a05c846f290a8a241b21e0cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.9999
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3321310163593043540, guid: 611e62c0a05c846f290a8a241b21e0cc,
         type: 3}
@@ -22970,8 +22962,149 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3321310163593043543, guid: 611e62c0a05c846f290a8a241b21e0cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 611e62c0a05c846f290a8a241b21e0cc, type: 3}
+--- !u!1 &3321310163183933698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3321310163593043539, guid: 611e62c0a05c846f290a8a241b21e0cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3321310163183933697}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3321310163183933699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321310163183933698}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779174616230a36499cccc8155833e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  orbitSpeed: 5
+  orbitOffset: {x: 0, y: 5, z: 6}
+--- !u!20 &3321310163183933700 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3321310163593043541, guid: 611e62c0a05c846f290a8a241b21e0cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3321310163183933697}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3321310163183933701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321310163183933698}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e5f4512b7c9e94a80ec394fd3a8441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 3321310163183933700}
+  target: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 0
+  useTargetYRotation: 1
+  zoomDistance: 0.0001
+  zoomByAspectRatio: 0
+  zoomByAspectRatioSettings:
+  - width: 16
+    height: 9
+    zoomDistance: 0.0001
+  - width: 16
+    height: 10
+    zoomDistance: 1.75
+  - width: 3
+    height: 2
+    zoomDistance: 3
+  - width: 4
+    height: 3
+    zoomDistance: 5.5
+  - width: 5
+    height: 4
+    zoomDistance: 7
+  enableWallHitSpring: 0
+  wallHitLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  wallHitQueryTriggerInteraction: 1
+  hotKey: 306
+  updateRotation: 1
+  updateRotationX: 0
+  updateRotationY: 0
+  updateZoom: 1
+  limitXRotation: 0
+  minXRotation: 0
+  maxXRotation: 0
+  smoothRotateX: 0
+  rotateXSmoothing: 10
+  limitYRotation: 0
+  minYRotation: 0
+  maxYRotation: 0
+  smoothRotateY: 0
+  rotateYSmoothing: 10
+  startXRotation: 0
+  startYRotation: 0
+  rotationSpeed: 5
+  limitZoomDistance: 0
+  minZoomDistance: 0
+  maxZoomDistance: 0
+  smoothZoom: 0
+  zoomSmoothing: 10
+  startZoomDistance: 0
+  zoomSpeed: 5
+  isSaveCamera: 0
+  savePrefsPrefix: GAMEPLAY
+--- !u!114 &3321310163183933702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321310163183933698}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f728177e7e400947abc4db638db136d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 3321310163183933700}
+  target: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
+  xRotation: 0
+  yRotation: 0
+  useTargetYRotation: 0
+  zoomDistance: 10
+  zoomByAspectRatio: 0
+  zoomByAspectRatioSettings:
+  - width: 16
+    height: 9
+    zoomDistance: 0.0001
+  - width: 16
+    height: 10
+    zoomDistance: 1.75
+  - width: 3
+    height: 2
+    zoomDistance: 3
+  - width: 4
+    height: 3
+    zoomDistance: 5.5
+  - width: 5
+    height: 4
+    zoomDistance: 7
+  enableWallHitSpring: 0
+  wallHitLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  wallHitQueryTriggerInteraction: 1
 --- !u!1001 &4421221847479678333
 PrefabInstance:
   m_ObjectHideFlags: 0

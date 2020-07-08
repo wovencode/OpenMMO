@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace OpenMMO {
 			// a "move state".
 			
 			if (entityComponent is PlayerComponent)
-				return ((PlayerComponent)entityComponent).playerMovementComponent.GetIsRunning;
+				return ((PlayerComponent)entityComponent).playerMovementComponent.Running;
 			else
 				return entityComponent.movementComponent.GetIsMoving;
 		}

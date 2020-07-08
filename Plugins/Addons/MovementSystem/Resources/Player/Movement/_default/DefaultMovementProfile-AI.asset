@@ -10,7 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa1c8f4ea1f077840b7c2a7e079e05d8, type: 3}
-  m_Name: DefaultAIMovementProfile
+  m_Name: DefaultMovementProfile-AI
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
-  motor: {fileID: 0}
+  movement: {fileID: 11400000, guid: 42c68c1577850d24e8c89bf1d146e357, type: 2}
+  motor: {fileID: 11400000, guid: 2f86366b29d470e4fb0461b5dcf62f43, type: 2}
+  move:
+    running: 0
+    sneaking: 0
+    movingHorizontal: 0
+    movingVertical: 0

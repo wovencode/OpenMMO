@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d956b48c2ca66914c96c77d9e25aaf38, type: 3}
-  m_Name: PlayerMovementProfile
+  m_Name: ExperimentalMovementProfile-Player
   m_EditorClassIdentifier: 
-  movement: {fileID: 11400000, guid: 42c68c1577850d24e8c89bf1d146e357, type: 2}
-  motor: {fileID: 11400000, guid: 2f86366b29d470e4fb0461b5dcf62f43, type: 2}
+  movement: {fileID: 11400000, guid: a75771d1c7dc884418455a6e1b14e218, type: 2}
+  motor: {fileID: 11400000, guid: f9ee0abcf297a22458e9db7c08b06b0f, type: 2}
   keys: {fileID: 11400000, guid: 19f66ee9296dbdd42a6c7c6b81d3d0df, type: 2}

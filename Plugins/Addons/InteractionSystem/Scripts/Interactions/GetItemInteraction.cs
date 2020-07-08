@@ -6,7 +6,7 @@ namespace OpenMMO.Targeting
     public class GetItemInteraction : Interaction
     {
         [Tooltip("This item is added to inventory OnInteraction")]
-        [SerializeField] Item _itemToAdd;
+        [SerializeField] Item _itemToAdd = null;
         public Item itemToAdd { get { return _itemToAdd; } }
         
         public override void ClientAction(GameObject user) { }

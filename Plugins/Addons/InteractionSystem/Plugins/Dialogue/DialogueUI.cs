@@ -20,11 +20,11 @@ public class DialogueUI : MonoBehaviour
     }
     [SerializeField] bool dialogueChanged = true;
 
-    [SerializeField] GameObject dialoguePanel;
-    [SerializeField] internal Image speakerImage;
-    [SerializeField] internal Text speakerTitle;
-    [SerializeField] internal Text dialogueLine;
-    [SerializeField] internal Button nextButton;
+    [SerializeField] GameObject dialoguePanel = null;
+    [SerializeField] internal Image speakerImage = null;
+    [SerializeField] internal Text speakerTitle = null;
+    [SerializeField] internal Text dialogueLine = null;
+    [SerializeField] internal Button nextButton = null;
 
     private void OnValidate()
     {

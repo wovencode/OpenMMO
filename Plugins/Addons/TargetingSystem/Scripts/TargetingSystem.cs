@@ -21,7 +21,7 @@ namespace OpenMMO.Targeting
 
         [Header("TARGET FETCHER")]
         [Tooltip("Fetches nearby targets based upon the Fetcher used.")]
-        [SerializeField] internal TargetFetcher fetch;
+        [SerializeField] internal TargetFetcher fetch = null;
 
         [Header("SELECTED TARGET")]
         //[Tooltip("A list of objects that can be targeted.")]

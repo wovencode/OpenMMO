@@ -8,7 +8,7 @@ namespace OpenMMO.Targeting
     public abstract class Interaction : NetworkBehaviour
     {
         //INTERACTION RANGE
-        [SerializeField] private int _interactionRange;
+        [SerializeField] private int _interactionRange = 1;
         public int interactionRange { get { return _interactionRange; } }
 
         public bool CanInteract(Transform location)

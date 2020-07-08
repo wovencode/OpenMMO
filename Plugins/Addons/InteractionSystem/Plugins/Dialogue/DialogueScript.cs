@@ -5,7 +5,7 @@ using UnityEngine;
 public struct DialogueScript
 {
     [SerializeField, TextArea(1, 5)] string[] _lines;
-    public string[] lines { get { return _lines; } }
+    public string[] lines { get { return _lines; } set { _lines = value; } }
 
 
 }

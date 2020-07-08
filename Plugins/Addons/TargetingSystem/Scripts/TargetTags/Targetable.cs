@@ -7,7 +7,7 @@ namespace OpenMMO.Targeting
     {
         [Header("VISUAL REPRESENTATION")]
         [Tooltip("An icon representing this targetable when it is targeted.")]
-        [SerializeField] Sprite _icon;
+        [SerializeField] Sprite _icon = null;
         public Sprite icon { get { return _icon; } }
 
         [Header("LOCATION")]

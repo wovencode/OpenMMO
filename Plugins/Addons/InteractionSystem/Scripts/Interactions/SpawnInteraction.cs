@@ -6,7 +6,7 @@ namespace OpenMMO.Targeting
     public abstract class SpawnInteraction : Interaction
     {
         [Tooltip("This object is spawned OnInteraction")]
-        [SerializeField] GameObject _objectToSpawn;
+        [SerializeField] GameObject _objectToSpawn = null;
         public GameObject objectToSpawn { get { return _objectToSpawn; } }
         
         public override void ClientAction(GameObject user) { }

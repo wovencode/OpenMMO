@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b18c26e92c09a44284b10d360c2e83b, type: 3}
-  m_Name: RPGCharacterMotor
+  m_Name: FixedTopdownCharacterMotor
   m_EditorClassIdentifier: 

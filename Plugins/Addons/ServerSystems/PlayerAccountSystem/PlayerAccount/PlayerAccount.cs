@@ -1,0 +1,109 @@
+//by Fhiz
+//MODIFIED BY DX4D
+using UnityEngine;
+using Mirror;
+using OpenMMO.Database;
+
+namespace OpenMMO {
+	
+	/// <summary>
+	/// Partial class PlayerAccount, derived from EntityComponent. Base class for all Players.
+	/// </summary>
+	[DisallowMultipleComponent]
+	[System.Serializable]
+	public partial class PlayerAccount : EntityComponent
+	{
+        //ACCOUNT
+		public TablePlayer _tablePlayer = new TablePlayer();
+        /// <summary>
+		/// holds exact replica of table data as in database
+		/// no need to sync, can be done individually if required
+        /// </summary>
+        public TablePlayer tablePlayer
+        {
+            get { return _tablePlayer; }
+        }
+        public TablePlayer accountInfo
+        {
+            get { return _tablePlayer; }
+        }
+        //ZONES
+		[SerializeField] TablePlayerZones _tablePlayerZones = new TablePlayerZones();
+		public TablePlayerZones tablePlayerZones
+        {
+            get { return _tablePlayerZones; }
+            set { _tablePlayerZones = value; }
+        }
+		public TablePlayerZones zoneInfo
+        {
+            get { return _tablePlayerZones; }
+            set { _tablePlayerZones = value; }
+        }
+		
+		/// <summary>
+		/// Server side start
+		/// </summary>
+		[ServerCallback]
+		protected override void Start()
+    	{
+        	base.Start(); // required
+		}
+		
+		/// <summary>
+		/// Called when the local player enters the game.
+		/// </summary>
+		public override void OnStartLocalPlayer()
+    	{
+    		base.OnStartLocalPlayer(); // required
+		}
+		
+		/// <summary>
+		/// Called client and server-side, when the player object is destroyed
+		/// </summary>
+        //[Client][Server]
+		void OnDestroy()
+    	{
+    	
+        }
+		
+		/// <summary>
+		/// Server side, throttled update
+		/// </summary>
+		[Server]
+		protected override void UpdateServer()
+		{
+			base.UpdateServer();
+			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
+		}
+		
+		/// <summary>
+		/// Client side Update
+		/// </summary>
+		[Client]
+		protected override void UpdateClient()
+		{
+			base.UpdateClient();
+			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
+		}
+		
+		/// <summary>
+		/// Client-based late update
+		/// </summary>
+		[Client]
+		protected override void LateUpdateClient()
+		{
+			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
+		}
+		
+		//// <summary>
+		/// Client-based fixed update
+		/// </summary>
+		[Client]
+		protected override void FixedUpdateClient()
+		{
+			
+		}
+		
+	}
+
+}

@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Local IP (127.0.0.1)
   folderName: ServerInfo
+  ip: 127.0.0.1
   visible: 1
-  _ip: 127.0.0.1
-  loadFromFile: 0
-  fileExtension: ip

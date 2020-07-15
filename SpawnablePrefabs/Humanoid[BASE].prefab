@@ -144,22 +144,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7930793167279634983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d351cbb1a6c64c18a401231fd6948ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 7265776c5e256954896818f841d4f4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  managerUpdateInterval: 0.009999999776482582
+  managerUpdateInterval: 1
   cacheUpdateInterval: 1
   level: 1
   maxLevel: 3
   agent: {fileID: 8539800676653855757}
   proxChecker: {fileID: 3491147312615218762}
   collider: {fileID: 1876589497079288841}
-  archeType: {fileID: 11400000, guid: 346fc870660af4c20b3c541ddf54a996, type: 2}
-  movementComponent: {fileID: 4769897492077146287}
-  baseCooldown: 1
-  startingZone: {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883, type: 2}
+  archeType: {fileID: 0}
+  movementComponent: {fileID: 0}
+  baseCooldown: 0
+  startingZone: {fileID: 0}
 --- !u!114 &4769897492077146287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  _profile: {fileID: 0}
   fetch: {fileID: 11400000, guid: 75a5ae50d97f8d44a892d625d906270f, type: 2}
   currentTarget: {fileID: 0}
   previousTarget: {fileID: 0}

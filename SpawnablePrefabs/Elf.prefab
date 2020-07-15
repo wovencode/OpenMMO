@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: syncMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 437119546735497029, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1037530943158960664, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: sceneId
@@ -20,6 +25,11 @@ PrefabInstance:
     - target: {fileID: 1037530943158960664, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135409919634608934, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2608952967195419366, guid: 646f03a0ef17d3b49962414b11da55f6,
@@ -99,10 +109,59 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a,
         type: 2}
+    - target: {fileID: 5053945538751103481, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: proxChecker
+      value: 
+      objectReference: {fileID: 813854251946982259}
+    - target: {fileID: 5053945538751103481, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 5601097647916519732}
+    - target: {fileID: 5053945538751103481, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 2392137005894152496}
+    - target: {fileID: 5053945538751103481, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: maxLevel
+      value: 99
+      objectReference: {fileID: 0}
     - target: {fileID: 7930793167279634983, guid: 646f03a0ef17d3b49962414b11da55f6,
         type: 3}
       propertyPath: m_Name
       value: Elf
       objectReference: {fileID: 0}
+    - target: {fileID: 8667312959870260543, guid: 646f03a0ef17d3b49962414b11da55f6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}
+--- !u!195 &5601097647916519732 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 8539800676653855757, guid: 646f03a0ef17d3b49962414b11da55f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4267283631992530233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &813854251946982259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3491147312615218762, guid: 646f03a0ef17d3b49962414b11da55f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4267283631992530233}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1731d8de2d0c84333b08ebe1e79f4118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &2392137005894152496 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1876589497079288841, guid: 646f03a0ef17d3b49962414b11da55f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4267283631992530233}
+  m_PrefabAsset: {fileID: 0}

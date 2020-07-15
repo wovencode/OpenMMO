@@ -2332,7 +2332,7 @@ PrefabInstance:
     - target: {fileID: 4162056475045566253, guid: c8de70b3f6557a543833bf7cb003141e,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4162056475045566256, guid: c8de70b3f6557a543833bf7cb003141e,
         type: 3}
@@ -3230,10 +3230,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36160c9216a213b4c93895f4da5b1f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  bypassNpcDialoguePanel: 0
+  triggerDialogueOnDeath: 0
+  questReward: {fileID: 0}
   _icon: {fileID: 21300000, guid: 50e98459225f84105b3e853fed1ad9ca, type: 3}
   _layer:
     serializedVersion: 2
     m_Bits: 1
+  _player: {fileID: 0}
+  _playerProfile: {fileID: 0}
+  _account: {fileID: 0}
 --- !u!65 &1520017554
 BoxCollider:
   m_ObjectHideFlags: 0

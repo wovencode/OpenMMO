@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualPrefabs: []
   autoPrefabs:
-  - {fileID: 1603717731790357796, guid: b219ede7a68bfb640808ffa250fe1db7, type: 3}
-  - {fileID: 6140580608059694878, guid: cd0e032e964c6db43a68bdffee5bd368, type: 3}
   - {fileID: 5808493980712650444, guid: b326f4a78f8e6f04ab89cac6b98d1f0c, type: 3}
+  - {fileID: 6140580608059694878, guid: cd0e032e964c6db43a68bdffee5bd368, type: 3}
+  - {fileID: 8668965951977308123, guid: b219ede7a68bfb640808ffa250fe1db7, type: 3}
   excludePrefabs:
   - {fileID: 7930793167279634983, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}
   categoryTags: []

@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: LAN (192.168.1.100)
   folderName: ServerInfo
+  ip: 192.168.1.100
   visible: 1
-  _ip: 192.168.1.100
-  loadFromFile: 0
-  fileExtension: ip

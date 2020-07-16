@@ -14,7 +14,7 @@ namespace OpenMMO {
 	/// Abstract partial EntityComponent is the base class for all Entities (Players, NPCs, Monsters, Pets etc.)
 	/// </summary>
 	[System.Serializable]
-	public abstract partial class EntityComponent : LevelableComponent
+	public abstract partial class MobileComponent : LevelableComponent
 	{
 		
 		[Header("Components")]

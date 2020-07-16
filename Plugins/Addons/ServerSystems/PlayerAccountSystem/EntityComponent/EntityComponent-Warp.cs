@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using System;
 using UnityEngine;
 using Mirror;
@@ -10,7 +10,7 @@ namespace OpenMMO {
 	/// <summary>
 	/// This partial section of Entity Component is public and exposed to other parts of the code.
 	/// </summary>
-	public abstract partial class EntityComponent
+	public abstract partial class MobileComponent
 	{
 	
 		/// <summary>

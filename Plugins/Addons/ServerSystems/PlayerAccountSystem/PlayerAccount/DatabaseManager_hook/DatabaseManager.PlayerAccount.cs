@@ -20,7 +20,7 @@ namespace OpenMMO.Database
 		/// Hooks into the DeleteUsers function that is called in regular intervals, to permanently delete soft-deleted users (= accounts).
 		/// </summary>
 		[DevExtMethods(nameof(DeleteUsers))]
-		void DeleteUsers_PlayerComponent()
+		void DeleteUsers_PlayerAccount()
 		{
 
 			List<TableUser> users = Query<TableUser>("SELECT * FROM "+nameof(TableUser)+" WHERE deleted=1");

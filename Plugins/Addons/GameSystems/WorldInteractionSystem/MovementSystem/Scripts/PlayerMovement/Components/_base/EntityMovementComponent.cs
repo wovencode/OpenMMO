@@ -13,7 +13,7 @@ namespace OpenMMO {
 	/// <summary>
 	/// Partial Entity Movement Component is the base component for all entities and in charge of controlling movement.
 	/// </summary>
-	[RequireComponent(typeof(NavMeshAgent), typeof(Animator), typeof(EntityComponent))]
+	[RequireComponent(typeof(NavMeshAgent), typeof(Animator), typeof(MobileComponent))]
 	[DisallowMultipleComponent]
 	[System.Serializable]
 	public partial class EntityMovementComponent : SyncableComponent
@@ -24,7 +24,7 @@ namespace OpenMMO {
         public Animator animator;
         
 		// -- Component Cache
-		protected EntityComponent entityComponent;
+		protected MobileComponent entityComponent;
 		//public EntityEnergyComponent energyComponent; // TODO: add later to check "death" in states!
 		
 		[SyncVar] protected int state;
@@ -37,7 +37,7 @@ namespace OpenMMO {
     	
     		agent = GetComponent<NavMeshAgent>();
     		animator = GetComponent<Animator>();
-    		entityComponent = GetComponent<EntityComponent>();
+    		entityComponent = GetComponent<MobileComponent>();
     		
         	base.Start();
 		}

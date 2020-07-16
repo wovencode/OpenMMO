@@ -7,11 +7,11 @@ using OpenMMO.Database;
 namespace OpenMMO {
 	
 	/// <summary>
-	/// Partial class PlayerAccount, derived from EntityComponent. Base class for all Players.
+	/// Partial class PlayerAccount, derived from MobileComponent. Base class for all Players.
 	/// </summary>
 	[DisallowMultipleComponent]
 	[System.Serializable]
-	public partial class PlayerAccount : EntityComponent
+	public partial class PlayerAccount : MobileComponent
 	{
         //ACCOUNT
 		public TablePlayer _tablePlayer = new TablePlayer();

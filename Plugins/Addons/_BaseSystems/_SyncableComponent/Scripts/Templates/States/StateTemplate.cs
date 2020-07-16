@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace OpenMMO {
 		/// <summary>
 		/// Abstract bool GetIsActive. Used to check if the Animation State is currently active.
 		/// </summary>
-		public abstract bool GetIsActive(EntityComponent entityComponent);
+		public abstract bool GetIsActive(MobileComponent mobileComponent);
 		
 		public static ReadOnlyDictionary<int, StateTemplate> data
 		{

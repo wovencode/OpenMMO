@@ -1,0 +1,31 @@
+BUILDING OPENMMO GUIDE:
+1 - Start a new project in Unity 2019 (any version of 2019 will work)
+
+2 - Open the Window>TextMeshPro>Import TextMeshPro Essentials Menu to import TextMeshPro into your project
+
+3 - Download the entire git repo and put it into Assets/OpenMMO inside your project folder. (Naming it OpenMMO in the Assets folder is very important)
+
+4 - In Unity, Open Build Settings from the File Menu, move the window to the side so you can drag scenes to it from your project view.
+
+5 - Inside your Project View, Scroll down to the Scenes folder and Drag UI Scene, Login Scene, and any other scenes in the folders there that you find
+	(there should be a couple per race) into the "Scenes to Build" section of the Build Window you left opened.
+
+6 - Make sure that the Login Scene is at the top and the UI Scene is at the bottom of the "Scenes to Build" box.
+
+7 - Open the Login Scene in the Unity Editor.
+
+8 - Click the OpenMMO menu at the top of the editor, then click QuickBuild/<YourOS>/Client and Server (headless)
+
+9 - Just wait... it is doing things in the background...you will see a [Build Report] in the editor console when it finishes (you can click that to see the whole report)
+
+10 - In File Explorer, Navigate to your project folder and look for the _BUILD folder there.
+
+11 - Launch the server.exe (or .x86_64 or .app on non Windows) you find there. The server should launch one main process and an additional process for each zone.
+	Using the default setup, you should expect 4 processes to open in total.
+
+12 - Go back to the _BUILD directory and find the client.exe (or .x86_64 or .app on non Windows) file and launch that to start testing.
+
+
+LINUX SERVER INSTALL GUIDE:
+NOTE: "Server" was renamed to "server" since these instructions were created
+Instructions - https://i.imgur.com/9qJHAAr.png

@@ -18,7 +18,7 @@ namespace OpenMMO {
     	/// <summary>
 		/// Checks if the state is currently active.
 		/// </summary>
-		public override bool GetIsActive(EntityComponent entityComponent)
+		public override bool GetIsActive(MobileComponent entityComponent)
 		{
 			return !entityComponent.movementComponent.GetIsMoving;
 		}

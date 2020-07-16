@@ -18,16 +18,16 @@ namespace OpenMMO {
 		/// <summary>
 		/// Returns if the state is currently active.
 		/// </summary>
-		public override bool GetIsActive(EntityComponent entityComponent)
+		public override bool GetIsActive(MobileComponent mobileComponent)
 		{
 			// -- special case:
 			// only players have a "walk state" while monsters and NPCs only feature
 			// a "move state".
 			
-			if (entityComponent is PlayerAccount)
-				return ((PlayerAccount)entityComponent).playerMovementComponent.Running;
+			if (mobileComponent is PlayerAccount)
+				return ((PlayerAccount)mobileComponent).playerMovementComponent.Running;
 			else
-				return entityComponent.movementComponent.GetIsMoving;
+				return mobileComponent.movementComponent.GetIsMoving;
 		}
 
 	}

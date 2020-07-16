@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+/* //DEPRECIATED - unused
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using System;
@@ -33,3 +34,4 @@ namespace Mirror
 }
 
 // =======================================================================================
+*/

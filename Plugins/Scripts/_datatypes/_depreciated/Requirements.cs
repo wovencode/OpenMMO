@@ -1,4 +1,4 @@
-﻿
+/* //DEPRECIATED - unused
 using System;
 using UnityEngine;
 using OpenMMO;
@@ -12,14 +12,11 @@ namespace OpenMMO {
 	public partial class Requirements
 	{
 		
-		/*
-		
-			empty for now - extended via partial
-		
-		*/
+			//empty for now - extended via partial
 		
 	}
 	
 }
 
 // =======================================================================================
+*/

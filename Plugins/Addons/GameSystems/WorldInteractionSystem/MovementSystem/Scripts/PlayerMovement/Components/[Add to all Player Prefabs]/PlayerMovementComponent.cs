@@ -110,7 +110,5 @@ namespace OpenMMO
             base.LateUpdateClient();
             this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
         }
-
     }
-
 }

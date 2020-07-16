@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +18,7 @@ public static class DevExtUtils
 
     /// <summary>
     /// This will calls all methods from `obj` that have attributes "DevExtMethodsAttribute("`baseMethodName`")" with any number of arguments that can be set via `args`
+    /// Example Usage: [DevExtMethods(nameof(MyMethod))]
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="obj"></param>

@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,7 +92,7 @@ namespace OpenMMO {
 					if (ni != null)
 					{
 
-						EntityComponent entityComponent = go.GetComponent<EntityComponent>();
+						MobileComponent entityComponent = go.GetComponent<MobileComponent>();
 						
 						if (entityComponent == null || categoryTags == null || categoryTags.Length == 0)
 							toSelect.Add(go);

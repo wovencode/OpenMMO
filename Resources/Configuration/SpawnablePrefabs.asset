@@ -17,8 +17,30 @@ MonoBehaviour:
   - {fileID: 5808493980712650444, guid: b326f4a78f8e6f04ab89cac6b98d1f0c, type: 3}
   - {fileID: 6140580608059694878, guid: cd0e032e964c6db43a68bdffee5bd368, type: 3}
   - {fileID: 8668965951977308123, guid: b219ede7a68bfb640808ffa250fe1db7, type: 3}
+  - {fileID: 3117270640426448746, guid: ba6ff88f517601c44824af6aebad7b64, type: 3}
+  - {fileID: 6853583692267850257, guid: 6cd3c09d9692c8d41bfcdf1e8d34e125, type: 3}
+  - {fileID: 7451358506005706374, guid: ed68aed72a8f5c347b041e915a4d72a1, type: 3}
+  - {fileID: 9133304331347496138, guid: 607de364b0c5bf04eb03511309eebc80, type: 3}
+  - {fileID: 3700063774922887632, guid: 543242b9bacb95248a313b49b3eef69e, type: 3}
+  - {fileID: 3183682428177594058, guid: 0b40796713786ae43b3c3b01ad5fd2af, type: 3}
+  - {fileID: 8618890142427391680, guid: fafbdfc3afee6a94caa501688d90f9d6, type: 3}
+  - {fileID: 2115499776319804676, guid: b49b187320d06b549b1714b3ae136a64, type: 3}
+  - {fileID: 2022425032261235339, guid: 833e3df7561d7054c84ed9c7e1527359, type: 3}
+  - {fileID: 7333112682986109126, guid: 47f548350cf4077438ee8afc5e36c348, type: 3}
+  - {fileID: 2113951970789344135, guid: 7808cdfaa4c48524db08e6da4d23fd42, type: 3}
+  - {fileID: 8803573407739665148, guid: 83a7dc4b822d1b747959e0cce4433f7e, type: 3}
+  - {fileID: 3382534723500829003, guid: ad9ec0cb5d845df43a0362d8d7255dc6, type: 3}
+  - {fileID: 6047770276527182678, guid: b5198115ff9820140acbf0c6dca2643a, type: 3}
+  - {fileID: 4419306743080137506, guid: 70e31af1e9892b6468c4cbfd00249175, type: 3}
+  - {fileID: 5086314541383654978, guid: 8dcda0f67497c78479a10721a0b7b632, type: 3}
+  - {fileID: 339537963950958088, guid: f51f4db84ce5b1644aeca25cd88ba7e4, type: 3}
   excludePrefabs:
   - {fileID: 7930793167279634983, guid: 646f03a0ef17d3b49962414b11da55f6, type: 3}
+  - {fileID: 7930793167279634983, guid: a33bf0f151c8e6f4cb47f89963ce89c7, type: 3}
+  - {fileID: 7930793167279634983, guid: ac6cc9580df39534b98ba06ded26c718, type: 3}
   categoryTags: []
   spawnablePrefabFolders:
   - Assets/OpenMMO/SpawnablePrefabs
+  - Assets/OpenMMO/_PlayableCharacters
+  - Assets/OpenMMO/_NonPlayableCharacters
+  - Assets/OpenMMO/_WorldSpawns

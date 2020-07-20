@@ -4,7 +4,7 @@ using TMPro;
 using OpenMMO;
 
 /// <summary>Updates text fields to show this player's information.</summary>
-public class NameplateUpdater : MonoBehaviour
+public class PlayerNameplateUpdater : MonoBehaviour
 {
 #pragma warning disable CS0414
 

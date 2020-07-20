@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(NameplateUpdater))]
+[CustomEditor(typeof(PlayerNameplateUpdater))]
 [CanEditMultipleObjects]
 public class NameplateUpdaterEditor : Editor
 {

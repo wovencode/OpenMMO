@@ -3477,7 +3477,7 @@ PrefabInstance:
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
@@ -3503,20 +3503,17 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 1603717731790357796, guid: b219ede7a68bfb640808ffa250fe1db7,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: spawnPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 6140580608059694878, guid: cd0e032e964c6db43a68bdffee5bd368,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: spawnPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 5808493980712650444, guid: b326f4a78f8e6f04ab89cac6b98d1f0c,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: eventListeners.OnStartServer.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -3541,8 +3538,7 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnPrefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 5907515460932538366, guid: 94862d576d689ee46b25eedc6f9d1626,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8,
         type: 3}
       propertyPath: spawnPrefabs.Array.data[4]

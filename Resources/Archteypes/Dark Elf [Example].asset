@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6731440d1ba11459c8bd59f6c664d225, type: 3}
   m_Name: Dark Elf [Example]
   m_EditorClassIdentifier: 
-  title: TESTER
+  title: Dark Elf
   folderName: Archetypes
   sortCategory: 
   sortOrder: 0
-  smallIcon: {fileID: 21300000, guid: 073acc06195434d0284e1c9199b3f299, type: 3}
-  backgroundIcon: {fileID: 21300000, guid: 6a4e759cf5c8a4de38c825a7d2ba813b, type: 3}
-  rarity: {fileID: 11400000, guid: c90dcd08caa9745f9a5c83f3ec10ccad, type: 2}
+  smallIcon: {fileID: 0}
+  backgroundIcon: {fileID: 0}
+  rarity: {fileID: 0}
   description: 
-  level: 1
+  level: 0

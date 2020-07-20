@@ -60,28 +60,28 @@ namespace OpenMMO
             FileExtension buildFileExtension = FileExtension.exe;
             switch (targetPlatform)
             {
-                    //STANDALONE
+                //STANDALONE
                 case BuildTarget.StandaloneWindows64: buildFileExtension = FileExtension.exe; break;
                 case BuildTarget.StandaloneWindows: buildFileExtension = FileExtension.exe; break;
                 case BuildTarget.StandaloneLinux64: buildFileExtension = FileExtension.x86_64; break;
                 case BuildTarget.StandaloneOSX: buildFileExtension = FileExtension.app; break;
-                /*TODO
+                    /*TODO*/
                     //MOBILE
-                case BuildTarget.iOS: break;
-                case BuildTarget.Android: break;
+                    //case BuildTarget.iOS: break;
+                    //case BuildTarget.Android: break;
                     //CONSOLE
-                case BuildTarget.PS4: break;
-                case BuildTarget.XboxOne: break;
-                case BuildTarget.Switch: break;
+                    //case BuildTarget.PS4: break;
+                    //case BuildTarget.XboxOne: break;
+                    //case BuildTarget.Switch: break;
                     //WEB
-                case BuildTarget.WebGL: break;
-                    //OTHER
-                case BuildTarget.WSAPlayer: break;
-                case BuildTarget.tvOS: break;
-                case BuildTarget.Lumin: break;
-                case BuildTarget.Stadia: break;
-                case BuildTarget.NoTarget: break;
-                */
+                    //case BuildTarget.WebGL: buildFileExtension = FileExtension.exe; break;
+                    /*    //OTHER
+                    case BuildTarget.WSAPlayer: break;
+                    case BuildTarget.tvOS: break;
+                    case BuildTarget.Lumin: break;
+                    case BuildTarget.Stadia: break;
+                    case BuildTarget.NoTarget: break;
+                    */
             }
 
             //SETUP BUILD OPTIONS

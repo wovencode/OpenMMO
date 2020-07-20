@@ -28,10 +28,10 @@ namespace OpenMMO
         //[Tooltip("A list of objects that can be targeted.")]
         //[SerializeField] internal List<Targetable> selectableTargets = new List<Targetable>();
         [Tooltip("The currently selected target.")]
-        [SerializeField] internal Targetable currentTarget;
+        [SerializeField] internal Targetable currentTarget = null;
         public Targetable target { get { return currentTarget; } }
         [Tooltip("The previously selected target.")]
-        [SerializeField] internal Targetable previousTarget;
+        [SerializeField] internal Targetable previousTarget = null;
         [Tooltip("The distance to the target.")]
         [SerializeField] internal float distanceToTarget = DEFAULT_MAXIMIZED_TARGET_DISTANCE;
 

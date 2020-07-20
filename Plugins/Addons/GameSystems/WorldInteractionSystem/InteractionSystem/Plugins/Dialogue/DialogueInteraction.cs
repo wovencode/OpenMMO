@@ -64,7 +64,7 @@ namespace OpenMMO
             }
             Debug.Log(log.ToString());
 #endif
-            #endregion
+            #endregion //DEBUG
         }
     }
 }

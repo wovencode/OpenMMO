@@ -1,0 +1,9 @@
+NPC CREATION GUIDE
+
+HOW TO CREATE AN NPC
+Step 1: Drag the base prefab from the project folder into any open scene (NPC[BASE])
+Step 2: Drag the prefab back to your project folder from the scene
+Step 3: In the window that pops up, select the Variant option to create a new prefab variant
+Step 5: Delete the prefab from your scene (it is not needed anymore)
+Step 6: Rename your new variant to the name you want for your new class/race/etc
+Step 7: Double Click your new prefab variant to edit it's stats etc

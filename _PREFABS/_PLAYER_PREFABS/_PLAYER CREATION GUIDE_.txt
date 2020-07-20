@@ -1,15 +1,15 @@
-CHARACTER CREATION GUIDE
+PLAYER CREATION GUIDE
 
-HOW TO CREATE A CHARACTER
-Step 1: Drag the base prefab from the project folder into any open scene (PLAYER[BASE], NPC[BASE], etc)
+HOW TO CREATE A PLAYER CHARACTER
+Step 1: Drag the base prefab from the project folder into any open scene (PLAYER[BASE])
 Step 2: Drag the prefab back to your project folder from the scene
 Step 3: In the window that pops up, select the Variant option to create a new prefab variant
 Step 5: Delete the prefab from your scene (it is not needed anymore)
 Step 6: Rename your new variant to the name you want for your new class/race/etc
 Step 7: Double Click your new prefab variant to edit it's stats etc
+STEP 8: Create an "archetype" and attach it to your prefab in the inspector.
 
-HOW TO CREATE A CHARACTER ARCHETYPE
-Your character will also need to have an "archetype" attached to it.
+HOW TO: CREATE A CHARACTER ARCHETYPE
 Step 1: Create a Resources/Archetypes folder (Or use the one in the openmmo folder)
 Step 2: Right Click then select [Create>OpenMMO - Templates>New Archetype] from the menu that pops up
 Step 3: Configure your new archetype in the inspector

@@ -1,17 +1,13 @@
 //by Fhiz
-using System;
-using System.Text;
-using System.Collections.Generic;
+//MODIFIED BY DX4D
 using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
-using OpenMMO;
-using OpenMMO.Network;
 
 namespace OpenMMO {
 	
 	/// <summary>
-	/// Abstract partial EntityComponent is the base class for all Entities (Players, NPCs, Monsters, Pets etc.)
+	/// [abstract][partial] MobileComponent is the base class for all movable Entities (Players, NPCs, Monsters, Pets etc.)
 	/// </summary>
 	[System.Serializable]
 	public abstract partial class MobileComponent : LevelableComponent
@@ -41,25 +37,16 @@ namespace OpenMMO {
     		
         	base.Start();
 		}
+
+        // H O O K A B L E  M E T H O D S
+
+        /// <summary> [server] Throttled update that runs server-side.
+        /// Hook this method using [DevExtMethods(nameof(UpdateServer))]</summary>
+        [Server] protected override void UpdateServer() { this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); } //HOOK
 		
-		/// <summary>
-		/// Server-side throttled update
-		/// </summary>
-		[Server]
-		protected override void UpdateServer()
-		{
-			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
-		}
-		
-		/// <summary>
-		/// Client-side throttled update
-		/// </summary>
-		[Client]
-		protected override void UpdateClient()
-		{
-			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
-		}
-		
+        /// <summary> [client] Throttled update that runs client-side.
+        /// Hook this method using [DevExtMethods(nameof(UpdateClient))] </summary>
+        [Client] protected override void UpdateClient() { this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); } //HOOK
 	}
 
 }

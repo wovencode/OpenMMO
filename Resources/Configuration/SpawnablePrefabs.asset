@@ -44,6 +44,6 @@ MonoBehaviour:
   categoryTags: []
   spawnablePrefabFolders:
   - Assets/OpenMMO/SpawnablePrefabs
-  - Assets/OpenMMO/_PlayableCharacters
-  - Assets/OpenMMO/_NonPlayableCharacters
-  - Assets/OpenMMO/_WorldSpawns
+  - Assets/OpenMMO/_PREFABS/_PLAYER_PREFABS
+  - Assets/OpenMMO/_PREFABS/_NPC_PREFABS
+  - Assets/OpenMMO/_PREFABS/_WORLD_PREFABS

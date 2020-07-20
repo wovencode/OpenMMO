@@ -508,57 +508,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2608952967195419366}
     m_Modifications:
-    - target: {fileID: 37599588281682442, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 37599588281682442, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
-    - target: {fileID: 591176418054301437, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_Name
-      value: Zone
-      objectReference: {fileID: 0}
-    - target: {fileID: 1525336138970681737, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 1683758940587512094, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_Name
-      value: Name
-      objectReference: {fileID: 0}
-    - target: {fileID: 3108958881530658323, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3580274217010626743, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4513039632429451855, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: tickFrequency
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5054729930434856622, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5492549968696314661, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5762143174932880077, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_Mesh
@@ -574,33 +533,6 @@ PrefabInstance:
       propertyPath: playerComponent
       value: 
       objectReference: {fileID: 5053945538751103481}
-    - target: {fileID: 6582908969997545330, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 6582908969997545330, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
-    - target: {fileID: 7017788160054381950, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_Name
-      value: Guild
-      objectReference: {fileID: 0}
-    - target: {fileID: 7492141690578241723, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 7492141690578241723, guid: bce0f47624088b94ab971da9a918a744,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
-        type: 2}
     - target: {fileID: 8490554799455582278, guid: bce0f47624088b94ab971da9a918a744,
         type: 3}
       propertyPath: m_LocalPosition.x

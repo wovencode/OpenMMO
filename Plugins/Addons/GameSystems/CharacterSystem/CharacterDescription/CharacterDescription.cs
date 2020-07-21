@@ -9,6 +9,6 @@ namespace OpenMMO
     {
         //ICON
         [SerializeField] Sprite _icon = null;
-        internal Sprite icon { get { return _icon; } set { _icon = value; } }
+        public Sprite icon { get { return _icon; } set { _icon = value; } }
     }
 }

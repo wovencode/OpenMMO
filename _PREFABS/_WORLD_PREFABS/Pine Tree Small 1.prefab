@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4419306743080137506
+--- !u!1 &6664080883390912319
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4419306743079644930}
-  - component: {fileID: 4419306743083069218}
-  - component: {fileID: 4419306743082069474}
-  - component: {fileID: -8975487882998777830}
-  - component: {fileID: 5568522478646138320}
-  - component: {fileID: 974360927662265885}
+  - component: {fileID: 6664080883390810911}
+  - component: {fileID: 6664080883387943743}
+  - component: {fileID: 6664080883388910079}
+  - component: {fileID: 4580144886997187866}
+  - component: {fileID: -3082826256915278028}
   m_Layer: 0
-  m_Name: Tree Stump Small Fresh Cut
+  m_Name: Pine Tree Small 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4419306743079644930
+--- !u!4 &6664080883390810911
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419306743080137506}
+  m_GameObject: {fileID: 6664080883390912319}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -77, y: 0, z: 41}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalPosition: {x: -113, y: 0, z: -43}
+  m_LocalScale: {x: 0.215, y: 0.2451, z: 0.215}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4419306743083069218
+--- !u!33 &6664080883387943743
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419306743080137506}
-  m_Mesh: {fileID: 4300000, guid: b774e0d551c65984181f9562fb36ddc6, type: 3}
---- !u!23 &4419306743082069474
+  m_GameObject: {fileID: 6664080883390912319}
+  m_Mesh: {fileID: 4300000, guid: fc1c180306c97e94d84d858c8ae5e7ac, type: 3}
+--- !u!23 &6664080883388910079
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419306743080137506}
+  m_GameObject: {fileID: 6664080883390912319}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,8 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f1194c80ea1de247a105fe249093bbe, type: 2}
-  - {fileID: 2100000, guid: 770dd589fafa6f84fb5263f79b7d6750, type: 2}
+  - {fileID: 2100000, guid: 95e90374e7e93164cb98d07a5a2962f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,13 +81,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-8975487882998777830
+--- !u!114 &4580144886997187866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419306743080137506}
+  m_GameObject: {fileID: 6664080883390912319}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
@@ -98,13 +96,13 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   m_AssetId: 
---- !u!114 &5568522478646138320
+--- !u!114 &-3082826256915278028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419306743080137506}
+  m_GameObject: {fileID: 6664080883390912319}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f25a7d646cdfb764bad7cf20b1a670b4, type: 3}
@@ -112,17 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _icon: {fileID: 21300000, guid: c6738f4a3066e45bd8ee8170d7e1c412, type: 3}
---- !u!65 &974360927662265885
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4419306743080137506}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.415641, y: 5.9, z: 8.659365}
-  m_Center: {x: 0, y: 2.95, z: 0.029406888}
+  _icon: {fileID: 21300000, guid: dfdc484693a2e46149814f4ce3adb455, type: 3}

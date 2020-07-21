@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3382534723497833803}
   - component: {fileID: 3382534723498833803}
   - component: {fileID: 3847893581134702832}
+  - component: {fileID: -3748282776626442847}
+  - component: {fileID: 5578859335955264879}
   m_Layer: 0
   m_Name: Tree Stump Large Fresh Cut
   m_TagString: Untagged
@@ -96,3 +98,31 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   m_AssetId: 
+--- !u!114 &-3748282776626442847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382534723500829003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25a7d646cdfb764bad7cf20b1a670b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _icon: {fileID: 21300000, guid: c6738f4a3066e45bd8ee8170d7e1c412, type: 3}
+--- !u!65 &5578859335955264879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382534723500829003}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.036894, y: 6.014286, z: 8.036894}
+  m_Center: {x: 0, y: 3.007143, z: 0}

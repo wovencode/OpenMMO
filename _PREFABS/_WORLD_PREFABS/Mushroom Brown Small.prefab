@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8618890142430788288}
   - component: {fileID: 8618890142429657088}
   - component: {fileID: 6303781344194480533}
+  - component: {fileID: 1129357605185552915}
   m_Layer: 0
   m_Name: Mushroom Brown Small
   m_TagString: Untagged
@@ -96,3 +97,18 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   m_AssetId: 
+--- !u!114 &1129357605185552915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8618890142427391680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25a7d646cdfb764bad7cf20b1a670b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _icon: {fileID: 21300000, guid: ea0800aef4eaf234b96109b25b04566a, type: 3}

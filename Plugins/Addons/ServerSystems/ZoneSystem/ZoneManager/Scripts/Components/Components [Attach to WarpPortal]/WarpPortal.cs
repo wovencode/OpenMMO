@@ -1,4 +1,5 @@
-
+//By Fhiz
+//MODIFIED BY DX4D
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace OpenMMO.Zones
 			if (pc == null || !pc.IsLocalPlayer)
 				return;
 			
-			if (!triggerOnEnter)
+			if (!bypassConfirmation)
 			{
 				if (pc.CheckCooldown)
 					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetAnchor), OnClickConfirm);
@@ -51,7 +52,10 @@ namespace OpenMMO.Zones
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
 			}
 			else
-				OnClickConfirm();
+				if (pc.CheckCooldown)
+				    OnClickConfirm();
+				else
+					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
 			
 		}
 		

@@ -49,7 +49,7 @@ namespace OpenMMO.Zones
 				return;
 			}
 			
-			if (!triggerOnEnter)
+			if (!bypassConfirmation)
 			{
 			
 				if (pc.CheckCooldown)

@@ -43,7 +43,7 @@ namespace OpenMMO.Zones
 			if (pc == null || !pc.IsLocalPlayer)
 				return;
 			
-			if (!triggerOnEnter)
+			if (!bypassConfirmation)
 			{
 				if (pc.CheckCooldown)
 					UIPopupPrompt.singleton.Init(popupEnter, OnClickConfirm);

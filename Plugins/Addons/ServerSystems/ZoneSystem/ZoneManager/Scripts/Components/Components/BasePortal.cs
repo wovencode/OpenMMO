@@ -1,4 +1,5 @@
-
+//By Fhiz
+//MODIFIED BY DX4D
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace OpenMMO.Zones
 	{
 		
 		[Header("Options")]
-		[Tooltip("Trigger automatically on enter?")]
-		public bool triggerOnEnter;
+		[Tooltip("Skip the confirmation popup and teleport right away?")]
+		public bool bypassConfirmation;
 		
 		[Header("System Texts")]
 		public string popupEnter 	= "Enter {0}?";

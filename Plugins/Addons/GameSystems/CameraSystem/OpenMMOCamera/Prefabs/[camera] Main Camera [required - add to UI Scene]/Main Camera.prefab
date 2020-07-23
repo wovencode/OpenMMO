@@ -57,7 +57,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -97,60 +97,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34116707ba9534bb0bae7099e700f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: {fileID: 3321310163593043541}
+  hotKey: 306
   target: {fileID: 0}
-  targetOffset: {x: 0, y: 5, z: -15}
-  xRotation: 0
-  yRotation: 0
-  useTargetYRotation: 1
-  zoomDistance: 0.0001
-  zoomByAspectRatio: 0
-  zoomByAspectRatioSettings:
-  - width: 16
-    height: 9
-    zoomDistance: 0.0001
-  - width: 16
-    height: 10
-    zoomDistance: 1.75
-  - width: 3
-    height: 2
-    zoomDistance: 3
-  - width: 4
-    height: 3
-    zoomDistance: 5.5
-  - width: 5
-    height: 4
-    zoomDistance: 7
-  enableWallHitSpring: 0
-  wallHitLayerMask:
+  targetHeight: 2
+  distance: 2
+  offsetFromWall: 0.1
+  maxDistance: 30
+  minDistance: 2
+  xSpeed: 200
+  ySpeed: 200
+  yMinLimit: -80
+  yMaxLimit: 80
+  zoomRate: 200
+  rotationDampening: 3
+  zoomDampening: 5
+  collisionLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  wallHitQueryTriggerInteraction: 1
-  hotKey: 306
-  updateRotation: 1
-  updateRotationX: 0
-  updateRotationY: 0
-  updateZoom: 1
-  limitXRotation: 1
-  minXRotation: 0
-  maxXRotation: 25
-  smoothRotateX: 1
-  rotateXSmoothing: 10
-  limitYRotation: 0
-  minYRotation: 0
-  maxYRotation: 0
-  smoothRotateY: 1
-  rotateYSmoothing: 10
-  startXRotation: 0
-  startYRotation: 0
-  rotationSpeed: 0.5
-  limitZoomDistance: 0
-  minZoomDistance: 0
-  maxZoomDistance: 0
-  smoothZoom: 0
-  zoomSmoothing: 10
-  startZoomDistance: 0
-  zoomSpeed: 5
 --- !u!114 &3321310163183933699
 MonoBehaviour:
   m_ObjectHideFlags: 0

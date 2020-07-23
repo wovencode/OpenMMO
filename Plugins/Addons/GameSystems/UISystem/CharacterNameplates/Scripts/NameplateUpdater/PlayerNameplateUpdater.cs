@@ -10,6 +10,7 @@ public class PlayerNameplateUpdater : MonoBehaviour
 
 	
 	public PlayerAccount playerComponent;
+    public bool hideLocalPlayerName = true;
 
     [Header("UPDATE FREQUENCY")]
     [Tooltip("How many update frames must pass before this component updates again?")]
@@ -27,7 +28,7 @@ public class PlayerNameplateUpdater : MonoBehaviour
     
     void FixedUpdate()
     {
-        //if (!PlayerComponent.localPlayer) return; //NOT LOGGED IN
+        if (hideLocalPlayerName && PlayerAccount.localPlayer && PlayerAccount.localPlayer.GetComponent<PlayerAccount>().isLocalPlayer) { gameObject.SetActive(false); return; } //HIDE LOCAL
 
         frameCount++; //INCREMENT TICK
 

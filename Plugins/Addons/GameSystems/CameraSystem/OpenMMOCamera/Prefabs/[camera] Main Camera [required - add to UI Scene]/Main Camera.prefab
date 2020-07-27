@@ -99,11 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotKey: 306
   target: {fileID: 0}
-  targetHeight: 2
+  targetHeight: 1.65
   distance: 2
   offsetFromWall: 0.1
   maxDistance: 30
-  minDistance: 2
+  minDistance: 0.65
   xSpeed: 200
   ySpeed: 200
   yMinLimit: -80

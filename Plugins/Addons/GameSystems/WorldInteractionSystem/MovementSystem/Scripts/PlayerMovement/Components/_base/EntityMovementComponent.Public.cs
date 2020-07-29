@@ -1,4 +1,5 @@
 //by Fhiz
+//MODIFIED BY DX4D
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,7 +16,7 @@ namespace OpenMMO {
 		/// <summary>
 		/// Checks if the entity is currently moving
 		/// </summary>
-		public bool GetIsMoving
+		public bool IsMoving
     	{
     		get
     		{

@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using System;
 using System.Text;
 using UnityEngine;
@@ -21,25 +21,14 @@ namespace OpenMMO {
 		/// </summary>
 		public int GetCapacity => capacity.Get(level);
 		
-		/// <summary>
-		/// Server-side Start calls base.Start();
-		/// </summary>
-		[ServerCallback]
-		protected override void Start() {
-			base.Start();
-		}
+		///// <summary> Server-side Start calls base.Start(); </summary>
+		//[ServerCallback] protected override void Start() { base.Start(); }
 		
-		/// <summary>
-		/// Server-side throttled update.
-		/// </summary>
-		[Server]
-		protected override void UpdateServer() {}
+		///// <summary> Server-side throttled update. </summary>
+		//[Server] protected override void UpdateServer() {}
 		
-		/// <summary>
-		/// Client-side throttled update.
-		/// </summary>
-		[Client]
-		protected override void UpdateClient() {}
+		///// <summary> Client-side throttled update. </summary>
+		//[Client] protected override void UpdateClient() {}
 		
 	}
 

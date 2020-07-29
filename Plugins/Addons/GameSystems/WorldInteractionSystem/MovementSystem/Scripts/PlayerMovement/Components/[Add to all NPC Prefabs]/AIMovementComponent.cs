@@ -1,4 +1,5 @@
-// by Fhiz, DX4D
+// by Fhiz
+//BY DX4D
 using UnityEngine;
 using Mirror;
 
@@ -42,44 +43,14 @@ namespace OpenMMO
         public bool Sneaking { get { return input.sneaking; } }
 
 
-        /// <summary>
-    	/// Start called client and server-side to initialize properties.
-    	/// </summary>
-        protected override void Start()
-        {
-            agent.updateRotation = false;
-            base.Start();
-        }
+        ///// <summary> Start called client and server-side to initialize properties. </summary>
+        //protected override void Start() { agent.updateRotation = false; base.Start(); }
 
-        /// <summary>
-    	/// OnStartLocalPlayer. Not used yet.
-    	/// </summary>
-        public override void OnStartLocalPlayer()
-        {
-        }
-
-        /// <summary>
-    	/// OnDestroy client and side-server. Not used yet.
-    	/// </summary>
-        void OnDestroy()
-        {
-        }
-
-        /// <summary>
-    	/// Server-side throttled update.
-    	/// </summary>
-        [Server]
-        protected override void UpdateServer()
-        {
-            base.UpdateServer();
-            this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
-        }
-
-        /// <summary>
-    	/// Client-side, throttled update.
-    	/// </summary>
-        [Client]
-        protected override void UpdateClient()
+        //CLIENT
+        /// <summary> [Client] start. </summary>
+        [Client] protected override void StartClient() { agent.updateRotation = false; base.StartClient(); }
+        /// <summary> [Client] throttled update. </summary>
+        [Client] protected override void UpdateClient()
         {
 
             if (!isLocalPlayer) return;
@@ -101,6 +72,31 @@ namespace OpenMMO
             this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 
         }
+        //SERVER
+        /// <summary> [Server] start. </summary>
+        [Server] protected override void StartServer() { agent.updateRotation = false; base.StartServer(); }
+        /// <summary> [Server] throttled update. </summary>
+        [Server] protected override void UpdateServer()
+        {
+            base.UpdateServer();
+            this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
+        }
+
+        /// <summary>
+    	/// OnStartLocalPlayer. Not used yet.
+    	/// </summary>
+        public override void OnStartLocalPlayer()
+        {
+        }
+
+        /// <summary>
+    	/// OnDestroy client and side-server. Not used yet.
+    	/// </summary>
+        void OnDestroy()
+        {
+        }
+
+
 
         /// <summary>
     	/// Client only, late update.

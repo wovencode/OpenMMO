@@ -22,14 +22,17 @@ namespace OpenMMO
 		// -------------------------------------------------------------------------------
 		public override void OnInspectorGUI()
 		{
-			DrawDefaultInspector();
 
 			SpawnablePrefabsTemplate template = (SpawnablePrefabsTemplate)target;
-			
-			if (GUILayout.Button("Search & add Prefabs"))
+
+            GUI.backgroundColor = Color.green;
+			if (GUILayout.Button("FETCH PREFABS", GUILayout.Height(35)))//, GUILayout.Width(100)))
 			{
 				template.AutoRegisterSpawnablePrefabs();
-			}
+            }
+            GUI.backgroundColor = Color.white;
+
+            DrawDefaultInspector();
 		}
 		
 		// -------------------------------------------------------------------------------

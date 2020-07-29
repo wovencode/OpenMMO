@@ -13,21 +13,16 @@ namespace OpenMMO {
 	[System.Serializable]
 	public partial class PlayerAccount : MobileComponent
 	{
-        //ACCOUNT
+        //ACCOUNT INFO
 		public TablePlayer _tablePlayer = new TablePlayer();
         /// <summary>
 		/// holds exact replica of table data as in database
 		/// no need to sync, can be done individually if required
         /// </summary>
-        public TablePlayer tablePlayer
-        {
-            get { return _tablePlayer; }
-        }
-        public TablePlayer accountInfo
-        {
-            get { return _tablePlayer; }
-        }
-        //ZONES
+        public TablePlayer tablePlayer { get { return _tablePlayer; } }
+        public TablePlayer accountInfo { get { return _tablePlayer; } }
+        
+        //ZONE INFO
 		[SerializeField] TablePlayerZones _tablePlayerZones = new TablePlayerZones();
 		public TablePlayerZones tablePlayerZones
         {
@@ -39,23 +34,14 @@ namespace OpenMMO {
             get { return _tablePlayerZones; }
             set { _tablePlayerZones = value; }
         }
-		
-		/// <summary>
-		/// Server side start
-		/// </summary>
-		[ServerCallback]
-		protected override void Start()
-    	{
-        	base.Start(); // required
-		}
-		
-		/// <summary>
-		/// Called when the local player enters the game.
-		/// </summary>
-		public override void OnStartLocalPlayer()
-    	{
-    		base.OnStartLocalPlayer(); // required
-		}
+
+        /// <summary> Server side start </summary>
+        //[ServerCallback] protected override void Start() { base.Start(); } // required
+
+        /// <summary>
+        /// Called when the local player enters the game.
+        /// </summary>
+        public override void OnStartLocalPlayer() { base.OnStartLocalPlayer(); } // required
 		
 		/// <summary>
 		/// Called client and server-side, when the player object is destroyed
@@ -65,44 +51,38 @@ namespace OpenMMO {
     	{
     	
         }
-		
-		/// <summary>
-		/// Server side, throttled update
-		/// </summary>
-		[Server]
-		protected override void UpdateServer()
+
+        // S E R V E R
+
+        /// <summary> [Server] start method </summary>
+        [Server] protected override void StartServer() { base.StartServer(); }
+		/// <summary> [Server] throttled update </summary>
+		[Server] protected override void UpdateServer()
 		{
 			base.UpdateServer();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
 		}
 		
-		/// <summary>
-		/// Client side Update
-		/// </summary>
-		[Client]
-		protected override void UpdateClient()
+
+        // C L I E N T
+
+        /// <summary> [Client] start method </summary>
+        [Client] protected override void StartClient() { base.StartClient(); }
+		/// <summary> [Client] Update </summary>
+		[Client] protected override void UpdateClient()
 		{
 			base.UpdateClient();
 			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
-		/// <summary>
-		/// Client-based late update
-		/// </summary>
-		[Client]
-		protected override void LateUpdateClient()
+		/// <summary> Client-based late update </summary>
+		[Client] protected override void LateUpdateClient()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
 		}
-		
-		//// <summary>
-		/// Client-based fixed update
-		/// </summary>
-		[Client]
-		protected override void FixedUpdateClient()
-		{
-			
-		}
+
+        //// <summary> Client-based fixed update </summary>
+        [Client] protected override void FixedUpdateClient() { }
 		
 	}
 

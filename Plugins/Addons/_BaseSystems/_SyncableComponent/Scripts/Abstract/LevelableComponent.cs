@@ -1,4 +1,5 @@
-﻿//by Fhiz
+//by Fhiz
+//MODIFIED BY DX4D
 using System;
 using System.Text;
 using UnityEngine;
@@ -19,25 +20,19 @@ namespace OpenMMO {
 		public int level = 1;
 		public int maxLevel = 3;
 		
-		/// <summary>
-		/// Server-side Start for initializiation.
-		/// </summary>
-		[ServerCallback]
-		protected override void Start() {
-			base.Start();
-		}
-		
-		/// <summary>
-		/// Server-side, throttled update.
-		/// </summary>
-		[Server]
-		protected override void UpdateServer() {}
-		
-		/// <summary>
-		/// Client-side, throttled update.
-		/// </summary>
-		[Client]
-		protected override void UpdateClient() {}
+		///// <summary> Server-side Start for initializiation. </summary>
+		//[ServerCallback] protected override void Start() { base.Start(); }
+
+		//CLIENT
+		/// <summary> [Client] start. </summary>
+		[Client] protected override void StartClient() {}
+		/// <summary> [Client] throttled update. </summary>
+		[Client] protected override void UpdateClient() {}
+		//SERVER
+		/// <summary> [Server] start. </summary>
+		[Server] protected override void StartServer() {}
+		/// <summary> [Server] throttled update. </summary>
+		[Server] protected override void UpdateServer() {}
 		
 	}
 

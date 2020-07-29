@@ -1,4 +1,5 @@
 //by Fhiz
+//MODIFIED BY DX4D
 using System;
 using System.Text;
 using System.Linq;
@@ -18,35 +19,42 @@ namespace OpenMMO {
 	[System.Serializable]
 	public partial class EntityMovementComponent : SyncableComponent
 	{
-		
-		[Header("Components")]
+		[Header("COMPONENTS -autolinked-")]
         public NavMeshAgent agent;
         public Animator animator;
-        
-		// -- Component Cache
 		protected MobileComponent entityComponent;
+        
 		//public EntityEnergyComponent energyComponent; // TODO: add later to check "death" in states!
 		
 		[SyncVar] protected int state;
-		
-		/// <summary>
-		/// Start caches components and does basic initialization.
-		/// </summary>
-		protected override void Start()
-    	{
-    	
-    		agent = GetComponent<NavMeshAgent>();
-    		animator = GetComponent<Animator>();
-    		entityComponent = GetComponent<MobileComponent>();
-    		
-        	base.Start();
+
+        ///// <summary> Start caches components and does basic initialization. </summary>
+        //protected override void Start() { base.Start(); }
+        //ON VALIDATE - LOAD COMPONENTS
+        private void OnValidate() { LoadComponents(); }
+        void LoadComponents()
+        {
+            if (!agent) agent = GetComponent<NavMeshAgent>();
+            if (!animator) animator = GetComponent<Animator>();
+            if (!entityComponent) entityComponent = GetComponent<MobileComponent>();
+        }
+
+        //CLIENT
+        /// <summary> [Client] start. </summary>
+        [Client] protected override void StartClient() { LoadComponents(); }
+
+        /// <summary> [Client] throttled update. </summary>
+        [Client] protected override void UpdateClient()
+        {
+			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
-		
-		/// <summary>
-		/// Server-side, throttled update.
-		/// </summary>
-		[Server]
-		protected override void UpdateServer()
+
+        //SERVER
+        /// <summary> [Server] start. </summary>
+        [Server] protected override void StartServer() { LoadComponents(); }
+
+        /// <summary> [Server] throttled update. </summary>
+        [Server] protected override void UpdateServer()
 		{
 
 			foreach(KeyValuePair<int, StateTemplate> stateTemplate in StateTemplate.data)
@@ -60,15 +68,6 @@ namespace OpenMMO {
 			
 			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
 			
-		}
-		
-		/// <summary>
-		/// Client-side, throttled update.
-		/// </summary>
-		[Client]
-		protected override void UpdateClient()
-		{
-			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
 		}
 		
 		/// <summary>

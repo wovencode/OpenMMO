@@ -10,7 +10,7 @@ namespace OpenMMO {
 	/// [abstract][partial] MobileComponent is the base class for all movable Entities (Players, NPCs, Monsters, Pets etc.)
 	/// </summary>
 	[System.Serializable]
-	public abstract partial class MobileComponent : LevelableComponent
+	public abstract partial class MobileComponent : SpawnableComponent
 	{
 		
 		[Header("Components")]
@@ -24,22 +24,31 @@ namespace OpenMMO {
 		public ArchetypeTemplate archeType;
 		
 		// -- Component Cache
-		[HideInInspector]public EntityMovementComponent movementComponent;
+		[HideInInspector] public EntityMovementComponent movementComponent;
 		
-		/// <summary>
-		/// The Start methods initializes the component and prepares its basic properties.
-		/// </summary>
-		protected override void Start()
-    	{
-    		proxChecker = GetComponent<NetworkProximityChecker>();
-    		
-    		movementComponent = gameObject.GetComponent<EntityMovementComponent>();
-    		
-        	base.Start();
-		}
+		///// <summary> The Start methods initializes the component and prepares its basic properties. </summary>
+		//protected override void Start() { base.Start(); }
 
+        //ON VALIDATE - LOAD COMPONENTS
+        private void OnValidate() { LoadComponents(); }
+
+        //LOAD COMPONENTS
+        void LoadComponents()
+        {
+    		if (!proxChecker) proxChecker = GetComponent<NetworkProximityChecker>();
+    		if (!movementComponent) movementComponent = GetComponent<EntityMovementComponent>();
+        }
         // H O O K A B L E  M E T H O D S
-
+        protected override void StartServer()
+        {
+            base.StartServer();
+            LoadComponents();
+        }
+        protected override void StartClient()
+        {
+            base.StartClient();
+            LoadComponents();
+        }
         /// <summary> [server] Throttled update that runs server-side.
         /// Hook this method using [DevExtMethods(nameof(UpdateServer))]</summary>
         [Server] protected override void UpdateServer() { this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); } //HOOK
@@ -48,5 +57,4 @@ namespace OpenMMO {
         /// Hook this method using [DevExtMethods(nameof(UpdateClient))] </summary>
         [Client] protected override void UpdateClient() { this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); } //HOOK
 	}
-
 }

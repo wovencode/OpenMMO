@@ -16,24 +16,36 @@ namespace OpenMMO
 	[CustomEditor(typeof(SpawnablePrefabsTemplate))]
 	public class SpawnablePefabsTemplateEditor : Editor
 	{
-	
-		// -------------------------------------------------------------------------------
-		// OnInspectorGUI
-		// -------------------------------------------------------------------------------
-		public override void OnInspectorGUI()
-		{
 
-			SpawnablePrefabsTemplate template = (SpawnablePrefabsTemplate)target;
+        // -------------------------------------------------------------------------------
+        // OnInspectorGUI
+        // -------------------------------------------------------------------------------
+        public override void OnInspectorGUI()
+        {
 
-            GUI.backgroundColor = Color.green;
-			if (GUILayout.Button("FETCH PREFABS", GUILayout.Height(35)))//, GUILayout.Width(100)))
-			{
-				template.AutoRegisterSpawnablePrefabs();
+            SpawnablePrefabsTemplate template = (SpawnablePrefabsTemplate)target;
+
+            GUILayout.BeginVertical();
+            {
+                GUILayout.BeginVertical("box");
+                {
+                    GUI.backgroundColor = Color.green;
+                    if (GUILayout.Button("FETCH PREFABS", GUILayout.Height(35)))//, GUILayout.Width(100)))
+                    {
+                        template.AutoRegisterSpawnablePrefabs();
+                    }
+                    GUI.backgroundColor = Color.white;
+                }
+                GUILayout.EndVertical();
+
+                GUILayout.BeginVertical("box");
+                {
+                    DrawDefaultInspector();
+                }
+                GUILayout.EndVertical();
             }
-            GUI.backgroundColor = Color.white;
-
-            DrawDefaultInspector();
-		}
+            GUILayout.EndVertical();
+        }
 		
 		// -------------------------------------------------------------------------------
 		

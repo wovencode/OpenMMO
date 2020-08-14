@@ -239,13 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fe70f41c05b4db0854b836b71eec77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modulesConfigTemplate: {fileID: 11400000, guid: b4eb59463bc2f413b99af9cb46655f0d,
-    type: 2}
-  projectConfigTemplate: {fileID: 11400000, guid: 7f1030086e7bb45ad82c97342a5ade49,
-    type: 2}
-  gameRulesTemplate: {fileID: 11400000, guid: 81b1bccee2cc74db09102b9c49833726, type: 2}
-  badwordsTemplate: {fileID: 11400000, guid: 2dd504f4359e543bd9231874f5b3db7c, type: 2}
-  serverAuthorityTemplate: {fileID: 11400000, guid: 4592bc402899b9844a45baa38249caa4,
+  serverConfig: {fileID: 11400000, guid: 7f1030086e7bb45ad82c97342a5ade49, type: 2}
+  gameRulesConfig: {fileID: 11400000, guid: 81b1bccee2cc74db09102b9c49833726, type: 2}
+  serverAuthorityConfig: {fileID: 11400000, guid: 4592bc402899b9844a45baa38249caa4,
     type: 2}
 --- !u!114 &3252435990677973888
 MonoBehaviour:
@@ -274,11 +270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  mainZone: {fileID: 11400000, guid: 351fd208bae6f48d1a58f3a5e3a4dea0, type: 2}
-  subZones:
-  - {fileID: 11400000, guid: b2d494b65424c4bdaa50eeb8cc0b1dce, type: 2}
-  - {fileID: 11400000, guid: 00e0871290e3648fbafe12377bb8451a, type: 2}
-  - {fileID: 11400000, guid: 4616c8d9bd57d43408aef451724a0883, type: 2}
-  zoneIntervalMain: 10
+  zoneConfig: {fileID: 11400000, guid: 99e824c5082f8634faaf90ecdab1c4df, type: 2}
   debug:
-    debugMode: 1
+    _debugMode: 0

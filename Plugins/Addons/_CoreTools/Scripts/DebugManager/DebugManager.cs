@@ -55,7 +55,7 @@ namespace OpenMMO.Debugging
 				return;
 			
 			if (!debugMode)
-				debugMode = ProjectConfigTemplate.singleton.globalDebugMode;
+				debugMode = ServerConfigTemplate.singleton.globalDebugMode;
 			
 			string message = "["+list[0]+"] ";
 			
@@ -103,14 +103,14 @@ namespace OpenMMO.Debugging
 		protected static void WriteToLogFile(string message)
 		{
 
-			if (!ProjectConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
+			if (!ServerConfigTemplate.singleton.logMode || String.IsNullOrWhiteSpace(message))
 				return;
 			
-			if (!Directory.Exists(Tools.GetPath(ProjectConfigTemplate.singleton.logFolder)))
-				Directory.CreateDirectory(Tools.GetPath(ProjectConfigTemplate.singleton.logFolder));
+			if (!Directory.Exists(Tools.GetPath(ServerConfigTemplate.singleton.logFolder)))
+				Directory.CreateDirectory(Tools.GetPath(ServerConfigTemplate.singleton.logFolder));
 						
 			if (String.IsNullOrWhiteSpace(fileName))
-				fileName = ProjectConfigTemplate.singleton.logFolder + "/" + ProjectConfigTemplate.singleton.logFilename + "_" + Tools.GetRandomAlphaString() + ".txt";
+				fileName = ServerConfigTemplate.singleton.logFolder + "/" + ServerConfigTemplate.singleton.logFilename + "_" + Tools.GetRandomAlphaString() + ".txt";
 			
 			using (streamWriter = new StreamWriter(Tools.GetPath(fileName), true))
 			{

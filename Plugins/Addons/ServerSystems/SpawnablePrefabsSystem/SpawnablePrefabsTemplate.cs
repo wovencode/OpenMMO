@@ -15,7 +15,7 @@ namespace OpenMMO
 {
     /// <summary> Holds a list of all prefabs that can be spawned on the network server. 
     /// The default spawnable prefabs list on NetworkManager is very weakly implemented, thats why we use our own. </summary>
-    [CreateAssetMenu(fileName = "New SpawnablePrefabs", menuName = "OpenMMO - Templates/New SpawnablePrefabs", order = 999)]
+    [CreateAssetMenu(fileName = "New Spawnable Prefabs", menuName = "OpenMMO - Templates/New Spawnable Prefabs", order = 999)]
     public partial class SpawnablePrefabsTemplate : ScriptableObject
     {
         [Header("PREFAB FILTERS")]

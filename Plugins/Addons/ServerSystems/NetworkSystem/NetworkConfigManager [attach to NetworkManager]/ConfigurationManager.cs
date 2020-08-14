@@ -16,10 +16,17 @@ namespace OpenMMO
 	{
 		
 		[Header("Templates (Unique/Singleton)")]
-		public ProjectConfigTemplate projectConfigTemplate;
-		public GameRulesTemplate gameRulesTemplate;
-        public ServerAuthorityTemplate serverAuthorityTemplate;
-		
-	}
+		public ServerConfigTemplate serverConfig;
+		public GameRulesTemplate gameRulesConfig;
+        public ServerAuthorityTemplate serverAuthorityConfig;
+
+        private void OnValidate()
+        {
+            if (!serverConfig) serverConfig = Resources.Load<ServerConfigTemplate>("ServerSetup/DefaultServerConfig");
+            if (!gameRulesConfig) gameRulesConfig = Resources.Load<GameRulesTemplate>("ServerSetup/DefaultGameRulesConfig");
+            if (!serverAuthorityConfig) serverAuthorityConfig = Resources.Load<ServerAuthorityTemplate>("ServerSetup/DefaultServerAuthorityConfig");
+        }
+
+    }
 
 }

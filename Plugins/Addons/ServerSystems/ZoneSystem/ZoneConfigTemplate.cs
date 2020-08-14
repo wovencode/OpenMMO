@@ -13,7 +13,7 @@ using UnityEditor;
 namespace OpenMMO
 {
     /// <summary> Holds a list of all zones that are managed by the network server. </summary>
-    [CreateAssetMenu(fileName = "New ZoneConfig", menuName = "OpenMMO - Templates/New ZoneConfig", order = 999)]
+    [CreateAssetMenu(fileName = "New Zone Config", menuName = "OpenMMO - Templates/New Zone Config", order = 999)]
     public partial class ZoneConfigTemplate : ScriptableObject
     {
         [Header("Network Zones")]

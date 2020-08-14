@@ -129,7 +129,7 @@ namespace OpenMMO.Zones
 		{
 			get
 			{
-				if (ProjectConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay)
+				if (ServerConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay)
 					return active;
 				return false;
 			}

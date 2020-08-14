@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 using System;
 using Mirror;
@@ -28,7 +28,13 @@ namespace OpenMMO.Network
 		
 		[Header("Spawnable Prefabs (use the template below - never edit the list in NetworkManager directly)")]
 		public SpawnablePrefabsTemplate spawnPrefabsTemplate;
-		
+
+        private new void OnValidate()
+        {
+            base.OnValidate();
+
+            if (!spawnPrefabsTemplate) spawnPrefabsTemplate = Resources.Load<SpawnablePrefabsTemplate>("ServerSetup/DefaultSpawnablePrefabs");
+        }
         // -------------------------------------------------------------------------------
         // Awake (Base)
         // -------------------------------------------------------------------------------

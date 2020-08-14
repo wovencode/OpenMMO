@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -28,6 +28,17 @@ namespace OpenMMO {
 		
 		static NetworkZoneTemplateDictionary _data;
 		
+		
+		// -------------------------------------------------------------------------------
+        // OnValidate
+        // You can add custom validation checks here
+        // -------------------------------------------------------------------------------
+		public override void OnValidate()
+		{
+			base.OnValidate();
+            if (!server) server = Resources.Load<ServerInfoTemplate>("ServerInfo/Localhost");
+		}
+
 		// -------------------------------------------------------------------------------
         // GetZoneBySceneName
         // -------------------------------------------------------------------------------
@@ -76,15 +87,6 @@ namespace OpenMMO {
 			
 			_data = null;
 			
-		}
-		
-		// -------------------------------------------------------------------------------
-        // OnValidate
-        // You can add custom validation checks here
-        // -------------------------------------------------------------------------------
-		public override void OnValidate()
-		{
-			base.OnValidate();
 		}
 		
 		// -------------------------------------------------------------------------------

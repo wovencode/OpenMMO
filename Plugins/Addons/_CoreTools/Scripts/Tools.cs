@@ -104,7 +104,7 @@ namespace OpenMMO
 		/// </summary>
 		public static string GenerateHash(string encryptText, string saltText)
 		{
-			return Tools.PBKDF2Hash(encryptText, ProjectConfigTemplate.singleton.securitySalt + saltText);
+			return Tools.PBKDF2Hash(encryptText, ServerConfigTemplate.singleton.securitySalt + saltText);
 		}
 		
 		/// <summary>

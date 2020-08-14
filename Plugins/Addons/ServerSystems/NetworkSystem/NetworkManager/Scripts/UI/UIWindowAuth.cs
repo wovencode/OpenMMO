@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -133,7 +133,7 @@ namespace OpenMMO.UI
 			if (rememberServer)
 				PlayerPrefs.SetString(Constants.PlayerPrefsLastServer, serverDropdown.captionText.text);
 			
-            networkManager.networkAddress = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].ip;
+            networkManager.networkAddress = ServerConfigTemplate.singleton.serverList[serverDropdown.value].ip;
 		}
 		
 		// ================================= LOAD SERVERS ================================
@@ -144,12 +144,12 @@ namespace OpenMMO.UI
 		protected void LoadServers(bool forced=false)
 		{
 			
-			if (loaded || ProjectConfigTemplate.singleton == null)
+			if (loaded || ServerConfigTemplate.singleton == null)
 				return;
 			
 			serverDropdown.options.Clear();
 			
-			foreach (ServerInfoTemplate template in ProjectConfigTemplate.singleton.serverList)
+			foreach (ServerInfoTemplate template in ServerConfigTemplate.singleton.serverList)
 			{
 				if (template.visible)
 					serverDropdown.options.Add(new Dropdown.OptionData(template.title));
@@ -159,16 +159,16 @@ namespace OpenMMO.UI
 			{
 				string lastServer = PlayerPrefs.GetString(Constants.PlayerPrefsLastServer, "");
 				
-				for (int i = 0; i < ProjectConfigTemplate.singleton.serverList.Length; i++)
-					if (ProjectConfigTemplate.singleton.serverList[i].visible && ProjectConfigTemplate.singleton.serverList[i].title == lastServer)
+				for (int i = 0; i < ServerConfigTemplate.singleton.serverList.Length; i++)
+					if (ServerConfigTemplate.singleton.serverList[i].visible && ServerConfigTemplate.singleton.serverList[i].title == lastServer)
 						serverDropdown.value = i;
 			}
 			else
 				serverDropdown.value = 0;
 			
-			serverDropdown.captionText.text = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].title;
+			serverDropdown.captionText.text = ServerConfigTemplate.singleton.serverList[serverDropdown.value].title;
 			
-			networkManager.networkAddress = ProjectConfigTemplate.singleton.serverList[serverDropdown.value].ip;
+			networkManager.networkAddress = ServerConfigTemplate.singleton.serverList[serverDropdown.value].ip;
 			
 			loaded = true;
 			

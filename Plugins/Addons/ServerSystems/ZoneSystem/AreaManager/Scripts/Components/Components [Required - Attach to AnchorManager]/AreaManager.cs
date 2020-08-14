@@ -71,7 +71,7 @@ namespace OpenMMO.Areas
         {
         	get
         	{
-				return ProjectConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay;
+				return ServerConfigTemplate.singleton.GetNetworkType != NetworkType.HostAndPlay;
         	}
         }
         

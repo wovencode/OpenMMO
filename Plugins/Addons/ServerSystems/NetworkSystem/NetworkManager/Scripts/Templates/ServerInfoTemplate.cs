@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace OpenMMO {
 	// ===================================================================================
 	// ServerInfoTemplate
 	// ===================================================================================
-	[CreateAssetMenu(fileName = "New ServerInfo", menuName = "OpenMMO - Servers/New ServerInfo", order = 999)]
+	[CreateAssetMenu(fileName = "New Server Info", menuName = "OpenMMO - Servers/New Server Info", order = 999)]
 	public partial class ServerInfoTemplate : ScriptableTemplate
 	{
 		

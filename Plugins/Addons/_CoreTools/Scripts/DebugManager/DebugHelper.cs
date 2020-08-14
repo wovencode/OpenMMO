@@ -39,7 +39,7 @@ namespace OpenMMO.Debugging
 				else if (_debugMode == DebugMode.Off)
 					return false;
 				else
-					return ProjectConfigTemplate.singleton.globalDebugMode;
+					return ServerConfigTemplate.singleton.globalDebugMode;
 			}
 		}
 		

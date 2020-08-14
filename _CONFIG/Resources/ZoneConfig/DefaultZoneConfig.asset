@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116ba654281e13f478bc315f36fbd1d5, type: 3}
+  m_Name: DefaultZoneConfig
+  m_EditorClassIdentifier: 
+  mainZone: {fileID: 11400000, guid: 9b557020c40f468448b03afd460bc1f8, type: 2}
+  subZones:
+  - {fileID: 11400000, guid: 83874024d2754a440b132b21fbf0b7ea, type: 2}
+  zoneSaveInterval: 60

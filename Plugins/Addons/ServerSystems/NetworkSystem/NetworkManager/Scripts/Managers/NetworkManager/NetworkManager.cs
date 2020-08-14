@@ -227,7 +227,7 @@ namespace OpenMMO.Network
 			
 			// -- Only in Host+Play as OnServerDisconnect does not get called:
 			
-			if (ProjectConfigTemplate.singleton.networkType == NetworkType.HostAndPlay)
+			if (ServerConfigTemplate.singleton.networkType == NetworkType.HostAndPlay)
 			{
 			
 				// -- 2) force log-out out all online players

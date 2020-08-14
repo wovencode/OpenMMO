@@ -21,8 +21,8 @@ namespace OpenMMO
         // -------------------------------------------------------------------------------
         public static void SetBuildType(NetworkType buildType, bool headless = false)
         {
-            ProjectConfigTemplate.singleton.networkType = buildType;
-            ProjectConfigTemplate.singleton.OnValidate();
+            ServerConfigTemplate.singleton.networkType = buildType;
+            ServerConfigTemplate.singleton.OnValidate();
 
             EditorUserBuildSettings.enableHeadlessMode = headless;
 

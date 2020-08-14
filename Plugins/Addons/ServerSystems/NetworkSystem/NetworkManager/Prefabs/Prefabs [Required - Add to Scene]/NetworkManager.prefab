@@ -64,7 +64,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs: []
   debug:
-    debugMode: 1
+    _debugMode: 0
   spawnPrefabsTemplate: {fileID: 11400000, guid: 5bb742c288faf429681a0c1743a9027d,
     type: 2}
   systemText:
@@ -158,8 +158,8 @@ MonoBehaviour:
   maxPlayers: 0
   state: 0
   guiScene:
-    sceneAsset: {fileID: 102900000, guid: 4a25c1de28bc2489d9c68ea564410fc7, type: 3}
-    sceneName: UI Scene
+    sceneAsset: {fileID: 102900000, guid: 8ef02496a66605d4d808424207dbe86c, type: 3}
+    sceneName: Default UI Scene
 --- !u!114 &3252435991396032036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   debug:
-    debugMode: 0
+    _debugMode: 0
   checkApplicationVersion: 1
   connectDelayMin: 4
   connectDelayMax: 8

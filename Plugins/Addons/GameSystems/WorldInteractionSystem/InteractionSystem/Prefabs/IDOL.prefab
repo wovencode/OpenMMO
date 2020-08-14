@@ -111,10 +111,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36160c9216a213b4c93895f4da5b1f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _icon: {fileID: 21300000, guid: 49ac9b0e24d3e47848dcf5f48fb601f7, type: 3}
   _layer:
     serializedVersion: 2
     m_Bits: 1
+  _player: {fileID: 0}
+  _playerProfile: {fileID: 0}
+  _account: {fileID: 0}
 --- !u!114 &4162056475045566255
 MonoBehaviour:
   m_ObjectHideFlags: 0

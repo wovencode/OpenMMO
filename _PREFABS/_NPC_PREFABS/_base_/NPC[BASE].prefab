@@ -17,10 +17,6 @@ GameObject:
   - component: {fileID: 484926176814722959}
   - component: {fileID: -669462958454842728}
   - component: {fileID: 3284814430750293244}
-  - component: {fileID: 2205614233112294259}
-  - component: {fileID: 834553382609797010}
-  - component: {fileID: 4395218403969549655}
-  - component: {fileID: -9183309943807914297}
   - component: {fileID: 3405049693888991587}
   - component: {fileID: -2395813441537120029}
   m_Layer: 10
@@ -201,80 +197,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _icon: {fileID: 21300000, guid: 073acc06195434d0284e1c9199b3f299, type: 3}
---- !u!114 &2205614233112294259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930793167279634983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3c63311c84f0b47b3da10851f0da91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _immortal: 0
-  _health: 100
-  _maxHealth: 100
-  _mana: 10
-  _maxMana: 10
-  _strength: 10
-  _dexterity: 10
-  _constitution: 10
-  _intelligence: 10
-  _wisdom: 10
-  _charisma: 10
---- !u!114 &834553382609797010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930793167279634983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 223d17e41cadcc848af29414145330bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _skillPoints: 0
---- !u!114 &4395218403969549655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930793167279634983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6acac069291fd42956690bb6f97e58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _profile: {fileID: 3405049693888991587}
-  _givesExperience: 1
-  _experience: 0
-  _tradeList: []
---- !u!114 &-9183309943807914297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930793167279634983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864f931a920839b4bac1a4b8cf1413bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _inParty: 0
-  members: []
 --- !u!114 &3405049693888991587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,17 +211,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  dialogueSystemData: 
-  usePortraitIconForConversations: 0
   _agent: {fileID: 8539800676653855757}
   _target: {fileID: 484926176814722959}
   _interaction: {fileID: -669462958454842728}
   _description: {fileID: 3284814430750293244}
   level: 1
-  _stats: {fileID: 2205614233112294259}
-  _skills: {fileID: 834553382609797010}
-  _loot: {fileID: 4395218403969549655}
-  _party: {fileID: -9183309943807914297}
 --- !u!114 &-2395813441537120029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +256,78 @@ PrefabInstance:
       propertyPath: profile
       value: 
       objectReference: {fileID: 3405049693888991587}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582908969997545330, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492141690578241723, guid: 17dd016dadc16764f87960256e5d9244,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8490554799455582278, guid: 17dd016dadc16764f87960256e5d9244,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977791704d90f400898d12a373432bef, type: 3}
+  m_Name: DefaultSpawnablePrefabs
+  m_EditorClassIdentifier: 
+  spawnComponentRequired: 0
+  requiredCategoryTags: []
+  excludedCategoryTags: []
+  excludedPrefabs:
+  - {fileID: 7930793167279634983, guid: a33bf0f151c8e6f4cb47f89963ce89c7, type: 3}
+  - {fileID: 7930793167279634983, guid: ac6cc9580df39534b98ba06ded26c718, type: 3}
+  assetBaseFolder: Assets/Plugins/OpenMMO/
+  spawnablePrefabFolders:
+  - _PREFABS/_PLAYER_PREFABS
+  - _PREFABS/_NPC_PREFABS
+  - _PREFABS/_WORLD_PREFABS
+  manualPrefabs: []
+  autoPrefabs:
+  - {fileID: 5907515460932538135, guid: 94862d576d689ee46b25eedc6f9d1626, type: 3}
+  - {fileID: 7579274339923785009, guid: abafb66585efdea4fbdfc3a0acba0a88, type: 3}
+  - {fileID: 1788335689246004932, guid: 76597492c2c30ff48b0fdc56d9016860, type: 3}

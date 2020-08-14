@@ -1,9 +1,9 @@
 OpenMMO - Groundwork
 ---
-by Fhiz<br>
-https://github.com/wovencode/OpenMMO<br>
-https://github.com/wovencode/OpenMMO/issues<br>
-https://discord.gg/Cx9hAN4<br>
+Founded by Fhiz - Maintained by DX4D Game Studios
+https://github.com/wovencode/OpenMMO
+https://github.com/wovencode/OpenMMO/issues
+https://discord.gg/Cx9hAN4
 
 Summary
 ---

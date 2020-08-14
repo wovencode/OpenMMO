@@ -25,6 +25,6 @@ MonoBehaviour:
   - _PREFABS/_WORLD_PREFABS
   manualPrefabs: []
   autoPrefabs:
-  - {fileID: 5907515460932538135, guid: 94862d576d689ee46b25eedc6f9d1626, type: 3}
+  - {fileID: 4608414279724381252, guid: 94862d576d689ee46b25eedc6f9d1626, type: 3}
   - {fileID: 7579274339923785009, guid: abafb66585efdea4fbdfc3a0acba0a88, type: 3}
   - {fileID: 1788335689246004932, guid: 76597492c2c30ff48b0fdc56d9016860, type: 3}

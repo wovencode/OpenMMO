@@ -27,14 +27,8 @@ namespace OpenMMO.Zones
 	
 		[Header("Options")]
 		public bool active;
-		
-		[Header("Network Zones")]
-		public NetworkZoneTemplate mainZone;
-		public List<NetworkZoneTemplate> subZones;
-		
-		[Header("Settings")]
-		[Tooltip("MainZone data save interval (in seconds)")]
-		public float zoneIntervalMain = 60f;
+
+        public ZoneConfigTemplate zoneConfig;
 		
 		[Header("Debug Helper")]
 		public DebugHelper debug = new DebugHelper();
@@ -73,25 +67,30 @@ namespace OpenMMO.Zones
 			
     		if (!active || GetIsMainZone || !GetCanSwitchZone)
     		{
-    			currentZone = mainZone;
+    			currentZone = zoneConfig.mainZone;
     			debug.LogFormat(this.name, nameof(Awake), "mainZone"); //DEBUG
     			return;
     		}
     		
-    		currentZone = subZones[zoneIndex];
+    		currentZone = zoneConfig.subZones[zoneIndex];
     		    		
-    		foreach (NetworkZoneTemplate template in subZones)
+    		foreach (NetworkZoneTemplate template in zoneConfig.subZones)
     			if (template == currentZone)
     				InitAsSubZone(template);
     		
     	}
-    	
-    	// ============================== GETTERS ========================================
-    	
-    	// -------------------------------------------------------------------------------
-    	// GetIsMainZone
-    	// -------------------------------------------------------------------------------
-    	public bool GetIsMainZone
+
+        private void OnValidate()
+        {
+            if (!zoneConfig) zoneConfig = Resources.Load<ZoneConfigTemplate>("ZoneConfig/DefaultZoneConfig");
+        }
+
+        // ============================== GETTERS ========================================
+
+        // -------------------------------------------------------------------------------
+        // GetIsMainZone
+        // -------------------------------------------------------------------------------
+        public bool GetIsMainZone
     	{
     		get
     		{
@@ -154,7 +153,7 @@ namespace OpenMMO.Zones
 		protected float GetSubZoneTimeoutInterval
 		{
 			get {
-				return zoneIntervalMain * currentZone.zoneTimeoutMultiplier;
+				return zoneConfig.zoneSaveInterval * currentZone.zoneTimeoutMultiplier;
 			}
 		}
 		
@@ -193,15 +192,15 @@ DebugManager.Log(">>>>spawn subzones");
 			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones)
 				return;
 
-			InvokeRepeating(nameof(SaveZone), 0, zoneIntervalMain);
+			InvokeRepeating(nameof(SaveZone), 0, zoneConfig.zoneSaveInterval);
 			
-			for (int i = 0; i < subZones.Count; i++)
-    			if (subZones[i] != currentZone)
+			for (int i = 0; i < zoneConfig.subZones.Count; i++)
+    			if (zoneConfig.subZones[i] != currentZone)
     				SpawnSubZone(i);
     		
     		spawnedSubZones = true;
     		
-    		debug.LogFormat(this.name, nameof(SpawnSubZones), subZones.Count.ToString()); //DEBUG
+    		debug.LogFormat(this.name, nameof(SpawnSubZones), zoneConfig.subZones.Count.ToString()); //DEBUG
     		
 		}
 
@@ -266,9 +265,9 @@ DebugManager.Log(">>>>spawn subzones");
 			
 			autoPlayerName = msg.playername;
 			
-			for (int i = 0; i < subZones.Count; i++)
+			for (int i = 0; i < zoneConfig.subZones.Count; i++)
     		{
-				if (msg.zonename == subZones[i].name)
+				if (msg.zonename == zoneConfig.subZones[i].name)
 				{
 					zoneIndex = i;
 					networkTransport.port = GetZonePort;
@@ -307,7 +306,7 @@ DebugManager.Log(">>>>spawn subzones");
     	// -------------------------------------------------------------------------------
 		void ReloadScene()
 		{
-			SceneManager.LoadScene(subZones[zoneIndex].scene.SceneName);
+			SceneManager.LoadScene(zoneConfig.subZones[zoneIndex].scene.SceneName);
 		}
 		
 		// -------------------------------------------------------------------------------

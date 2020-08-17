@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainZone: {fileID: 11400000, guid: 9b557020c40f468448b03afd460bc1f8, type: 2}
   subZones:
-  - {fileID: 11400000, guid: 83874024d2754a440b132b21fbf0b7ea, type: 2}
+  - {fileID: 11400000, guid: e91f9ae101a2ed04cae8ea67c0c138cd, type: 2}
+  - {fileID: 11400000, guid: ae2da02c1e51c144fab0b4cc6d1e068c, type: 2}
   zoneSaveInterval: 60

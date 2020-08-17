@@ -217,7 +217,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startingZone
       value: 
-      objectReference: {fileID: 11400000, guid: 83874024d2754a440b132b21fbf0b7ea,
+      objectReference: {fileID: 11400000, guid: e91f9ae101a2ed04cae8ea67c0c138cd,
         type: 2}
     - target: {fileID: 5053945538751103481, guid: a33bf0f151c8e6f4cb47f89963ce89c7,
         type: 3}

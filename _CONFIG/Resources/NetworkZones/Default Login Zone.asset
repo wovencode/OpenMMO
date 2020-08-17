@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Developer Test Room
   folderName: NetworkZones
-  server: {fileID: 11400000, guid: f348574aedc9140eda570b43f06043f2, type: 2}
+  server: {fileID: 11400000, guid: e7e259656c143834a9b6a2e10aa2e034, type: 2}
   scene:
     sceneAsset: {fileID: 102900000, guid: 0bc40389fef1c3e4e825b98612879c64, type: 3}
-    sceneName: Default Login Scene
+    sceneName: DefaultLoginScene
   zoneTimeoutMultiplier: 6

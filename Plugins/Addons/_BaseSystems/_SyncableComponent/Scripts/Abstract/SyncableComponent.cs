@@ -67,8 +67,8 @@ namespace OpenMMO {
 		{
 			if (CheckUpdateInterval)
 			{
-				if (isClient) UpdateClient();
-				if (isServer) UpdateServer();
+                if (isClient) { UpdateClient(); }
+				if (isServer) { UpdateServer(); }
 				
 				RefreshUpdateInterval();
 			}
@@ -78,15 +78,15 @@ namespace OpenMMO {
 		/// <summary> Client-side throttled update, protected to allow derived classes to use it. </summary>
 		[Client] protected abstract void UpdateClient();
 
-		//LATE UPDATE (CLIENT)
-		/// <summary> Late Updated every frame, private to enforce the use of LateUpdateClient. </summary>
-		void LateUpdate() { if (isClient) LateUpdateClient(); }
+        //LATE UPDATE (CLIENT)
+        /// <summary> Late Updated every frame, private to enforce the use of LateUpdateClient. </summary>
+        void LateUpdate() { if (isClient) { LateUpdateClient(); } }
 		/// <summary> Client-side late update, protected to allow derived classes to use it. </summary>
 		[Client] protected abstract void LateUpdateClient();
 
 		//FIXED UPDATE (CLIENT)
 		/// <summary> Private, frame-rate independent fixed update. Private to enforce the use of FixedUpdateClient / FixedUpdateServer. </summary>
-		void FixedUpdate() { if (isClient) FixedUpdateClient(); }
+		void FixedUpdate() { if (isClient) { FixedUpdateClient(); } }
 		/// <summary> Client-side fixed update, protected to allow derived classes to use it. </summary>
 		[Client] protected abstract void FixedUpdateClient();
 		

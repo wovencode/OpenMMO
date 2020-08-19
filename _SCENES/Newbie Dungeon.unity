@@ -1071,7 +1071,7 @@ PrefabInstance:
     - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: bypassConfirmation
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 678489977538520898, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}

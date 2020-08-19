@@ -499,7 +499,7 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
         /// <param name="username"></param>
         /// <param name="playername"></param>
-		protected GameObject LoginPlayer(NetworkConnection conn, string username, string playername, int token)
+        protected GameObject LoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
 
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);

@@ -956,6 +956,11 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: ab03650d9a3964219ade5299193a500b
       objectReference: {fileID: 0}
+    - target: {fileID: 3917935858873504122, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: m_SceneId
+      value: 155866849
+      objectReference: {fileID: 0}
     - target: {fileID: 6629307785899757726, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: subScene.sceneAsset
@@ -980,7 +985,7 @@ PrefabInstance:
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.764435
+      value: 50.75
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -1073,6 +1078,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 1327690721683434538, guid: 24a17a2831d6045d4a73fcf366614535,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Name
@@ -1158,7 +1168,8 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3385146684194515435, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
 --- !u!1001 &812343911
 PrefabInstance:
@@ -2487,6 +2498,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 1327690721683434538, guid: 24a17a2831d6045d4a73fcf366614535,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Name
@@ -2572,6 +2588,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3260256f25abb4fdfbcb8782a789ff6c, type: 2}
+    - target: {fileID: 6095030512193162341, guid: 24a17a2831d6045d4a73fcf366614535,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6843111809541395396, guid: 24a17a2831d6045d4a73fcf366614535,
         type: 3}
       propertyPath: m_Size.y
@@ -3375,6 +3396,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AssetId
       value: 5445bd9218cfaf141a1d4e94a634675c
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162056475045566256, guid: c8de70b3f6557a543833bf7cb003141e,
+        type: 3}
+      propertyPath: m_SceneId
+      value: 240310147
       objectReference: {fileID: 0}
     - target: {fileID: 4162056475045566258, guid: c8de70b3f6557a543833bf7cb003141e,
         type: 3}

@@ -121,6 +121,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 01fa83c7dbe97dc419ce6459f9783d60, type: 2}
+--- !u!114 &154660594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0556bda05ea44788ee214dae5439e, type: 3}
+  m_Name: Wisdom
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _stat: 4
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +671,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebec0cf185a33fc44b2ea81004fdb277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &557119377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f675b33a5fd8f244fbda591c7dd80127, type: 3}
+  m_Name: Power
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _skillLevels: 0
 --- !u!1001 &593987819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,6 +772,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 593987819}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &611366676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fb251607e569740b971d75a947f678, type: 3}
+  m_Name: Mana
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _energyPool: 0
 --- !u!1001 &637109377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -813,6 +855,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
+--- !u!114 &664490421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31b1dd89538c134cb9f74f65df43fa5, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _lifePool: 1
 --- !u!1 &667038456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1093,11 @@ PrefabInstance:
       propertyPath: m_AssetId
       value: ab03650d9a3964219ade5299193a500b
       objectReference: {fileID: 0}
+    - target: {fileID: 3917935858873504122, guid: ab03650d9a3964219ade5299193a500b,
+        type: 3}
+      propertyPath: m_SceneId
+      value: 4264124577
+      objectReference: {fileID: 0}
     - target: {fileID: 6629307785899757726, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: subScene.sceneAsset
@@ -1061,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.764435
+      value: 50.75
       objectReference: {fileID: 0}
     - target: {fileID: 8474342443939015998, guid: ab03650d9a3964219ade5299193a500b,
         type: 3}
@@ -1713,6 +1774,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1031224388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0556bda05ea44788ee214dae5439e, type: 3}
+  m_Name: Intelligence
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _stat: 3
 --- !u!1001 &1034257957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1934,6 +2009,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1075933794}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1128165143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fb251607e569740b971d75a947f678, type: 3}
+  m_Name: Rage
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _energyPool: 1
 --- !u!1001 &1180513282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2021,6 +2110,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1180513282}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1278747668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0556bda05ea44788ee214dae5439e, type: 3}
+  m_Name: Constitution
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _stat: 2
 --- !u!1001 &1336504295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2262,6 +2365,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1403479255}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406219473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f675b33a5fd8f244fbda591c7dd80127, type: 3}
+  m_Name: Defense
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _skillLevels: 1
 --- !u!1001 &1472525389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2355,6 +2472,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3162214044724284032}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1480111702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0556bda05ea44788ee214dae5439e, type: 3}
+  m_Name: Charisma
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _stat: 5
 --- !u!1 &1537056440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,6 +2641,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a1d6adff3347b19b2da2e6ca3b76c, type: 3}
+--- !u!114 &1644806992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fb251607e569740b971d75a947f678, type: 3}
+  m_Name: Energy
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _energyPool: 2
 --- !u!1001 &1663098642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2817,6 +2962,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1771617113}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1781792029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0556bda05ea44788ee214dae5439e, type: 3}
+  m_Name: Strength
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _stat: 0
+--- !u!114 &1833704860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a0556bda05ea44788ee214dae5439e, type: 3}
+  m_Name: Dexterity
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _stat: 1
 --- !u!1001 &1903689143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2900,6 +3073,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1903689143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1912236495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e31b1dd89538c134cb9f74f65df43fa5, type: 3}
+  m_Name: Health
+  m_EditorClassIdentifier: 
+  _currentValue: 0
+  _lifePool: 0
 --- !u!1001 &1966655382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3658,7 +3845,12 @@ PrefabInstance:
     - target: {fileID: 4162056475045566256, guid: c8de70b3f6557a543833bf7cb003141e,
         type: 3}
       propertyPath: m_AssetId
-      value: 5445bd9218cfaf141a1d4e94a634675c
+      value: c8de70b3f6557a543833bf7cb003141e
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162056475045566256, guid: c8de70b3f6557a543833bf7cb003141e,
+        type: 3}
+      propertyPath: m_SceneId
+      value: 1211237105
       objectReference: {fileID: 0}
     - target: {fileID: 4162056475045566258, guid: c8de70b3f6557a543833bf7cb003141e,
         type: 3}
@@ -3672,6 +3864,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8de70b3f6557a543833bf7cb003141e, type: 3}
+--- !u!1 &4162056475682411233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4162056475045597578, guid: c8de70b3f6557a543833bf7cb003141e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4162056475682411232}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4162056475682411234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4162056475682411233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2427984400749eb4ab3c5bdb29730836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _autoload: 1
+  lifePools:
+  - {fileID: 1912236495}
+  - {fileID: 664490421}
+  energyPools:
+  - {fileID: 611366676}
+  - {fileID: 1128165143}
+  - {fileID: 1644806992}
+  stats:
+  - {fileID: 1781792029}
+  - {fileID: 1833704860}
+  - {fileID: 1278747668}
+  - {fileID: 1031224388}
+  - {fileID: 154660594}
+  - {fileID: 1480111702}
+  skills:
+  - {fileID: 557119377}
+  - {fileID: 1406219473}
 --- !u!4 &4742843551344197379
 Transform:
   m_ObjectHideFlags: 0

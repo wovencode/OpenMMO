@@ -33,24 +33,24 @@ namespace Mirror
         // pack message before sending
         // -> NetworkWriter passed as arg so that we can use .ToArraySegment
         //    and do an allocation free send before recycling it.
-        // Deprecated 03/03/2019
         [EditorBrowsable(EditorBrowsableState.Never), Obsolete("Use Pack<T> instead")]
         public static byte[] PackMessage(int msgType, MessageBase msg)
         {
-            using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
+            NetworkWriter writer = NetworkWriterPool.GetWriter();
+            try
             {
-                try
-                {
-                    // write message type
-                    writer.WriteInt16((short)msgType);
+                // write message type
+                writer.WriteInt16((short)msgType);
 
-                    // serialize message into writer
-                    msg.Serialize(writer);
+                // serialize message into writer
+                msg.Serialize(writer);
 
-                    // return byte[]
-                    return writer.ToArray();
-                }
-                finally { }
+                // return byte[]
+                return writer.ToArray();
+            }
+            finally
+            {
+                NetworkWriterPool.Recycle(writer);
             }
         }
 
@@ -76,31 +76,30 @@ namespace Mirror
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static byte[] Pack<T>(T message) where T : IMessageBase
         {
-            using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
-            {
-                Pack(message, writer);
-                byte[] data = writer.ToArray();
+            NetworkWriter writer = NetworkWriterPool.GetWriter();
 
-                return data;
-            }
+            Pack(message, writer);
+            byte[] data = writer.ToArray();
+
+            NetworkWriterPool.Recycle(writer);
+
+            return data;
         }
 
         // unpack a message we received
         public static T Unpack<T>(byte[] data) where T : IMessageBase, new()
         {
-            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(data))
-            {
-                int msgType = GetId<T>();
+            NetworkReader reader = new NetworkReader(data);
 
-                int id = networkReader.ReadUInt16();
-                if (id != msgType)
-                    throw new FormatException("Invalid message,  could not unpack " + typeof(T).FullName);
+            int msgType = GetId<T>();
 
-                T message = new T();
-                message.Deserialize(networkReader);
+            int id = reader.ReadUInt16();
+            if (id != msgType)
+                throw new FormatException("Invalid message,  could not unpack " + typeof(T).FullName);
 
-                return message;
-            }
+            T message = new T();
+            message.Deserialize(reader);
+            return message;
         }
 
         // unpack message after receiving

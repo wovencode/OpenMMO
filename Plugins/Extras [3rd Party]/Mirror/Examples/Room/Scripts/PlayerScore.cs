@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using Mirror;
 
 namespace Mirror.Examples.NetworkRoom
 {

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 namespace Mirror.Authenticators
@@ -51,7 +51,7 @@ namespace Mirror.Authenticators
                 authPassword = password
             };
 
-            conn.Send(authRequestMessage);
+            NetworkClient.Send(authRequestMessage);
         }
 
         public void OnAuthRequestMessage(NetworkConnection conn, AuthRequestMessage msg)
@@ -71,7 +71,7 @@ namespace Mirror.Authenticators
                 conn.Send(authResponseMessage);
 
                 // Invoke the event to complete a successful authentication
-                OnServerAuthenticated.Invoke(conn);
+                base.OnServerAuthenticated.Invoke(conn);
             }
             else
             {
@@ -88,14 +88,8 @@ namespace Mirror.Authenticators
                 conn.isAuthenticated = false;
 
                 // disconnect the client after 1 second so that response message gets delivered
-                StartCoroutine(DelayedDisconnect(conn, 1));
+                Invoke(nameof(conn.Disconnect), 1);
             }
-        }
-
-        public IEnumerator DelayedDisconnect(NetworkConnection conn, float waitTime)
-        {
-            yield return new WaitForSeconds(waitTime);
-            conn.Disconnect();
         }
 
         public void OnAuthResponseMessage(NetworkConnection conn, AuthResponseMessage msg)
@@ -105,7 +99,7 @@ namespace Mirror.Authenticators
                 Debug.LogFormat("Authentication Response: {0}", msg.message);
 
                 // Invoke the event to complete a successful authentication
-                OnClientAuthenticated.Invoke(conn);
+                base.OnClientAuthenticated.Invoke(conn);
             }
             else
             {

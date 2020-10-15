@@ -180,8 +180,7 @@ namespace Telepathy
         public bool Start(int port)
         {
             // not if already started
-            if (Active)
-                return false;
+            if (Active) return false;
 
             // clear old messages in queue, just to be sure that the caller
             // doesn't receive data from last time and gets out of sync.
@@ -203,8 +202,7 @@ namespace Telepathy
         public void Stop()
         {
             // only if started
-            if (!Active)
-                return;
+            if (!Active) return;
 
             Logger.Log("Server: stopping...");
 
@@ -255,12 +253,7 @@ namespace Telepathy
                     token.sendPending.Set(); // interrupt SendThread WaitOne()
                     return true;
                 }
-                // sending to an invalid connectionId is expected sometimes.
-                // for example, if a client disconnects, the server might still
-                // try to send for one frame before it calls GetNextMessages
-                // again and realizes that a disconnect happened.
-                // so let's not spam the console with log messages.
-                //Logger.Log("Server.Send: invalid connectionId: " + connectionId);
+                Logger.Log("Server.Send: invalid connectionId: " + connectionId);
                 return false;
             }
             Logger.LogError("Client.Send: message too big: " + data.Length + ". Limit: " + MaxMessageSize);

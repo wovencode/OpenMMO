@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -77,14 +78,6 @@ namespace Telepathy
                 // knows that the Connect failed. otherwise they will never know
                 receiveQueue.Enqueue(new Message(0, EventType.Disconnected, null));
             }
-            catch (ThreadInterruptedException)
-            {
-                // expected if Disconnect() aborts it
-            }
-            catch (ThreadAbortException)
-            {
-                // expected if Disconnect() aborts it
-            }
             catch (Exception exception)
             {
                 // something went wrong. probably important.
@@ -112,8 +105,7 @@ namespace Telepathy
         public void Connect(string ip, int port)
         {
             // not if already started
-            if (Connecting || Connected)
-                return;
+            if (Connecting || Connected) return;
 
             // We are connecting from now until Connect succeeds or fails
             _Connecting = true;

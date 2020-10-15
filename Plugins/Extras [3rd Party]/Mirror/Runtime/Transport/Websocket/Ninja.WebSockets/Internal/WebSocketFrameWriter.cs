@@ -22,6 +22,8 @@
 
 using System.IO;
 using System;
+using System.Net.WebSockets;
+using System.Text;
 
 namespace Ninja.WebSockets.Internal
 {

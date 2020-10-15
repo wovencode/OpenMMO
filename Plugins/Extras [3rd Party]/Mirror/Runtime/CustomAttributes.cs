@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Mirror
 {
-    // Deprecated 12/31/2018
     [EditorBrowsable(EditorBrowsableState.Never), Obsolete("Use NetworkBehaviour.syncInterval field instead. Can be modified in the Inspector too.")]
     [AttributeUsage(AttributeTargets.Class)]
     public class NetworkSettingsAttribute : Attribute

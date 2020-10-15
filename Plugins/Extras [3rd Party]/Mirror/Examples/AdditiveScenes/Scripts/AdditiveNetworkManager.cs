@@ -14,44 +14,43 @@ namespace Mirror.Examples.Additive
         public override void OnStartServer()
         {
             base.OnStartServer();
+            Debug.Log("Loading Scenes");
 
             // load all subscenes on the server only
-            StartCoroutine(LoadSubScenes());
-        }
-
-        IEnumerator LoadSubScenes()
-        {
-            if (LogFilter.Debug) Debug.Log("Loading Scenes");
-
             foreach (string sceneName in subScenes)
             {
-                yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-                if (LogFilter.Debug) Debug.Log($"Loaded {sceneName}");
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+                Debug.LogFormat("Loaded {0}", sceneName);
             }
         }
 
         public override void OnStopServer()
         {
-            StartCoroutine(UnloadScenes());
+            Debug.Log("Stopping Server");
+            base.OnStopServer();
+            UnloadScenes();
         }
 
         public override void OnStopClient()
         {
-            StartCoroutine(UnloadScenes());
+            Debug.Log("Stopping Client");
+            base.OnStopClient();
+            UnloadScenes();
         }
 
-        IEnumerator UnloadScenes()
+        void UnloadScenes()
         {
-            if (LogFilter.Debug) Debug.Log("Unloading Subscenes");
-
+            Debug.Log("Unloading Scenes");
             foreach (string sceneName in subScenes)
                 if (SceneManager.GetSceneByName(sceneName).IsValid())
-                {
-                    yield return SceneManager.UnloadSceneAsync(sceneName);
-                    if (LogFilter.Debug) Debug.Log($"Unloaded {sceneName}");
-                }
+                    StartCoroutine(UnloadScene(sceneName));
+        }
 
+        IEnumerator UnloadScene(string sceneName)
+        {
+            yield return SceneManager.UnloadSceneAsync(sceneName);
             yield return Resources.UnloadUnusedAssets();
+            Debug.LogFormat("Unloaded {0}", sceneName);
         }
     }
 }

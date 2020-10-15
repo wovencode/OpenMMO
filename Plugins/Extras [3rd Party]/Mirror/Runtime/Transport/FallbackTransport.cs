@@ -63,26 +63,6 @@ namespace Mirror
             available.ClientConnect(address);
         }
 
-        public override void ClientConnect(Uri uri)
-        {
-            foreach (Transport transport in transports)
-            {
-                if (transport.Available())
-                {
-                    try
-                    {
-                        transport.ClientConnect(uri);
-                        available = transport;
-                    }
-                    catch (ArgumentException)
-                    {
-                        // transport does not support the schema, just move on to the next one
-                    }
-                }
-            }
-            throw new Exception("No transport suitable for this platform");
-        }
-
         public override bool ClientConnected()
         {
             return available.ClientConnected();
@@ -98,6 +78,11 @@ namespace Mirror
             return available.ClientSend(channelId, segment);
         }
 
+        public override int GetMaxPacketSize(int channelId = 0)
+        {
+            return available.GetMaxPacketSize(channelId);
+        }
+
         void InitServer()
         {
             // wire all the base transports to our events
@@ -109,10 +94,6 @@ namespace Mirror
                 transport.OnServerDisconnected.AddListener(OnServerDisconnected.Invoke);
             }
         }
-
-        // right now this just returns the first available uri,
-        // should we return the list of all available uri?
-        public override Uri ServerUri() => available.ServerUri();
 
         public override bool ServerActive()
         {
@@ -149,32 +130,9 @@ namespace Mirror
             available.Shutdown();
         }
 
-        public override int GetMaxPacketSize(int channelId = 0)
-        {
-            // finding the max packet size in a fallback environment has to be
-            // done very carefully:
-            // * servers and clients might run different transports depending on
-            //   which platform they are on.
-            // * there should only ever be ONE true max packet size for everyone,
-            //   otherwise a spawn message might be sent to all tcp sockets, but
-            //   be too big for some udp sockets. that would be a debugging
-            //   nightmare and allow for possible exploits and players on
-            //   different platforms seeing a different game state.
-            // => the safest solution is to use the smallest max size for all
-            //    transports. that will never fail.
-            int mininumAllowedSize = int.MaxValue;
-            foreach (Transport transport in transports)
-            {
-                int size = transport.GetMaxPacketSize(channelId);
-                mininumAllowedSize = Mathf.Min(size, mininumAllowedSize);
-            }
-            return mininumAllowedSize;
-        }
-
         public override string ToString()
         {
             return available.ToString();
         }
-
     }
 }

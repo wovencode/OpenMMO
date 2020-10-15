@@ -43,7 +43,7 @@ namespace Ninja.WebSockets.Internal
     /// <summary>
     /// Main implementation of the WebSocket abstract class
     /// </summary>
-    public class WebSocketImplementation : WebSocket
+    internal class WebSocketImplementation : WebSocket
     {
         readonly Guid _guid;
         readonly Func<MemoryStream> _recycledStreamFactory;
@@ -66,6 +66,7 @@ namespace Ninja.WebSockets.Internal
         Queue<ArraySegment<byte>> _messageQueue = new Queue<ArraySegment<byte>>();
         SemaphoreSlim _sendSemaphore = new SemaphoreSlim(1, 1);
         public WebSocketHttpContext Context { get; set; }
+
 
         internal WebSocketImplementation(Guid guid, Func<MemoryStream> recycledStreamFactory, Stream stream, TimeSpan keepAliveInterval, string secWebSocketExtensions, bool includeExceptionInCloseResponse, bool isClient, string subProtocol)
         {
@@ -528,7 +529,7 @@ namespace Ninja.WebSockets.Internal
         async Task WriteStreamToNetwork(MemoryStream stream, CancellationToken cancellationToken)
         {
             ArraySegment<byte> buffer = GetBuffer(stream);
-            if (_stream is SslStream)
+            if(_stream is SslStream)
             {
                 _messageQueue.Enqueue(buffer);
                 await _sendSemaphore.WaitAsync();

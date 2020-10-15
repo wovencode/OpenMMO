@@ -22,6 +22,7 @@ namespace Mirror
 
         static double lastPingTime;
 
+
         // Date and time when the application started
         static readonly Stopwatch stopwatch = new Stopwatch();
 

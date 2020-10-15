@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using JetBrains.Annotations;
 
 namespace Mirror
 {
@@ -23,8 +22,7 @@ namespace Mirror
             OP_CLEAR,
             OP_REMOVE,
             OP_SET,
-            // Deprecated 12/03/2019
-            [EditorBrowsable(EditorBrowsableState.Never), Obsolete("SyncDictionaries now use OP_SET instead of OP_DIRTY")]
+            [Obsolete("SyncDictionaries now use OP_SET instead of OP_DIRTY")]
             OP_DIRTY
         }
 
@@ -230,14 +228,13 @@ namespace Mirror
             {
                 if (ContainsKey(i))
                 {
-                    objects[i] = value;
                     AddOperation(Operation.OP_SET, i, value);
                 }
                 else
                 {
-                    objects[i] = value;
                     AddOperation(Operation.OP_ADD, i, value);
                 }
+                objects[i] = value;
             }
         }
 
@@ -256,8 +253,12 @@ namespace Mirror
             return TryGetValue(item.Key, out TValue val) && EqualityComparer<TValue>.Default.Equals(val, item.Value);
         }
 
-        public void CopyTo([NotNull] KeyValuePair<TKey, TValue>[] array, int arrayIndex)
+        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
+            if (array == null)
+            {
+                throw new System.ArgumentNullException(nameof(array), "Array Is Null");
+            }
             if (arrayIndex < 0 || arrayIndex > array.Length)
             {
                 throw new System.ArgumentOutOfRangeException(nameof(arrayIndex), "Array Index Out of Range");
@@ -290,19 +291,19 @@ namespace Mirror
         IEnumerator IEnumerable.GetEnumerator() => objects.GetEnumerator();
     }
 
-    public abstract class SyncDictionary<TKey, TValue> : SyncIDictionary<TKey, TValue>
+    public abstract class  SyncDictionary<TKey, TValue>: SyncIDictionary<TKey, TValue>
     {
         protected SyncDictionary() : base(new Dictionary<TKey, TValue>())
         {
         }
 
-        protected SyncDictionary(IEqualityComparer<TKey> eq) : base(new Dictionary<TKey, TValue>(eq))
+        protected SyncDictionary(IEqualityComparer<TKey> eq) : base(new Dictionary<TKey,TValue>(eq))
         {
         }
 
-        public new Dictionary<TKey, TValue>.ValueCollection Values => ((Dictionary<TKey, TValue>)objects).Values;
+        public new Dictionary<TKey, TValue>.ValueCollection Values => ((Dictionary<TKey,TValue>)objects).Values;
 
-        public new Dictionary<TKey, TValue>.KeyCollection Keys => ((Dictionary<TKey, TValue>)objects).Keys;
+        public new Dictionary<TKey, TValue>.KeyCollection Keys => ((Dictionary<TKey,TValue>)objects).Keys;
 
         public new Dictionary<TKey, TValue>.Enumerator GetEnumerator() => ((Dictionary<TKey, TValue>)objects).GetEnumerator();
 

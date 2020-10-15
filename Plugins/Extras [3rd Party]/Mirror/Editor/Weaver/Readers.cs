@@ -3,6 +3,7 @@ using Mono.CecilX;
 using Mono.CecilX.Cil;
 using Mono.CecilX.Rocks;
 
+
 namespace Mirror.Weaver
 {
     public static class Readers
@@ -27,23 +28,15 @@ namespace Mirror.Weaver
                 return foundFunc;
             }
 
-            MethodDefinition newReaderFunc;
-
-            // Arrays are special,  if we resolve them, we get teh element type,
-            // so the following ifs might choke on it for scriptable objects
-            // or other objects that require a custom serializer
-            // thus check if it is an array and skip all the checks.
-            if (variable.IsArray)
-            {
-                newReaderFunc = GenerateArrayReadFunc(variable, recursionCount);
-                RegisterReadFunc(variable.FullName, newReaderFunc);
-                return newReaderFunc;
-            }
-
             TypeDefinition td = variable.Resolve();
             if (td == null)
             {
                 Weaver.Error($"{variable} is not a supported type");
+                return null;
+            }
+            if (td.IsDerivedFrom(Weaver.ScriptableObjectType))
+            {
+                Weaver.Error($"Cannot generate reader for scriptable object {variable}. Use a supported type or provide a custom reader");
                 return null;
             }
             if (td.IsDerivedFrom(Weaver.ComponentType))
@@ -68,7 +61,13 @@ namespace Mirror.Weaver
                 return null;
             }
 
-            if (td.IsEnum)
+            MethodDefinition newReaderFunc;
+
+            if (variable.IsArray)
+            {
+                newReaderFunc = GenerateArrayReadFunc(variable, recursionCount);
+            }
+            else if (td.IsEnum)
             {
                 return GetReadFunc(td.GetEnumUnderlyingType(), recursionCount);
             }
@@ -78,7 +77,7 @@ namespace Mirror.Weaver
             }
             else
             {
-                newReaderFunc = GenerateClassOrStructReadFunction(variable, recursionCount);
+                newReaderFunc = GenerateStructReadFunction(variable, recursionCount);
             }
 
             if (newReaderFunc == null)
@@ -157,10 +156,12 @@ namespace Mirror.Weaver
             worker.Append(worker.Create(OpCodes.Ret));
             worker.Append(labelEmptyArray);
 
+
             // T value = new T[length];
             worker.Append(worker.Create(OpCodes.Ldloc_0));
             worker.Append(worker.Create(OpCodes.Newarr, variable.GetElementType()));
             worker.Append(worker.Create(OpCodes.Stloc_1));
+
 
             // for (int i=0; i< length ; i++) {
             worker.Append(worker.Create(OpCodes.Ldc_I4_0));
@@ -178,6 +179,7 @@ namespace Mirror.Weaver
             worker.Append(worker.Create(OpCodes.Ldarg_0));
             worker.Append(worker.Create(OpCodes.Call, elementReadFunc));
             worker.Append(worker.Create(OpCodes.Stobj, variable.GetElementType()));
+
 
             worker.Append(worker.Create(OpCodes.Ldloc_2));
             worker.Append(worker.Create(OpCodes.Ldc_I4_1));
@@ -235,20 +237,21 @@ namespace Mirror.Weaver
             readerFunc.Body.InitLocals = true;
 
             ILProcessor worker = readerFunc.Body.GetILProcessor();
-
+            
             // int length = reader.ReadPackedInt32();
             worker.Append(worker.Create(OpCodes.Ldarg_0));
             worker.Append(worker.Create(OpCodes.Call, GetReadFunc(Weaver.int32Type)));
             worker.Append(worker.Create(OpCodes.Stloc_0));
-
+            
             // T[] array = new int[length]
             worker.Append(worker.Create(OpCodes.Ldloc_0));
             worker.Append(worker.Create(OpCodes.Newarr, elementType));
             worker.Append(worker.Create(OpCodes.Stloc_1));
 
+
             // loop through array and deserialize each element
             // generates code like this
-            // for (int i=0; i< length ; i++)
+            // for (int i=0; i< length ; i++) 
             // {
             //     value[i] = reader.ReadXXX();
             // }
@@ -280,7 +283,7 @@ namespace Mirror.Weaver
             worker.Append(worker.Create(OpCodes.Ldloc_2));
             worker.Append(worker.Create(OpCodes.Ldloc_0));
             worker.Append(worker.Create(OpCodes.Blt, labelBody));
-
+            
             // return new ArraySegment<T>(array);
             worker.Append(worker.Create(OpCodes.Ldloc_1));
             worker.Append(worker.Create(OpCodes.Newobj, Weaver.ArraySegmentConstructorReference.MakeHostInstanceGeneric(genericInstance)));
@@ -288,7 +291,7 @@ namespace Mirror.Weaver
             return readerFunc;
         }
 
-        static MethodDefinition GenerateClassOrStructReadFunction(TypeReference variable, int recursionCount)
+        static MethodDefinition GenerateStructReadFunction(TypeReference variable, int recursionCount)
         {
             if (recursionCount > MaxRecursionCount)
             {
@@ -326,22 +329,13 @@ namespace Mirror.Weaver
 
             ILProcessor worker = readerFunc.Body.GetILProcessor();
 
-            TypeDefinition td = variable.Resolve();
-
             if (variable.IsValueType)
             {
                 // structs are created with Initobj
                 worker.Append(worker.Create(OpCodes.Ldloca, 0));
                 worker.Append(worker.Create(OpCodes.Initobj, variable));
             }
-            else if (td.IsDerivedFrom(Weaver.ScriptableObjectType))
-            {
-                GenericInstanceMethod genericInstanceMethod = new GenericInstanceMethod(Weaver.ScriptableObjectCreateInstanceMethod);
-                genericInstanceMethod.GenericArguments.Add(variable);
-                worker.Append(worker.Create(OpCodes.Call, genericInstanceMethod));
-                worker.Append(worker.Create(OpCodes.Stloc_0));
-            }
-            else 
+            else
             {
                 // classes are created with their constructor
 

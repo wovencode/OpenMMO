@@ -136,7 +136,7 @@ namespace Mirror
                 {
                     EditorGUI.EndDisabledGroup();
                 }
-
+                
                 expanded = false;
             }
             serializedObject.ApplyModifiedProperties();
@@ -178,8 +178,6 @@ namespace Mirror
                 NetworkBehaviour networkBehaviour = target as NetworkBehaviour;
                 if (networkBehaviour != null)
                 {
-                    EditorGUILayout.LabelField("Sync Settings", EditorStyles.boldLabel);
-
                     // syncMode
                     serializedObject.FindProperty("syncMode").enumValueIndex = (int)(SyncMode)
                         EditorGUILayout.EnumPopup("Network Sync Mode", networkBehaviour.syncMode);

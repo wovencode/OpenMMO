@@ -21,12 +21,13 @@ namespace Mirror
         // internal buffer
         // byte[] pointer would work, but we use ArraySegment to also support
         // the ArraySegment constructor
-        internal ArraySegment<byte> buffer;
+        ArraySegment<byte> buffer;
 
         // 'int' is the best type for .Position. 'short' is too small if we send >32kb which would result in negative .Position
         // -> converting long to int is fine until 2GB of data (MAX_INT), so we don't have to worry about overflows here
         public int Position;
         public int Length => buffer.Count;
+
 
         public NetworkReader(byte[] bytes)
         {
@@ -200,7 +201,7 @@ namespace Mirror
         public static byte[] ReadBytesAndSize(this NetworkReader reader)
         {
             // count = 0 means the array was null
-            // otherwise count -1 is the length of the array
+            // otherwise count -1 is the length of the array 
             uint count = reader.ReadPackedUInt32();
             return count == 0 ? null : reader.ReadBytes(checked((int)(count - 1u)));
         }
@@ -340,8 +341,7 @@ namespace Mirror
         public static NetworkIdentity ReadNetworkIdentity(this NetworkReader reader)
         {
             uint netId = reader.ReadPackedUInt32();
-            if (netId == 0)
-                return null;
+            if (netId == 0) return null;
 
             if (NetworkIdentity.spawned.TryGetValue(netId, out NetworkIdentity identity))
             {
@@ -350,16 +350,6 @@ namespace Mirror
 
             if (LogFilter.Debug) Debug.Log("ReadNetworkIdentity netId:" + netId + " not found in spawned");
             return null;
-        }
-
-        public static Uri ReadUri(this NetworkReader reader)
-        {
-            return new Uri(reader.ReadString());
-        }
-
-        public static void ReadMessage<T>(this NetworkReader reader, T msg) where T : IMessageBase
-        {
-            msg.Deserialize(reader);
         }
     }
 }

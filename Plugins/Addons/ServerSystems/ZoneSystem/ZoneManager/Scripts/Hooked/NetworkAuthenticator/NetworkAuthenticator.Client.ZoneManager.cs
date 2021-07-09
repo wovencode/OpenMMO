@@ -25,7 +25,7 @@ namespace OpenMMO.Network
        	[DevExtMethods(nameof(OnStartClient))]
         void OnStartClient_NetworkPortals()
         {
-            NetworkClient.RegisterHandler<ServerMessageResponseAutoAuth>(OnServerMessageResponseAutoAuth, false);  
+            NetworkClient.RegisterHandler<ServerResponseAutoAuth>(OnServerMessageResponseAutoAuth, false);  
             
             OnClientAuthenticated.AddListener(OnClientAuthenticated_NetworkPortals);
         }
@@ -49,7 +49,7 @@ namespace OpenMMO.Network
 		public void ClientAutoAuthenticate()
 		{
 
-            ClientMessageRequestAutoAuth msg = new ClientMessageRequestAutoAuth
+            ClientRequestAutoAuth msg = new ClientRequestAutoAuth
             {
                 clientVersion = Application.version
             };
@@ -74,7 +74,7 @@ namespace OpenMMO.Network
 		// Direction: @Server -> @Client
 		// Execution: @Client
        	// -------------------------------------------------------------------------------
-        void OnServerMessageResponseAutoAuth(NetworkConnection conn, ServerMessageResponseAutoAuth msg)
+        void OnServerMessageResponseAutoAuth(NetworkConnection conn, ServerResponseAutoAuth msg)
         {
         	
         	// -- show popup if error message is not empty

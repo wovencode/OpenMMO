@@ -38,7 +38,7 @@ namespace OpenMMO.Network
 			if (!base.RequestUserLogin(conn, userName, password))
 				return false;
 
-			ClientMessageRequestUserLogin message = new ClientMessageRequestUserLogin
+			ClientRequestUserLogin message = new ClientRequestUserLogin
 			{
 				username = userName,
 				password = Tools.GenerateHash(name, password)
@@ -59,7 +59,7 @@ namespace OpenMMO.Network
 		protected override bool RequestUserLogout(NetworkConnection conn)
 		{
 		
-			ClientMessageRequestUserLogout message = new ClientMessageRequestUserLogout
+			ClientRequestUserLogout message = new ClientRequestUserLogout
 			{
 
 			};
@@ -92,7 +92,7 @@ namespace OpenMMO.Network
 			if (!base.RequestUserRegister(conn, userName, password, usermail))
 				return false;
 
-			ClientMessageRequestUserRegister message = new ClientMessageRequestUserRegister
+			ClientRequestUserRegister message = new ClientRequestUserRegister
 			{
 				username 	= userName,
 				password 	= Tools.GenerateHash(name, password),
@@ -128,7 +128,7 @@ namespace OpenMMO.Network
 			if (!base.RequestUserDelete(conn, userName, password))
 				return false;
 
-			ClientMessageRequestUserDelete message = new ClientMessageRequestUserDelete
+			ClientRequestUserDelete message = new ClientRequestUserDelete
 			{
 				username = userName,
 				password = Tools.GenerateHash(name, password)
@@ -162,7 +162,7 @@ namespace OpenMMO.Network
 			if (!base.RequestUserChangePassword(conn, userName, oldpassword, newpassword))
 				return false;
 
-			ClientMessageRequestUserChangePassword message = new ClientMessageRequestUserChangePassword
+			ClientRequestUserChangePassword message = new ClientRequestUserChangePassword
 			{
 				username = name,
 				oldPassword = Tools.GenerateHash(userName, oldpassword),
@@ -200,7 +200,7 @@ namespace OpenMMO.Network
 			if (!base.RequestUserConfirm(conn, userName, password))
 				return false;
 
-			ClientMessageRequestUserConfirm message = new ClientMessageRequestUserConfirm
+			ClientRequestUserConfirm message = new ClientRequestUserConfirm
 			{
 				username = userName,
 				password = Tools.GenerateHash(userName, password)
@@ -236,7 +236,7 @@ namespace OpenMMO.Network
 			if (!base.RequestPlayerLogin(conn, playername, username))
 				return false;
 
-			ClientMessageRequestPlayerLogin message = new ClientMessageRequestPlayerLogin
+			ClientRequestPlayerLogin message = new ClientRequestPlayerLogin
 			{
 				playername = playername,
 				username = username
@@ -273,7 +273,7 @@ namespace OpenMMO.Network
 			if (!base.RequestPlayerRegister(conn, playerName, userName, prefabName))
 				return false;
 
-			ClientMessageRequestPlayerRegister message = new ClientMessageRequestPlayerRegister
+			ClientRequestPlayerRegister message = new ClientRequestPlayerRegister
 			{
 				playername 	= playerName,
 				username 	= userName,
@@ -308,7 +308,7 @@ namespace OpenMMO.Network
 			if (!base.RequestPlayerDelete(conn, playerName, userName))
 				return false;
 
-			ClientMessageRequestPlayerDelete message = new ClientMessageRequestPlayerDelete
+			ClientRequestPlayerDelete message = new ClientRequestPlayerDelete
 			{
 				playername = playerName,
 				username = userName

@@ -30,7 +30,7 @@ namespace OpenMMO.Network
         public override void OnStartServer()
         {
 
-            NetworkServer.RegisterHandler<ClientMessageRequestAuth>(OnClientMessageRequestAuth, false);
+            NetworkServer.RegisterHandler<ClientRequestAuth>(OnClientMessageRequestAuth, false);
             
         	this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
         }
@@ -66,7 +66,7 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequest(NetworkConnection conn, ClientMessageRequest msg)
+        void OnClientMessageRequest(NetworkConnection conn, ClientRequest msg)
         {
     		// do nothing (this message is never called directly)
         }
@@ -86,10 +86,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestAuth(NetworkConnection conn, ClientMessageRequestAuth msg)
+        void OnClientMessageRequestAuth(NetworkConnection conn, ClientRequestAuth msg)
 		{
 
-			ServerMessageResponseAuth message = new ServerMessageResponseAuth
+			ServerResponseAuth message = new ServerResponseAuth
 			{
 				success = true,
 				text			 	= "",

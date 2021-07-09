@@ -33,50 +33,75 @@ namespace OpenMMO.Network
         	
             // ---- User Messages
             // @Server -> @Client
-            NetworkClient.RegisterHandler<ServerMessageResponseUserLogin>(OnServerMessageResponseUserLogin);
-            NetworkClient.RegisterHandler<ServerMessageResponseUserRegister>(OnServerMessageResponseUserRegister);
-            NetworkClient.RegisterHandler<ServerMessageResponseUserDelete>(OnServerMessageResponseUserDelete);
-            NetworkClient.RegisterHandler<ServerMessageResponseUserChangePassword>(OnServerMessageResponseUserChangePassword);
-            NetworkClient.RegisterHandler<ServerMessageResponseUserConfirm>(OnServerMessageResponseUserConfirm);
-            NetworkClient.RegisterHandler<ServerMessageResponseUserPlayerPreviews>(OnServerMessageResponseUserPlayerPreviews);
+            NetworkClient.RegisterHandler<ServerResponseUserLogin>(OnServerResponseUserLogin);
+            NetworkClient.RegisterHandler<ServerResponseUserRegister>(OnServerMessageResponseUserRegister);
+            NetworkClient.RegisterHandler<ServerResponseUserDelete>(OnServerMessageResponseUserDelete);
+            NetworkClient.RegisterHandler<ServerResponseUserChangePassword>(OnServerMessageResponseUserChangePassword);
+            NetworkClient.RegisterHandler<ServerResponseUserConfirm>(OnServerResponseUserConfirm);
+            NetworkClient.RegisterHandler<ServerResponseUserPlayerPreviews>(OnServerResponseUserPlayerPreviews);
             
             // ---- Player Messages
             // @Server -> @Client
-            NetworkClient.RegisterHandler<ServerMessageResponsePlayerLogin>(OnServerMessageResponsePlayerLogin);
-            NetworkClient.RegisterHandler<ServerMessageResponsePlayerRegister>(OnServerMessageResponsePlayerRegister);
-            NetworkClient.RegisterHandler<ServerMessageResponsePlayerDelete>(OnServerMessageResponsePlayerDelete);
+            NetworkClient.RegisterHandler<ServerResponsePlayerLogin>(OnServerResponsePlayerLogin);
+            NetworkClient.RegisterHandler<ServerResponsePlayerRegister>(OnServerResponsePlayerRegister);
+            NetworkClient.RegisterHandler<ServerResponsePlayerDelete>(OnServerResponsePlayerDelete);
             
             // --- Error Message
             // @Server -> @Client
-            NetworkClient.RegisterHandler<ServerMessageResponse>(OnServerMessageResponse);
+            NetworkClient.RegisterHandler<ServerResponseError>(OnServerResponseError);
             
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
             eventListeners.OnStartClient.Invoke(); //EVENT
-            
+
         }
-        
+
+        // ===============================================================================
+        // ============================== ERROR HANDLERS =================================
+        // ===============================================================================
+
+        // -------------------------------------------------------------------------------
+        // OnServerResponseError
+        // Direction: @Server -> @Client
+        // Execution: @Client
+        // -------------------------------------------------------------------------------
+        /// <summary>
+        /// Event <c>OnServerResponseError</c>.
+        /// Triggered when the server sends a response to the client.
+        /// Occurs on the client.
+        /// Checks for errors.
+        /// </summary>
+        /// <param name="msg"></param>
+        void OnServerResponseError(ServerResponseError msg) //REMOVED - DX4D
+        {
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            debug.LogFormat(this.name, nameof(OnServerMessageResponseUserChangePassword), conn.Id(), msg.success.ToString()); //DEBUG
+            OnServerResponse(msg);
+        }
+
         // ===============================================================================
         // ============================= MESSAGE HANDLERS ================================
         // ===============================================================================
-        
+
         // -------------------------------------------------------------------------------
-		// OnServerMessageResponse
-		// Direction: @Server -> @Client
-		// Execution: @Client
-		// -------------------------------------------------------------------------------
+        // OnServerMessageResponse
+        // Direction: @Server -> @Client
+        // Execution: @Client
+        // -------------------------------------------------------------------------------
         /// <summary>
         /// Event <c>OnServerMessageResponse</c>.
         /// Triggered when the server sends a response to the client.
         /// Occurs on the client.
         /// Checks for errors.
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponse(NetworkConnection conn, ServerMessageResponse msg)
+        //void OnServerMessageResponse(NetworkConnection conn, ServerResponse msg) //REMOVED - DX4D
+        void OnServerResponse(ServerResponse msg) //ADDED - DX4D
         {
-    		
-    		// -- show popup if error message is not empty
-        	if (!String.IsNullOrWhiteSpace(msg.text))
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            // -- show popup if error message is not empty
+            if (!String.IsNullOrWhiteSpace(msg.text))
                	UIPopupConfirm.singleton.Init(msg.text);
     		
         	// -- disconnect and un-authenticate if anything went wrong
@@ -87,7 +112,7 @@ namespace OpenMMO.Network
                 NetworkManager.singleton.StopClient();
             }
             
-            debug.LogFormat(this.name, nameof(OnServerMessageResponse), conn.Id(), msg.causesDisconnect.ToString(), msg.text); //DEBUG
+            debug.LogFormat(this.name, nameof(OnServerResponse), conn.Id(), msg.causesDisconnect.ToString(), msg.text); //DEBUG
         }
         
         // ========================== MESSAGE HANDLERS - USER ============================
@@ -99,11 +124,12 @@ namespace OpenMMO.Network
         /// Checks for the response succes and either shows the player select or auto selects the players.
         /// Occurs on the client.
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseUserLogin(NetworkConnection conn, ServerMessageResponseUserLogin msg)
+        //void OnServerResponseUserLogin(NetworkConnection conn, ServerResponseUserLogin msg) //REMOVED - DX4D
+        void OnServerResponseUserLogin(ServerResponseUserLogin msg) //ADDED - DX4D
         {
-
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            
             if (msg.success)
             {
                 playerPreviews.Clear();
@@ -119,11 +145,11 @@ namespace OpenMMO.Network
 
                 UIWindowLoginUser.singleton.Hide();
 
-                debug.LogFormat(this.name, nameof(OnServerMessageResponseUserLogin), conn.Id(), msg.players.Length.ToString()); //DEBUG
+                debug.LogFormat(this.name, nameof(OnServerResponseUserLogin), conn.Id(), msg.players.Length.ToString()); //DEBUG
 
             }
         	
-        	OnServerMessageResponse(conn, msg);
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -134,20 +160,21 @@ namespace OpenMMO.Network
         /// Doesn't login the player. To log the player in another request has to be made.
         /// Occurs on the client.
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseUserRegister(NetworkConnection conn, ServerMessageResponseUserRegister msg)
+        //void OnServerMessageResponseUserRegister(NetworkConnection conn, ServerResponseUserRegister msg) //REMOVED - DX4D
+        void OnServerMessageResponseUserRegister(ServerResponseUserRegister msg) //ADDED - DX4D
         {
-        	
-        	// -- hide user registration window if succeeded
-        	if (msg.success)
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            // -- hide user registration window if succeeded
+            if (msg.success)
         	{
         		UIWindowRegisterUser.singleton.Hide();
         	}
         	
         	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserRegister), conn.Id(), msg.success.ToString()); //DEBUG
         	
-        	OnServerMessageResponse(conn, msg);
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -157,12 +184,14 @@ namespace OpenMMO.Network
         /// Triggers the <c>OnServerMessageResponse</c> event.
         /// Occurs on the client.        
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseUserDelete(NetworkConnection conn, ServerMessageResponseUserDelete msg)
+        //void OnServerMessageResponseUserDelete(NetworkConnection conn, ServerResponseUserDelete msg) //REMOVED - DX4D
+        void OnServerMessageResponseUserDelete(ServerResponseUserDelete msg) //ADDED - DX4D
         {
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserDelete), conn.Id(), msg.success.ToString()); //DEBUG
-        	OnServerMessageResponse(conn, msg);
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            debug.LogFormat(this.name, nameof(OnServerMessageResponseUserDelete), conn.Id(), msg.success.ToString()); //DEBUG
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -172,12 +201,14 @@ namespace OpenMMO.Network
         /// Triggers the <c>OnServerMessageResponse</c> event.
         /// Occurs on the client.        
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseUserChangePassword(NetworkConnection conn, ServerMessageResponseUserChangePassword msg)
+        //void OnServerMessageResponseUserChangePassword(NetworkConnection conn, ServerResponseUserChangePassword msg) //REMOVED - DX4D
+        void OnServerMessageResponseUserChangePassword(ServerResponseUserChangePassword msg) //ADDED - DX4D
         {
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserChangePassword), conn.Id(), msg.success.ToString()); //DEBUG
-        	OnServerMessageResponse(conn, msg);
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            debug.LogFormat(this.name, nameof(OnServerMessageResponseUserChangePassword), conn.Id(), msg.success.ToString()); //DEBUG
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -187,12 +218,14 @@ namespace OpenMMO.Network
         /// Triggers the <c>OnServerMessageResponse</c> event.
         /// Occurs on the client.        
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseUserConfirm(NetworkConnection conn, ServerMessageResponseUserConfirm msg)
+        //void OnServerResponseUserConfirm(NetworkConnection conn, ServerResponseUserConfirm msg) //REMOVED - DX4D
+        void OnServerResponseUserConfirm(ServerResponseUserConfirm msg) //ADDED - DX4D
         {
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponseUserConfirm), conn.Id(), msg.success.ToString()); //DEBUG
-        	OnServerMessageResponse(conn, msg);
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            debug.LogFormat(this.name, nameof(OnServerResponseUserConfirm), conn.Id(), msg.success.ToString()); //DEBUG
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -205,21 +238,22 @@ namespace OpenMMO.Network
         /// Updates the clients Player Previews list.
         /// Occurs on the client.
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseUserPlayerPreviews(NetworkConnection conn, ServerMessageResponseUserPlayerPreviews msg)
+        //void OnServerResponseUserPlayerPreviews(NetworkConnection conn, ServerResponseUserPlayerPreviews msg) //REMOVED - DX4D
+        void OnServerResponseUserPlayerPreviews(ServerResponseUserPlayerPreviews msg) //ADDED - DX4D
         {
-        
-        	if (msg.success)
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            if (msg.success)
         	{
 				playerPreviews.Clear();
 				playerPreviews.AddRange(msg.players);
 				maxPlayers	= msg.maxPlayers;
 			}
 			
-			debug.LogFormat(this.name, nameof(OnServerMessageResponseUserPlayerPreviews), conn.Id(), msg.players.Length.ToString()); //DEBUG
+			debug.LogFormat(this.name, nameof(OnServerResponseUserPlayerPreviews), conn.Id(), msg.players.Length.ToString()); //DEBUG
 			
-        	OnServerMessageResponse(conn, msg);
+        	OnServerResponse(msg);
         }
 
         // ======================== MESSAGE HANDLERS - PLAYER ============================
@@ -231,14 +265,15 @@ namespace OpenMMO.Network
         /// Triggers the <c>OnServerMessageResponse</c> event.
         /// Occurs on the client.        
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponsePlayerLogin(NetworkConnection conn, ServerMessageResponsePlayerLogin msg)
+        //void OnServerResponsePlayerLogin(NetworkConnection conn, ServerResponsePlayerLogin msg) //REMOVED - DX4D
+        void OnServerResponsePlayerLogin(ServerResponsePlayerLogin msg) //ADDED - DX4D
         {
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            debug.LogFormat(this.name, nameof(OnServerResponsePlayerLogin), conn.Id(), msg.success.ToString()); //DEBUG
         	
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerLogin), conn.Id(), msg.success.ToString()); //DEBUG
-        	
-        	OnServerMessageResponse(conn, msg);
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -248,19 +283,21 @@ namespace OpenMMO.Network
         /// Triggers the <c>OnServerMessageResponse</c> event.
         /// Occurs on the client.        
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponsePlayerRegister(NetworkConnection conn, ServerMessageResponsePlayerRegister msg)
+        //void OnServerResponsePlayerRegister(NetworkConnection conn, ServerResponsePlayerRegister msg) //REMOVED - DX4D
+        void OnServerResponsePlayerRegister(ServerResponsePlayerRegister msg) //ADDED - DX4D
         {
-        	if (msg.success)
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            if (msg.success)
         	{
         		playerPreviews.Add(new PlayerPreview{name=msg.playername});
         		UIWindowPlayerSelect.singleton.UpdatePlayerPreviews(true);
         	}
         	
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerRegister), conn.Id(), msg.success.ToString()); //DEBUG
+        	debug.LogFormat(this.name, nameof(OnServerResponsePlayerRegister), conn.Id(), msg.success.ToString()); //DEBUG
         	
-        	OnServerMessageResponse(conn, msg);
+        	OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
@@ -270,18 +307,19 @@ namespace OpenMMO.Network
         /// Triggers the <c>OnServerMessageResponse</c> event.
         /// Occurs on the client.        
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponsePlayerDelete(NetworkConnection conn, ServerMessageResponsePlayerDelete msg)
+        //void OnServerResponsePlayerDelete(NetworkConnection conn, ServerResponsePlayerDelete msg) //REMOVED - DX4D
+        void OnServerResponsePlayerDelete(ServerResponsePlayerDelete msg) //ADDED - DX4D
         {
-        	
-        	debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerDelete), conn.Id(), msg.success.ToString()); //DEBUG
-        	
-        	OnServerMessageResponse(conn, msg);
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            debug.LogFormat(this.name, nameof(OnServerResponsePlayerDelete), conn.Id(), msg.success.ToString()); //DEBUG
+
+            OnServerResponse(msg);
         }
 
         // -------------------------------------------------------------------------------
-               
+
     }
 }
 

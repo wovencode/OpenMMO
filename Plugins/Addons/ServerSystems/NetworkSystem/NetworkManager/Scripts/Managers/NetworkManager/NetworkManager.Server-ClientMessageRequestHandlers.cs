@@ -31,17 +31,17 @@ namespace OpenMMO.Network
         {
         
             // ---- User
-            NetworkServer.RegisterHandler<ClientMessageRequestUserLogin>(OnClientMessageRequestUserLogin);
-            NetworkServer.RegisterHandler<ClientMessageRequestUserLogout>(OnClientMessageRequestUserLogout);
-            NetworkServer.RegisterHandler<ClientMessageRequestUserRegister>(OnClientMessageRequestUserRegister);
-            NetworkServer.RegisterHandler<ClientMessageRequestUserDelete>(OnClientMessageRequestUserDelete);
-            NetworkServer.RegisterHandler<ClientMessageRequestUserChangePassword>(OnClientMessageRequestUserChangePassword);
-            NetworkServer.RegisterHandler<ClientMessageRequestUserConfirm>(OnClientMessageRequestUserConfirm);
+            NetworkServer.RegisterHandler<ClientRequestUserLogin>(OnClientMessageRequestUserLogin);
+            NetworkServer.RegisterHandler<ClientRequestUserLogout>(OnClientMessageRequestUserLogout);
+            NetworkServer.RegisterHandler<ClientRequestUserRegister>(OnClientMessageRequestUserRegister);
+            NetworkServer.RegisterHandler<ClientRequestUserDelete>(OnClientMessageRequestUserDelete);
+            NetworkServer.RegisterHandler<ClientRequestUserChangePassword>(OnClientMessageRequestUserChangePassword);
+            NetworkServer.RegisterHandler<ClientRequestUserConfirm>(OnClientMessageRequestUserConfirm);
             
             // ---- Player
-            NetworkServer.RegisterHandler<ClientMessageRequestPlayerLogin>(OnClientMessageRequestPlayerLogin);
-            NetworkServer.RegisterHandler<ClientMessageRequestPlayerRegister>(OnClientMessageRequestPlayerRegister);
-            NetworkServer.RegisterHandler<ClientMessageRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
+            NetworkServer.RegisterHandler<ClientRequestPlayerLogin>(OnClientMessageRequestPlayerLogin);
+            NetworkServer.RegisterHandler<ClientRequestPlayerRegister>(OnClientMessageRequestPlayerRegister);
+            NetworkServer.RegisterHandler<ClientRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
             
 
 			this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
@@ -64,7 +64,7 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequest(NetworkConnection conn, ClientMessageRequest msg)
+        void OnClientMessageRequest(NetworkConnection conn, ClientRequest msg)
         {
     		// do nothing (this message is never called directly)
         }
@@ -81,10 +81,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestUserLogin(NetworkConnection conn, ClientMessageRequestUserLogin msg)
+        void OnClientMessageRequestUserLogin(NetworkConnection conn, ClientRequestUserLogin msg)
 		{
 			
-			ServerMessageResponseUserLogin message = new ServerMessageResponseUserLogin
+			ServerResponseUserLogin message = new ServerResponseUserLogin
 			{
 				success = true,
 				text			 	= "",
@@ -117,7 +117,7 @@ namespace OpenMMO.Network
         // OnClientMessageRequestUserLogout
         // @Client -> @Server
         // -------------------------------------------------------------------------------
-        void OnClientMessageRequestUserLogout(NetworkConnection conn, ClientMessageRequestUserLogout msg)
+        void OnClientMessageRequestUserLogout(NetworkConnection conn, ClientRequestUserLogout msg)
 		{
 			LogoutUser(conn);
 		}
@@ -132,10 +132,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestUserRegister(NetworkConnection conn, ClientMessageRequestUserRegister msg)
+        void OnClientMessageRequestUserRegister(NetworkConnection conn, ClientRequestUserRegister msg)
         {
         	
-        	ServerMessageResponseUserRegister message = new ServerMessageResponseUserRegister
+        	ServerResponseUserRegister message = new ServerResponseUserRegister
 			{
 				success = true,
 				text			 	= "",
@@ -170,10 +170,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestUserDelete(NetworkConnection conn, ClientMessageRequestUserDelete msg)
+        void OnClientMessageRequestUserDelete(NetworkConnection conn, ClientRequestUserDelete msg)
         {
         	
-        	ServerMessageResponseUserDelete message = new ServerMessageResponseUserDelete
+        	ServerResponseUserDelete message = new ServerResponseUserDelete
 			{
 				success = true,
 				text			 	= "",
@@ -210,10 +210,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestUserChangePassword(NetworkConnection conn, ClientMessageRequestUserChangePassword msg)
+        void OnClientMessageRequestUserChangePassword(NetworkConnection conn, ClientRequestUserChangePassword msg)
         {
         	
-        	ServerMessageResponseUserChangePassword message = new ServerMessageResponseUserChangePassword
+        	ServerResponseUserChangePassword message = new ServerResponseUserChangePassword
 			{
 				success = true,
 				text			 	= "",
@@ -250,10 +250,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestUserConfirm(NetworkConnection conn, ClientMessageRequestUserConfirm msg)
+        void OnClientMessageRequestUserConfirm(NetworkConnection conn, ClientRequestUserConfirm msg)
         {
         	
-        	ServerMessageResponseUserConfirm message = new ServerMessageResponseUserConfirm
+        	ServerResponseUserConfirm message = new ServerResponseUserConfirm
 			{
 				success = true,
 				text			 	= "",
@@ -292,10 +292,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestPlayerLogin(NetworkConnection conn, ClientMessageRequestPlayerLogin msg)
+        void OnClientMessageRequestPlayerLogin(NetworkConnection conn, ClientRequestPlayerLogin msg)
 		{
 			
-			ServerMessageResponsePlayerLogin message = new ServerMessageResponsePlayerLogin
+			ServerResponsePlayerLogin message = new ServerResponsePlayerLogin
 			{
 				success 			= true,
 				text			 	= "",
@@ -331,10 +331,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestPlayerRegister(NetworkConnection conn, ClientMessageRequestPlayerRegister msg)
+        void OnClientMessageRequestPlayerRegister(NetworkConnection conn, ClientRequestPlayerRegister msg)
         {
         	
-        	ServerMessageResponsePlayerRegister message = new ServerMessageResponsePlayerRegister
+        	ServerResponsePlayerRegister message = new ServerResponsePlayerRegister
 			{
 				success 			= true,
 				text			 	= "",
@@ -370,10 +370,10 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnClientMessageRequestPlayerDelete(NetworkConnection conn, ClientMessageRequestPlayerDelete msg)
+        void OnClientMessageRequestPlayerDelete(NetworkConnection conn, ClientRequestPlayerDelete msg)
         {
         	
-        	ServerMessageResponsePlayerDelete message = new ServerMessageResponsePlayerDelete
+        	ServerResponsePlayerDelete message = new ServerResponsePlayerDelete
 			{
 				success = true,
 				text			 	= "",

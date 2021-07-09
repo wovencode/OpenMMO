@@ -13,9 +13,18 @@ namespace OpenMMO.Network
     /// <remarks>
     /// Sent from Server to Client
     /// </remarks>
-    public partial class ServerMessageResponsePlayerSwitchServer : ServerMessageResponse
-	{
-		public string playername;
+    public partial struct ServerResponsePlayerSwitchServer : ServerResponse
+    {
+        bool _success;
+        public bool success { get { return _success; } set { _success = value; } }
+
+        string _text;
+        public string text { get { return _text; } set { _text = value; } }
+
+        bool _causesDisconnect;
+        public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
+
+        public string playername;
 		public string anchorname;
 		public string zonename;
 		public int token;
@@ -27,7 +36,17 @@ namespace OpenMMO.Network
     /// <remarks>
     /// Sent from Server to Client
     /// </remarks>
-    public partial class ServerMessageResponsePlayerAutoLogin : ServerMessageResponse {}
+    public partial struct ServerResponsePlayerAutoLogin : ServerResponse
+    {
+        bool _success;
+        public bool success { get { return _success; } set { _success = value; } }
+
+        string _text;
+        public string text { get { return _text; } set { _text = value; } }
+
+        bool _causesDisconnect;
+        public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
+    }
 	
 	/// <summary>
     /// Auto Authentication Response Message
@@ -35,6 +54,16 @@ namespace OpenMMO.Network
     /// <remarks>
     /// Sent from Server to Client
     /// </remarks>
-    public partial class ServerMessageResponseAutoAuth : ServerMessageResponse {}
+    public partial struct ServerResponseAutoAuth : ServerResponse
+    {
+        bool _success;
+        public bool success { get { return _success; } set { _success = value; } }
+
+        string _text;
+        public string text { get { return _text; } set { _text = value; } }
+
+        bool _causesDisconnect;
+        public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
+    }
 	
 }

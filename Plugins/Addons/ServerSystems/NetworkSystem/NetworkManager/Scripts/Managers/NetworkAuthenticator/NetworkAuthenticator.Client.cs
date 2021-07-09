@@ -1,4 +1,4 @@
-
+//MIRROR UPDATE - VERSION v13 to v42.2.8 BY DX4D
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -41,7 +41,7 @@ namespace OpenMMO.Network
         /// </summary>
         public override void OnStartClient()
         {
-            NetworkClient.RegisterHandler<ServerMessageResponseAuth>(OnServerMessageResponseAuth, false);  
+            NetworkClient.RegisterHandler<ServerResponseAuth>(OnServerMessageResponseAuth, false);  
             
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
         }
@@ -56,12 +56,12 @@ namespace OpenMMO.Network
         /// Invokes a authentication request to trigger.
         /// </summary>
         /// <param name="conn"></param>
-        public override void OnClientAuthenticate(NetworkConnection conn)
+        public override void OnClientAuthenticate() //FIX - MIRROR UPDATE - NetworkConnection conn parameter Replaced with NetworkClient.connection - DX4D
         {
         	if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetAutoConnect)
-        		Invoke(nameof(ClientAuthenticate), connectDelay);		
-        	
-        	this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate), conn); //HOOK
+        		Invoke(nameof(ClientAuthenticate), connectDelay);
+
+            this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate)); //HOOK //, conn); //FIX - MIRROR UPDATE - conn parameter is no longer passed through - it was replaced with NetworkClient.connection - DX4D
         }
         
 		// -------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ namespace OpenMMO.Network
 		public void ClientAuthenticate()
 		{
 
-            ClientMessageRequestAuth msg = new ClientMessageRequestAuth
+            ClientRequestAuth msg = new ClientRequestAuth
             {
                 clientVersion = Application.version
             };
@@ -96,9 +96,11 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="conn"></param>
         /// <param name="msg"></param>
-        void OnServerMessageResponseAuth(NetworkConnection conn, ServerMessageResponseAuth msg)
+        //void OnServerMessageResponseAuth(NetworkConnection conn, ServerMessageResponseAuth msg) //REMOVED - MIRROR UPDATE - DX4D
+        void OnServerMessageResponseAuth(ServerResponseAuth msg) //ADDED - MIRROR UPDATE - DX4D
         {
-        	
+            NetworkConnection conn = NetworkClient.connection; //ADDED - MIRROR UPDATE - DX4D
+
         	// -- show popup if error message is not empty
         	if (!String.IsNullOrWhiteSpace(msg.text))
                	UIPopupConfirm.singleton.Init(msg.text);

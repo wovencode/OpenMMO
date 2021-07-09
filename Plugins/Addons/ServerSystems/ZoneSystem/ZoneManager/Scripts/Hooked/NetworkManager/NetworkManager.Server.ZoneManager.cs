@@ -26,8 +26,8 @@ namespace OpenMMO.Network
 		void OnStartServer_NetworkPortals()
 		{
 			
-			NetworkServer.RegisterHandler<ClientMessageRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
-            NetworkServer.RegisterHandler<ClientMessageRequestPlayerAutoLogin>(OnClientMessageRequestPlayerAutoLogin);
+			NetworkServer.RegisterHandler<ClientRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
+            NetworkServer.RegisterHandler<ClientRequestPlayerAutoLogin>(OnClientMessageRequestPlayerAutoLogin);
             
             if (GetComponent<ZoneManager>() != null)
    				GetComponent<ZoneManager>().SpawnSubZones();
@@ -66,7 +66,7 @@ namespace OpenMMO.Network
 		public void SwitchServerPlayer(NetworkConnection conn, string playername, string anchorName, string zoneName, int _token)
 		{
 
-			ServerMessageResponsePlayerSwitchServer message = new ServerMessageResponsePlayerSwitchServer
+			ServerResponsePlayerSwitchServer message = new ServerResponsePlayerSwitchServer
 			{
 				playername			= playername,
 				anchorname 			= anchorName,
@@ -102,10 +102,10 @@ namespace OpenMMO.Network
         // Direction: @Client -> @Server
         // Execution: @Server
 		// -------------------------------------------------------------------------------     
-        void OnClientMessageRequestPlayerAutoLogin(NetworkConnection conn, ClientMessageRequestPlayerAutoLogin msg)
+        void OnClientMessageRequestPlayerAutoLogin(NetworkConnection conn, ClientRequestPlayerAutoLogin msg)
 		{
 			
-			ServerMessageResponsePlayerAutoLogin message = new ServerMessageResponsePlayerAutoLogin
+			ServerResponsePlayerAutoLogin message = new ServerResponsePlayerAutoLogin
 			{
 				success 			= true,
 				text			 	= "",
@@ -132,10 +132,10 @@ namespace OpenMMO.Network
         // Direction: @Client -> @Server
         // Execution: @Server
         // -------------------------------------------------------------------------------    
-        void OnClientMessageRequestPlayerSwitchServer(NetworkConnection conn, ClientMessageRequestPlayerSwitchServer msg)
+        void OnClientMessageRequestPlayerSwitchServer(NetworkConnection conn, ClientRequestPlayerSwitchServer msg)
         {
         	
-        	ServerMessageResponsePlayerSwitchServer message = new ServerMessageResponsePlayerSwitchServer
+        	ServerResponsePlayerSwitchServer message = new ServerResponsePlayerSwitchServer
 			{
 				success 			= true,
 				text			 	= "",

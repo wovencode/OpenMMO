@@ -252,7 +252,7 @@ DebugManager.Log(">>>>spawn subzones");
         // OnServerMessageResponsePlayerSwitchServer
         // @Client
         // -------------------------------------------------------------------------------
-        public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerMessageResponsePlayerSwitchServer msg)
+        public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerResponsePlayerSwitchServer msg)
 		{
 			
 			networkManager.StopClient();
@@ -287,7 +287,7 @@ DebugManager.Log(">>>>spawn subzones");
     	// OnServerMessageResponsePlayerAutoLogin
     	// @Client
     	// -------------------------------------------------------------------------------
-        public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerMessageResponsePlayerAutoLogin msg)
+        public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerResponsePlayerAutoLogin msg)
         {
         	
         	autoPlayerName = "";

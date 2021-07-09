@@ -23,7 +23,7 @@ namespace OpenMMO.Network
         [DevExtMethods(nameof(OnStartServer))]
         void OnStartServer_NetworkPortals()
         {
-            NetworkServer.RegisterHandler<ClientMessageRequestAutoAuth>(OnClientMessageRequestAutoAuth, false);
+            NetworkServer.RegisterHandler<ClientRequestAutoAuth>(OnClientMessageRequestAutoAuth, false);
         }
         
         // ========================== MESSAGE HANDLERS - AUTH ============================
@@ -33,10 +33,10 @@ namespace OpenMMO.Network
         // Direction: @Server -> @Client
         // Execution: @Server
         // -------------------------------------------------------------------------------      
-        void OnClientMessageRequestAutoAuth(NetworkConnection conn, ClientMessageRequestAutoAuth msg)
+        void OnClientMessageRequestAutoAuth(NetworkConnection conn, ClientRequestAutoAuth msg)
 		{
 
-			ServerMessageResponseAutoAuth message = new ServerMessageResponseAutoAuth
+			ServerResponseAutoAuth message = new ServerResponseAutoAuth
 			{
 				success = true,
 				text			 	= "",

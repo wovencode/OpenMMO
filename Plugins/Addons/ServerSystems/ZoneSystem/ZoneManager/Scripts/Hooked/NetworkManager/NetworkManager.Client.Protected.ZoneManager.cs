@@ -24,8 +24,8 @@ namespace OpenMMO.Network
 		[DevExtMethods(nameof(OnStartClient))]
 		void OnStartClient_NetworkPortals()
 		{
-			NetworkClient.RegisterHandler<ServerMessageResponsePlayerSwitchServer>(GetComponent<ZoneManager>().OnServerMessageResponsePlayerSwitchServer);
-			NetworkClient.RegisterHandler<ServerMessageResponsePlayerAutoLogin>(GetComponent<ZoneManager>().OnServerMessageResponsePlayerAutoLogin);
+			NetworkClient.RegisterHandler<ServerResponsePlayerSwitchServer>(GetComponent<ZoneManager>().OnServerMessageResponsePlayerSwitchServer);
+			NetworkClient.RegisterHandler<ServerResponsePlayerAutoLogin>(GetComponent<ZoneManager>().OnServerMessageResponsePlayerAutoLogin);
 		}
 
         // ======================= PUBLIC METHODS - PLAYER ================================
@@ -40,7 +40,7 @@ namespace OpenMMO.Network
 			if (!base.RequestPlayerLogin(conn, playerName, userName))
 				return false;
 
-			ClientMessageRequestPlayerAutoLogin message = new ClientMessageRequestPlayerAutoLogin
+			ClientRequestPlayerAutoLogin message = new ClientRequestPlayerAutoLogin
 			{
 				playername 	= playerName,
 				username 	= userName,

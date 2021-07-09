@@ -1,3 +1,4 @@
+//MIRROR UPDATE 1 - VERSION v13 to v42.2.8 BY DX4D
 //IMPROVEMENTS BY DX4D
 using Mirror;
 using UnityEngine;
@@ -286,8 +287,11 @@ namespace OpenMMO.Chat
 		}
         
 		// -------------------------------------------------------------------------------
-        public void OnServerChatReceive(NetworkConnection conn, MsgChatSendFromClient msg)
+        //public void OnServerChatReceive(NetworkConnection conn, MsgChatSendFromClient msg) //REMOVED - DX4D
+        public void OnServerChatReceive(MsgChatSendFromClient msg) //ADDED - DX4D
         {
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
             ChatChannelData channel = defaultChannel;
             if (ChatUsers.ContainsKey(conn))
             {
@@ -303,10 +307,13 @@ namespace OpenMMO.Chat
             else
                 Debug.LogError("[Error] Invalid chat user " + conn.connectionId);
         }
-        
-		// -------------------------------------------------------------------------------
-        public void OnServerLoginRequest(NetworkConnection conn, MsgChatLoginRequestFromClient msg)
+
+        // -------------------------------------------------------------------------------
+        //public void OnServerLoginRequest(NetworkConnection conn, MsgChatLoginRequestFromClient msg) //REMOVED - DX4D
+        public void OnServerLoginRequest(MsgChatLoginRequestFromClient msg) //ADDED - DX4D
         {
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
             string userId = msg.userId;
 
             if (string.IsNullOrEmpty(userId))
@@ -330,8 +337,11 @@ namespace OpenMMO.Chat
 		// -------------------------------------------------------------------------------
 		// OnClientChatReceive
 		// -------------------------------------------------------------------------------
-        public void OnClientChatReceive(NetworkConnection conn, MsgChatReceiveFromServer msg)
+        //public void OnClientChatReceive(NetworkConnection conn, MsgChatReceiveFromServer msg) //REMOVED - DX4D
+        public void OnClientChatReceive(MsgChatReceiveFromServer msg) //ADDED - DX4D
         {
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
             ChatChannelData channel = defaultChannel;
             
             if (Channels.ContainsKey(msg.channelId))
@@ -357,10 +367,13 @@ namespace OpenMMO.Chat
                     UIWindowChat.singleton.OnReceiveChatMessage(chatMessage);
             }
         }
-        
-		// -------------------------------------------------------------------------------
-        public void OnClientLoginSuccess(NetworkConnection conn, MsgChatLoginSuccessFromServer msg)
+
+        // -------------------------------------------------------------------------------
+        //public void OnClientLoginSuccess(NetworkConnection conn, MsgChatLoginSuccessFromServer msg) //REMOVED - DX4D
+        public void OnClientLoginSuccess(MsgChatLoginSuccessFromServer msg) //ADDED - DX4D
         {
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
             if (!string.IsNullOrEmpty(msg.userId))
                 SetClientChatUser(msg.userId, msg.name);
         }

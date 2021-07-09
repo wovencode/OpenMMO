@@ -13,9 +13,15 @@ namespace OpenMMO.Network
     /// <remarks>
     /// Sent from Client to Server
     /// </remarks>
-    public partial class ClientMessageRequestPlayerSwitchServer : ClientMessageRequest
-	{
-		public string playername;
+    public partial struct ClientRequestPlayerSwitchServer : ClientRequest
+    {
+        bool _success;
+        public bool success { get { return _success; } set { _success = value; } }
+
+        string _text;
+        public string text { get { return _text; } set { _text = value; } }
+
+        public string playername;
 		public string zonename;
 		public string anchorname;
 		public int token;
@@ -27,9 +33,15 @@ namespace OpenMMO.Network
     /// <remarks>
     /// Sent from Client to Server
     /// </remarks>
-	public partial class ClientMessageRequestPlayerAutoLogin : ClientMessageRequest
-	{
-		public string username;
+	public partial struct ClientRequestPlayerAutoLogin : ClientRequest
+    {
+        bool _success;
+        public bool success { get { return _success; } set { _success = value; } }
+
+        string _text;
+        public string text { get { return _text; } set { _text = value; } }
+
+        public string username;
 		public string playername;
 		public int token;
 	}
@@ -40,9 +52,15 @@ namespace OpenMMO.Network
     /// <remarks>
     /// Sent from Client to Server
     /// </remarks>
-    public partial class ClientMessageRequestAutoAuth : ClientMessageRequest
-	{
-		public string clientVersion;
+    public partial struct ClientRequestAutoAuth : ClientRequest
+    {
+        bool _success;
+        public bool success { get { return _success; } set { _success = value; } }
+
+        string _text;
+        public string text { get { return _text; } set { _text = value; } }
+
+        public string clientVersion;
 	}
 
 }

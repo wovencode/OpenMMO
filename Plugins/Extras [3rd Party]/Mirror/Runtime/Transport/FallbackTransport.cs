@@ -2,12 +2,14 @@
 // example: to use Apathy if on Windows/Mac/Linux and fall back to Telepathy
 //          otherwise.
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mirror
 {
-    [HelpURL("https://mirror-networking.com/docs/Transports/Fallback.html")]
+    // Deprecated 2021-05-13
+    [HelpURL("https://mirror-networking.gitbook.io/docs/transports/fallback-transport")]
+    [DisallowMultipleComponent]
+    [Obsolete("Fallback Transport will be retired. It was only needed for Apathy/Libuv. Use kcp or Telepathy instead, those run everywhere.")]
     public class FallbackTransport : Transport
     {
         public Transport[] transports;
@@ -21,10 +23,18 @@ namespace Mirror
             {
                 throw new Exception("FallbackTransport requires at least 1 underlying transport");
             }
-            InitClient();
-            InitServer();
             available = GetAvailableTransport();
             Debug.Log("FallbackTransport available: " + available.GetType());
+        }
+
+        void OnEnable()
+        {
+            available.enabled = true;
+        }
+
+        void OnDisable()
+        {
+            available.enabled = false;
         }
 
         // The client just uses the first transport available
@@ -45,22 +55,33 @@ namespace Mirror
             return available.Available();
         }
 
-        // clients always pick the first transport
-        void InitClient()
-        {
-            // wire all the base transports to our events
-            foreach (Transport transport in transports)
-            {
-                transport.OnClientConnected.AddListener(OnClientConnected.Invoke);
-                transport.OnClientDataReceived.AddListener(OnClientDataReceived.Invoke);
-                transport.OnClientError.AddListener(OnClientError.Invoke);
-                transport.OnClientDisconnected.AddListener(OnClientDisconnected.Invoke);
-            }
-        }
-
         public override void ClientConnect(string address)
         {
+            available.OnClientConnected = OnClientConnected;
+            available.OnClientDataReceived = OnClientDataReceived;
+            available.OnClientError = OnClientError;
+            available.OnClientDisconnected = OnClientDisconnected;
             available.ClientConnect(address);
+        }
+
+        public override void ClientConnect(Uri uri)
+        {
+            foreach (Transport transport in transports)
+            {
+                if (transport.Available())
+                {
+                    try
+                    {
+                        transport.ClientConnect(uri);
+                        available = transport;
+                    }
+                    catch (ArgumentException)
+                    {
+                        // transport does not support the schema, just move on to the next one
+                    }
+                }
+            }
+            throw new Exception("No transport suitable for this platform");
         }
 
         public override bool ClientConnected()
@@ -73,27 +94,14 @@ namespace Mirror
             available.ClientDisconnect();
         }
 
-        public override bool ClientSend(int channelId, ArraySegment<byte> segment)
+        public override void ClientSend(ArraySegment<byte> segment, int channelId)
         {
-            return available.ClientSend(channelId, segment);
+            available.ClientSend(segment, channelId);
         }
 
-        public override int GetMaxPacketSize(int channelId = 0)
-        {
-            return available.GetMaxPacketSize(channelId);
-        }
-
-        void InitServer()
-        {
-            // wire all the base transports to our events
-            foreach (Transport transport in transports)
-            {
-                transport.OnServerConnected.AddListener(OnServerConnected.Invoke);
-                transport.OnServerDataReceived.AddListener(OnServerDataReceived.Invoke);
-                transport.OnServerError.AddListener(OnServerError.Invoke);
-                transport.OnServerDisconnected.AddListener(OnServerDisconnected.Invoke);
-            }
-        }
+        // right now this just returns the first available uri,
+        // should we return the list of all available uri?
+        public override Uri ServerUri() => available.ServerUri();
 
         public override bool ServerActive()
         {
@@ -105,18 +113,22 @@ namespace Mirror
             return available.ServerGetClientAddress(connectionId);
         }
 
-        public override bool ServerDisconnect(int connectionId)
+        public override void ServerDisconnect(int connectionId)
         {
-            return available.ServerDisconnect(connectionId);
+            available.ServerDisconnect(connectionId);
         }
 
-        public override bool ServerSend(List<int> connectionIds, int channelId, ArraySegment<byte> segment)
+        public override void ServerSend(int connectionId, ArraySegment<byte> segment, int channelId)
         {
-            return available.ServerSend(connectionIds, channelId, segment);
+            available.ServerSend(connectionId, segment, channelId);
         }
 
         public override void ServerStart()
         {
+            available.OnServerConnected = OnServerConnected;
+            available.OnServerDataReceived = OnServerDataReceived;
+            available.OnServerError = OnServerError;
+            available.OnServerDisconnected = OnServerDisconnected;
             available.ServerStart();
         }
 
@@ -130,9 +142,32 @@ namespace Mirror
             available.Shutdown();
         }
 
+        public override int GetMaxPacketSize(int channelId = 0)
+        {
+            // finding the max packet size in a fallback environment has to be
+            // done very carefully:
+            // * servers and clients might run different transports depending on
+            //   which platform they are on.
+            // * there should only ever be ONE true max packet size for everyone,
+            //   otherwise a spawn message might be sent to all tcp sockets, but
+            //   be too big for some udp sockets. that would be a debugging
+            //   nightmare and allow for possible exploits and players on
+            //   different platforms seeing a different game state.
+            // => the safest solution is to use the smallest max size for all
+            //    transports. that will never fail.
+            int mininumAllowedSize = int.MaxValue;
+            foreach (Transport transport in transports)
+            {
+                int size = transport.GetMaxPacketSize(channelId);
+                mininumAllowedSize = Mathf.Min(size, mininumAllowedSize);
+            }
+            return mininumAllowedSize;
+        }
+
         public override string ToString()
         {
             return available.ToString();
         }
+
     }
 }

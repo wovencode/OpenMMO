@@ -7,28 +7,32 @@ namespace Mirror.Examples.Additive
     // - Network Identity with Server Only checked
     // These OnTrigger events only run on the server and will only send a message to the player
     // that entered the Zone to load the subscene assigned to the subscene property.
-    public class ZoneHandler : NetworkBehaviour
+    public class ZoneHandler : MonoBehaviour
     {
         [Scene]
         [Tooltip("Assign the sub-scene to load for this zone")]
         public string subScene;
 
-        [Server]
         void OnTriggerEnter(Collider other)
         {
-            Debug.LogFormat("Loading {0}", subScene);
+            if (!NetworkServer.active) return;
+
+            // Debug.LogFormat(LogType.Log, "Loading {0}", subScene);
 
             NetworkIdentity networkIdentity = other.gameObject.GetComponent<NetworkIdentity>();
-            NetworkServer.SendToClientOfPlayer(networkIdentity, new SceneMessage { sceneName = subScene, sceneOperation = SceneOperation.LoadAdditive });
+            SceneMessage message = new SceneMessage{ sceneName = subScene, sceneOperation = SceneOperation.LoadAdditive };
+            networkIdentity.connectionToClient.Send(message);
         }
 
-        [Server]
         void OnTriggerExit(Collider other)
         {
-            Debug.LogFormat("Unloading {0}", subScene);
+            if (!NetworkServer.active) return;
+
+            // Debug.LogFormat(LogType.Log, "Unloading {0}", subScene);
 
             NetworkIdentity networkIdentity = other.gameObject.GetComponent<NetworkIdentity>();
-            NetworkServer.SendToClientOfPlayer(networkIdentity, new SceneMessage { sceneName = subScene, sceneOperation = SceneOperation.UnloadAdditive });
+            SceneMessage message = new SceneMessage{ sceneName = subScene, sceneOperation = SceneOperation.UnloadAdditive };
+            networkIdentity.connectionToClient.Send(message);
         }
     }
 }

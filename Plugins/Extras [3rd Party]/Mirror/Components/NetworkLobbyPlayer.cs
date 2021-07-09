@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Mirror
 {
@@ -10,7 +9,7 @@ namespace Mirror
     /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Network/NetworkLobbyPlayer")]
-    [HelpURL("https://mirror-networking.com/docs/Components/NetworkRoomPlayer.html")]
+    [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-room-player")]
     [Obsolete("Use / inherit from NetworkRoomPlayer instead")]
-    public class NetworkLobbyPlayer : NetworkRoomPlayer { }
+    public class NetworkLobbyPlayer : NetworkRoomPlayer {}
 }

@@ -2,8 +2,10 @@ using UnityEngine;
 
 namespace Mirror.Examples.Additive
 {
+    [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(NetworkTransform))]
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
         public CharacterController characterController;
@@ -14,10 +16,14 @@ namespace Mirror.Examples.Additive
                 characterController = GetComponent<CharacterController>();
         }
 
+        void Start()
+        {
+            characterController.enabled = isLocalPlayer;
+        }
+
         public override void OnStartLocalPlayer()
         {
-            base.OnStartLocalPlayer();
-
+            Camera.main.orthographic = false;
             Camera.main.transform.SetParent(transform);
             Camera.main.transform.localPosition = new Vector3(0f, 3f, -8f);
             Camera.main.transform.localEulerAngles = new Vector3(10f, 0f, 0f);
@@ -25,10 +31,11 @@ namespace Mirror.Examples.Additive
 
         void OnDisable()
         {
-            if (isLocalPlayer)
+            if (isLocalPlayer && Camera.main != null)
             {
+                Camera.main.orthographic = true;
                 Camera.main.transform.SetParent(null);
-                Camera.main.transform.localPosition = new Vector3(0f, 50f, 0f);
+                Camera.main.transform.localPosition = new Vector3(0f, 70f, 0f);
                 Camera.main.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
             }
         }
@@ -39,17 +46,18 @@ namespace Mirror.Examples.Additive
         public float maxTurnSpeed = 150f;
 
         [Header("Diagnostics")]
-        public float horizontal = 0f;
-        public float vertical = 0f;
-        public float turn = 0f;
-        public float jumpSpeed = 0f;
+        public float horizontal;
+        public float vertical;
+        public float turn;
+        public float jumpSpeed;
         public bool isGrounded = true;
-        public bool isFalling = false;
+        public bool isFalling;
         public Vector3 velocity;
 
         void Update()
         {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer || !characterController.enabled)
+                return;
 
             horizontal = Input.GetAxis("Horizontal");
             vertical = Input.GetAxis("Vertical");
@@ -68,7 +76,9 @@ namespace Mirror.Examples.Additive
                 isFalling = false;
 
             if ((isGrounded || !isFalling) && jumpSpeed < 1f && Input.GetKey(KeyCode.Space))
+            {
                 jumpSpeed = Mathf.Lerp(jumpSpeed, 1f, 0.5f);
+            }
             else if (!isGrounded)
             {
                 isFalling = true;
@@ -78,7 +88,8 @@ namespace Mirror.Examples.Additive
 
         void FixedUpdate()
         {
-            if (!isLocalPlayer || characterController == null) return;
+            if (!isLocalPlayer || characterController == null)
+                return;
 
             transform.Rotate(0f, turn * Time.fixedDeltaTime, 0f);
 

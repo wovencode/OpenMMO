@@ -1,28 +1,41 @@
-using System.Collections.Generic;
+using System;
 
 namespace Mirror
 {
+    /// <summary>Pooled NetworkWriter, automatically returned to pool when using 'using'</summary>
+    public sealed class PooledNetworkWriter : NetworkWriter, IDisposable
+    {
+        public void Dispose() => NetworkWriterPool.Recycle(this);
+    }
 
+    /// <summary>Pool of NetworkWriters to avoid allocations.</summary>
     public static class NetworkWriterPool
     {
-        static readonly Stack<NetworkWriter> pool = new Stack<NetworkWriter>();
+        // reuse Pool<T>
+        // we still wrap it in NetworkWriterPool.Get/Recycle so we can reset the
+        // position before reusing.
+        // this is also more consistent with NetworkReaderPool where we need to
+        // assign the internal buffer before reusing.
+        static readonly Pool<PooledNetworkWriter> Pool = new Pool<PooledNetworkWriter>(
+            () => new PooledNetworkWriter(),
+            // initial capacity to avoid allocations in the first few frames
+            // 1000 * 1200 bytes = around 1 MB.
+            1000
+        );
 
-        public static NetworkWriter GetWriter()
+        /// <summary>Get a writer from the pool. Creates new one if pool is empty.</summary>
+        public static PooledNetworkWriter GetWriter()
         {
-            if (pool.Count != 0)
-            {
-                NetworkWriter writer = pool.Pop();
-                // reset cached writer length and position
-                writer.SetLength(0);
-                return writer;
-            }
-
-            return new NetworkWriter();
+            // grab from pool & reset position
+            PooledNetworkWriter writer = Pool.Take();
+            writer.Reset();
+            return writer;
         }
 
-        public static void Recycle(NetworkWriter writer)
+        /// <summary>Return a writer to the pool.</summary>
+        public static void Recycle(PooledNetworkWriter writer)
         {
-            pool.Push(writer);
+            Pool.Return(writer);
         }
     }
 }

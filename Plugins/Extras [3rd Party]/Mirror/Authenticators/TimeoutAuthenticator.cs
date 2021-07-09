@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 namespace Mirror.Authenticators
@@ -17,48 +17,52 @@ namespace Mirror.Authenticators
 
         public void Awake()
         {
-            authenticator.OnClientAuthenticated.AddListener(connection => OnClientAuthenticated.Invoke(connection));
             authenticator.OnServerAuthenticated.AddListener(connection => OnServerAuthenticated.Invoke(connection));
+            authenticator.OnClientAuthenticated.AddListener(connection => OnClientAuthenticated.Invoke(connection));
         }
 
-        public override void OnClientAuthenticate(NetworkConnection conn)
+        public override void OnStartServer()
         {
-            authenticator.OnClientAuthenticate(conn);
-            if (timeout > 0)
-                StartCoroutine(BeginClientAuthentication(conn));
+            authenticator.OnStartServer();
         }
 
-        IEnumerator BeginClientAuthentication(NetworkConnection conn)
+        public override void OnStopServer()
         {
-            if (LogFilter.Debug) Debug.Log($"Authentication countdown started {conn.connectionId} {timeout}");
+            authenticator.OnStopServer();
+        }
 
-            yield return new WaitForSecondsRealtime(timeout);
+        public override void OnStartClient()
+        {
+            authenticator.OnStartClient();
+        }
 
-            if (!conn.isAuthenticated)
-            {
-                if (LogFilter.Debug) Debug.Log($"Authentication Timeout {conn.connectionId}");
-                
-                conn.Disconnect();
-            }
+        public override void OnStopClient()
+        {
+            authenticator.OnStopClient();
         }
 
         public override void OnServerAuthenticate(NetworkConnection conn)
         {
             authenticator.OnServerAuthenticate(conn);
             if (timeout > 0)
-                StartCoroutine(BeginServerAuthentication(conn));
+                StartCoroutine(BeginAuthentication(conn));
         }
 
-        IEnumerator BeginServerAuthentication(NetworkConnection conn)
+        public override void OnClientAuthenticate()
         {
-            if (LogFilter.Debug) Debug.Log($"Authentication countdown started {conn.connectionId} {timeout}");
+            authenticator.OnClientAuthenticate();
+            if (timeout > 0)
+                StartCoroutine(BeginAuthentication(NetworkClient.connection));
+        }
 
+        IEnumerator BeginAuthentication(NetworkConnection conn)
+        {
+            // Debug.Log($"Authentication countdown started {conn} {timeout}");
             yield return new WaitForSecondsRealtime(timeout);
 
             if (!conn.isAuthenticated)
             {
-                if (LogFilter.Debug) Debug.Log($"Authentication Timeout {conn.connectionId}");
-                
+                // Debug.Log($"Authentication Timeout {conn}");
                 conn.Disconnect();
             }
         }

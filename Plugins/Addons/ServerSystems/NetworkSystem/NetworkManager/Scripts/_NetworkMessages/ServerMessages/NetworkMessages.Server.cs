@@ -18,6 +18,7 @@ namespace OpenMMO.Network
     /// </summary>
     /*public interface ServerResponse : NetworkMessage
     {
+        NetworkAction action { get; set; }
 		bool success { get; set; }
 		string text { get; set; }
         bool causesDisconnect { get; set; }
@@ -34,6 +35,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseError : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -56,6 +60,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseAuth : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -81,6 +88,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserPlayerPreviews : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -119,6 +129,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserLogin : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -156,6 +169,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserRegister : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -176,6 +192,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserDelete : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -196,6 +215,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserChangePassword : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -216,6 +238,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserConfirm : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -238,6 +263,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponsePlayerLogin : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -258,6 +286,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponsePlayerRegister : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -280,6 +311,9 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponsePlayerDelete : ServerResponse
     {
+        NetworkAction _action;
+        public NetworkAction action { get { return _action; } set { _action = value; } }
+
         bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 

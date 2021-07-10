@@ -1,5 +1,6 @@
-//by Fhiz
+//BY FHIZ
 //MODIFIED BY DX4D
+
 using System;
 using System.Text;
 using UnityEngine;
@@ -31,7 +32,8 @@ namespace OpenMMO {
 		/// <summary>
 		/// Static method that returns the local player object to prevent frequent GetComponent calls and checks. Can be called from anywhere.
 		/// </summary>
-		public static GameObject localPlayer => ClientScene.localPlayer != null ? ClientScene.localPlayer.gameObject : null;
+		//public static GameObject localPlayer => ClientScene.localPlayer != null ? ClientScene.localPlayer.gameObject : null; //REMOVED - DX4D
+        public static GameObject localPlayer => NetworkClient.localPlayer != null ? NetworkClient.localPlayer.gameObject : null; //ADDED - DX4D
 
         /// <summary>
         /// Server-side Start method to initialize the cache.

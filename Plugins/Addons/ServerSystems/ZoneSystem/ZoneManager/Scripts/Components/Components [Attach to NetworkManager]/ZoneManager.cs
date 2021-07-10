@@ -1,3 +1,5 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 
 using System;
 using System.Diagnostics;
@@ -252,7 +254,8 @@ DebugManager.Log(">>>>spawn subzones");
         // OnServerMessageResponsePlayerSwitchServer
         // @Client
         // -------------------------------------------------------------------------------
-        public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerResponsePlayerSwitchServer msg)
+        //public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerResponsePlayerSwitchServer msg) //REMOVED - DX4D
+        public void OnServerMessageResponsePlayerSwitchServer(ServerResponsePlayerSwitchServer msg) //ADDED - DX4D
 		{
 			
 			networkManager.StopClient();
@@ -287,7 +290,8 @@ DebugManager.Log(">>>>spawn subzones");
     	// OnServerMessageResponsePlayerAutoLogin
     	// @Client
     	// -------------------------------------------------------------------------------
-        public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerResponsePlayerAutoLogin msg)
+        //public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerResponsePlayerAutoLogin msg) //REMOVED - DX4D
+        public void OnServerMessageResponsePlayerAutoLogin(ServerResponsePlayerAutoLogin msg) //ADDED - DX4D
         {
         	
         	autoPlayerName = "";

@@ -1,4 +1,6 @@
-//by Fhiz
+//BY FHIZ
+//MODIFIED BY DX4D
+
 using OpenMMO;
 using OpenMMO.Debugging;
 using OpenMMO.Areas;
@@ -121,10 +123,11 @@ namespace OpenMMO.Areas
     	
     		if (!GetIsActive || ni == null)
         		return;
-        	
-			NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.LoadAdditive });
-    
-      	}
+
+            //NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.LoadAdditive }); //REMOVED - DX4D
+            ni.connectionToClient.Send<SceneMessage>( new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.LoadAdditive }); //ADDED - DX4D
+
+        }
     	
     	/// <summary>
    		/// Additively unloads a scene on the client who left the area portal.
@@ -135,9 +138,10 @@ namespace OpenMMO.Areas
     		if (!GetIsActive || ni == null)
         		return;
         		
-			NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.UnloadAdditive });
-        	
-    	}
+			//NetworkServer.SendToClientOfPlayer(ni, new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.UnloadAdditive }); //REMOVED - DX4D
+            ni.connectionToClient.Send<SceneMessage>(new SceneMessage { sceneName = scene.SceneName, sceneOperation = SceneOperation.UnloadAdditive }); //ADDED - DX4D
+
+        }
     	
         // ================================ PUBLIC EVENTS ================================
         

@@ -1,3 +1,6 @@
+//BY FHIZ
+//MODIFIED BY DX4D
+
 // =======================================================================================
 // NetworkManager
 // by Weaver (Fhiz)
@@ -204,7 +207,8 @@ namespace OpenMMO.Network
 			userName 		= username;
 			userPassword 	= password;
 			
-			RequestUserLogin(NetworkClient.connection, username, password);
+			//RequestUserLogin(NetworkClient.connection, username, password); //REMOVED - DX4D
+			RequestUserLogin(username, password); //ADDED - DX4D
 			
 		}
 		
@@ -215,8 +219,9 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         public void TryLogoutUser()
 		{
-			RequestUserLogout(NetworkClient.connection);
-		}
+			//RequestUserLogout(NetworkClient.connection); //REMOVED - DX4D
+            RequestUserLogout(); //ADDED - DX4D
+        }
 		
         // -------------------------------------------------------------------------------
         // TryRegisterUser
@@ -238,7 +243,8 @@ namespace OpenMMO.Network
 			userPassword 	= password;
 			
 			
-			RequestUserRegister(NetworkClient.connection, username, password, email);
+			//RequestUserRegister(NetworkClient.connection, username, password, email); //REMOVED - DX4D
+			RequestUserRegister(username, password, email); //ADDED - DX4D
 		}
 
         // -------------------------------------------------------------------------------
@@ -258,10 +264,11 @@ namespace OpenMMO.Network
 			
 			userName 		= username;
 			userPassword 	= password;
-			
-			RequestUserDelete(NetworkClient.connection, username, password);
 
-		}
+            //RequestUserDelete(NetworkClient.connection, username, password); //REMOVED - DX4D
+            RequestUserDelete(username, password); //ADDED - DX4D
+
+        }
 
         // -------------------------------------------------------------------------------
         // TryChangePasswordUser
@@ -282,8 +289,9 @@ namespace OpenMMO.Network
 			userName 		= username;
 			userPassword 	= oldpassword;
 			newPassword 	= newpassword;
-			
-			RequestUserChangePassword(NetworkClient.connection, username, oldpassword, newpassword);
+
+            //RequestUserChangePassword(NetworkClient.connection, username, oldpassword, newpassword); //REMOVED - DX4D
+            RequestUserChangePassword(username, oldpassword, newpassword); //ADDED - DX4D
 
 		}
 
@@ -301,8 +309,9 @@ namespace OpenMMO.Network
         /// <param name="password"></param>
         public void TryConfirmUser(string username, string password)
 		{
-			RequestUserConfirm(NetworkClient.connection, username, password);
-		}
+            //RequestUserConfirm(NetworkClient.connection, username, password); //REMOVED - DX4D
+            RequestUserConfirm(username, password); //ADDED - DX4D
+        }
 
         // ======================= PUBLIC METHODS - PLAYER ===============================
 
@@ -318,8 +327,9 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
         public void TryLoginPlayer(string username)
 		{
-			RequestPlayerLogin(NetworkClient.connection, username, userName);
-		}
+			//RequestPlayerLogin(NetworkClient.connection, username, userName); //REMOVED - DX4D
+            RequestPlayerLogin(username, userName); //ADDED - DX4D
+        }
 
         // -------------------------------------------------------------------------------
         // TryRegisterPlayer
@@ -334,7 +344,8 @@ namespace OpenMMO.Network
         /// <param name="prefabName"></param>
         public void TryRegisterPlayer(string playerName, string prefabName)
 		{
-			RequestPlayerRegister(NetworkClient.connection, playerName, userName, prefabName);
+			//RequestPlayerRegister(NetworkClient.connection, playerName, userName, prefabName); //REMOVED - DX4D
+			RequestPlayerRegister(playerName, userName, prefabName); //ADDED - DX4D
 		}
 
         // -------------------------------------------------------------------------------
@@ -349,7 +360,8 @@ namespace OpenMMO.Network
         /// <param name="playerName"></param>
         public void TryDeletePlayer(string playerName)
 		{			
-			if (RequestPlayerDelete(NetworkClient.connection, playerName, userName))
+			//if (RequestPlayerDelete(NetworkClient.connection, playerName, userName)) //REMOVED - DX4D
+            if (RequestPlayerDelete(playerName, userName)) //ADDED - DX4D
 			{
 				for (int i = 0; i < playerPreviews.Count; i++)
 					if (playerPreviews[i].name == playerName)

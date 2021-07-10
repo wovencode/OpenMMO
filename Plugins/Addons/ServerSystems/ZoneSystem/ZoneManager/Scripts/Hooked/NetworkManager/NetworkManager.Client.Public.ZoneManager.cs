@@ -1,3 +1,5 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 
 using OpenMMO;
 using OpenMMO.Network;
@@ -29,8 +31,9 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
         public void TryAutoLoginPlayer(string playername, int token)
 		{
-			RequestPlayerAutoLogin(NetworkClient.connection, playername, userName, token);
-		}
+			//RequestPlayerAutoLogin(NetworkClient.connection, playername, userName, token); //REMOVED - DX4D
+            RequestPlayerAutoLogin(playername, userName, token); //ADDED - DX4D
+        }
 
 		// -------------------------------------------------------------------------------
 	

@@ -18,6 +18,7 @@ namespace OpenMMO.Network
     /// </summary>
     public interface ServerResponse : NetworkMessage
     {
+        NetworkAction action { get; set; }
         bool success { get; set; }
         string text { get; set; }
         bool causesDisconnect { get; set; }

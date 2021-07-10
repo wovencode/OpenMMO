@@ -1,3 +1,5 @@
+//BY Fhiz
+//MODIFIED BY DX4D
 
 using OpenMMO;
 using OpenMMO.Network;
@@ -25,7 +27,7 @@ namespace OpenMMO.Network
        	[DevExtMethods(nameof(OnStartClient))]
         void OnStartClient_NetworkPortals()
         {
-            NetworkClient.RegisterHandler<ServerResponseAutoAuth>(OnServerMessageResponseAutoAuth, false);  
+            NetworkClient.RegisterHandler<ServerResponseAutoAuth>(OnServerResponseAutoAuth, false);  
             
             OnClientAuthenticated.AddListener(OnClientAuthenticated_NetworkPortals);
         }
@@ -74,14 +76,17 @@ namespace OpenMMO.Network
 		// Direction: @Server -> @Client
 		// Execution: @Client
        	// -------------------------------------------------------------------------------
-        void OnServerMessageResponseAutoAuth(NetworkConnection conn, ServerResponseAutoAuth msg)
+        //void OnServerMessageResponseAutoAuth(NetworkConnection conn, ServerResponseAutoAuth msg) //REMOVED - DX4D
+        void OnServerResponseAutoAuth(ServerResponseAutoAuth msg) //ADDED - DX4D
         {
         	
         	// -- show popup if error message is not empty
         	if (!String.IsNullOrWhiteSpace(msg.text))
                	UIPopupConfirm.singleton.Init(msg.text);
-    		
-        	// -- disconnect and un-authenticate if anything went wrong
+
+            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+
+            // -- disconnect and un-authenticate if anything went wrong
             if (!msg.success || msg.causesDisconnect)
             {
                 conn.isAuthenticated = false;
@@ -94,10 +99,11 @@ namespace OpenMMO.Network
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);
-               	ClientScene.Ready(conn);
+               	//ClientScene.Ready(conn); //REMOVED - DX4D
+               	NetworkClient.Ready(); //ADDED - DX4D
             }
             
-            debug.LogFormat(this.name, nameof(OnServerMessageResponseAutoAuth), msg.success.ToString(), msg.text); //DEBUG
+            debug.LogFormat(this.name, nameof(OnServerResponseAutoAuth), msg.success.ToString(), msg.text); //DEBUG
         	
         }
         

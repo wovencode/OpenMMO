@@ -1,5 +1,6 @@
-//by Fhiz
+//BY FHIZ
 //MODIFIED BY DX4D
+
 using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
@@ -15,9 +16,9 @@ namespace OpenMMO {
 		
 		[Header("Components")]
 		public NavMeshAgent agent;
-		public NetworkProximityChecker proxChecker;
+        //public NetworkProximityChecker proxChecker; //REMOVED - DX4D
 #pragma warning disable CS0109
-		public new Collider collider;
+        public new Collider collider;
 #pragma warning restore CS0109
 		
 		[Header("Default Data")]
@@ -35,8 +36,8 @@ namespace OpenMMO {
         //LOAD COMPONENTS
         void LoadComponents()
         {
-    		if (!proxChecker) proxChecker = GetComponent<NetworkProximityChecker>();
-    		if (!movementComponent) movementComponent = GetComponent<EntityMovementComponent>();
+    		//if (!proxChecker) proxChecker = GetComponent<NetworkProximityChecker>(); //REMOVED - DX4D
+            if (!movementComponent) movementComponent = GetComponent<EntityMovementComponent>();
         }
         // H O O K A B L E  M E T H O D S
         protected override void StartServer()

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1275635640388507688}
   - component: {fileID: 3252435990677973888}
   - component: {fileID: 279971125}
+  - component: {fileID: 3155086227641078583}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -49,15 +50,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
-  startOnHeadless: 1
+  autoStartServerBuild: 1
   serverTickRate: 60
-  showDebugMessages: 0
   offlineScene: 
   onlineScene: 
   transport: {fileID: 3252435991396032036}
   networkAddress: localhost
   maxConnections: 500
+  disconnectInactiveConnections: 0
+  disconnectInactiveTimeout: 60
   authenticator: {fileID: 3252435991396032038}
   playerPrefab: {fileID: 0}
   autoCreatePlayer: 0
@@ -65,8 +68,7 @@ MonoBehaviour:
   spawnPrefabs: []
   debug:
     _debugMode: 0
-  spawnPrefabsTemplate: {fileID: 11400000, guid: 5bb742c288faf429681a0c1743a9027d,
-    type: 2}
+  spawnPrefabsTemplate: {fileID: 11400000, guid: 5bb742c288faf429681a0c1743a9027d, type: 2}
   systemText:
     clientDisconnected: Disconnected.
     userAlreadyOnline: User is already online!
@@ -94,6 +96,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
           m_MethodName: SetupServerMessages
           m_Mode: 1
           m_Arguments:
@@ -111,6 +114,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
           m_MethodName: SetupClientMessages
           m_Mode: 1
           m_Arguments:
@@ -128,6 +132,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
           m_MethodName: OnLoginPlayer
           m_Mode: 0
           m_Arguments:
@@ -142,6 +147,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
           m_MethodName: OnLogoutPlayer
           m_Mode: 0
           m_Arguments:
@@ -172,34 +178,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnClientConnected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnClientDataReceived:
-    m_PersistentCalls:
-      m_Calls: []
-  OnClientError:
-    m_PersistentCalls:
-      m_Calls: []
-  OnClientDisconnected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnServerConnected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnServerDataReceived:
-    m_PersistentCalls:
-      m_Calls: []
-  OnServerError:
-    m_PersistentCalls:
-      m_Calls: []
-  OnServerDisconnected:
-    m_PersistentCalls:
-      m_Calls: []
   port: 7777
   NoDelay: 1
+  SendTimeout: 5000
+  ReceiveTimeout: 30000
   serverMaxMessageSize: 16384
+  serverMaxReceivesPerTick: 10000
+  serverSendQueueLimitPerConnection: 10000
+  serverReceiveQueueLimitPerConnection: 10000
   clientMaxMessageSize: 16384
+  clientMaxReceivesPerTick: 1000
+  clientSendQueueLimit: 10000
+  clientReceiveQueueLimit: 10000
 --- !u!114 &3252435991396032038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,8 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverConfig: {fileID: 11400000, guid: 7f1030086e7bb45ad82c97342a5ade49, type: 2}
   gameRulesConfig: {fileID: 11400000, guid: 81b1bccee2cc74db09102b9c49833726, type: 2}
-  serverAuthorityConfig: {fileID: 11400000, guid: 4592bc402899b9844a45baa38249caa4,
-    type: 2}
+  serverAuthorityConfig: {fileID: 11400000, guid: 4592bc402899b9844a45baa38249caa4, type: 2}
 --- !u!114 &3252435990677973888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,3 +262,19 @@ MonoBehaviour:
   zoneConfig: {fileID: 11400000, guid: 99e824c5082f8634faaf90ecdab1c4df, type: 2}
   debug:
     _debugMode: 0
+--- !u!114 &3155086227641078583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252435991396032041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39adc6e09d5544ed955a50ce8600355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visRange: 30
+  rebuildInterval: 1
+  checkMethod: 0
+  showSlider: 0

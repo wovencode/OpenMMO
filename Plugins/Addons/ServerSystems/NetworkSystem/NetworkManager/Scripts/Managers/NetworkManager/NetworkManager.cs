@@ -127,7 +127,8 @@ namespace OpenMMO.Network
         /// </summary>
 		void Update()
 		{
-			if (ClientScene.localPlayer != null)
+			//if (ClientScene.localPlayer != null) //REMOVED - DX4D
+			if (NetworkClient.localPlayer != null) //ADDED - DX4D
 				state = NetworkState.Game;
 		}
 		
@@ -243,22 +244,23 @@ namespace OpenMMO.Network
 			
 			debug.LogFormat(this.name, nameof(OnStopServer)); //DEBUG
 		}
-		
-		// -------------------------------------------------------------------------------
+
+        // -------------------------------------------------------------------------------
         /// <summary>
         /// Public function <c>IsConnecting</c> returns a boolean.
         /// Checks whether the client is active and the client scene is ready
         /// </summary>
         /// <returns> Returns a boolean value detailing whether the user is connecting </returns>
-		public bool IsConnecting() => NetworkClient.active && !ClientScene.ready;
-		
-		// -------------------------------------------------------------------------------
+        //public bool IsConnecting() => NetworkClient.active && !ClientScene.ready; //REMOVED - DX4D
+        public bool IsConnecting() => NetworkClient.active && !NetworkClient.ready; //ADDED - DX4D
+
+        // -------------------------------------------------------------------------------
         /// <summary>
         /// Public event <c>OnClientConnect</c>.
         /// Triggered when the client connects.
         /// </summary>
         /// <param name="conn"></param>
-		public override void OnClientConnect(NetworkConnection conn) {
+        public override void OnClientConnect(NetworkConnection conn) {
 			this.InvokeInstanceDevExtMethods(nameof(OnClientConnect), conn); //HOOK
 			debug.LogFormat(this.name, nameof(OnClientConnect), conn.Id()); //DEBUG
 		}

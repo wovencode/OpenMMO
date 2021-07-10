@@ -287,10 +287,10 @@ namespace OpenMMO.Chat
 		}
         
 		// -------------------------------------------------------------------------------
-        //public void OnServerChatReceive(NetworkConnection conn, MsgChatSendFromClient msg) //REMOVED - DX4D
-        public void OnServerChatReceive(MsgChatSendFromClient msg) //ADDED - DX4D
+        public void OnServerChatReceive(NetworkConnection conn, MsgChatSendFromClient msg) //REMOVED - DX4D
+        //public void OnServerChatReceive(MsgChatSendFromClient msg) //ADDED - DX4D
         {
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
 
             ChatChannelData channel = defaultChannel;
             if (ChatUsers.ContainsKey(conn))
@@ -309,10 +309,10 @@ namespace OpenMMO.Chat
         }
 
         // -------------------------------------------------------------------------------
-        //public void OnServerLoginRequest(NetworkConnection conn, MsgChatLoginRequestFromClient msg) //REMOVED - DX4D
-        public void OnServerLoginRequest(MsgChatLoginRequestFromClient msg) //ADDED - DX4D
+        public void OnServerLoginRequest(NetworkConnection conn, MsgChatLoginRequestFromClient msg) //REMOVED - DX4D
+        //public void OnServerLoginRequest(MsgChatLoginRequestFromClient msg) //ADDED - DX4D
         {
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
 
             string userId = msg.userId;
 
@@ -321,7 +321,7 @@ namespace OpenMMO.Chat
 
             if (string.IsNullOrEmpty(msg.name))
             {
-                Debug.LogWarning("[Warning] Chat user " + conn.connectionId + " entered empty name");
+                Debug.LogWarning("[Warning] Chat user " + conn.connectionId + " entered empty name...");
                 return;
             }
 

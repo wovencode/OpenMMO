@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3324735558050414319}
   - component: {fileID: 6106131644278242387}
   m_Layer: 0
-  m_Name: AnchorManager
+  m_Name: ZoneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,4 +57,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug:
-    debugMode: 1
+    _debugMode: 0

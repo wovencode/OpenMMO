@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Rare
   folderName: Rarities
-  color: {r: 1, g: 0.5874088, b: 0, a: 1}
+  color: {r: 0, g: 0.11764706, b: 1, a: 1}
   borderImage: {fileID: 0}

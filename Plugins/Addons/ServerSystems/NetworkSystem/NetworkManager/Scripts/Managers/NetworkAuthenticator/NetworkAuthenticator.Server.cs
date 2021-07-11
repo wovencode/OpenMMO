@@ -101,9 +101,11 @@ namespace OpenMMO.Network
 			// into a zone should not be possible and can only be done by warping to
 			// that zone instead.
 			bool portalChecked = true;
-			
-			if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetIsMainZone)
-				portalChecked = false;
+            ZoneManager zone = GetComponent<ZoneManager>(); //ADDED - DX4D
+                if (zone != null && !zone.GetIsMainZone) portalChecked = false; //ADDED - DX4D
+
+                //if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetIsMainZone) //REMOVED - DX4D
+                //    portalChecked = false; //REMOVED - DX4D
 			
 			if ((checkApplicationVersion && msg.clientVersion != Application.version) || !portalChecked)
 			{
@@ -113,7 +115,10 @@ namespace OpenMMO.Network
 			else
 			{
 				base.OnServerAuthenticated.Invoke(conn); //EVENT
-				debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "Authenticated"); //DEBUG
+#if DEBUG
+                Debug.Log("<color=green>Authentication success!</color>\n" + conn.connectionId + "@" + conn.address);
+#endif
+                debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "Authenticated"); //DEBUG
 			}
 			
 			conn.Send(message);
@@ -122,8 +127,11 @@ namespace OpenMMO.Network
 			{
 				conn.isAuthenticated = false;
 				conn.Disconnect();
-				
-				debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "DENIED"); //DEBUG
+
+#if DEBUG
+                Debug.Log("<color=red>Authentication failed!</color>\n" + conn.connectionId + "@" + conn.address );
+#endif
+                debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "DENIED"); //DEBUG
 			}
 		
 		}

@@ -80,7 +80,11 @@ namespace OpenMMO.Network
                 clientVersion = Application.version
             };
 
-            NetworkClient.Send(msg);
+#if DEBUG
+            Debug.Log("<color=yellow><b>" + this.name + " Connecting to Server...</b></color>"
+                + "\nClient @" + NetworkClient.connection.address.ToString() + " connecting to Server @" + NetworkClient.serverIp + "...");
+#endif
+            NetworkClient.Send<ClientRequestAuth>(msg);
             
             debug.LogFormat(this.name, nameof(ClientAuthenticate)); //DEBUG
 		}

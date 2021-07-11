@@ -1,3 +1,5 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 //UPDATED MIRROR VERSION v13 to v42.2.8 BY DX4D
 using System.Collections.Generic;
 using OpenMMO.Network;
@@ -21,17 +23,16 @@ namespace OpenMMO.Network
             this.action = messageAction;
         }
 
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
-
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 }

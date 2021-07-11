@@ -1,3 +1,4 @@
+//BY FHIZ
 //UPDATED MIRROR VERSION v13 to v42.2.8 BY DX4D
 using System.Collections.Generic;
 using OpenMMO.Network;
@@ -35,16 +36,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseError : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -60,16 +61,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseAuth : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -88,16 +89,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserPlayerPreviews : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
 
         public PlayerPreview[] players;
@@ -129,16 +130,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserLogin : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
 
         public PlayerPreview[] players;
@@ -169,16 +170,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserRegister : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -192,16 +193,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserDelete : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -215,16 +216,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserChangePassword : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -238,16 +239,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponseUserConfirm : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -263,16 +264,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponsePlayerLogin : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 
@@ -286,16 +287,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponsePlayerRegister : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
 
         public string playername;
@@ -311,16 +312,16 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ServerResponsePlayerDelete : ServerResponse
     {
-        NetworkAction _action;
+        internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
 
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
-        bool _causesDisconnect;
+        internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
     }
 

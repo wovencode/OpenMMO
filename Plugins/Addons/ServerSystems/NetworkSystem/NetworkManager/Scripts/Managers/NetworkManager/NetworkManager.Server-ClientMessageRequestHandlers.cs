@@ -1,3 +1,4 @@
+//BY FHIZ
 
 using OpenMMO;
 using OpenMMO.Network;
@@ -85,8 +86,9 @@ namespace OpenMMO.Network
 		{
 			
 			ServerResponseUserLogin message = new ServerResponseUserLogin
-			{
-				success = true,
+            {
+                action              = NetworkAction.UserLogin, //ADDED - DX4D
+                success             = true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
@@ -136,8 +138,9 @@ namespace OpenMMO.Network
         {
         	
         	ServerResponseUserRegister message = new ServerResponseUserRegister
-			{
-				success = true,
+            {
+                action              = NetworkAction.UserRegister, //ADDED - DX4D
+                success             = true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
@@ -174,8 +177,9 @@ namespace OpenMMO.Network
         {
         	
         	ServerResponseUserDelete message = new ServerResponseUserDelete
-			{
-				success = true,
+            {
+                action              = NetworkAction.UserDelete, //ADDED - DX4D
+                success             = true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
@@ -214,8 +218,9 @@ namespace OpenMMO.Network
         {
         	
         	ServerResponseUserChangePassword message = new ServerResponseUserChangePassword
-			{
-				success = true,
+            {
+                action              = NetworkAction.UserChangePassword, //ADDED - DX4D
+                success             = true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
@@ -254,8 +259,9 @@ namespace OpenMMO.Network
         {
         	
         	ServerResponseUserConfirm message = new ServerResponseUserConfirm
-			{
-				success = true,
+            {
+                action              = NetworkAction.UserConfirm, //ADDED - DX4D
+                success             = true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
@@ -296,8 +302,9 @@ namespace OpenMMO.Network
 		{
 			
 			ServerResponsePlayerLogin message = new ServerResponsePlayerLogin
-			{
-				success 			= true,
+            {
+                action              = NetworkAction.PlayerLogin, //ADDED - DX4D
+                success 			= true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};
@@ -335,8 +342,9 @@ namespace OpenMMO.Network
         {
         	
         	ServerResponsePlayerRegister message = new ServerResponsePlayerRegister
-			{
-				success 			= true,
+            {
+                action              = NetworkAction.PlayerRegister, //ADDED - DX4D
+                success 			= true,
 				text			 	= "",
 				causesDisconnect 	= false,
 				playername 			= msg.playername

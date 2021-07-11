@@ -66,8 +66,9 @@ namespace OpenMMO.Network
 		public void SwitchServerPlayer(NetworkConnection conn, string playername, string anchorName, string zoneName, int _token)
 		{
 
-			ServerResponsePlayerSwitchServer message = new ServerResponsePlayerSwitchServer
-			{
+            ServerResponsePlayerSwitchServer message = new ServerResponsePlayerSwitchServer
+            {
+                action              = NetworkAction.PlayerSwitchServer, //ADDED - DX4D
 				playername			= playername,
 				anchorname 			= anchorName,
 				zonename 			= zoneName,
@@ -107,6 +108,7 @@ namespace OpenMMO.Network
 			
 			ServerResponsePlayerAutoLogin message = new ServerResponsePlayerAutoLogin
 			{
+                action              = NetworkAction.PlayerAutoLogin, //ADDED - DX4D
 				success 			= true,
 				text			 	= "",
 				causesDisconnect 	= false
@@ -136,8 +138,9 @@ namespace OpenMMO.Network
         {
         	
         	ServerResponsePlayerSwitchServer message = new ServerResponsePlayerSwitchServer
-			{
-				success 			= true,
+            {
+                action              = NetworkAction.PlayerSwitchServer, //ADDED - DX4D
+                success 			= true,
 				text			 	= "",
 				causesDisconnect 	= false
 			};

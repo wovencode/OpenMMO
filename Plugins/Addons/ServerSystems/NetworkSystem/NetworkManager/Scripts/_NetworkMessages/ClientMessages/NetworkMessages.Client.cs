@@ -33,10 +33,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestAuth : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string clientVersion;
@@ -55,10 +55,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserLogin : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -71,10 +71,10 @@ namespace OpenMMO.Network
     // -----------------------------------------------------------------------------------
     public partial struct ClientRequestUserLogout : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
     }
 
@@ -89,10 +89,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserRegister : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -112,10 +112,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserDelete : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -133,10 +133,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserChangePassword : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -155,10 +155,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserConfirm : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -178,10 +178,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestPlayerLogin : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -199,10 +199,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestPlayerRegister : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -221,10 +221,10 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestPlayerDelete : ClientRequest
     {
-        bool _success;
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;

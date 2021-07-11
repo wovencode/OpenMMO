@@ -8,9 +8,10 @@ STEP 1 - SET UP YOUR PROJECT
 
 STEP 2 - ADD YOUR GAME SCENES TO THE BUILD LIST
 1 - In Unity, Open Build Settings from the File Menu, move the window to the side so you can drag scenes to it from your project view.
-2 - Inside your Project View, Scroll down to the Scenes folder and Drag UI Scene, Login Scene, and any other scenes in the folders there that you find
-	(there should be a couple per race) into the "Scenes to Build" section of the Build Window you left opened.
+2 - Inside your Project View, Scroll down to the Scenes folder
+3 - Drag UI Scene, Login Scene, and any other scenes from the Scenes folder into the "Scenes to Build" section of the Build Window you left opened.
 3 - Make sure that the Login Scene is at the top and the UI Scene is at the bottom of the "Scenes to Build" box.
+4 - Close the Build Settings window.
 
 
 STEP 3 - OPEN THE LOGIN SCENE

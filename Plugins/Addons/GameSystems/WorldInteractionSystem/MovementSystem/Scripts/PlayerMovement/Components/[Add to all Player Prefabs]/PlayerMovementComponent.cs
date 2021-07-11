@@ -1,5 +1,6 @@
-// by Fhiz
+//BY FHIZ
 //BY DX4D
+
 using UnityEngine;
 using Mirror;
 
@@ -99,7 +100,7 @@ namespace OpenMMO
         /// <summary>
     	/// Client only, late update.
     	/// </summary>
-        protected override void LateUpdateClient()
+        [Client] protected override void LateUpdateClient()
         {
             base.LateUpdateClient();
             this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK

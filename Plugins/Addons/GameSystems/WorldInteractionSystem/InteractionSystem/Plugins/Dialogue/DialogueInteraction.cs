@@ -1,6 +1,7 @@
 //BY DX4D
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace OpenMMO
 {
@@ -12,8 +13,8 @@ namespace OpenMMO
         [SerializeField] Queue<string> _dialogue = new Queue<string>();
         public Queue<string> dialogue { get { return _dialogue; } }
 
-        public override void ClientAction(GameObject user) { ClientResponse(); }
-        public override void ServerAction(GameObject user) { }
+        [Client] public override void ClientAction(GameObject user) { ClientResponse(); }
+        [Server] public override void ServerAction(GameObject user) { }
 
         public void ClientResponse()
         {

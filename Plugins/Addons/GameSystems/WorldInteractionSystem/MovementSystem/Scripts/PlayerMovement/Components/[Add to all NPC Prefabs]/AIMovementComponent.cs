@@ -100,8 +100,8 @@ namespace OpenMMO
 
         /// <summary>
     	/// Client only, late update.
-    	/// </summary>
-        protected override void LateUpdateClient()
+        /// NOTE: Be sure to use [Client] when implementing this method!</summary>
+        [Client] protected override void LateUpdateClient()
         {
             base.LateUpdateClient();
             this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK

@@ -1,4 +1,5 @@
 //BY DX4D
+
 using UnityEngine;
 using Mirror;
 
@@ -42,11 +43,13 @@ namespace OpenMMO
         }
 
         //SERVER ACTION
-        [Server] public abstract void ServerAction(GameObject user);
+        ///<summary>NOTE: Be sure to use [Server] when implementing this method!</summary>
+        public abstract void ServerAction(GameObject user);
         [Server] public void OnInteractServer(GameObject user) { ServerAction(user); }// RpcRespondToClient(); //TargetRespondToClient();
-        
+
         //CLIENT ACTION
-        [Client] public abstract void ClientAction(GameObject user);
+        ///<summary>NOTE: Be sure to use [Client] when implementing this method!</summary>
+        public abstract void ClientAction(GameObject user);
         [Client] public void OnInteractClient(GameObject user) { ClientAction(user); } //TargetRespondToClient(); 
 
         ////SINGLE CLIENT RESPONSE

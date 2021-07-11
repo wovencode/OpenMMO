@@ -58,10 +58,12 @@ namespace OpenMMO {
             if (isServer) { InitializeCache(); StartServer(); }
             if (isClient) { StartClient(); }
         }
-		/// <summary> Server-side start method, protected to allow derived classes to use it. </summary>
-		[Server] protected abstract void StartServer();
-		/// <summary> Client-side start method, protected to allow derived classes to use it. </summary>
-		[Client] protected abstract void StartClient();
+        /// <summary> Server-side start method, protected to allow derived classes to use it.
+        /// NOTE: Be sure to use [Server] when implementing this method!</summary>
+        protected abstract void StartServer();
+        /// <summary> Client-side start method, protected to allow derived classes to use it.
+        /// NOTE: Be sure to use [Client] when implementing this method!</summary>
+        protected abstract void StartClient();
 
 		//UPDATE (CLIENT + SERVER)
 		/// <summary> Updated every frame, private to enforce the use of UpdateServer/UpdateClient </summary>
@@ -75,22 +77,26 @@ namespace OpenMMO {
 				RefreshUpdateInterval();
 			}
 		}
-		/// <summary> Server-side throttled update, protected to allow derived classes to use it. </summary>
-		[Server] protected abstract void UpdateServer();
-		/// <summary> Client-side throttled update, protected to allow derived classes to use it. </summary>
-		[Client] protected abstract void UpdateClient();
+        /// <summary> Server-side throttled update, protected to allow derived classes to use it.
+        /// NOTE: Be sure to use [Server] when implementing this method!</summary>
+        protected abstract void UpdateServer();
+        /// <summary> Client-side throttled update, protected to allow derived classes to use it.
+        /// NOTE: Be sure to use [Client] when implementing this method!</summary>
+        protected abstract void UpdateClient();
 
         //LATE UPDATE (CLIENT)
         /// <summary> Late Updated every frame, private to enforce the use of LateUpdateClient. </summary>
         void LateUpdate() { if (isClient) { LateUpdateClient(); } }
-		/// <summary> Client-side late update, protected to allow derived classes to use it. </summary>
-		[Client] protected abstract void LateUpdateClient();
+        /// <summary> Client-side late update, protected to allow derived classes to use it.
+        /// NOTE: Be sure to use [Client] when implementing this method!</summary>
+        protected abstract void LateUpdateClient();
 
 		//FIXED UPDATE (CLIENT)
 		/// <summary> Private, frame-rate independent fixed update. Private to enforce the use of FixedUpdateClient / FixedUpdateServer. </summary>
 		void FixedUpdate() { if (isClient) { FixedUpdateClient(); } }
-		/// <summary> Client-side fixed update, protected to allow derived classes to use it. </summary>
-		[Client] protected abstract void FixedUpdateClient();
+		/// <summary> Client-side fixed update, protected to allow derived classes to use it.
+        /// NOTE: Be sure to use [Client] when implementing this method!</summary>
+		protected abstract void FixedUpdateClient();
 		
 	}
 

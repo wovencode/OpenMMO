@@ -629,6 +629,7 @@ namespace Mirror
 
         // add/remove/replace player ///////////////////////////////////////////
         /// <summary>Called by server after AddPlayer message to add the player for the connection.</summary>
+        /// <returns>Was the player added sucessfully?</returns>
         // When a player is added for a connection, the client for that
         // connection is made ready automatically. The player object is
         // automatically spawned, so you do not need to call NetworkServer.Spawn

@@ -483,14 +483,22 @@ namespace OpenMMO.Network
         /// <param name="username"></param>
 		protected void LoginUser(NetworkConnection conn, string username)
 		{
-			
-			onlineUsers.Add(conn, username);
+
+            if (!onlineUsers.ContainsKey(conn))
+            {
+                onlineUsers.Add(conn, username);
+                Debug.Log(username + " has come online!");
+            }
+            else
+            {
+                Debug.Log(username + " was already online");
+            }
 			
 			state = NetworkState.Lobby;
 			    
 			DatabaseManager.singleton.LoginUser(username);
 			
-			this.InvokeInstanceDevExtMethods(nameof(LoginUser)); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoginUser), conn, username); //HOOK
 			debug.LogFormat(this.name, nameof(LoginUser), username); //DEBUG
 			
 		}
@@ -523,11 +531,15 @@ namespace OpenMMO.Network
 			
 				// -- log the player in
 				DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
-			
-				NetworkServer.AddPlayerForConnection(conn, player);
-			
-				onlinePlayers.Add(player.name, player);
-				
+
+                if (NetworkServer.AddPlayerForConnection(conn, player))
+                {
+                    onlinePlayers.Add(player.name, player);
+                }
+                else
+                {
+                    Debug.Log(player.name + " is already logged in");
+                }
 				state = NetworkState.Game;
 			
 				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK

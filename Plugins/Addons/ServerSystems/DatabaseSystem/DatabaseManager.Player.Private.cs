@@ -80,7 +80,7 @@ namespace OpenMMO.Database
 	   	[DevExtMethods(nameof(LoginPlayer))]
 	   	void LoginPlayer_Player(NetworkConnection conn, GameObject player, string playerName, string userName)
 	   	{
-	   		Execute("UPDATE "+nameof(TablePlayer)+" SET lastonline=? WHERE playername=?", DateTime.UtcNow, playerName);
+            Execute("UPDATE " + nameof(TablePlayer) + " SET lastonline=? WHERE playername=?", DateTime.UtcNow, playerName);
 	   	}
 		
 		/// <summary>

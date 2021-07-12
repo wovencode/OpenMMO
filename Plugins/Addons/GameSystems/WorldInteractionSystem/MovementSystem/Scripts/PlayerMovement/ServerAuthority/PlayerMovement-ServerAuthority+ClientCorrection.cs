@@ -145,11 +145,13 @@ namespace OpenMMO {
     		input.verticalMovement 		= Mathf.Clamp(moveState.verticalInput, -1, 1);		// accurate enough for keyboard + controller
     		input.horizontalMovement 	= Mathf.Clamp(moveState.horizontalInput, -1, 1);    // accurate enough for keyboard + controller
 
-            input.strafeLeft                    = moveState.strafeLeft;
-            input.strafeRight                   = moveState.strafeRight;
+            input.strafeLeft            = moveState.strafeLeft;
+            input.strafeRight           = moveState.strafeRight;
 
-            input.running						= moveState.running;
-            input.sneaking					= moveState.sneaking;
+            input.running				= moveState.running;
+            input.sneaking				= moveState.sneaking;
+
+            input.jumping				= moveState.jumping;
 
             agent.velocity = input.motor.GetVelocity(moveState, input.movement, agent); //UPDATE THE MOTOR
 

@@ -104,6 +104,16 @@ namespace OpenMMO
                     agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, Quaternion.LookRotation(horizontalDirection + verticalDirection), agent.angularSpeed * factor);
                 }
 
+                //JUMP
+                if (movement.jumping)
+                {
+                    //direction = agent.transform.right;
+                    //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
+                    //if (movementConfig.turnWhileStrafing) agent.transform.Rotate(0, 1.0f * movementConfig.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
+                    //newVelocity = direction * horizontalMovementInput * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                    newVelocity = (Quaternion.Euler(20f, 0, 0) * agent.transform.forward) * 5f * agent.speed * movementConfig.jumpSpeedScale * movementConfig.moveSpeedMultiplier;
+                }
+
                 //if () agent.gameObject.transform.LookAt(agent.gameObject.transform.position + direction, Vector3.up); //LOOK AT MOVE DIRECTION
 
                 return newVelocity; //SET VELOCITY - ON NAVMESH AGENT

@@ -1,4 +1,4 @@
-// by Fhiz
+//BY FHIZ
 //BY DX4D
 using UnityEngine;
 using Mirror;
@@ -40,7 +40,10 @@ namespace OpenMMO
         public bool Running { get { return Moving && input.running; } }
         //SNEAKING?
         /// <summary>Checks if the character is moving stealthily</summary>
-        public bool Sneaking { get { return input.sneaking; } }
+        public bool Sneaking { get { return Moving && input.sneaking; } }
+        //JUMPING?
+        /// <summary>Checks if the character is jumping</summary>
+        public bool Jumping { get { return input.jumping; } }
 
 
         ///// <summary> Start called client and server-side to initialize properties. </summary>

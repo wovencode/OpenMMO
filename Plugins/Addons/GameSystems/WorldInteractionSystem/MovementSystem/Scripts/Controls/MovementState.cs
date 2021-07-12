@@ -12,6 +12,9 @@ namespace OpenMMO
         public bool running;
         public bool sneaking;
 
+        [Header("Maneuvers")]
+        public bool jumping;
+
         [Header("Movement Direction")]
         public float movingHorizontal;
         public float movingVertical;
@@ -20,6 +23,7 @@ namespace OpenMMO
         {
             running = false;
             sneaking = false;
+            jumping = false;
             movingHorizontal = 0f;
             movingVertical = 0f;
         }

@@ -1,4 +1,6 @@
-// by Fhiz, DX4D
+//BY FHIZ
+//BY DX4D
+
 using UnityEngine;
 using Mirror;
 
@@ -28,6 +30,9 @@ namespace OpenMMO
 
         //SNEAK
         internal bool sneaking;
+
+        //JUMP
+        internal bool jumping;
 
 #if UNITY_EDITOR
         // LOAD PLUGINS

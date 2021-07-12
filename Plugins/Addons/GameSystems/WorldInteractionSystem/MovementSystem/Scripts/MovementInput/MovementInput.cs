@@ -26,6 +26,9 @@ namespace OpenMMO
         //SNEAK
         public bool sneaking;
 
+        //JUMP
+        public bool jumping;
+
         //CONSTRUCTOR
         /// <summary>Struct Constructor. Passes all properties to the struct and initializes them.</summary>
     	public MovementInput(Vector3 _position, Quaternion _rotation, MovementProfile _data)// float _verticalInput, float _horizontalInput, bool _running, bool _sneaking, bool _strafeLeft, bool _strafeRight)
@@ -47,6 +50,9 @@ namespace OpenMMO
 
             //SNEAK
             sneaking = _data.sneaking;
+
+            //JUMP
+            jumping = _data.jumping;
         }
 
     }

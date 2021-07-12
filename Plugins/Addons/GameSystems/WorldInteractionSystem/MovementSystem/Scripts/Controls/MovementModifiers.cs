@@ -43,6 +43,9 @@ namespace OpenMMO
         //SNEAK
         [Tooltip("Scales speed while sneaking. 1.0f = normal speed")]
         [Range(0, 10)] public float sneakSpeedScale = 0.5f;
+        //JUMP
+        [Tooltip("Scales speed while jumping. 1.0f = normal speed")]
+        [Range(0, 10)] public float jumpSpeedScale = 0.5f;
         //STRAFE
         [Tooltip("Scales speed while strafing. 1.0f = normal speed")]
         [Range(0, 10)] public float strafeSpeedScale = 0.75f;

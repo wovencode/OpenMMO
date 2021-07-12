@@ -78,10 +78,19 @@ namespace OpenMMO
                     //newVelocity = direction * horizontalMovementInput * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
                     newVelocity = agent.transform.right * 5f * agent.speed * movementConfig.strafeSpeedScale * movementConfig.moveSpeedMultiplier;
                 }
-
                 if (!movement.strafeLeft && !movement.strafeRight)
                 {
                     agent.transform.Rotate(0, movement.horizontalInput * movementConfig.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //SET ROTATION - ON TRANSFORM - NOT WHILE STRAFING
+                }
+
+                //JUMP
+                if (movement.jumping)
+                {
+                    //direction = agent.transform.right;
+                    //if (agent.velocity == Vector3.zero) agent.velocity = transform.forward.normalized; //FORWARD VELOCITY
+                    //if (movementConfig.turnWhileStrafing) agent.transform.Rotate(0, 1.0f * movementConfig.turnSpeedMultiplier * Time.deltaTime * 100f, 0); //TURN WHILE STRAFING
+                    //newVelocity = direction * horizontalMovementInput * agent.speed * config.strafeSpeedScale * config.moveSpeedMultiplier;
+                    newVelocity = (Quaternion.Euler(20f, 0, 0) * agent.transform.forward) * 5f * agent.speed * movementConfig.jumpSpeedScale * movementConfig.moveSpeedMultiplier;
                 }
 
                 return newVelocity; //SET VELOCITY - ON NAVMESH AGENT

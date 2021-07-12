@@ -1,4 +1,5 @@
 //BY DX4D
+
 using UnityEngine;
 
 namespace OpenMMO
@@ -12,6 +13,9 @@ namespace OpenMMO
         [Header("Input Keys")]
         public KeyCode runKey = KeyCode.LeftShift;
         public KeyCode sneakKey = KeyCode.LeftControl;
+
+        //JUMP
+        public KeyCode jumpKey = KeyCode.Space;
 
         //MOVE
         public InputAxis moveAxisHorizontal = InputAxis.Horizontal;

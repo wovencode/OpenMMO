@@ -33,6 +33,10 @@ namespace OpenMMO
             running = move.running;// Input.GetKey(keys.runKey);
             //sneak
             sneaking = move.sneaking;// Input.GetKey(keys.sneakKey);
+            
+            //MOVE ACTIONS
+            //jump
+            jumping = move.jumping;// Input.GetKey(keys.jumpKey);
         }
     }
 }

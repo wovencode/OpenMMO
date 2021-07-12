@@ -1,3 +1,5 @@
+//BY DX4D
+
 using UnityEngine;
 
 namespace OpenMMO
@@ -34,6 +36,8 @@ namespace OpenMMO
             running = Input.GetKey(keys.runKey);
             //SNEAK
             sneaking = Input.GetKey(keys.sneakKey);
+            //JUMP
+            jumping = Input.GetKey(keys.jumpKey);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace OpenMMO.Network
         // @Client
         // -------------------------------------------------------------------------------
        	[DevExtMethods(nameof(OnClientAuthenticate))]
-        void OnClientAuthenticate_NetworkPortals(NetworkConnection conn)
+        void OnClientAuthenticate_NetworkPortals() //FIX - MIRROR UPDATE - NetworkConnection conn parameter Replaced with NetworkClient.connection - DX4D
         {
         	if (GetComponent<ZoneManager>() != null && GetComponent<ZoneManager>().GetAutoConnect)
         		Invoke(nameof(ClientAutoAuthenticate), connectDelay);		 

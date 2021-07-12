@@ -1,3 +1,4 @@
+//BY FHIZ
 
 using OpenMMO;
 using OpenMMO.Network;
@@ -330,7 +331,7 @@ namespace OpenMMO.Network
 				state = NetworkState.Offline;
 				UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
 			}
-			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect)); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect), conn); //HOOK
 			debug.LogFormat(this.name, nameof(OnClientDisconnect), conn.Id()); //DEBUG
 		}
 		

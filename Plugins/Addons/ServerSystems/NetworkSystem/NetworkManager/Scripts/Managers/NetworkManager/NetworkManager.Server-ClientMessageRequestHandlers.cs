@@ -487,7 +487,7 @@ namespace OpenMMO.Network
             if (!onlineUsers.ContainsKey(conn))
             {
                 onlineUsers.Add(conn, username);
-                Debug.Log(username + " has come online!");
+                Debug.Log("<color=orange>" + username + " has come online!" + "</color>");
             }
             else
             {
@@ -544,8 +544,16 @@ namespace OpenMMO.Network
 			
 				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
 				eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
-			
-				debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG
+
+#if DEBUG
+                Debug.Log(!player ? "! LOGIN FAILED !" : "! LOGIN SUCCESS !"
+                    + "\n" + name
+                    + "\n" + nameof(LoginPlayer)
+                    + "\n" + username
+                    + "\n" + playername
+                    );
+#endif
+                debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG
 				
 				return player;
 				

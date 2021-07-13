@@ -1,10 +1,7 @@
-//by  Fhiz
-using OpenMMO;
-using OpenMMO.Database;
+//BY FHIZ
+
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-using SQLite;
 using Mirror;
 
 namespace OpenMMO.Database

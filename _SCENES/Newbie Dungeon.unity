@@ -490,8 +490,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e91f9ae101a2ed04cae8ea67c0c138cd, type: 2}
     - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
+      propertyPath: popupZoning
+      value: Entering the Newbie Village
+      objectReference: {fileID: 0}
+    - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: targetAnchor
-      value: ZoneAnchor
+      value: Zone Entrance
       objectReference: {fileID: 0}
     - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: bypassConfirmation
@@ -523,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.67
+      value: -49.9
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: m_LocalPosition.y
@@ -531,7 +535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -54
+      value: -22.6
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1235,6 +1239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnchorManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5027001439149113862, guid: f31145b3e9e9c4e52acaebfb33da0e57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f31145b3e9e9c4e52acaebfb33da0e57, type: 3}
 --- !u!1001 &6448637911037128091
@@ -1246,7 +1254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4374841326114086299, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
       propertyPath: m_Name
-      value: ZoneAnchor
+      value: Zone Entrance
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
       propertyPath: m_RootOrder
@@ -1254,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.19
+      value: 14.9
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1262,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.56
+      value: -34.7
       objectReference: {fileID: 0}
     - target: {fileID: 5423188389871913946, guid: 28d19a645708c4a7892003b0d15e6526, type: 3}
       propertyPath: m_LocalRotation.w

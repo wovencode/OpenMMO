@@ -117,6 +117,7 @@ namespace OpenMMO
                 float durationInSeconds = (float)((summary.buildEndedAt - summary.buildStartedAt).TotalSeconds);
                 durationInSeconds -= durationInSeconds % 0.01f;
 
+                buildLog.Insert(0, ("<color=green><b>[" + buildType.ToString()[0] + "]</b></color>")); //SUCCESS SYMBOL
                 buildLog.AppendLine("<color=green><b>" + targetPlatform + " " + buildType + " build succeeded..." + "</b></color>"
                     + ((summary.totalSize > 0) ? ("\nBuild size: " + sizeInMegabytes + " MB") : (""))
                     + "\nBuild duration: " + durationInSeconds + "s");
@@ -128,6 +129,7 @@ namespace OpenMMO
             {
                 #region  BUILD REPORT - failure
 #if !SKIP_BUILD_REPORT
+                buildLog.Insert(0, ("<color=red><b>[" + buildType.ToString()[0] + "]</b></color>") ); //FAILURE SYMBOL
                 buildLog.AppendLine("<color=red><b>" + targetPlatform + " " + buildType + " build failed...</b></color>"
                     + "\n" + report.ToString());
 #endif

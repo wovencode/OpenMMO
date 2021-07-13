@@ -21,6 +21,9 @@ namespace OpenMMO
         // -------------------------------------------------------------------------------
         public static void SetBuildType(NetworkType buildType, bool headless = false)
         {
+#if DEBUG
+            Debug.Log("<b>[<color=purple>" + " " + buildType.ToString().ToUpper() + " MODE ACTIVATED" + " " + "</color>]</b>");
+#endif
             ServerConfigTemplate.singleton.networkType = buildType;
             ServerConfigTemplate.singleton.OnValidate();
 

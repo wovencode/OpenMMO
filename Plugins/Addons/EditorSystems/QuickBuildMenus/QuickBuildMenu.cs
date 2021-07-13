@@ -31,12 +31,23 @@ namespace OpenMMO
 
         #region BUILD REPORT - build log
 #if !SKIP_BUILD_REPORT
-        static StringBuilder buildLog = new StringBuilder();
+        static StringBuilder buildLog = new StringBuilder(" <color=orange><b>[BUILD REPORT]</b></color> ");
 #endif
         #endregion
-        // -------------------------------------------------------------------------------
-        // GetScenesFromBuild
-        // -------------------------------------------------------------------------------
+
+            #region  BUILD REPORT - initialize
+#if !SKIP_BUILD_REPORT
+        //INITIALIZE BUILD REPORT
+        static void InitializeBuildReport(string buildName)
+        {
+            buildLog = new StringBuilder();
+            buildLog.AppendLine(" <color=purple><b>[BUILD REPORT]</b></color> ");
+            buildLog.AppendLine("<b>" + buildName + "</b>");
+        }
+#endif
+            #endregion
+
+        //GET SCENE FROM BUILD
         public static string[] GetScenesFromBuild()
         {
             List<string> scenes = new List<string>();
@@ -117,7 +128,7 @@ namespace OpenMMO
                 float durationInSeconds = (float)((summary.buildEndedAt - summary.buildStartedAt).TotalSeconds);
                 durationInSeconds -= durationInSeconds % 0.01f;
 
-                buildLog.Insert(0, ("<color=green><b>[" + buildType.ToString()[0] + "]</b></color>")); //SUCCESS SYMBOL
+                buildLog.Insert(0, ("<color=green><b>[" + buildType.ToString().ToUpper() + "]</b></color>")); //SUCCESS SYMBOL
                 buildLog.AppendLine("<color=green><b>" + targetPlatform + " " + buildType + " build succeeded..." + "</b></color>"
                     + ((summary.totalSize > 0) ? ("\nBuild size: " + sizeInMegabytes + " MB") : (""))
                     + "\nBuild duration: " + durationInSeconds + "s");
@@ -129,7 +140,7 @@ namespace OpenMMO
             {
                 #region  BUILD REPORT - failure
 #if !SKIP_BUILD_REPORT
-                buildLog.Insert(0, ("<color=red><b>[" + buildType.ToString()[0] + "]</b></color>") ); //FAILURE SYMBOL
+                buildLog.Insert(0, ("<color=red><b>[" + buildType.ToString().ToUpper() + "]</b></color>")); //FAILURE SYMBOL
                 buildLog.AppendLine("<color=red><b>" + targetPlatform + " " + buildType + " build failed...</b></color>"
                     + "\n" + report.ToString());
 #endif
@@ -137,12 +148,14 @@ namespace OpenMMO
             }
         }
 
-        // -------------------------------------------------------------------------------
-        // Build - FullDeployment - ClientAndServer - Server - Client
-        // -------------------------------------------------------------------------------
+
+        // - - - - - - - - - - - - - - - - -
+        // M U L T I  D E P L O Y M E N T S
+        // - - - - - - - - - - - - - - - - -
+
         //FULL DEPLOYMENT
         /// <summary>Builds a Full Deploy cycle for the platforms declared in this script.</summary>
-		public static void BuildFullDeployment()
+        public static void BuildFullDeployment()
 		{
             BuildHeadlessServer(fullDeployServerType);
 
@@ -165,6 +178,12 @@ namespace OpenMMO
             BuildHeadlessServer(targetPlatform);
             BuildClient(targetPlatform);
         }
+
+
+        // - - - - - - - - - - - - - - - -
+        // S O L O  D E P L O Y M E N T S
+        // - - - - - - - - - - - - - - - -
+
         //HEADLESS SERVER
         /// <summary>Builds a headless server for the target platform.</summary>
 		public static void BuildHeadlessServer(BuildTarget targetPlatform)
@@ -184,16 +203,18 @@ namespace OpenMMO
             Build(targetPlatform, NetworkType.Client);
         }
 
-        // -------------------------------------------------------------------------------
-        // BuildClientAndServer - Windows - Mac - Linux
-        // -------------------------------------------------------------------------------
+
+        // - - - - - - - - - - -
+        // B U I L D  M E N U S
+        // - - - - - - - - - - -
+
         //FULL DEPLOYMENT
         [MenuItem("OpenMMO/Quick Build/FULL BUILD/Full Deployment (headless + multi-client) - [linux-osx-win64]", priority = 1)]
         public static void BuildFull()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Full Deployment Package</b>"); //BUILD REPORT
+            InitializeBuildReport("Full Deployment Package"); //INITIALIZE
 #endif
             #endregion
 
@@ -211,12 +232,12 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/WIN64/Client and Server (headless)", priority = 10)]
         public static void BuildWindows64ClientAndHeadlessServer()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Windows 64 Headless Server and Client</b>"); //BUILD REPORT
+            InitializeBuildReport("Windows 64 Headless Server and Client"); //INITIALIZE
 #endif
             #endregion
-
+            
             BuildClientAndHeadlessServer(BuildTarget.StandaloneWindows64); //BUILD
 
             #region  BUILD REPORT
@@ -230,9 +251,9 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/WIN64/Server (headless)", priority = 11)]
         public static void BuildWindows64HeadlessServer()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Windows 64 Headless Server</b>"); //BUILD REPORT
+            InitializeBuildReport("Windows 64 Headless Server"); //INITIALIZE
 #endif
             #endregion
 
@@ -249,12 +270,12 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/WIN64/Client", priority = 12)]
         public static void BuildWindows64Client()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Windows 64 Client</b>"); //BUILD REPORT
+            InitializeBuildReport("Windows 64 Client"); //INITIALIZE
 #endif
             #endregion
-
+            
             BuildClient(BuildTarget.StandaloneWindows64); //BUILD
 
             #region  BUILD REPORT
@@ -269,12 +290,12 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/OSX/Client and Server (headless)", priority = 20)]
         public static void BuildOSXClientAndHeadlessServer()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>OSX Headless Server and Client</b>"); //BUILD REPORT
+            InitializeBuildReport("OSX Headless Server and Client"); //INITIALIZE
 #endif
             #endregion
-
+            
             BuildClientAndHeadlessServer(BuildTarget.StandaloneOSX); //BUILD
 
             #region  BUILD REPORT
@@ -288,12 +309,12 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/OSX/Server (headless)", priority = 21)]
         public static void BuildOSXHeadlessServer()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>OSX Headless Server</b>"); //BUILD REPORT
+            InitializeBuildReport("OSX Headless Server"); //INITIALIZE
 #endif
             #endregion
-
+            
             BuildHeadlessServer(BuildTarget.StandaloneOSX); //BUILD
 
             #region  BUILD REPORT
@@ -307,9 +328,9 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/OSX/Client", priority = 22)]
         public static void BuildOSXClient()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>OSX Client</b>"); //BUILD REPORT
+            InitializeBuildReport("OSX Client"); //INITIALIZE
 #endif
             #endregion
 
@@ -327,12 +348,12 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/Linux/Client and Server (headless)", priority = 30)]
         public static void BuildLinuxClientAndHeadlessServer()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Linux Headless Server and Client</b>"); //BUILD REPORT
+            InitializeBuildReport("Linux Headless Server and Client"); //INITIALIZE
 #endif
             #endregion
-
+            
             BuildClientAndHeadlessServer(BuildTarget.StandaloneLinux64); //BUILD
 
             #region  BUILD REPORT
@@ -346,12 +367,12 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/Linux/Server (headless)", priority = 31)]
         public static void BuildLinuxHeadlessServer()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Linux Headless Server</b>"); //BUILD REPORT
+            InitializeBuildReport("Linux Headless Server"); //INITIALIZE
 #endif
             #endregion
-
+            
             BuildHeadlessServer(BuildTarget.StandaloneLinux64); //BUILD
 
             #region  BUILD REPORT
@@ -365,9 +386,9 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/Linux/Client", priority = 32)]
         public static void BuildLinuxClient()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Linux Client</b>"); //BUILD REPORT
+            InitializeBuildReport("Linux Client"); //INITIALIZE
 #endif
             #endregion
 
@@ -385,9 +406,9 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/WEBGL/Client", priority = 42)]
         public static void BuildWebGLClient()
         {
-            #region  BUILD REPORT - title
+            #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>WebGL Client</b>"); //BUILD REPORT
+            InitializeBuildReport("WebGL Client"); //INITIALIZE
 #endif
             #endregion
 
@@ -409,13 +430,13 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/TEST_MODE/OSX Client and Server (NOT headless)", priority = 0)]
         public static void BuildOSXClientAndServer()
         {
-        #region  BUILD REPORT - title
+        #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>OSX Server and Client</b>"); //BUILD REPORT
+            InitializeBuildReport("OSX Server and Client"); //INITIALIZE
 #endif
         #endregion
-
-            BuildClientAndServer(BuildTarget.StandaloneOSX); //BUILD
+        
+        BuildClientAndServer(BuildTarget.StandaloneOSX); //BUILD
 
         #region  BUILD REPORT
 #if !SKIP_BUILD_REPORT
@@ -428,13 +449,13 @@ namespace OpenMMO
         [MenuItem("OpenMMO/Quick Build/TEST_MODE/Win64 Client and Server (NOT headless)", priority = 1)]
         public static void BuildWin64ClientAndServer()
         {
-        #region  BUILD REPORT - title
+        #region  BUILD REPORT - initialize
 #if !SKIP_BUILD_REPORT
-            buildLog.AppendLine("<color=orange><b>[BUILD REPORT]</b></color> " + "\n<b>Windows 64 Server and Client</b>"); //BUILD REPORT
+            InitializeBuildReport("Windows 64 Server and Client"); //INITIALIZE
 #endif
         #endregion
 
-            BuildClientAndServer(BuildTarget.StandaloneWindows64); //BUILD
+        BuildClientAndServer(BuildTarget.StandaloneWindows64); //BUILD
 
         #region  BUILD REPORT
 #if !SKIP_BUILD_REPORT
@@ -444,9 +465,6 @@ namespace OpenMMO
         #endregion
         }
 #endif
-        // -------------------------------------------------------------------------------
-
     }
-
 }
 #endif

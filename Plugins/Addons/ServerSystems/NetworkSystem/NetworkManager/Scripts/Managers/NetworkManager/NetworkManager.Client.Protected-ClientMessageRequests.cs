@@ -1,13 +1,7 @@
 //BY FHIZ
 //MODIFIED BY DX4D
 
-using OpenMMO;
-using OpenMMO.Network;
-using OpenMMO.UI;
 using UnityEngine;
-using UnityEngine.Events;
-using System;
-using System.Collections.Generic;
 using Mirror;
 
 namespace OpenMMO.Network

@@ -1,11 +1,6 @@
-// by Fhiz
-using OpenMMO;
-using OpenMMO.Database;
-using OpenMMO.Network;
+//BY FHIZ
+
 using UnityEngine;
-using System;
-using System.IO;
-using System.Collections.Generic;
 using Mirror;
 
 namespace OpenMMO.Database

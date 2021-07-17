@@ -92,7 +92,9 @@ namespace OpenMMO
             }
             #region DEBUG - write debug log
 #if UNITY_EDITOR && DEBUG
-            if (debugLog.ToString() != string.Empty) Debug.Log(DEBUG_CORE_PLUGINS_LOADED_MESSAGE + " - " + name + "\n" + " linked " + loadCounter + " components" + "\n" + debugLog.ToString());
+            if (debugLog.ToString() != string.Empty) Debug.Log(DEBUG_CORE_PLUGINS_LOADED_MESSAGE + " - " + name
+                + "\n" + " linked " + loadCounter + " components"
+                + "\n" + debugLog.ToString());
 #endif
             #endregion //DEBUG
         }

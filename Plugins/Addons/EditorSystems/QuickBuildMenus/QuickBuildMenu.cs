@@ -31,7 +31,7 @@ namespace OpenMMO
 
         #region BUILD REPORT - build log
 #if !SKIP_BUILD_REPORT
-        static StringBuilder buildLog = new StringBuilder(" <color=orange><b>[BUILD REPORT]</b></color> ");
+        static StringBuilder buildLog = new StringBuilder();//(" <color=orange><b>[BUILD REPORT]</b></color> ");
 #endif
         #endregion
 
@@ -128,7 +128,7 @@ namespace OpenMMO
                 float durationInSeconds = (float)((summary.buildEndedAt - summary.buildStartedAt).TotalSeconds);
                 durationInSeconds -= durationInSeconds % 0.01f;
 
-                buildLog.Insert(0, ("<color=green><b>[" + buildType.ToString().ToUpper() + "]</b></color>")); //SUCCESS SYMBOL
+                buildLog.Insert(0, ("<color=green><b>[" + buildType.ToString().ToUpper() + "] </b></color>")); //SUCCESS SYMBOL
                 buildLog.AppendLine("<color=green><b>" + targetPlatform + " " + buildType + " build succeeded..." + "</b></color>"
                     + ((summary.totalSize > 0) ? ("\nBuild size: " + sizeInMegabytes + " MB") : (""))
                     + "\nBuild duration: " + durationInSeconds + "s");

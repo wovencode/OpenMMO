@@ -255,7 +255,7 @@ DebugManager.Log(">>>>spawn subzones");
         // @Client
         // -------------------------------------------------------------------------------
         //public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerResponsePlayerSwitchServer msg) //REMOVED - DX4D
-        public void OnServerMessageResponsePlayerSwitchServer(ServerResponsePlayerSwitchServer msg) //ADDED - DX4D
+        public void OnServerResponseZoneSwitchServer(ServerResponseZoneSwitchServer msg) //ADDED - DX4D
 		{
 			
 			networkManager.StopClient();
@@ -275,14 +275,14 @@ DebugManager.Log(">>>>spawn subzones");
 					autoConnectClient = true;
 					Invoke(nameof(ReloadScene), 0.25f);
 					
-					debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), i.ToString()); //DEBUG
+					debug.LogFormat(this.name, nameof(OnServerResponseZoneSwitchServer), i.ToString()); //DEBUG
 					
 					return;
 				}
 				
 			}
 			
-			debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), "NOT FOUND"); //DEBUG
+			debug.LogFormat(this.name, nameof(OnServerResponseZoneSwitchServer), "NOT FOUND"); //DEBUG
 			
 		}
 		
@@ -291,7 +291,7 @@ DebugManager.Log(">>>>spawn subzones");
     	// @Client
     	// -------------------------------------------------------------------------------
         //public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerResponsePlayerAutoLogin msg) //REMOVED - DX4D
-        public void OnServerMessageResponsePlayerAutoLogin(ServerResponsePlayerAutoLogin msg) //ADDED - DX4D
+        public void OnServerResponseZoneAutoLogin(ServerResponseZoneAutoLogin msg) //ADDED - DX4D
         {
         	
         	autoPlayerName = "";

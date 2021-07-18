@@ -1,4 +1,4 @@
-﻿//by  Fhiz
+//by  Fhiz
 using System;
 
 namespace OpenMMO.Database
@@ -46,14 +46,17 @@ namespace OpenMMO.Database
 			return true;
 			
 		}
-		
-		/// <summary>
-		/// Tries to register a new player (= character) on the provided account, using the provided prefab.
-		/// </summary>
-		public override bool TryPlayerRegister(string name, string username, string prefabname)
+        /// <summary>
+        /// Tries to register a new player (= character) on the provided account, using the provided prefab.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="playername"></param>
+        /// <param name="prefabname"></param>
+        /// <returns></returns>
+        public override bool TryPlayerRegister(string playername, string username, string prefabname)
 		{
 		
-			if (!base.TryPlayerRegister(name, username, prefabname) || PlayerExists(name))
+			if (!base.TryPlayerRegister(playername, username, prefabname) || PlayerExists(playername))
 				return false;
 			
 			// -- check if maximum amount of characters per account reached

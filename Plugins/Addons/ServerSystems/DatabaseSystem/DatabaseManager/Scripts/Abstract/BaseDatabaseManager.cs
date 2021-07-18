@@ -1,4 +1,4 @@
-﻿// by Fhiz
+// by Fhiz
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Debugging;
@@ -95,7 +95,7 @@ namespace OpenMMO.Database
 		/// <summary>
 		/// Basic input validation when trying to login a player (= character).
 		/// </summary>
-		public virtual bool TryPlayerLogin(string playerName, string userName)
+		public virtual bool TryPlayerLogin(string userName, string playerName)
 		{
 			return (Tools.IsAllowedName(playerName) && Tools.IsAllowedName(userName));
 		}

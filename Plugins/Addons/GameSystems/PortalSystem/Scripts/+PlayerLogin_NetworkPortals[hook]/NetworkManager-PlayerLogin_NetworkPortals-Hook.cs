@@ -32,7 +32,8 @@ namespace OpenMMO.Network
                 string anchorName = pc.zoneInfo.anchorname;
 
                 // -- issue warp (no token required as it is server side)
-                pc.WarpRemote(anchorName, zoneName, token);
+                //NOTE: You MUST pass 0 as the token here or the player character will not start in the right zone.
+                pc.WarpRemote(anchorName, zoneName, 0);
             }
         }
     }

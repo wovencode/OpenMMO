@@ -19,8 +19,8 @@ namespace OpenMMO.Zones
 	// ===================================================================================
 	// ZoneManager
 	// ===================================================================================
-	[RequireComponent(typeof(OpenMMO.Network.NetworkManager))]
-	[RequireComponent(typeof(Mirror.TelepathyTransport))]
+	//[RequireComponent(typeof(OpenMMO.Network.NetworkManager))] //REMOVED - DX4D
+	//[RequireComponent(typeof(Mirror.TelepathyTransport))] //REMOVED - DX4D
 	[DisallowMultipleComponent]
 	public partial class ZoneManager : MonoBehaviour
 	{
@@ -55,13 +55,20 @@ namespace OpenMMO.Zones
     	// -------------------------------------------------------------------------------
 		void Awake()
     	{
-
     		singleton = this;
-    		
-    		networkManager 		= GetComponent<OpenMMO.Network.NetworkManager>();
-    		networkTransport 	= GetComponent<Mirror.TelepathyTransport>();
-    		
-    		originalPort = networkTransport.port;
+
+            //FindObjectOfType<OpenMMO.Network.NetworkManager>(true); //ADDED - DX4D
+
+            networkManager = GetComponent<OpenMMO.Network.NetworkManager>();
+            if (!networkManager) { UnityEngine.Debug.LogWarning("ERROR: NetworkManager was not found in scene"); } //DEBUG
+
+            //FindObjectOfType<Mirror.TelepathyTransport>(true); //ADDED - DX4D
+            
+            //TODO: This is not modular, it forces us to use the TelepathyTransport.
+            networkTransport = GetComponent<Mirror.TelepathyTransport>();
+            if (!networkTransport) { UnityEngine.Debug.LogWarning("ERROR: NetworkTransport was not found in scene"); } //DEBUG
+
+            originalPort = networkTransport.port;
 			
 			SceneManager.sceneLoaded += OnSceneLoaded;
 			
@@ -247,59 +254,7 @@ DebugManager.Log(">>>>spawn subzones");
             debug.LogFormat(this.name, nameof(SpawnSubZone), index.ToString()); //DEBUG
 
         }
-
-        // ====================== MESSAGE EVENT HANDLERS =================================
-
-        // -------------------------------------------------------------------------------
-        // OnServerMessageResponsePlayerSwitchServer
-        // @Client
-        // -------------------------------------------------------------------------------
-        //public void OnServerMessageResponsePlayerSwitchServer(NetworkConnection conn, ServerResponsePlayerSwitchServer msg) //REMOVED - DX4D
-        public void OnServerResponseZoneSwitchServer(ServerResponseZoneSwitchServer msg) //ADDED - DX4D
-		{
-			
-			networkManager.StopClient();
-			
-			NetworkClient.Shutdown();
-			OpenMMO.Network.NetworkManager.Shutdown();
-			OpenMMO.Network.NetworkManager.singleton = networkManager;
-			
-			autoPlayerName = msg.playername;
-			
-			for (int i = 0; i < zoneConfig.subZones.Count; i++)
-    		{
-				if (msg.zonename == zoneConfig.subZones[i].name)
-				{
-					zoneIndex = i;
-					networkTransport.port = GetZonePort;
-					autoConnectClient = true;
-					Invoke(nameof(ReloadScene), 0.25f);
-					
-					debug.LogFormat(this.name, nameof(OnServerResponseZoneSwitchServer), i.ToString()); //DEBUG
-					
-					return;
-				}
-				
-			}
-			
-			debug.LogFormat(this.name, nameof(OnServerResponseZoneSwitchServer), "NOT FOUND"); //DEBUG
-			
-		}
-		
-		// -------------------------------------------------------------------------------
-    	// OnServerMessageResponsePlayerAutoLogin
-    	// @Client
-    	// -------------------------------------------------------------------------------
-        //public void OnServerMessageResponsePlayerAutoLogin(NetworkConnection conn, ServerResponsePlayerAutoLogin msg) //REMOVED - DX4D
-        public void OnServerResponseZoneAutoLogin(ServerResponseZoneAutoLogin msg) //ADDED - DX4D
-        {
-        	
-        	autoPlayerName = "";
-        	
-        	if (UIPopupNotify.singleton)
-				UIPopupNotify.singleton.Hide();
-        }
-		
+        
 		// ===================================  OTHER ====================================
 		
 		// -------------------------------------------------------------------------------

@@ -65,6 +65,32 @@ namespace OpenMMO.Network
         	// -- Required: now log the user/player out server-side
         	// -- it is never guaranteed that OnServerDisconnect is called correctly and in-time
         	LogoutPlayerAndUser(conn);
-		}
-	}
+        }
+        // @Server
+        protected void LogoutPlayerAndUser(NetworkConnection conn)
+        {
+            if (conn.identity != null)
+            {
+                GameObject player = conn.identity.gameObject;
+
+                // -- logout the user as well (handled differently than LogoutUser) //TODO: Why is this handled differently?
+                string userName = player.GetComponent<PlayerAccount>()._tablePlayer.username;
+
+                DatabaseManager.singleton.LogoutUser(userName); //LOGOUT FROM DATABASE
+                onlineUsers.Remove(conn);
+
+                // -- Hooks & Events
+                this.InvokeInstanceDevExtMethods(nameof(OnServerDisconnect), conn); //HOOK
+                eventListeners.OnLogoutPlayer.Invoke(conn); //EVENT
+
+                onlinePlayers.Remove(player.name);
+
+                debug.LogFormat(this.name, nameof(LogoutPlayerAndUser), conn.Id(), player.name, userName); //DEBUG
+            }
+            else
+            {
+                LogoutUser(conn);
+            }
+        }
+    }
 }

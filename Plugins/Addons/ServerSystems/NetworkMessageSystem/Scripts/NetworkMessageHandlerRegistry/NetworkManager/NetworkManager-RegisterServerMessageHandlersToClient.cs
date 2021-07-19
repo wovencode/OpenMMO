@@ -6,10 +6,8 @@ namespace OpenMMO.Network
 {
     public partial class NetworkManager
     {
-        // -------------------------------------------------------------------------------
-        // OnStartClient
+        //TODO: FIX SUMMARY
         // @Client
-		// -------------------------------------------------------------------------------
         /// <summary>
         /// Pubilc override event <c>OnStartClient</c>.
         /// Triggered when the client starts.

@@ -16,12 +16,15 @@ namespace OpenMMO.Network
 		// @Server
 		// -------------------------------------------------------------------------------
 		[DevExtMethods(nameof(LoginPlayer))]
-		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, string playerName, string userName)
+		void LoginPlayer_NetworkPortals(NetworkConnection conn, string playerName, string userName)
 		{
-			
-			if (!ZoneManager.singleton.GetCanSwitchZone)
-				return;
-			
+            if (!ZoneManager.singleton.GetCanSwitchZone) return;
+
+            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playerName);
+
+            GameObject prefab = GetPlayerPrefab(prefabname);
+            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playerName);
+            
 			PlayerAccount pc 				= player.GetComponent<PlayerAccount>();
 			string zoneName 				= pc.zoneInfo.zonename;
 			NetworkZoneTemplate currentZone = pc.currentZone;

@@ -22,9 +22,14 @@ namespace OpenMMO.Network
         /// <summary>
 		/// Hooks into LoginPlayer and updates the core data in TablePlayer.
 		/// </summary>
-        [DevExtMethods(nameof(LoginPlayer))]
-        public void LoginPlayer_PlayerComponent(NetworkConnection conn, GameObject player, string playerName, string userName)
+        [DevExtMethods(nameof(PlayerLogin))]
+        public void LoginPlayer_PlayerComponent(NetworkConnection conn, string playerName, string userName, int token)
         {
+            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playerName);
+
+            GameObject prefab = GetPlayerPrefab(prefabname);
+            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playerName);
+
             player.GetComponent<PlayerAccount>()._tablePlayer.Update(player, userName);
         }
         
@@ -64,7 +69,7 @@ namespace OpenMMO.Network
             if (!NavMesh.SamplePosition(player.transform.position, out NavMeshHit hit, 0.1f, NavMesh.AllAreas))
             {
 				debug.Log("Last saved position invalid, reverting to start position for: "+player.name);
-				player.GetComponent<PlayerAccount>().WarpLocal(LocationMarkerManager.singleton.GetArchetypeStartPositionAnchorName(player));
+				player.GetComponent<PlayerAccount>().WarpLocal(LocationMarkerManager.singleton.GetArchetypeStartPositionAnchorName(player)); //TODO: Fix this - it should have a null check for the GetComponent call before invoking the method
            	}
            
             if (!ValidPosition(player.transform))

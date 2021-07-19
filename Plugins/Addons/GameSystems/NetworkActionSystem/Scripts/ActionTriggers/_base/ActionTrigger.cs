@@ -1,16 +1,9 @@
-//By Fhiz
-//MODIFIED BY DX4D
+//BY DX4D
 
 using UnityEngine;
-using OpenMMO.UI;
-//using OpenMMO.Chat; //DEPRECIATED - Creates a Depencency With the Chat - This completely breaks the potential modularity of the Chat Plugin.
 
 namespace OpenMMO.Zones
 {
-
-	// ===================================================================================
-	// BasePortal
-	// ===================================================================================
 	public abstract partial class ActionTrigger : MonoBehaviour
     {
         [Header("ATTACHED ACTION")]
@@ -36,8 +29,8 @@ namespace OpenMMO.Zones
         //ON CLICK CONFIRM @Client
         public virtual void OnClickConfirm() { action.OnConfirmed(); } //TODO: Do we use this anymore?
 		//ON TRIGGER ENTER @Client / @Server
-		public virtual void OnTriggerEnter(Collider co) { action.OnRangeEntered(co); }
+		public virtual void OnTriggerEnter(Collider co) { ValidateAction(); action.OnRangeEntered(co); }
         //ON TRIGGER EXIT @Client / @Server
-        public virtual void OnTriggerExit(Collider co) { action.OnRangeLeft(co); }
+        public virtual void OnTriggerExit(Collider co) { if (action != null) action.OnRangeLeft(co); }
 	}
 }

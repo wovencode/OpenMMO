@@ -37,7 +37,7 @@ namespace OpenMMO.Network
 		// LoginPlayer_NetworkPortals
 		// @Server
 		// -------------------------------------------------------------------------------
-		[DevExtMethods(nameof(LoginPlayer))]
+		[DevExtMethods(nameof(DatabaseManager.LoginPlayer))] //ADDED - DatabaseManager - DX4D
 		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, string playerName, string userName)
 		{
 			

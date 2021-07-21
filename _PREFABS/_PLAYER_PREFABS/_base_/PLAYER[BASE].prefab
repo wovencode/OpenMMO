@@ -13,11 +13,13 @@ GameObject:
   - component: {fileID: 15502385117635965}
   - component: {fileID: 8539800676653855757}
   - component: {fileID: 1037530943158960664}
+  - component: {fileID: 2874059769832747343}
   - component: {fileID: 5053945538751103481}
   - component: {fileID: 4769897492077146287}
   - component: {fileID: -272401145901597495}
   - component: {fileID: 1987860213569691667}
   - component: {fileID: 9151763338681259257}
+  - component: {fileID: 5973986318591997415}
   m_Layer: 10
   m_Name: PLAYER[BASE]
   m_TagString: Untagged
@@ -116,6 +118,25 @@ MonoBehaviour:
   visible: 0
   m_AssetId: a33bf0f151c8e6f4cb47f89963ce89c7
   hasSpawned: 0
+--- !u!114 &2874059769832747343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930793167279634983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13836cab3f41f334fa3a542a4609e2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _agent: {fileID: 8539800676653855757}
+  _target: {fileID: 1987860213569691667}
+  _interaction: {fileID: 9151763338681259257}
+  _description: {fileID: 5973986318591997415}
+  level: 1
 --- !u!114 &5053945538751103481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _profile: {fileID: 0}
+  _profile: {fileID: 2874059769832747343}
   fetch: {fileID: 11400000, guid: 75a5ae50d97f8d44a892d625d906270f, type: 2}
   currentTarget: {fileID: 0}
   previousTarget: {fileID: 0}
@@ -222,6 +243,21 @@ MonoBehaviour:
   targeting: {fileID: 1987860213569691667}
   interactKey: 13
   inUse: 0
+--- !u!114 &5973986318591997415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930793167279634983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25a7d646cdfb764bad7cf20b1a670b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _icon: {fileID: 0}
 --- !u!1001 &3887906202014870064
 PrefabInstance:
   m_ObjectHideFlags: 0

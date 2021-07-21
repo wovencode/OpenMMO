@@ -27,14 +27,22 @@ namespace OpenMMO.Network
 		public DebugHelper debug = new DebugHelper();
 		
 		[Header("Spawnable Prefabs (use the template below - never edit the list in NetworkManager directly)")]
-		public SpawnablePrefabsTemplate spawnPrefabsTemplate;
-
+		[SerializeField] private SpawnablePrefabsTemplate _spawnPrefabsTemplate;
+		public SpawnablePrefabsTemplate spawnPrefabsTemplate
+        {
+            get
+            {
+                if (!_spawnPrefabsTemplate) _spawnPrefabsTemplate = Resources.Load<SpawnablePrefabsTemplate>("ServerSetup/DefaultSpawnablePrefabs");
+                return _spawnPrefabsTemplate;
+            }
+        }
+        
         private new void OnValidate()
         {
-            base.OnValidate();
-
-            if (!spawnPrefabsTemplate) spawnPrefabsTemplate = Resources.Load<SpawnablePrefabsTemplate>("ServerSetup/DefaultSpawnablePrefabs");
+            if (!_spawnPrefabsTemplate) _spawnPrefabsTemplate = Resources.Load<SpawnablePrefabsTemplate>("ServerSetup/DefaultSpawnablePrefabs");
         }
+        
+
         // -------------------------------------------------------------------------------
         // Awake (Base)
         // -------------------------------------------------------------------------------

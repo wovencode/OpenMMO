@@ -300,7 +300,6 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnClientMessageRequestPlayerLogin(NetworkConnection conn, ClientRequestPlayerLogin msg)
 		{
-			
 			ServerResponsePlayerLogin message = new ServerResponsePlayerLogin
             {
                 action              = NetworkAction.PlayerLogin, //ADDED - DX4D
@@ -542,7 +541,9 @@ namespace OpenMMO.Network
                 }
 				state = NetworkState.Game;
 			
-				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playername, username); //HOOK
+                //TODO: Make sure this is the right hook, the old one wanted DatabaseManager.LoginPlayer based upon the method's parameters
+				this.InvokeInstanceDevExtMethods(nameof(DatabaseManager.LoginPlayer), conn, player, playername, username); //HOOK //ADDED - DatabaseManager - DX4D //REMOVED - DX4D
+				//this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, playername, username, token); //HOOK //ADDED - DX4D
 				eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
 			
 				debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG

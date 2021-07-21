@@ -37,8 +37,8 @@ namespace OpenMMO.Zones
 		
 		public static ZoneManager singleton;
 		
-		protected OpenMMO.Network.NetworkManager 	networkManager;
-		protected Mirror.TelepathyTransport 		networkTransport;
+		[SerializeField] protected OpenMMO.Network.NetworkManager 	networkManager;
+		[SerializeField] protected Mirror.TelepathyTransport 		networkTransport;
 	
 		protected ushort originalPort;
 		protected int zoneIndex 					= -1;
@@ -49,27 +49,31 @@ namespace OpenMMO.Zones
 		protected string autoPlayerName 			= "";
 		protected bool autoConnectClient 			= false;
 		protected bool spawnedSubZones				= false;
-		
-		// -------------------------------------------------------------------------------
-    	// Awake
-    	// -------------------------------------------------------------------------------
-		void Awake()
-    	{
-    		singleton = this;
 
+        void AttachComponents() //ADDED - DX4D
+        {
             //FindObjectOfType<OpenMMO.Network.NetworkManager>(true); //ADDED - DX4D
 
-            networkManager = GetComponent<OpenMMO.Network.NetworkManager>();
-            if (!networkManager) { UnityEngine.Debug.LogWarning("ERROR: NetworkManager was not found in scene"); } //DEBUG
+            if (!networkManager) networkManager = GetComponent<OpenMMO.Network.NetworkManager>();
+            if (!networkManager) { UnityEngine.Debug.Log("<color=red><b>ISSUE:</b></color> NetworkManager was not found by the ZoneManager"); } //DEBUG
 
             //FindObjectOfType<Mirror.TelepathyTransport>(true); //ADDED - DX4D
-            
+
             //TODO: This is not modular, it forces us to use the TelepathyTransport.
-            networkTransport = GetComponent<Mirror.TelepathyTransport>();
-            if (!networkTransport) { UnityEngine.Debug.LogWarning("ERROR: NetworkTransport was not found in scene"); } //DEBUG
+            if (!networkTransport) networkTransport = GetComponent<Mirror.TelepathyTransport>();
+            if (!networkTransport) { UnityEngine.Debug.Log("<color=red><b>ISSUE:</b></color> NetworkTransport was not found by the ZoneManager"); } //DEBUG
 
             originalPort = networkTransport.port;
-			
+        }
+        // -------------------------------------------------------------------------------
+        // Awake
+        // -------------------------------------------------------------------------------
+        //
+        void Awake(){
+    		singleton = this;
+
+            AttachComponents(); //ATTACHES COMPONENTS ON-DEMAND //ADDED - DX4D
+
 			SceneManager.sceneLoaded += OnSceneLoaded;
 			
     		if (!active || GetIsMainZone || !GetCanSwitchZone)
@@ -90,6 +94,7 @@ namespace OpenMMO.Zones
         private void OnValidate()
         {
             if (!zoneConfig) zoneConfig = Resources.Load<ZoneConfigTemplate>("ZoneConfig/DefaultZoneConfig");
+            AttachComponents(); //ADDED - DX4D
         }
 
         // ============================== GETTERS ========================================
@@ -195,18 +200,24 @@ namespace OpenMMO.Zones
     	// -------------------------------------------------------------------------------
 		public void SpawnSubZones()
 		{
-DebugManager.Log(">>>>spawn subzones");
+            //DebugManager.Log(">>>>spawn subzones"); //REMOVED - DX4D
 			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones)
 				return;
 
 			InvokeRepeating(nameof(SaveZone), 0, zoneConfig.zoneSaveInterval);
-			
-			for (int i = 0; i < zoneConfig.subZones.Count; i++)
-    			if (zoneConfig.subZones[i] != currentZone)
-    				SpawnSubZone(i);
+
+            for (int i = 0; i < zoneConfig.subZones.Count; i++)
+            {
+                if (zoneConfig.subZones[i] != currentZone)
+                {
+                    SpawnSubZone(i);
+                    UnityEngine.Debug.Log("NETWORK: Loaded Sub-Zone #" + (i + 1).ToString() );
+                }
+            }
     		
-    		spawnedSubZones = true;
-    		
+            spawnedSubZones = true;
+            UnityEngine.Debug.Log("NETWORK: "+ nameof(ZoneManager) + " loaded " + zoneConfig.subZones.Count.ToString() + " sub-zones.");
+
     		debug.LogFormat(this.name, nameof(SpawnSubZones), zoneConfig.subZones.Count.ToString()); //DEBUG
     		
 		}
@@ -248,6 +259,10 @@ DebugManager.Log(">>>>spawn subzones");
                 //TODO: This is a potential fix for the server executable being locked into requiring a specific name.
                 //process.StartInfo.FileName = Path.GetFileNameWithoutExtension(Tools.GetProcessPath) + "." + Path.GetExtension(Tools.GetProcessPath);
             }
+
+            UnityEngine.Debug.Log("NETWORK: " + process.StartInfo.FileName + " Zone Server " + "#" + (zoneIndex + 1) + " Started!"
+                + "\nHosting Zone: " + zoneConfig.subZones[zoneIndex + 1].title);
+
             process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
             process.Start();
 

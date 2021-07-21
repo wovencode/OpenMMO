@@ -22,13 +22,14 @@ namespace OpenMMO.Network
         /// <summary>
 		/// Hooks into LoginPlayer and updates the core data in TablePlayer.
 		/// </summary>
-        [DevExtMethods(nameof(PlayerLogin))]
-        public void LoginPlayer_PlayerComponent(NetworkConnection conn, string playerName, string userName, int token)
+        [DevExtMethods(nameof(DatabaseManager.LoginPlayer))]
+        public void LoginPlayer_PlayerComponent(NetworkConnection conn, GameObject player, string playerName, string userName)
+        //[DevExtMethods(nameof(PlayerCharacterLogin))] //REMOVED - DX4D
+        //public void LoginPlayer_PlayerComponent(NetworkConnection conn, string playerName, string userName, int token)
         {
-            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playerName);
-
-            GameObject prefab = GetPlayerPrefab(prefabname);
-            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playerName);
+            //string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playerName);
+            //GameObject prefab = GetPlayerPrefab(prefabname);
+            //GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playerName);
 
             player.GetComponent<PlayerAccount>()._tablePlayer.Update(player, userName);
         }

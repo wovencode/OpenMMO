@@ -39,7 +39,7 @@ namespace OpenMMO.Network
 		}
 		protected void AutoLoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
-			GameObject player = PlayerLogin(conn, username, playername, token);
+			GameObject player = PlayerCharacterLogin(conn, username, playername, token);
 
             if (player)
             {

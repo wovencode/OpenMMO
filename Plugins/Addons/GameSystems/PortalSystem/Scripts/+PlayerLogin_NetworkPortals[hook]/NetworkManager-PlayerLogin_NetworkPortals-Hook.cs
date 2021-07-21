@@ -13,7 +13,9 @@ namespace OpenMMO.Network
     [RequireComponent(typeof(ZoneManager))]
     public partial class NetworkManager
     {
-        [DevExtMethods(nameof(PlayerLogin))]
+        [DevExtMethods(nameof(PlayerCharacterLogin))] //ADDED - DX4D
+        //[DevExtMethods(nameof(DatabaseManager.LoginPlayer))] //REMOVED - DX4D
+        //void PlayerLogin_NetworkPortals(NetworkConnection conn, GameObject player, string playerName, string userName)
         void PlayerLogin_NetworkPortals(NetworkConnection conn, string playerName, string userName, int token)
         {
             if (!ZoneManager.singleton.GetCanSwitchZone) return;

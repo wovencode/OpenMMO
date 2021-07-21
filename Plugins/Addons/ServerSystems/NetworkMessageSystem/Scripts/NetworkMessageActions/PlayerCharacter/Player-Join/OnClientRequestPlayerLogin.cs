@@ -30,7 +30,7 @@ namespace OpenMMO.Network
 			// -- check for GetIsUserLoggedIn because that covers all players on the account
 			if (GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
 			{
-				PlayerLogin(conn, msg.username, msg.playername, 0); //dont check for token
+				PlayerCharacterLogin(conn, msg.username, msg.playername, 0); //dont check for token
 				message.text = systemText.playerLoginSuccess;
 			}
 			else
@@ -46,12 +46,12 @@ namespace OpenMMO.Network
 
 		// @Server
         /// <summary>
-        /// Method <c>PlayerLogin</c>.
+        /// Method <c>PlayerCharacterLogin</c>.
         /// Run on the server.
         /// Logs in the player.
         /// </summary>
         /// <param name="conn"></param><param name="username"></param><param name="playername"></param><param name="token"></param>
-        protected GameObject PlayerLogin(NetworkConnection conn, string username, string playername, int token)
+        protected GameObject PlayerCharacterLogin(NetworkConnection conn, string username, string playername, int token)
 		{
 			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
 			
@@ -80,18 +80,18 @@ namespace OpenMMO.Network
                 }
 				state = NetworkState.Game;
 			
-				this.InvokeInstanceDevExtMethods(nameof(PlayerLogin), conn, playername, username, token); //HOOK
+				this.InvokeInstanceDevExtMethods(nameof(PlayerCharacterLogin), conn, playername, username, token); //HOOK
 				eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
 
 #if DEBUG
                 Debug.Log(!player ? "! LOGIN FAILED !" : "! LOGIN SUCCESS !"
                     + "\n" + name
-                    + "\n" + nameof(PlayerLogin)
+                    + "\n" + nameof(PlayerCharacterLogin)
                     + "\n" + username
                     + "\n" + playername
                     );
 #endif
-                debug.LogFormat(this.name, nameof(PlayerLogin), username, playername); //DEBUG
+                debug.LogFormat(this.name, nameof(PlayerCharacterLogin), username, playername); //DEBUG
 				
 				return player;
 			}

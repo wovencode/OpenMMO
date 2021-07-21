@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: targetZone
       value: 
-      objectReference: {fileID: 11400000, guid: ae2da02c1e51c144fab0b4cc6d1e068c, type: 2}
+      objectReference: {fileID: 11400000, guid: e91f9ae101a2ed04cae8ea67c0c138cd, type: 2}
     - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: popupZoning
       value: Entering the Newbie Dungeon
@@ -342,9 +342,13 @@ PrefabInstance:
       propertyPath: targetAnchor
       value: Zone Entrance
       objectReference: {fileID: 0}
+    - target: {fileID: 489789596373959778, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
+      propertyPath: zoningMessagePopup
+      value: Travelling to the Newbie Village...
+      objectReference: {fileID: 0}
     - target: {fileID: 2468935309070446781, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: m_Name
-      value: Portal - Dungeon
+      value: Portal - Village
       objectReference: {fileID: 0}
     - target: {fileID: 4442871818575716677, guid: 24a17a2831d6045d4a73fcf366614535, type: 3}
       propertyPath: m_RootOrder

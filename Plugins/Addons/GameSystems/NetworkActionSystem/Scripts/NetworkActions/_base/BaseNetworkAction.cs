@@ -49,6 +49,7 @@ namespace OpenMMO.Zones
         //ON RANGE ENTERED
         public virtual bool OnRangeEntered(Collider co)
         {
+            if (!co) return false; //NO COLLIDER
             PlayerAccount pc = co.GetComponentInParent<PlayerAccount>(); //GET PLAYER ACCOUNT COMPONENT
             return Use(pc);
             /*if (bypassConfirmation)

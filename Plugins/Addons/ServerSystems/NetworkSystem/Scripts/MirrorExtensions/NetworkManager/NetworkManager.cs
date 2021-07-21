@@ -1,16 +1,13 @@
 //BY FHIZ
+//#define _SERVER //FOR TESTING
+//#define _CLIENT //FOR TESTING
 
-using OpenMMO;
-using OpenMMO.Network;
 using OpenMMO.Database;
 using OpenMMO.UI;
 using OpenMMO.Zones;
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using Mirror;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -88,25 +85,38 @@ namespace OpenMMO.Network
 		// -------------------------------------------------------------------------------
 		protected void AwakeLate()
 		{
-		
-			// -- decide how to start
+
+            // -- decide how to start
 #if _SERVER && _CLIENT
+            Debug.Log("NETWORK: Starting in Host & Play Mode...");
 			StartHost();
-			debug.LogFormat(this.name, nameof(StartHost)); //DEBUG
+            Debug.Log("NETWORK: Host & Play Mode Started!");
+			//debug.LogFormat(this.name, nameof(StartHost)); //DEBUG
 #elif _SERVER
 			// -- only start the server now if we are the MainZone and not a SubZone
 			// SubZones are handled differently (in ZoneManager) and start later
-			if (GetComponent<ZoneManager>() != null && GetComponent<ZoneManager>().GetIsMainZone)
-			{
-				StartServer();
-				debug.LogFormat(this.name, nameof(StartServer)); //DEBUG
-			}
+            Debug.Log("NETWORK: Starting in Server Mode...");
+            ZoneManager zone = GetComponent<ZoneManager>();
+
+            if (zone == null) { Debug.Log("NETWORK ISSUE: You must attach a ZoneManager to the NetworkManager in your scene.");}
+            else if (zone.GetIsMainZone)
+            {
+                StartServer();
+                Debug.Log("NETWORK: Server Started Hosting Zone " + zone.zoneConfig.mainZone.name + "!");
+                //debug.LogFormat(this.name, nameof(StartServer)); //DEBUG
+            }
+            else
+            {
+                Debug.Log("NETWORK: Start Server Aborted! Starting Sub-Scene Server Instead...");
+            }
 #else
+            Debug.Log("NETWORK: Starting in Client Mode...");
 			StartClient();
-			debug.LogFormat(this.name, nameof(StartClient)); //DEBUG
+            Debug.Log("NETWORK: Client Mode Started!");
+			//debug.LogFormat(this.name, nameof(StartClient)); //DEBUG
 #endif
-			
-			this.InvokeInstanceDevExtMethods(nameof(Awake)); //HOOK // must be last		
+
+            this.InvokeInstanceDevExtMethods(nameof(Awake)); //HOOK // must be last		
 		
 		}
 

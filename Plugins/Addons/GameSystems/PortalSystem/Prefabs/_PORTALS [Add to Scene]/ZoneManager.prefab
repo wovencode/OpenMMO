@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4087224618811433110}
   - component: {fileID: 2236907461374033427}
   - component: {fileID: 1736535447288685311}
-  - component: {fileID: 8877230726319060399}
   m_Layer: 0
   m_Name: ZoneManager
   m_TagString: Untagged
@@ -52,6 +51,8 @@ MonoBehaviour:
   zoneConfig: {fileID: 11400000, guid: 99e824c5082f8634faaf90ecdab1c4df, type: 2}
   debug:
     _debugMode: 0
+  networkManager: {fileID: 2236907461374033427}
+  networkTransport: {fileID: 1736535447288685311}
 --- !u!114 &205932220500506168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,26 +102,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5027001439149113862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78396f6a71fa94bde8f46b2fccb451fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 1
+  dontDestroyOnLoad: 0
   PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 30
+  serverTickRate: 60
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1736535447288685311}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 500
   disconnectInactiveConnections: 0
-  disconnectInactiveTimeout: 60
+  disconnectInactiveTimeout: 1200
   authenticator: {fileID: 4087224618811433110}
   playerPrefab: {fileID: 0}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs: []
   debug:
@@ -173,8 +174,8 @@ MonoBehaviour:
   maxPlayers: 0
   state: 0
   guiScene:
-    sceneAsset: {fileID: 0}
-    sceneName: 
+    sceneAsset: {fileID: 102900000, guid: 8ef02496a66605d4d808424207dbe86c, type: 3}
+    sceneName: DefaultUIScene
 --- !u!114 &1736535447288685311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,26 +200,3 @@ MonoBehaviour:
   clientMaxReceivesPerTick: 1000
   clientSendQueueLimit: 10000
   clientReceiveQueueLimit: 10000
---- !u!114 &8877230726319060399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5027001439149113862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Port: 7777
-  NoDelay: 1
-  Interval: 10
-  Timeout: 10000
-  FastResend: 2
-  CongestionWindow: 0
-  SendWindowSize: 4096
-  ReceiveWindowSize: 4096
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0

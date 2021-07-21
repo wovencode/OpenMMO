@@ -38,6 +38,8 @@ namespace OpenMMO.Network
         }
 		public void SwitchServerPlayer(NetworkConnection conn, string playername, string anchorName, string zoneName, int _token)
 		{
+            if (conn == null) { Debug.Log("NETWORK ISSUE: "+ nameof(SwitchServerPlayer) +" failed because there was no active connection."); return; } //ADDED - DX4D
+
             ServerResponseZoneSwitchServer message = new ServerResponseZoneSwitchServer
             {
                 action              = NetworkAction.ZoneSwitchServer, //ADDED - DX4D
@@ -84,6 +86,7 @@ namespace OpenMMO.Network
                 eventListeners.OnLogoutPlayer.Invoke(conn); //EVENT
 
                 onlinePlayers.Remove(player.name);
+                UnityEngine.Debug.Log(player.name + " left the game!");
 
                 debug.LogFormat(this.name, nameof(LogoutPlayerAndUser), conn.Id(), player.name, userName); //DEBUG
             }

@@ -92,20 +92,24 @@ namespace OpenMMO {
 		[ServerCallback]
 		public void WarpRemote(string anchorName, string zoneName, int token=0)
     	{
-    		
     		UpdateCooldown(GameRulesTemplate.singleton.remoteWarpDelay);
     		
     		NetworkZoneTemplate template = NetworkZoneTemplate.GetZoneBySceneName(zoneName);
-    		
+
+            PlayerAccount player = GetComponent<PlayerAccount>();
+
+            if (!player) { Debug.Log("ERROR: No player found to Warp"); return; }
+
     		// -- update anchor & zone
-    		this.GetComponent<PlayerAccount>().zoneInfo.anchorname 	= anchorName;
-    		this.GetComponent<PlayerAccount>().zoneInfo.zonename	 	= zoneName;
+    		player.zoneInfo.anchorname 	= anchorName;
+    		player.zoneInfo.zonename	= zoneName;
     		securityToken = token; // token must not be set in table, can be fetched via GetToken
     		
     		// -- save player
     		DatabaseManager.singleton.SaveDataPlayer(this.gameObject);
     		
-    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName, securityToken);
+    		//OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(this.connectionToClient, this.gameObject.name, anchorName, zoneName, securityToken); //REMOVED - DX4D
+    		OpenMMO.Network.NetworkManager.singleton.SwitchServerPlayer(player.connectionToClient, this.gameObject.name, anchorName, zoneName, securityToken);
     		
     		NetworkServer.Destroy(this.gameObject);
     		

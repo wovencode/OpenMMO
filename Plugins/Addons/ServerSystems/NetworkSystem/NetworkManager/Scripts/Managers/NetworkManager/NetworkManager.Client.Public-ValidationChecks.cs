@@ -325,10 +325,10 @@ namespace OpenMMO.Network
         /// Runs on the client. 
         /// </summary>
         /// <param name="username"></param>
-        public void TryLoginPlayer(string username)
+        public void TryLoginPlayer(string playername)
 		{
 			//RequestPlayerLogin(NetworkClient.connection, username, userName); //REMOVED - DX4D
-            RequestPlayerLogin(username, userName); //ADDED - DX4D
+            RequestPlayerLogin(playername, userName); //ADDED - DX4D
         }
 
         // -------------------------------------------------------------------------------

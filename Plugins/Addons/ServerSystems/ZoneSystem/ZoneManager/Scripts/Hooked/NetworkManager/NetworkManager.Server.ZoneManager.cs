@@ -37,14 +37,21 @@ namespace OpenMMO.Network
 		// LoginPlayer_NetworkPortals
 		// @Server
 		// -------------------------------------------------------------------------------
-		[DevExtMethods(nameof(DatabaseManager.LoginPlayer))] //ADDED - DatabaseManager - DX4D
-		void LoginPlayer_NetworkPortals(NetworkConnection conn, GameObject player, string playerName, string userName)
+		[DevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase))] //ADDED - DatabaseManager - DX4D
+		void LoadPlayerFromDatabase_NetworkPortals(NetworkConnection conn, GameObject player, string playerName, string userName, int token)
 		{
 			
-			if (!ZoneManager.singleton.GetCanSwitchZone)
-				return;
-			
-			PlayerAccount pc 				= player.GetComponent<PlayerAccount>();
+			if (!ZoneManager.singleton.GetCanSwitchZone) return;
+            /*
+            //GET PLAYER ACCOUNT FROM PLAYER NAME
+            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playerName);
+            GameObject prefab = GetPlayerPrefab(prefabname);
+            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playerName);
+            if (!player) { Debug.Log("NETWORK ISSUE: Player not found in database..."); }
+            PlayerAccount pc = player.GetComponent<PlayerAccount>();
+            if (!pc) { Debug.Log("NETWORK ISSUE: Player must have a PlayerAccount component..."); }
+            */
+            PlayerAccount pc 				= player.GetComponent<PlayerAccount>();
 			string zoneName 				= pc.zoneInfo.zonename;
 			NetworkZoneTemplate currentZone = pc.currentZone;
 			

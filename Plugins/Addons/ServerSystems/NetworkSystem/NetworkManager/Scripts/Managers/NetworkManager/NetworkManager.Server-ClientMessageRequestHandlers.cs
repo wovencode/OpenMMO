@@ -516,41 +516,59 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
         protected GameObject LoginPlayer(NetworkConnection conn, string username, string playername, int token)
 		{
+            Debug.Log("NETWORK: Character " + playername +" is attempting to join the server...");
 
-			string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
-			
+            if (conn == null)
+            {
+                conn = NetworkClient.connection; //ENSURE CONNECTION
+                if (conn == null) Debug.Log("NETWORK: LoginPlayer called by account " + username +" on character " + playername + " while not connected to server " + networkAddress.ToString());
+                else Debug.Log("NETWORK: LoginPlayer connection was null - Assigned NetworkClient.connection instead.");
+            }
+
+            //GET PLAYER ACCOUNT FROM PLAYER NAME
+            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
 			GameObject prefab = GetPlayerPrefab(prefabname);
 			GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
-			
+            if (!player) { Debug.Log("NETWORK ISSUE: Player not found in database..."); }
 			PlayerAccount pc = player.GetComponent<PlayerAccount>();
-			
-			// -- check the security token if required
-			if (token == 0 || (token > 0 && pc.zoneInfo.ValidateToken(token)) )
+            if (!pc) { Debug.Log("NETWORK ISSUE: Player must have a PlayerAccount component..."); }
+
+            // -- check the security token if required
+            if (token == 0 || (token > 0 && pc.zoneInfo.ValidateToken(token)) )
 			{
 			
 				// -- log the player in
-				DatabaseManager.singleton.LoginPlayer(conn, player, playername, username);
-
+				DatabaseManager.singleton.LoadPlayerFromDatabase(conn, player, playername, username);
+                
                 if (NetworkServer.AddPlayerForConnection(conn, player))
                 {
-                    onlinePlayers.Add(player.name, player);
+                    onlinePlayers.Add(playername, player);
+                    Debug.Log(
+                        onlinePlayers.ContainsKey(playername) ?
+                        "NETWORK: Character " + playername + " joined server @" + conn.address
+                        : "NETWORK ISSUE: Character " + playername + " failed to join server @" + conn.address );
                 }
                 else
                 {
-                    Debug.Log(player.name + " is already logged in");
+                    //TODO: We are in a zone
+                    Debug.Log("NETWORK ISSUE: " + playername + " is already logged in");
                 }
 				state = NetworkState.Game;
 			
                 //TODO: Make sure this is the right hook, the old one wanted DatabaseManager.LoginPlayer based upon the method's parameters
-				this.InvokeInstanceDevExtMethods(nameof(DatabaseManager.LoginPlayer), conn, player, playername, username); //HOOK //ADDED - DatabaseManager - DX4D //REMOVED - DX4D
-				//this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, playername, username, token); //HOOK //ADDED - DX4D
+				//this.InvokeInstanceDevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase), conn, player, playername, username); //HOOK //ADDED - DatabaseManager - DX4D //REMOVED - DX4D
+				this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, playername, username, token); //HOOK //ADDED - DX4D
 				eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
 			
-				debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG
+				//debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG //REMOVED - DX4D
 				
 				return player;
 				
 			}
+            else
+            {
+                Debug.Log("NETWORK ISSUE: Invalid Token");
+            }
 			
 			return null;
 			

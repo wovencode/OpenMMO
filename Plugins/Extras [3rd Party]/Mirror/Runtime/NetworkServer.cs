@@ -55,6 +55,7 @@ namespace Mirror
         // => public so that custom NetworkManagers can hook into it
         public static Action<NetworkConnection> OnConnectedEvent;
         public static Action<NetworkConnection> OnDisconnectedEvent;
+        public static Action<NetworkConnection, Exception> OnErrorEvent;
 
         // initialization / shutdown ///////////////////////////////////////////
         static void Initialize()
@@ -153,15 +154,16 @@ namespace Mirror
             {
                 DisconnectAll();
 
-                if (!dontListen)
-                {
-                    // stop the server.
-                    // we do NOT call Transport.Shutdown, because someone only
-                    // called NetworkServer.Shutdown. we can't assume that the
-                    // client is supposed to be shut down too!
-                    Transport.activeTransport.ServerStop();
-                }
-
+                // stop the server.
+                // we do NOT call Transport.Shutdown, because someone only
+                // called NetworkServer.Shutdown. we can't assume that the
+                // client is supposed to be shut down too!
+                //
+                // NOTE: stop no matter what, even if 'dontListen':
+                //       someone might enabled dontListen at runtime.
+                //       but we still need to stop the server.
+                //       fixes https://github.com/vis2k/Mirror/issues/2536
+                Transport.activeTransport.ServerStop();
                 initialized = false;
             }
             dontListen = false;
@@ -210,6 +212,7 @@ namespace Mirror
             localConnection = conn;
         }
 
+        // removes local connection to client
         internal static void RemoveLocalConnection()
         {
             if (localConnection != null)
@@ -517,8 +520,10 @@ namespace Mirror
 
         static void OnError(int connectionId, Exception exception)
         {
-            // TODO Let's discuss how we will handle errors
             Debug.LogException(exception);
+            // try get connection. passes null otherwise.
+            connections.TryGetValue(connectionId, out NetworkConnectionToClient conn);
+            OnErrorEvent?.Invoke(conn, exception);
         }
 
         // message handlers ////////////////////////////////////////////////////
@@ -629,7 +634,6 @@ namespace Mirror
 
         // add/remove/replace player ///////////////////////////////////////////
         /// <summary>Called by server after AddPlayer message to add the player for the connection.</summary>
-        /// <returns>Was the player added sucessfully?</returns>
         // When a player is added for a connection, the client for that
         // connection is made ready automatically. The player object is
         // automatically spawned, so you do not need to call NetworkServer.Spawn
@@ -964,6 +968,20 @@ namespace Mirror
 
             // Debug.Log("SpawnObject instance ID " + identity.netId + " asset ID " + identity.assetId);
 
+            if (aoi)
+            {
+                // This calls user code which might throw exceptions
+                // We don't want this to leave us in bad state
+                try
+                {
+                    aoi.OnSpawned(identity);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                }
+            }
+
             RebuildObservers(identity, true);
         }
 
@@ -1181,6 +1199,19 @@ namespace Mirror
 
         static void DestroyObject(NetworkIdentity identity, bool destroyServerObject)
         {
+            if (aoi)
+            {
+                // This calls user code which might throw exceptions
+                // We don't want this to leave us in bad state
+                try
+                {
+                    aoi.OnDestroyed(identity);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                }
+            }
             // Debug.Log("DestroyObject instance:" + identity.netId);
             NetworkIdentity.spawned.Remove(identity.netId);
 
@@ -1375,8 +1406,8 @@ namespace Mirror
                     if (identity.visibility != null)
                         identity.visibility.OnSetHostVisibility(false);
 #pragma warning restore 618
-                    else
-                        identity.OnSetHostVisibility(false);
+                    else if (aoi != null)
+                        aoi.SetHostVisibility(identity, false);
                 }
             }
         }

@@ -74,8 +74,13 @@ namespace OpenMMO.Database
 		/// <summary>
 		/// Hooks into LoginPlayer and updates last login time when a player logs in to prevent multi-login
 		/// </summary>
+<<<<<<< HEAD
 	   	[DevExtMethods(nameof(DatabaseManager.LoginPlayer))]
 	   	void LoginPlayer_Player(NetworkConnection conn, GameObject player, string playerName, string userName)
+=======
+	   	[DevExtMethods(nameof(LoadPlayerFromDatabase))]
+	   	void LoadPlayerFromDatabase_Player(NetworkConnection conn, GameObject player, string playerName, string userName)
+>>>>>>> master
 	   	{
             Execute("UPDATE " + nameof(TablePlayer) + " SET lastonline=? WHERE playername=?", DateTime.UtcNow, playerName);
 	   	}

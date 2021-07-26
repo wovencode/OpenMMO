@@ -67,8 +67,13 @@ namespace OpenMMO.Database
 		/// <remarks>
 		/// It is correct that this code modifies user, when the player logs in. As we have to update the user (= account) lastonline time as well.
 		/// </remarks>
+<<<<<<< HEAD
 	   	[DevExtMethods(nameof(DatabaseManager.LoginPlayer))]
 	   	void LoginPlayer_User(NetworkConnection conn, GameObject player, string playerName, string userName)
+=======
+	   	[DevExtMethods(nameof(LoadPlayerFromDatabase))]
+	   	void LoadPlayerFromDatabase_User(NetworkConnection conn, GameObject player, string playerName, string userName)
+>>>>>>> master
 	   	{
 	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, userName);

@@ -97,9 +97,9 @@ namespace OpenMMO.Database
 		/// Logs a existing but logged-out player (= character) into the database.
 		/// <remarks>This method is called from the NetworkManager</remarks>
 		/// </summary>
-		public void LoginPlayer(NetworkConnection conn, GameObject player, string playerName, string userName)
+		public void LoadPlayerFromDatabase(NetworkConnection conn, GameObject player, string playerName, string userName)
 		{
-			this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, player, playerName, userName); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(LoadPlayerFromDatabase), conn, player, playerName, userName); //HOOK
 		}
 		
 		/// <summary>

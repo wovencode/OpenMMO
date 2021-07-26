@@ -1,15 +1,15 @@
 BUILDING OPENMMO GUIDE:
 
 STEP 1 - SET UP YOUR PROJECT
-1 - Start a new project in Unity 2019 (any version of 2019 will work)
+1 - Start a new project in Unity 2020 (the latest LTS version is preferred)
 2 - Open the Window>TextMeshPro>Import TextMeshPro Essentials Menu to import TextMeshPro into your project
-3 - Download the entire git repo and put it into Assets/OpenMMO inside your project folder. (Naming it OpenMMO in the Assets folder is very important)
+3 - Download the entire git repo and put it into Assets/Plugins/OpenMMO inside your project folder. (Naming it OpenMMO in the Assets folder is very important)
 
 
 STEP 2 - ADD YOUR GAME SCENES TO THE BUILD LIST
 1 - In Unity, Open Build Settings from the File Menu, move the window to the side so you can drag scenes to it from your project view.
-2 - Inside your Project View, Scroll down to the Scenes folder
-3 - Drag UI Scene, Login Scene, and any other scenes from the Scenes folder into the "Scenes to Build" section of the Build Window you left opened.
+2 - Inside your Project View, Scroll down to the _SCENES folder
+3 - Drag UI Scene, Login Scene, and any other scenes from the _SCENES folder into the "Scenes to Build" section of the Build Window you left opened.
 3 - Make sure that the Login Scene is at the top and the UI Scene is at the bottom of the "Scenes to Build" box.
 4 - Close the Build Settings window.
 
@@ -26,7 +26,7 @@ STEP 4 - BUILD YOUR GAME
 STEP 5 - LAUNCH YOUR SERVER
 1 - In File Explorer, Navigate to your project folder and look for the _BUILD folder there.
 2 - Launch the server.exe (or .x86_64 or .app on non Windows) you find there. The server should launch one main process and an additional process for each zone.
-	Using the default setup, you should expect 4 processes to open in total.
+	Using the default setup, you should expect 3 processes to open in total.
 
 
 STEP 6 - LAUNCH A CLIENT
@@ -34,5 +34,9 @@ STEP 6 - LAUNCH A CLIENT
 
 
 LINUX SERVER INSTALL GUIDE:
+1 - Find the _BUILD directory as mentioned above and navigate to the Server folder in the terminal.
+2 - Make the file executable by typing: sudo chmod +x server.x86_64
+3 - Execute the server by typing: ./server.x86_64
+
+Original Instructions - https://i.imgur.com/9qJHAAr.png
 NOTE: "Server" was renamed to "server" since these instructions were created
-Instructions - https://i.imgur.com/9qJHAAr.png

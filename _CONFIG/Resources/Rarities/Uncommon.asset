@@ -15,4 +15,4 @@ MonoBehaviour:
   title: Uncommon
   folderName: Rarities
   color: {r: 0, g: 0.5647059, b: 0, a: 1}
-  borderImage: {fileID: 0}
+  borderImage: {fileID: 21300000, guid: dd00f232ab3b9480d94dae806c33e6fe, type: 3}

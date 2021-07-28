@@ -15,4 +15,4 @@ MonoBehaviour:
   title: Epic
   folderName: Rarities
   color: {r: 0.5275439, g: 0.15194014, b: 0.8301887, a: 1}
-  borderImage: {fileID: 0}
+  borderImage: {fileID: 21300000, guid: 6c66daa09ec2b2644ba40247f023fc5c, type: 3}

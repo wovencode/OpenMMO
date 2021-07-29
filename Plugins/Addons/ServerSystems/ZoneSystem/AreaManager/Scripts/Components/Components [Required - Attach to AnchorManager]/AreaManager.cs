@@ -193,9 +193,10 @@ namespace OpenMMO.Areas
             	
             	if (subScene == null || String.IsNullOrWhiteSpace(subScene.SceneName))
             		continue;
-            	
+                Debug.Log("[SERVER] Loading Zone - " + subScene.SceneName + "...");
                 yield return SceneManager.LoadSceneAsync(subScene.SceneName, LoadSceneMode.Additive);
-                
+                Debug.Log("[SERVER] Loaded Zone - " + subScene.SceneName + "!");
+
                 debug.LogFormat(subScene.SceneName, "Loaded"); //DEBUG
             }
             
@@ -217,7 +218,10 @@ namespace OpenMMO.Areas
             		
                 if (SceneManager.GetSceneByName(subScene.SceneName).IsValid())
                 {
+                    Debug.Log("[SERVER] Unloading Zone - " + subScene.SceneName + "...");
                     yield return SceneManager.UnloadSceneAsync(subScene.SceneName);
+                    Debug.Log("[SERVER] Unloaded Zone - " + subScene.SceneName + "!");
+
                     debug.LogFormat(subScene.SceneName, "Unloaded"); //DEBUG
                 }
 			}

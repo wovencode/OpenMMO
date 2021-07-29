@@ -1,14 +1,16 @@
 //By Fhiz
 //MODIFIED BY DX4D
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Database;
+
+using System;
+using UnityEngine;
 using OpenMMO.UI;
 using OpenMMO.Debugging;
 

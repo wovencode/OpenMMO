@@ -1,10 +1,13 @@
-//By Fhiz
+//BY FHIZ
+//MODIFIED BY DX4D
+
 using OpenMMO;
 using OpenMMO.Network;
+using System.Collections.Generic;
+
 using OpenMMO.Zones;
 using OpenMMO.Database;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
@@ -24,13 +27,18 @@ namespace OpenMMO.Network
 		// -----------------------------------------------------------------------------------
 		[DevExtMethods(nameof(OnStartServer))]
 		void OnStartServer_NetworkPortals()
-		{
-			
-			NetworkServer.RegisterHandler<ClientRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
+        {
+            Debug.Log("[SERVER STARTUP] - NetworkZones - Registering Message Handlers to Server...");
+            NetworkServer.RegisterHandler<ClientRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
             NetworkServer.RegisterHandler<ClientRequestPlayerAutoLogin>(OnClientMessageRequestPlayerAutoLogin);
-            
-            if (GetComponent<ZoneManager>() != null)
-   				GetComponent<ZoneManager>().SpawnSubZones();
+
+            ZoneManager zoneManager = GetComponent<ZoneManager>();
+            if (!zoneManager) zoneManager = FindObjectOfType<ZoneManager>(); //ADDED DX4D
+            if (zoneManager)
+            {
+                Debug.Log("[SERVER STARTUP] - NetworkZones - Launching Zone Servers...");
+                zoneManager.SpawnSubZones();
+            }
 		}
    		
 		// -------------------------------------------------------------------------------
@@ -87,11 +95,14 @@ namespace OpenMMO.Network
         	
         	if (DatabaseManager.singleton.TryPlayerSwitchServer(playername, anchorName, zoneName, _token))
 			{
+                Debug.Log("[SERVER] - Verified ability to warp " + playername + " to zone " + zoneName + "...");
 				message.text = systemText.playerSwitchServerSuccess;
+                message.success = true; //ADDED DX4D
 			}
 			else
-			{
-				message.text = systemText.playerSwitchServerFailure;
+            {
+                Debug.Log("[SERVER ISSUE] - Unable to warp " + playername + " to zone " + zoneName + "...");
+                message.text = systemText.playerSwitchServerFailure;
 				message.success = false;
 			}
 			
@@ -122,13 +133,16 @@ namespace OpenMMO.Network
 			};
 			
 			if (DatabaseManager.singleton.TryPlayerAutoLogin(msg.playername, msg.username))
-			{
-				AutoLoginPlayer(conn, msg.username, msg.playername, msg.token);
+            {
+                Debug.Log("[SERVER] - Verified ability to Auto Login character " + msg.playername + " on account " + msg.username + "...");
+                AutoLoginPlayer(conn, msg.username, msg.playername, msg.token);
 				message.text = systemText.playerLoginSuccess;
+                message.success = true; //ADDED DX4D
 			}
 			else
-			{
-				message.text = systemText.playerLoginFailure;
+            {
+                Debug.Log("[SERVER ISSUE] - Unable to Auto Login character " + msg.playername + " on account " + msg.username + "...");
+                message.text = systemText.playerLoginFailure;
 				message.success = false;
 			}
 					
@@ -155,6 +169,7 @@ namespace OpenMMO.Network
         	if (DatabaseManager.singleton.TryPlayerSwitchServer(msg.playername, msg.anchorname, msg.zonename, msg.token))
 			{
 				message.text = systemText.playerSwitchServerSuccess;
+                message.success = true; //ADDED DX4D
 			}
 			else
 			{

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class UINavigation : MonoBehaviour
 {
-    #if _CLIENT
+    //#if _CLIENT
     [Header("SELECTABLE UI FIELDS")]
     [Tooltip("A list of objects that can be tabbed through.")]
     [SerializeField] internal List<Selectable> selectables = new List<Selectable>();
@@ -238,5 +238,5 @@ public class UINavigation : MonoBehaviour
 
         return nextSelection;
     }
-#endif
+//#endif //_CLIENT
 }

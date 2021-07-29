@@ -91,7 +91,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void OnClickBack()
 		{
-			UIWindowMain.singleton.Show();
+			UIWindowMainLoginMenu.singleton.Show();
 			Hide();
 		}
 		

@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -69,7 +69,7 @@ namespace OpenMMO.UI
 		public void OnClickBack()
 		{
 			Hide();
-			UIWindowMain.singleton.Show();
+			UIWindowMainLoginMenu.singleton.Show();
 		}
 		
 		// -------------------------------------------------------------------------------

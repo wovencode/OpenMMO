@@ -1,7 +1,5 @@
+//BY FHIZ
 
-using OpenMMO;
-using OpenMMO.Network;
-using OpenMMO.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +7,10 @@ namespace OpenMMO.UI
 {
 
 	// ===================================================================================
-	// UIWindowMain
+	// UIWindowMainLoginMenu
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIWindowMain : UIRoot
+	public partial class UIWindowMainLoginMenu : UIRoot
 	{
 			
 		[Header("Windows")]
@@ -29,7 +27,7 @@ namespace OpenMMO.UI
 		//public Button serverButton; //DEPRECIATED
 		public Button quitButton;
 		
-		public static UIWindowMain singleton;
+		public static UIWindowMainLoginMenu singleton;
 		
 		// -------------------------------------------------------------------------------
 		// Awake

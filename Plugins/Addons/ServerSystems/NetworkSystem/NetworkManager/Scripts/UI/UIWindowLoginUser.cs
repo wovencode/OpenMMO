@@ -1,8 +1,5 @@
-﻿
-using OpenMMO;
-using OpenMMO.Network;
-using OpenMMO.UI;
-using System.Linq;
+//BY FHIZ
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -120,7 +117,7 @@ namespace OpenMMO.UI
 		// -------------------------------------------------------------------------------
 		public void OnClickBack()
 		{
-			UIWindowMain.singleton.Show();
+			UIWindowMainLoginMenu.singleton.Show();
 			Hide();
 		}
 		

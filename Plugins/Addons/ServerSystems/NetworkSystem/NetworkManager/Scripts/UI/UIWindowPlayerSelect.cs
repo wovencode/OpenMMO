@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
@@ -17,7 +17,7 @@ namespace OpenMMO.UI
 	{
 		
 		[Header("Windows")]
-		public UIWindowMain mainWindow;
+		public UIWindowMainLoginMenu mainWindow;
 		public UIWindowPlayerCreate createWindow;
 		 
 		[Header("Prefab")]

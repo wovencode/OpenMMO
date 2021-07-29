@@ -3,11 +3,12 @@
 
 using OpenMMO;
 using OpenMMO.Network;
-using OpenMMO.Zones;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+
+using OpenMMO.Zones;
 using Mirror;
 
 namespace OpenMMO.Network
@@ -41,8 +42,7 @@ namespace OpenMMO.Network
         {
 		
 			//if (!base.RequestPlayerLogin(conn, playerName, userName)) //REMOVED - DX4D
-			if (!base.RequestPlayerLogin(playerName, userName)) //ADDED - DX4D
-                return false;
+			if (!base.RequestPlayerLogin(playerName, userName)) return false; //ADDED - DX4D
 
 			ClientRequestPlayerAutoLogin message = new ClientRequestPlayerAutoLogin
 			{
@@ -51,7 +51,7 @@ namespace OpenMMO.Network
 				token 		= _token
 			};
 
-            //ClientScene.Ready(conn);
+            //ClientScene.Ready(conn); //REMOVED - DX4D
 
             NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
 

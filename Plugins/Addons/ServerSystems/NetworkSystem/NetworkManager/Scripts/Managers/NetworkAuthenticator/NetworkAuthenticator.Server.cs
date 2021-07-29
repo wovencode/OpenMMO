@@ -1,26 +1,23 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 
-using OpenMMO;
-using OpenMMO.Network;
 using OpenMMO.Zones;
 using UnityEngine;
-using UnityEngine.Events;
-using System;
-using System.Collections.Generic;
 using Mirror;
 
 namespace OpenMMO.Network
 {
 
     // ===================================================================================
-	// NetworkAuthenticator
-	// ===================================================================================
+    // NetworkAuthenticator
+    // ===================================================================================
     public partial class NetworkAuthenticator
     {
-    	
-    	// -------------------------------------------------------------------------------
-		// OnStartServer
-		// @Server
-		// -------------------------------------------------------------------------------
+
+        // -------------------------------------------------------------------------------
+        // OnStartServer
+        // @Server
+        // -------------------------------------------------------------------------------
         /// <summary>
         /// Public ovverride event <c>OnStartServer</c>.
         /// Triggered on server start.
@@ -31,14 +28,14 @@ namespace OpenMMO.Network
         {
 
             NetworkServer.RegisterHandler<ClientRequestAuth>(OnClientMessageRequestAuth, false);
-            
-        	this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
+
+            this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
         }
-            	
+
         // -------------------------------------------------------------------------------
         // OnServerAuthenticate
         // @Server
-		// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         /// <summary>
         /// Public override event <c>OnServerAuthenticate</c>.
         /// Does nothing. Waits for the <c>AuthRequestMessage</c> to be received from the client.
@@ -68,7 +65,7 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         void OnClientMessageRequest(NetworkConnection conn, ClientRequest msg)
         {
-    		// do nothing (this message is never called directly)
+            // do nothing (this message is never called directly)
         }
 
         // ========================== MESSAGE HANDLERS - AUTH ============================
@@ -87,58 +84,50 @@ namespace OpenMMO.Network
         /// <param name="conn"></param>
         /// <param name="msg"></param>
         void OnClientMessageRequestAuth(NetworkConnection conn, ClientRequestAuth msg)
-		{
+        {
 
-			ServerResponseAuth message = new ServerResponseAuth
-			{
-				success = true,
-				text			 	= "",
-				causesDisconnect 	= false
-			};
-			
-			// -- Check for Network Portals
-			// This prevents players from logging into a Network Zone. Directly logging
-			// into a zone should not be possible and can only be done by warping to
-			// that zone instead.
-			bool portalChecked = true;
+            ServerResponseAuth message = new ServerResponseAuth
+            {
+                action = NetworkAction.Authenticate,
+                success = true,
+                text = "",
+                causesDisconnect = false
+            };
+
+            // -- Check for Network Portals
+            // This prevents players from logging into a Network Zone. Directly logging
+            // into a zone should not be possible and can only be done by warping to
+            // that zone instead.
+            bool portalChecked = true;
             ZoneManager zone = GetComponent<ZoneManager>(); //ADDED - DX4D
-                if (zone != null && !zone.GetIsMainZone) portalChecked = false; //ADDED - DX4D
+            if (zone != null && !zone.GetIsMainZone) portalChecked = false; //ADDED - DX4D
 
-                //if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetIsMainZone) //REMOVED - DX4D
-                //    portalChecked = false; //REMOVED - DX4D
-			
-			if ((checkApplicationVersion && msg.clientVersion != Application.version) || !portalChecked)
-			{
-				message.text = systemText.versionMismatch;
-            	message.success = false;
-			}
-			else
-			{
-				base.OnServerAuthenticated.Invoke(conn); //EVENT
-#if DEBUG
-                Debug.Log("<color=green>Authentication success!</color>\n" + conn.connectionId + "@" + conn.address);
-#endif
+            //if (GetComponent<ZoneManager>() != null && !GetComponent<ZoneManager>().GetIsMainZone) //REMOVED - DX4D
+            //    portalChecked = false; //REMOVED - DX4D
+
+            if ((checkApplicationVersion && msg.clientVersion != Application.version) || !portalChecked)
+            {
+                message.text = systemText.versionMismatch;
+                message.success = false;
+            }
+            else
+            {
+                base.OnServerAuthenticated.Invoke(conn); //EVENT
+
+                Debug.Log("[SERVER] - Authentication succeded for connection-" + conn.connectionId + " @" + conn.address);
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "Authenticated"); //DEBUG
-			}
-			
-			conn.Send(message);
-			
-			if (!message.success)
-			{
-				conn.isAuthenticated = false;
-				conn.Disconnect();
+            }
 
-#if DEBUG
-                Debug.Log("<color=red>Authentication failed!</color>\n" + conn.connectionId + "@" + conn.address );
-#endif
+            conn.Send(message);
+
+            if (!message.success)
+            {
+                conn.isAuthenticated = false;
+                conn.Disconnect();
+
+                Debug.Log("[SERVER] - Authentication failed for connection-" + conn.connectionId + " @" + conn.address);
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "DENIED"); //DEBUG
-			}
-		
-		}
-
-        // -------------------------------------------------------------------------------
-               
+            }
+        }
     }
 }
-
-// =======================================================================================

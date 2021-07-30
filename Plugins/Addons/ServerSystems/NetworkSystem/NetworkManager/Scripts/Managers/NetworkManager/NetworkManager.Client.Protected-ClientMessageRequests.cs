@@ -269,10 +269,10 @@ namespace OpenMMO.Network
 				playername = playername,
 				username = username
 			};
-			
-			// must be readied here, not in the response - otherwise it generates a warning
-			//ClientScene.Ready(conn); //REMOVED - DX4D
-			NetworkClient.Ready(); //ADDED - DX4D
+
+            // must be readied here, not in the response - otherwise it generates a warning
+            //ClientScene.Ready(conn); //REMOVED - DX4D
+            if (!NetworkClient.ready) NetworkClient.Ready(); //ADDED - DX4D
 
             NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
 

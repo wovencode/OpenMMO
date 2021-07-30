@@ -38,7 +38,7 @@ namespace OpenMMO.Network
         // @Client -> @Server
         // -------------------------------------------------------------------------------
         //protected bool RequestPlayerAutoLogin(NetworkConnection conn, string playerName, string userName, int _token) //REMOVED - DX4D
-        protected bool RequestPlayerAutoLogin(string playerName, string userName, int _token) //ADDED - DX4D
+        protected bool RequestPlayerAutoLogin(NetworkConnection conn, string playerName, string userName, int _token) //ADDED - DX4D
         {
 		
 			//if (!base.RequestPlayerLogin(conn, playerName, userName)) //REMOVED - DX4D
@@ -52,8 +52,9 @@ namespace OpenMMO.Network
 			};
 
             //ClientScene.Ready(conn); //REMOVED - DX4D
+            if (!NetworkClient.ready) NetworkClient.Ready(); //ADDED - DX4D
 
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
 
             conn.Send(message);
 			

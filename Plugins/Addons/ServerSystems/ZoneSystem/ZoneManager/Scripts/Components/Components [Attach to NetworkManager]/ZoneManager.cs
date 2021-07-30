@@ -357,9 +357,9 @@ DebugManager.Log(">>>>spawn subzones");
             Network.NetworkManager newNetworkManager = networkManager;
             if (!newNetworkManager)
             {
-                newNetworkManager = new Network.NetworkManager();
                 UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
                     + "<b>Creating New Network Manager...</b>");
+                newNetworkManager = new Network.NetworkManager();
             }
 			
             UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
@@ -372,11 +372,11 @@ DebugManager.Log(">>>>spawn subzones");
 
 
             UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
-                + "<b>Shutting Down Network Manager...</b>");
+                + "<b>Shutting Down Active Network Manager...</b>");
             Network.NetworkManager.Shutdown();
 
             UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
-                + "<b>Assigning New Network Manager...</b>");
+                + "<b>Setting New Network Manager...</b>");
             Network.NetworkManager.singleton = newNetworkManager;//networkManager;
 			
 			autoPlayerName = msg.playername;
@@ -392,13 +392,13 @@ DebugManager.Log(">>>>spawn subzones");
                     UpdateTransportPort(GetZonePort);
                     //networkTransport.port = GetZonePort; //REPLACED - DX4D
 
-                    UnityEngine.Debug.Log("<b>[<color=orange>CLIENT</color>]</b> - "
+                    UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
                         + "<b>Loading zone number " + zoneIndex + " - " + msg.zonename + "...</b>");
 
                     LoadSubZone(zoneIndex);
 
 
-                    //debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), i.ToString()); //DEBUG //REMOVED DX4D
+                    debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), i.ToString()); //DEBUG
 					
 					return;
 				}
@@ -472,10 +472,10 @@ DebugManager.Log(">>>>spawn subzones");
     	// AutoLogin
     	// @Client
     	// -------------------------------------------------------------------------------
-		public void AutoLogin()
+		public void AutoLogin(NetworkConnection conn)
 		{
 			if (!String.IsNullOrWhiteSpace(autoPlayerName))
-				networkManager.TryAutoLoginPlayer(autoPlayerName, GetToken);
+				networkManager.TryAutoLoginPlayer(conn, autoPlayerName, GetToken);
 		}
 		
 		// ================================= OTHER =======================================
@@ -488,7 +488,7 @@ DebugManager.Log(">>>>spawn subzones");
         {
             UnityEngine.Debug.Log("[SERVER SAVE] - "
                 + "Saving Zone " + mainZoneName + "...");
-            DatabaseManager.singleton.SaveZoneTime(mainZoneName);
+            DatabaseManager.singleton.SaveZoneTime(mainZoneName); //SAVE ZONE TIME
             UnityEngine.Debug.Log("[SERVER SAVE] - "
                 + "Saved Zone " + mainZoneName + "!");
         }
@@ -501,7 +501,7 @@ DebugManager.Log(">>>>spawn subzones");
     	{
             if (DatabaseManager.singleton.CheckZoneTimeout(mainZoneName, GetSubZoneTimeoutInterval))
             {
-                UnityEngine.Debug.Log("[SERVER] - "
+                UnityEngine.Debug.Log("[SERVER ZONE TIMEOUT] - "
                     + "Zone number " + subZoneIndex + " - " + zoneConfig.subZones[subZoneIndex].scene.SceneName + "'s master zone " + mainZoneName + " has gone offline...shutting down!");
                 Application.Quit();
             }

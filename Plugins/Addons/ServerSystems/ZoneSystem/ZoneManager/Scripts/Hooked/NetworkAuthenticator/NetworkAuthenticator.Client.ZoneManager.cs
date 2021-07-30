@@ -39,7 +39,8 @@ namespace OpenMMO.Network
        	[DevExtMethods(nameof(OnClientAuthenticate))]
         void OnClientAuthenticate_NetworkPortals() //FIX - MIRROR UPDATE - NetworkConnection conn parameter Replaced with NetworkClient.connection - DX4D
         {
-        	if (GetComponent<ZoneManager>() != null && GetComponent<ZoneManager>().GetAutoConnect)
+            ZoneManager zoneManager = GetComponent<ZoneManager>();
+        	if (zoneManager != null && zoneManager.GetAutoConnect)
         		Invoke(nameof(ClientAutoAuthenticate), connectDelay);		 
         }
     	
@@ -66,7 +67,7 @@ namespace OpenMMO.Network
         // -------------------------------------------------------------------------------
         public void OnClientAuthenticated_NetworkPortals(NetworkConnection conn)
         {
-        	ZoneManager.singleton.AutoLogin();
+        	ZoneManager.singleton.AutoLogin(conn);
         }
 		
         // ========================== MESSAGE HANDLERS - AUTH ============================
@@ -99,8 +100,8 @@ namespace OpenMMO.Network
             {
             	CancelInvoke();
                	base.OnClientAuthenticated.Invoke(conn);
-               	//ClientScene.Ready(conn); //REMOVED - DX4D
-               	NetworkClient.Ready(); //ADDED - DX4D
+                //ClientScene.Ready(conn); //REMOVED - DX4D
+                if (!NetworkClient.ready) NetworkClient.Ready(); //ADDED - DX4D
             }
             
             debug.LogFormat(this.name, nameof(OnServerResponseAutoAuth), msg.success.ToString(), msg.text); //DEBUG

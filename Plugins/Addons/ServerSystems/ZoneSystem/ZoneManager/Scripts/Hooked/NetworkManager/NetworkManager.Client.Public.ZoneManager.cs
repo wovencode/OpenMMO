@@ -29,10 +29,10 @@ namespace OpenMMO.Network
         /// Runs on the client. 
         /// </summary>
         /// <param name="username"></param>
-        public void TryAutoLoginPlayer(string playername, int token)
+        public void TryAutoLoginPlayer(NetworkConnection conn, string playername, int token)
 		{
 			//RequestPlayerAutoLogin(NetworkClient.connection, playername, userName, token); //REMOVED - DX4D
-            RequestPlayerAutoLogin(playername, userName, token); //ADDED - DX4D
+            RequestPlayerAutoLogin(conn, playername, userName, token); //ADDED - DX4D
         }
 
 		// -------------------------------------------------------------------------------

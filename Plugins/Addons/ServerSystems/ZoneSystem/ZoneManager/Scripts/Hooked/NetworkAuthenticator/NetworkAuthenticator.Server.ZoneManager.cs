@@ -38,7 +38,6 @@ namespace OpenMMO.Network
 
 			ServerResponseAutoAuth message = new ServerResponseAutoAuth
             {
-                action              = NetworkAction.PlayerAutoAuthenticate, //ADDED - DX4D
                 success             = true,
 				text			 	= "",
 				causesDisconnect 	= false

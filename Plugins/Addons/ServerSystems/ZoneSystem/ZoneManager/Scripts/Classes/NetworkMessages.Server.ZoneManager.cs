@@ -15,8 +15,7 @@ namespace OpenMMO.Network
     /// </remarks>
     public partial struct ServerResponsePlayerSwitchServer : ServerResponse
     {
-        internal NetworkAction _action;
-        public NetworkAction action { get { return _action; } set { _action = value; } }
+        public NetworkAction action => NetworkAction.PlayerSwitchServer;
 
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
@@ -41,8 +40,7 @@ namespace OpenMMO.Network
     /// </remarks>
     public partial struct ServerResponsePlayerAutoLogin : ServerResponse
     {
-        internal NetworkAction _action;
-        public NetworkAction action { get { return _action; } set { _action = value; } }
+        public NetworkAction action => NetworkAction.PlayerAutoLogin;
 
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
@@ -62,8 +60,7 @@ namespace OpenMMO.Network
     /// </remarks>
     public partial struct ServerResponseAutoAuth : ServerResponse
     {
-        internal NetworkAction _action;
-        public NetworkAction action { get { return _action; } set { _action = value; } }
+        public NetworkAction action => NetworkAction.PlayerAutoAuthenticate;
 
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }

@@ -15,10 +15,12 @@ namespace OpenMMO.Network
     /// </remarks>
     public partial struct ClientRequestPlayerSwitchServer : ClientRequest
     {
-        bool _success;
+        public NetworkAction action => NetworkAction.PlayerSwitchServer;
+
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string playername;
@@ -35,10 +37,12 @@ namespace OpenMMO.Network
     /// </remarks>
 	public partial struct ClientRequestPlayerAutoLogin : ClientRequest
     {
-        bool _success;
+        public NetworkAction action => NetworkAction.PlayerAutoLogin;
+
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string username;
@@ -54,10 +58,12 @@ namespace OpenMMO.Network
     /// </remarks>
     public partial struct ClientRequestAutoAuth : ClientRequest
     {
-        bool _success;
+        public NetworkAction action => NetworkAction.PlayerAutoAuthenticate;
+
+        internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
-        string _text;
+        internal string _text;
         public string text { get { return _text; } set { _text = value; } }
 
         public string clientVersion;

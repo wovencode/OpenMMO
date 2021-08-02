@@ -12,13 +12,13 @@ namespace OpenMMO.Network
     // @Server -> @Client
     // -----------------------------------------------------------------------------------
     /// <summary>
-    /// Public partial Class <c>ServerMessageResponse</c> inherits from Mirror.MessageBase.
+    /// Public partial Class <see cref="ServerResponse"/> 
+    /// inherits from <see cref="NetworkTransaction"/>.
     /// Sent from Server to Client.
     /// Server Message response containing boolean dictating success, a text message, and a boolean dictating wether the message causes disconnection.
     /// </summary>
-    public interface ServerResponse : NetworkMessage
+    public interface ServerResponse : NetworkTransaction
     {
-        NetworkAction action { get; set; }
         bool success { get; set; }
         string text { get; set; }
         bool causesDisconnect { get; set; }

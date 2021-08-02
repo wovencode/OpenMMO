@@ -1,4 +1,4 @@
-//By Fhiz
+//BY FHIZ
 //MODIFIED BY DX4D
 
 using System.Collections;

@@ -33,6 +33,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestAuth : ClientRequest
     {
+        public NetworkAction action => NetworkAction.Authenticate;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -55,6 +57,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserLogin : ClientRequest
     {
+        public NetworkAction action => NetworkAction.UserLogin;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -71,6 +75,8 @@ namespace OpenMMO.Network
     // -----------------------------------------------------------------------------------
     public partial struct ClientRequestUserLogout : ClientRequest
     {
+        public NetworkAction action => NetworkAction.UserLogout;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -89,6 +95,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserRegister : ClientRequest
     {
+        public NetworkAction action => NetworkAction.UserRegister;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -112,6 +120,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserDelete : ClientRequest
     {
+        public NetworkAction action => NetworkAction.UserDelete;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -133,6 +143,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserChangePassword : ClientRequest
     {
+        public NetworkAction action => NetworkAction.UserChangePassword;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -155,6 +167,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestUserConfirm : ClientRequest
     {
+        public NetworkAction action => NetworkAction.UserConfirm;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -178,6 +192,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestPlayerLogin : ClientRequest
     {
+        public NetworkAction action => NetworkAction.PlayerLogin;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -199,6 +215,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestPlayerRegister : ClientRequest
     {
+        public NetworkAction action => NetworkAction.PlayerRegister;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 
@@ -221,6 +239,8 @@ namespace OpenMMO.Network
     /// </summary>
     public partial struct ClientRequestPlayerDelete : ClientRequest
     {
+        public NetworkAction action => NetworkAction.PlayerDelete;
+
         internal bool _success;
         public bool success { get { return _success; } set { _success = value; } }
 

@@ -12,7 +12,7 @@ namespace OpenMMO.Network
     /// Public partial interface <c>ClientRequest</c> inherits from Mirror.NetworkMessage.
     /// Containts the message sent from client to server
     /// </summary>
-    public partial interface ClientRequest : NetworkMessage
+    public partial interface ClientRequest : NetworkTransaction
     {
         bool success { get; set; }
         string text { get; set; }

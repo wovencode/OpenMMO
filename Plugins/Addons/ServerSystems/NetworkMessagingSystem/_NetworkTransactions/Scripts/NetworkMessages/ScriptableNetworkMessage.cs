@@ -58,9 +58,9 @@ namespace OpenMMO.Network
             }
         }
 
-        // - - - - - - - - - - - - - -
-        // C L I E N T  R E Q U E S T
-#if _CLIENT
+        // - - - - - - - - - - - - - - - - - - - -
+        // N E T W O R K  T R A N S A C T I O N S
+
         //CREATE NETWORK TRANSACTION
         /// <summary>@CLIENT@SERVER: 
         /// Creates a more specific transaction from the passed in Network Transaction.
@@ -79,26 +79,6 @@ namespace OpenMMO.Network
         {
             conn.Send<T>(CreateNetworkMessage<T>(msg));
         }
-#endif
-        // - - - - - - - - - - - - - - -
-        // S E R V E R  R E S P O N S E
-#if _SERVER
-        //CREATE SERVER RESPONSE MESSAGE
-        /// <summary>@SERVER: Called on the server to create a server response.</summary>
-        /// <see cref="ServerResponsePlayerAutoLogin"/>
-        protected T CreateServerResponseMessage<T>(Mirror.NetworkMessage msg)
-            where T : struct, ServerResponse
-        { return (T)msg; }
-        //SEND SERVER RESPONSE MESSAGE
-        /// <summary>@SERVER: Called on the server to send a server response to the client.</summary>
-        protected void SendServerResponseMessage<T>(Mirror.NetworkConnection conn, Mirror.NetworkMessage msg)
-                where T : struct, ServerResponse
-        {
-            conn.Send<T>(CreateServerResponseMessage<T>(msg));
-        }
-#endif
-
-
         //TODO: MOVE US TO TRANSACTION MANAGER
         /// <summary>
         /// @CLIENT: Called on the client when it receives the server's response to it's client request.
@@ -131,5 +111,27 @@ namespace OpenMMO.Network
             SendServerResponseMessage<T>(conn, msg); //SERVER
 #endif*/
         }
+        /*
+#if _CLIENT
+#endif
+        // - - - - - - - - - - - - - - -
+        // S E R V E R  R E S P O N S E
+#if _SERVER
+        //CREATE SERVER RESPONSE MESSAGE
+        /// <summary>@SERVER: Called on the server to create a server response.</summary>
+        /// <see cref="ServerResponsePlayerAutoLogin"/>
+        protected T CreateServerResponseMessage<T>(Mirror.NetworkMessage msg)
+            where T : struct, ServerResponse
+        { return (T)msg; }
+        //SEND SERVER RESPONSE MESSAGE
+        /// <summary>@SERVER: Called on the server to send a server response to the client.</summary>
+        protected void SendServerResponseMessage<T>(Mirror.NetworkConnection conn, Mirror.NetworkMessage msg)
+                where T : struct, ServerResponse
+        {
+            conn.Send<T>(CreateServerResponseMessage<T>(msg));
+        }
+#endif
+
+        */
     }
 }

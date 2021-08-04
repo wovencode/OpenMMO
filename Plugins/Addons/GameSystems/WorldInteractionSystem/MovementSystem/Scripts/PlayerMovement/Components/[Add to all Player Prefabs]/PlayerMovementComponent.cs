@@ -56,18 +56,14 @@ namespace OpenMMO
         //SERVER
         /// <summary> [Server] start. </summary>
         [Server] protected override void StartServer() {agent.updateRotation = false; base.StartServer(); }
-        
+
         /// <summary> OnStartLocalPlayer. Not used yet. </summary>
-        public override void OnStartLocalPlayer()
-        {
-        }
+        public override void OnStartLocalPlayer() { }
 
         /// <summary>
     	/// OnDestroy client and side-server. Not used yet.
     	/// </summary>
-        void OnDestroy()
-        {
-        }
+        void OnDestroy() { }
 
         /// <summary> [Server] throttled update. </summary>
         [Server] protected override void UpdateServer()

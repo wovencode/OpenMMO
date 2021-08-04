@@ -4,10 +4,11 @@
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
-using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+
+using UnityEngine;
 using Mirror;
 
 namespace OpenMMO.Network
@@ -39,8 +40,7 @@ namespace OpenMMO.Network
 		protected override bool RequestUserLogin(string userName, string password) //ADDED - DX4D
 		{
 			//if (!base.RequestUserLogin(conn, userName, password)) //REMOVED - DX4D
-            if (!base.RequestUserLogin(userName, password)) //ADDED - DX4D
-                return false;
+            if (!CanUserLogin(userName, password)) return false; //ADDED - DX4D
 
 			ClientRequestUserLogin message = new ClientRequestUserLogin
 			{
@@ -66,8 +66,9 @@ namespace OpenMMO.Network
         //protected override bool RequestUserLogout(NetworkConnection conn) //REMOVED - DX4D
         protected override bool RequestUserLogout() //ADDED - DX4D
 		{
-		
-			ClientRequestUserLogout message = new ClientRequestUserLogout
+            if (!CanUserLogout()) return false; //ADDED - DX4D
+
+            ClientRequestUserLogout message = new ClientRequestUserLogout
 			{
 
 			};
@@ -101,10 +102,9 @@ namespace OpenMMO.Network
         protected override bool RequestUserRegister(string userName, string password, string usermail) //ADDED - DX4D
         {
             //if (!base.RequestUserRegister(conn, userName, password, usermail)) //REMOVED - DX4D
-            if (!base.RequestUserRegister(userName, password, usermail)) //ADDED - DX4D
-                return false;
+            if (!CanUserRegister(userName, password, usermail)) return false; //ADDED - DX4D
 
-			ClientRequestUserRegister message = new ClientRequestUserRegister
+            ClientRequestUserRegister message = new ClientRequestUserRegister
 			{
 				username 	= userName,
 				password 	= Tools.GenerateHash(name, password),
@@ -141,8 +141,7 @@ namespace OpenMMO.Network
         protected override bool RequestUserDelete(string userName, string password, int action=1) //ADDED - DX4D
         {
             //if (!base.RequestUserDelete(conn, userName, password)) //REMOVED - DX4D
-            if (!base.RequestUserDelete(userName, password)) //ADDED - DX4D
-                return false;
+            if (!CanUserDelete(userName, password)) return false; //ADDED - DX4D
 
 			ClientRequestUserDelete message = new ClientRequestUserDelete
 			{
@@ -179,10 +178,9 @@ namespace OpenMMO.Network
         protected override bool RequestUserChangePassword(string userName, string oldpassword, string newpassword) //ADDED - DX4D
         {
             //if (!base.RequestUserChangePassword(conn, userName, oldpassword, newpassword)) //REMOVED - DX4D
-            if (!base.RequestUserChangePassword(userName, oldpassword, newpassword)) //ADDED - DX4D
-                return false;
+            if (!CanUserChangePassword(userName, oldpassword, newpassword)) return false; //ADDED - DX4D
 
-			ClientRequestUserChangePassword message = new ClientRequestUserChangePassword
+            ClientRequestUserChangePassword message = new ClientRequestUserChangePassword
 			{
 				username = name,
 				oldPassword = Tools.GenerateHash(userName, oldpassword),
@@ -221,8 +219,7 @@ namespace OpenMMO.Network
         protected override bool RequestUserConfirm(string userName, string password, int action=1) //ADDED - DX4D
         {
 			//if (!base.RequestUserConfirm(conn, userName, password)) //REMOVED - DX4D
-			if (!base.RequestUserConfirm(userName, password)) //ADDED - DX4D
-				return false;
+			if (!CanUserConfirm(userName, password)) return false; //ADDED - DX4D
 
 			ClientRequestUserConfirm message = new ClientRequestUserConfirm
 			{
@@ -261,8 +258,7 @@ namespace OpenMMO.Network
         {
 
             //if (!base.RequestPlayerLogin(conn, playername, username)) //REMOVED - DX4D
-            if (!base.RequestPlayerLogin(playername, username)) //ADDED - DX4D
-                return false;
+            if (!CanPlayerLogin(playername, username)) return false; //ADDED - DX4D
 
 			ClientRequestPlayerLogin message = new ClientRequestPlayerLogin
 			{
@@ -303,8 +299,7 @@ namespace OpenMMO.Network
         protected override bool RequestPlayerRegister(string playerName, string userName, string prefabName) //ADDED - DX4D
         {
             //if (!base.RequestPlayerRegister(conn, playerName, userName, prefabName)) //REMOVED - DX4D
-            if (!base.RequestPlayerRegister(playerName, userName, prefabName)) //ADDED - DX4D
-                return false;
+            if (!CanPlayerRegister(playerName, userName, prefabName)) return false; //ADDED - DX4D
 
 			ClientRequestPlayerRegister message = new ClientRequestPlayerRegister
 			{
@@ -342,8 +337,7 @@ namespace OpenMMO.Network
         protected override bool RequestPlayerDelete(string playerName, string userName, int action=1) //ADDED - DX4D
         {
             //if (!base.RequestPlayerDelete(conn, playerName, userName)) //REMOVED - DX4D
-            if (!base.RequestPlayerDelete(playerName, userName)) //ADDED - DX4D
-                return false;
+            if (!CanPlayerDelete(playerName, userName)) return false; //ADDED - DX4D
 
 			ClientRequestPlayerDelete message = new ClientRequestPlayerDelete
 			{

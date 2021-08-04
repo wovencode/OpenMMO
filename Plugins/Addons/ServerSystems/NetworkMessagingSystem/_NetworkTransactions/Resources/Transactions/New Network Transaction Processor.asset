@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2639c3163cbe0c4d9d1d98c3d9542dd, type: 3}
   m_Name: New Network Transaction Processor
   m_EditorClassIdentifier: 
-  _clientRequestHandler: {fileID: 0}
-  _serverResponseHandler: {fileID: 0}
+  _clientRequestHandler: {fileID: 11400000, guid: d78e5665fc46956408257b4f65355b38, type: 2}
+  _serverResponseHandler: {fileID: 11400000, guid: d78e5665fc46956408257b4f65355b38, type: 2}

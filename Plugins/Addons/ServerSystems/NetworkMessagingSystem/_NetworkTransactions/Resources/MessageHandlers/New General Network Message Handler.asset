@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7253d906646a6be4cad597d77408e160, type: 3}
-  m_Name: New Base Network Message Handler
+  m_Script: {fileID: 11500000, guid: 373e9f3805ab12a499e0ffebd5c54b4b, type: 3}
+  m_Name: New General Network Message Handler
   m_EditorClassIdentifier: 
-  _description: 
-  _networkAction: 0
+  _description: 'TODO
+
+    Make Message Handling Center/Manager
+
+    Lookup dict
+    <NetworkAction,NetworkTransaction>'
+  _networkAction: 2

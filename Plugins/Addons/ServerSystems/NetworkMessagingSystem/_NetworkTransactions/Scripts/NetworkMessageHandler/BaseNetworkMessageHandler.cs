@@ -20,15 +20,15 @@ namespace OpenMMO.Network
             ""; // <- EDIT THE DESCRIPTION HERE
 #endif
         #endregion
-
+        
         //@CLIENT@SERVER
         //SETTABLE NETWORK ACTION
-        [SerializeField] NetworkAction _networkAction = NetworkAction.None;
-        public override NetworkAction networkAction => _networkAction;
+        //[SerializeField] internal NetworkAction _networkAction = NetworkAction.None;
+        //public override NetworkAction networkAction => _networkAction;
         //NOTE: --OPTIONAL SECURITY-- (DO BOTH)
         //COMMENT OUT THE ABOVE 2 LINES FOR ADDED SECURITY <- (AT THE COST OF VERSATILITY)
         //UNCOMMENT THE NEXT LINE FOR ADDED SECURITY <- (MUST DO BOTH)
-        //public override NetworkAction networkAction => NetworkAction.Authenticate;
+        public override NetworkAction networkAction => NetworkAction.None;
 
         //@CLIENT
         [Client] public override void HandleServerResponse(NetworkConnection conn, ServerResponse response)

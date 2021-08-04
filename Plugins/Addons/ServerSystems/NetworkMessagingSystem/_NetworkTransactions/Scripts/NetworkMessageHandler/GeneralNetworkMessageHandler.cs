@@ -7,11 +7,17 @@ using Mirror;
 namespace OpenMMO.Network
 {
     [CreateAssetMenu( menuName = "OpenMMO/Network/Message Handlers/"
-        + nameof(PlayerAutoLoginNetworkMessageHandler) )]
-    public class PlayerAutoLoginNetworkMessageHandler : BaseNetworkMessageHandler// : ScriptableNetworkMessageHandler
+        + nameof(GeneralNetworkMessageHandler) )]
+    public class GeneralNetworkMessageHandler : BaseNetworkMessageHandler// : ScriptableNetworkMessageHandler
     {
         //@CLIENT@SERVER
-        public override NetworkAction networkAction => NetworkAction.Authenticate;
+        //SETTABLE NETWORK ACTION
+        [SerializeField] internal NetworkAction _networkAction = NetworkAction.None;
+        public override NetworkAction networkAction => _networkAction;
+        //NOTE: --OPTIONAL SECURITY-- (DO BOTH)
+        //COMMENT OUT THE ABOVE 2 LINES FOR ADDED SECURITY <- (AT THE COST OF VERSATILITY)
+        //UNCOMMENT THE NEXT LINE FOR ADDED SECURITY <- (MUST DO BOTH)
+        //public override NetworkAction networkAction => NetworkAction.None;
 
         //@CLIENT
         [Client]

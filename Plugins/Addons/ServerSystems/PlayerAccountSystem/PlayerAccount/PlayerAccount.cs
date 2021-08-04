@@ -60,7 +60,7 @@ namespace OpenMMO {
 		[Server] protected override void UpdateServer()
 		{
 			base.UpdateServer();
-			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK
+			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK //REMOVE - CALLED IN BASE - DX4D
 		}
 		
 

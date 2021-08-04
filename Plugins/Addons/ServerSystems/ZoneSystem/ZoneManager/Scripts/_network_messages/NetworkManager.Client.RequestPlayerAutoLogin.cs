@@ -30,7 +30,7 @@ namespace OpenMMO.Network
         {
 		
 			//if (!base.RequestPlayerLogin(conn, playerName, userName)) //REMOVED - DX4D
-			if (!base.RequestPlayerLogin(playerName, userName)) return false; //ADDED - DX4D
+			if (!CanPlayerLogin(playerName, userName)) return false; //ADDED - DX4D
 
 			ClientRequestPlayerAutoLogin message = new ClientRequestPlayerAutoLogin
 			{

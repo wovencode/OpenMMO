@@ -28,15 +28,17 @@ namespace OpenMMO
 
             //SPEED FACTOR
             //NOTE: Run speed and Sneak speed will blend together.
-            float factor = input.running ? modifiers.runSpeedScale : modifiers.walkSpeedScale; //running
-            factor *= input.sneaking ? modifiers.sneakSpeedScale : 1f; //sneaking
+            float factor;
+            if (!input.running) factor = modifiers.walkSpeedScale; //walking
+            else factor = modifiers.runSpeedScale; //running
+
+            if (input.sneaking) factor *= modifiers.sneakSpeedScale; //sneaking
 
             if (movement != Vector3.zero)
             {
                 agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, Quaternion.LookRotation(movement), agent.angularSpeed * factor);
             }
-
-
+            
             agent.transform.Translate(movement * agent.speed * factor * modifiers.moveSpeedMultiplier * Time.deltaTime, Space.World);// * agent.speed * factor * modifiers.moveSpeedMultiplier
 
             return agent.velocity;

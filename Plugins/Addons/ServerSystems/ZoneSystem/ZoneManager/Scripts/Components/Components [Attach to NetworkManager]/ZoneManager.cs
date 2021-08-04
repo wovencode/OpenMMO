@@ -271,14 +271,18 @@ namespace OpenMMO.Zones
 		public void SpawnSubZones()
 		{
 DebugManager.Log(">>>>spawn subzones");
-			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones)
-				return;
+			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones) return;
 
 			InvokeRepeating(nameof(SaveZone), 0, zoneConfig.zoneSaveInterval);
-			
-			for (int i = 0; i < zoneConfig.subZones.Count; i++)
-    			if (zoneConfig.subZones[i] != currentZone)
-    				SpawnSubZone(i);
+
+            for (int i = 0; i < zoneConfig.subZones.Count; i++)
+            {
+                if (zoneConfig.subZones[i] != currentZone)
+                {
+                    UnityEngine.Debug.Log("[SERVER STARTUP] - Spawned Sub-Zone - " + zoneConfig.subZones[i].name);
+                    SpawnSubZone(i);
+                }
+            }
     		
     		spawnedSubZones = true;
     		

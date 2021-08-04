@@ -124,21 +124,20 @@ namespace OpenMMO {
 		[ServerCallback]
 		public void WarpLocal(string anchorName)
     	{
-			
 			UpdateCooldown(GameRulesTemplate.singleton.localWarpDelay);
-			
-    		if (AnchorManager.singleton.CheckPortalAnchor(anchorName))
-        		base.Warp(AnchorManager.singleton.GetPortalAnchorPosition(anchorName));
-        	
-        	if (AnchorManager.singleton.CheckStartAnchor(anchorName))
-        		base.Warp(AnchorManager.singleton.GetStartAnchorPosition(anchorName));
-        	
+
+            //PORTAL ANCHOR
+            if (AnchorManager.singleton.CheckPortalAnchor(anchorName))
+            {
+                base.Warp(AnchorManager.singleton.GetPortalAnchorPosition(anchorName));
+                return; //ADDED DX4D
+            }
+            //START ANCHOR
+            if (AnchorManager.singleton.CheckStartAnchor(anchorName))
+            {
+                base.Warp(AnchorManager.singleton.GetStartAnchorPosition(anchorName));
+                return; //ADDED DX4D
+            }
 		}
-		
-		// -------------------------------------------------------------------------------
-		
 	}
-
 }
-
-// =======================================================================================

@@ -1,4 +1,4 @@
-//BY DX4D
+﻿//BY DX4D
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +9,7 @@ namespace OpenMMO
     /// </summary>
     public abstract class CharacterMotor : ScriptableObject
     {
-        internal abstract Vector3 GetVelocity(MovementInput movement, MovementModifiers movementConfig, NavMeshAgent agent);
+	    internal abstract Vector3 GetVelocity(MovementInput movement, MovementModifiers movementConfig, NavMeshAgent agent);
+	    internal abstract float CalculateMoveSpeedFactor(MovementInput movement, MovementModifiers movementConfig);
     }
 }

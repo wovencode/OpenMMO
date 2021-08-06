@@ -1,4 +1,4 @@
-//BY DX4D
+﻿//BY DX4D
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +13,14 @@ namespace OpenMMO
         {
             return CalculateVelocity(movement, movementConfig, agent);
         }
+	    internal override float CalculateMoveSpeedFactor(MovementInput movement, MovementModifiers movementConfig)
+	    {
+		    float factor = movementConfig.moveSpeedMultiplier;
+		    if (movement.running) factor *= movementConfig.runSpeedScale; //running
+		    else	 factor *= movementConfig.walkSpeedScale; //walking
+		    if (movement.sneaking) factor *= movementConfig.sneakSpeedScale; //sneaking
+		    return factor;
+	    }
 
         /// <summary>
         /// This recalculates the agent velocity based on the current input axis'
@@ -71,7 +79,7 @@ namespace OpenMMO
                 }
 
                 newVelocity = (horizontalDirection * Mathf.Abs(movement.horizontalInput)) + (verticalDirection * Mathf.Abs(movement.verticalInput));
-                newVelocity *= agent.speed * factor * movementConfig.moveSpeedMultiplier; //FACTOR IN SPEED
+                newVelocity *= agent.speed * CalculateMoveSpeedFactor(movement, movementConfig); //FACTOR IN SPEED
 
                 //STRAFE LEFT
                 if (movement.strafeLeft)

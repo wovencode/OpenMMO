@@ -1,4 +1,4 @@
-//BY DX4D
+﻿//BY DX4D
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,10 +7,22 @@ namespace OpenMMO
     [CreateAssetMenu(menuName = "OpenMMO/Controls/Basic Character Motor")]
     public partial class BasicCharacterMotor : CharacterMotor
     {
+       // [Header("MOVEMENT CONFIG")]
+       // [SerializeField] bool faceDirectionOfMovement = false;
+
         internal override Vector3 GetVelocity(MovementInput movement, MovementModifiers movementConfig, NavMeshAgent agent)
         {
             return CalculateVelocity(movement, movementConfig, agent);
         }
+        
+	    internal override float CalculateMoveSpeedFactor(MovementInput movement, MovementModifiers movementConfig)
+	    {
+		    float factor = movementConfig.moveSpeedMultiplier;
+		    if (movement.running) factor *= movementConfig.runSpeedScale; //running
+		    else	 factor *= movementConfig.walkSpeedScale; //walking
+		    if (movement.sneaking) factor *= movementConfig.sneakSpeedScale; //sneaking
+		    return factor;
+	    }
 
         /// <summary>
         /// This recalculates the agent velocity based on the current input axis'
@@ -41,21 +53,17 @@ namespace OpenMMO
 
                 if (movement.verticalInput > 0)                                  // -- Movement: Forward
                 {
-                    float factor = movement.running ? movementConfig.runSpeedScale : movementConfig.walkSpeedScale; //running
-                    factor *= movement.sneaking ? movementConfig.sneakSpeedScale : 1f; //sneaking
-                    newVelocity = direction * movement.verticalInput * agent.speed * factor * movementConfig.moveSpeedMultiplier;
+	                newVelocity = direction * movement.verticalInput * agent.speed * CalculateMoveSpeedFactor(movement, movementConfig);
                 }
                 else if (movement.verticalInput < 0)                             // -- Movement: Backward
                 {
-                    float factor = movement.running ? movementConfig.runSpeedScale : movementConfig.walkSpeedScale; //running
-                    factor *= movement.sneaking ? movementConfig.sneakSpeedScale : 1f; //sneaking
-                    newVelocity = direction * Mathf.Abs(movement.verticalInput) * agent.speed * factor * movementConfig.backpedalSpeedScale * movementConfig.moveSpeedMultiplier;
+	                newVelocity = direction * Mathf.Abs(movement.verticalInput) * agent.speed * movementConfig.backpedalSpeedScale * CalculateMoveSpeedFactor(movement, movementConfig);
                 }
                 else if (movement.horizontalInput != 0) //STRAFE
                 {
                     //NOTE: We do not want to factor run speed into strafing...we do not want both multipliers to make diagonal speed faster than forward speed.
                     //float factor = running ? config.runSpeedScale : config.walkSpeedScale; 
-                    newVelocity = direction * agent.speed * movementConfig.strafeSpeedScale * movementConfig.moveSpeedMultiplier;
+                    newVelocity = direction * agent.speed * movementConfig.walkSpeedScale * movementConfig.strafeSpeedScale * movementConfig.moveSpeedMultiplier;
                 }
 
                 //STRAFE LEFT

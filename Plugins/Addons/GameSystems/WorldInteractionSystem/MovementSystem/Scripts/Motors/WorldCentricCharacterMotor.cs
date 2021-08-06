@@ -1,4 +1,4 @@
-//BY DX4D
+﻿//BY DX4D
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +12,14 @@ namespace OpenMMO
         {
             return CalculateVelocity(movement, modifiers, agent);
         }
+	    internal override float CalculateMoveSpeedFactor(MovementInput movement, MovementModifiers movementConfig)
+	    {
+		    float factor = movementConfig.moveSpeedMultiplier;
+		    if (movement.running) factor *= movementConfig.runSpeedScale; //running
+		    else	 factor *= movementConfig.walkSpeedScale; //walking
+		    if (movement.sneaking) factor *= movementConfig.sneakSpeedScale; //sneaking
+		    return factor;
+	    }
 
         //CALCULATE VELOCITY
         /// <summary>
@@ -39,7 +47,7 @@ namespace OpenMMO
                 agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, Quaternion.LookRotation(movement), agent.angularSpeed * factor);
             }
             
-            agent.transform.Translate(movement * agent.speed * factor * modifiers.moveSpeedMultiplier * Time.deltaTime, Space.World);// * agent.speed * factor * modifiers.moveSpeedMultiplier
+	        agent.transform.Translate(movement * agent.speed * CalculateMoveSpeedFactor(input, modifiers) * Time.deltaTime, Space.World);// * agent.speed * factor * modifiers.moveSpeedMultiplier
 
             return agent.velocity;
             /*

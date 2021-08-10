@@ -9,6 +9,29 @@ namespace OpenMMO
     {
         public abstract string PLUGIN_NAME { get; }
 
+        #region INTERNAL - COMPONENT LINKS
+        //NETWORK AUTHENTICATOR COMPONENT
+        Network.NetworkAuthenticator _authenticator;
+        internal Network.NetworkAuthenticator authenticator
+        {
+            get
+            {
+                if (!_authenticator) _authenticator = FindObjectOfType<Network.NetworkAuthenticator>();
+                return _authenticator;
+            }
+        }
+        //(OpenMMO) NETWORK MANAGER COMPONENT
+        Network.NetworkManager _manager;
+        internal Network.NetworkManager manager
+        {
+            get
+            {
+                if (!_manager) _manager = FindObjectOfType<Network.NetworkManager>();
+                return _manager;
+            }
+        }
+        #endregion //COMPONENT LINKS
+
         #region INTERNAL - CONSTANT STRING DEFINITIONS
         internal const string CLIENT = "CLIENT";
         internal const string SERVER = "SERVER";

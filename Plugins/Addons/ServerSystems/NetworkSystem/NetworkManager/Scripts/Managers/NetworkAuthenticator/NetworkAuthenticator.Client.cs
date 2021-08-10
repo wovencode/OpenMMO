@@ -81,7 +81,7 @@ namespace OpenMMO.Network
         public void ClientAuthenticate()
         {
 
-            ClientRequestAuth msg = new ClientRequestAuth
+            Request.Auth msg = new Request.Auth
             {
                 clientVersion = Application.version
             };
@@ -91,7 +91,7 @@ namespace OpenMMO.Network
                 + "<b>Attempting to Join Server...</b>"
                 + "\n" + "Connection-" + NetworkClient.connection.connectionId + " @" + NetworkClient.connection.address + " connecting to Server @" + NetworkClient.serverIp + "...");
 #endif
-            NetworkClient.Send<ClientRequestAuth>(msg);
+            NetworkClient.Send<Request.Auth>(msg);
 
             debug.LogFormat(this.name, nameof(ClientAuthenticate)); //DEBUG
         }

@@ -42,7 +42,7 @@ namespace OpenMMO.Network
 			//if (!base.RequestUserLogin(conn, userName, password)) //REMOVED - DX4D
             if (!CanUserLogin(userName, password)) return false; //ADDED - DX4D
 
-			ClientRequestUserLogin message = new ClientRequestUserLogin
+            Request.UserLogin message = new Request.UserLogin
 			{
 				username = userName,
 				password = Tools.GenerateHash(name, password)
@@ -68,7 +68,7 @@ namespace OpenMMO.Network
 		{
             if (!CanUserLogout()) return false; //ADDED - DX4D
 
-            ClientRequestUserLogout message = new ClientRequestUserLogout
+            Request.UserLogout message = new Request.UserLogout
 			{
 
 			};
@@ -104,7 +104,7 @@ namespace OpenMMO.Network
             //if (!base.RequestUserRegister(conn, userName, password, usermail)) //REMOVED - DX4D
             if (!CanUserRegister(userName, password, usermail)) return false; //ADDED - DX4D
 
-            ClientRequestUserRegister message = new ClientRequestUserRegister
+            Request.UserRegister message = new Request.UserRegister
 			{
 				username 	= userName,
 				password 	= Tools.GenerateHash(name, password),
@@ -143,7 +143,7 @@ namespace OpenMMO.Network
             //if (!base.RequestUserDelete(conn, userName, password)) //REMOVED - DX4D
             if (!CanUserDelete(userName, password)) return false; //ADDED - DX4D
 
-			ClientRequestUserDelete message = new ClientRequestUserDelete
+            Request.UserDelete message = new Request.UserDelete
 			{
 				username = userName,
 				password = Tools.GenerateHash(name, password)
@@ -180,7 +180,7 @@ namespace OpenMMO.Network
             //if (!base.RequestUserChangePassword(conn, userName, oldpassword, newpassword)) //REMOVED - DX4D
             if (!CanUserChangePassword(userName, oldpassword, newpassword)) return false; //ADDED - DX4D
 
-            ClientRequestUserChangePassword message = new ClientRequestUserChangePassword
+            Request.UserChangePassword message = new Request.UserChangePassword
 			{
 				username = name,
 				oldPassword = Tools.GenerateHash(userName, oldpassword),
@@ -221,7 +221,7 @@ namespace OpenMMO.Network
 			//if (!base.RequestUserConfirm(conn, userName, password)) //REMOVED - DX4D
 			if (!CanUserConfirm(userName, password)) return false; //ADDED - DX4D
 
-			ClientRequestUserConfirm message = new ClientRequestUserConfirm
+            Request.UserConfirm message = new Request.UserConfirm
 			{
 				username = userName,
 				password = Tools.GenerateHash(userName, password)
@@ -260,7 +260,7 @@ namespace OpenMMO.Network
             //if (!base.RequestPlayerLogin(conn, playername, username)) //REMOVED - DX4D
             if (!CanPlayerLogin(playername, username)) return false; //ADDED - DX4D
 
-			ClientRequestPlayerLogin message = new ClientRequestPlayerLogin
+            Request.PlayerLogin message = new Request.PlayerLogin
 			{
 				playername = playername,
 				username = username
@@ -301,7 +301,7 @@ namespace OpenMMO.Network
             //if (!base.RequestPlayerRegister(conn, playerName, userName, prefabName)) //REMOVED - DX4D
             if (!CanPlayerRegister(playerName, userName, prefabName)) return false; //ADDED - DX4D
 
-			ClientRequestPlayerRegister message = new ClientRequestPlayerRegister
+            Request.PlayerRegister message = new Request.PlayerRegister
 			{
 				playername 	= playerName,
 				username 	= userName,
@@ -339,7 +339,7 @@ namespace OpenMMO.Network
             //if (!base.RequestPlayerDelete(conn, playerName, userName)) //REMOVED - DX4D
             if (!CanPlayerDelete(playerName, userName)) return false; //ADDED - DX4D
 
-			ClientRequestPlayerDelete message = new ClientRequestPlayerDelete
+            Request.PlayerDelete message = new Request.PlayerDelete
 			{
 				playername = playerName,
 				username = userName
@@ -354,10 +354,5 @@ namespace OpenMMO.Network
 			return true;
 
 		}
-
-        // -------------------------------------------------------------------------------
-
     }
 }
-
-// =======================================================================================

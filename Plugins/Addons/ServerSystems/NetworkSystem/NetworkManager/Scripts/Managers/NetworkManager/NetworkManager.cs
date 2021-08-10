@@ -213,7 +213,7 @@ namespace OpenMMO.Network
         /// <param name="disconnect"></param>
 		public void ServerSendError(NetworkConnection conn, string error, bool disconnect)
 		{
-			conn.Send(new ServerResponseError{text=error, causesDisconnect=disconnect});
+			conn.Send(new Response.Error{text=error, causesDisconnect=disconnect});
 			debug.LogFormat(this.name, nameof(ServerSendError), conn.Id(), error); //DEBUG
 		}
 		

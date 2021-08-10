@@ -1665,12 +1665,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032038, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: _plugins.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032038, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: _plugins.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 1e179692b7a8d204d9bc0d7946758e89, type: 2}
+    - target: {fileID: 3252435991396032038, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: _plugins.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 69257ee9abd24e24fb797592df6d280f, type: 2}
+    - target: {fileID: 3252435991396032038, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
+      propertyPath: _plugins.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: f2870a1207113b14cadf5578502edc1a, type: 2}
     - target: {fileID: 3252435991396032039, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: updateFrequency
       value: 600

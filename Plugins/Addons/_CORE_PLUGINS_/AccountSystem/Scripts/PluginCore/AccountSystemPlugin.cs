@@ -1,6 +1,5 @@
 //BY DX4D
 
-using System;
 using Mirror;
 using UnityEngine;
 
@@ -28,7 +27,7 @@ namespace OpenMMO.Network
             if (msg is Response.UserPlayerPreviews) manager.OnServerResponseUserPlayerPreviews((ServerPlayerPreviewsResponse)msg);
             if (msg is Response.UserLogin) manager.OnServerResponseUserLogin((ServerLoginUserResponse)msg);
             //if (msg is Response.UserLogout) manager.OnServerResponseUserLogout(msg);
-            if (msg is Response.UserRegister) manager.OnServerMessageResponseUserRegister((ServerRegisterUserResponse)msg);
+            if (msg is Response.UserRegister) manager.OnServerMessageResponseUserRegister(msg);
             if (msg is Response.UserDelete) manager.OnServerMessageResponseUserDelete(msg);
             if (msg is Response.UserChangePassword) manager.OnServerMessageResponseUserChangePassword(msg);
             if (msg is Response.UserConfirm) manager.OnServerResponseUserConfirm(msg);
@@ -47,35 +46,37 @@ namespace OpenMMO.Network
 
         #region M E S S A G E  H A N D L E R  R E G I S T R Y
         //REGISTER CLIENT HANDLERS
-        [Client] internal override void RegisterClientMessageHandlers()
+        //[Client]
+        internal override void RegisterClientMessageHandlers()
         {
-            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "LOGIN");
+            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "LOGIN USER");
             NetworkClient.RegisterHandler<Response.UserLogin>(HandleServerMessageOnClient, false);
             //Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "LOGOUT");
             //NetworkClient.RegisterHandler<Response.UserLogout>(HandleServerMessageOnClient, false);
-            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "REGISTER");
+            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "REGISTER USER");
             NetworkClient.RegisterHandler<Response.UserRegister>(HandleServerMessageOnClient, false);
-            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "DELETE");
+            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "DELETE USER");
             NetworkClient.RegisterHandler<Response.UserDelete>(HandleServerMessageOnClient, false);
-            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "CHANGE PASSWORD");
+            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "CHANGE USER PASSWORD");
             NetworkClient.RegisterHandler<Response.UserChangePassword>(HandleServerMessageOnClient, false);
-            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "CONFIRM");
+            Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "CONFIRM USER");
             NetworkClient.RegisterHandler<Response.UserConfirm>(HandleServerMessageOnClient, false);
         }
         //REGISTER SERVER HANDLERS
-        [Server] internal override void RegisterServerMessageHandlers()
+        //[Server]
+        internal override void RegisterServerMessageHandlers()
         {
-            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "LOGIN");
+            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "LOGIN USER");
             NetworkServer.RegisterHandler<Request.UserLogin>(HandleClientMessageOnServer, false);
-            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "LOGOUT");
+            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "LOGOUT USER");
             NetworkServer.RegisterHandler<Request.UserLogout>(HandleClientMessageOnServer, false);
-            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "REGISTER");
+            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "REGISTER USER");
             NetworkServer.RegisterHandler<Request.UserRegister>(HandleClientMessageOnServer, false);
-            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "DELETE");
+            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "DELETE USER");
             NetworkServer.RegisterHandler<Request.UserDelete>(HandleClientMessageOnServer, false);
-            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "CHANGE PASSWORD");
+            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "CHANGE USER PASSWORD");
             NetworkServer.RegisterHandler<Request.UserChangePassword>(HandleClientMessageOnServer, false);
-            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "CONFIRM");
+            Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "CONFIRM USER");
             NetworkServer.RegisterHandler<Request.UserConfirm>(HandleClientMessageOnServer, false);
         }
         #endregion //MESSAGE HANDLER REGISTRY

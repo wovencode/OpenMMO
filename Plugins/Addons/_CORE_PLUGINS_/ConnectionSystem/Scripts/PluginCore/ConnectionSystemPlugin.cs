@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace OpenMMO.Network
 {
-    /* "OpenMMO/Plugins/Connection System Plugin"*/
+    /* "OpenMMO/Plugins/Connection System - Plugin"*/
 	[CreateAssetMenu(menuName = FULL_MENU_PATH, order = 0)]
     public class ConnectionSystemPlugin : ScriptableNetworkPlugin
     {
@@ -34,16 +34,18 @@ namespace OpenMMO.Network
 
         #region M E S S A G E  H A N D L E R  R E G I S T R Y
         //REGISTER CLIENT HANDLERS
-        [Client] internal override void RegisterClientMessageHandlers()
+        //@[Client]
+        internal override void RegisterClientMessageHandlers()
         {
             Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "CONNECT");
-            NetworkClient.RegisterHandler<Response.Auth>(HandleServerMessageOnClient, false);
+            NetworkClient.RegisterHandler<Response.Auth>(HandleServerMessageOnClient<Response.Auth>, false);
         }
         //REGISTER SERVER HANDLERS
-        [Server] internal override void RegisterServerMessageHandlers()
+        //@[Server]
+        internal override void RegisterServerMessageHandlers()
         {
             Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "CONNECT");
-            NetworkServer.RegisterHandler<Request.Auth>(HandleClientMessageOnServer, false);
+            NetworkServer.RegisterHandler<Request.Auth>(HandleClientMessageOnServer<Request.Auth>, false);
         }
         #endregion //MESSAGE HANDLER REGISTRY
     }

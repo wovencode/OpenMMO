@@ -13793,7 +13793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 6728807045768088138}
-  hideOnAwake: 1
+  hideOnAwake: 0
   eventShow:
     m_PersistentCalls:
       m_Calls: []
@@ -16831,9 +16831,9 @@ MonoBehaviour:
   requiresActiveRoot: 1
   updateInterval: 0.25
   selectWindow: {fileID: 6728807045477559228}
-  slotPrefab: {fileID: 0}
+  slotPrefab: {fileID: 6118895898396880698, guid: f009457fe986f4177a3badb011a7860b, type: 3}
   buttonGroup: {fileID: 6728807045325216336}
-  contentViewport: {fileID: 6728807045300865799}
+  contentViewport: {fileID: 6728807044005051643}
   playernameInput: {fileID: 6728807045553335991}
   createButton: {fileID: 6728807044762151311}
   backButton: {fileID: 6728807044338058211}
@@ -19001,10 +19001,10 @@ MonoBehaviour:
   updateInterval: 0.25
   mainWindow: {fileID: 6728807043866219493}
   createWindow: {fileID: 6728807045325216343}
-  slotPrefab: {fileID: 0}
+  slotPrefab: {fileID: 6118895898396880698, guid: f009457fe986f4177a3badb011a7860b, type: 3}
   buttonGroup: {fileID: 6728807045477559203}
   textMaxPlayers: {fileID: 6728807045104672632}
-  contentViewport: {fileID: 6728807044445596695}
+  contentViewport: {fileID: 6728807045423005999}
   createButton: {fileID: 6728807044085056743}
   selectButton: {fileID: 6728807045500630740}
   deleteButton: {fileID: 6728807043713866274}

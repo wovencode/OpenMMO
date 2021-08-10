@@ -30,29 +30,46 @@ namespace OpenMMO.Network
         /// </summary>
         public override void OnStartClient()
         {
-        	
-            // ---- User Messages
+
+            // ---- user account
             // @Server -> @Client
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT CLIENT] - [LOGIN/REGISTER/DELETE] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseUserLogin>(OnServerResponseUserLogin);
             NetworkClient.RegisterHandler<ServerResponseUserRegister>(OnServerMessageResponseUserRegister);
             NetworkClient.RegisterHandler<ServerResponseUserDelete>(OnServerMessageResponseUserDelete);
+            //TODO: ServerResponseUserLogout
+
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT CLIENT] - [CHANGEPASSWORD] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseUserChangePassword>(OnServerMessageResponseUserChangePassword);
+
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT CLIENT] - [CONFIRM] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseUserConfirm>(OnServerResponseUserConfirm);
+
+
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT CLIENT] - [PLAYERPREVIEWS] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseUserPlayerPreviews>(OnServerResponseUserPlayerPreviews);
             
-            // ---- Player Messages
+            // ---- player character
             // @Server -> @Client
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CHARACTER CLIENT] - [LOGIN/REGISTER/DELETE] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponsePlayerLogin>(OnServerResponsePlayerLogin);
             NetworkClient.RegisterHandler<ServerResponsePlayerRegister>(OnServerResponsePlayerRegister);
             NetworkClient.RegisterHandler<ServerResponsePlayerDelete>(OnServerResponsePlayerDelete);
             
-            // --- Error Message
+            // --- errors
             // @Server -> @Client
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CLIENT] - [ERROR] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseError>(OnServerResponseError);
             
+            //HOOKS AND EVENTS
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
             eventListeners.OnStartClient.Invoke(); //EVENT
-
         }
 
         // ===============================================================================

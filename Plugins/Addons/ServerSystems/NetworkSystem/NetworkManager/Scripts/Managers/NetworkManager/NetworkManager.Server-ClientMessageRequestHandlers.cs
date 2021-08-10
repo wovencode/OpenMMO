@@ -28,23 +28,34 @@ namespace OpenMMO.Network
         public override void OnStartServer()
         {
 
-            // ---- User
+            // ---- user account
+            // @Client -> @Server
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT SERVER] - [LOGIN/REGISTER/DELETE/LOGOUT] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestUserLogin>(OnClientMessageRequestUserLogin);
-            NetworkServer.RegisterHandler<ClientRequestUserLogout>(OnClientMessageRequestUserLogout);
             NetworkServer.RegisterHandler<ClientRequestUserRegister>(OnClientMessageRequestUserRegister);
             NetworkServer.RegisterHandler<ClientRequestUserDelete>(OnClientMessageRequestUserDelete);
+            NetworkServer.RegisterHandler<ClientRequestUserLogout>(OnClientMessageRequestUserLogout);
+
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT SERVER] - [CHANGEPASSWORD] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestUserChangePassword>(OnClientMessageRequestUserChangePassword);
+
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT SERVER] - [CONFIRM] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestUserConfirm>(OnClientMessageRequestUserConfirm);
 
-            // ---- Player
+            // ---- player character
+            // @Client -> @Server
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CHARACTER SERVER] - [LOGIN/REGISTER/DELETE] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestPlayerLogin>(OnClientMessageRequestPlayerLogin);
             NetworkServer.RegisterHandler<ClientRequestPlayerRegister>(OnClientMessageRequestPlayerRegister);
             NetworkServer.RegisterHandler<ClientRequestPlayerDelete>(OnClientMessageRequestPlayerDelete);
 
-
+            //HOOKS AND EVENTS
             this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
             eventListeners.OnStartServer.Invoke(); //EVENT
-
         }
 
         // ===============================================================================
@@ -499,7 +510,7 @@ namespace OpenMMO.Network
         }
         void LogAccountLoginSuccess(NetworkConnection conn, string username)
         {
-            Debug.Log("[SERVER] - "
+            Debug.Log("[ACCOUNT SERVER] - "
                 + "Login Success!"
                 + "\n" + "Connection-" + conn.connectionId
                 + " @" + conn.address
@@ -507,7 +518,7 @@ namespace OpenMMO.Network
         }
         void LogAccountLoginFailure(NetworkConnection conn, string username)
         {
-            Debug.Log("[SERVER] - "
+            Debug.Log("<<<ISSUE>>> [ACCOUNT SERVER] - "
                 + "Account Login Failure..."
                 + "\n" + "Connection-" + conn.connectionId
                 + " @" + conn.address
@@ -528,20 +539,21 @@ namespace OpenMMO.Network
         /// <param name="playername"></param>
         protected GameObject LoginPlayer(NetworkConnection conn, string username, string playername, int token)
         {
-            Debug.Log("[SERVER] - Account " + username + "'s" + " character " + playername + " is attempting to join the server...");
+            Debug.Log("[CHARACTER SERVER] - "
+                + "Account " + username + "'s" + " character " + playername + " is attempting to join the server...");
 
             if (conn == null)
             {
                 conn = NetworkClient.connection; //ENSURE CONNECTION
                 if (conn == null)
                 {
-                    Debug.Log("[SERVER ISSUE] - "
+                    Debug.Log("<<<ISSUE>>> [CHARACTER SERVER] - "
                         + "Join Server Failed - Client Not Connected..."
                         + "\n" + "LoginPlayer called by account " + username + " on character " + playername + " while not connected to server " + networkAddress.ToString());
                 }
                 else
                 {
-                    Debug.Log("[SERVER ISSUE] - "
+                    Debug.Log("<<<ISSUE>>> [CHARACTER SERVER] - "
                         + "Join Server Failure Bypassed - We used the client connection instead..."
                         + "\n" + "LoginPlayer connection was null - Assigned NetworkClient.connection instead.");
                 }
@@ -553,12 +565,14 @@ namespace OpenMMO.Network
             GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
             if (!player)
             {
-                Debug.Log("[SERVER ISSUE] - Player not found in database...");
+                Debug.Log("<<<ISSUE>>> [CHARACTER SERVER] - "
+                    + "Player not found in database...");
             }
             PlayerAccount pc = player.GetComponent<PlayerAccount>();
             if (!pc)
             {
-                Debug.Log("[SERVER ISSUE] - Player must have a PlayerAccount component...");
+                Debug.Log("<<<ISSUE>>> [CHARACTER SERVER] - "
+                    + "Player must have a PlayerAccount component...");
             }
             // -- check the security token if required
             if (token == 0 || (token > 0 && pc.zoneInfo.ValidateToken(token)))
@@ -573,11 +587,11 @@ namespace OpenMMO.Network
 
                     Debug.Log(
                         onlinePlayers.ContainsKey(playername) ?
-                        ("[SERVER] - "
+                        ("[CHARACTER SERVER] - "
                          + playername + " joined with client @"
                          + conn.address
                         ) : (
-                        "[SERVER] - "
+                        "<<<ISSUE>>> [CHARACTER SERVER] - "
                          + playername + " failed to join with client @"
                          + conn.address)
                         );
@@ -585,8 +599,8 @@ namespace OpenMMO.Network
                 else
                 {
                     //TODO: We are in a zone
-                    Debug.Log("[SERVER ISSUE] - "
-                        + playername + " is already logged in");
+                    Debug.Log("<<<ISSUE>>> [CHARACTER SERVER] - "
+                        + playername + " is already in the game");
                 }
                 state = NetworkState.Game;
 
@@ -602,7 +616,8 @@ namespace OpenMMO.Network
             }
             else
             {
-                Debug.Log("[SERVER ISSUE] - Invalid Token");
+                Debug.Log("<<<ISSUE>>> [CHARACTER SERVER] - "
+                    + "Invalid Token");
             }
 
             return null;
@@ -623,9 +638,8 @@ namespace OpenMMO.Network
         /// <param name="prefabname"></param>
         protected void RegisterPlayer(string username, string playername, string prefabname)
         {
-            Debug.Log("[SERVER] - "
+            Debug.Log("[CHARACTER SERVER] - "
                 + "Registering new character " + playername + " on account " + username);
-
 
             GameObject prefab = GetPlayerPrefab(prefabname);
             GameObject player = Instantiate(prefab);

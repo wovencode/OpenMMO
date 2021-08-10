@@ -13,7 +13,7 @@ namespace OpenMMO.Network
     // ===================================================================================
     public partial class NetworkAuthenticator
     {
-
+        /* //DEPRECIATED - DX4D
         // -------------------------------------------------------------------------------
         // OnStartServer
         // @Server
@@ -26,11 +26,12 @@ namespace OpenMMO.Network
         /// </summary>
         public override void OnStartServer()
         {
-
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CONNECTION SERVER] - [CONNECT] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestAuth>(OnClientMessageRequestAuth, false);
 
             this.InvokeInstanceDevExtMethods(nameof(OnStartServer)); //HOOK
-        }
+        }*/
 
         // -------------------------------------------------------------------------------
         // OnServerAuthenticate
@@ -68,6 +69,7 @@ namespace OpenMMO.Network
             // do nothing (this message is never called directly)
         }
 
+        /* //DEPRECIATED - DX4D
         // ========================== MESSAGE HANDLERS - AUTH ============================
 
         // -------------------------------------------------------------------------------
@@ -112,9 +114,11 @@ namespace OpenMMO.Network
             }
             else
             {
+                message.success = true; //ADDED - DX4D
                 base.OnServerAuthenticated.Invoke(conn); //EVENT
 
-                Debug.Log("[SERVER] - Authentication succeded for connection-" + conn.connectionId + " @" + conn.address);
+                Debug.Log("[CONNECTION SERVER] - [CONNECT] - "
+                    + "Authentication succeded for connection-" + conn.connectionId + " @" + conn.address);
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "Authenticated"); //DEBUG
             }
 
@@ -122,12 +126,14 @@ namespace OpenMMO.Network
 
             if (!message.success)
             {
+                Debug.Log("<<<ISSUE>>> [CONNECTION SERVER] - [CONNECT] - "
+                    + "Authentication failed for connection-" + conn.connectionId + " @" + conn.address);
+
                 conn.isAuthenticated = false;
                 conn.Disconnect();
 
-                Debug.Log("[SERVER] - Authentication failed for connection-" + conn.connectionId + " @" + conn.address);
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestAuth), conn.Id(), "DENIED"); //DEBUG
             }
-        }
+        }*/
     }
 }

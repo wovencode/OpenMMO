@@ -1,11 +1,14 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 
 using OpenMMO;
 using OpenMMO.Network;
-using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+
 using Mirror;
+using UnityEngine;
 
 namespace OpenMMO.Network
 {
@@ -23,6 +26,8 @@ namespace OpenMMO.Network
         [DevExtMethods(nameof(OnStartServer))]
         void OnStartServer_NetworkPortals()
         {
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CONNECTION SERVER] - [AUTOCONNECT] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestAutoAuth>(OnClientMessageRequestAutoAuth, false);
         }
         
@@ -50,14 +55,21 @@ namespace OpenMMO.Network
 			}
 			else
 			{
+                message.success = true; //ADDED - DX4D
 				base.OnServerAuthenticated.Invoke(conn);
-			}
+
+                Debug.Log("[CONNECTION SERVER] - [AUTOCONNECT] - "
+                    + "Authentication succeded for connection-" + conn.connectionId + " @" + conn.address);
+            }
 			
 			conn.Send(message);
 			
 			if (!message.success)
-			{
-				conn.isAuthenticated = false;
+            {
+                Debug.Log("<<<ISSUE>>> [CONNECTION SERVER] - [AUTOCONNECT] - "
+                    + "Authentication failed for connection-" + conn.connectionId + " @" + conn.address);
+
+                conn.isAuthenticated = false;
 				conn.Disconnect();
 			}
 			

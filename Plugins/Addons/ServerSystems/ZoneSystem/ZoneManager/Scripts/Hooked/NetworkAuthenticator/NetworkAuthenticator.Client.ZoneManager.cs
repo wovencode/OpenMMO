@@ -27,6 +27,8 @@ namespace OpenMMO.Network
        	[DevExtMethods(nameof(OnStartClient))]
         void OnStartClient_NetworkPortals()
         {
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ACCOUNT CLIENT] - [AUTOCONNECT] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseAutoAuth>(OnServerResponseAutoAuth, false);  
             
             OnClientAuthenticated.AddListener(OnClientAuthenticated_NetworkPortals);

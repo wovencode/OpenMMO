@@ -18,7 +18,7 @@ namespace OpenMMO.Network
 	}*/
 
     // ================================= MESSAGES AUTH ===================================
-
+    /* //DEPRECIATED - DX4D
     // -----------------------------------------------------------------------------------
     // ClientMessageRequestAuth
     // Unauthorized -> results in Authorization
@@ -42,7 +42,7 @@ namespace OpenMMO.Network
         public string text { get { return _text; } set { _text = value; } }
 
         public string clientVersion;
-	}
+	}*/
 
     // ================================= MESSAGES USER ===================================
 

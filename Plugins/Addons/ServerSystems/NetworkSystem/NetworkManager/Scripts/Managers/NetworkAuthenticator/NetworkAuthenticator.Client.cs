@@ -27,6 +27,7 @@ namespace OpenMMO.Network
 
         [HideInInspector] public int connectDelay;
 
+        /* //DEPRECIATED - DX4D
         // -------------------------------------------------------------------------------
         // OnStartClient
         // @Client
@@ -39,10 +40,12 @@ namespace OpenMMO.Network
         /// </summary>
         public override void OnStartClient()
         {
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CONNECTION CLIENT] - [CONNECT] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<ServerResponseAuth>(OnServerMessageResponseAuth, false);
 
             this.InvokeInstanceDevExtMethods(nameof(OnStartClient)); //HOOK
-        }
+        }*/
 
         // -------------------------------------------------------------------------------
         // OnClientAuthenticate
@@ -84,7 +87,7 @@ namespace OpenMMO.Network
             };
 
 #if DEBUG
-            Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+            Debug.Log("<b>[<color=blue>CONNECTION CLIENT</color>]</b> - "
                 + "<b>Attempting to Join Server...</b>"
                 + "\n" + "Connection-" + NetworkClient.connection.connectionId + " @" + NetworkClient.connection.address + " connecting to Server @" + NetworkClient.serverIp + "...");
 #endif
@@ -93,6 +96,7 @@ namespace OpenMMO.Network
             debug.LogFormat(this.name, nameof(ClientAuthenticate)); //DEBUG
         }
 
+        /* //DEPRECIATED - DX4D
         // ========================== MESSAGE HANDLERS - AUTH ============================
 
         //CLIENT SIDED RESPONSE TO MESSAGE FROM SERVER 
@@ -130,7 +134,7 @@ namespace OpenMMO.Network
         //LOG CONNECT SUCCESS
         void LogConnectionSuccess(NetworkConnection conn)
         {
-            Debug.Log("<b>[<color=green>CLIENT</color>]</b> - "
+            Debug.Log("<b>[<color=green>CONNECTION CLIENT</color>]</b> - "
                 + "<b>Connected successfully to Server!</b>"
                 + "\n" + "Connection-" + conn.connectionId + " @" + conn.address + " connecting to Server @" + NetworkClient.serverIp + "...");
 
@@ -150,11 +154,11 @@ namespace OpenMMO.Network
         void LogConnectionFailure(NetworkConnection conn)
         {
 #if DEBUG
-            Debug.Log("<b>[<color=red>CLIENT</color>]</b> - "
+            Debug.Log("<b><<<ISSUE>>> [<color=red>CONNECTION CLIENT</color>]</b> - "
                 + "<b>Failed to connect to Server...</b>"
                 + "\n" + "Connection-" + conn.connectionId + " @" + conn.address + " connecting to Server @" + NetworkClient.serverIp + "...");
 #endif
             debug.LogFormat(this.name, nameof(OnServerMessageResponseAuth), NetworkClient.connection.Id(), "DENIED"); //DEBUG
-        }
+        }*/
     }
 }

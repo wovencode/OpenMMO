@@ -1,16 +1,17 @@
 //BY FHIZ
 
+using System;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using OpenMMO;
 using OpenMMO.Network;
+
 using OpenMMO.Database;
 using OpenMMO.UI;
 using OpenMMO.Zones;
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using Mirror;
 #if UNITY_EDITOR
 using UnityEditor;

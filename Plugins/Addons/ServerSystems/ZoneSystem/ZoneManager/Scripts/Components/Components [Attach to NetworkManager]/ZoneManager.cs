@@ -3,14 +3,15 @@
 
 using OpenMMO;
 using OpenMMO.Zones;
-using System;
 using System.Diagnostics;
+using OpenMMO.Debugging;
+
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using OpenMMO.Network;
 using OpenMMO.Database;
-using OpenMMO.Debugging;
 using OpenMMO.UI;
 
 namespace OpenMMO.Zones
@@ -26,21 +27,26 @@ namespace OpenMMO.Zones
 	{
         const int DEFAULT_PORT = 9999;
 	
-		[Header("Options")]
+		[Header("ZONE OPTIONS")]
 		public bool active;
 
+        [Header("ZONE LAUNCHER")]
+        public ZoneServerProcessLauncher zoneLauncher;
+
+        [Header("ZONE CONFIG")]
         public ZoneConfigTemplate zoneConfig;
 		
-		[Header("Debug Helper")]
-		public DebugHelper debug = new DebugHelper();
+        [Header("MIRROR COMPONENTS")]
+		[SerializeField] protected Network.NetworkManager networkManager;
+        [SerializeField] protected Transport networkTransport;
+	
+		//[Header("Debug Helper")]
+		//public DebugHelper debug = new DebugHelper(); //REMOVED DX4D
 		
 		// -------------------------------------------------------------------------------
 		
 		public static ZoneManager singleton;
 		
-		[SerializeField] protected Network.NetworkManager networkManager;
-        [SerializeField] protected Transport networkTransport;
-	
 		protected ushort originalPort;
 		protected int zoneIndex 					= -1;
 		protected int securityToken 				= 0;
@@ -49,7 +55,7 @@ namespace OpenMMO.Zones
 		protected const string argZoneIndex 		= "-zone";
 		protected string autoPlayerName 			= "";
 		protected bool autoConnectClient 			= false;
-		protected bool spawnedSubZones				= false;
+		protected bool subZonesHaveBeenLaunched		= false;
 		
 		// -------------------------------------------------------------------------------
     	// Awake
@@ -74,7 +80,7 @@ namespace OpenMMO.Zones
     		if (GetIsMainZone || !GetCanSwitchZone)
     		{
     			currentZone = zoneConfig.mainZone;
-    			debug.LogFormat(this.name, nameof(Awake), "mainZone"); //DEBUG
+    			//debug.LogFormat(this.name, nameof(Awake), "mainZone"); //DEBUG //REMOVED DX4D
     			return;
     		}
     		
@@ -91,8 +97,10 @@ namespace OpenMMO.Zones
 
         private void OnValidate()
         {
+            //ZONE CONFIG
             if (!zoneConfig) zoneConfig = Resources.Load<ZoneConfigTemplate>("ZoneConfig/DefaultZoneConfig");
-
+            //ZONE LAUNCHER
+            if (!zoneLauncher) zoneLauncher = Resources.Load<ZoneServerProcessLauncher>("System/DefaultZoneServerProcessLauncher");
             //NETWORK MANAGER
             if (!networkManager) networkManager = GetComponent<Network.NetworkManager>();
             if (!networkManager) networkManager = FindObjectOfType<Network.NetworkManager>();
@@ -129,13 +137,13 @@ namespace OpenMMO.Zones
         void UpdateTransportPort(ushort newPort)
         {
             const string SPACER = " - ";
-            string TRANSPORT = "[UNDEFINED TRANSPORT]";
+            string TRANSPORT = "[UNDEFINED TRANSPORT] - [ZONES]";
 #if _CLIENT
-            const string HEADER = "<b>[<color=green>CLIENT STARTUP</color>]</b>]";
+            const string HEADER = "<b>[<color=green>CLIENT STARTUP</color>] - [ZONES]</b>";
 #elif _SERVER
-            const string HEADER = "[SERVER STARTUP]";
+            const string HEADER = "[SERVER STARTUP] - [ZONES]";
 #else
-            const string HEADER = "[STANDALONE STARTUP]";
+            const string HEADER = "[STANDALONE STARTUP] - [ZONES]";
 #endif
 
             UnityEngine.Debug.Log(HEADER + SPACER
@@ -154,7 +162,7 @@ namespace OpenMMO.Zones
                 (networkTransport as TelepathyTransport).port = newPort;
             }
 
-            UnityEngine.Debug.Log(HEADER + TRANSPORT + SPACER
+            UnityEngine.Debug.Log(HEADER + SPACER + TRANSPORT + SPACER
                 + "Port set to " + newPort + "!");
             //TODO: ADD MORE TRANSPORTS
             //TODO: There should be a better way to do this...
@@ -246,7 +254,10 @@ namespace OpenMMO.Zones
 
     	// -------------------------------------------------------------------------------
     	// InitAsSubZone
+        //@SERVER
     	// -------------------------------------------------------------------------------
+        /// <summary>Initializes the sub-zone in a new server instance.</summary>
+        /// <param name="_template">The NetworkZoneTemplate that holds the Server info for this zone</param>
     	protected void InitAsSubZone(NetworkZoneTemplate _template)
     	{
             //UPDATE TRANSPORTS
@@ -256,45 +267,76 @@ namespace OpenMMO.Zones
             networkManager.networkAddress 	= _template.server.ip;
     		networkManager.onlineScene 		= _template.scene.SceneName;
 
-            UnityEngine.Debug.Log("[SERVER STARTUP] - "
-                + "Loading Zone " + _template.title + " @" + _template.server.ip);
+            UnityEngine.Debug.Log("[ZONE SERVER STARTUP] - "
+                + "Loading Zone " + _template.title + " @" + _template.server.ip + "...");
             networkManager.StartServer();
-            UnityEngine.Debug.Log("[SERVER STARTUP] - "
-                + _template.title + " loaded @" + _template.server.ip);
+            UnityEngine.Debug.Log("[ZONE SERVER STARTUP] - "
+                + "Successfully Loaded Zone " + _template.title + " @" + _template.server.ip + "!!!");
 
-            debug.LogFormat(this.name, nameof(InitAsSubZone), _template.name); //DEBUG
+            //debug.LogFormat(this.name, nameof(InitAsSubZone), _template.name); //DEBUG //REMOVED DX4D
     	}
     	
-		// -------------------------------------------------------------------------------
-    	// SpawnSubZones
-    	// -------------------------------------------------------------------------------
-		public void SpawnSubZones()
+        //LAUNCH ZONE SERVERS
+    	// @SERVER
+        /// <summary>Utilizes <see cref="zoneLauncher"/> -
+        /// References <see cref="zoneConfig"/> - 
+        /// Launches multiple instances of the server executable to handle each sub-zone
+        /// </summary>
+		public void LaunchZoneServers()
 		{
-DebugManager.Log(">>>>spawn subzones");
-			if (!GetIsMainZone || !GetCanSwitchZone || spawnedSubZones) return;
+            //DebugManager.Log(">>>>spawn subzones"); //REMOVED DX4D
+			if (!GetIsMainZone || !GetCanSwitchZone || subZonesHaveBeenLaunched) return;
 
-			InvokeRepeating(nameof(SaveZone), 0, zoneConfig.zoneSaveInterval);
+            //LAUNCH MAIN ZONE SAVE ROUTINE
+            LaunchZoneSaveRoutine(); //LAUNCH SAVE ROUTINE
 
+            //SEARCH ZONE CONFIG FOR ZONES TO LAUNCH
             for (int i = 0; i < zoneConfig.subZones.Count; i++)
             {
                 if (zoneConfig.subZones[i] != currentZone)
                 {
-                    UnityEngine.Debug.Log("[SERVER STARTUP] - Spawned Sub-Zone - " + zoneConfig.subZones[i].name);
-                    SpawnSubZone(i);
+                    // LaunchSubZoneServer(i);  //DEPRECIATED - HANDLED BY ZONE LAUNCHER NOW - DX4D
+
+                    //LAUNCH ZONE PROCESS SERVER
+                    UnityEngine.Debug.Log("[ZONE SERVER STARTUP] - "
+                        + "Attempting to launch Zone Server - " + zoneConfig.subZones[i].title + "...");
+                    if (zoneLauncher.LaunchProcess(i))
+                    {
+                        UnityEngine.Debug.Log("[ZONE SERVER STARTUP] - "
+                            + "Successfully launched Zone Server " + zoneConfig.subZones[i].title + "!!!");
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.Log("<<<ISSUE>>> [ZONE SERVER STARTUP] - "
+                            + "Failed to launch Zone Server " + zoneConfig.subZones[i].title);
+                    }
                 }
             }
     		
-    		spawnedSubZones = true;
+    		subZonesHaveBeenLaunched = true;
     		
-    		debug.LogFormat(this.name, nameof(SpawnSubZones), zoneConfig.subZones.Count.ToString()); //DEBUG
+    		//debug.LogFormat(this.name, nameof(LaunchSubZoneServers), zoneConfig.subZones.Count.ToString()); //DEBUG //REMOVED DX4D
     		
 		}
 
+        //LAUNCH ZONE SAVE ROUTINE
+        /// <summary>Invokes the <see cref="SaveZone"/> method repeatedly 
+        /// based on the interval set in <see cref="zoneConfig"/></summary>
+        void LaunchZoneSaveRoutine()
+        {
+            UnityEngine.Debug.Log("[ZONE SERVER STARTUP] - "
+                + "Attempting to launch Main Zone Save Routine - " + zoneConfig.mainZone.title + "...");
+            InvokeRepeating(nameof(SaveZone), 0, zoneConfig.zoneSaveInterval);
+            UnityEngine.Debug.Log("[ZONE SERVER STARTUP] - "
+                + "Successfully launched Main Zone Save Routine " + zoneConfig.mainZone.title + "!!!");
+        }
+
+        /* //DEPRECIATED - HANDLED BY ZONE LAUNCHER NOW - DX4D
         // -------------------------------------------------------------------------------
-        // SpawnSubZone
+        // @SERVER
         // -------------------------------------------------------------------------------
         public enum AppExtension { exe, x86_64, app }
-        protected void SpawnSubZone(int index)
+        protected void LaunchSubZoneServer(int index)
         {
             AppExtension extension = AppExtension.exe;
             switch (Application.platform)
@@ -308,46 +350,61 @@ DebugManager.Log(">>>>spawn subzones");
                 case RuntimePlatform.OSXEditor: extension = AppExtension.app; break;
                 case RuntimePlatform.LinuxEditor: extension = AppExtension.x86_64; break;
                 //MOBILE + CONSOLE
-                /* //NOTE: Probably no reason to use these for a server...maybe in some cases though (couch co-op games etc)
-                case RuntimePlatform.WebGLPlayer: break; case RuntimePlatform.IPhonePlayer: break; case RuntimePlatform.Android: break;
-                case RuntimePlatform.PS4: break; case RuntimePlatform.XboxOne: break; case RuntimePlatform.Switch: break;*/
+                //NOTE: Probably no reason to use these for a server...maybe in some cases though (couch co-op games etc)
+                //case RuntimePlatform.WebGLPlayer: break; case RuntimePlatform.IPhonePlayer: break; case RuntimePlatform.Android: break;
+                //case RuntimePlatform.PS4: break; case RuntimePlatform.XboxOne: break; case RuntimePlatform.Switch: break;
             }
             Process process = new Process();
+
+            string _fileName;
             //NOTE: This is a workaround, we leave the switch logic above just in case we ever check this extension variable in the future to extend this method.
             if (Application.platform == RuntimePlatform.OSXPlayer)
             {
-                process.StartInfo.FileName = Tools.GetProcessPath; //OSX
+                string[] args = Environment.GetCommandLineArgs();
+
+                if (args != null)
+                {
+                    if (!String.IsNullOrWhiteSpace(args[0]))
+                    {
+                        _fileName = args[0];
+                    }
+                }
+
+                _fileName = String.Empty;
+                //_fileName = Tools.GetProcessPath; //OSX
                 //TODO: This is a potential fix for the server executable being locked into requiring a specific name.
                 //process.StartInfo.FileName = Path.GetFullPath(Tools.GetProcessPath) + "/" + Path.GetFileNameWithoutExtension(Tools.GetProcessPath) + "." + Path.GetExtension(Tools.GetProcessPath);
 
             }
             else
             {
-                process.StartInfo.FileName = "server" + "." + extension.ToString(); //LINUX and WINDOWS
+                _fileName = "server" + "." + extension.ToString(); //LINUX and WINDOWS
                 //TODO: This is a potential fix for the server executable being locked into requiring a specific name.
                 //process.StartInfo.FileName = Path.GetFileNameWithoutExtension(Tools.GetProcessPath) + "." + Path.GetExtension(Tools.GetProcessPath);
             }
+
+            //SETUP PROCESS LAUNCH PARAMS
+            process.StartInfo.FileName = _fileName;
             process.StartInfo.Arguments = argZoneIndex + " " + index.ToString();
             string filePath = process.StartInfo.WorkingDirectory + process.StartInfo.FileName;
 
             //UnityEngine.Debug.Log("[SERVER] - Zone Server - Launching Server @" + filePath + "...");
 
-            if (!System.IO.File.Exists( process.StartInfo.FileName))
+            if (System.IO.File.Exists(process.StartInfo.FileName)) //FILE EXISTS - LAUNCH PROCESS
             {
-                UnityEngine.Debug.Log("[SERVER ISSUE] - Zone Server - Could not find server file @" + filePath);
+                process.Start(); //LAUNCH THE SERVER PROCESS
+                UnityEngine.Debug.Log("[SERVER STARTUP] - [ZONES] - Successfully launched Zone Server " + zoneConfig.subZones[index].title + " @" + filePath);
             }
-            else
+            else //NO SERVER EXE FOUND TO LAUNCH PROCESS
             {
-                UnityEngine.Debug.Log("[SERVER STARTUP] - Zone Server - Launching Zone " + zoneConfig.subZones[index].title + " @" + filePath);
+                UnityEngine.Debug.Log("[SERVER STARTUP ISSUE] - [ZONES] - Could not find server file @" + filePath);
+                //NOTE: We started anyway, even if the file does not exist
+                //TODO: Make this conditional (once the above condition is tested)
+                process.Start(); //TODO: Validate that File Exists - DONE
             }
 
-            //NOTE: We started anyway, even if the file does not exist
-            //TODO: Make this conditional (once the above condition is tested)
-            process.Start(); //TODO: Validate that File Exists - DONE
-
-            debug.LogFormat(this.name, nameof(SpawnSubZone), index.ToString()); //DEBUG
-
-        }
+            //debug.LogFormat(this.name, nameof(LaunchSubZoneServer), index.ToString()); //DEBUG //REMOVED DX4D
+        }*/
 
         // ====================== MESSAGE EVENT HANDLERS =================================
 
@@ -361,25 +418,25 @@ DebugManager.Log(">>>>spawn subzones");
             Network.NetworkManager newNetworkManager = networkManager;
             if (!newNetworkManager)
             {
-                UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+                UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>] - [ZONES]</b> - "
                     + "<b>Creating New Network Manager...</b>");
                 newNetworkManager = new Network.NetworkManager();
             }
 			
-            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>] - [ZONES]</b> - "
                 + "<b>Stopping Client connected to Network Manager...</b>");
 			if (networkManager) networkManager.StopClient();
 
-            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>] - [ZONES]</b> - "
                 + "<b>Shutting Down Network Client on the current Server...</b>");
 			NetworkClient.Shutdown();
 
 
-            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>] - [ZONES]</b> - "
                 + "<b>Shutting Down Active Network Manager...</b>");
             Network.NetworkManager.Shutdown();
 
-            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+            UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>] - [ZONES]</b> - "
                 + "<b>Setting New Network Manager...</b>");
             Network.NetworkManager.singleton = newNetworkManager;//networkManager;
 			
@@ -396,22 +453,24 @@ DebugManager.Log(">>>>spawn subzones");
                     UpdateTransportPort(GetZonePort);
                     //networkTransport.port = GetZonePort; //REPLACED - DX4D
 
-                    UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+                    UnityEngine.Debug.Log("<b>[<color=blue>CLIENT</color>] - [ZONES]</b> - "
                         + "<b>Loading zone number " + zoneIndex + " - " + msg.zonename + "...</b>");
 
                     LoadSubZone(zoneIndex);
 
 
-                    debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), i.ToString()); //DEBUG
+                    //debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), i.ToString()); //DEBUG //REMOVED DX4D
 					
 					return;
 				}
 				
 			}
-			
-			debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), "NOT FOUND"); //DEBUG
-			
-		}
+
+            UnityEngine.Debug.Log("<b>[<color=red>CLIENT</color>] - [ZONES]</b> - "
+                + "<b>Could not find zone number " + zoneIndex + " - " + msg.zonename + "...</b>");
+            //debug.LogFormat(this.name, nameof(OnServerMessageResponsePlayerSwitchServer), "NOT FOUND"); //DEBUG //REMOVED DX4D
+
+        }
 		
 		// -------------------------------------------------------------------------------
     	// OnServerMessageResponsePlayerAutoLogin
@@ -445,7 +504,7 @@ DebugManager.Log(">>>>spawn subzones");
 
             SceneManager.LoadScene(zoneName); //LOAD ZONE TO CURRENT SCENE
             
-            UnityEngine.Debug.Log("<b>[<color=green>CLIENT</color>]</b> - "
+            UnityEngine.Debug.Log("<b>[<color=green>CLIENT</color>] - [ZONES]</b> - "
                 + "<b>Loaded zone number " + zoneIndex + " - " + zoneName + "!</b>");
 		}
 		
@@ -490,10 +549,10 @@ DebugManager.Log(">>>>spawn subzones");
     	// -------------------------------------------------------------------------------
     	void SaveZone()
         {
-            UnityEngine.Debug.Log("[SERVER SAVE] - "
+            UnityEngine.Debug.Log("[ZONE SERVER] - [SAVE] - "
                 + "Saving Zone " + mainZoneName + "...");
             DatabaseManager.singleton.SaveZoneTime(mainZoneName); //SAVE ZONE TIME
-            UnityEngine.Debug.Log("[SERVER SAVE] - "
+            UnityEngine.Debug.Log("[ZONE SERVER] - [SAVE] - "
                 + "Saved Zone " + mainZoneName + "!");
         }
     	
@@ -505,8 +564,9 @@ DebugManager.Log(">>>>spawn subzones");
     	{
             if (DatabaseManager.singleton.CheckZoneTimeout(mainZoneName, GetSubZoneTimeoutInterval))
             {
-                UnityEngine.Debug.Log("[SERVER ZONE TIMEOUT] - "
+                UnityEngine.Debug.Log("[ZONE SERVER] - [ZONE TIMEOUT] - "
                     + "Zone number " + subZoneIndex + " - " + zoneConfig.subZones[subZoneIndex].scene.SceneName + "'s master zone " + mainZoneName + " has gone offline...shutting down!");
+                //TODO: Add a timer here and do a safe shutdown
                 Application.Quit();
             }
     	}

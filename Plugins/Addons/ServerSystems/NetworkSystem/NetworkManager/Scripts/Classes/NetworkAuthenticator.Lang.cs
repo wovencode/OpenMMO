@@ -1,7 +1,5 @@
-﻿
-using OpenMMO.Network;
-using OpenMMO;
-using System;
+//BY FHIZ
+//MODIFIED BY DX4D
 
 namespace OpenMMO.Network
 {
@@ -15,8 +13,8 @@ namespace OpenMMO.Network
 	[System.Serializable]    
 	public partial class NetworkAuthenticator_Lang
 	{
-		public string versionMismatch = "Client out of date!";
-		
+		public string illegalZone = "ISSUE: You cannot log into a zone directly!";
+		public string versionMismatch = "ISSUE: Client version is incorrect! Please update your Client!";
 	}
 	
 }

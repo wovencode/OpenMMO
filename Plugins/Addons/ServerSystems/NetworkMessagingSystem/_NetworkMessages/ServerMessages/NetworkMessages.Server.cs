@@ -50,7 +50,7 @@ namespace OpenMMO.Network
     }
 
     // ================================= MESSAGES AUTH ===================================
-
+    /* //DEPRECIATED - DX4D
     // -----------------------------------------------------------------------------------
     // ServerMessageResponseAuth
     // @Server -> @Client
@@ -72,7 +72,7 @@ namespace OpenMMO.Network
 
         internal bool _causesDisconnect;
         public bool causesDisconnect { get { return _causesDisconnect; } set { _causesDisconnect = value; } }
-    }
+    }*/
 
     // ================================== MESSAGES USER ==================================
 

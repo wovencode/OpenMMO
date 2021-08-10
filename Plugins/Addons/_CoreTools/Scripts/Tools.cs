@@ -180,6 +180,7 @@ namespace OpenMMO
 			}
 		}
 		
+        /* //DEPRECIATED - DX4D
 		/// <summary>
 		/// Returns the path this process has been started with. The first argument is the fileName itself.
 		/// </summary>
@@ -198,7 +199,7 @@ namespace OpenMMO
 
 				return String.Empty;
 			}
-		}
+		}*/
 
         /// <summary>
         /// Validates a name by simply checking length and allowed characters

@@ -25,6 +25,18 @@ public static class Hook
     /// <typeparam name="T">(optional)</typeparam> <param name="obj"></param> <param name="baseMethodName"></param> <param name="args"></param>
     public static void HookMethod<T>(this T obj, string baseMethodName, params object[] args)
     {
+        string header = string.Empty;
+        string spacer = " - ";
+#if _CLIENT && _SERVER
+        header += "<b>[<color=purple>" + "HOST" + "</color>]" + spacer + "[HOOKS]</b>";
+#elif _SERVER
+        header += "[SERVER]" + spacer + "[HOOKS]";
+#elif _CLIENT
+        header += "<b>[<color=orange>" + "CLIENT" + "</color>]" + spacer + "[HOOKS]</b>";
+#endif
+        UnityEngine.Debug.Log(header + spacer
+            + "Hooking method " + baseMethodName + "...");
+
         DevExtUtils.InvokeInstanceDevExtMethods(obj, baseMethodName, args);
     }
 }

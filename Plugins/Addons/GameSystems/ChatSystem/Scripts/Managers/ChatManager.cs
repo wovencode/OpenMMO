@@ -119,15 +119,21 @@ namespace OpenMMO.Chat
 		}
 		
 		// -------------------------------------------------------------------------------
+        // R E G I S T E R  N E T W O R K  M E S S A G E S
+		// -------------------------------------------------------------------------------
+        //REGISTER SERVER MESSAGES
         public void SetupServerMessages()
         {
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CHAT SERVER] - [CHAT/LOGIN] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<MsgChatSendFromClient>(OnServerChatReceive);
             NetworkServer.RegisterHandler<MsgChatLoginRequestFromClient>(OnServerLoginRequest);
         }
-        
-		// -------------------------------------------------------------------------------
+        //REGISTER CLIENT MESSAGES
         public void SetupClientMessages()
         {
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CHAT CLIENT] - [CHAT/LOGIN] - "
+                + "Registering Message Handlers to Client...");
             NetworkClient.RegisterHandler<MsgChatReceiveFromServer>(OnClientChatReceive);
             NetworkClient.RegisterHandler<MsgChatLoginSuccessFromServer>(OnClientLoginSuccess);
         }

@@ -28,16 +28,21 @@ namespace OpenMMO.Network
 		[DevExtMethods(nameof(OnStartServer))]
 		void OnStartServer_NetworkPortals()
         {
-            Debug.Log("[SERVER STARTUP] - NetworkZones - Registering Message Handlers to Server...");
-            NetworkServer.RegisterHandler<ClientRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [CHARACTER SERVER] - [AUTOJOINPLAYER] - "
+                + "Registering Message Handlers to Server...");
             NetworkServer.RegisterHandler<ClientRequestPlayerAutoLogin>(OnClientMessageRequestPlayerAutoLogin);
+
+            Debug.Log("[REGISTER NETWORK MESSAGES] - [ZONE SERVER] - [SWITCHSERVER] - "
+                + "Registering Message Handlers to Server...");
+            NetworkServer.RegisterHandler<ClientRequestPlayerSwitchServer>(OnClientMessageRequestPlayerSwitchServer);
 
             ZoneManager zoneManager = GetComponent<ZoneManager>();
             if (!zoneManager) zoneManager = FindObjectOfType<ZoneManager>(); //ADDED DX4D
             if (zoneManager)
             {
-                Debug.Log("[SERVER STARTUP] - NetworkZones - Launching Zone Servers...");
-                zoneManager.SpawnSubZones();
+                Debug.Log("[STARTUP] - [ZONE SERVER] - Launching Zone Servers...");
+                zoneManager.LaunchZoneServers();
+                Debug.Log("[STARTUP] - [ZONE SERVER] - Finished launching Zone Servers!!!");
             }
 		}
    		
@@ -94,13 +99,13 @@ namespace OpenMMO.Network
         	
         	if (DatabaseManager.singleton.TryPlayerSwitchServer(playername, anchorName, zoneName, _token))
 			{
-                Debug.Log("[SERVER] - Verified ability to warp " + playername + " to zone " + zoneName + "...");
+                Debug.Log("[ZONE SERVER] - Verified ability to warp " + playername + " to zone " + zoneName + "...");
 				message.text = systemText.playerSwitchServerSuccess;
                 message.success = true; //ADDED DX4D
 			}
 			else
             {
-                Debug.Log("[SERVER ISSUE] - Unable to warp " + playername + " to zone " + zoneName + "...");
+                Debug.Log("<<<ISSUE>>> [ZONE SERVER] - Unable to warp " + playername + " to zone " + zoneName + "...");
                 message.text = systemText.playerSwitchServerFailure;
 				message.success = false;
 			}

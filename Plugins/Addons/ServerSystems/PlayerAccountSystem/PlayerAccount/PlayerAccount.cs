@@ -60,7 +60,7 @@ namespace OpenMMO {
 		[Server] protected override void UpdateServer()
 		{
 			base.UpdateServer();
-			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK //REMOVE - CALLED IN BASE - DX4D
+			//this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK //REMOVED - CALLED IN BASE - DX4D
 		}
 		
 
@@ -72,14 +72,14 @@ namespace OpenMMO {
 		[Client] protected override void UpdateClient()
 		{
 			base.UpdateClient();
-			this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
-		}
-		
-		/// <summary> Client-based late update </summary>
-		[Client] protected override void LateUpdateClient()
+            this.InvokeInstanceDevExtMethods(nameof(UpdateClient)); //HOOK
+        }
+
+        /// <summary> Client-based late update </summary>
+        [Client] protected override void LateUpdateClient()
 		{
 			this.InvokeInstanceDevExtMethods(nameof(LateUpdateClient)); //HOOK
-		}
+        }
 
         //// <summary> Client-based fixed update </summary>
         [Client] protected override void FixedUpdateClient() { }

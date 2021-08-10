@@ -22,20 +22,29 @@ namespace OpenMMO.Network
         /// <summary>
 		/// Hooks into LoginPlayer and updates the core data in TablePlayer.
 		/// </summary>
-        [DevExtMethods(nameof(LoginPlayer))]
-        //[DevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase))] //REMOVED - DX4D
+        //[DevExtMethods(nameof(LoginPlayer))]
+        [DevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase))] //REMOVED - DX4D
         //public void LoadPlayerFromDatabase_PlayerComponent(NetworkConnection conn, GameObject player, string playerName, string userName)
         public void LoadPlayerFromDatabase_PlayerComponent(NetworkConnection conn, string playername, string userName, int token)
         {
+            //<b><color=blue>CLIENT</color></b>
+            Debug.Log("[SERVER] - [LOAD CHARACTER] - "
+                + "<b>Loading character " + playername + "...</b>");
+
             //GET PLAYER ACCOUNT FROM PLAYER NAME
             string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
             GameObject prefab = GetPlayerPrefab(prefabname);
             GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+
             if (!player) { Debug.Log("NETWORK ISSUE: Player not found in database..."); }
             PlayerAccount pc = player.GetComponent<PlayerAccount>();
             if (!pc) { Debug.Log("NETWORK ISSUE: Player must have a PlayerAccount component..."); }
 
             pc._tablePlayer.Update(player, userName);
+
+            Debug.Log("[SERVER] - [LOAD CHARACTER] - "
+                + "<b>Successfully loaded character " + playername + "!!!</b>");
+
         }
         
        	/// <summary>

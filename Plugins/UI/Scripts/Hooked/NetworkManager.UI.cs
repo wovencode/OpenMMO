@@ -19,7 +19,8 @@ namespace OpenMMO.Network
 	public partial class NetworkManager
 	{
 				
-		[Header("GUI Scene")]
+		[Header("GUI SCENE")]
+        [Tooltip("")]
 		public UnityScene guiScene;
 
 		/// <summary>
@@ -39,20 +40,20 @@ namespace OpenMMO.Network
     	/// </summary>
 		protected void LoadUIAdditive()
 		{
-            if (guiScene == null || string.IsNullOrWhiteSpace(guiScene.SceneName))
-            {
-                Debug.Log("<b>[<color=red>CLIENT</color>]</b> - "
-                    + " UI Not Loaded - GUI Scene was not assigned in " + this.name);
-                return;
-            }
-
             if (guiScene != null)
             {
-                Debug.Log("<b>[<color=blue>CLIENT</color>]</b> - "
+                Debug.Log("<b>[<color=blue>GUI CLIENT</color>] - </b>"
                     + "<b>Loading UI " + guiScene.SceneName + "...</b>");
                 SceneManager.LoadScene(guiScene, LoadSceneMode.Additive);
-                Debug.Log("<b>[<color=green>CLIENT</color>]</b> - "
+                Debug.Log("<b>[<color=green>GUI CLIENT</color>] - </b>"
                     + "<b>Loaded UI " + guiScene.SceneName + "!</b>");
+                return;
+            }
+            else if (guiScene == null || string.IsNullOrWhiteSpace(guiScene.SceneName))
+            {
+                Debug.Log("<b><<<ISSUE>>> [<color=red>GUI CLIENT</color>]</b> - "
+                    + " UI Not Loaded - GUI Scene was not assigned in " + this.name);
+                return;
             }
 		}
 	}

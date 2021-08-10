@@ -52,7 +52,7 @@ namespace OpenMMO.Zones
 			if (!bypassConfirmation)
 			{
 			
-				if (pc.CheckCooldown)
+				if (pc.IsCooldownElapsed)
 					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetZone.title), OnClickConfirm);
 				else
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
@@ -80,7 +80,7 @@ namespace OpenMMO.Zones
 			int index = UnityEngine.Random.Range(0, targetAnchors.Length);
 			string targetAnchor = targetAnchors[index];
 			
-			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor) && pc.CheckCooldown)
+			if (player && targetZone != null && !String.IsNullOrWhiteSpace(targetAnchor) && pc.IsCooldownElapsed)
 				pc.WarpRemote(targetAnchor, targetZone.name);
 			
 			base.OnClickConfirm();

@@ -48,13 +48,13 @@ namespace OpenMMO.Zones
 			
 			if (!bypassConfirmation)
 			{
-				if (pc.CheckCooldown)
+				if (pc.IsCooldownElapsed)
 					UIPopupPrompt.singleton.Init(String.Format(popupEnter, targetAnchor), OnClickConfirm);
 				else
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
 			}
 			else
-				if (pc.CheckCooldown)
+				if (pc.IsCooldownElapsed)
 				    OnClickConfirm();
 				else
 					UIPopupNotify.singleton.Init(String.Format(popupWait, pc.GetCooldownTimeRemaining().ToString("F0")));
@@ -75,7 +75,7 @@ namespace OpenMMO.Zones
 			
 			PlayerAccount pc = player.GetComponent<PlayerAccount>();
 			
-			if (player != null && targetAnchor != null && pc.CheckCooldown)
+			if (player != null && targetAnchor != null && pc.IsCooldownElapsed)
 				pc.Cmd_WarpLocal(targetAnchor);
 			
 			base.OnClickConfirm();

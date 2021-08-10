@@ -1,5 +1,6 @@
 //by Fhiz
 //MODIFIED BY DX4D
+
 using UnityEngine;
 using Mirror;
 using OpenMMO.Database;
@@ -19,6 +20,7 @@ namespace OpenMMO {
 		/// holds exact replica of table data as in database
 		/// no need to sync, can be done individually if required
         /// </summary>
+        public TablePlayer data { get { return _tablePlayer; } }
         public TablePlayer tablePlayer { get { return _tablePlayer; } }
         public TablePlayer accountInfo { get { return _tablePlayer; } }
         

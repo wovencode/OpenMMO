@@ -84,15 +84,26 @@ namespace OpenMMO
         #endregion //DEBUG LOG
 
         #region GLOBAL - REGISTER MESSAGE HANDLERS
+#if _SERVER && _CLIENT //HOST AND PLAY
+        bool handlerMessagesRegistered = false;
+#endif
         //@CLIENT
         //@SERVER
         public void RegisterMessageHandlers()
         {
-#if _CLIENT
-            RegisterClientMessageHandlers();
-#endif
-#if _SERVER
-            RegisterServerMessageHandlers();
+            RegisterMessages();
+        }
+        void RegisterMessages()
+        {
+#if _SERVER && !_CLIENT //SERVER
+            RegisterServerMessageHandlers(); //SERVER MESSAGES
+#elif _CLIENT && !_SERVER //CLIENT
+            RegisterClientMessageHandlers(); //CLIENT MESSAGES
+#elif _SERVER && _CLIENT //HOST AND PLAY
+            if (handlerMessagesRegistered) return; //ALREADY REGISTERED?
+            RegisterClientMessageHandlers(); //CLIENT
+            RegisterServerMessageHandlers(); //SERVER
+            handlerMessagesRegistered = true; //MESSAGES REGISTERED
 #endif
         }
         #endregion //REGISTER MESSAGE HANDLERS

@@ -23,8 +23,11 @@ namespace OpenMMO.UI
 		{
 			get
 			{
-				if (_networkManager == null)
-					_networkManager = FindObjectOfType<OpenMMO.Network.NetworkManager>();
+                if (_networkManager == null)
+                {
+                    _networkManager = FindObjectOfType<OpenMMO.Network.NetworkManager>();
+                    if (!_networkManager) Debug.LogError("UIRoot could not find a NetworkManager in the Scene...");
+                }
 				return _networkManager;
 			}
 		}
@@ -36,8 +39,11 @@ namespace OpenMMO.UI
 		{
 			get
 			{
-				if (_networkAuthenticator == null)
-					_networkAuthenticator = FindObjectOfType<OpenMMO.Network.NetworkAuthenticator>();
+                if (_networkAuthenticator == null)
+                {
+                    _networkAuthenticator = FindObjectOfType<OpenMMO.Network.NetworkAuthenticator>();
+                    if (!_networkManager) Debug.LogError("UIRoot could not find a NetworkAuthenticator in the Scene...");
+                }
 				return _networkAuthenticator;
 			}
 		}

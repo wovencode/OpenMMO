@@ -30,7 +30,7 @@ namespace OpenMMO.Network
         /// <param name="msg"></param>
         internal void OnClientMessageRequestPlayerLogin(NetworkConnection conn, ClientLoginPlayerRequest msg)
         {
-            Response.PlayerLogin message = new Response.PlayerLogin
+            Response.PlayerLoginResponse message = new Response.PlayerLoginResponse
             {
                 action = NetworkAction.PlayerLogin, //ADDED - DX4D
                 success = true,
@@ -67,7 +67,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestPlayerRegister(NetworkConnection conn, ClientRegisterPlayerRequest msg)
         {
 
-            Response.PlayerRegister message = new Response.PlayerRegister
+            Response.PlayerRegisterResponse message = new Response.PlayerRegisterResponse
             {
                 action = NetworkAction.PlayerRegister, //ADDED - DX4D
                 success = true,
@@ -104,7 +104,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestPlayerDelete(NetworkConnection conn, ClientDeletePlayerRequest msg)
         {
 
-            Response.PlayerDelete message = new Response.PlayerDelete
+            Response.PlayerDeleteResponse message = new Response.PlayerDeleteResponse
             {
                 success = true,
                 text = "",

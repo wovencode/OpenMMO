@@ -49,7 +49,7 @@ namespace OpenMMO.Network
             //where T: struct, ClientConnectRequest
         {
 
-            Response.Auth message = new Response.Auth
+            Response.AuthResponse message = new Response.AuthResponse
             {
                 success = true,
                 text = "",

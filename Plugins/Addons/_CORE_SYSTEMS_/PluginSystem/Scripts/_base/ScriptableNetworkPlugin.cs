@@ -75,7 +75,7 @@ namespace OpenMMO
             //REGISTER HANDLER MESSAGE
             if (action_taken.Contains(REGISTER_HANDLER))
             {
-                message += "Registering Message Handlers to " + clientOrServer.ToLowerInvariant() + "...";
+                message += "Registering Message Handlers to " + clientOrServer.ToUpperInvariant() + "...";
             }
 
             //WRITE DEBUG LOG

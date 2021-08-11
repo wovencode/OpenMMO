@@ -11,7 +11,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponseAuth</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </para></summary>
-    public partial struct Auth : ServerResponse
+    public partial struct AuthResponse : ServerResponse
     {
         public NetworkAction action => NetworkAction.Authenticate;
 
@@ -36,7 +36,7 @@ namespace OpenMMO.Network.Request
     /// Is used to authorize the client.
     /// Contains authorization request sent from client to server.
     /// </para></summary>
-    public partial struct Auth : ClientConnectRequest
+    public partial struct AuthRequest : ClientConnectRequest
     {
         public NetworkAction action => NetworkAction.Authenticate;
 

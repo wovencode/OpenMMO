@@ -49,7 +49,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestUserLogin(NetworkConnection conn, ClientLoginUserRequest msg)
         {
 
-            Response.UserLogin message = new Response.UserLogin
+            Response.UserLoginResponse message = new Response.UserLoginResponse
             {
                 action = NetworkAction.UserLogin, //ADDED - DX4D
                 success = true,
@@ -101,7 +101,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestUserRegister(NetworkConnection conn, ClientRegisterUserRequest msg)
         {
 
-            Response.UserRegister message = new Response.UserRegister
+            Response.UserRegisterResponse message = new Response.UserRegisterResponse
             {
                 action = NetworkAction.UserRegister, //ADDED - DX4D
                 success = true,
@@ -140,7 +140,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestUserDelete(NetworkConnection conn, ClientDeleteUserRequest msg)
         {
 
-            Response.UserDelete message = new Response.UserDelete
+            Response.UserDeleteResponse message = new Response.UserDeleteResponse
             {
                 action = NetworkAction.UserDelete, //ADDED - DX4D
                 success = true,
@@ -181,7 +181,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestUserChangePassword(NetworkConnection conn, ClientChangeUserPasswordRequest msg)
         {
 
-            Response.UserChangePassword message = new Response.UserChangePassword
+            Response.UserChangePasswordResponse message = new Response.UserChangePasswordResponse
             {
                 action = NetworkAction.UserChangePassword, //ADDED - DX4D
                 success = true,
@@ -222,7 +222,7 @@ namespace OpenMMO.Network
         internal void OnClientMessageRequestUserConfirm(NetworkConnection conn, ClientConfirmUserRequest msg)
         {
 
-            Response.UserConfirm message = new Response.UserConfirm
+            Response.UserConfirmResponse message = new Response.UserConfirmResponse
             {
                 action = NetworkAction.UserConfirm, //ADDED - DX4D
                 success = true,

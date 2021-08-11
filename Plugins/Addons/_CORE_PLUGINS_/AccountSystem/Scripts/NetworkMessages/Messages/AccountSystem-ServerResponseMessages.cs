@@ -34,7 +34,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponseUserConfirm</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct UserConfirm : ServerResponse
+    public partial struct UserConfirmResponse : ServerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -95,7 +95,7 @@ namespace OpenMMO.Network.Response
     /// Sent from Server to Client.
     /// Based on ServerMessageResponseUserPlayerPreviews. Contains only inherited functionality.
     /// </summary>
-    public partial struct UserLogin : ServerLoginUserResponse
+    public partial struct UserLoginResponse : ServerLoginUserResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -134,7 +134,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponseUserRegister</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct UserRegister : ServerResponse
+    public partial struct UserRegisterResponse : ServerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -153,7 +153,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponseUserDelete</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct UserDelete : ServerResponse
+    public partial struct UserDeleteResponse : ServerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -172,7 +172,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponseUserChangePassword</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct UserChangePassword : ServerResponse
+    public partial struct UserChangePasswordResponse : ServerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }

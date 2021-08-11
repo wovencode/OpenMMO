@@ -23,15 +23,15 @@ namespace OpenMMO.Network
         //CLIENT HANDLERS
         [Client] internal override void HandleServerMessageOnClient<T>(T msg)
         {
-            if (msg is Response.PlayerLogin) manager.OnServerResponsePlayerLogin(msg);
-            if (msg is Response.PlayerRegister) manager.OnServerResponsePlayerRegister((ServerRegisterPlayerResponse)msg);
-            if (msg is Response.PlayerDelete) manager.OnServerResponsePlayerDelete(msg);
+            if (msg is Response.PlayerLoginResponse) manager.OnServerResponsePlayerLogin(msg);
+            else if (msg is Response.PlayerRegisterResponse) manager.OnServerResponsePlayerRegister((ServerRegisterPlayerResponse)msg);
+            else if (msg is Response.PlayerDeleteResponse) manager.OnServerResponsePlayerDelete(msg);
         }
         [Server] internal override void HandleClientMessageOnServer<T>(NetworkConnection conn, T msg)
         {
-            if (msg is Request.PlayerLogin) manager.OnClientMessageRequestPlayerLogin(conn, (ClientLoginPlayerRequest)msg);
-            if (msg is Request.PlayerRegister) manager.OnClientMessageRequestPlayerRegister(conn, (ClientRegisterPlayerRequest)msg);
-            if (msg is Request.PlayerDelete) manager.OnClientMessageRequestPlayerDelete(conn, (ClientDeletePlayerRequest)msg);
+            if (msg is Request.PlayerLoginRequest) manager.OnClientMessageRequestPlayerLogin(conn, (ClientLoginPlayerRequest)msg);
+            else if (msg is Request.PlayerRegisterRequest) manager.OnClientMessageRequestPlayerRegister(conn, (ClientRegisterPlayerRequest)msg);
+            else if (msg is Request.PlayerDeleteRequest) manager.OnClientMessageRequestPlayerDelete(conn, (ClientDeletePlayerRequest)msg);
         }
         #endregion
 
@@ -41,22 +41,22 @@ namespace OpenMMO.Network
         internal override void RegisterClientMessageHandlers()
         {
             Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "LOGIN PLAYER");
-            NetworkClient.RegisterHandler<Response.PlayerLogin>(HandleServerMessageOnClient, false);
+            NetworkClient.RegisterHandler<Response.PlayerLoginResponse>(HandleServerMessageOnClient, false);
             Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "REGISTER PLAYER");
-            NetworkClient.RegisterHandler<Response.PlayerRegister>(HandleServerMessageOnClient, false);
+            NetworkClient.RegisterHandler<Response.PlayerRegisterResponse>(HandleServerMessageOnClient, false);
             Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "DELETE PLAYER");
-            NetworkClient.RegisterHandler<Response.PlayerDelete>(HandleServerMessageOnClient, false);
+            NetworkClient.RegisterHandler<Response.PlayerDeleteResponse>(HandleServerMessageOnClient, false);
         }
         //REGISTER SERVER HANDLERS
         //@[Server]
         internal override void RegisterServerMessageHandlers()
         {
             Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "LOGIN PLAYER");
-            NetworkServer.RegisterHandler<Request.PlayerLogin>(HandleClientMessageOnServer, false);
+            NetworkServer.RegisterHandler<Request.PlayerLoginRequest>(HandleClientMessageOnServer, false);
             Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "REGISTER PLAYER");
-            NetworkServer.RegisterHandler<Request.PlayerRegister>(HandleClientMessageOnServer, false);
+            NetworkServer.RegisterHandler<Request.PlayerRegisterRequest>(HandleClientMessageOnServer, false);
             Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "DELETE PLAYER");
-            NetworkServer.RegisterHandler<Request.PlayerDelete>(HandleClientMessageOnServer, false);
+            NetworkServer.RegisterHandler<Request.PlayerDeleteRequest>(HandleClientMessageOnServer, false);
         }
         #endregion //MESSAGE HANDLER REGISTRY
     }

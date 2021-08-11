@@ -9,7 +9,7 @@ namespace OpenMMO.Network.Request
     /// Sent from client to server
     /// Client sent user confirmation request containing username and password.
     /// </summary>
-    public partial struct UserConfirm : ClientConfirmUserRequest
+    public partial struct UserConfirmRequest : ClientConfirmUserRequest
     {
         public NetworkAction action => NetworkAction.UserConfirm;
 
@@ -31,7 +31,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server.
     /// Used to login the User. Contains username and password.
     /// </summary>
-    public partial struct UserLogin : ClientLoginUserRequest
+    public partial struct UserLoginRequest : ClientLoginUserRequest
     {
         public NetworkAction action => NetworkAction.UserLogin;
 
@@ -48,7 +48,7 @@ namespace OpenMMO.Network.Request
         public string password { get { return _password; } set { _password = value; } }
     }
     //LOGOUT
-    public partial struct UserLogout : ClientLogoutUserRequest
+    public partial struct UserLogoutRequest : ClientLogoutUserRequest
     {
         public NetworkAction action => NetworkAction.UserLogout;
 
@@ -64,7 +64,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server.
     /// Client sent Registartion request Contains username, password, email and deviceid.
     /// </summary>
-    public partial struct UserRegister : ClientRegisterUserRequest
+    public partial struct UserRegisterRequest : ClientRegisterUserRequest
     {
         public NetworkAction action => NetworkAction.UserRegister;
 
@@ -92,7 +92,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server.
     /// Client sent deletion request Contains username and password.
     /// </summary>
-    public partial struct UserDelete : ClientDeleteUserRequest
+    public partial struct UserDeleteRequest : ClientDeleteUserRequest
     {
         public NetworkAction action => NetworkAction.UserDelete;
 
@@ -114,7 +114,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server.
     /// Client sent password change request contains username, old password and new the new password
     /// </summary>
-    public partial struct UserChangePassword : ClientChangeUserPasswordRequest
+    public partial struct UserChangePasswordRequest : ClientChangeUserPasswordRequest
     {
         public NetworkAction action => NetworkAction.UserChangePassword;
 

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace OpenMMO.Network
 {
-    /* "OpenMMO/Plugins/Connection System - Plugin"*/
 	[CreateAssetMenu(menuName = FULL_MENU_PATH, order = 0)]
     public class ConnectionSystemPlugin : ScriptableNetworkPlugin
     {
@@ -24,11 +23,11 @@ namespace OpenMMO.Network
         //CLIENT HANDLERS
         [Client] internal override void HandleServerMessageOnClient<T>(T msg)
         {
-            if (msg is Response.Auth) authenticator.OnServerMessageResponseAuth(msg);
+            if (msg is Response.AuthResponse) authenticator.OnServerMessageResponseAuth(msg);
         }
         [Server] internal override void HandleClientMessageOnServer<T>(NetworkConnection conn, T msg)
         {
-            if (msg is Request.Auth) authenticator.OnClientMessageRequestAuth(conn, (ClientConnectRequest)msg);
+            if (msg is Request.AuthRequest) authenticator.OnClientMessageRequestAuth(conn, (ClientConnectRequest)msg);
         }
         #endregion
 
@@ -38,14 +37,14 @@ namespace OpenMMO.Network
         internal override void RegisterClientMessageHandlers()
         {
             Log(CLIENT, REGISTER_HANDLER, PLUGIN_NAME, "CONNECT");
-            NetworkClient.RegisterHandler<Response.Auth>(HandleServerMessageOnClient<Response.Auth>, false);
+            NetworkClient.RegisterHandler<Response.AuthResponse>(HandleServerMessageOnClient<Response.AuthResponse>, false);
         }
         //REGISTER SERVER HANDLERS
         //@[Server]
         internal override void RegisterServerMessageHandlers()
         {
             Log(SERVER, REGISTER_HANDLER, PLUGIN_NAME, "CONNECT");
-            NetworkServer.RegisterHandler<Request.Auth>(HandleClientMessageOnServer<Request.Auth>, false);
+            NetworkServer.RegisterHandler<Request.AuthRequest>(HandleClientMessageOnServer<Request.AuthRequest>, false);
         }
         #endregion //MESSAGE HANDLER REGISTRY
     }

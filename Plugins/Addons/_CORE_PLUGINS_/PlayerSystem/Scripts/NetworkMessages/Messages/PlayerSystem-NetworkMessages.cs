@@ -13,7 +13,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponsePlayerLogin</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct PlayerLogin : ServerResponse
+    public partial struct PlayerLoginResponse : ServerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -32,7 +32,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponsePlayerRegister</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct PlayerRegister : ServerRegisterPlayerResponse
+    public partial struct PlayerRegisterResponse : ServerRegisterPlayerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -54,7 +54,7 @@ namespace OpenMMO.Network.Response
     /// Public Partial class <c>ServerMessageResponsePlayerDelete</c> inherits <c>ServerMessageResponse</c>.
     /// Sent from Server to Client.
     /// </summary>
-    public partial struct PlayerDelete : ServerResponse
+    public partial struct PlayerDeleteResponse : ServerResponse
     {
         internal NetworkAction _action;
         public NetworkAction action { get { return _action; } set { _action = value; } }
@@ -81,7 +81,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server.
     /// Client sent player login request containing username and playername.
     /// </summary>
-    public partial struct PlayerLogin : ClientLoginPlayerRequest
+    public partial struct PlayerLoginRequest : ClientLoginPlayerRequest
     {
         public NetworkAction action => NetworkAction.PlayerLogin;
 
@@ -103,7 +103,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server.
     /// Client sent player register request containing username, playername and prefabname.
     /// </summary>
-    public partial struct PlayerRegister : ClientRegisterPlayerRequest
+    public partial struct PlayerRegisterRequest : ClientRegisterPlayerRequest
     {
         public NetworkAction action => NetworkAction.PlayerRegister;
 
@@ -128,7 +128,7 @@ namespace OpenMMO.Network.Request
     /// Sent from Client to Server
     /// Client sent player register request containing username and playername
     /// </summary>
-    public partial struct PlayerDelete : ClientDeletePlayerRequest
+    public partial struct PlayerDeleteRequest : ClientDeletePlayerRequest
     {
         public NetworkAction action => NetworkAction.PlayerDelete;
 

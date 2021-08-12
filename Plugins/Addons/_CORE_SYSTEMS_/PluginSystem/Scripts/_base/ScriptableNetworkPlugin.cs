@@ -84,13 +84,6 @@ namespace OpenMMO
         #endregion //DEBUG LOG
 
         #region GLOBAL - REGISTER MESSAGE HANDLERS
-#if _SERVER && _CLIENT //HOST AND PLAY
-        public partial class StatusReport
-        {
-            public static bool handlerMessagesRegistered = false; //NOTE: Fix for Host and Play mode trying to register messages twice
-            public StatusReport() { handlerMessagesRegistered = false; } //NOTE: Ensures that the value starts out as false (ScriptableObject serializes private methods)
-        }
-#endif
         //@CLIENT
         //@SERVER
         public void RegisterMessageHandlers()

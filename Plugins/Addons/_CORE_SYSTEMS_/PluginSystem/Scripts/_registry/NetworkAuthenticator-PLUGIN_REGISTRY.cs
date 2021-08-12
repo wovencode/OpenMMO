@@ -27,14 +27,18 @@ namespace OpenMMO.Network
         [DevExtMethods(nameof(OnStartClient))]
         void OnStartClient_RegisterClientMessageHandlers()
         {
+#if _CLIENT //CLIENT ONLY + HOST AND PLAY
             RegisterMessageHandlers(); //REGISTER HANDLERS TO CLIENT
+#endif
         }
 
         //@SERVER REGISTER MESSAGE HANDLERS
         [DevExtMethods(nameof(OnStartServer))]
         void OnStartServer_RegisterServerMessageHandlers()
         {
+#if _SERVER && !_CLIENT //SERVER ONLY
             RegisterMessageHandlers(); //REGISTER HANDLERS TO SERVER
+#endif
         }
     }
 }

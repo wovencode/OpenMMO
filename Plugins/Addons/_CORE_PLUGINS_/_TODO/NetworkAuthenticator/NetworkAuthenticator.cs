@@ -41,7 +41,9 @@ namespace OpenMMO.Network
 		
 			singleton = this;
 
-			connectDelay = UnityEngine.Random.Range(connectDelayMin,connectDelayMax); // randomize connection delay
+			connectDelay = autoConnectDelay; //SET AUTO CONNECT DELAY
+            //RANDOMIZED CONNECT DELAY //DEPRECIATED - DX4D
+			//connectDelay = UnityEngine.Random.Range(connectDelayMin,connectDelayMax); // randomize connection delay //REMOVED - DX4D
     		
 		}
 		

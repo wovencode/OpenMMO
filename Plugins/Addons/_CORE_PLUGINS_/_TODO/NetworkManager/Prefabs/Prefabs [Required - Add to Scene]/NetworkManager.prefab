@@ -163,9 +163,8 @@ MonoBehaviour:
   debug:
     _debugMode: 0
   checkApplicationVersion: 1
-  connectDelayMin: 4
-  connectDelayMax: 8
-  connectTimeout: 999
+  autoConnectDelay: 12
+  connectTimeout: 255
   connectDelay: 0
   systemText:
     illegalZone: 'ISSUE: You cannot log into a zone directly!'

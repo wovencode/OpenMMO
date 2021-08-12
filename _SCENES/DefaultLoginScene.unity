@@ -1675,10 +1675,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252435991396032038, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
-      propertyPath: connectTimeout
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252435991396032038, guid: f6ac0940e1ad445498275ba3cb6b8ee8, type: 3}
       propertyPath: _plugins.Array.size
       value: 4
       objectReference: {fileID: 0}

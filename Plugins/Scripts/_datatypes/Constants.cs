@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Text;
 using UnityEngine;
@@ -24,6 +24,7 @@ namespace OpenMMO {
 		public const string PlayerPrefsUserName 			= "UserName";
 		public const string PlayerPrefsPassword 			= "UserPass";	
 		public const string PlayerPrefsLastServer 			= "LastServer";
+		public const string PlayerPrefsAutoConnect 			= "AutoConnect";
 		
 		/*
 			Names of variables saved in editor preferences:

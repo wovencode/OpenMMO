@@ -15,7 +15,8 @@ namespace OpenMMO.Network
 	{
 		
 		public string serverOffline = "Server offline!";
-		public string clientConnect = "Connect";
+		public string connectTimeout = "Connection timed out...closing application.";
+		public string clientConnect = "CONNECT";
 		
 	}
 	

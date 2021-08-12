@@ -31,10 +31,22 @@ namespace OpenMMO.Network
 
             if (zoneManager != null && !zoneManager.GetAutoConnect)
             {
+                Debug.Log("[CONNECT] Automatic Authentication Started...");
                 Invoke(nameof(ClientAuthenticate), connectDelay);
             }
 
             this.InvokeInstanceDevExtMethods(nameof(OnClientAuthenticate)); //HOOK //, conn); //FIX - MIRROR UPDATE - conn parameter is no longer passed through - it was replaced with NetworkClient.connection - DX4D
+        }
+        public void StartAutoAuthentication(byte _connectDelay)
+        {
+            Debug.Log("[CONNECT] Automatic Authentication Started...");
+            Invoke(nameof(ClientAuthenticate), _connectDelay);
+        }
+        //CANCEL AUTHENTICATION
+        public void CancelAutoAuthentication()
+        {
+            Debug.Log("[CONNECT] Automatic Authentication Canceled!");
+            CancelInvoke(nameof(ClientAuthenticate));
         }
 
         // -------------------------------------------------------------------------------

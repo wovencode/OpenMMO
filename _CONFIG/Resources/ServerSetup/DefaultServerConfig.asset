@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386e29c89a9653a459896d84815ec5a8, type: 3}
   m_Name: DefaultServerConfig
   m_EditorClassIdentifier: 
-  networkType: 1
+  networkType: 2
   globalDebugMode: 0
   securitySalt: 16_or_more_bytes
   serverList:
+  - {fileID: 11400000, guid: 8609eb57b51a9e3449d6a6f030b4111e, type: 2}
   - {fileID: 11400000, guid: 5af753e2cf4030a41ac4deb7727841c6, type: 2}
   - {fileID: 11400000, guid: e7e259656c143834a9b6a2e10aa2e034, type: 2}
-  - {fileID: 11400000, guid: 8609eb57b51a9e3449d6a6f030b4111e, type: 2}
   logMode: 0
   logFilename: OpenMMOLog
   logFolder: OpenMMOLogs

@@ -65,14 +65,29 @@ namespace OpenMMO.Network
                 clientVersion = Application.version
             };
 
+            if (NetworkClient.connection == null)
+            {
 #if DEBUG
-            Debug.Log("<b>[<color=blue>CONNECTION CLIENT</color>]</b> - "
-                + "<b>Attempting to Join Server...</b>"
-                + "\n" + "Connection-" + NetworkClient.connection.connectionId + " @" + NetworkClient.connection.address + " connecting to Server @" + NetworkClient.serverIp + "...");
+                Debug.Log("<b>[<color=red>CONNECTION CLIENT ISSUE</color>]</b> - "
+                    + "<b>Cannot connect to Server" + " - " + "The Client has not set up it's connection protocol yet!</b>"
+                    + "\n" + "In other words...the code tried to connect too soon...find what calls "+nameof(ClientAuthenticate)+ " to track it down.");
 #endif
-            NetworkClient.Send<Request.AuthRequest>(msg);
+            }
+            else
+            {
+#if DEBUG
+                Debug.Log("<b>[<color=blue>CONNECTION CLIENT</color>]</b> - "
+                    + "<b>Attempting to Join Server...</b>"
+                    + "\n" + "Connection-" + NetworkClient.connection.connectionId + " @" + NetworkClient.connection.address + " connecting to Server @" + NetworkClient.serverIp + "...");
+#endif
+                SendConnectRequest(msg); //SEND CONNECT REQUEST MESSAGE
 
-            debug.LogFormat(this.name, nameof(ClientAuthenticate)); //DEBUG
+                debug.LogFormat(this.name, nameof(ClientAuthenticate)); //DEBUG
+            }
+        }
+        void SendConnectRequest(Request.AuthRequest msg)
+        {
+            NetworkClient.Send<Request.AuthRequest>(msg);
         }
 
         // -----------

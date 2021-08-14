@@ -1,4 +1,4 @@
-﻿// by Fhiz, insthync
+// by Fhiz, insthync
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Debugging;
@@ -193,12 +193,12 @@ namespace OpenMMO.Database
 		public override void OnValidate()
 		{
 #if UNITY_EDITOR
-			address 	= EditorTools.EditorPrefsUpdateString(Constants.EditorPrefsMySQLAddress, address);
-			port 		= (uint)EditorTools.EditorPrefsUpdateInt(Constants.EditorPrefsMySQLPort, (int)port);
-			username 	= EditorTools.EditorPrefsUpdateString(Constants.EditorPrefsMySQLUsername, username);
-			password 	= EditorTools.EditorPrefsUpdateString(Constants.EditorPrefsMySQLPassword, password);
-			dbName 		= EditorTools.EditorPrefsUpdateString(Constants.EditorPrefsMySQLDatabase, dbName);
-			charset		= EditorTools.EditorPrefsUpdateString(Constants.EditorPrefsMySQLCharset, charset);
+			address 	= EditorTools.EditorPrefsUpdateString(MySQLDatabaseConstants.MySQLAddress, address);
+			port 		= (uint)EditorTools.EditorPrefsUpdateInt(MySQLDatabaseConstants.MySQLPort, (int)port);
+			username 	= EditorTools.EditorPrefsUpdateString(MySQLDatabaseConstants.MySQLUsername, username);
+			password 	= EditorTools.EditorPrefsUpdateString(MySQLDatabaseConstants.MySQLPassword, password);
+			dbName 		= EditorTools.EditorPrefsUpdateString(MySQLDatabaseConstants.MySQLDatabase, dbName);
+			charset		= EditorTools.EditorPrefsUpdateString(MySQLDatabaseConstants.MySQLCharset, charset);
 #endif
 		}
         

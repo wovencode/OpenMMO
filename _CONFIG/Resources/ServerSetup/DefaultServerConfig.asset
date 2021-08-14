@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386e29c89a9653a459896d84815ec5a8, type: 3}
   m_Name: DefaultServerConfig
   m_EditorClassIdentifier: 
-  networkType: 2
+  _networkType: 0
   globalDebugMode: 0
   securitySalt: 16_or_more_bytes
   serverList:

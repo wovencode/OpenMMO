@@ -25,7 +25,7 @@ namespace OpenMMO
             Debug.Log("<b>[<color=purple>" + "MODE ACTIVATED" + "</color>] - " + buildType.ToString().ToUpper() + "</b>");
 #endif
             ServerConfigTemplate.singleton.networkType = buildType;
-            ServerConfigTemplate.singleton.OnValidate();
+            //ServerConfigTemplate.singleton.OnValidate(); //REMOVED - networkType setter does this now - DX4D
 
             EditorUserBuildSettings.enableHeadlessMode = headless;
 

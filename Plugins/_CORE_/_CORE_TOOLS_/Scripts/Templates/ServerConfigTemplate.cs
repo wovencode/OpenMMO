@@ -1,9 +1,12 @@
-//by Fhiz
+//BY FHIZ
+//MODIFIED BY DX4D
+
 using System;
 using System.Collections.Generic;
+using OpenMMO;
+
 using UnityEngine;
 using System.Linq;
-using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.Debugging;
 
@@ -20,7 +23,21 @@ namespace OpenMMO
 		[Header("Project Configuration")]
 #pragma warning disable CS0649
 		[Tooltip("Toggle type of build: Server, Client or Host+Play")]
-		[SerializeField] internal NetworkType networkType;
+		[SerializeField] NetworkType _networkType;
+        internal NetworkType networkType
+        {
+            get { return _networkType; }
+            set
+            {
+                if (_networkType != value)
+                {
+                    _networkType = value;
+#if UNITY_EDITOR
+                    UpdateScriptingDefines(); //ADD SCRIPTING DEFINES
+#endif //UNITY_EDITOR
+                }
+            }
+        }
 #pragma warning restore CS0649
 		[Tooltip("Toggle debug mode for logging (globally, affects all components with a DebugHelper as well)")]
 		public bool globalDebugMode;
@@ -63,34 +80,89 @@ namespace OpenMMO
 				return networkType;
 			}
 		}
-		
-		/// <summary>
-		/// After changing, updates scripting defines and recompiles the code.
-		/// </summary>
-		public void OnValidate()
-		{
-#if UNITY_EDITOR
-			if (networkType == NetworkType.Server)
-			{
-				EditorTools.RemoveScriptingDefine(Constants.BuildModeClient);
-				EditorTools.AddScriptingDefine(Constants.BuildModeServer);
-				DebugManager.Log("<b><color=yellow>[ProjectConfig] Switched to SERVER mode.</color></b>");
-			}
-			else if (networkType == NetworkType.HostAndPlay)
-			{
-				EditorTools.AddScriptingDefine(Constants.BuildModeServer);
-				EditorTools.AddScriptingDefine(Constants.BuildModeClient);
-				DebugManager.Log("<b><color=green>[ProjectConfig] Switched to HOST & PLAY mode.</color></b>");
-			}
-			else
-			{
-				EditorTools.AddScriptingDefine(Constants.BuildModeClient);
-				EditorTools.RemoveScriptingDefine(Constants.BuildModeServer);
-				DebugManager.Log("<b><color=blue>[ProjectConfig] Switched to CLIENT mode.</color></b>");
-			}
-#endif
-		}
 
+        /// <summary>
+        /// After changing, updates scripting defines and recompiles the code.
+        /// </summary>
+        //public void OnValidate() { }
+
+        // U P D A T E  S C R I P T I N G  D E F I N E S
+        void UpdateScriptingDefines()
+        {
+            switch (networkType)
+            {
+                case NetworkType.Client: //CLIENT
+                    {
+                        SwitchToClientMode();
+                        break;
+                    }
+                case NetworkType.Server: //SERVER
+                    {
+                        SwitchToServerMode();
+                        break;
+                    }
+                case NetworkType.HostAndPlay: //HOST & PLAY
+                    {
+                        SwitchToHostMode();
+                        break;
+                    }
+            }
+        }
+
+        // S W I T C H  M O D E
+        //CLIENT
+        void SwitchToClientMode()
+        {
+            RemoveServerDefine();
+            AddClientDefine();
+            //DebugManager.Log("<b><color=blue>[ProjectConfig] Switched to CLIENT mode.</color></b>");
+        }
+        //SERVER
+        void SwitchToServerMode()
+        {
+            RemoveClientDefine();
+            AddServerDefine();
+			//DebugManager.Log("<b><color=yellow>[ProjectConfig] Switched to SERVER mode.</color></b>");
+        }
+        //HOST
+        void SwitchToHostMode()
+        {
+            AddServerDefine();
+            AddClientDefine();
+            //DebugManager.Log("<b><color=green>[ProjectConfig] Switched to HOST & PLAY mode.</color></b>");
+        }
+
+        // C H A N G E  S E R V E R  D E F I N E S
+        //SERVER
+        void AddServerDefine()
+        {
+            if (!EditorTools.HasScriptingDefine(Defines.BuildMode.Server)) //IF NO SERVER DEFINE
+            {
+                EditorTools.AddScriptingDefine(Defines.BuildMode.Server); //ADD SERVER DEFINE
+            }
+        }
+        void RemoveServerDefine()
+        {
+            if (EditorTools.HasScriptingDefine(Defines.BuildMode.Server)) //IF HAS SERVER DEFINE
+            {
+                EditorTools.RemoveScriptingDefine(Defines.BuildMode.Server); //REMOVE SERVER DEFINE
+            }
+        }
+        //CLIENT
+        void AddClientDefine()
+        {
+            if (!EditorTools.HasScriptingDefine(Defines.BuildMode.Client)) //IF NO CLIENT DEFINE
+            {
+                EditorTools.AddScriptingDefine(Defines.BuildMode.Client); //ADD CLIENT DEFINE
+            }
+        }
+        void RemoveClientDefine()
+        {
+            if (EditorTools.HasScriptingDefine(Defines.BuildMode.Client)) //IF HAS CLIENT DEFINE
+            {
+                EditorTools.RemoveScriptingDefine(Defines.BuildMode.Client); //REMOVE CLIENT DEFINE
+            }
+        }
 	}
 
 }

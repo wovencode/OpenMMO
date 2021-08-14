@@ -31,6 +31,10 @@ namespace OpenMMO.UI
 				return _networkManager;
 			}
 		}
+        public virtual bool CanClick()
+        {
+            return networkManager.CanClick();
+        }
 		
 		// -------------------------------------------------------------------------------
 		// networkAuthenticator

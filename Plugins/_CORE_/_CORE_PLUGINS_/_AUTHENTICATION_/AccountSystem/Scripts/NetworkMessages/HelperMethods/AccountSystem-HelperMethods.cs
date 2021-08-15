@@ -117,7 +117,7 @@ namespace OpenMMO.Network
         }
         void LogAccountLoginFailure(NetworkConnection conn, string username)
         {
-            Debug.Log("<<<ISSUE>>> [ACCOUNT SERVER] - "
+            Debug.Log(">>>ISSUE<<< [ACCOUNT SERVER] - "
                 + "Account Login Failure..."
                 + "\n" + "Connection-" + conn.connectionId
                 + " @" + conn.address
@@ -146,13 +146,13 @@ namespace OpenMMO.Network
                 conn = NetworkClient.connection; //ENSURE CONNECTION
                 if (conn == null)
                 {
-                    Debug.Log("<<<ISSUE>>> [PLAYER SERVER] - "
+                    Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
                         + "Join Server Failed - Client Not Connected..."
                         + "\n" + "LoginPlayer called by account " + username + " on character " + playername + " while not connected to server " + networkAddress.ToString());
                 }
                 else
                 {
-                    Debug.Log("<<<ISSUE>>> [PLAYER SERVER] - "
+                    Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
                         + "Join Server Failure Bypassed - We used the client connection instead..."
                         + "\n" + "LoginPlayer connection was null - Assigned NetworkClient.connection instead.");
                 }
@@ -164,13 +164,13 @@ namespace OpenMMO.Network
             GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
             if (!player)
             {
-                Debug.Log("<<<ISSUE>>> [PLAYER SERVER] - "
+                Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
                     + "Player not found in database...");
             }
             PlayerAccount pc = player.GetComponent<PlayerAccount>();
             if (!pc)
             {
-                Debug.Log("<<<ISSUE>>> [PLAYER SERVER] - "
+                Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
                     + "Player must have a PlayerAccount component...");
             }
             // -- check the security token if required
@@ -190,7 +190,7 @@ namespace OpenMMO.Network
                          + playername + " joined with client @"
                          + conn.address
                         ) : (
-                        "<<<ISSUE>>> [PLAYER SERVER] - "
+                        ">>>ISSUE<<< [PLAYER SERVER] - "
                          + playername + " failed to join with client @"
                          + conn.address)
                         );
@@ -198,7 +198,7 @@ namespace OpenMMO.Network
                 else
                 {
                     //TODO: We are in a zone
-                    Debug.Log("<<<ISSUE>>> [PLAYER SERVER] - "
+                    Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
                         + playername + " is already in the game");
                 }
                 state = NetworkState.Game;
@@ -215,7 +215,7 @@ namespace OpenMMO.Network
             }
             else
             {
-                Debug.Log("<<<ISSUE>>> [PLAYER SERVER] - "
+                Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
                     + "Invalid Token");
             }
 

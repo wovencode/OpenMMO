@@ -139,7 +139,7 @@ namespace OpenMMO.Network
         /// Public override event <c>OnStartClient</c>.
         /// Event triggered on client start.
         /// This Event occurs on the client.
-        /// The even registers the authentication event.
+        /// The event registers the authentication event.
         /// </summary>
         public override void OnStartClient()
         {
@@ -207,7 +207,7 @@ namespace OpenMMO.Network
         void LogConnectionFailure(NetworkConnection conn)
         {
 #if DEBUG
-            Debug.Log("<b><<<ISSUE>>> [<color=red>CONNECTION CLIENT</color>]</b> - "
+            Debug.Log("<b>>>>ISSUE<<< [<color=red>CONNECTION CLIENT</color>]</b> - "
                 + "<b>Failed to connect to Server...</b>"
                 + "\n" + "Connection-" + conn.connectionId + " @" + conn.address + " connecting to Server @" + NetworkClient.serverIp + "...");
 #endif

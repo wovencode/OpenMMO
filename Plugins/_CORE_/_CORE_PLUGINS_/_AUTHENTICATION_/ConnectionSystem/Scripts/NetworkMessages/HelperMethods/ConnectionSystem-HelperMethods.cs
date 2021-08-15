@@ -47,7 +47,7 @@ namespace OpenMMO.Network
         void LogConnectionFailure(NetworkConnection conn)
         {
 #if DEBUG
-            Debug.Log("<b><<<ISSUE>>> [<color=red>CONNECTION CLIENT</color>]</b> - "
+            Debug.Log("<b>>>>ISSUE<<< [<color=red>CONNECTION CLIENT</color>]</b> - "
                 + "<b>Failed to connect to Server...</b>"
                 + "\n" + "Connection-" + conn.connectionId + " @" + conn.address + " connecting to Server @" + NetworkClient.serverIp + "...");
 #endif

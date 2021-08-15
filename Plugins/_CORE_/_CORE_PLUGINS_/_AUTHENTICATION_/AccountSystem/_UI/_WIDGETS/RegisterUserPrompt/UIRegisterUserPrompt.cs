@@ -1,9 +1,12 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
 using OpenMMO.Debugging;
 using System.Linq;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,15 +20,15 @@ namespace OpenMMO.UI
 	public partial class UIRegisterUserPrompt : UIRoot
 	{
 	
-		[Header("Window")]
+		[Header("STATUS BOX")]
 		public Text statusText;
 		
-		[Header("Input Fields")]
+		[Header("REGISTRATION DATA")]
 		public InputField usernameInput;
 		public InputField userpassInput;
 		public InputField usermailInput;
 		
-		[Header("Buttons")]
+		[Header("BUTTONS")]
 		public Button registerButton;
 		public Button backButton;
 		

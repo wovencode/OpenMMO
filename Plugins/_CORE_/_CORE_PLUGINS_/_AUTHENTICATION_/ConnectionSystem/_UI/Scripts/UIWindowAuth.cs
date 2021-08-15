@@ -96,7 +96,7 @@ namespace OpenMMO.UI
             //VALIDATE COMPONENTS
             if (networkAuthenticator == null || networkManager == null)
             {
-                Debug.LogWarning("<<<ISSUE>>> [CONNECT] The Component Connections for this UI Element have not been assigned.");
+                Debug.LogWarning(">>>ISSUE<<< [CONNECT] The Component Connections for this UI Element have not been assigned.");
                 return;
             }
 

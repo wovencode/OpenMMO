@@ -105,7 +105,7 @@ namespace OpenMMO.Network
 			}
 			else
             {
-                Debug.Log("<<<ISSUE>>> [ZONE SERVER] - Unable to warp " + playername + " to zone " + zoneName + "...");
+                Debug.Log(">>>ISSUE<<< [ZONE SERVER] - Unable to warp " + playername + " to zone " + zoneName + "...");
                 message.text = systemText.playerSwitchServerFailure;
 				message.success = false;
 			}

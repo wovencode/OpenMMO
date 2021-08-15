@@ -1,9 +1,11 @@
-﻿
+
 using UnityEngine;
-using UnityEngine.UI;
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
+
+using UnityEngine.UI;
+using TMPro;
 
 namespace OpenMMO.UI
 {
@@ -13,13 +15,17 @@ namespace OpenMMO.UI
 	// ===================================================================================
 	public partial class UISelectPlayerSlot : UIButton
 	{
-		
-		[Header("UI Elements")]
-		public Text textName;
-		public Image imageSelected;
+		[Header("AVATAR NAME")]
+        [Tooltip("Setting this overrides the regular text field below")]
+		public TMP_Text nameTextMesh;
+        [Tooltip("This will be overridden when the TextMesh pro field above is set")]
+        public Text nameText;
+        
+		[Header("BUTTONS")]
 		public Button buttonSelect;
 		
-		[Header("Used Images")]
+		[Header("ICONS")]
+		public Image imageSelected;
 		public Sprite unselectedImage;
 		public Sprite selectedImage;
 		
@@ -37,13 +43,13 @@ namespace OpenMMO.UI
 			base.Init(_buttonGroup);
 			
 			_index = index;
-			textName.text = name;
+
+            //NAME TEXT
+            if (nameTextMesh != null) nameTextMesh.text = name; //TEXT MESH PRO
+			else if (nameText != null) nameText.text = name; //TEXT
 			
-			if (selected)
-				imageSelected.sprite = selectedImage;
-			else
-				imageSelected.sprite = unselectedImage;
-			
+			if (selected) imageSelected.sprite = selectedImage;
+			else imageSelected.sprite = unselectedImage;
 		}
 		
 		// -------------------------------------------------------------------------------

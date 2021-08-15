@@ -1,11 +1,11 @@
-//BY DX4D
+﻿//BY DX4D
 
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace OpenMMO.UI
 {
-    [RequireComponent(typeof(UIRoot))]
+	//[RequireComponent(typeof(UIRoot))]
     public partial class UIShowWidgetButton : MonoBehaviour
     {
         //[Header("PARENT WIDGET LINK")]

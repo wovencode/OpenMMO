@@ -51,7 +51,7 @@ namespace OpenMMO.Network
             }
             else if (guiScene == null || string.IsNullOrWhiteSpace(guiScene.SceneName))
             {
-                Debug.Log("<b><<<ISSUE>>> [<color=red>GUI CLIENT</color>]</b> - "
+                Debug.Log("<b>>>>ISSUE<<< [<color=red>GUI CLIENT</color>]</b> - "
                     + " UI Not Loaded - GUI Scene was not assigned in " + this.name);
                 return;
             }

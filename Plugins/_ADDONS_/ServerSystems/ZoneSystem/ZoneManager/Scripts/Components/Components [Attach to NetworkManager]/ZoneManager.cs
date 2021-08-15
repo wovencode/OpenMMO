@@ -307,7 +307,7 @@ namespace OpenMMO.Zones
                     }
                     else
                     {
-                        UnityEngine.Debug.Log("<<<ISSUE>>> [ZONE SERVER STARTUP] - "
+                        UnityEngine.Debug.Log(">>>ISSUE<<< [ZONE SERVER STARTUP] - "
                             + "Failed to launch Zone Server " + zoneConfig.subZones[i].title);
                     }
                 }

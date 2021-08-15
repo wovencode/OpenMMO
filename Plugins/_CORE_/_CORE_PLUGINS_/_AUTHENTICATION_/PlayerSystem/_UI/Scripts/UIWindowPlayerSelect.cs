@@ -30,8 +30,8 @@ namespace OpenMMO.UI
 		public Transform contentViewport;
 		
 		[Header("Buttons")]
-		public Button createButton;
 		public Button selectButton;
+		public Button createButton;
 		public Button deleteButton;
 		public Button backButton;
 		
@@ -75,16 +75,17 @@ namespace OpenMMO.UI
 			UpdatePlayerIndex();
 			
 			// -- Buttons
-			
-			createButton.interactable = networkManager.playerPreviews.Count < networkManager.maxPlayers;
-			createButton.onClick.SetListener(() => { OnClickCreate(); });
 		
+            //SELECT
 			selectButton.interactable = (index != -1);
 			selectButton.onClick.SetListener(() => { OnClickSelect(); });
-		
+			//CREATE
+			createButton.interactable = networkManager.playerPreviews.Count < networkManager.maxPlayers;
+			createButton.onClick.SetListener(() => { OnClickCreate(); });
+		    //DELETE
 			deleteButton.interactable = (index != -1);
 			deleteButton.onClick.SetListener(() => { OnClickDelete(); });
-					
+            //LOGOUT
 			backButton.onClick.SetListener(() => { OnClickBack(); });
 		
 		}

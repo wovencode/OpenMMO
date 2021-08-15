@@ -66,7 +66,7 @@ namespace OpenMMO.Network
 			
 			if (!message.success)
             {
-                Debug.Log("<<<ISSUE>>> [CONNECTION SERVER] - [AUTOCONNECT] - "
+                Debug.Log(">>>ISSUE<<< [CONNECTION SERVER] - [AUTOCONNECT] - "
                     + "Authentication failed for connection-" + conn.connectionId + " @" + conn.address);
 
                 conn.isAuthenticated = false;

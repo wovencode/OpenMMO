@@ -1,5 +1,9 @@
-//BY FHIZ
 
+using OpenMMO;
+using OpenMMO.Network;
+using OpenMMO.UI;
+using OpenMMO.Debugging;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,47 +11,25 @@ namespace OpenMMO.UI
 {
 
 	// ===================================================================================
-	// UIWindowLoginUser
+	// UIWindowRegisterUser
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIWindowLoginUser : UIRoot
+	public partial class UIRegisterUserPrompt : UIRoot
 	{
-		
+	
 		[Header("Window")]
 		public Text statusText;
 		
 		[Header("Input Fields")]
 		public InputField usernameInput;
 		public InputField userpassInput;
+		public InputField usermailInput;
 		
 		[Header("Buttons")]
-		public Button loginButton;
+		public Button registerButton;
 		public Button backButton;
 		
-		[Header("Settings")]
-		public bool rememberCredentials;
-		[Range(0,9)] public float maxDelayDuration = 1;
-		
-		public static UIWindowLoginUser singleton;
-		
-		// -------------------------------------------------------------------------------
-		// Start
-		// -------------------------------------------------------------------------------
-		void Start()
-		{
-			if (!rememberCredentials) return;
-			
-			if (PlayerPrefs.HasKey(Defines.Login.UserName))
-				usernameInput.text = PlayerPrefs.GetString(Defines.Login.UserName, "");
-			else
-				usernameInput.text = "";
-				
-			if (PlayerPrefs.HasKey(Defines.Login.Password))
-				userpassInput.text = PlayerPrefs.GetString(Defines.Login.Password, "");
-			else
-				userpassInput.text = "";
-				
-		}
+		public static UIRegisterUserPrompt singleton;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -59,18 +41,33 @@ namespace OpenMMO.UI
 		}
 		
 		// -------------------------------------------------------------------------------
+		// Show
+		// -------------------------------------------------------------------------------
+		public override void Show()
+		{
+			usernameInput.text = "";
+			userpassInput.text = "";
+			usermailInput.text = "";
+			base.Show();
+		}
+		
+		// -------------------------------------------------------------------------------
 		// ThrottledUpdate
 		// -------------------------------------------------------------------------------
 		protected override void ThrottledUpdate()
 		{
+            usernameInput.text = Tools.TrimExcessWhitespace(usernameInput.text, true); //TRIM ALL WHITESPACE
 			
-			if (!Tools.IsAllowedName(usernameInput.text) || !Tools.IsAllowedPassword(userpassInput.text))
-				statusText.text = "Check Name/Password";
+			if (!Tools.IsAllowedName(usernameInput.text))
+				statusText.text = "ENTER A VALID USERNAME";
+            else if (!Tools.IsAllowedPassword(userpassInput.text))
+				statusText.text = "ENTER A VALID PASSWORD";
 			else
 				statusText.text = "";
-			
-			loginButton.interactable = networkManager.CanLoginUser(usernameInput.text, userpassInput.text);
-			loginButton.onClick.SetListener(() => { OnClickLogin(); });
+
+
+			registerButton.interactable = networkManager.CanRegisterUser(usernameInput.text, userpassInput.text);
+			registerButton.onClick.SetListener(() => { OnClickRegister(); });
 			
 			backButton.onClick.SetListener(() => { OnClickBack(); });
 
@@ -79,37 +76,14 @@ namespace OpenMMO.UI
 		// =============================== BUTTON HANDLERS ===============================
 		
 		// -------------------------------------------------------------------------------
-		// OnClickLogin
+		// OnClickRegister
 		// -------------------------------------------------------------------------------
-		public void OnClickLogin()
+		public void OnClickRegister()
 		{
-		
-			if (rememberCredentials)
-			{
-				PlayerPrefs.SetString(Defines.Login.UserName, usernameInput.text);
-				PlayerPrefs.SetString(Defines.Login.Password, userpassInput.text);
-			}
+			networkManager.TryRegisterUser(usernameInput.text, userpassInput.text, usermailInput.text);
 			
-			Invoke(nameof(OnExecuteLogin), UnityEngine.Random.Range(maxDelayDuration/4, maxDelayDuration));
-			
-			loginButton.interactable 	= false;
-			usernameInput.interactable 	= false;
-			userpassInput.interactable 	= false;
-
-		}
-		
-		// -------------------------------------------------------------------------------
-		// OnExecuteLogin
-		// -------------------------------------------------------------------------------
-		protected void OnExecuteLogin()
-		{
-		
-			networkManager.TryLoginUser(usernameInput.text, userpassInput.text);
-			
-			loginButton.interactable 	= true;
-			usernameInput.interactable 	= true;
-			userpassInput.interactable 	= true;
-			
+			UILoginUserPrompt.singleton.Show();
+			Hide();
 		}
 		
 		// -------------------------------------------------------------------------------

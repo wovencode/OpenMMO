@@ -35,7 +35,7 @@ public static class Hook
         header += "<b>[<color=orange>" + "CLIENT" + "</color>]" + spacer + "[HOOKS]</b>";
 #endif
         UnityEngine.Debug.Log(header + spacer
-            + "Hooking method " + baseMethodName + "...");
+            + "Hooking into method " + baseMethodName + "...");
 
         DevExtUtils.InvokeInstanceDevExtMethods(obj, baseMethodName, args);
     }

@@ -20,7 +20,7 @@ namespace OpenMMO.Network
             UI.UIWindowAuth.singleton.Hide();
             //UI.UIWindowAccountOptionsMenu.singleton.Show();
             //UI.UIAccountOptionsMenu.singleton.Show();
-            UI.UIWindowLoginUser.singleton.Show(); //SHOW LOGIN WINDOW
+            UI.UILoginUserPrompt.singleton.Show(); //SHOW LOGIN WINDOW
 
             LogConnectionSuccess(conn); //LOG SUCCESS
         }

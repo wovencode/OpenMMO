@@ -108,7 +108,7 @@ namespace OpenMMO.Network
                 else
                     UIWindowPlayerCreate.singleton.Show();
 
-                UIWindowLoginUser.singleton.Hide();
+                UILoginUserPrompt.singleton.Hide();
 
                 debug.LogFormat(this.name, nameof(OnServerResponseUserLogin), conn.Id(), msg.players.Length.ToString()); //DEBUG
 

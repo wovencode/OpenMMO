@@ -61,7 +61,7 @@ namespace OpenMMO.Network
         /// Public function <c>CanLoginUser</c>.
         /// Run on the client.
         /// Return a boolean value detailing whether the the user can login checks the username and password
-        /// Called by <see cref="UI.UIWindowLoginUser"/>
+        /// Called by <see cref="UI.UILoginUserPrompt"/>
         /// </summary>
         /// <param name="username"></param><param name="password"></param>
         /// <returns> Returns a boolean value detailing whether the user can login </returns>

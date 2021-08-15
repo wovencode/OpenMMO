@@ -1,3 +1,4 @@
+/* //DEPRECIATED
 //BY FHIZ
 //MODIFIED BY DX4D
 
@@ -11,7 +12,7 @@ namespace OpenMMO.UI
     {
 
         [Header("LOGIN PROMPTS")]
-        public UIWindowLoginUser loginWindow;
+        public UILoginUserPrompt loginWindow;
         public UIRegisterUserPrompt registerWindow;
 
         [Header("LOGIN BUTTONS")]
@@ -60,10 +61,10 @@ namespace OpenMMO.UI
             UpdateChangePasswordButton();
             UpdateDeleteButton();
             UpdateQuitButton();
-            /* //DEPRECIATED
-			serverButton.interactable = networkManager.CanStartServer();
-			serverButton.onClick.SetListener(() => { OnClickStartServer(); });
-		    */
+            //DEPRECIATED
+			//serverButton.interactable = networkManager.CanStartServer();
+			//serverButton.onClick.SetListener(() => { OnClickStartServer(); });
+		    
         }
 
         //UPDATE LOGIN BUTTON
@@ -186,3 +187,4 @@ namespace OpenMMO.UI
 
     }
 }
+*/

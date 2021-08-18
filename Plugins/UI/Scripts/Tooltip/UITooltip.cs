@@ -1,9 +1,13 @@
-//by Fhiz
-using UnityEngine;
-using UnityEngine.UI;
+//BY FHIZ
+//MODIFIED BY DX4D
+
 using UnityEngine.EventSystems;
 using OpenMMO;
 using OpenMMO.UI;
+
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro; //TEXTMESH PRO
 
 namespace OpenMMO.UI
 {
@@ -14,11 +18,18 @@ namespace OpenMMO.UI
 	[DisallowMultipleComponent]
 	public class UITooltip : UIBase
 	{
+		[Header("TEXTBOX LINKS")]
+		[SerializeField] Text tooltipText;
+        [SerializeField] TMP_Text tooltipTextMesh;
+
+        public static UITooltip singleton;
 		
-		public Text tooltipText;
-		
-		public static UITooltip singleton;
-		
+        void SetTooltipText(string _text)
+        {
+            if (tooltipTextMesh) tooltipTextMesh.text = _text; //TEXTMESH PRO
+            else if (tooltipText) tooltipText.text = _text; //REGULAR TEXT
+        }
+
 	 	/// <summary>
     	/// Awake sets the singleton (as there can only be one singleton on screen at the same time) and calls base.Awake
     	/// </summary>
@@ -33,7 +44,7 @@ namespace OpenMMO.UI
    	 	/// </summary>
 		public void Show(string _text)
 		{
-			tooltipText.text = _text;
+            SetTooltipText(_text);
 			base.Show();
 		}
 		
@@ -43,7 +54,7 @@ namespace OpenMMO.UI
 		public void UpdateTooltip(string _text)
 		{
 			if (root.activeSelf)
-				tooltipText.text = _text;
+            SetTooltipText(_text);
 		}
 		
 		/// <summary>

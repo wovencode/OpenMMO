@@ -431,12 +431,13 @@ MonoBehaviour:
   closeTriggerName: close
   descriptionText: {fileID: 4546248262135491075}
   descriptionTextMesh: {fileID: 8170441748019465436}
+  _showing: 0
   confirmButton: {fileID: 4546248262284177366}
-  confirmText: {fileID: 4546248263055280831}
-  confirmTextMesh: {fileID: 652589250265031978}
+  confirmButtonText: {fileID: 4546248263055280831}
+  confirmButtonTextMesh: {fileID: 652589250265031978}
   cancelButton: {fileID: 4546248262473157353}
-  cancelText: {fileID: 4546248262467058738}
-  cancelTextMesh: {fileID: 1727169880831680348}
+  cancelButtonText: {fileID: 4546248262467058738}
+  cancelButtonTextMesh: {fileID: 1727169880831680348}
 --- !u!1 &4546248262135491085
 GameObject:
   m_ObjectHideFlags: 0

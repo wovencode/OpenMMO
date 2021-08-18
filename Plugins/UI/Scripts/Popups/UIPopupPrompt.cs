@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -24,12 +24,17 @@ namespace OpenMMO.UI
 		protected Action cancelAction;
 		
 		[SerializeField] protected Button confirmButton;
-		[SerializeField] protected Button cancelButton;
-		
-		/// <summary>
-    	/// Awake sets the singleton (as this popup is unique) and calls base.Awake
-    	/// </summary>
-		protected override void Awake()
+		[SerializeField] protected Text confirmText;
+        [SerializeField] protected TMPro.TMP_Text confirmTextMesh;
+
+        [SerializeField] protected Button cancelButton;
+		[SerializeField] protected Text cancelText;
+        [SerializeField] protected TMPro.TMP_Text cancelTextMesh;
+
+        /// <summary>
+        /// Awake sets the singleton (as this popup is unique) and calls base.Awake
+        /// </summary>
+        protected override void Awake()
 		{
 			singleton = this;
 			base.Awake();
@@ -40,32 +45,76 @@ namespace OpenMMO.UI
     	/// </summary>
 		public void Init(string _description, Action _confirmAction, Action _cancelAction=null, string _confirmText="", string _cancelText="")
 		{
-			
 			base.Init();
 			
-			confirmAction 	= _confirmAction;
-			cancelAction 	= _cancelAction;
-			
-			if (confirmButton)
-				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
-				
-			if (confirmButton && confirmButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_confirmText))
-				confirmButton.GetComponent<Text>().text = _confirmText;
-				
-			if (cancelButton)
-				cancelButton.onClick.SetListener(() => { onClickCancel(); });
-			
-			if (cancelButton && cancelButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_cancelText))
-				cancelButton.GetComponent<Text>().text = _cancelText;
-				
+            InitializeConfirm(_confirmAction, _confirmText); //INIT CONFIRM
+            InitializeCancel(_cancelAction, _cancelText); //INIT CANCEL
+
 			Show(_description);
-			
 		}
-		
-		/// <summary>
-    	/// Called when the Confirm button is pressed.
-    	/// </summary>
-		public override void onClickConfirm()
+        //INIT CONFIRM
+        void InitializeConfirm(Action _confirmAction, string _confirmText)
+        {
+            InitializeConfirmAction(_confirmAction);
+            InitializeConfirmButton(_confirmText);
+        }
+        void InitializeConfirmAction(Action _confirmAction)
+        {
+            confirmAction = _confirmAction;
+        }
+        void InitializeConfirmButton(string _confirmText)
+        {
+            if (confirmButton)
+            {
+                confirmButton.onClick.SetListener(() => { onClickConfirm(); }); //ON CLICK LISTENER
+
+                if (!String.IsNullOrWhiteSpace(_confirmText))
+                {
+                    if (confirmTextMesh != null) //TEXTMESH PRO
+                    {
+                        confirmTextMesh.text = _confirmText;
+                    }
+                    else if (confirmText != null) //REGULAR TEXT
+                    {
+                        confirmText.text = _confirmText;
+                    }
+                }
+            }
+        }
+        //INIT CANCEL
+        void InitializeCancel(Action _cancelAction, string _cancelText)
+        {
+            InitializeCancelAction(_cancelAction);
+            InitializeCancelButton(_cancelText);
+        }
+        void InitializeCancelAction(Action _cancelAction)
+        {
+            cancelAction = _cancelAction;
+        }
+        void InitializeCancelButton(string _cancelText)
+        {
+            if (cancelButton)
+            {
+                cancelButton.onClick.SetListener(() => { onClickCancel(); }); //ON CLICK LISTENER
+
+                if (!String.IsNullOrWhiteSpace(_cancelText))
+                {
+                    if (cancelTextMesh != null) //TEXTMESH PRO
+                    {
+                        cancelTextMesh.text = _cancelText;
+                    }
+                    else if (cancelText != null) //REGULAR TEXT
+                    {
+                        cancelText.text = _cancelText;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when the Confirm button is pressed.
+        /// </summary>
+        public override void onClickConfirm()
 		{
 			if (confirmAction != null)
 				confirmAction();

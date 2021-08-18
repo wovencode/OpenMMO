@@ -136,32 +136,40 @@ namespace OpenMMO
         //SERVER
         void AddServerDefine()
         {
+#if UNITY_EDITOR
             if (!EditorTools.HasScriptingDefine(Defines.BuildMode.Server)) //IF NO SERVER DEFINE
             {
                 EditorTools.AddScriptingDefine(Defines.BuildMode.Server); //ADD SERVER DEFINE
             }
+#endif
         }
         void RemoveServerDefine()
         {
+#if UNITY_EDITOR
             if (EditorTools.HasScriptingDefine(Defines.BuildMode.Server)) //IF HAS SERVER DEFINE
             {
                 EditorTools.RemoveScriptingDefine(Defines.BuildMode.Server); //REMOVE SERVER DEFINE
             }
+#endif
         }
         //CLIENT
         void AddClientDefine()
         {
+#if UNITY_EDITOR
             if (!EditorTools.HasScriptingDefine(Defines.BuildMode.Client)) //IF NO CLIENT DEFINE
             {
                 EditorTools.AddScriptingDefine(Defines.BuildMode.Client); //ADD CLIENT DEFINE
             }
+#endif
         }
         void RemoveClientDefine()
         {
+#if UNITY_EDITOR
             if (EditorTools.HasScriptingDefine(Defines.BuildMode.Client)) //IF HAS CLIENT DEFINE
             {
                 EditorTools.RemoveScriptingDefine(Defines.BuildMode.Client); //REMOVE CLIENT DEFINE
             }
+#endif
         }
 	}
 

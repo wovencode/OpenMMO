@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using OpenMMO.Network;
@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using TMPro; //TEXTMESH PRO
 
 namespace OpenMMO.UI
 {
@@ -20,11 +21,15 @@ namespace OpenMMO.UI
 	public abstract partial class UIPopup : UIBase
 	{
 		
-		[Header("UI Popup")]
+		[Header("COMPONENT LINKS")]
 		[SerializeField] protected Animator animator;
+		[Header("TRIGGER NAMES")]
 		[SerializeField] protected string showTriggerName = "show";
 		[SerializeField] protected string closeTriggerName = "close";
-		[SerializeField] protected Text description;
+
+		[Header("DESCRIPTION")]
+		[SerializeField] protected Text descriptionText;
+		[SerializeField] protected TMP_Text descriptionTextMesh;
 		
 		protected bool _fadeIn = true;
 		
@@ -40,8 +45,11 @@ namespace OpenMMO.UI
     	/// Shows the popup with the given text and optional fades in the black background (or shows that one immediately as well)
     	/// </summary>
 		public virtual void Show(string _text, bool fade=true)
-		{	
-			description.text = _text;
+        {
+            if (descriptionTextMesh != null) { descriptionTextMesh.text = _text; }//TEXT MESH PRO
+            else if (descriptionText != null) { descriptionText.text = _text; } //REGULAR TEXT
+            else { Debug.LogWarning("UI Element " + name + " does not have a description text box assigned"); } //NO TEXT
+
 			base.Show();
 			Init(fade);
 		}

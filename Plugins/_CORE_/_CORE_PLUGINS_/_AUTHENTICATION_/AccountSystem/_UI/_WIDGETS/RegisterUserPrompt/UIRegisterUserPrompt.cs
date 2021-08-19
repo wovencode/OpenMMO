@@ -85,7 +85,7 @@ namespace OpenMMO.UI
 		{
 			networkManager.TryRegisterUser(usernameInput.text, userpassInput.text, usermailInput.text);
 			
-			UILoginUserPrompt.singleton.Show();
+			UILoginUserPrompt.singleton.Show(); //RETURN TO LOGIN
 			Hide();
 		}
 		
@@ -95,7 +95,8 @@ namespace OpenMMO.UI
 		public void OnClickBack()
         {
             //UIWindowAccountOptionsMenu.singleton.Show();
-            UIAccountOptionsMenu.singleton.Show();
+            //UIAccountMenu.singleton.Show();
+            UILoginUserPrompt.singleton.Show(); //RETURN TO LOGIN
             Hide();
 		}
 		

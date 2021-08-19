@@ -1,18 +1,21 @@
-//by Fhiz
-using UnityEngine;
-using UnityEngine.UI;
+//BY FHIZ
+//MODIFIED BY DX4D
+
 using OpenMMO;
 using OpenMMO.UI;
+
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace OpenMMO.UI
 {
 
 	/// <summary>
-    /// Bartial base class for many kinds of UIButtons. Supports Button Groups.
+    /// Partial base class for many kinds of UIButtons. Supports Button Groups.
     /// </summary>
 	public partial class UIButton : MonoBehaviour
 	{
-		
+		[Header("BUTTONS")]
 		public Button button;
 		[Range(0,9)] public float delayDuration = 1;
 		

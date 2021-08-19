@@ -1,70 +1,77 @@
-//by Fhiz
-using OpenMMO;
-using OpenMMO.UI;
+//BY DX4D
+
 using UnityEngine;
-using System.Collections;
-using System;
 using UnityEngine.UI;
+using System;
 
 namespace OpenMMO.UI
 {
+    [DisallowMultipleComponent]
+    public partial class UIPopupCountdown : UIPopup
+    {
+        [Header("BUTTONS")]
+        [SerializeField] Button cancelButton;
 
-	/// <summary>
-    /// This popup type offers no choices at all (not even Cancel/Close). Instead it simply
-	/// displays a short message to the user and hides itself after a preset amount of seconds.
-	/// This class is universal and can be used everywhere you want to display small pieces of
-	/// information to your user, that require direct attention.
-    /// </summary>
-	[DisallowMultipleComponent]
-	public partial class UIPopupCountdown: UIPopup
-	{
+        //SINGLETON
+        public static UIPopupCountdown singleton;
 
-		public static UIPopupCountdown singleton;
-
+        //ACTIONS
         protected Action countdownAction;
+        protected Action cancelAction;
 
-        /// <summary>
-        /// Awake sets the singleton (as this popup is unique) and calls base.Awake
-        /// </summary>
+        //ON VALIDATE
+        //private void OnValidate()
+        //{
+        //    if (cancelButton) cancelButton.onClick.SetListener(() => { OnClickCancel(); });
+        //}
+
+        //AWAKE
         protected override void Awake()
-		{
-			singleton = this;
-			base.Awake();
-		}
-		
-		/// <summary>
-    	/// Initializes the popup by setting its text and close duration.
-    	/// </summary>
-		public void Init(string _description, float _duration=2, Action _countdownAction = null, bool fade=true)
         {
-            countdownAction = _countdownAction;
-            Show(_description, fade);
-			Invoke(nameof(Execute), _duration);
-		}
-        void Execute()
-        {
-            if (countdownAction != null)
-            {
-                countdownAction();
-            }
+            singleton = this;
+            base.Awake();
         }
-		
-		/// <summary>
-    	/// Cancel the invoke when this object is disabled.
-    	/// </summary>
-		void OnDisable()
-		{
-			CancelInvoke(nameof(Close));
-		}
-		
-		/// <summary>
-    	/// Cancel the invoke when this object is destroyed.
-    	/// </summary>
-		void OnDestroy()
-		{
-			CancelInvoke(nameof(Close));
-		}
-		
-	}
 
+        //INIT
+        public void Init(string _description, float _duration = 5, Action _countdownAction = null, Action _cancelAction = null, bool fade = true)
+        {
+            if (!String.IsNullOrWhiteSpace(_description)) _description += "\n";
+            _description += "Logging out in " + _duration + " seconds...";
+            countdownAction = _countdownAction;
+            cancelAction = _cancelAction;
+            Show(_description, fade);
+            Invoke(nameof(ExecuteAction), _duration);
+        }
+        //EXECUTE ACTION
+        void ExecuteAction() { countdownAction?.Invoke(); }
+
+        // B U T T O N  C L I C K  H A N D L E R S
+
+        //ON CLICK CANCEL
+        public void OnClickCancel()
+        {
+            CancelCountdown();
+            CancelAction();
+            Hide();
+        }
+        //CANCEL ACTION
+        void CancelAction() { cancelAction?.Invoke(); }
+        //CANCEL COUNTDOWN
+        void CancelCountdown()
+        {
+            CancelInvoke(nameof(countdownAction));
+        }
+
+        // S H U T D O W N
+
+        //CANCEL INVOCATION ON DISABLE/DESTROY
+        void OnDisable() { SafeDispose(); }
+        void OnDestroy() { SafeDispose(); }
+        //SAFE DISPOSE
+        void SafeDispose()
+        {
+            CancelInvoke(nameof(countdownAction));
+            CancelInvoke(nameof(cancelAction));
+        }
+    }
 }

@@ -70,7 +70,7 @@ namespace OpenMMO.UI
 		{
 			Hide();
 			//UIWindowAccountOptionsMenu.singleton.Show();
-			UIAccountOptionsMenu.singleton.Show();
+			UIAccountMenu.singleton.Show();
 		}
 		
 		// -------------------------------------------------------------------------------

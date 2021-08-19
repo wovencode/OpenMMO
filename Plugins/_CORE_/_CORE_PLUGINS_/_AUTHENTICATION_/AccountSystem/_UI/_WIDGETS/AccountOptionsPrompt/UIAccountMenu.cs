@@ -1,14 +1,15 @@
 //BY FHIZ
 //MODIFIED BY DX4D
 
-using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+
+using UnityEngine;
 
 namespace OpenMMO.UI
 {
     [DisallowMultipleComponent]
-    public partial class UIAccountOptionsMenu : UIRoot
+    public partial class UIAccountMenu : UIRoot
     {
         /* //DEPRECIATED
         [Header("LOGIN PROMPTS")]
@@ -26,10 +27,8 @@ namespace OpenMMO.UI
         public Button deleteButton;
         //public Button serverButton; //DEPRECIATED
         */
-        [Header("QUIT BUTTON")]
-        public Button quitButton;
 
-        public static UIAccountOptionsMenu singleton;
+        public static UIAccountMenu singleton;
 
         // -------------------------------------------------------------------------------
         // Awake
@@ -40,26 +39,26 @@ namespace OpenMMO.UI
             base.Awake();
         }
 
-        // -------------------------------------------------------------------------------
-        // Show
-        // -------------------------------------------------------------------------------
-        public override void Show()
-        {
-            Logout(networkManager);
-            base.Show();
-        }
-
+        /* //DEPRECIATED
+        [Header("QUIT BUTTON")]
+        public Button quitButton;
         // -------------------------------------------------------------------------------
         // ThrottledUpdate
         // -------------------------------------------------------------------------------
         protected override void ThrottledUpdate()
         {
             UpdateQuitButton();
-            /* //DEPRECIATED
 			serverButton.interactable = networkManager.CanStartServer();
 			serverButton.onClick.SetListener(() => { OnClickStartServer(); });
-		    */
         }
+        // Q U I T  B U T T O N
+
+        //UPDATE QUIT BUTTON
+        void UpdateQuitButton()
+        {
+            quitButton.onClick.SetListener(() => { OnClickQuit(); });
+        }
+		    */
 
         /* //DEPRECIATED
         //UPDATE LOGIN BUTTON
@@ -136,20 +135,18 @@ namespace OpenMMO.UI
             ShowWindow(deleteWindow);
         }
         */
-        // Q U I T  B U T T O N
 
-        //UPDATE QUIT BUTTON
-        void UpdateQuitButton()
+        /* //DEPRECIATED
+        //QUIT SERVER
+        public void OnClickQuit()
         {
-            quitButton.onClick.SetListener(() => { OnClickQuit(); });
+            QuitServer(networkManager);
+            Hide();
         }
-
-        // S Y S T E M  F U N C T I O N S
-        //LOGOUT
-        void Logout(Network.NetworkManager _manager)
+        void QuitServer(Network.NetworkManager _manager)
         {
-            _manager.TryLogoutUser();
-        }
+            _manager.Quit();
+        }*/
         /* //DEPRECIATED
         //SHOW WINDOW
         void ShowWindow(UIBase _window)
@@ -169,18 +166,5 @@ namespace OpenMMO.UI
             _manager.TryStartServer();
         }
         */
-
-        //QUIT SERVER
-        public void OnClickQuit()
-        {
-            QuitServer(networkManager);
-            Hide();
-        }
-        void QuitServer(Network.NetworkManager _manager)
-        {
-            _manager.Quit();
-        }
-        
-
     }
 }

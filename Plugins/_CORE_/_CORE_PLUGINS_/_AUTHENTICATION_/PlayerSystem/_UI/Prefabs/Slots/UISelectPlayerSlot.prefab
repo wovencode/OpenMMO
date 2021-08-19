@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 593653082234146145}
   - component: {fileID: 593653082234146158}
   m_Layer: 5
-  m_Name: SelectText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -200,19 +200,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 593653083065137083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6118895898396880698}
-        m_TargetAssemblyTypeName: OpenMMO.UI.UISelectPlayerSlot, Assembly-CSharp-firstpass
-        m_MethodName: OnPressed
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1062882532025308656
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +498,7 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 8
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 1
@@ -809,14 +797,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4880ea1a215aa594fa42cbfdf3be1d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 5206519524152768626}
+  button: {fileID: 593653083065137080}
   delayDuration: 1
-  nameTextMesh: {fileID: 2140084813195190737}
   nameText: {fileID: 593653082234146158}
+  nameTextMesh: {fileID: 2140084813195190737}
   buttonSelect: {fileID: 593653083065137080}
-  imageSelected: {fileID: 2220008588058428589}
-  unselectedImage: {fileID: 21300000, guid: c143e150bd357e5459a47f7c6b517b92, type: 3}
+  unselectedImage: {fileID: 21300000, guid: d358f66200c0c45b78e932a17a5ffb79, type: 3}
   selectedImage: {fileID: 21300000, guid: d5ecc34993efb4f75a1c9eb1693ec916, type: 3}
+  imageSelected: {fileID: 2220008588058428589}
 --- !u!114 &6528529618481354182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,8 +890,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d358f66200c0c45b78e932a17a5ffb79, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

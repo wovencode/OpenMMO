@@ -18,7 +18,7 @@ namespace OpenMMO.UI
 		
 		[Header("Windows")]
 		//public UIWindowAccountOptionsMenu mainWindow;
-		public UIAccountOptionsMenu mainWindow;
+		public UIAccountMenu mainWindow;
 		public UIWindowPlayerCreate createWindow;
 		 
 		[Header("Prefab")]
@@ -33,7 +33,7 @@ namespace OpenMMO.UI
 		public Button selectButton;
 		public Button createButton;
 		public Button deleteButton;
-		public Button backButton;
+		public Button menuButton;
 		
 		[Header("System Texts")]
 		public string popupDescription = "Do you really want to delete this character?";
@@ -86,7 +86,7 @@ namespace OpenMMO.UI
 			deleteButton.interactable = (index != -1);
 			deleteButton.onClick.SetListener(() => { OnClickDelete(); });
             //LOGOUT
-			backButton.onClick.SetListener(() => { OnClickBack(); });
+			menuButton.onClick.SetListener(() => { OnClickBack(); });
 		
 		}
 		

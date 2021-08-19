@@ -408,7 +408,7 @@ MonoBehaviour:
   selectButton: {fileID: 2884946682312055018}
   createButton: {fileID: 7160163247647947040}
   deleteButton: {fileID: 4854751939603257298}
-  backButton: {fileID: 3539074300342797218}
+  menuButton: {fileID: 3539074300342797218}
   popupDescription: Do you really want to delete this character?
   popupLogin: Logging in, please wait...
 --- !u!1 &900374146572356752
@@ -445,7 +445,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
+  m_SizeDelta: {x: -48, y: -48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &900374146588592619
 GameObject:
@@ -603,7 +603,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &900374146638226948
 CanvasRenderer:
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1431,7 +1431,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 524, y: 532}
+  m_SizeDelta: {x: 524, y: 588}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &900374147859313893
 CanvasRenderer:
@@ -1704,15 +1704,15 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 129746a027229440e851c150746f2ac1, type: 3}
-    m_FontSize: 18
+    m_FontSize: 36
     m_FontStyle: 1
     m_BestFit: 1
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 72
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: AVATAR SELECT
@@ -1753,7 +1753,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_SizeDelta: {x: 48, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &900374148067184478
 CanvasRenderer:
@@ -1998,7 +1998,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 512, y: 64}
+  m_SizeDelta: {x: 512, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9084175524142908660
 MonoBehaviour:
@@ -2136,6 +2136,18 @@ PrefabInstance:
     - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Colors.m_NormalColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 900374146561332359}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickDelete
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenMMO.UI.UIWindowPlayerSelect, Assembly-CSharp-firstpass
       objectReference: {fileID: 0}
     - target: {fileID: 4741952079291415441, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name
@@ -2282,6 +2294,18 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.r
       value: 0.22770424
       objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 900374146561332359}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCreate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenMMO.UI.UIWindowPlayerSelect, Assembly-CSharp-firstpass
+      objectReference: {fileID: 0}
     - target: {fileID: 4741952079291415441, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name
       value: CREATE-BUTTON
@@ -2357,7 +2381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3858806852756185230, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 96
       objectReference: {fileID: 0}
     - target: {fileID: 3858806852756185230, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2427,6 +2451,18 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 900374146561332359}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenMMO.UI.UIWindowPlayerSelect, Assembly-CSharp-firstpass
+      objectReference: {fileID: 0}
     - target: {fileID: 4741952079291415441, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name
       value: JOIN-BUTTON
@@ -2437,7 +2473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6071067609309801958, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_fontSize
-      value: 30.4
+      value: 71.6
       objectReference: {fileID: 0}
     - target: {fileID: 7318925247262235088, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name
@@ -2554,12 +2590,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741952078511767897, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Text
-      value: LOGOUT
+      value: MENU
       objectReference: {fileID: 0}
     - target: {fileID: 4741952079291415436, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 49d3278c494ca444fbd22729bd8a2318, type: 3}
     - target: {fileID: 4741952079291415436, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2576,13 +2612,25 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.r
       value: 0.08116763
       objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 900374146561332359}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenMMO.UI.UIWindowPlayerSelect, Assembly-CSharp-firstpass
+      objectReference: {fileID: 0}
     - target: {fileID: 4741952079291415441, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name
-      value: LOGOUT-BUTTON
+      value: MENU-BUTTON
       objectReference: {fileID: 0}
     - target: {fileID: 6071067609309801958, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_text
-      value: LOGOUT
+      value: MENU
       objectReference: {fileID: 0}
     - target: {fileID: 6071067609309801958, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_fontSize
@@ -2590,7 +2638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318925247262235088, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name
-      value: LOGOUT
+      value: MENU
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 374e8039e23c652499d7e3671324fa15, type: 3}

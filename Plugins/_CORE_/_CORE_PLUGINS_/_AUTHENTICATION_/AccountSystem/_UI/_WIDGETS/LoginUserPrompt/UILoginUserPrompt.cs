@@ -51,6 +51,17 @@ namespace OpenMMO.UI
 
         // I N I T I A L I Z E
 
+        //SHOW
+        public override void Show()
+        {
+            Logout(networkManager); //LOGOUT WHEN THIS PROMPT SHOWS
+            base.Show();
+        }
+        //LOGOUT
+        void Logout(Network.NetworkManager _manager)
+        {
+            _manager.TryLogoutUser();
+        }
         //AWAKE
         protected override void Awake()
         {
@@ -62,9 +73,6 @@ namespace OpenMMO.UI
         {
             LoadSavedCredentials(); //LOAD FROM PLAYERPREFS
         }
-
-        // L O A D
-
         //LOAD SAVED CREDENTIALS
         void LoadSavedCredentials()
         {
@@ -178,7 +186,7 @@ namespace OpenMMO.UI
         public void OnClickBack()
         {
             //UIWindowAccountOptionsMenu.singleton.Show();
-            UIAccountOptionsMenu.singleton.Show();
+            UIAccountMenu.singleton.Show();
             Hide();
         }
         //ON CLICK LOGIN BUTTON EVENT

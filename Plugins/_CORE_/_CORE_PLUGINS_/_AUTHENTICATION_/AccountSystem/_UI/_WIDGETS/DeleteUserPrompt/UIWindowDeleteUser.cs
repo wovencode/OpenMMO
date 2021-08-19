@@ -68,7 +68,7 @@ namespace OpenMMO.UI
 		{
 			Hide();
             //UIWindowAccountOptionsMenu.singleton.Show();
-            UIAccountOptionsMenu.singleton.Show();
+            UIAccountMenu.singleton.Show();
 		}
 		
 		// ================================ EVENT HANDLERS ===============================
@@ -95,7 +95,7 @@ namespace OpenMMO.UI
 		{
 			Hide();
             //UIWindowAccountOptionsMenu.singleton.Show();
-            UIAccountOptionsMenu.singleton.Show();
+            UIAccountMenu.singleton.Show();
         }
 		
 		// -------------------------------------------------------------------------------

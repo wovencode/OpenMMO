@@ -1,9 +1,11 @@
+//BY FHIZ
+//MODIFIED BY DX4D
 
-using UnityEngine;
 using OpenMMO;
 using OpenMMO.Network;
 using OpenMMO.UI;
 
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -16,18 +18,18 @@ namespace OpenMMO.UI
 	public partial class UISelectPlayerSlot : UIButton
 	{
 		[Header("AVATAR NAME")]
-        [Tooltip("Setting this overrides the regular text field below")]
-		public TMP_Text nameTextMesh;
-        [Tooltip("This will be overridden when the TextMesh pro field above is set")]
-        public Text nameText;
+        [Tooltip("This will be overridden when the TextMesh pro field below is set")]
+        [SerializeField] Text nameText;
+        [Tooltip("Setting this overrides the regular text field above")]
+		[SerializeField] TMP_Text nameTextMesh;
         
 		[Header("BUTTONS")]
-		public Button buttonSelect;
+		[SerializeField] Button buttonSelect;
 		
 		[Header("ICONS")]
+		[SerializeField] Sprite unselectedImage;
+		[SerializeField] Sprite selectedImage;
 		public Image imageSelected;
-		public Sprite unselectedImage;
-		public Sprite selectedImage;
 		
 		protected int _index;
 		protected bool selected;
@@ -46,7 +48,8 @@ namespace OpenMMO.UI
 
             //NAME TEXT
             if (nameTextMesh != null) nameTextMesh.text = name; //TEXT MESH PRO
-			else if (nameText != null) nameText.text = name; //TEXT
+            else if (nameText != null) nameText.text = name; //TEXT
+            else Debug.LogWarning(name + " did not have a text box component attached...");
 			
 			if (selected) imageSelected.sprite = selectedImage;
 			else imageSelected.sprite = unselectedImage;

@@ -22,7 +22,7 @@ namespace OpenMMO.UI
         protected Action cancelButtonAction;
 
         //INIT
-        public void Init(string _description, Action _confirmAction, Action _cancelAction = null, string _confirmText = "", string _cancelText = "")
+        public void Init(string _description, Action _confirmAction, Action _cancelAction = null, string _confirmText = "YES", string _cancelText = "NO")
         {
             base.Init();
 

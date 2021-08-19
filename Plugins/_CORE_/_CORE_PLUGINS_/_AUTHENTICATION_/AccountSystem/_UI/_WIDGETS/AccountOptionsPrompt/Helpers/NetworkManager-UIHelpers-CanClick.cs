@@ -40,7 +40,7 @@ namespace OpenMMO.Network
         /// Public function <c>CanClick</c>.
         /// Run on the client.
         /// Return a boolean value detailing whether the network related button can be clicked at that moment.
-        /// Called by <see cref="UI.UIAccountOptionsMenu"/>
+        /// Called by <see cref="UI.UIAccountMenu"/>
         /// </summary>
         /// <returns> Returns a boolean value detailing whether the network related button can be clicked at that moment. </returns>
         public bool CanClick()

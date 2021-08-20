@@ -238,7 +238,7 @@ namespace OpenMMO.Network
         protected void RegisterPlayer(string username, string playername, string prefabname)
         {
             Debug.Log("[PLAYER SERVER] - "
-                + "Registering new character " + playername + " on account " + username);
+                + "Registering new character " + playername + " of type " + prefabname + " on account " + username);
 
             GameObject prefab = GetPlayerPrefab(prefabname);
             GameObject player = Instantiate(prefab);

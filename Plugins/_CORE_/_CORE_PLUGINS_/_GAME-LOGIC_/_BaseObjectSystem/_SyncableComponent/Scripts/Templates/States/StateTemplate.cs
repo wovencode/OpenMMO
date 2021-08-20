@@ -1,10 +1,11 @@
 //by Fhiz
 using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using OpenMMO;
+
+using System.Collections.ObjectModel;
 
 namespace OpenMMO {
 	
@@ -16,25 +17,25 @@ namespace OpenMMO {
     
 		public static string _folderName = "";
 		
-		static StateTemplateDictionary _data;
+		static StateTemplateDictionary _states;
 		
 		/// <summary>
 		/// Abstract bool GetIsActive. Used to check if the Animation State is currently active.
 		/// </summary>
 		public abstract bool GetIsActive(MobileComponent mobileComponent);
 		
-		public static ReadOnlyDictionary<int, StateTemplate> data
+		public static ReadOnlyDictionary<int, StateTemplate> states
 		{
 			get {
 				StateTemplate.BuildCache();
-				return _data.data;
+				return _states.data;
 			}
 		}
 		
 		public static void BuildCache(bool forced=false)
 		{
-			if (_data == null || forced)
-				_data = new StateTemplateDictionary(StateTemplate._folderName);
+			if (_states == null || forced)
+				_states = new StateTemplateDictionary(StateTemplate._folderName);
 		}
 		
 		public void OnEnable()
@@ -42,7 +43,7 @@ namespace OpenMMO {
 			if (_folderName != folderName)
 				_folderName = folderName;
 			
-			_data = null;
+			_states = null;
 			
 		}
 		

@@ -73,13 +73,16 @@ namespace OpenMMO.Network
                 success = true,
                 text = "",
                 causesDisconnect = false,
-                playername = msg.playername
+                playername = msg.playername,
+                prefabname = msg.prefabname
             };
 
             if (DatabaseManager.singleton.TryPlayerRegister(msg.playername, msg.username, msg.prefabname))
             {
                 RegisterPlayer(msg.username, msg.playername, msg.prefabname);
                 message.text = systemText.playerRegisterSuccess;
+                message.playername = msg.playername;
+                message.prefabname = msg.prefabname;
             }
             else
             {

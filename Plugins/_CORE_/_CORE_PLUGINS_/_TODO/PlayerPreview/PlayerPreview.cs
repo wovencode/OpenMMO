@@ -16,6 +16,7 @@ namespace OpenMMO.Network
 	public partial struct PlayerPreview
 	{
 		public string name;
+		public string prefabname;
 		
 		/* extended via partial */
 	}

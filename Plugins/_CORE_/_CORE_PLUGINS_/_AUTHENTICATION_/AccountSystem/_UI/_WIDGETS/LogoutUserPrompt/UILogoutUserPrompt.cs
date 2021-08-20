@@ -45,13 +45,14 @@ namespace OpenMMO.UI
         public void OnClickConfirmLogout()
         {
             Hide();
-            QuitServer(networkManager);
+            UILoginUserPrompt.singleton.Show();
+            //QuitServer(networkManager);
         }
         //QUIT SERVER
-        void QuitServer(Network.NetworkManager _manager)
-        {
-            _manager.Quit();
-        }
+        //void QuitServer(Network.NetworkManager _manager)
+        //{
+        //    _manager.Quit();
+        //}
 
         // C A N C E L
 

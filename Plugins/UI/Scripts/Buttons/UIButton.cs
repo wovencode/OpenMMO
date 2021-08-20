@@ -17,7 +17,7 @@ namespace OpenMMO.UI
 	{
 		[Header("BUTTONS")]
 		public Button button;
-		[Range(0,9)] public float delayDuration = 1;
+		[Range(0,9)] public float delayDuration = 0.25f;
 		
 		protected UIButtonGroup buttonGroup;
 		protected bool _interactable;

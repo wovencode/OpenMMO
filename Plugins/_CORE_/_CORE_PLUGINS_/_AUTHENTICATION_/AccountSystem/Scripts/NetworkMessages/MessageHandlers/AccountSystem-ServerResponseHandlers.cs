@@ -207,7 +207,7 @@ namespace OpenMMO.Network
         //void OnServerResponseUserPlayerPreviews(NetworkConnection conn, ServerResponseUserPlayerPreviews msg) //REMOVED - DX4D
         internal void OnServerResponseUserPlayerPreviews(ServerPlayerPreviewsResponse msg) //ADDED - DX4D
         {
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //REMOVED ADDED - DX4D
 
             if (msg.success)
         	{
@@ -216,7 +216,7 @@ namespace OpenMMO.Network
 				maxPlayers	= msg.maxPlayers;
 			}
 			
-			debug.LogFormat(this.name, nameof(OnServerResponseUserPlayerPreviews), conn.Id(), msg.players.Length.ToString()); //DEBUG
+			//debug.LogFormat(this.name, nameof(OnServerResponseUserPlayerPreviews), conn.Id(), msg.players.Length.ToString()); //DEBUG //REMOVED - DX4D
 			
         	OnServerResponse(msg);
         }

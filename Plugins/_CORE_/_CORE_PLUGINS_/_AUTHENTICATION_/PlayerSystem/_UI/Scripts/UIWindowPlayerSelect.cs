@@ -111,7 +111,7 @@ namespace OpenMMO.UI
 				GameObject go = GameObject.Instantiate(slotPrefab.gameObject);
 				go.transform.SetParent(contentViewport.transform, false);
 
-				go.GetComponent<UISelectPlayerSlot>().Init(buttonGroup, _index, player.name, (_index == 0) ? true : false);
+				go.GetComponent<UISelectPlayerSlot>().Init(buttonGroup, _index, player.name, player.prefabname, (_index == 0) ? true : false);
 				_index++;
 			}
 			

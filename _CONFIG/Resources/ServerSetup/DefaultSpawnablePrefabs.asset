@@ -20,11 +20,12 @@ MonoBehaviour:
   - {fileID: 7930793167279634983, guid: ac6cc9580df39534b98ba06ded26c718, type: 3}
   assetBaseFolder: Assets/Plugins/OpenMMO/
   spawnablePrefabFolders:
-  - _PREFABS/_PLAYER_PREFABS
-  - _PREFABS/_NPC_PREFABS
-  - _PREFABS/_WORLD_PREFABS
+  - _PREFABS/RESOURCES/PLAYER
+  - _PREFABS/RESOURCES/NPC
+  - _PREFABS/RESOURCES/WORLD
   manualPrefabs: []
   autoPrefabs:
   - {fileID: 4608414279724381252, guid: 94862d576d689ee46b25eedc6f9d1626, type: 3}
+  - {fileID: 1569986536007631325, guid: 1f40a5b12a20ecf46965e407dbff03aa, type: 3}
   - {fileID: 7579274339923785009, guid: abafb66585efdea4fbdfc3a0acba0a88, type: 3}
   - {fileID: 1788335689246004932, guid: 76597492c2c30ff48b0fdc56d9016860, type: 3}

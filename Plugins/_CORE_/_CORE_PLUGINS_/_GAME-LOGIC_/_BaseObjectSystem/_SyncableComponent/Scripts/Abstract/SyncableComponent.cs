@@ -3,9 +3,10 @@
 
 using System;
 using System.Text;
-using UnityEngine;
-using Mirror;
 using OpenMMO;
+
+using Mirror;
+using UnityEngine;
 using OpenMMO.Network;
 
 namespace OpenMMO {
@@ -53,7 +54,7 @@ namespace OpenMMO {
 
         //START (CLIENT + SERVER)
 		/// <summary> Called when this component starts, private to enforce the use of StartServer/StartClient </summary>
-        void Start()
+        protected virtual void Start()
         {
             if (isServer) { InitializeCache(); StartServer(); }
             if (isClient) { StartClient(); }
@@ -71,8 +72,16 @@ namespace OpenMMO {
 		{
 			if (CheckUpdateInterval)
 			{
-                if (isClient) { UpdateClient(); }
-				if (isServer) { UpdateServer(); }
+                if (isClient)
+                {
+                    //Debug.Log("[CLIENT] - Running Client Update"); //DEBUG
+                    UpdateClient();
+                }
+				if (isServer)
+                {
+                    //Debug.Log("[SERVER] - Running Server Update"); //DEBUG
+                    UpdateServer();
+                }
 				
 				RefreshUpdateInterval();
 			}

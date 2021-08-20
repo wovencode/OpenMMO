@@ -34,7 +34,7 @@ namespace OpenMMO.UI
         //BUTTONS
         [Header("BUTTONS")]
         [SerializeField] Button loginButton;
-        [SerializeField] Button backButton;
+        //[SerializeField] Button backButton;
 
         //OPTIONS
         [Header("OPTIONS")]
@@ -87,7 +87,7 @@ namespace OpenMMO.UI
                 }
                 else
                 {
-                    usernameInputTextMesh.text = "";
+                    usernameInputTextMesh.text = string.Empty;
                 }
             }
             else //REGULAR TEXT
@@ -98,7 +98,7 @@ namespace OpenMMO.UI
                 }
                 else
                 {
-                    usernameInputText.text = "";
+                    usernameInputText.text = string.Empty;
                 }
             }
 
@@ -111,7 +111,7 @@ namespace OpenMMO.UI
                 }
                 else
                 {
-                    passwordInputTextMesh.text = "";
+                    passwordInputTextMesh.text = string.Empty;
                 }
             }
             else //REGULAR TEXT
@@ -122,7 +122,7 @@ namespace OpenMMO.UI
                 }
                 else
                 {
-                    passwordInputText.text = "";
+                    passwordInputText.text = string.Empty;
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace OpenMMO.UI
             ValidateInputFields(); //IS VALID USERNAME/PASSWORD?
 
             loginButton.onClick.SetListener(() => { OnClickLogin(); }); //LOGIN
-            backButton.onClick.SetListener(() => { OnClickBack(); }); //BACK
+            //backButton.onClick.SetListener(() => { OnClickBack(); }); //BACK
         }
 
         // V A L I D A T E
@@ -156,17 +156,17 @@ namespace OpenMMO.UI
         //VALIDATE LOGIN CREDENTIALS
         void ValidateLoginCredentials(string _username, string _password)
         {
-            string _statusMessage = "";
+            string _statusMessage = Defines.Login.LoginMessage;
 
             //VALID USERNAME?
             if (!Tools.IsAllowedName(_username))
             {
-                _statusMessage += "|Invalid Username|";
+                _statusMessage = Defines.Login.InvalidUsernameMessage;
             }
             //VALID PASSWORD?
             if (!Tools.IsAllowedPassword(_password))
             {
-                _statusMessage += "|Invalid Password|";
+                _statusMessage = Defines.Login.InvalidPasswordMessage;
             }
 
             //CHANGE STATUS MESSAGE
@@ -183,12 +183,12 @@ namespace OpenMMO.UI
         // B U T T O N  C L I C K  E V E N T S
 
         //ON CLICK BACK BUTTON
-        public void OnClickBack()
-        {
+        //public void OnClickBack()
+        //{
             //UIWindowAccountOptionsMenu.singleton.Show();
-            UIAccountMenu.singleton.Show();
-            Hide();
-        }
+        //    UIAccountMenu.singleton.Show();
+        //    Hide();
+        //}
         //ON CLICK LOGIN BUTTON EVENT
         public void OnClickLogin()
         {

@@ -57,7 +57,7 @@ namespace OpenMMO {
         [Server] protected override void UpdateServer()
 		{
 
-			foreach(KeyValuePair<int, StateTemplate> stateTemplate in StateTemplate.data)
+			foreach(KeyValuePair<int, StateTemplate> stateTemplate in StateTemplate.states)
 			{	
    				if (stateTemplate.Value.GetIsActive(entityComponent))
    				{
@@ -80,7 +80,7 @@ namespace OpenMMO {
 			if (state == 0)
 				return;
 
-			foreach(KeyValuePair<int, StateTemplate> stateTemplate in StateTemplate.data)	// each state
+			foreach(KeyValuePair<int, StateTemplate> stateTemplate in StateTemplate.states)	// each state
 			{	
 			
 				string stateName = stateTemplate.Value.name;

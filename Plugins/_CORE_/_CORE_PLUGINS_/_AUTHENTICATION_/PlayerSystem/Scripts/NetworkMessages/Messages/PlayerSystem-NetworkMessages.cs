@@ -48,6 +48,9 @@ namespace OpenMMO.Network.Response
 
         public string _playername;
         public string playername { get { return _playername; } set { _playername = value; } }
+
+        public string _prefabname;
+        public string prefabname { get { return _prefabname; } set { _prefabname = value; } }
     }
     //DELETE
     /// <summary>

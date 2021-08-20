@@ -526,7 +526,7 @@ MonoBehaviour:
   yesButton: {fileID: 6963927036810107972}
   noButton: {fileID: 6963927036081523283}
   logoutTimer: 10
-  popupDescription: 
+  popupDescription: 'Logging out in '
 --- !u!1 &6963927037036069625
 GameObject:
   m_ObjectHideFlags: 0

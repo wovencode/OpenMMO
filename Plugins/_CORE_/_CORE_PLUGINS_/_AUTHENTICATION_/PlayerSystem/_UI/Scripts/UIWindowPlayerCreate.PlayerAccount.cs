@@ -41,11 +41,11 @@ namespace OpenMMO.UI
 			
 			foreach (GameObject player in networkManager.playerPrefabs)
 			{
-
 				GameObject go = GameObject.Instantiate(slotPrefab.gameObject);
 				go.transform.SetParent(contentViewport.transform, false);
 
-				go.GetComponent<UISelectPlayerSlot>().Init(buttonGroup, _index, player.name, (_index == 0) ? true : false);
+                //TODO: The second player.name should be player.prefabname - the current solution works for now
+				go.GetComponent<UISelectPlayerSlot>().Init(buttonGroup, _index, player.gameObject.name, player.gameObject.name, (_index == 0) ? true : false);
 				_index++;
 			}
 			

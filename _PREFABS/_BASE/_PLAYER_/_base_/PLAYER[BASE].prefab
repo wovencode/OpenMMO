@@ -154,7 +154,7 @@ MonoBehaviour:
   managerUpdateInterval: 1
   cacheUpdateInterval: 1
   level: 1
-  maxLevel: 3
+  maxLevel: 99
   _category: 
   agent: {fileID: 8539800676653855757}
   collider: {fileID: 1876589497079288841}

@@ -151,8 +151,12 @@ namespace OpenMMO.Network
             if (RequestPlayerDelete(playerName, userName)) //ADDED - DX4D
             {
                 for (int i = 0; i < playerPreviews.Count; i++)
+                {
                     if (playerPreviews[i].name == playerName)
+                    {
                         playerPreviews.RemoveAt(i);
+                    }
+                }
             }
         }
         /// <summary>

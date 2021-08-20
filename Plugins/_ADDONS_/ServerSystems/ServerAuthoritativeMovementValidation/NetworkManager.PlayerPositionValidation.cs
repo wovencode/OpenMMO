@@ -1,6 +1,7 @@
 //BY DX4D
 #define POSITION_VALIDATION //TOGGLE ON/OFF WITH //
 
+using Mirror;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -18,13 +19,13 @@ namespace OpenMMO.Network
         ushort tickCount = 0;
 
 
-        protected override void StartClient() { }
-        protected override void UpdateClient() { }
-        protected override void FixedUpdateClient() { }
-        protected override void LateUpdateClient() { }
+        [Client] protected override void StartClient() { }
+        [Client] protected override void UpdateClient() { }
+        [Client] protected override void FixedUpdateClient() { }
+        [Client] protected override void LateUpdateClient() { }
 
-        protected override void StartServer() { }
-        protected override void UpdateServer() { CorrectPlayerPositions(); }
+        [Server] protected override void StartServer() { }
+        [Server] protected override void UpdateServer() { CorrectPlayerPositions(); }
 
         //#if _SERVER
         //[Hook(nameof(OnServerSceneChanged))] //ADDED - ENABLES POSITION VALIDATION - DX4D

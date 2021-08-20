@@ -55,7 +55,7 @@ namespace OpenMMO.Network
 
             if (msg.success)
         	{
-        		playerPreviews.Add(new PlayerPreview{name=msg.playername});
+                playerPreviews.Add(new PlayerPreview { name = msg.playername, prefabname = msg.prefabname });
         		UIWindowPlayerSelect.singleton.UpdatePlayerPreviews(true);
         	}
         	

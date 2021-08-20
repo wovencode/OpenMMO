@@ -1,4 +1,4 @@
-//by Fhiz
+//BY FHIZ
 //MODIFIED BY DX4D
 
 using UnityEngine;
@@ -38,7 +38,7 @@ namespace OpenMMO {
         }
 
         /// <summary> Server side start </summary>
-        //[ServerCallback] protected override void Start() { base.Start(); } // required
+        [ServerCallback] protected override void Start() { base.Start(); } // required
 
         /// <summary>
         /// Called when the local player enters the game.
@@ -62,7 +62,7 @@ namespace OpenMMO {
 		[Server] protected override void UpdateServer()
 		{
 			base.UpdateServer();
-			//this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK //REMOVED - CALLED IN BASE - DX4D
+			this.InvokeInstanceDevExtMethods(nameof(UpdateServer)); //HOOK - CALLED IN BASE - DX4D
 		}
 		
 

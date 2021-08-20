@@ -161,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 3887906202028591114, guid: a33bf0f151c8e6f4cb47f89963ce89c7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e928b14d1a22fa34ea6bf4f517ad4735, type: 2}
+      objectReference: {fileID: 2100000, guid: 4cc516c826f6d49408a1f84ab52adfe0, type: 2}
     - target: {fileID: 5053945538751103481, guid: a33bf0f151c8e6f4cb47f89963ce89c7, type: 3}
       propertyPath: archeType
       value: 
@@ -204,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 50e98459225f84105b3e853fed1ad9ca, type: 3}
     - target: {fileID: 7930793167279634983, guid: a33bf0f151c8e6f4cb47f89963ce89c7, type: 3}
       propertyPath: m_Name
-      value: Newbie
+      value: Male
       objectReference: {fileID: 0}
     - target: {fileID: 8539800676653855757, guid: a33bf0f151c8e6f4cb47f89963ce89c7, type: 3}
       propertyPath: m_Speed

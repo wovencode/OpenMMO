@@ -12,12 +12,12 @@ namespace OpenMMO.UI
         [Header("BUTTONS")]
         [SerializeField] Button cancelButton;
 
-        //SINGLETON
-        public static UIPopupCountdown singleton;
-
         //ACTIONS
         protected Action countdownAction;
         protected Action cancelAction;
+
+        //SINGLETON
+        public static UIPopupCountdown singleton;
 
         //ON VALIDATE
         //private void OnValidate()
@@ -35,15 +35,15 @@ namespace OpenMMO.UI
         //INIT
         public void Init(string _description, float _duration = 5, Action _countdownAction = null, Action _cancelAction = null, bool fade = true)
         {
-            if (!String.IsNullOrWhiteSpace(_description)) _description += "\n";
-            _description += "Logging out in " + _duration + " seconds...";
+            if (String.IsNullOrWhiteSpace(_description)) _description += "Please wait ";
+            _description += _duration + " seconds...";
             countdownAction = _countdownAction;
             cancelAction = _cancelAction;
             Show(_description, fade);
             Invoke(nameof(ExecuteAction), _duration);
         }
         //EXECUTE ACTION
-        void ExecuteAction() { countdownAction?.Invoke(); }
+        void ExecuteAction() { Hide(); countdownAction?.Invoke(); }
 
         // B U T T O N  C L I C K  H A N D L E R S
 
@@ -52,10 +52,10 @@ namespace OpenMMO.UI
         {
             CancelCountdown();
             CancelAction();
-            Hide();
+           
         }
         //CANCEL ACTION
-        void CancelAction() { cancelAction?.Invoke(); }
+        void CancelAction() { Hide(); cancelAction?.Invoke(); }
         //CANCEL COUNTDOWN
         void CancelCountdown()
         {

@@ -8,5 +8,6 @@ namespace OpenMMO.Network
     public interface ServerRegisterPlayerResponse : ServerResponse
     {
         string playername { get; set; }
+        string prefabname { get; set; }
     }
 }

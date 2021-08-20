@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using OpenMMO.Network;
@@ -27,20 +27,27 @@ namespace OpenMMO.Database
 		public List<PlayerPreview> GetPlayers(string username)
 		{
 
-			List<TablePlayer> results = Query<TablePlayer>("SELECT * FROM "+nameof(TablePlayer)+" WHERE username=? AND deleted=0 AND banned=0", username);
+            List<TablePlayer> characters = LoadCharactersFromDatabase(username);
+            
+            List<PlayerPreview> players = new List<PlayerPreview>();
+			if (characters == null) return players; //NO CHARACTERS?
 			
-			List<PlayerPreview> players = new List<PlayerPreview>();
-			
-			if (results == null)
-				return players;
-			
-			foreach (TablePlayer result in results)
+			foreach (TablePlayer character in characters)
 			{
-				players.Add(new PlayerPreview { name = result.playername} );
+                players.Add(CreatePlayerPreview(character.playername, character.prefab));
 			}
 			
 			return players;
 		}
+        //LOAD PLAYERS FROM DATABASE
+        List<TablePlayer> LoadCharactersFromDatabase(string username)
+        {
+            return Query<TablePlayer>("SELECT * FROM " + nameof(TablePlayer) + " WHERE username=? AND deleted=0 AND banned=0", username);
+        }
+        PlayerPreview CreatePlayerPreview(string _playername, string _prefabname)
+        {
+                return new PlayerPreview { name = _playername, prefabname = _prefabname };
+        }
 
 		// -------------------------------------------------------------------------------
 		

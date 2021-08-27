@@ -39,14 +39,15 @@ namespace OpenMMO.Network
             };
 
             // -- check for GetIsUserLoggedIn because that covers all players on the account
-            if (GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryPlayerLogin(msg.playername, msg.username))
+            if (GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.CanPlayerLogin(msg.playername, msg.username))
             {
                 LoginPlayer(conn, msg.username, msg.playername, 0); //dont check for token
-                message.text = systemText.playerLoginSuccess;
+                message.text = systemText.CHARACTER_JOIN_SUCCESS;
+                message.success = true; //ADDED DX4D
             }
             else
             {
-                message.text = systemText.playerLoginFailure;
+                message.text = systemText.CHARACTER_JOIN_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerLogin), conn.Id(), "DENIED"); //DEBUG
@@ -80,13 +81,13 @@ namespace OpenMMO.Network
             if (DatabaseManager.singleton.TryPlayerRegister(msg.playername, msg.username, msg.prefabname))
             {
                 RegisterPlayer(msg.username, msg.playername, msg.prefabname);
-                message.text = systemText.playerRegisterSuccess;
+                message.text = systemText.CHARACTER_CREATE_SUCCESS;
                 message.playername = msg.playername;
                 message.prefabname = msg.prefabname;
             }
             else
             {
-                message.text = systemText.playerRegisterFailure;
+                message.text = systemText.CHARACTER_CREATE_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerRegister), conn.Id(), "DENIED"); //DEBUG
@@ -116,14 +117,14 @@ namespace OpenMMO.Network
 
             if (DatabaseManager.singleton.TryPlayerDeleteSoft(msg.playername, msg.username))
             {
-                message.text = systemText.playerDeleteSuccess;
+                message.text = systemText.CHARACTER_DELETE_SUCCESS;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerDelete), conn.Id(), "Success"); //DEBUG
 
             }
             else
             {
-                message.text = systemText.playerDeleteFailure;
+                message.text = systemText.CHARACTER_DELETE_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestPlayerDelete), conn.Id(), "DENIED"); //DEBUG

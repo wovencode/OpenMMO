@@ -74,15 +74,17 @@ namespace OpenMMO.Database
 		
 			// -- delete all data of this player first, to prevent duplicates
 	   		DeleteDataPlayer_NetworkZones(player.name);
-	   		
+
+            PlayerAccount pc = player.GetComponent<PlayerAccount>(); //ADDED DX4D
+
 	   		InsertOrReplace(
 	   				new TablePlayerZones
 	   				{
                 		playername 		= player.name,
-                		zonename 		= player.GetComponent<PlayerAccount>().zoneInfo.zonename,
-                		anchorname 		= player.GetComponent<PlayerAccount>().zoneInfo.anchorname,
-                		startpos		= player.GetComponent<PlayerAccount>().zoneInfo.startpos,
-                		token			= player.GetComponent<PlayerAccount>().GetToken
+                		zonename 		= pc.zoneInfo.zonename,
+                		anchorname 		= pc.zoneInfo.anchorname,
+                		startpos		= pc.zoneInfo.startpos,
+                		token			= pc.GetToken
             		}
             );
 	   		

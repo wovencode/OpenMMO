@@ -22,28 +22,27 @@ namespace OpenMMO.Network
         /// <summary>
 		/// Hooks into LoginPlayer and updates the core data in TablePlayer.
 		/// </summary>
-        //[DevExtMethods(nameof(LoginPlayer))]
-        [DevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase))] //REMOVED - DX4D
+        [DevExtMethods(nameof(LoginPlayer))]
+        //[DevExtMethods(nameof(DatabaseManager.ConnectToServer))]
+        //[DevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase))] //REMOVED - DX4D
         //public void LoadPlayerFromDatabase_PlayerComponent(NetworkConnection conn, GameObject player, string playerName, string userName)
-        public void LoadPlayerFromDatabase_PlayerComponent(NetworkConnection conn, string playername, string userName, int token)
+        public void LoginPlayer_LoadPlayerFromDatabase_PlayerComponent(NetworkConnection conn, string _playername, string _username, int _token)
         {
             //<b><color=blue>CLIENT</color></b>
-            Debug.Log("[SERVER] - [LOAD CHARACTER] - "
-                + "<b>Loading character " + playername + "...</b>");
+            Debug.Log("[MASTER SERVER] [CHARACTER LOADING] - Loading character " + _playername + "...");
 
             //GET PLAYER ACCOUNT FROM PLAYER NAME
-            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
+            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(_playername);
             GameObject prefab = GetPlayerPrefab(prefabname);
-            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, _playername);
 
-            if (!player) { Debug.Log("NETWORK ISSUE: Player not found in database..."); }
+            if (!player) { Debug.Log("[ERROR] [MASTER SERVER] [CHARACTER LOADING] - Player not found in database..."); }
             PlayerAccount pc = player.GetComponent<PlayerAccount>();
-            if (!pc) { Debug.Log("NETWORK ISSUE: Player must have a PlayerAccount component..."); }
+            if (!pc) { Debug.Log("[ERROR] [MASTER SERVER] [CHARACTER LOADING] - Player must have a PlayerAccount component..."); }
 
-            pc._tablePlayer.Update(player, userName);
+            pc._tablePlayer.Update(player, _username);
 
-            Debug.Log("[SERVER] - [LOAD CHARACTER] - "
-                + "<b>Successfully loaded character " + playername + "!!!</b>");
+            Debug.Log("[MASTER SERVER] [CHARACTER LOADING] - Successfully loaded character " + _playername + "!!!");
 
         }
         

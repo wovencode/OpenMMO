@@ -26,7 +26,7 @@ namespace OpenMMO.Database
 		int TryUserGetPlayerCount(string name);
 		
 		// ---- Player
-		bool TryPlayerLogin(string name, string username);
+		bool CanPlayerLogin(string name, string username);
 		bool TryPlayerRegister(string name, string username, string prefabname);
 		bool TryPlayerDeleteSoft(string name, string username, DatabaseAction action = DatabaseAction.Do);
 		bool TryPlayerDeleteHard(string name, string username);

@@ -44,10 +44,10 @@ namespace OpenMMO.Network
 		protected Dictionary<NetworkConnection, string> onlineUsers = new Dictionary<NetworkConnection, string>();
 		
 		[HideInInspector]public string userName 	= "";
-        [HideInInspector]public string userPassword	= "";
-        [HideInInspector]public string newPassword	= "";
+        [HideInInspector]public string userPassword	= ""; //TODO: At a minimum, this value should be stored as a Hashed Password - never ever store passwords as plain text (even in memory(RAM))
+        [HideInInspector]public string newPassword	= ""; //TODO: At a minimum, this value should be stored as a Hashed Password - never ever store passwords as plain text (even in memory(RAM))
         [HideInInspector]public List<PlayerPreview> playerPreviews = new List<PlayerPreview>();
-		[HideInInspector]public int maxPlayers				= 0;
+		[HideInInspector]public int maxPlayers = 0;
 		
 		// You can use this to show/hide UI elements based on the network state (state == NetworkState.Game)
 		[HideInInspector]public NetworkState state = NetworkState.Offline;
@@ -246,8 +246,7 @@ namespace OpenMMO.Network
 
         // -------------------------------------------------------------------------------
         /// <summary>
-        /// Public function <c>IsConnecting</c> returns a boolean.
-        /// Checks whether the client is active and the client scene is ready
+        /// Checks if the client is connected or in the process of connecting, but has not yet joined a world.
         /// </summary>
         /// <returns> Returns a boolean value detailing whether the user is connecting </returns>
         //public bool IsConnecting() => NetworkClient.active && !ClientScene.ready; //REMOVED - DX4D
@@ -327,7 +326,7 @@ namespace OpenMMO.Network
 			{
 				base.OnClientDisconnect(conn);
 				state = NetworkState.Offline;
-				UIPopupConfirm.singleton.Init(systemText.clientDisconnected, Quit);
+				UIPopupConfirm.singleton.Init(systemText.DISCONNECTED, Quit);
 			}
 			this.InvokeInstanceDevExtMethods(nameof(OnClientDisconnect), conn); //HOOK
 			debug.LogFormat(this.name, nameof(OnClientDisconnect), conn.Id()); //DEBUG

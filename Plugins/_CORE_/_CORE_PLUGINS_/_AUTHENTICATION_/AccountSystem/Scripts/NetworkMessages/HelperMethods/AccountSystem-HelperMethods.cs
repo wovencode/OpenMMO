@@ -26,7 +26,9 @@ namespace OpenMMO.Network
             string username = GetUserName(conn);
 
             if (!String.IsNullOrWhiteSpace(username) && GetIsUserLoggedIn(username))
+            {
                 DatabaseManager.singleton.LogoutUser(username);
+            }
 
             onlineUsers.Remove(conn);
 
@@ -61,7 +63,9 @@ namespace OpenMMO.Network
 
             }
             else
+            {
                 LogoutUser(conn);
+            }
         }
 
         // -------------------------------------------------------------------------------
@@ -109,7 +113,7 @@ namespace OpenMMO.Network
         }
         void LogAccountLoginSuccess(NetworkConnection conn, string username)
         {
-            Debug.Log("[ACCOUNT SERVER] - "
+            Debug.Log("[MASTER SERVER] [LOGIN] - "
                 + "Login Success!"
                 + "\n" + "Connection-" + conn.connectionId
                 + " @" + conn.address
@@ -117,7 +121,7 @@ namespace OpenMMO.Network
         }
         void LogAccountLoginFailure(NetworkConnection conn, string username)
         {
-            Debug.Log(">>>ISSUE<<< [ACCOUNT SERVER] - "
+            Debug.Log("[ERROR] [MASTER SERVER] [LOGIN] - "
                 + "Account Login Failure..."
                 + "\n" + "Connection-" + conn.connectionId
                 + " @" + conn.address
@@ -134,93 +138,112 @@ namespace OpenMMO.Network
         /// Logs in the player.
         /// </summary>
         /// <param name="conn"></param>
-        /// <param name="username"></param>
+        /// <param name="_username"></param>
         /// <param name="playername"></param>
-        protected GameObject LoginPlayer(NetworkConnection conn, string username, string playername, int token)
+        protected GameObject LoginPlayer(NetworkConnection conn, string _username, string _playername, int _token)
         {
-            Debug.Log("[PLAYER SERVER] - "
-                + "Account " + username + "'s" + " character " + playername + " is attempting to join the server...");
-
+            //INITIALIZE DEBUG LOGGING
+            System.Text.StringBuilder debugLog = new System.Text.StringBuilder("[MASTER SERVER] [CHARACTER JOIN]"
+                + "\n" + _username + "@" + ((conn != null) ? conn.address : "<disconnected>")
+                + " > server@" + networkAddress.ToString()
+                + " - " + _playername
+                + "#" + _token + "...");
+            
+            //VALIDATE CLIENT CONNECTION TO SERVER
             if (conn == null)
             {
                 conn = NetworkClient.connection; //ENSURE CONNECTION
                 if (conn == null)
                 {
-                    Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
-                        + "Join Server Failed - Client Not Connected..."
-                        + "\n" + "LoginPlayer called by account " + username + " on character " + playername + " while not connected to server " + networkAddress.ToString());
+                    debugLog.Append("\n" + "[ERROR] - Client not connected to server " + networkAddress.ToString());
+                    ShowDebugLog(debugLog); //DEBUG
+                    //return null; //CANCEL LOGIN
                 }
                 else
                 {
-                    Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
-                        + "Join Server Failure Bypassed - We used the client connection instead..."
-                        + "\n" + "LoginPlayer connection was null - Assigned NetworkClient.connection instead.");
+                    debugLog.Append("\n" + "[WARNING] - Connect Failure Bypassed - We used NetworkClient.connection instead...");
                 }
             }
 
-            //GET PLAYER ACCOUNT FROM PLAYER NAME
-            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(playername);
+            //LOAD PLAYER OBJECT FROM DATABASE
+            string prefabname = DatabaseManager.singleton.GetPlayerPrefabName(_playername);
             GameObject prefab = GetPlayerPrefab(prefabname);
-            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, playername);
+            GameObject player = DatabaseManager.singleton.LoadDataPlayer(prefab, _playername);
+
+            //VALIDATE PLAYER OBJECT LOADED FROM DATABASE
             if (!player)
             {
-                Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
-                    + "Player not found in database...");
+                debugLog.Append("\n" + "[ERROR] - Player Object not found in database...");
+                ShowDebugLog(debugLog); //DEBUG
+                //return null; //CANCEL LOGIN
             }
+
+            //LOAD PLAYER ACCOUNT FROM PLAYER OBJECT
             PlayerAccount pc = player.GetComponent<PlayerAccount>();
+
+            //VALIDATE PLAYER ACCOUNT LOADED FROM PLAYER OBJECT
             if (!pc)
             {
-                Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
-                    + "Player must have a PlayerAccount component...");
+                debugLog.Append("\n" + "[ERROR] - Player Object does not have a PlayerAccount component attached...");
+                ShowDebugLog(debugLog); //DEBUG
+                //return null; //CANCEL LOGIN
             }
-            // -- check the security token if required
-            if (token == 0 || (token > 0 && pc.zoneInfo.ValidateToken(token)))
-            {
 
+            //VALIDATE TOKEN
+            // -- check the security token if required
+            if (_token == 0 || (_token > 0 && pc.zoneInfo.ValidateToken(_token)))
+            {
                 // -- log the player in
-                DatabaseManager.singleton.LoadPlayerFromDatabase(conn, player, playername, username);
+                DatabaseManager.singleton.ConnectToServer(conn, player, _playername, _username);
 
                 if (NetworkServer.AddPlayerForConnection(conn, player))
                 {
-                    onlinePlayers.Add(playername, player);
+                    onlinePlayers.Add(_playername, player);
 
-                    Debug.Log(
-                        onlinePlayers.ContainsKey(playername) ?
-                        ("[PLAYER SERVER] - "
-                         + playername + " joined with client @"
-                         + conn.address
-                        ) : (
-                        ">>>ISSUE<<< [PLAYER SERVER] - "
-                         + playername + " failed to join with client @"
-                         + conn.address)
-                        );
+                    if (!onlinePlayers.ContainsKey(_playername))
+                    {
+                        debugLog.Append("\n" + "[ERROR] - " + _username + "@" + conn.address + " failed to add " + _playername + " to server @" + networkAddress.ToString());
+                    }
+                    //debugLog.Append("\n"
+                    //    + (onlinePlayers.ContainsKey(playername) ? (username + "@"+ conn.address + " added " + playername + " to server @" + networkAddress.ToString())
+                    //    : ("[ERROR] - " + username + "@" + conn.address + " failed to add " + playername + " to server @" + networkAddress.ToString()))
+                    //    );
                 }
                 else
                 {
                     //TODO: We are in a zone
-                    Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
-                        + playername + " is already in the game");
+                    debugLog.Append("\n" + "[ERROR] - " + _playername + " is already in the game");
+                    ShowDebugLog(debugLog); //DEBUG
+                    //return null; //CANCEL LOGIN
                 }
-                state = NetworkState.Game;
+
+                state = NetworkState.Game; //SET NETWORK STATE
 
                 //TODO: Make sure this is the right hook, the old one wanted DatabaseManager.LoginPlayer based upon the method's parameters
                 //this.InvokeInstanceDevExtMethods(nameof(DatabaseManager.LoadPlayerFromDatabase), conn, player, playername, username); //HOOK //ADDED - DatabaseManager - DX4D //REMOVED - DX4D
-                this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, playername, username, token); //HOOK //ADDED - DX4D
+                this.InvokeInstanceDevExtMethods(nameof(LoginPlayer), conn, _playername, _username, _token); //HOOK //ADDED - DX4D
                 eventListeners.OnLoginPlayer.Invoke(conn); //EVENT
 
                 //debug.LogFormat(this.name, nameof(LoginPlayer), username, playername); //DEBUG //REMOVED - DX4D
-
+                debugLog.Append("\n" + "[SUCCESS] - " + player.name + " joined the server successfully!");
+                ShowDebugLog(debugLog); //DEBUG
                 return player;
 
             }
             else
             {
-                Debug.Log(">>>ISSUE<<< [PLAYER SERVER] - "
-                    + "Invalid Token");
+                debugLog.Append("\n" + "[ERROR] - Invalid Token " + _token + " used by account " + _username + " for joining the server @" + networkAddress.ToString());
+                ShowDebugLog(debugLog); //DEBUG
+                //return null; //CANCEL LOGIN
             }
 
-            return null;
+            return null; //REMOVED - All success/failure cases are handled now - DX4D
 
+        }
+        //DEBUG LOGGING
+        void ShowDebugLog(System.Text.StringBuilder _log)
+        {
+            Debug.Log(_log.ToString()); //DEBUG
         }
 
         // -------------------------------------------------------------------------------
@@ -237,7 +260,7 @@ namespace OpenMMO.Network
         /// <param name="prefabname"></param>
         protected void RegisterPlayer(string username, string playername, string prefabname)
         {
-            Debug.Log("[PLAYER SERVER] - "
+            Debug.Log("[MASTER SERVER] [CHARACTER REGISTER] - "
                 + "Registering new character " + playername + " of type " + prefabname + " on account " + username);
 
             GameObject prefab = GetPlayerPrefab(prefabname);

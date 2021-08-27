@@ -20,4 +20,4 @@ MonoBehaviour:
   backgroundIcon: {fileID: 0}
   rarity: {fileID: 0}
   description: 
-  level: 0
+  level: 1

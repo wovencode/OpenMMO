@@ -64,11 +64,11 @@ namespace OpenMMO.Network
                 // TODO: Add increased maxPlayers from user data later
                 message.maxPlayers = GameRulesTemplate.singleton.maxPlayersPerUser;
                 message.LoadPlayerPreviews(DatabaseManager.singleton.GetPlayers(msg.username));
-                message.text = systemText.userLoginSuccess;
+                message.text = systemText.USER_LOGIN_SUCCESS;
             }
             else
             {
-                message.text = systemText.userLoginFailure;
+                message.text = systemText.USER_LOGIN_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserLogin), conn.Id(), "DENIED"); //DEBUG
@@ -112,11 +112,11 @@ namespace OpenMMO.Network
             if (DatabaseManager.singleton.TryUserRegister(msg.username, msg.password, msg.email, msg.deviceid))
             {
                 RegisterUser(msg.username);
-                message.text = systemText.userRegisterSuccess;
+                message.text = systemText.USER_REGISTER_SUCCESS;
             }
             else
             {
-                message.text = systemText.userRegisterFailure;
+                message.text = systemText.USER_REGISTER_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserRegister), conn.Id(), "DENIED"); //DEBUG
@@ -150,14 +150,14 @@ namespace OpenMMO.Network
 
             if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserDelete(msg.username, msg.password))
             {
-                message.text = systemText.userDeleteSuccess;
+                message.text = systemText.USER_DELETE_SUCCESS;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserDelete), conn.Id(), "Success"); //DEBUG
 
             }
             else
             {
-                message.text = systemText.userDeleteFailure;
+                message.text = systemText.USER_DELETE_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserDelete), conn.Id(), "DENIED"); //DEBUG
@@ -191,14 +191,14 @@ namespace OpenMMO.Network
 
             if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserChangePassword(msg.username, msg.oldPassword, msg.newPassword))
             {
-                message.text = systemText.userChangePasswordSuccess;
+                message.text = systemText.USER_CHANGE_PASSWORD_SUCCESS;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserChangePassword), conn.Id(), "Success"); //DEBUG
 
             }
             else
             {
-                message.text = systemText.userChangePasswordFailure;
+                message.text = systemText.USER_CHANGE_PASSWORD_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserChangePassword), conn.Id(), "DENIED"); //DEBUG
@@ -232,14 +232,14 @@ namespace OpenMMO.Network
 
             if (!GetIsUserLoggedIn(msg.username) && DatabaseManager.singleton.TryUserConfirm(msg.username, msg.password))
             {
-                message.text = systemText.userConfirmSuccess;
+                message.text = systemText.USER_CONFIRM_SUCCESS;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserConfirm), conn.Id(), "Success"); //DEBUG
 
             }
             else
             {
-                message.text = systemText.userConfirmFailure;
+                message.text = systemText.USER_CONFIRM_FAILURE;
                 message.success = false;
 
                 debug.LogFormat(this.name, nameof(OnClientMessageRequestUserConfirm), conn.Id(), "DENIED"); //DEBUG

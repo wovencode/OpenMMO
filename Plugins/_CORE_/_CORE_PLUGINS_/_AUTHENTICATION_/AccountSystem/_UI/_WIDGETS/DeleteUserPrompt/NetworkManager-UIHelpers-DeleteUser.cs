@@ -33,29 +33,30 @@ namespace OpenMMO.Network
         /// Checks whether the user deletion request is valid and can be sent to the server.
         /// Returns a boolean detailing whether the request was sent or not.
         /// </summary>
-        /// <param name="conn"></param><param name="userName"></param>
-        /// <param name="password"></param><param name="action"></param>
+        /// <param name="userName"></param><param name="password"></param>
         /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
         // @Client
         //protected override bool RequestUserDelete(NetworkConnection conn, string userName, string password, int action=1) //REMOVED - DX4D
-        protected override bool RequestUserDelete(string userName, string password, int action=1) //ADDED - DX4D
+        protected override bool RequestUserDelete(string userName, string password) //ADDED - DX4D
         {
             //if (!base.RequestUserDelete(conn, userName, password)) //REMOVED - DX4D
             if (!CanUserDelete(userName, password)) return false; //ADDED - DX4D
 
             Request.UserDeleteRequest message = new Request.UserDeleteRequest
-			{
-				username = userName,
-				password = Tools.GenerateHash(name, password)
+            {
+                username = userName,
+                password = Tools.GenerateHash(name, password),
+                success = true
 			};
 
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //REMOVED - DX4D
+            //conn.Send(message); //REMOVED - DX4D
 
-            conn.Send(message);
-			
-			debug.LogFormat(this.name, nameof(RequestUserDelete), conn.Id(), userName); //DEBUG
-						
-			return true;
+            NetworkClient.connection.Send(message); //ADDED DX4D
+
+            //debug.LogFormat(this.name, nameof(RequestUserDelete), conn.Id(), userName); //DEBUG //REMOVED - DX4D
+
+            return true;
 		}
         /// <summary>Can we delete an user with the provided name and password?
         /// Public function <c>CanDeleteUser</c>.

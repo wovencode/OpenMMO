@@ -13,7 +13,7 @@ namespace OpenMMO.Database
 	public partial interface IAccountableManager
 	{
 		
-		bool TryPlayerSwitchServer(string playername, string anchorname, string zonename, int token);
+		bool CanPlayerSwitchServer(string playername, string anchorname, string zonename, int token);
 		
 	}
 		

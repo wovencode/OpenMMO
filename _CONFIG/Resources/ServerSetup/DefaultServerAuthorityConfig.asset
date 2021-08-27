@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1813e00713f778a40bf02a3d797d318f, type: 3}
   m_Name: DefaultServerAuthorityConfig
   m_EditorClassIdentifier: 
-  validation: 0
+  validation: 3
   tolerence: 7
   smooth: 1
   smoothing: 1

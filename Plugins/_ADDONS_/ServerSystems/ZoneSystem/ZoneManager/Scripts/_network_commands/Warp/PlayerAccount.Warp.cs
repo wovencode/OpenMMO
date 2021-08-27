@@ -62,14 +62,15 @@ namespace OpenMMO {
 		// -------------------------------------------------------------------------------
 		// WarpRemote
 		// Public
-		// @Client
-		// -------------------------------------------------------------------------------
+        //@CLIENT
 		[Client]
-		public void WarpRemote(string anchorName, string zoneName)
+		public void WarpRemote(string _anchorname, string _zonename)
 		{
 			// -- refresh security token
 			ZoneManager.singleton.RefreshToken();
-			Cmd_WarpRemote(anchorName, zoneName, ZoneManager.singleton.GetToken);
+
+
+			Cmd_WarpRemote(_anchorname, _zonename, ZoneManager.singleton.GetToken);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -78,37 +79,38 @@ namespace OpenMMO {
 		// @Client -> @Server
 		// -------------------------------------------------------------------------------
 		[Command]
-		protected void Cmd_WarpRemote(string anchorName, string zoneName, int token)
+		protected void Cmd_WarpRemote(string _anchorname, string _zonename, int _token)
 		{
-			if (!String.IsNullOrWhiteSpace(anchorName) && !String.IsNullOrWhiteSpace(zoneName))
-				WarpRemote(anchorName, zoneName, token);
+			if (!String.IsNullOrWhiteSpace(_anchorname) && !String.IsNullOrWhiteSpace(_zonename))
+				WarpRemote(_anchorname, _zonename, _token);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// WarpRemote
 		// Warp the player to another network zone (only available to players)
-		// @Server
-		// -------------------------------------------------------------------------------
+        //@SERVER
 		[ServerCallback]
-		public void WarpRemote(string anchorName, string zoneName, int token=0)
+		public void WarpRemote(string _anchorname, string _zonename, int _token)
         {
             PlayerAccount player = this;// GetComponent<PlayerAccount>();
 
-            Debug.Log("[SERVER] - Warping " + player.name + " to zone " + zoneName + "...");
+            Debug.Log("[ZONE SERVER] - Warping " + player.name + " to zone " + _zonename + " with token #" + _token + "..."); //DEBUG
 
             UpdateCooldown(GameRulesTemplate.singleton.remoteWarpDelay);
     		
-    		//NetworkZoneTemplate template = NetworkZoneTemplate.GetZoneBySceneName(zoneName); //REMOVED - was not used - DX4D
-    		
+    		//NetworkZoneTemplate template = NetworkZoneTemplate.GetZoneBySceneName(_zonename); //REMOVED - was not used - DX4D
+
     		// -- update anchor & zone
-    		player.zoneInfo.anchorname 	= anchorName;
-    		player.zoneInfo.zonename	 	= zoneName;
-    		securityToken = token; // token must not be set in table, can be fetched via GetToken
+    		player.zoneInfo.anchorname 	= _anchorname;
+    		player.zoneInfo.zonename	 	= _zonename;
+            player.securityToken = _token; //ADDED DX4D //REMOVED DX4D
+
+    		//securityToken = _token; // token must not be set in table, can be fetched via GetToken
     		
     		// -- save player
     		DatabaseManager.singleton.SaveDataPlayer(player.gameObject); //SAVE PLAYER
     		
-    		Network.NetworkManager.singleton.SwitchServerPlayer(player.connectionToClient, player.gameObject.name, anchorName, zoneName, securityToken); //SWITCH SERVER
+    		Network.NetworkManager.singleton.SwitchServerPlayer(player.connectionToClient, player.gameObject.name, _anchorname, _zonename, _token); //SWITCH SERVER
     		
     		NetworkServer.Destroy(player.gameObject); //DESTROY PLAYER
     		

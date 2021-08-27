@@ -873,15 +873,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4880ea1a215aa594fa42cbfdf3be1d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickDelayDuration: 0.25
   button: {fileID: 593653083065137080}
-  delayDuration: 0.25
+  resourcesSubFolder: PLAYER
+  uncheckedImage: {fileID: 21300000, guid: d358f66200c0c45b78e932a17a5ffb79, type: 3}
+  checkedImage: {fileID: 21300000, guid: d5ecc34993efb4f75a1c9eb1693ec916, type: 3}
   nameText: {fileID: 593653082234146158}
   nameTextMesh: {fileID: 2140084813195190737}
   buttonSelect: {fileID: 593653083065137080}
   characterIcon: {fileID: 648294546620756315}
   checkboxIcon: {fileID: 2220008588058428589}
-  uncheckedImage: {fileID: 21300000, guid: d358f66200c0c45b78e932a17a5ffb79, type: 3}
-  checkedImage: {fileID: 21300000, guid: d5ecc34993efb4f75a1c9eb1693ec916, type: 3}
 --- !u!114 &6528529618481354182
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ namespace OpenMMO.Database
 		/// It is correct that this code modifies user, when the player logs in. As we have to update the user (= account) lastonline time as well.
 		/// </remarks>
 		[DevExtMethods(nameof(SaveDataPlayer))]
-		void SaveDataPlayer_User(GameObject player, bool isNew)
+		void SaveDataPlayer_LastOnline_User(GameObject player, bool isNew)
 		{
 			// dont update the time on a new player or we log ourselves out of login
 			if (isNew) return; 
@@ -67,8 +67,9 @@ namespace OpenMMO.Database
 		/// <remarks>
 		/// It is correct that this code modifies user, when the player logs in. As we have to update the user (= account) lastonline time as well.
 		/// </remarks>
-	   	[DevExtMethods(nameof(LoadPlayerFromDatabase))]
-	   	void LoadPlayerFromDatabase_User(NetworkConnection conn, GameObject player, string playerName, string userName)
+	   	[DevExtMethods(nameof(ConnectToServer))]
+	   	//[DevExtMethods(nameof(LoginPlayer))]
+	   	void ConnectToServer_LastOnline_User(NetworkConnection conn, GameObject player, string playerName, string userName)
 	   	{
 	   		// -- we update lastlogin of user only when a player character logs in (otherwise we lock ourselves out)
 	   		Execute("UPDATE "+nameof(TableUser)+" SET lastonline=? WHERE username=?", DateTime.UtcNow, userName);
@@ -81,7 +82,7 @@ namespace OpenMMO.Database
 		/// It is correct that this code modifies user, when the player logs out. As we have to update the user (= account) lastonline time as well.
 		/// </remarks>
 	   	[DevExtMethods(nameof(LogoutPlayer))]
-	   	void LogoutPlayer_User(GameObject player)
+	   	void LogoutPlayer_LastOnline_User(GameObject player)
 	   	{
 	   		// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login
 	   		string userName = player.GetComponent<PlayerAccount>()._tablePlayer.username;
@@ -93,7 +94,7 @@ namespace OpenMMO.Database
 		/// Hooks into SaveDataUser and is called when a user (= account) is saved to the database.
 		/// </summary>
 		[DevExtMethods(nameof(SaveDataUser))]
-		void SaveDataUser_User(string username, bool isNew)
+		void SaveDataUser_LastOnline_User(string username, bool isNew)
 		{
 		
 			// dont update the time on a new player or we log ourselves out of login
@@ -115,7 +116,7 @@ namespace OpenMMO.Database
 		/// Hooks into LogoutUser and is called when either the user (= account) or player (= character) logs out.
 		/// </summary>
 	   	[DevExtMethods(nameof(LogoutUser))]
-	   	void LogoutUser_User(string username)
+	   	void LogoutUser_LastOnline_User(string username)
 	   	{
 	   		// -- this resets lastlogin to allow immediate re-login
 	   		// -- lastlogin is UtcNow minus 'logoutInterval' to allow immediate login

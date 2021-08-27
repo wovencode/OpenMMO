@@ -1,4 +1,4 @@
-﻿
+
 using OpenMMO;
 using OpenMMO.Database;
 using System;
@@ -25,6 +25,10 @@ namespace OpenMMO.Database
 		// -------------------------------------------------------------------------------
 		public bool ValidateToken(int _token)
 		{
+            Debug.Log("[ZONE SERVER] - VALIDATING TOKEN"
+                + "\n" + "Client token " + _token
+                + ( (token == _token) ? (" matches expected token ") : (" does not match expected token ") )
+                + token);
 			return (token == _token);
 		}
 		

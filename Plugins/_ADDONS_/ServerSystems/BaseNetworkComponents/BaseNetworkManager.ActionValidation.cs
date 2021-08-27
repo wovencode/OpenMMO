@@ -67,8 +67,8 @@ namespace OpenMMO.Network
         /// <param name="_action"></param>
         /// <returns> A boolean value determining whether the user can deleted their account </returns>
         //protected virtual bool RequestUserDelete(NetworkConnection conn, string username, string password, int _action=1) //REMOVED - DX4D
-        protected abstract bool RequestUserDelete(string username, string password, int _action = 1); //ADDED - DX4D
-        protected virtual bool CanUserDelete(string username, string password, int _action=1) //ADDED - DX4D
+        protected abstract bool RequestUserDelete(string username, string password); //ADDED - DX4D
+        protected virtual bool CanUserDelete(string username, string password) //ADDED - DX4D
         {
 			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(password));
 		}
@@ -101,8 +101,8 @@ namespace OpenMMO.Network
         /// <param name="_action"></param>
         /// <returns> A boolean value determining whether the user request has been confirmed </returns>
         //protected virtual bool RequestUserConfirm(NetworkConnection conn, string username, string password, int _action=1) //REMOVED - DX4D
-        protected abstract bool RequestUserConfirm(string username, string password, int _action = 1); //ADDED - DX4D
-        protected virtual bool CanUserConfirm(string username, string password, int _action=1) //ADDED - DX4D
+        protected abstract bool RequestUserConfirm(string username, string password); //ADDED - DX4D
+        protected virtual bool CanUserConfirm(string username, string password) //ADDED - DX4D
         {
 			return (Tools.IsAllowedName(username) && Tools.IsAllowedPassword(password));
 		}
@@ -155,8 +155,8 @@ namespace OpenMMO.Network
         /// <param name="_action"></param>
         /// <returns> A boolean value determining whether the player has been deleted </returns>
         //protected virtual bool RequestPlayerDelete(NetworkConnection conn, string playername, string username, int _action=1) //REMOVED - DX4D
-        protected abstract bool RequestPlayerDelete(string playername, string username, int _action=1); //ADDED - DX4D
-        protected virtual bool CanPlayerDelete(string playername, string username, int _action = 1) //ADDED - DX4D
+        protected abstract bool RequestPlayerDelete(string playername, string username); //ADDED - DX4D
+        protected virtual bool CanPlayerDelete(string playername, string username) //ADDED - DX4D
         {
             return (Tools.IsAllowedName(playername) && Tools.IsAllowedName(username));
 		}

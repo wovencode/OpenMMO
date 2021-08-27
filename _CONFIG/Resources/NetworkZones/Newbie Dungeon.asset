@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Newbie Dungeon
   folderName: NetworkZones
-  server: {fileID: 11400000, guid: e7e259656c143834a9b6a2e10aa2e034, type: 2}
+  server: {fileID: 11400000, guid: 5af753e2cf4030a41ac4deb7727841c6, type: 2}
   scene:
     sceneAsset: {fileID: 102900000, guid: d093f40c2ff3d8f4a9845e2684b44dc5, type: 3}
     sceneName: Newbie Dungeon

@@ -1,4 +1,4 @@
-﻿//by  Fhiz
+//by  Fhiz
 using System;
 
 namespace OpenMMO.Database
@@ -37,14 +37,14 @@ namespace OpenMMO.Database
 		/// <summary>
 		/// Tries to login a existing player (= character) using the provided playername (= charactername) and username (= accountname).
 		/// </summary>
-		public override bool TryPlayerLogin(string playername, string username)
+		public override bool CanPlayerLogin(string _playername, string _username)
 		{
 			
-			if (!base.TryPlayerLogin(playername, username) || !PlayerValid(playername, username))
-				return false;
-			
-			return true;
-			
+			//if (!base.CanPlayerLogin(playername, username) || !PlayerValid(playername, username))
+			//	return false;
+			//return true;
+
+            return (base.CanPlayerLogin(_playername, _username) && PlayerValid(_playername, _username));
 		}
 		
 		/// <summary>

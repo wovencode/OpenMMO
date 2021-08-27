@@ -32,7 +32,6 @@ namespace OpenMMO.Network
         /// Checks whether the user login request is valid and can be sent to the server.
         /// Returns a boolean detailing whether the request was sent or not.
         /// </summary>
-        /// <param name="conn"></param>
         /// <param name="userName"></param><param name="password"></param>
         /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
         // @Client
@@ -43,16 +42,17 @@ namespace OpenMMO.Network
             if (!CanUserLogin(userName, password)) return false; //ADDED - DX4D
 
             Request.UserLoginRequest message = new Request.UserLoginRequest
-			{
-				username = userName,
-				password = Tools.GenerateHash(name, password)
+            {
+                username = userName,
+                password = Tools.GenerateHash(name, password),
+                success = true
 			};
-
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
-
-            conn.Send(message);
+            
+            NetworkClient.connection.Send(message); //ADDED - DX4D
 			
-			debug.LogFormat(this.name, nameof(RequestUserLogin), conn.Id(), userName); //DEBUG
+            //NetworkConnection conn = NetworkClient.connection; //REMOVED - DX4D
+            //conn.Send(message); //REMOVED - DX4D
+			//debug.LogFormat(this.name, nameof(RequestUserLogin), conn.Id(), userName); //DEBUG //REMOVED - DX4D
 			
 			return true;
 

@@ -15,8 +15,8 @@ namespace OpenMMO.Network
 {
 
     // ===================================================================================
-	// NetworkManager
-	// ===================================================================================
+    // NetworkManager
+    // ===================================================================================
     public partial class NetworkManager
     {
         // L O G I N  P L A Y E R
@@ -57,24 +57,25 @@ namespace OpenMMO.Network
             if (!CanPlayerLogin(playername, username)) return false; //ADDED - DX4D
 
             Request.PlayerLoginRequest message = new Request.PlayerLoginRequest
-			{
-				playername = playername,
-				username = username
-			};
+            {
+                playername = playername,
+                username = username,
+                success = true
+            };
 
             // must be readied here, not in the response - otherwise it generates a warning
             //ClientScene.Ready(conn); //REMOVED - DX4D
             if (!NetworkClient.ready) NetworkClient.Ready(); //ADDED - DX4D
 
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //REMOVED - DX4D
+            //conn.Send(message); //REMOVED - DX4D
 
-            conn.Send(message);
-			
-			debug.LogFormat(this.name, nameof(RequestPlayerLogin), conn.Id(), username, playername); //DEBUG
-			
-			return true;
+            NetworkClient.connection.Send(message); //ADDED - DX4D
 
-		}
+            //debug.LogFormat(this.name, nameof(RequestPlayerLogin), conn.Id(), username, playername); //DEBUG //REMOVED - DX4D
+
+            return true;
+        }
 
         // R E G I S T E R  P L A Y E R
 
@@ -96,8 +97,7 @@ namespace OpenMMO.Network
         /// Checks whether the player register request is valid and can be sent to the server.
         /// Returns a boolean detailing whether the request was sent or not.
         /// </summary>
-        /// <param name="conn"></param><param name="playerName"></param>
-        /// <param name="userName"></param><param name="prefabName"></param>
+        /// <param name="playerName"></param><param name="userName"></param><param name="prefabName"></param>
         /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
         // @Client
         //protected override bool RequestPlayerRegister(NetworkConnection conn, string playerName, string userName, string prefabName) //REMOVED - DX4D
@@ -107,21 +107,23 @@ namespace OpenMMO.Network
             if (!CanPlayerRegister(playerName, userName, prefabName)) return false; //ADDED - DX4D
 
             Request.PlayerRegisterRequest message = new Request.PlayerRegisterRequest
-			{
-				playername 	= playerName,
-				username 	= userName,
-				prefabname 	= prefabName
-			};
+            {
+                playername = playerName,
+                username = userName,
+                prefabname = prefabName,
+                success = true
+            };
 
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //REMOVED - DX4D
+            //conn.Send(message); //REMOVED - DX4D
 
-            conn.Send(message);
-			
-			debug.LogFormat(this.name, nameof(RequestPlayerRegister), conn.Id(), playerName, prefabName); //DEBUG
-			
-			return true;
+            NetworkClient.connection.Send(message); //ADDED - DX4D
 
-		}
+            //debug.LogFormat(this.name, nameof(RequestPlayerRegister), conn.Id(), playerName, prefabName); //DEBUG //REMOVED - DX4D
+
+            return true;
+
+        }
         /// <summary>Can we register a new player with the provided name?
         /// Public function <c>CanRegisterPlayer</c>.
         /// Checks whether the player can be registered with the provided name.
@@ -145,16 +147,25 @@ namespace OpenMMO.Network
         /// </summary>
         /// <param name="playerName"></param>
         // @Client
+#if _CLIENT && _SERVER //HOST AND PLAY
+        bool deleting = false;
         public void TryDeletePlayer(string playerName)
         {
+            if (deleting) { deleting = false; return; } //SKIP SECOND DELETE IN HOST MODE (Fixes Double Deletion Bug)
+#else //CLIENT ONLY
+        public void TryDeletePlayer(string playerName)
+        {
+#endif
             //if (RequestPlayerDelete(NetworkClient.connection, playerName, userName)) //REMOVED - DX4D
             if (RequestPlayerDelete(playerName, userName)) //ADDED - DX4D
             {
                 for (int i = 0; i < playerPreviews.Count; i++)
                 {
-                    if (playerPreviews[i].name == playerName)
+                    if (playerPreviews[i].playername == playerName)
                     {
+                        Debug.Log("[CLIENT][DELETE] Deleting character " + playerName + " at slot " + i);
                         playerPreviews.RemoveAt(i);
+                        return; //ADDED - WE ONLY WANT TO DELETE ONE CHARACTER - DX4D
                     }
                 }
             }
@@ -165,32 +176,31 @@ namespace OpenMMO.Network
         /// Checks whether the player deletion request is valid and can be sent to the server.
         /// Returns a boolean detailing whether the request was sent or not.
         /// </summary>
-        /// <param name="conn"></param>
-        /// <param name="playerName"></param>
-        /// <param name="userName"></param>
-        /// <param name="action"></param>
+        /// <param name="playerName"></param><param name="userName"></param>
         /// <returns> Returns a boolean detailing whether the request was sent to the server. </returns>
         // @Client
         //protected override bool RequestPlayerDelete(NetworkConnection conn, string playerName, string userName, int action=1) //REMOVED - DX4D
-        protected override bool RequestPlayerDelete(string playerName, string userName, int action=1) //ADDED - DX4D
+        //protected override bool RequestPlayerDelete(string playerName, string userName, int action = 1) //REMOVED - DX4D
+        protected override bool RequestPlayerDelete(string playerName, string userName) //ADDED - DX4D
         {
             //if (!base.RequestPlayerDelete(conn, playerName, userName)) //REMOVED - DX4D
             if (!CanPlayerDelete(playerName, userName)) return false; //ADDED - DX4D
 
             Request.PlayerDeleteRequest message = new Request.PlayerDeleteRequest
-			{
-				playername = playerName,
-				username = userName
-			};
+            {
+                playername = playerName,
+                username = userName,
+                success = true
+            };
 
-            NetworkConnection conn = NetworkClient.connection; //ADDED - DX4D
+            //NetworkConnection conn = NetworkClient.connection; //REMOVED - DX4D
+            //conn.Send(message); //REMOVED DX4D
 
-            conn.Send(message);
-			
-			debug.LogFormat(this.name, nameof(RequestPlayerDelete), conn.Id(), userName); //DEBUG
-			
-			return true;
+            NetworkClient.connection.Send(message); //ADDED - DX4D
 
-		}
+            //debug.LogFormat(this.name, nameof(RequestPlayerDelete), conn.Id(), userName); //DEBUG //REMOVED - DX4D
+
+            return true;
+        }
     }
 }

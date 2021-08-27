@@ -1,10 +1,10 @@
 //BY FHIZ
 //MODIFIED BY DX4D
 
-using OpenMMO;
-using OpenMMO.Zones;
-using System.Diagnostics;
-using OpenMMO.Debugging;
+//using OpenMMO;
+//using OpenMMO.Zones;
+//using System.Diagnostics;
+//using OpenMMO.Debugging;
 
 using System;
 using UnityEngine;
@@ -244,21 +244,28 @@ namespace OpenMMO.Zones
 		// -------------------------------------------------------------------------------
 		// RefreshToken
 		// Generates a new security token for server switch.
-		// -------------------------------------------------------------------------------
+        //@CLIENT
 		public void RefreshToken()
 		{
 			securityToken = UnityEngine.Random.Range(1000,9999);
-		}
+#if _SERVER && _CLIENT
+            Debug.Log("[ZONE HOST] - " + "Generated Security Token #" + securityToken);
+#elif _SERVER
+            Debug.Log("[ZONE SERVER] - " + "Generated Security Token #" + securityToken);
+#elif _CLIENT
+            Debug.Log("[ZONE CLIENT] - " + "Generated Security Token #" + securityToken);
+#endif
+        }
 
         // =========================== MAIN METHODS ======================================
 
-    	// -------------------------------------------------------------------------------
-    	// InitAsSubZone
+        // -------------------------------------------------------------------------------
+        // InitAsSubZone
         //@SERVER
-    	// -------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------
         /// <summary>Initializes the sub-zone in a new server instance.</summary>
         /// <param name="_template">The NetworkZoneTemplate that holds the Server info for this zone</param>
-    	protected void InitAsSubZone(NetworkZoneTemplate _template)
+        protected void InitAsSubZone(NetworkZoneTemplate _template)
     	{
             //UPDATE TRANSPORTS
             UpdateTransportPort(GetZonePort);

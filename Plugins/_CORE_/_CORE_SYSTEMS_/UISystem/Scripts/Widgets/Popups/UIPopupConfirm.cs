@@ -1,4 +1,4 @@
-﻿//by Fhiz
+//by Fhiz
 using OpenMMO;
 using OpenMMO.UI;
 using UnityEngine;
@@ -45,8 +45,8 @@ namespace OpenMMO.UI
 			
 			confirmAction = _confirmAction;
 			
-			if (confirmButton)
-				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
+            //SET CONFIRM BUTTON LISTENER
+			if (confirmButton) confirmButton.onClick.SetListener(() => { onClickConfirm(); }); //SET LISTENER
 				
 			if (confirmButton && confirmButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_confirmText))
 				confirmButton.GetComponent<Text>().text = _confirmText;

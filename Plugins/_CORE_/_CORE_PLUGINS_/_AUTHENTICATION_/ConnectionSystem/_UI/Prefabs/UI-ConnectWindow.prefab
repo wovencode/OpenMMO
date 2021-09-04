@@ -992,16 +992,40 @@ PrefabInstance:
       value: CONNECT
       objectReference: {fileID: 0}
     - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8845739552200509201}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickConnect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenMMO.UI.UIWindowAuth, Assembly-CSharp-firstpass
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741952079291415439, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6071067609309801958, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_text
       value: CONNECT
       objectReference: {fileID: 0}
     - target: {fileID: 6071067609309801958, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_fontSize
-      value: 43.35
+      value: 46.35
       objectReference: {fileID: 0}
     - target: {fileID: 7318925247262235088, guid: 374e8039e23c652499d7e3671324fa15, type: 3}
       propertyPath: m_Name

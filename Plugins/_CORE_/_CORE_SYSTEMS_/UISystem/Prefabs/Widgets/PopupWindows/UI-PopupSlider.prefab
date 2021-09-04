@@ -646,7 +646,6 @@ MonoBehaviour:
   closeTriggerName: close
   descriptionText: {fileID: 801040725342515645}
   descriptionTextMesh: {fileID: 3964227675990618660}
-  _showing: 0
   confirmButton: {fileID: 801040725736096848}
   confirmButtonText: {fileID: 801040726644057660}
   confirmButtonTextMesh: {fileID: 0}
@@ -1036,19 +1035,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 801040725736096851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: onClickConfirm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &801040725952353488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,19 +1584,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 801040726298107719}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: onClickConfirm
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &801040726332021143
 GameObject:
   m_ObjectHideFlags: 0

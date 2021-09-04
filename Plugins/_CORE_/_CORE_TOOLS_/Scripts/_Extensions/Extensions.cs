@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using System;
@@ -150,19 +150,19 @@ public static partial class Extensions
 		return source;
 	}
     
-	// -----------------------------------------------------------------------------------
-	// Removes all previous listeners and adds the new listener (for onClick etc.)
-	// Extends: UnityEvent
-	// -----------------------------------------------------------------------------------
+    // E V E N T  L I S T E N E R S
+
+    /// <summary>Replaces all existing listeners with the passed in listener event.
+    /// <para>NOTE: Does not remove events assigned in the inspector - beware of double triggering events because of this.</para></summary>
+    /// <param name="_event"></param><param name="_call"></param>
     public static void SetListener(this UnityEvent _event, UnityAction _call)
     {
         _event.RemoveAllListeners();
         _event.AddListener(_call);
     }
-	// -----------------------------------------------------------------------------------
-	// Removes all previous listeners and adds the new listener (for onValueChanged etc.)
-	// Extends: UnityEvent<T>
-	// -----------------------------------------------------------------------------------
+    /// <summary>Replaces all existing listeners with the passed in listener event.
+    /// <para>NOTE: Does not remove events assigned in the inspector - beware of double triggering events because of this.</para></summary>
+    /// <typeparam name="T"></typeparam><param name="_event"></param><param name="_call"></param>
     public static void SetListener<T>(this UnityEvent<T> _event, UnityAction<T> _call)
     {
         _event.RemoveAllListeners();
